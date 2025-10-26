@@ -1,0 +1,111 @@
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-24T19:45:49.784Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net","timestamp":"2025-10-24T19:45:50.750Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-24T19:51:42.559Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net","timestamp":"2025-10-24T19:51:43.402Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-24T20:08:08.242Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net","timestamp":"2025-10-24T20:08:09.072Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-24T20:16:01.338Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net","timestamp":"2025-10-24T20:16:02.036Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-24T20:18:36.469Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net","timestamp":"2025-10-24T20:18:37.131Z"}
+{"level":"info","message":"[2025-10-24T20:18:42.965Z] POST /api/user/send-otp 404 - 17ms - IP: ::1","timestamp":"2025-10-24T20:18:42.965Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T04:15:22.035Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net","timestamp":"2025-10-25T04:15:23.805Z"}
+{"level":"info","message":"[2025-10-25T04:15:54.934Z] POST /api/user/send-otp 404 - 49ms - IP: ::1","timestamp":"2025-10-25T04:15:54.935Z"}
+{"level":"info","message":"[2025-10-25T04:16:26.211Z] POST /api/user/send-otp 404 - 1ms - IP: ::1","timestamp":"2025-10-25T04:16:26.211Z"}
+{"level":"info","message":"[2025-10-25T04:17:27.726Z] POST /api/user/send-otp 404 - 2ms - IP: ::1","timestamp":"2025-10-25T04:17:27.727Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T04:17:57.453Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net","timestamp":"2025-10-25T04:17:59.046Z"}
+{"level":"info","message":"[2025-10-25T04:18:04.303Z] POST /api/user/send-otp 404 - 41ms - IP: ::1","timestamp":"2025-10-25T04:18:04.303Z"}
+{"level":"info","message":"[2025-10-25T04:18:30.708Z] POST /api/user/send-otp 404 - 2ms - IP: ::1","timestamp":"2025-10-25T04:18:30.708Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T04:22:21.503Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net","timestamp":"2025-10-25T04:22:22.835Z"}
+{"level":"info","message":"[2025-10-25T04:22:26.795Z] POST /api/user/send-otp 404 - 45ms - IP: ::1","timestamp":"2025-10-25T04:22:26.795Z"}
+{"level":"info","message":"[2025-10-25T04:43:27.784Z] POST /api/user/send-otp 404 - 3ms - IP: ::1","timestamp":"2025-10-25T04:43:27.784Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T04:44:35.063Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net","timestamp":"2025-10-25T04:44:36.028Z"}
+{"level":"info","message":"[2025-10-25T04:44:40.867Z] POST /api/user/send-otp 404 - 35ms - IP: ::1","timestamp":"2025-10-25T04:44:40.868Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T04:45:41.395Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T04:46:08.087Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net","timestamp":"2025-10-25T04:46:10.546Z"}
+{"level":"info","message":"[2025-10-25T04:46:19.511Z] POST /api/user/send-otp 404 - 39ms - IP: ::1-------[object Object]","timestamp":"2025-10-25T04:46:19.512Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T04:47:01.266Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net","timestamp":"2025-10-25T04:47:04.409Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T04:47:27.607Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net","timestamp":"2025-10-25T04:47:28.985Z"}
+{"level":"info","message":"[2025-10-25T04:47:35.594Z] POST /api/user/send-otp 404 - 34ms - IP: ::1-------felwin@example.com","timestamp":"2025-10-25T04:47:35.594Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T05:05:21.532Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net","timestamp":"2025-10-25T05:05:22.891Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T05:09:36.050Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net","timestamp":"2025-10-25T05:09:39.310Z"}
+{"level":"info","message":"[2025-10-25T05:10:28.662Z] POST /api/user/send-otp 404 - 41ms - IP: ::1-------felwin@example.com","timestamp":"2025-10-25T05:10:28.663Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T05:11:15.642Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net","timestamp":"2025-10-25T05:11:16.826Z"}
+{"level":"info","message":"[2025-10-25T05:11:23.899Z] POST /api/user/send-otp 404 - 35ms - IP: ::1-------felwin@example.com","timestamp":"2025-10-25T05:11:23.900Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T05:17:50.204Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net","timestamp":"2025-10-25T05:17:53.811Z"}
+{"level":"info","message":"[2025-10-25T05:19:53.013Z] POST /api/user/send-otp 404 - 608ms - IP: ::1-------felwin@example.com","timestamp":"2025-10-25T05:19:53.014Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T05:20:51.454Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net","timestamp":"2025-10-25T05:20:53.326Z"}
+{"level":"info","message":"[2025-10-25T05:21:15.743Z] POST /api/user/send-otp 404 - 55ms - IP: ::1-------felwin@example.com","timestamp":"2025-10-25T05:21:15.744Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T05:27:16.694Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net","timestamp":"2025-10-25T05:27:17.945Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T05:27:22.452Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T05:27:22.454Z"}
+{"level":"info","message":"[2025-10-25T05:27:22.464Z] POST /api/user/send-otp 500 - 42ms - IP: ::1-------felwin@example.com","timestamp":"2025-10-25T05:27:22.465Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T05:30:32.644Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T05:30:32.649Z"}
+{"level":"info","message":"[2025-10-25T05:30:32.652Z] POST /api/user/send-otp 500 - 10ms - IP: ::1-------felwin@example.com","timestamp":"2025-10-25T05:30:32.652Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T05:32:44.664Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net","timestamp":"2025-10-25T05:32:48.094Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T05:32:49.378Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T05:32:49.383Z"}
+{"level":"info","message":"[2025-10-25T05:32:49.395Z] POST /api/user/send-otp 500 - 50ms - IP: ::1-------felwin@example.com","timestamp":"2025-10-25T05:32:49.395Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T05:38:06.250Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net","timestamp":"2025-10-25T05:38:07.587Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T05:38:59.595Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T05:38:59.717Z"}
+{"level":"info","message":"[2025-10-25T05:38:59.726Z] POST /api/user/send-otp 500 - 162ms - IP: ::1-------felwin@example.com","timestamp":"2025-10-25T05:38:59.727Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T07:57:13.791Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net","timestamp":"2025-10-25T07:57:15.314Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T07:57:57.288Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T07:57:57.335Z"}
+{"level":"info","message":"[2025-10-25T07:57:57.341Z] POST /api/user/send-otp 500 - 77ms - IP: ::1-------felwin@example.com","timestamp":"2025-10-25T07:57:57.343Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T08:03:08.803Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net","timestamp":"2025-10-25T08:03:10.240Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T08:03:36.242Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T08:03:36.352Z"}
+{"level":"info","message":"[2025-10-25T08:03:36.360Z] POST /api/user/send-otp 500 - 143ms - IP: ::1-------felwin@example.com","timestamp":"2025-10-25T08:03:36.360Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T08:04:27.754Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net","timestamp":"2025-10-25T08:04:29.092Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T08:04:43.280Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T08:04:43.432Z"}
+{"level":"info","message":"[2025-10-25T08:04:43.443Z] POST /api/user/send-otp 500 - 191ms - IP: ::1-------felwin@example.com","timestamp":"2025-10-25T08:04:43.443Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T08:06:06.234Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net","timestamp":"2025-10-25T08:06:08.677Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T08:06:10.507Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T08:06:12.136Z"}
+{"level":"info","message":"[2025-10-25T08:06:12.142Z] POST /api/user/send-otp 500 - 1661ms - IP: ::1-------felwin@example.com","timestamp":"2025-10-25T08:06:12.142Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T09:51:19.954Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net","timestamp":"2025-10-25T09:51:21.631Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T09:51:58.342Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T12:40:17.702Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net","timestamp":"2025-10-25T12:40:18.715Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T12:41:08.821Z"}
+{"level":"info","message":"[2025-10-25T12:41:14.252Z] POST /api/user/send-otp 200 - 5652ms - IP: ::1-------felwin@example.com","timestamp":"2025-10-25T12:41:14.252Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T12:42:43.649Z"}
+{"level":"info","message":"[2025-10-25T12:42:47.425Z] POST /api/user/send-otp 200 - 3776ms - IP: ::1-------felwinshaji@gmail.com","timestamp":"2025-10-25T12:42:47.425Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T14:15:36.660Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net","timestamp":"2025-10-25T14:15:39.746Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T14:16:09.013Z"}
+{"level":"info","message":"[2025-10-25T14:16:18.895Z] POST /api/user/send-otp 200 - 10101ms - IP: ::1-------felwinshaji@gmail.com","timestamp":"2025-10-25T14:16:18.895Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T14:37:28.518Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net","timestamp":"2025-10-25T14:37:31.185Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T14:37:32.992Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T14:37:59.441Z"}
+{"level":"info","message":"[2025-10-25T14:37:59.444Z] POST /api/user/send-otp 500 - 26464ms - IP: ::1-------felwinshaji@gmail.com","timestamp":"2025-10-25T14:37:59.445Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T14:39:31.454Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-25T14:40:17.123Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net","timestamp":"2025-10-25T14:40:19.638Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-10-25T14:40:36.189Z"}
+{"level":"info","message":"[2025-10-25T14:40:41.575Z] POST /api/user/send-otp 200 - 5398ms - IP: ::1-------felwinshaji@gmail.com","timestamp":"2025-10-25T14:40:41.575Z"}

@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    /* ==== File Paths ==== */
+    "rootDir": "src",
+    "outDir": "./dist",
+    /* ==== Environment ==== */
+    "target": "ESNext",
+    "module": "NodeNext",
+    "lib": [
+      "ESNext"
+    ],
+    "types": [
+      "node"
+    ],
+    /* ==== Output ==== */
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    /* ==== Type Checking ==== */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    /* ==== Module Behavior ==== */
+    "esModuleInterop": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    /* ==== tsyringe decorators ==== */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

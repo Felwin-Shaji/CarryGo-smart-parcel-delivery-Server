@@ -17,6 +17,10 @@ export class OtpVo {
     static validate(otp: string): boolean {
         return /^\d{4}$/.test(otp);
     }
+    
+    async compare(inputOtp: string): Promise<boolean> {
+        return bcrypt.compare(inputOtp, this.otp);
+    }
 
     get value(): string {
         return this.otp;

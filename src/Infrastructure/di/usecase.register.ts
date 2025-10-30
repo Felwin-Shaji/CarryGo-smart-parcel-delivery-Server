@@ -1,6 +1,13 @@
-import type { Otp } from "../../Application/Dto/otp.dto.js";
-import { SendOtpUseCase } from "../../Application/useCase/send-otp.usecase.js";
-import type { User } from "../../Domain/Entities/User.js";
-import { mailService, otpRepository, userRepository } from "./repository.register.js";
+import { container } from "tsyringe";
 
-export const sendOtpUseCase = new SendOtpUseCase<Otp,User>(otpRepository,userRepository,mailService)
+import type { ISendOtpUseCase } from "../../Application/interfaces/useCase/requestOtp.usecase.js";
+import { SendOtpUseCase } from "../../Application/useCase/send-otp.usecase.js";
+
+
+export class UsecaseRegistery {
+    static registerUsecase():void{
+        container.register<ISendOtpUseCase>("ISendOtpUseCase",{
+            useClass:SendOtpUseCase
+        })
+    }
+}

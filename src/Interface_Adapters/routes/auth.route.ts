@@ -7,6 +7,6 @@ export class AuthRoute extends BaseRoute{
     }
 
     protected initializeRoutes(): void {
-        this.router.post("/send-otp",authController.sentOtp)
+        this.router.post("/send-otp",authController.sendOtp)
     }
 }

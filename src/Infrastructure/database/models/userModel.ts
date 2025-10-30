@@ -1,4 +1,3 @@
-import { google } from "googleapis";
 import { model, Schema } from "mongoose";
 import type { User } from "../../../Domain/Entities/User.js";
 
@@ -16,4 +15,4 @@ const userModel = new Schema<User>({
     timestamps: true
 });
 
-export const UserModel = model<User>("User",userModel)
+export const UserModel = model<User>("User",userModel);

@@ -21,7 +21,7 @@ export const loggerMiddleware = (req: Request, res: Response, next: NextFunction
     };
 
     logger.info(
-      `[${log.time}] ${log.method} ${log.url} ${log.statusCode} - ${log.duration} - IP: ${log.ip}-------${log.body.email}`
+      `[${log.time}] ${log.method} ${log.url} ${log.statusCode} - ${log.duration} - IP: ${log.ip}-------${log.body}`
     );
   });
 

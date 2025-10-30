@@ -1,3 +1,5 @@
+import type { SendOtpDto } from "../../Dto/Auth.js";
+
 export interface ISendOtpUseCase {
-    execute(name: string, email: string, mobile: string, password: string): Promise<void>;
+    execute(otpData:SendOtpDto): Promise<void>;
 }

@@ -1,0 +1,12 @@
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-29T03:49:28.625Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net","timestamp":"2025-10-29T03:49:31.498Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-29T06:23:02.369Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net","timestamp":"2025-10-29T06:23:03.650Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-29T06:25:24.588Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net","timestamp":"2025-10-29T06:25:25.850Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-29T06:26:23.053Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net","timestamp":"2025-10-29T06:26:24.722Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-29T06:26:44.428Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net","timestamp":"2025-10-29T06:26:46.866Z"}
+{"level":"info","message":"[2025-10-29T06:26:54.185Z] OPTIONS /api/user/send-otp 204 - 3ms - IP: ::1-------undefined","timestamp":"2025-10-29T06:26:54.185Z"}
+{"level":"info","message":"[2025-10-29T06:27:01.890Z] POST /api/user/send-otp 200 - 7457ms - IP: ::1-------felwinshaji@gmail.com","timestamp":"2025-10-29T06:27:01.890Z"}

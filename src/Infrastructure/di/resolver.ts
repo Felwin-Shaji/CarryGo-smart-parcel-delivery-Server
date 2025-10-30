@@ -1,6 +1,10 @@
-import type { Otp } from "../../Application/Dto/otp.dto.js";
+import { container } from "tsyringe";
+import { DependancyInjection } from "./container.js";
+
 import { AuthController } from "../../Interface_Adapters/controllers/AuthController.js";
 
-import { sendOtpUseCase } from "./usecase.register.js";
 
-export const authController = new AuthController(sendOtpUseCase)
+
+DependancyInjection.registerAll();
+
+export const authController = container.resolve(AuthController);

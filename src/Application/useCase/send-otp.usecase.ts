@@ -1,21 +1,33 @@
 import { EmailVo } from "../../Domain/ValueObjects/Email.valueObject.js";
 import { PasswordVo } from "../../Domain/ValueObjects/password.valueObject.js";
-import type { Otp } from "../Dto/otp.dto.js";
+import type { IOtpModel } from "../../Domain/Entities/Iotp.js";
 import type { IOtpRepository } from "../interfaces/repositories/auth/otp.repository.js";
 import type { IUserRepository } from "../interfaces/repositories/user/user.repository.js";
 import type { IMailService } from "../interfaces/services/email.service.js";
 import type { ISendOtpUseCase } from "../interfaces/useCase/requestOtp.usecase.js";
 import logger from "../../Infrastructure/logger/logger.js";
 import { OtpVo } from "../../Domain/ValueObjects/otp.valueObject.js";
+import type { SendOtpDto } from "../Dto/Auth.js";
+import { inject, injectable } from "tsyringe";
 
-export class SendOtpUseCase<T, U> implements ISendOtpUseCase {
-  constructor(private otpRepo: IOtpRepository<T>, private userRepo: IUserRepository<U>, private mailer: IMailService) { };
+@injectable()
+export class SendOtpUseCase implements ISendOtpUseCase {
+  constructor(
+    @inject("IOtpRepository")
+    private otpRepo: IOtpRepository,
 
-  async execute(name: string, email: string, mobile: string, password: string): Promise<void> {
+    @inject("IUserRepository")
+    private userRepo: IUserRepository,
+
+    @inject("IMailService")
+    private mailer: IMailService
+  ) { };
+
+  async execute(otpData: SendOtpDto): Promise<void> {
 
     try {
-      const emailVO = EmailVo.create(email);
-      const passwordVo = await PasswordVo.create(password);
+      const emailVO = EmailVo.create(otpData.email);
+      const passwordVo = await PasswordVo.create(otpData.password);
 
       const existingUser = await this.userRepo.findOne({ email: emailVO.value });
       if (existingUser) throw new Error("User already registered");
@@ -26,17 +38,17 @@ export class SendOtpUseCase<T, U> implements ISendOtpUseCase {
       const otp = this.otpRepo.generateOtp();
       const otpVo = await OtpVo.create(otp);
 
-      const otpDomain: Otp = {
-        name,
+      const otpDomain: IOtpModel = {
+        name: otpData.name,
         email: emailVO.value,
-        mobile,
+        mobile: otpData.mobile,
         password: passwordVo.value,
         otp: otpVo.value,
         createdAt: new Date()
       }
 
-      await this.otpRepo.save(otpDomain as T);
-      await this.mailer.sendOTP(email, otp);
+      await this.otpRepo.save(otpDomain);
+      await this.mailer.sendOTP(otpData.email, otp);
 
     } catch (error) {
       logger.error(error);

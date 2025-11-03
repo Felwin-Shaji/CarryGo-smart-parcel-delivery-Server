@@ -7,7 +7,7 @@ import type { IMailService } from "../interfaces/services/email.service.js";
 import type { ISendOtpUseCase } from "../interfaces/useCase/requestOtp.usecase.js";
 import logger from "../../Infrastructure/logger/logger.js";
 import { OtpVo } from "../../Domain/ValueObjects/otp.valueObject.js";
-import type { SendOtpDto } from "../Dto/Auth.js";
+import type { UserDTO } from "../Dto/Auth.js";
 import { inject, injectable } from "tsyringe";
 
 @injectable()
@@ -23,7 +23,7 @@ export class SendOtpUseCase implements ISendOtpUseCase {
     private mailer: IMailService
   ) { };
 
-  async execute(otpData: SendOtpDto): Promise<void> {
+  async execute(otpData: UserDTO): Promise<IOtpModel> {
 
     try {
       const emailVO = EmailVo.create(otpData.email);
@@ -36,6 +36,7 @@ export class SendOtpUseCase implements ISendOtpUseCase {
       if (existingOtp) throw new Error("Please wait until the current OTP expires before requesting a new one.");
 
       const otp = this.otpRepo.generateOtp();
+      console.log(otp)
       const otpVo = await OtpVo.create(otp);
 
       const otpDomain: IOtpModel = {
@@ -44,12 +45,13 @@ export class SendOtpUseCase implements ISendOtpUseCase {
         mobile: otpData.mobile,
         password: passwordVo.value,
         otp: otpVo.value,
+        role:otpData.role,
         createdAt: new Date()
       }
 
       await this.otpRepo.save(otpDomain);
       await this.mailer.sendOTP(otpData.email, otp);
-
+      return otpDomain
     } catch (error) {
       logger.error(error);
       throw error;

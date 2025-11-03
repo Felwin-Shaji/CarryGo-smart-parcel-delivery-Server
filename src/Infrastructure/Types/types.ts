@@ -1,0 +1,1 @@
+export type Role = "user" | "agency" | "admin" | "hub" | "worker";

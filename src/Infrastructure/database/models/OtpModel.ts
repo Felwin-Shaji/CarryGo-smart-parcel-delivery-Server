@@ -7,8 +7,9 @@ const otpSchema = new Schema<IOtpModel>({
     mobile: { type: String },
     password: { type: String },
     otp: { type: String, required: true },
+    role:{type:String,enum:["user" , "agency" , "admin" , "hub" , "worker"],},
     createdAt: { type: Date, default: Date.now }
-})
+});
 
 
 otpSchema.index({ createdAt: 1 }, { expireAfterSeconds: 120 });

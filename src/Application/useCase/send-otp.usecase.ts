@@ -3,12 +3,12 @@ import { PasswordVo } from "../../Domain/ValueObjects/password.valueObject.js";
 import type { IOtpModel } from "../../Domain/Entities/Iotp.js";
 import type { IOtpRepository } from "../interfaces/repositories/auth/otp.repository.js";
 import type { IUserRepository } from "../interfaces/repositories/user/user.repository.js";
-import type { IMailService } from "../interfaces/services/email.service.js";
+import type { IMailService } from "../interfaces/services/email-service.interface.js";
 import type { ISendOtpUseCase } from "../interfaces/useCase/requestOtp.usecase.js";
-import logger from "../../Infrastructure/logger/logger.js";
 import { OtpVo } from "../../Domain/ValueObjects/otp.valueObject.js";
-import type { UserDTO } from "../Dto/Auth.js";
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../Domain/utils/customError.js";
+import type { SendOtpDTO } from "../Dto/Auth/SendOtp.dto.js";
 
 @injectable()
 export class SendOtpUseCase implements ISendOtpUseCase {
@@ -23,38 +23,36 @@ export class SendOtpUseCase implements ISendOtpUseCase {
     private mailer: IMailService
   ) { };
 
-  async execute(otpData: UserDTO): Promise<IOtpModel> {
+  async execute(otpData: SendOtpDTO): Promise<IOtpModel> {
 
-    try {
-      const emailVO = EmailVo.create(otpData.email);
-      const passwordVo = await PasswordVo.create(otpData.password);
+    const emailVO = EmailVo.create(otpData.email);
 
-      const existingUser = await this.userRepo.findOne({ email: emailVO.value });
-      if (existingUser) throw new Error("User already registered");
+    const passwordVo = await PasswordVo.create(otpData.password);
+    if (!passwordVo) throw new AppError("Invalid password");
 
-      const existingOtp = await this.otpRepo.findOne({ email: emailVO.value });
-      if (existingOtp) throw new Error("Please wait until the current OTP expires before requesting a new one.");
 
-      const otp = this.otpRepo.generateOtp();
-      console.log(otp)
-      const otpVo = await OtpVo.create(otp);
+    const existingUser = await this.userRepo.findOne({ email: emailVO.value });
+    if (existingUser) throw new AppError("User already registered");
 
-      const otpDomain: IOtpModel = {
-        name: otpData.name,
-        email: emailVO.value,
-        mobile: otpData.mobile,
-        password: passwordVo.value,
-        otp: otpVo.value,
-        role:otpData.role,
-        createdAt: new Date()
-      }
+    const existingOtp = await this.otpRepo.findOne({ email: emailVO.value });
+    if (existingOtp) throw new AppError("Please wait until the current OTP expires before requesting a new one.");
 
-      await this.otpRepo.save(otpDomain);
-      await this.mailer.sendOTP(otpData.email, otp);
-      return otpDomain
-    } catch (error) {
-      logger.error(error);
-      throw error;
+    const otp = this.otpRepo.generateOtp();
+    console.log(otp)
+    const otpVo = await OtpVo.create(otp);
+
+    const otpDomain: IOtpModel = {
+      name: otpData.name,
+      email: emailVO.value,
+      mobile: otpData.mobile || null,
+      password: passwordVo.value ?? null,
+      otp: otpVo.value,
+      role: otpData.role,
+      expiresAt: new Date(Date.now() + 2 * 60 * 1000)
     }
+
+    await this.otpRepo.save(otpDomain);
+    await this.mailer.sendOTP(otpData.email, otp);
+    return otpDomain
   }
 }

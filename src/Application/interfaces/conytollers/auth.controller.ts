@@ -1,6 +1,6 @@
-import type { Request, Response } from "express";
+import type { NextFunction, Request, Response } from "express";
 
 export interface IAuthController{
-    sendOtp(req:Request,res:Response):Promise<Response>
-    varifyOtp(req:Request,res:Response):Promise<Response>
+    sendOtp(req:Request,res:Response,next:NextFunction):Promise<Response | void>
+    verifyOtp(req:Request,res:Response,next:NextFunction):Promise<Response | void>
 };

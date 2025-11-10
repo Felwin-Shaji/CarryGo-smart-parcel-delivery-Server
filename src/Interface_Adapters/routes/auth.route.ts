@@ -1,4 +1,5 @@
 import { authController } from "../../Infrastructure/di/resolver.js";
+import { asyncHandler } from "../middlewares/ErrorHandlers/asyncHandler.js";
 import { BaseRoute } from "./base.route.js";
 
 export class AuthRoute extends BaseRoute{
@@ -7,8 +8,8 @@ export class AuthRoute extends BaseRoute{
     }
 
     protected initializeRoutes(): void {
-        this.router.post("/send-otp",authController.sendOtp)
+        this.router.post("/send-otp",asyncHandler(authController.sendOtp))
 
-        this.router.post("/verify-otp",authController.varifyOtp)
+        this.router.post("/verify-otp",asyncHandler(authController.verifyOtp))
     }
 }

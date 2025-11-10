@@ -1,0 +1,44 @@
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-09T12:00:01.043Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net[39m ---- timestamp:2025-11-09T12:00:03.392Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T12:01:48.545Z] POST /api/users/verify-otp 404 - 7ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T12:01:48.546Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-09T12:02:08.504Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net[39m ---- timestamp:2025-11-09T12:02:10.126Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T12:02:46.834Z] POST /api/user/send-otp 200 - 7200ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T12:02:46.834Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T12:03:12.700Z] POST /api/users/verify-otp 404 - 2ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T12:03:12.701Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T12:06:16.959Z] POST /api/user/send-otp 200 - 5274ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T12:06:16.959Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T12:06:33.845Z] POST /api/users/verify-otp 404 - 1ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T12:06:33.845Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T12:48:30.531Z] POST /api/user/send-otp 200 - 7522ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T12:48:30.531Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T12:48:41.662Z] POST /api/users/verify-otp 404 - 1ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T12:48:41.662Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/verify-otp - OTP not found or expired.[39m ---- timestamp:2025-11-09T12:51:56.667Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T12:51:56.669Z] POST /api/user/verify-otp 500 - 197ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T12:51:56.669Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-09T12:52:19.365Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net[39m ---- timestamp:2025-11-09T12:52:22.067Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T12:52:30.156Z] POST /api/user/send-otp 200 - 6337ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T12:52:30.157Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/verify-otp - Invalid OTP[39m ---- timestamp:2025-11-09T12:52:39.303Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T12:52:39.305Z] POST /api/user/verify-otp 500 - 268ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T12:52:39.305Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/verify-otp - RefreshToken validation failed: userId: Path `userId` is required.[39m ---- timestamp:2025-11-09T12:52:51.475Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T12:52:51.478Z] POST /api/user/verify-otp 500 - 643ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T12:52:51.478Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/verify-otp - OTP not found or expired.[39m ---- timestamp:2025-11-09T12:54:10.517Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T12:54:10.518Z] POST /api/user/verify-otp 500 - 256ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T12:54:10.518Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T12:54:35.904Z] POST /api/user/send-otp 200 - 4754ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T12:54:35.904Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/verify-otp - RefreshToken validation failed: userId: Path `userId` is required.[39m ---- timestamp:2025-11-09T12:54:45.329Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T12:54:45.330Z] POST /api/user/verify-otp 500 - 528ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T12:54:45.330Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-09T12:58:04.368Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net[39m ---- timestamp:2025-11-09T12:58:08.288Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T12:58:21.296Z] POST /api/user/send-otp 200 - 7187ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T12:58:21.296Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/verify-otp - RefreshToken validation failed: userId: Path `userId` is required.[39m ---- timestamp:2025-11-09T12:58:29.188Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T12:58:29.190Z] POST /api/user/verify-otp 500 - 590ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T12:58:29.191Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-09T12:59:57.226Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net[39m ---- timestamp:2025-11-09T12:59:58.781Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/verify-otp - OTP not found or expired.[39m ---- timestamp:2025-11-09T13:00:01.413Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T13:00:01.420Z] POST /api/user/verify-otp 500 - 134ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T13:00:01.421Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T13:00:16.803Z] POST /api/user/send-otp 200 - 6120ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T13:00:16.803Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/verify-otp - RefreshToken validation failed: userId: Path `userId` is required.[39m ---- timestamp:2025-11-09T13:00:27.052Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T13:00:27.055Z] POST /api/user/verify-otp 500 - 516ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T13:00:27.055Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T13:11:07.570Z] POST /api/user/send-otp 200 - 4804ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T13:11:07.570Z}
+{level:[32minfo[39m ---- message:[32mUser registered successfully with email: felwin@gmail.com[39m ---- timestamp:2025-11-09T13:11:18.937Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T13:11:18.941Z] POST /api/user/verify-otp 201 - 661ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T13:11:18.941Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-09T15:07:28.223Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net[39m ---- timestamp:2025-11-09T15:07:29.682Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T15:07:53.860Z] POST /api/user/send-otp 200 - 7507ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T15:07:53.861Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-09T15:08:02.661Z] POST /api/user/verify-otp 201 - 714ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-09T15:08:02.661Z}

@@ -3,6 +3,7 @@ import { AuthRoute } from '../../Interface_Adapters/routes/auth.route.js';
 import { loggerMiddleware } from '../../Interface_Adapters/middlewares/loggerMiddleware.js';
 import cors from "cors";
 import dotenv from "dotenv";
+import { errorHandler } from '../../Interface_Adapters/middlewares/ErrorHandlers/errorHandler.js';
 dotenv.config();
 
 
@@ -21,7 +22,10 @@ app.use(
   })
 );
 
+
 const userRoute = new AuthRoute();
 app.use('/api/user',userRoute.router);
+
+app.use(errorHandler)
 
 

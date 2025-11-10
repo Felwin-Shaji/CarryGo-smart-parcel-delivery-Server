@@ -6,8 +6,9 @@ const userModel = new Schema<User>({
     email: { type: String, required: true, unique: true, index: true },
     mobile: { type: String, required: true },
     password: { type: String },
+    role: { type: String, enum: ["user", "agency", "admin", "hub", "worker"] ,default:"user"},
     googleId: { type: String },
-    authProvider: { type: String, required: true, default: "local" }, 
+    authProvider: { type: String, required: true, default: "local" },
     kycStatus: { type: String, enum: ["pending", "verified", "rejected"], default: "pending" },
     walletBalance: { type: Number, required: true, default: 0 },
     isBlocked: { type: Boolean, required: true, default: false },
@@ -15,4 +16,4 @@ const userModel = new Schema<User>({
     timestamps: true
 });
 
-export const UserModel = model<User>("User",userModel);
+export const UserModel = model<User>("User", userModel);

@@ -1,6 +1,10 @@
 import { createLogger, transports, format } from 'winston';
 import 'winston-daily-rotate-file';
 
+const consoleFormat = format.printf(({ level, message, timestamp, stack }) => {
+  return `{level:${level} ---- message:${stack || message} ---- timestamp:${timestamp}}`
+});
+
 const dailyRotateFileTransport = new transports.DailyRotateFile({
   filename: 'logs/app-%DATE%.log',  // log file per day
   datePattern: 'YYYY-MM-DD',
@@ -13,10 +17,11 @@ const dailyRotateFileTransport = new transports.DailyRotateFile({
 const logger = createLogger({
     level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
     format: format.combine(
+        format.colorize({ all: true }),
         format.timestamp(),
         format.errors({ stack: true }),
         format.splat(),
-        format.json()
+        consoleFormat 
     ),
     transports: [
         new transports.Console(),

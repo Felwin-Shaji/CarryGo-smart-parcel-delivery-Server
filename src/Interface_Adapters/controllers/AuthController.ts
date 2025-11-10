@@ -1,10 +1,15 @@
-import type { Request, Response } from "express";
-import logger from "../../Infrastructure/logger/logger.js";
+import type { NextFunction, Request, Response } from "express";
 import { STATUS } from "../../Infrastructure/constants/statusCodes.js";
 import { inject, injectable } from "tsyringe";
 import type { IAuthController } from "../../Application/interfaces/conytollers/auth.controller.js";
 import type { ISendOtpUseCase } from "../../Application/interfaces/useCase/requestOtp.usecase.js";
 import type { IVerifyOtpUseCase } from "../../Application/interfaces/useCase/verifyOtp.interface.js";
+import { AuthMapper } from "../../Application/Mappers/AuthMapper.js";
+import { setAuthCookies } from "../../Domain/utils/setAuthCookies.js";
+import { AppError } from "../../Domain/utils/customError.js";
+import type { IGenerateTokenUseCase } from "../../Application/interfaces/useCase/GenerateToken.usecase.js";
+import type { IRegisterUserUseCase } from "../../Application/interfaces/useCase/RegisterUser.useCase.js";
+import type { UserDTO } from "../../Application/Dto/Auth.js";
 
 
 @injectable()
@@ -14,41 +19,65 @@ export class AuthController implements IAuthController {
         private _sendOtpUseCase: ISendOtpUseCase,
 
         @inject("IVerifyOtpUseCase")
-        private _verifyOtpUseCase: IVerifyOtpUseCase
+        private _verifyOtpUseCase: IVerifyOtpUseCase,
+
+        @inject("IRegisterUserUseCase")
+        private _registerUserUseCase: IRegisterUserUseCase,
+
+        @inject("IGenerateTokenUseCase")
+        private _generateTokenUseCase: IGenerateTokenUseCase
     ) { }
-    sendOtp = async (req: Request, res: Response): Promise<Response> => {
-        try {
-            const { name, email, mobile, password,role } = req.body;
-            if (!email) return res.status(STATUS.BAD_REQUEST).json({ success: false, message: "email required" });
+    sendOtp = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
 
-            const sendOtpDto = {
-                name,
-                email,
-                mobile,
-                password,
-                role
-            }
+        const dto = AuthMapper.toSendOtpDTO(req);
+        if (!dto.email) return res.status(STATUS.BAD_REQUEST).json({ success: false, message: "email required" });
 
-            const result = await this._sendOtpUseCase.execute(sendOtpDto);
-            console.log(result)
-            return res.json({ success: true, message: "Otp send", email, role:result.role});
-        } catch (err: any) {
-            logger.debug("error at Auth controller ");
-            return res.status(STATUS.INTERNAL_SERVER_ERROR).json({ err: err.message });
-        };
+        const result = await this._sendOtpUseCase.execute(dto);
+        const response = AuthMapper.toSendOtpResponse(result);
+
+        return res.status(STATUS.OK).json(response);
+
     };
 
-    varifyOtp = async (req: Request, res: Response): Promise<Response> => {
+    verifyOtp = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
-            const {email,otp} = req.body;
+            const { email, otp, role } = req.body;
 
-            await this._verifyOtpUseCase.execute(email,otp);
-            console.log("hdhdhdhdhdhdhdhdhdhdhdhdhdhdh")
+            const otpData = await this._verifyOtpUseCase.execute(otp, email);
+            if (!otpData) throw new AppError("Invalid or expired OTP", STATUS.UNAUTHORIZED);
 
-            return res.json({ meaasge: "user registred" });
-        } catch (error: any) {
-            logger.debug("error at Auth controller ");
-            return res.status(STATUS.INTERNAL_SERVER_ERROR).json({ err: error.meaasge });
+            const userData: UserDTO = {
+                name: otpData.name,
+                email: email,
+                mobile: otpData.mobile ?? null,
+                password: otpData.password ?? null,
+                role: otpData.role,
+            };
+
+            const registeredUser = await this._registerUserUseCase.execute(userData);
+
+
+            const tokens = await this._generateTokenUseCase.execute(
+                registeredUser.id!,
+                registeredUser.email,
+                registeredUser.role
+            );
+
+            setAuthCookies(
+                res,
+                tokens.accessToken,
+                tokens.refreshToken,
+                `${role}accessTokenName`,
+                `${role}refreshTokenName`
+            )
+
+            const response = AuthMapper.ToSendVerifyOtpResponse(registeredUser.id!, registeredUser.name, email, role);
+            return res.status(STATUS.CREATED).json(response);
+
+        } catch (error) {
+            next(error);
         }
-    }
+    };
+
+
 };

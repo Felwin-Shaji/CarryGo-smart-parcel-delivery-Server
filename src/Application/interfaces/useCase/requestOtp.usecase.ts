@@ -1,6 +1,6 @@
 import type { IOtpModel } from "../../../Domain/Entities/Iotp.js";
-import type { UserDTO } from "../../Dto/Auth.js";
+import type { SendOtpDTO } from "../../Dto/Auth/SendOtp.dto.js";
 
 export interface ISendOtpUseCase {
-    execute(otpData:UserDTO): Promise<IOtpModel>;
+    execute(otp:SendOtpDTO): Promise<IOtpModel>;
 }

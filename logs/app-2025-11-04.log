@@ -1,0 +1,69 @@
+{"level":"info","message":"[2025-11-03T18:36:55.153Z] OPTIONS /api/user/send-otp 204 - 2ms - IP: ::1-------undefined","timestamp":"2025-11-03T18:36:55.154Z"}
+{"level":"info","message":"[2025-11-03T18:37:00.887Z] POST /api/user/send-otp 200 - 5697ms - IP: ::1-------[object Object]","timestamp":"2025-11-03T18:37:00.887Z"}
+{"level":"info","message":"[2025-11-03T18:37:19.398Z] OPTIONS /api/user/verify-otp 204 - 1ms - IP: ::1-------undefined","timestamp":"2025-11-03T18:37:19.398Z"}
+{"level":"error","message":"UserRegisterUseCase error: OTP not found or expired.","stack":"Error: OTP not found or expired.\n    at VerifyOtpUseCase.execute (file:///G:/CarryGo/CarryGo/CarryGo-smart-parcel-delivery-Server/dist/Application/useCase/verifyOtpUseCase.js:29:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async varifyOtp (file:///G:/CarryGo/CarryGo/CarryGo-smart-parcel-delivery-Server/dist/Interface_Adapters/controllers/AuthController.js:48:13)","timestamp":"2025-11-03T18:37:19.778Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-11-03T18:37:19.778Z"}
+{"level":"info","message":"[2025-11-03T18:37:19.779Z] POST /api/user/verify-otp 500 - 380ms - IP: ::1-------[object Object]","timestamp":"2025-11-03T18:37:19.779Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-11-03T18:42:02.581Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net","timestamp":"2025-11-03T18:42:06.114Z"}
+{"level":"info","message":"[2025-11-03T18:42:23.584Z] OPTIONS /api/user/send-otp 204 - 6ms - IP: ::1-------undefined","timestamp":"2025-11-03T18:42:23.584Z"}
+{"level":"info","message":"[2025-11-03T18:42:28.175Z] POST /api/user/send-otp 200 - 4571ms - IP: ::1-------[object Object]","timestamp":"2025-11-03T18:42:28.175Z"}
+{"level":"info","message":"[2025-11-03T18:42:43.503Z] OPTIONS /api/user/verify-otp 204 - 0ms - IP: ::1-------undefined","timestamp":"2025-11-03T18:42:43.503Z"}
+{"level":"error","message":"UserRegisterUseCase error: OTP not found or expired.","stack":"Error: OTP not found or expired.\n    at VerifyOtpUseCase.execute (file:///G:/CarryGo/CarryGo/CarryGo-smart-parcel-delivery-Server/dist/Application/useCase/verifyOtpUseCase.js:29:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async varifyOtp (file:///G:/CarryGo/CarryGo/CarryGo-smart-parcel-delivery-Server/dist/Interface_Adapters/controllers/AuthController.js:48:13)","timestamp":"2025-11-03T18:42:43.594Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-11-03T18:42:43.595Z"}
+{"level":"info","message":"[2025-11-03T18:42:43.596Z] POST /api/user/verify-otp 500 - 91ms - IP: ::1-------[object Object]","timestamp":"2025-11-03T18:42:43.596Z"}
+{"level":"info","message":"[2025-11-03T18:43:04.599Z] OPTIONS /api/user/verify-otp 204 - 0ms - IP: ::1-------undefined","timestamp":"2025-11-03T18:43:04.599Z"}
+{"level":"error","message":"UserRegisterUseCase error: OTP not found or expired.","stack":"Error: OTP not found or expired.\n    at VerifyOtpUseCase.execute (file:///G:/CarryGo/CarryGo/CarryGo-smart-parcel-delivery-Server/dist/Application/useCase/verifyOtpUseCase.js:29:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async varifyOtp (file:///G:/CarryGo/CarryGo/CarryGo-smart-parcel-delivery-Server/dist/Interface_Adapters/controllers/AuthController.js:48:13)","timestamp":"2025-11-03T18:43:04.653Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-11-03T18:43:04.654Z"}
+{"level":"info","message":"[2025-11-03T18:43:04.655Z] POST /api/user/verify-otp 500 - 54ms - IP: ::1-------[object Object]","timestamp":"2025-11-03T18:43:04.655Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-11-03T18:49:38.013Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net","timestamp":"2025-11-03T18:49:39.735Z"}
+{"level":"info","message":"[2025-11-03T18:49:54.873Z] OPTIONS /api/user/send-otp 204 - 4ms - IP: ::1-------undefined","timestamp":"2025-11-03T18:49:54.873Z"}
+{"level":"info","message":"[2025-11-03T18:50:00.090Z] POST /api/user/send-otp 200 - 5196ms - IP: ::1-------[object Object]","timestamp":"2025-11-03T18:50:00.090Z"}
+{"level":"info","message":"[2025-11-03T18:50:14.242Z] OPTIONS /api/user/verify-otp 204 - 1ms - IP: ::1-------undefined","timestamp":"2025-11-03T18:50:14.242Z"}
+{"level":"error","message":"UserRegisterUseCase error: OTP not found or expired.","stack":"Error: OTP not found or expired.\n    at VerifyOtpUseCase.execute (file:///G:/CarryGo/CarryGo/CarryGo-smart-parcel-delivery-Server/dist/Application/useCase/verifyOtpUseCase.js:30:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async varifyOtp (file:///G:/CarryGo/CarryGo/CarryGo-smart-parcel-delivery-Server/dist/Interface_Adapters/controllers/AuthController.js:48:13)","timestamp":"2025-11-03T18:50:14.331Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-11-03T18:50:14.332Z"}
+{"level":"info","message":"[2025-11-03T18:50:14.333Z] POST /api/user/verify-otp 500 - 88ms - IP: ::1-------[object Object]","timestamp":"2025-11-03T18:50:14.333Z"}
+{"level":"info","message":"[2025-11-03T19:01:27.378Z] OPTIONS /api/user/send-otp 204 - 1ms - IP: ::1-------undefined","timestamp":"2025-11-03T19:01:27.378Z"}
+{"level":"info","message":"[2025-11-03T19:01:31.659Z] POST /api/user/send-otp 200 - 4279ms - IP: ::1-------[object Object]","timestamp":"2025-11-03T19:01:31.659Z"}
+{"level":"info","message":"[2025-11-03T19:06:28.630Z] OPTIONS /api/user/send-otp 204 - 1ms - IP: ::1-------undefined","timestamp":"2025-11-03T19:06:28.630Z"}
+{"level":"info","message":"[2025-11-03T19:06:33.052Z] POST /api/user/send-otp 200 - 4420ms - IP: ::1-------[object Object]","timestamp":"2025-11-03T19:06:33.053Z"}
+{"level":"info","message":"[2025-11-03T19:06:54.590Z] OPTIONS /api/user/verify-otp 204 - 0ms - IP: ::1-------undefined","timestamp":"2025-11-03T19:06:54.590Z"}
+{"level":"error","message":"UserRegisterUseCase error: OTP not found or expired.","stack":"Error: OTP not found or expired.\n    at VerifyOtpUseCase.execute (file:///G:/CarryGo/CarryGo/CarryGo-smart-parcel-delivery-Server/dist/Application/useCase/verifyOtpUseCase.js:30:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async varifyOtp (file:///G:/CarryGo/CarryGo/CarryGo-smart-parcel-delivery-Server/dist/Interface_Adapters/controllers/AuthController.js:48:13)","timestamp":"2025-11-03T19:06:54.662Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-11-03T19:06:54.662Z"}
+{"level":"info","message":"[2025-11-03T19:06:54.663Z] POST /api/user/verify-otp 500 - 71ms - IP: ::1-------[object Object]","timestamp":"2025-11-03T19:06:54.663Z"}
+{"level":"info","message":"[2025-11-03T19:09:31.316Z] OPTIONS /api/user/send-otp 204 - 1ms - IP: ::1-------undefined","timestamp":"2025-11-03T19:09:31.316Z"}
+{"level":"info","message":"[2025-11-03T19:09:35.339Z] POST /api/user/send-otp 200 - 4022ms - IP: ::1-------[object Object]","timestamp":"2025-11-03T19:09:35.339Z"}
+{"level":"info","message":"[2025-11-03T19:09:59.431Z] OPTIONS /api/user/verify-otp 204 - 0ms - IP: ::1-------undefined","timestamp":"2025-11-03T19:09:59.431Z"}
+{"level":"error","message":"UserRegisterUseCase error: OTP not found or expired.","stack":"Error: OTP not found or expired.\n    at VerifyOtpUseCase.execute (file:///G:/CarryGo/CarryGo/CarryGo-smart-parcel-delivery-Server/dist/Application/useCase/verifyOtpUseCase.js:30:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async varifyOtp (file:///G:/CarryGo/CarryGo/CarryGo-smart-parcel-delivery-Server/dist/Interface_Adapters/controllers/AuthController.js:48:13)","timestamp":"2025-11-03T19:09:59.705Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-11-03T19:09:59.706Z"}
+{"level":"info","message":"[2025-11-03T19:09:59.707Z] POST /api/user/verify-otp 500 - 274ms - IP: ::1-------[object Object]","timestamp":"2025-11-03T19:09:59.707Z"}
+{"level":"info","message":"[2025-11-03T19:12:25.675Z] OPTIONS /api/user/send-otp 204 - 0ms - IP: ::1-------undefined","timestamp":"2025-11-03T19:12:25.675Z"}
+{"level":"info","message":"[2025-11-03T19:12:30.150Z] POST /api/user/send-otp 200 - 4473ms - IP: ::1-------[object Object]","timestamp":"2025-11-03T19:12:30.150Z"}
+{"level":"info","message":"[2025-11-03T19:15:31.560Z] OPTIONS /api/user/send-otp 204 - 0ms - IP: ::1-------undefined","timestamp":"2025-11-03T19:15:31.560Z"}
+{"level":"info","message":"[2025-11-03T19:15:36.325Z] POST /api/user/send-otp 200 - 4762ms - IP: ::1-------[object Object]","timestamp":"2025-11-03T19:15:36.325Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-11-03T19:24:54.072Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net","timestamp":"2025-11-03T19:24:55.643Z"}
+{"level":"info","message":"[2025-11-03T19:25:15.980Z] OPTIONS /api/user/send-otp 204 - 2ms - IP: ::1-------undefined","timestamp":"2025-11-03T19:25:15.981Z"}
+{"level":"info","message":"[2025-11-03T19:25:20.569Z] POST /api/user/send-otp 200 - 4568ms - IP: ::1-------[object Object]","timestamp":"2025-11-03T19:25:20.569Z"}
+{"level":"info","message":"[2025-11-03T19:25:38.526Z] OPTIONS /api/user/verify-otp 204 - 0ms - IP: ::1-------undefined","timestamp":"2025-11-03T19:25:38.526Z"}
+{"level":"info","message":"User registered successfully with email: felwinshajiii@gmail.com","timestamp":"2025-11-03T19:25:39.334Z"}
+{"level":"info","message":"[2025-11-03T19:25:39.336Z] POST /api/user/verify-otp 200 - 808ms - IP: ::1-------[object Object]","timestamp":"2025-11-03T19:25:39.336Z"}
+{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-11-04T08:06:02.380Z"}
+{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net","timestamp":"2025-11-04T08:06:04.297Z"}
+{"level":"info","message":"[2025-11-04T08:08:08.528Z] OPTIONS /api/user/send-otp 204 - 3ms - IP: ::1-------undefined","timestamp":"2025-11-04T08:08:08.529Z"}
+{"level":"error","message":"User already registered","stack":"Error: User already registered\n    at SendOtpUseCase.execute (file:///G:/CarryGo/CarryGo/CarryGo-smart-parcel-delivery-Server/dist/Application/useCase/send-otp.usecase.js:34:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async sendOtp (file:///G:/CarryGo/CarryGo/CarryGo-smart-parcel-delivery-Server/dist/Interface_Adapters/controllers/AuthController.js:35:28)","timestamp":"2025-11-04T08:08:08.722Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-11-04T08:08:08.724Z"}
+{"level":"info","message":"[2025-11-04T08:08:08.726Z] POST /api/user/send-otp 500 - 166ms - IP: ::1-------[object Object]","timestamp":"2025-11-04T08:08:08.727Z"}
+{"level":"info","message":"[2025-11-04T08:08:14.408Z] OPTIONS /api/user/send-otp 204 - 1ms - IP: ::1-------undefined","timestamp":"2025-11-04T08:08:14.408Z"}
+{"level":"error","message":"User already registered","stack":"Error: User already registered\n    at SendOtpUseCase.execute (file:///G:/CarryGo/CarryGo/CarryGo-smart-parcel-delivery-Server/dist/Application/useCase/send-otp.usecase.js:34:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async sendOtp (file:///G:/CarryGo/CarryGo/CarryGo-smart-parcel-delivery-Server/dist/Interface_Adapters/controllers/AuthController.js:35:28)","timestamp":"2025-11-04T08:08:14.553Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-11-04T08:08:14.554Z"}
+{"level":"info","message":"[2025-11-04T08:08:14.555Z] POST /api/user/send-otp 500 - 145ms - IP: ::1-------[object Object]","timestamp":"2025-11-04T08:08:14.556Z"}
+{"level":"error","message":"User already registered","stack":"Error: User already registered\n    at SendOtpUseCase.execute (file:///G:/CarryGo/CarryGo/CarryGo-smart-parcel-delivery-Server/dist/Application/useCase/send-otp.usecase.js:34:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async sendOtp (file:///G:/CarryGo/CarryGo/CarryGo-smart-parcel-delivery-Server/dist/Interface_Adapters/controllers/AuthController.js:35:28)","timestamp":"2025-11-04T08:08:14.753Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-11-04T08:08:14.755Z"}
+{"level":"info","message":"[2025-11-04T08:08:14.757Z] POST /api/user/send-otp 500 - 157ms - IP: ::1-------[object Object]","timestamp":"2025-11-04T08:08:14.757Z"}
+{"level":"error","message":"User already registered","stack":"Error: User already registered\n    at SendOtpUseCase.execute (file:///G:/CarryGo/CarryGo/CarryGo-smart-parcel-delivery-Server/dist/Application/useCase/send-otp.usecase.js:34:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async sendOtp (file:///G:/CarryGo/CarryGo/CarryGo-smart-parcel-delivery-Server/dist/Interface_Adapters/controllers/AuthController.js:35:28)","timestamp":"2025-11-04T08:08:15.016Z"}
+{"level":"debug","message":"error at Auth controller ","timestamp":"2025-11-04T08:08:15.017Z"}
+{"level":"info","message":"[2025-11-04T08:08:15.019Z] POST /api/user/send-otp 500 - 235ms - IP: ::1-------[object Object]","timestamp":"2025-11-04T08:08:15.019Z"}
+{"level":"info","message":"[2025-11-04T08:08:20.357Z] OPTIONS /api/user/send-otp 204 - 0ms - IP: ::1-------undefined","timestamp":"2025-11-04T08:08:20.358Z"}
+{"level":"info","message":"[2025-11-04T08:08:25.024Z] POST /api/user/send-otp 200 - 4665ms - IP: ::1-------[object Object]","timestamp":"2025-11-04T08:08:25.024Z"}

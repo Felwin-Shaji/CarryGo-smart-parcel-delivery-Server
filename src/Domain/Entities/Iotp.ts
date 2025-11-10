@@ -4,9 +4,9 @@ export interface IOtpModel {
     id?: string | null;
     name: string;
     email: string;
-    mobile?: string;
-    password?: string;
+    mobile?: string | null;
+    password?: string | null;
     otp: string;
     role:Role;
-    createdAt?: Date;
+    expiresAt ?: Date;
 };

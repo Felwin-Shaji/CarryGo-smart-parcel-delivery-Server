@@ -1,3 +1,5 @@
+import type { Role } from "../../Infrastructure/Types/types.js";
+
 export class User {
   constructor(
     public id: string | null,
@@ -5,6 +7,7 @@ export class User {
     public email: string,
     public mobile: string | null,
     public password: string | null,
+    public role:Role,
     public googleId?: string | null,
     public authProvider?: "local" | "google",
     public kycStatus: string = "pending",
@@ -12,30 +15,14 @@ export class User {
     public isBlocked: boolean = false,
     public createdAt: Date = new Date(),
     public updatedAt: Date = new Date()
-  ) {};
+  ) {
+    this.validateRegistration()
+  };
 
-  validateRegistration(): void {
-    this.validateName();
-    this.validateMobile();
+  private validateRegistration(): void {
     this.validateWalletBalance();
   }
 
-  private validateName(): void {
-    if (!this.name || this.name.trim().length < 2) {
-      throw new Error("Name must be at least 2 characters long");
-    }
-  }
-
-  private validateMobile(): void {
-    if (this.authProvider === "local") {
-      if (!this.mobile) throw new Error("Mobile number is required");
-
-      const mobileRegex = /^[0-9]{10}$/;
-      if (!mobileRegex.test(this.mobile)) {
-        throw new Error("Mobile number must be a valid 10-digit number");
-      }
-    }
-  }
 
   private validateWalletBalance(): void {
     if (this.walletBalance < 0) {

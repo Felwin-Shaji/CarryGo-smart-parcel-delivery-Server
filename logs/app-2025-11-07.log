@@ -1,0 +1,23 @@
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-07T13:26:32.153Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net[39m ---- timestamp:2025-11-07T13:26:35.170Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-07T13:27:40.718Z] OPTIONS /api/user/send-otp 204 - 4ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-07T13:27:40.718Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-07T13:27:47.555Z] POST /api/user/send-otp 200 - 6610ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-07T13:27:47.555Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-07T13:28:17.765Z] OPTIONS /api/user/verify-otp 204 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-07T13:28:17.765Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/verify-otp - RefreshToken validation failed: expiresAt: Path `expiresAt` is required.[39m ---- timestamp:2025-11-07T13:28:18.190Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-07T13:28:18.192Z] POST /api/user/verify-otp 500 - 425ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-07T13:28:18.192Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-07T13:31:30.779Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net[39m ---- timestamp:2025-11-07T13:31:32.648Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-07T13:31:56.736Z] OPTIONS /api/user/verify-otp 204 - 3ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-07T13:31:56.736Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/verify-otp - OTP not found or expired.[39m ---- timestamp:2025-11-07T13:31:56.873Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-07T13:31:56.875Z] POST /api/user/verify-otp 500 - 124ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-07T13:31:56.876Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-07T13:32:04.316Z] OPTIONS /api/user/verify-otp 204 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-07T13:32:04.316Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/verify-otp - OTP not found or expired.[39m ---- timestamp:2025-11-07T13:32:04.385Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-07T13:32:04.387Z] POST /api/user/verify-otp 500 - 69ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-07T13:32:04.387Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-07T13:32:39.812Z] OPTIONS /api/user/send-otp 204 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-07T13:32:39.812Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/send-otp - User already registered[39m ---- timestamp:2025-11-07T13:32:40.000Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-07T13:32:40.001Z] POST /api/user/send-otp 500 - 187ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-07T13:32:40.001Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-07T13:32:53.304Z] OPTIONS /api/user/send-otp 204 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-07T13:32:53.304Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-07T13:32:58.044Z] POST /api/user/send-otp 200 - 4738ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-07T13:32:58.044Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-07T13:33:10.565Z] OPTIONS /api/user/verify-otp 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-07T13:33:10.565Z}
+{level:[32minfo[39m ---- message:[32mUser registered successfully with email: demo3@gmail.com[39m ---- timestamp:2025-11-07T13:33:11.051Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-07T13:33:11.053Z] POST /api/user/verify-otp 201 - 487ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-07T13:33:11.053Z}

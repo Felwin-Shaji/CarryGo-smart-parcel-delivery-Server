@@ -8,6 +8,10 @@ import type { IGenerateTokenUseCase } from "../../Application/interfaces/useCase
 import { GenerateTokenUseCase } from "../../Application/useCase/GenerateToken.usecase.js";
 import type { IRegisterUserUseCase } from "../../Application/interfaces/useCase/RegisterUser.useCase.js";
 import { RegisterUserUseCase } from "../../Application/useCase/RegisterUser.useCase.js";
+import type { IRefreshTokenUseCase } from "../../Application/interfaces/useCase/refreshToken.usecase.js";
+import { RefreshTokenUseCase } from "../../Application/useCase/refreshToken.usecase.js";
+import type { ILoginUsecase } from "../../Application/interfaces/useCase/login.usecase.js";
+import { LoginUsecase } from "../../Application/useCase/login.usecase.js";
 
 
 export class UsecaseRegistery {
@@ -26,6 +30,14 @@ export class UsecaseRegistery {
 
         container.register<IGenerateTokenUseCase>("IGenerateTokenUseCase", {
             useClass: GenerateTokenUseCase
+        })
+
+        container.register<IRefreshTokenUseCase>("IRefreshTokenUseCase",{
+            useClass:RefreshTokenUseCase
+        })
+
+        container.register<ILoginUsecase>("ILoginUsecase",{
+            useClass:LoginUsecase
         })
     }
 }

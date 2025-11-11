@@ -8,7 +8,7 @@ import type { ISendOtpUseCase } from "../interfaces/useCase/requestOtp.usecase.j
 import { OtpVo } from "../../Domain/ValueObjects/otp.valueObject.js";
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../Domain/utils/customError.js";
-import type { SendOtpDTO } from "../Dto/Auth/SendOtp.dto.js";
+import type { SendOtpDTO } from "../Dto/Auth/Auth.dto.js";
 
 @injectable()
 export class SendOtpUseCase implements ISendOtpUseCase {

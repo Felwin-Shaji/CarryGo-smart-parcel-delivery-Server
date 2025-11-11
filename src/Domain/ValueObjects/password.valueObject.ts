@@ -23,6 +23,10 @@ export class PasswordVo {
         return value.length >= 6;
     }
 
+    static fromHashed(hashedPassword: string): PasswordVo {
+        return new PasswordVo(hashedPassword);
+    }
+
     async compare(inputPassword: string): Promise<boolean> {
         return bcrypt.compare(inputPassword, this._value);
     }

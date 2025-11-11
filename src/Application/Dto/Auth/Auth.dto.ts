@@ -19,9 +19,30 @@ export interface OtpResponseDTO {
 export interface VerifyOtpResponseDTO {
   success: boolean;
   message: string;
-  email: string;
-  role: string;
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    role: Role;
+  }
+  accessToken: string
 };
+
+export interface SendLoginResponse extends VerifyOtpResponseDTO{}
+
+export interface UserDTO {
+  name: string;
+  email: string;
+  mobile?: string | null;  
+  password?: string | null;
+  role: Role;
+}
+
+export interface LoginDTO {
+  email: string;
+  password: string;
+  role: Role;
+}
 
 
 

@@ -1,3 +1,24 @@
+
 export type Role = "user" | "agency" | "admin" | "hub" | "worker";
 
-export type TokenObj = { accessToken: string; refreshToken: string }
+
+
+export interface AppJwtPayload {
+    userId: string;
+    email: string;
+    role: Role;
+}
+
+
+export interface AuthUser {
+    id: string;
+    name: string;
+    email: string;
+    role: Role;
+}
+
+export interface TokenObj {
+    accessToken: string;
+    refreshToken: string;
+    user?: AuthUser;
+}

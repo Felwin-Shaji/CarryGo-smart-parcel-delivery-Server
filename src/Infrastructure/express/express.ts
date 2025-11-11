@@ -1,5 +1,6 @@
 import express from 'express';
 import { AuthRoute } from '../../Interface_Adapters/routes/auth.route.js';
+import cookieParser from "cookie-parser";
 import { loggerMiddleware } from '../../Interface_Adapters/middlewares/loggerMiddleware.js';
 import cors from "cors";
 import dotenv from "dotenv";
@@ -9,6 +10,7 @@ dotenv.config();
 
 export const app = express();
 
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 

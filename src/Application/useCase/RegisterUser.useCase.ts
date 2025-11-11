@@ -2,7 +2,8 @@ import { inject, injectable } from "tsyringe";
 import { User } from "../../Domain/Entities/User.js";
 import type { IUserRepository } from "../interfaces/repositories/user/user.repository.js";
 import type { IRegisterUserUseCase } from "../interfaces/useCase/RegisterUser.useCase.js";
-import type { UserDTO } from "../Dto/Auth.js";
+import type { UserDTO } from "../Dto/Auth/Auth.dto.js";
+
 
 @injectable()
 export class RegisterUserUseCase implements IRegisterUserUseCase {

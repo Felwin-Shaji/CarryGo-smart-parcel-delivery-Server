@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import type { ITokenService } from "../interfaces/services/token-service.interface.js";
 import type { IRefreshTokenRepository } from "../interfaces/repositories/auth/refreshToken.repository.js";
-import type { Role } from "../../Infrastructure/Types/types.js";
+import type { Role, TokenObj } from "../../Infrastructure/Types/types.js";
 import type { IGenerateTokenUseCase } from "../interfaces/useCase/GenerateToken.usecase.js";
 
 @injectable()
@@ -11,7 +11,7 @@ export class GenerateTokenUseCase implements IGenerateTokenUseCase {
     @inject("IRefreshTokenRepository") private refreshTokenRepo: IRefreshTokenRepository
   ) { }
 
-  async execute(userId: string, email: string, role: Role) {
+  async execute(userId: string, email: string, role: Role): Promise<TokenObj>  {
     const payload = { userId, email, role };
 
     const accessToken = this.tokenService.generateAccessToken(payload);

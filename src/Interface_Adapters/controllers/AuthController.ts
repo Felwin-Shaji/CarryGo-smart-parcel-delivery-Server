@@ -9,7 +9,9 @@ import { setAuthCookies } from "../../Domain/utils/setAuthCookies.js";
 import { AppError } from "../../Domain/utils/customError.js";
 import type { IGenerateTokenUseCase } from "../../Application/interfaces/useCase/GenerateToken.usecase.js";
 import type { IRegisterUserUseCase } from "../../Application/interfaces/useCase/RegisterUser.useCase.js";
-import type { UserDTO } from "../../Application/Dto/Auth.js";
+import type { IRefreshTokenUseCase } from "../../Application/interfaces/useCase/refreshToken.usecase.js";
+import type { UserDTO } from "../../Application/Dto/Auth/Auth.dto.js";
+import type { ILoginUsecase } from "../../Application/interfaces/useCase/login.usecase.js";
 
 
 @injectable()
@@ -25,7 +27,13 @@ export class AuthController implements IAuthController {
         private _registerUserUseCase: IRegisterUserUseCase,
 
         @inject("IGenerateTokenUseCase")
-        private _generateTokenUseCase: IGenerateTokenUseCase
+        private _generateTokenUseCase: IGenerateTokenUseCase,
+
+        @inject("IRefreshTokenUseCase")
+        private _refreshTokenUseCase: IRefreshTokenUseCase,
+
+        @inject("ILoginUsecase")
+        private _loginUsecase: ILoginUsecase
     ) { }
     sendOtp = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
 
@@ -42,6 +50,7 @@ export class AuthController implements IAuthController {
     verifyOtp = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const { email, otp, role } = req.body;
+            console.log(req.body, "...................body.................")
 
             const otpData = await this._verifyOtpUseCase.execute(otp, email);
             if (!otpData) throw new AppError("Invalid or expired OTP", STATUS.UNAUTHORIZED);
@@ -71,13 +80,72 @@ export class AuthController implements IAuthController {
                 `${role}refreshTokenName`
             )
 
-            const response = AuthMapper.ToSendVerifyOtpResponse(registeredUser.id!, registeredUser.name, email, role);
+            const response = AuthMapper.ToSendVerifyOtpResponse(registeredUser.id!, registeredUser.name, email, role, tokens.accessToken);
+            console.log(response, "........sss..............")
             return res.status(STATUS.CREATED).json(response);
 
         } catch (error) {
             next(error);
         }
     };
+
+    refreshToken = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            const refreshToken = req.cookies?.userrefreshTokenName
+            if (!refreshToken) {
+                return res.status(STATUS.OK).json({
+                    success: true,
+                    user: null,
+                    accessToken: null,
+                });
+            }
+
+            const tokens = await this._refreshTokenUseCase.execute(refreshToken);
+            console.log(tokens, "/////////////////////////////////");
+            setAuthCookies(
+                res,
+                tokens.accessToken,
+                tokens.refreshToken,
+                `${tokens.user?.role}accessTokenName`,
+                `${tokens.user?.role}refreshTokenName`,
+            );
+
+            return res.status(STATUS.OK).json({
+                success: true,
+                user: tokens.user,
+                accessToken: tokens.accessToken,
+            });
+
+        } catch (error) {
+            next(error)
+        };
+    };
+
+    login = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            const loginData = AuthMapper.toLoginDTO(req);
+            console.log(loginData,'.................')
+
+            const users = await this._loginUsecase.execute(loginData);
+            console.log(users)
+
+            const tokens = await this._generateTokenUseCase.execute(users.id,users.email,users.role)
+
+            setAuthCookies(
+                res,
+                tokens.accessToken,
+                tokens.refreshToken,
+                `${loginData.role}accessTokenName`,
+                `${loginData.role}refreshTokenName`
+            );
+
+            const response = AuthMapper.ToSendLoginResponse(tokens.user?.id!, tokens.user?.name!, loginData.email, loginData.role, tokens.accessToken);
+            return res.status(STATUS.OK).json(response);
+
+        } catch (error) {
+            next()
+        }
+    }
 
 
 };

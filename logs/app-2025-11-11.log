@@ -1,0 +1,433 @@
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-11T04:33:40.001Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net[39m ---- timestamp:2025-11-11T04:33:41.204Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T04:34:22.753Z] POST /api/user/aaa 404 - 3ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T04:34:22.753Z}
+{level:[31merror[39m ---- message:[31m[GET] /api/user/aaa - need to login[39m ---- timestamp:2025-11-11T04:34:39.243Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T04:34:39.245Z] GET /api/user/aaa 500 - 4ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T04:34:39.246Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/send-otp - User already registered[39m ---- timestamp:2025-11-11T04:36:06.537Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T04:36:06.538Z] POST /api/user/send-otp 500 - 179ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T04:36:06.538Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T04:36:26.239Z] POST /api/user/send-otp 200 - 4682ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T04:36:26.239Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T04:36:43.646Z] POST /api/user/verify-otp 201 - 390ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T04:36:43.646Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T04:37:06.589Z] GET /api/user/verify-otp 404 - 1ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T04:37:06.590Z}
+{level:[31merror[39m ---- message:[31m[GET] /api/user/aaa - need to login[39m ---- timestamp:2025-11-11T04:37:17.686Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T04:37:17.687Z] GET /api/user/aaa 500 - 2ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T04:37:17.687Z}
+{level:[31merror[39m ---- message:[31m[GET] /api/user/aaa - need to login[39m ---- timestamp:2025-11-11T04:38:03.955Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T04:38:03.956Z] GET /api/user/aaa 500 - 2ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T04:38:03.956Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:40:25.428Z] POST /api/user/refresh 200 - 134ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:40:25.428Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:40:25.433Z] POST /api/user/refresh 200 - 158ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:40:25.434Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:40:25.703Z] POST /api/user/refresh 200 - 257ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:40:25.703Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:40:37.761Z] POST /api/user/refresh 200 - 505ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:40:37.761Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:40:37.765Z] POST /api/user/refresh 200 - 504ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:40:37.765Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:40:37.903Z] POST /api/user/refresh 200 - 131ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:40:37.903Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:40:58.618Z] POST /api/user/refresh 200 - 189ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:40:58.618Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:40:58.622Z] POST /api/user/refresh 200 - 196ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:40:58.622Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:40:58.884Z] POST /api/user/refresh 200 - 255ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:40:58.884Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:41:30.466Z] POST /api/user/refresh 200 - 174ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:41:30.466Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:41:30.530Z] POST /api/user/refresh 200 - 225ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:41:30.530Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:41:30.679Z] POST /api/user/refresh 200 - 195ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:41:30.679Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:41:54.212Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:41:54.213Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:41:54.213Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:41:54.220Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:41:54.221Z] POST /api/user/refresh 500 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:41:54.221Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:41:54.306Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:41:54.307Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:41:54.307Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:42:02.829Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:42:02.831Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:42:02.831Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:42:02.838Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:42:02.839Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:42:02.839Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:42:02.905Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:42:02.906Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:42:02.907Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:42:12.502Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:42:12.504Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:42:12.504Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:42:12.511Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:42:12.512Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:42:12.512Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:42:12.578Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:42:12.580Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:42:12.580Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:43:11.124Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:43:11.125Z] POST /api/user/refresh 500 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:43:11.125Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:43:11.132Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:43:11.134Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:43:11.134Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:43:11.190Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:43:11.192Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:43:11.192Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:50:29.766Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:50:29.766Z] POST /api/user/refresh 500 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:50:29.767Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:50:31.773Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:50:31.774Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:50:31.774Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:50:51.812Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:50:51.814Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:50:51.814Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:50:51.824Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:50:51.826Z] POST /api/user/refresh 500 - 3ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:50:51.826Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:50:51.907Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:50:51.908Z] POST /api/user/refresh 500 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:50:51.909Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:51:10.702Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:51:10.705Z] POST /api/user/refresh 500 - 3ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:51:10.705Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:51:10.712Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:51:10.713Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:51:10.713Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:51:10.793Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:51:10.794Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:51:10.794Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:51:19.223Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:51:19.225Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:51:19.225Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:51:19.235Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:51:19.237Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:51:19.237Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:51:19.344Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:51:19.346Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:51:19.346Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:51:40.770Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:51:40.771Z] POST /api/user/refresh 500 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:51:40.771Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:51:43.769Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:51:43.770Z] POST /api/user/refresh 500 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:51:43.770Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:51:46.769Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:51:46.770Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:51:46.770Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:51:48.764Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:51:48.765Z] POST /api/user/refresh 500 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:51:48.765Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:54:44.247Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:54:44.249Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:54:44.249Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:54:44.252Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:54:44.254Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:54:44.254Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:54:44.304Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:54:44.305Z] POST /api/user/refresh 500 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:54:44.305Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:54:47.894Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:54:47.895Z] POST /api/user/refresh 500 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:54:47.895Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:54:47.896Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:54:47.897Z] POST /api/user/refresh 500 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:54:47.898Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:54:47.923Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:54:47.925Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:54:47.925Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:54:56.929Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:54:56.930Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:54:56.930Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:54:56.933Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:54:56.934Z] POST /api/user/refresh 500 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:54:56.935Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:54:56.959Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:54:56.960Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:54:56.960Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:55:03.865Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:55:03.866Z] POST /api/user/refresh 500 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:55:03.867Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:55:03.869Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:55:03.871Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:55:03.871Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:55:03.898Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:55:03.899Z] POST /api/user/refresh 500 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:55:03.899Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:55:17.056Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:55:17.057Z] POST /api/user/refresh 500 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:55:17.057Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:55:17.059Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:55:17.060Z] POST /api/user/refresh 500 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:55:17.060Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:55:17.088Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:55:17.089Z] POST /api/user/refresh 500 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:55:17.089Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:55:21.001Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:55:21.003Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:55:21.003Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:55:21.004Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:55:21.005Z] POST /api/user/refresh 500 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:55:21.005Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:55:21.031Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:55:21.032Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:55:21.032Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:57:18.271Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:57:18.272Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:57:18.272Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:57:18.279Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:57:18.280Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:57:18.280Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:57:18.373Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:57:18.375Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:57:18.375Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:57:49.713Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:57:49.714Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:57:49.714Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:57:49.716Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:57:49.717Z] POST /api/user/refresh 500 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:57:49.717Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T06:57:49.778Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T06:57:49.780Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T06:57:49.780Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T07:02:03.398Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T07:02:03.400Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T07:02:03.400Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T07:02:03.411Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T07:02:03.412Z] POST /api/user/refresh 500 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T07:02:03.412Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T07:02:03.461Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T07:02:03.463Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T07:02:03.463Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T07:02:05.734Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T07:02:05.735Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T07:02:05.735Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T07:02:05.738Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T07:02:05.739Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T07:02:05.739Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T07:02:05.780Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T07:02:05.781Z] POST /api/user/refresh 500 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T07:02:05.781Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T07:15:23.772Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T07:15:23.773Z] POST /api/user/refresh 500 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T07:15:23.773Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-11T09:25:40.324Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net[39m ---- timestamp:2025-11-11T09:25:41.900Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:26:10.369Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:26:10.376Z] POST /api/user/refresh 401 - 8ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:26:10.376Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:26:10.380Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:26:10.381Z] POST /api/user/refresh 401 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:26:10.381Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:26:10.399Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:26:10.403Z] POST /api/user/refresh 401 - 4ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:26:10.403Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:28:53.333Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:28:53.335Z] POST /api/user/refresh 401 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:28:53.335Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:28:53.347Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:28:53.348Z] POST /api/user/refresh 401 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:28:53.348Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:28:53.412Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:28:53.414Z] POST /api/user/refresh 401 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:28:53.414Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:29:03.171Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:29:03.173Z] POST /api/user/refresh 401 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:29:03.174Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:29:03.183Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:29:03.184Z] POST /api/user/refresh 401 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:29:03.185Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:29:03.261Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:29:03.263Z] POST /api/user/refresh 401 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:29:03.263Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:29:05.082Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:29:05.084Z] POST /api/user/refresh 401 - 3ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:29:05.084Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:29:05.093Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:29:05.095Z] POST /api/user/refresh 401 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:29:05.095Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:29:05.164Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:29:05.165Z] POST /api/user/refresh 401 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:29:05.165Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:29:55.762Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:29:55.763Z] POST /api/user/refresh 401 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:29:55.763Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:29:56.763Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:29:56.764Z] POST /api/user/refresh 401 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:29:56.764Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:29:59.773Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:29:59.773Z] POST /api/user/refresh 401 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:29:59.774Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:30:00.771Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:30:00.772Z] POST /api/user/refresh 401 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:30:00.772Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:30:29.555Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:30:29.556Z] POST /api/user/refresh 401 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:30:29.556Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:30:29.563Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:30:29.565Z] POST /api/user/refresh 401 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:30:29.566Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:30:29.679Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:30:29.681Z] POST /api/user/refresh 401 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:30:29.681Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:33:34.764Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:33:34.765Z] POST /api/user/refresh 401 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:33:34.765Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:33:35.786Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:33:35.787Z] POST /api/user/refresh 401 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:33:35.787Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:33:40.790Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:33:40.791Z] POST /api/user/refresh 401 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:33:40.791Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:34:07.758Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:34:07.759Z] POST /api/user/refresh 401 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:34:07.760Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:34:13.150Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:34:13.152Z] POST /api/user/refresh 401 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:34:13.152Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:34:13.162Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:34:13.164Z] POST /api/user/refresh 401 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:34:13.165Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:34:13.245Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:34:13.247Z] POST /api/user/refresh 401 - 3ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:34:13.247Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:34:24.529Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:34:24.531Z] POST /api/user/refresh 401 - 3ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:34:24.531Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:34:39.276Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:34:39.280Z] POST /api/user/refresh 401 - 5ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:34:39.280Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:34:39.286Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:34:39.288Z] POST /api/user/refresh 401 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:34:39.288Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:34:39.408Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:34:39.411Z] POST /api/user/refresh 401 - 4ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:34:39.411Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:34:48.527Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:34:48.529Z] POST /api/user/refresh 401 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:34:48.530Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:34:48.536Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:34:48.540Z] POST /api/user/refresh 401 - 4ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:34:48.541Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:34:48.646Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:34:48.648Z] POST /api/user/refresh 401 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:34:48.648Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:34:59.459Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:34:59.460Z] POST /api/user/refresh 401 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:34:59.460Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:34:59.468Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:34:59.471Z] POST /api/user/refresh 401 - 3ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:34:59.471Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:34:59.572Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:34:59.575Z] POST /api/user/refresh 401 - 3ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:34:59.575Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:35:00.906Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:35:00.907Z] POST /api/user/refresh 401 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:35:00.908Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:35:00.912Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:35:00.913Z] POST /api/user/refresh 401 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:35:00.914Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - NO refresh token[39m ---- timestamp:2025-11-11T09:35:01.018Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:35:01.020Z] POST /api/user/refresh 401 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:35:01.020Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-11T09:45:34.285Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net[39m ---- timestamp:2025-11-11T09:45:35.497Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:39.975Z] POST /api/user/refresh 200 - 12ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:39.975Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:39.982Z] POST /api/user/refresh 200 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:39.982Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:40.055Z] POST /api/user/refresh 200 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:40.055Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:41.327Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:41.327Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:41.337Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:41.338Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:41.417Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:41.417Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:42.217Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:42.217Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:42.228Z] POST /api/user/refresh 200 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:42.229Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:42.535Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:42.535Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:42.542Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:42.542Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:42.635Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:42.635Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:42.909Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:42.909Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:42.923Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:42.923Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:43.008Z] POST /api/user/refresh 200 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:43.008Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:43.281Z] POST /api/user/refresh 200 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:43.281Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:43.289Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:43.289Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:43.368Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:43.368Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:43.625Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:43.625Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:43.639Z] POST /api/user/refresh 200 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:43.639Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:43.723Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:43.723Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:44.034Z] POST /api/user/refresh 200 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:44.035Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:44.044Z] POST /api/user/refresh 200 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:44.044Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:44.104Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:44.104Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:44.386Z] POST /api/user/refresh 200 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:44.387Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:44.398Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:44.398Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:44.483Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:44.484Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:44.821Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:44.821Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:44.831Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:44.831Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:44.909Z] POST /api/user/refresh 200 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:44.909Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:50.612Z] OPTIONS /api/user/login 204 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:45:50.613Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:45:50.848Z] POST /api/user/login 404 - 1ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T09:45:50.848Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:50:05.552Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:50:05.552Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:50:05.555Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:50:05.555Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:50:05.598Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:50:05.598Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:50:16.937Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:50:16.937Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:50:16.941Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:50:16.941Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T09:50:16.962Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T09:50:16.962Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T10:55:26.458Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T10:55:26.458Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T10:55:26.468Z] POST /api/user/refresh 200 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T10:55:26.469Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T10:55:26.553Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T10:55:26.553Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:26:41.156Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:26:41.157Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:26:41.160Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:26:41.160Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:26:41.188Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:26:41.188Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:26:43.268Z] OPTIONS /api/user/login 204 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:26:43.268Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:26:43.272Z] POST /api/user/login 404 - 0ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T13:26:43.272Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:27:20.551Z] OPTIONS /api/user/login 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:27:20.551Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:27:20.553Z] POST /api/user/login 404 - 0ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T13:27:20.553Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-11T13:30:27.147Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net[39m ---- timestamp:2025-11-11T13:30:29.134Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:30:32.327Z] OPTIONS /api/user/login 204 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:30:32.327Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:30:32.425Z] POST /api/user/login 404 - 83ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T13:30:32.425Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-11T13:32:32.343Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net[39m ---- timestamp:2025-11-11T13:32:33.756Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:32:39.911Z] OPTIONS /api/user/login 204 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:32:39.912Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:32:40.003Z] POST /api/user/login 404 - 78ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T13:32:40.004Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-11T13:33:27.887Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net[39m ---- timestamp:2025-11-11T13:33:28.904Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:33:32.047Z] OPTIONS /api/user/login 204 - 3ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:33:32.047Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:33:32.139Z] POST /api/user/login 404 - 77ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T13:33:32.139Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-11T13:36:35.363Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net[39m ---- timestamp:2025-11-11T13:36:36.963Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:36:41.080Z] OPTIONS /api/user/login 204 - 3ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:36:41.080Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:36:41.181Z] POST /api/user/login 404 - 84ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T13:36:41.181Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-11T13:38:38.105Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net[39m ---- timestamp:2025-11-11T13:38:39.203Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:38:40.239Z] OPTIONS /api/user/login 204 - 3ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:38:40.240Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:38:40.364Z] POST /api/user/login 404 - 108ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T13:38:40.364Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:38:51.604Z] OPTIONS /api/user/login 204 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:38:51.605Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:38:51.726Z] POST /api/user/login 404 - 119ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T13:38:51.726Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:38:57.842Z] POST /api/user/refresh 200 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:38:57.842Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:38:57.845Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:38:57.845Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:38:57.875Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:38:57.875Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:38:58.936Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:38:58.936Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:38:58.938Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:38:58.938Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:38:58.962Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:38:58.962Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:39:03.670Z] OPTIONS /api/user/login 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:39:03.670Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:39:03.841Z] POST /api/user/login 404 - 170ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T13:39:03.841Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:39:23.573Z] OPTIONS /api/user/login 204 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:39:23.573Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:39:23.707Z] POST /api/user/login 404 - 131ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T13:39:23.707Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:39:32.258Z] OPTIONS /api/user/login 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:39:32.258Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:39:32.407Z] POST /api/user/login 404 - 147ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T13:39:32.407Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:40:08.933Z] OPTIONS /api/user/login 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:40:08.933Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:41:04.084Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:41:04.084Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:41:04.086Z] POST /api/user/refresh 200 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:41:04.086Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:41:04.149Z] POST /api/user/refresh 200 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:41:04.149Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:42:01.415Z] OPTIONS /api/user/login 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:42:01.415Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:42:01.560Z] POST /api/user/login 404 - 143ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T13:42:01.560Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:42:10.205Z] OPTIONS /api/user/login 204 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:42:10.205Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:42:10.347Z] POST /api/user/login 404 - 140ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T13:42:10.347Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:42:21.654Z] OPTIONS /api/user/login 204 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:42:21.654Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-11T13:46:56.257Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net[39m ---- timestamp:2025-11-11T13:46:58.648Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:47:02.144Z] OPTIONS /api/user/login 204 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:47:02.145Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:47:02.276Z] POST /api/user/login 404 - 112ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T13:47:02.276Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:47:18.538Z] OPTIONS /api/user/login 204 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:47:18.538Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:47:18.629Z] POST /api/user/login 404 - 89ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T13:47:18.629Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-11T13:49:18.180Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net[39m ---- timestamp:2025-11-11T13:49:19.229Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:49:29.349Z] OPTIONS /api/user/login 204 - 3ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:49:29.350Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:49:29.470Z] POST /api/user/login 404 - 108ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T13:49:29.470Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:49:47.316Z] OPTIONS /api/user/login 204 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:49:47.316Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-11T13:54:07.635Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net[39m ---- timestamp:2025-11-11T13:54:08.599Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:17.757Z] OPTIONS /api/user/login 204 - 3ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:17.757Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:17.905Z] POST /api/user/login 200 - 134ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T13:54:17.906Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:28.846Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:28.848Z] POST /api/user/refresh 401 - 134ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:28.848Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:28.850Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:28.851Z] POST /api/user/refresh 401 - 143ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:28.852Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:29.004Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:29.006Z] POST /api/user/refresh 401 - 128ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:29.006Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:34.978Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:34.979Z] POST /api/user/refresh 401 - 60ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:34.979Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:34.981Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:34.981Z] POST /api/user/refresh 401 - 58ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:34.981Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:35.160Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:35.161Z] POST /api/user/refresh 401 - 164ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:35.161Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:36.705Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:36.707Z] POST /api/user/refresh 401 - 102ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:36.707Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:36.708Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:36.709Z] POST /api/user/refresh 401 - 101ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:36.709Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:36.803Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:36.804Z] POST /api/user/refresh 401 - 87ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:36.804Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:38.227Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:38.228Z] POST /api/user/refresh 401 - 57ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:38.228Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:38.228Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:38.229Z] POST /api/user/refresh 401 - 60ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:38.229Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:38.392Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:38.394Z] POST /api/user/refresh 401 - 152ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:38.394Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:39.040Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:39.041Z] POST /api/user/refresh 401 - 60ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:39.041Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:39.098Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:39.099Z] POST /api/user/refresh 401 - 121ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:39.099Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:39.146Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:39.147Z] POST /api/user/refresh 401 - 90ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:39.148Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:40.297Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:40.298Z] POST /api/user/refresh 401 - 227ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:40.298Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:40.300Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:40.301Z] POST /api/user/refresh 401 - 233ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:40.301Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:40.642Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:40.643Z] POST /api/user/refresh 401 - 330ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:40.643Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:44.998Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:45.000Z] POST /api/user/refresh 401 - 86ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:45.000Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:45.001Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:45.002Z] POST /api/user/refresh 401 - 85ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:45.002Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:45.099Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:45.100Z] POST /api/user/refresh 401 - 84ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:45.100Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:47.033Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:47.034Z] POST /api/user/refresh 401 - 215ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:47.034Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:47.036Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:47.037Z] POST /api/user/refresh 401 - 215ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:47.037Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:47.150Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:47.151Z] POST /api/user/refresh 401 - 101ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:47.151Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:49.151Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:49.153Z] POST /api/user/refresh 401 - 132ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:49.153Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:49.155Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:49.155Z] POST /api/user/refresh 401 - 130ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:49.156Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:54:49.220Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:54:49.221Z] POST /api/user/refresh 401 - 57ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:54:49.221Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:55:03.522Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:55:03.523Z] POST /api/user/refresh 401 - 93ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:55:03.523Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:55:03.524Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:55:03.525Z] POST /api/user/refresh 401 - 92ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:55:03.525Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:55:03.602Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:55:03.603Z] POST /api/user/refresh 401 - 60ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:55:03.603Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:55:18.079Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:55:18.080Z] POST /api/user/refresh 401 - 147ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:55:18.080Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:55:18.081Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:55:18.082Z] POST /api/user/refresh 401 - 152ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:55:18.082Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:55:18.218Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:55:18.219Z] POST /api/user/refresh 401 - 129ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:55:18.219Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:55:31.322Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:55:31.323Z] POST /api/user/refresh 401 - 81ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:55:31.323Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:55:31.364Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:55:31.364Z] POST /api/user/refresh 401 - 120ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:55:31.364Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/user/refresh - Refresh token not found[39m ---- timestamp:2025-11-11T13:55:31.545Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T13:55:31.546Z] POST /api/user/refresh 401 - 186ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T13:55:31.546Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-11T14:11:12.443Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net[39m ---- timestamp:2025-11-11T14:11:13.450Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:16.528Z] OPTIONS /api/user/login 204 - 3ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:16.528Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:16.772Z] POST /api/user/login 200 - 231ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-11T14:11:16.772Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:19.766Z] POST /api/user/refresh 200 - 122ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:19.766Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:19.853Z] POST /api/user/refresh 200 - 204ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:19.853Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:20.016Z] POST /api/user/refresh 200 - 242ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:20.016Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:20.951Z] POST /api/user/refresh 200 - 168ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:20.951Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:20.956Z] POST /api/user/refresh 200 - 169ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:20.956Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:21.086Z] POST /api/user/refresh 200 - 126ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:21.086Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:23.069Z] POST /api/user/refresh 200 - 334ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:23.069Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:23.286Z] POST /api/user/refresh 200 - 210ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:23.286Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:23.822Z] POST /api/user/refresh 200 - 1083ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:23.822Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:26.978Z] POST /api/user/refresh 200 - 130ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:26.978Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:26.989Z] POST /api/user/refresh 200 - 139ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:26.989Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:27.137Z] POST /api/user/refresh 200 - 153ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:27.137Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:34.851Z] POST /api/user/refresh 200 - 204ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:34.851Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:34.854Z] POST /api/user/refresh 200 - 210ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:34.854Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:35.238Z] POST /api/user/refresh 200 - 231ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:35.238Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:35.242Z] POST /api/user/refresh 200 - 239ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:35.242Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:35.428Z] POST /api/user/refresh 200 - 182ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:35.428Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:35.866Z] POST /api/user/refresh 200 - 119ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:35.866Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:35.870Z] POST /api/user/refresh 200 - 125ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:35.870Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:36.306Z] POST /api/user/refresh 200 - 312ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:36.306Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:36.312Z] POST /api/user/refresh 200 - 321ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:36.312Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:36.621Z] POST /api/user/refresh 200 - 225ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:36.621Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:36.930Z] POST /api/user/refresh 200 - 209ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:36.930Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:36.933Z] POST /api/user/refresh 200 - 209ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:36.933Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T14:11:37.211Z] POST /api/user/refresh 200 - 274ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T14:11:37.211Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T16:42:23.195Z] POST /api/user/refresh 200 - 126ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T16:42:23.195Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T16:42:23.200Z] POST /api/user/refresh 200 - 123ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T16:42:23.200Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-11T16:42:23.354Z] POST /api/user/refresh 200 - 130ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-11T16:42:23.354Z}

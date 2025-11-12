@@ -20,16 +20,11 @@ export const authenticate = (allowedRoles?: Role[]) => {
         cookies?.hubaccessTokenName ||
         cookies?.workeraccessTokenName;
 
-      if (!accessToken) {
-        throw new AppError("Unauthorized: Access token missing", STATUS.UNAUTHORIZED);
-      }
-
+      if (!accessToken) throw new AppError("Unauthorized: Access token missing", STATUS.UNAUTHORIZED);
+      
       const decoded = tokenService.verifyAccessToken(accessToken);
-
-      if (!decoded) {
-        throw new AppError("Invalid or expired token", STATUS.UNAUTHORIZED);
-      }
-
+      if (!decoded) throw new AppError("Invalid or expired token", STATUS.UNAUTHORIZED);
+      
       if (allowedRoles && !allowedRoles.includes(decoded.role)) {
         throw new AppError("Forbidden: Role not allowed", STATUS.FORBIDDEN);
       }

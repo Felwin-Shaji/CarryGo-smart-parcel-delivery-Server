@@ -12,6 +12,8 @@ import type { IRefreshTokenUseCase } from "../../Application/interfaces/useCase/
 import { RefreshTokenUseCase } from "../../Application/useCase/refreshToken.usecase.js";
 import type { ILoginUsecase } from "../../Application/interfaces/useCase/login.usecase.js";
 import { LoginUsecase } from "../../Application/useCase/login.usecase.js";
+import type { ILogoutUsecase } from "../../Application/interfaces/useCase/logout.usecase.js";
+import { LogoutUsecase } from "../../Application/useCase/logout.usecase.js";
 
 
 export class UsecaseRegistery {
@@ -38,6 +40,10 @@ export class UsecaseRegistery {
 
         container.register<ILoginUsecase>("ILoginUsecase",{
             useClass:LoginUsecase
+        })
+
+        container.register<ILogoutUsecase>("ILogoutUsecase",{
+            useClass:LogoutUsecase
         })
     }
 }

@@ -25,6 +25,6 @@ export function errorHandler(err: unknown, req: Request, res: Response, next: Ne
 
     if (appError.details) responseBody.details = appError.details;
     if (isDev) responseBody.stack = appError.stack;
-
+    console.log(responseBody.message,'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm')
     return res.status(appError.statusCode).json(responseBody);
 };

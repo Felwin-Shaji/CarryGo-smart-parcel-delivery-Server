@@ -26,7 +26,7 @@ app.use(
 
 
 const userRoute = new AuthRoute();
-app.use('/api/user',userRoute.router);
+app.use('/api/auth',userRoute.router);
 
 app.use(errorHandler)
 

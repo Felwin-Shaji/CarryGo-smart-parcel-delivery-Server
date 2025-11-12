@@ -1,6 +1,6 @@
 import type { IOtpModel } from "../../Domain/Entities/Iotp.js";
 import type { Request } from "express";
-import type { LoginDTO, OtpResponseDTO, SendLoginResponse, SendOtpDTO, VerifyOtpResponseDTO } from "../Dto/Auth/Auth.dto.js";
+import type { LoginDTO, LogoutDTO, OtpResponseDTO, SendLoginResponse, SendLogoutResponseDTO, SendOtpDTO, VerifyOtpResponseDTO } from "../Dto/Auth/Auth.dto.js";
 import type { Role } from "../../Infrastructure/Types/types.js";
 
 export class AuthMapper {
@@ -50,6 +50,18 @@ export class AuthMapper {
                 role,
             },
             accessToken: accessToken
+        }
+    }
+
+    static toLogoutDTO(req: Request): LogoutDTO {
+        const { role, userId } = req.body;
+        return { role, id: userId }
+    }
+
+    static toSendLogoutResponse(): SendLogoutResponseDTO {
+        return {
+            success: true,
+            message: "Logout successful" ,
         }
     }
 }

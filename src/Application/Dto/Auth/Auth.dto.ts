@@ -28,12 +28,12 @@ export interface VerifyOtpResponseDTO {
   accessToken: string
 };
 
-export interface SendLoginResponse extends VerifyOtpResponseDTO{}
+export interface SendLoginResponse extends VerifyOtpResponseDTO { }
 
 export interface UserDTO {
   name: string;
   email: string;
-  mobile?: string | null;  
+  mobile?: string | null;
   password?: string | null;
   role: Role;
 }
@@ -44,5 +44,14 @@ export interface LoginDTO {
   role: Role;
 }
 
+export interface LogoutDTO {
+  id: string
+  role: Role;
+}
+
+export interface SendLogoutResponseDTO {
+  success: boolean;
+  message: string;
+}
 
 

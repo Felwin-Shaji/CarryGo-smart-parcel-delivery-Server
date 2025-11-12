@@ -1,7 +1,8 @@
 import type { ClientSession } from "mongoose";
-import type { IRefreshTokenRepository, ITokenModel } from "../../Application/interfaces/repositories/auth/refreshToken.repository.js";
+import type { IRefreshTokenRepository } from "../../Application/interfaces/repositories/auth/refreshToken.repository.js";
 import { RefreshTokenModel } from "../database/models/refreshToken.js";
 import { BaseRepository } from "./baseRepositories.js";
+import type { ITokenModel } from "../../Domain/Entities/token.js";
 
 export class RefreshTokenRepository extends BaseRepository<ITokenModel> implements IRefreshTokenRepository {
 

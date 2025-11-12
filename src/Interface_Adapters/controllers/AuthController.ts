@@ -12,6 +12,7 @@ import type { IRegisterUserUseCase } from "../../Application/interfaces/useCase/
 import type { IRefreshTokenUseCase } from "../../Application/interfaces/useCase/refreshToken.usecase.js";
 import type { UserDTO } from "../../Application/Dto/Auth/Auth.dto.js";
 import type { ILoginUsecase } from "../../Application/interfaces/useCase/login.usecase.js";
+import type { ILogoutUsecase } from "../../Application/interfaces/useCase/logout.usecase.js";
 
 
 @injectable()
@@ -33,7 +34,10 @@ export class AuthController implements IAuthController {
         private _refreshTokenUseCase: IRefreshTokenUseCase,
 
         @inject("ILoginUsecase")
-        private _loginUsecase: ILoginUsecase
+        private _loginUsecase: ILoginUsecase,
+
+        @inject("ILogoutUsecase")
+        private _logoutUsecase: ILogoutUsecase
     ) { }
     sendOtp = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
 
@@ -124,12 +128,12 @@ export class AuthController implements IAuthController {
     login = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const loginData = AuthMapper.toLoginDTO(req);
-            console.log(loginData,'.................')
+            console.log(loginData, '.................')
 
             const users = await this._loginUsecase.execute(loginData);
             console.log(users)
 
-            const tokens = await this._generateTokenUseCase.execute(users.id,users.email,users.role)
+            const tokens = await this._generateTokenUseCase.execute(users.id, users.email, users.role)
 
             setAuthCookies(
                 res,
@@ -143,9 +147,29 @@ export class AuthController implements IAuthController {
             return res.status(STATUS.OK).json(response);
 
         } catch (error) {
-            next()
+            next(error)
         }
     }
 
+    logout = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            // const { role, userId } = req.body; // frontend sends role
+            const logoutData = AuthMapper.toLogoutDTO(req)
+            const refreshTokenName = `${logoutData.role}refreshTokenName`;
+            const refreshToken = req.cookies?.[refreshTokenName];
+
+            if (!refreshToken) throw new AppError("No refresh token found in cookies", 400)
+
+            await this._logoutUsecase.execute(refreshToken, logoutData.id);
+
+            res.clearCookie(`${logoutData.role}accessTokenName`, { httpOnly: true, sameSite: "strict", secure: true });
+            res.clearCookie(`${logoutData.role}refreshTokenName`, { httpOnly: true, sameSite: "strict", secure: true });
+            const response = AuthMapper.toSendLogoutResponse();
+            return res.status(STATUS.OK).json(response)
+
+        } catch (error) {
+            next(error)
+        }
+    }
 
 };

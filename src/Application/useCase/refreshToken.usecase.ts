@@ -43,5 +43,5 @@ export class RefreshTokenUseCase implements IRefreshTokenUseCase {
             },
         };
 
-    }
+    };
 }

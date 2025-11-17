@@ -14,6 +14,6 @@ const otpSchema = new Schema<IOtpModel>({
 );
 
 
-otpSchema.index({ createdAt: 1 }, { expireAfterSeconds: 120 });
+otpSchema.index({ updatedAt: 1 }, { expireAfterSeconds: 300 });
 
 export const OtpModel = model<IOtpModel>("Otp", otpSchema);

@@ -8,11 +8,13 @@ import { AuthMapper } from "../../Application/Mappers/AuthMapper.js";
 import { setAuthCookies } from "../../Domain/utils/setAuthCookies.js";
 import { AppError } from "../../Domain/utils/customError.js";
 import type { IGenerateTokenUseCase } from "../../Application/interfaces/useCase/GenerateToken.usecase.js";
-import type { IRegisterUserUseCase } from "../../Application/interfaces/useCase/RegisterUser.useCase.js";
+// import type { IRegisterUserUseCase } from "../../Application/interfaces/useCase/RegisterUser.useCase.js";
 import type { IRefreshTokenUseCase } from "../../Application/interfaces/useCase/refreshToken.usecase.js";
 import type { UserDTO } from "../../Application/Dto/Auth/Auth.dto.js";
 import type { ILoginUsecase } from "../../Application/interfaces/useCase/login.usecase.js";
 import type { ILogoutUsecase } from "../../Application/interfaces/useCase/logout.usecase.js";
+import type { IRegisterUserUseCase } from "../../Application/interfaces/useCase/user/RegisterUser.useCase.js";
+import type { IRegisterAgencyUseCase } from "../../Application/interfaces/useCase/Agency/Agencyregisrtation.usecase.js";
 
 
 @injectable()
@@ -26,6 +28,9 @@ export class AuthController implements IAuthController {
 
         @inject("IRegisterUserUseCase")
         private _registerUserUseCase: IRegisterUserUseCase,
+
+        @inject("IRegisterAgencyUseCase")
+        private _registerAgencyUseCase: IRegisterAgencyUseCase,
 
         @inject("IGenerateTokenUseCase")
         private _generateTokenUseCase: IGenerateTokenUseCase,
@@ -67,7 +72,11 @@ export class AuthController implements IAuthController {
                 role: otpData.role,
             };
 
-            const registeredUser = await this._registerUserUseCase.execute(userData);
+            let registeredUser;
+            if (role === "user") registeredUser = await this._registerUserUseCase.execute(userData);
+            if (role === "agency") registeredUser = await this._registerAgencyUseCase.execute(userData);
+
+            if (!registeredUser) throw new AppError("registreation failed", STATUS.CONFLICT);
 
 
             const tokens = await this._generateTokenUseCase.execute(
@@ -84,7 +93,7 @@ export class AuthController implements IAuthController {
                 `${role}refreshTokenName`
             )
 
-            const response = AuthMapper.ToSendVerifyOtpResponse(registeredUser.id!, registeredUser.name, email, role, tokens.accessToken);
+            const response = AuthMapper.ToSendVerifyOtpResponse(registeredUser.id!, registeredUser.name, email, role,registeredUser.kycStatus, tokens.accessToken);
             console.log(response, "........sss..............")
             return res.status(STATUS.CREATED).json(response);
 
@@ -95,7 +104,10 @@ export class AuthController implements IAuthController {
 
     refreshToken = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
-            const refreshToken = req.cookies?.userrefreshTokenName
+            const { role } = req.body
+            console.log(req.cookies[`${role}refreshTokenName`], "]]]]]]]]]]]]]]]]]]]]]]]]]]]")
+            const refreshToken = req.cookies[`${role}refreshTokenName`];
+
             if (!refreshToken) {
                 return res.status(STATUS.OK).json({
                     success: true,
@@ -143,7 +155,7 @@ export class AuthController implements IAuthController {
                 `${loginData.role}refreshTokenName`
             );
 
-            const response = AuthMapper.ToSendLoginResponse(tokens.user?.id!, tokens.user?.name!, loginData.email, loginData.role, tokens.accessToken);
+            const response = AuthMapper.ToSendLoginResponse(tokens.user?.id!, tokens.user?.name!, loginData.email, loginData.role, users.kycStatus,tokens.accessToken);
             return res.status(STATUS.OK).json(response);
 
         } catch (error) {

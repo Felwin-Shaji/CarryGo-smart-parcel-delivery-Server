@@ -1,4 +1,4 @@
-import type { Role } from "../../../Infrastructure/Types/types.js";
+import type { KYCStatus, Role } from "../../../Infrastructure/Types/types.js";
 
 export interface SendOtpDTO {
   name: string;
@@ -24,6 +24,7 @@ export interface VerifyOtpResponseDTO {
     name: string;
     email: string;
     role: Role;
+    kycStatus:KYCStatus;
   }
   accessToken: string
 };
@@ -37,6 +38,8 @@ export interface UserDTO {
   password?: string | null;
   role: Role;
 }
+
+export interface AgencyDTO extends UserDTO { }
 
 export interface LoginDTO {
   email: string;

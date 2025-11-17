@@ -6,17 +6,22 @@ import { AppError } from "../../Domain/utils/customError.js";
 import { PasswordVo } from "../../Domain/ValueObjects/password.valueObject.js";
 import type { LoginDTO } from "../Dto/Auth/Auth.dto.js";
 import { STATUS } from "../../Infrastructure/constants/statusCodes.js";
+import type { IAdminRepository } from "../interfaces/repositories/admin/admin.repository.js";
 
 @injectable()
 export class LoginUsecase implements ILoginUsecase {
     constructor(
         @inject("IUserRepository") private userRepo: IUserRepository,
+        @inject("IAdminRepository") private adminRepo:IAdminRepository
 
     ) { }
 
     async execute(loginData: LoginDTO): Promise<AuthUser> {
         let user
-        if (loginData.role === "user") user = await this.userRepo.findOne({ email: loginData.email })
+        if (loginData.role === "user") user = await this.userRepo.findOne({ email: loginData.email });
+        if(loginData.role === "admin")  user = await this.adminRepo.findOne({ email: loginData.email });
+        if(loginData.role === "agency")  user = await this.adminRepo.findOne({ email: loginData.email });
+
         if (!user) throw new AppError("User not found", STATUS.NOT_FOUND);
 
         const passwordVo = PasswordVo.fromHashed(user.password!);
@@ -27,7 +32,8 @@ export class LoginUsecase implements ILoginUsecase {
             id: user.id!,
             name: user.name,
             email: user.email,
-            role: user.role
+            role: user.role,
+            kycStatus:user.kycStatus,
         }
 
         return authUserDate

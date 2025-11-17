@@ -7,6 +7,6 @@ export interface IOtpModel {
     mobile?: string | null;
     password?: string | null;
     otp: string;
-    role:Role;
-    expiresAt ?: Date;
+    role: Role;
+    expiresAt: Date;
 };

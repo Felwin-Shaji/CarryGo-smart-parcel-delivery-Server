@@ -1,7 +1,7 @@
 import type { IOtpModel } from "../../Domain/Entities/Iotp.js";
 import type { Request } from "express";
 import type { LoginDTO, LogoutDTO, OtpResponseDTO, SendLoginResponse, SendLogoutResponseDTO, SendOtpDTO, VerifyOtpResponseDTO } from "../Dto/Auth/Auth.dto.js";
-import type { Role } from "../../Infrastructure/Types/types.js";
+import type { KYCStatus, Role } from "../../Infrastructure/Types/types.js";
 
 export class AuthMapper {
 
@@ -20,7 +20,7 @@ export class AuthMapper {
         }
     }
 
-    static ToSendVerifyOtpResponse(id: string, name: string, email: string, role: Role, accessToken: string): VerifyOtpResponseDTO {
+    static ToSendVerifyOtpResponse(id: string, name: string, email: string, role: Role, kycStatus: KYCStatus, accessToken: string): VerifyOtpResponseDTO {
         return {
             success: true,
             message: "user registered successfully",
@@ -29,6 +29,8 @@ export class AuthMapper {
                 name,
                 email,
                 role,
+                kycStatus
+
             },
             accessToken: accessToken
         }
@@ -39,7 +41,7 @@ export class AuthMapper {
         return { email, password, role }
     }
 
-    static ToSendLoginResponse(id: string, name: string, email: string, role: Role, accessToken: string): SendLoginResponse {
+    static ToSendLoginResponse(id: string, name: string, email: string, role: Role, kycStatus: KYCStatus, accessToken: string): SendLoginResponse {
         return {
             success: true,
             message: "user logged in successfully",
@@ -48,6 +50,7 @@ export class AuthMapper {
                 name,
                 email,
                 role,
+                kycStatus
             },
             accessToken: accessToken
         }
@@ -61,7 +64,7 @@ export class AuthMapper {
     static toSendLogoutResponse(): SendLogoutResponseDTO {
         return {
             success: true,
-            message: "Logout successful" ,
+            message: "Logout successful",
         }
     }
 }

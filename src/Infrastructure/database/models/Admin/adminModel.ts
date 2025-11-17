@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import type { Admin } from "../../../Domain/Entities/admin.js";
+import type { Admin } from "../../../../Domain/Entities/admin.js";
 
 const adminModel = new Schema<Admin>({
     name: { type: String, required: true },

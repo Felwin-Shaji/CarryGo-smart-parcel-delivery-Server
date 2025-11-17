@@ -1,6 +1,5 @@
 import { model, Schema, type Document } from "mongoose";
-import type { Role } from "../../Types/types.js";
-import type { ITokenModel } from "../../../Application/interfaces/repositories/auth/refreshToken.repository.js";
+import type { ITokenModel } from "../../../Domain/Entities/token.js";
 
 
 const refreshTokenSchema = new Schema<ITokenModel>({

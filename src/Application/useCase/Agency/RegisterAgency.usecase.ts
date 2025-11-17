@@ -1,0 +1,28 @@
+import { inject, injectable } from "tsyringe";
+import type { IRegisterAgencyUseCase } from "../../interfaces/useCase/Agency/Agencyregisrtation.usecase.js";
+import type { IAgencyRepository } from "../../interfaces/repositories/agency/agency.repository.js";
+import { Agency } from "../../../Domain/Entities/Agency.js";
+import type { AgencyDTO } from "../../Dto/Auth/Auth.dto.js";
+
+@injectable()
+export class RegisterAgencyUseCase  implements IRegisterAgencyUseCase {
+    constructor(
+        @inject("IAgencyRepository") private agencyRepo:IAgencyRepository
+    ){}
+
+    async execute(agencyData: AgencyDTO): Promise<Agency> {
+        
+        const newAgency = new Agency(
+            null,
+            agencyData.name,
+            agencyData.email,
+            agencyData.mobile || null,
+            agencyData.password || null,
+            agencyData.role
+        )
+
+        const savedData = await this.agencyRepo.save(newAgency);
+
+        return savedData;
+    };
+};

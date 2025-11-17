@@ -1,17 +1,17 @@
 import { inject, injectable } from "tsyringe";
-import { User } from "../../Domain/Entities/User.js";
-import type { IUserRepository } from "../interfaces/repositories/user/user.repository.js";
-import type { IRegisterUserUseCase } from "../interfaces/useCase/RegisterUser.useCase.js";
-import type { UserDTO } from "../Dto/Auth/Auth.dto.js";
+import { User } from "../../../Domain/Entities/User.js";
+import type { IUserRepository } from "../../interfaces/repositories/user/user.repository.js";
+import type { UserDTO } from "../../Dto/Auth/Auth.dto.js";
+import type { IRegisterUserUseCase } from "../../interfaces/useCase/user/RegisterUser.useCase.js";
 
 
 @injectable()
 export class RegisterUserUseCase implements IRegisterUserUseCase {
   constructor(
-    @inject("IUserRepository") private userRepo: IUserRepository
-  ) {}
+    @inject("IUserRepository") private userRepo: IUserRepository,
+  ) { }
 
-  async execute(userData:UserDTO) {
+  async execute(userData: UserDTO) {
 
     const newUser = new User(
       null,
@@ -22,7 +22,7 @@ export class RegisterUserUseCase implements IRegisterUserUseCase {
       userData.role,
       null,
       "local",
-      "pending",
+      "PENDING",
       0,
       false
     );
@@ -30,5 +30,5 @@ export class RegisterUserUseCase implements IRegisterUserUseCase {
     const savedUser = await this.userRepo.save(newUser);
 
     return savedUser;
-  }
-}
+  };
+};

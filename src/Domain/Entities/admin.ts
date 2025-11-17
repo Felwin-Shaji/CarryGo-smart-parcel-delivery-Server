@@ -1,4 +1,4 @@
-import type { Role } from "../../Infrastructure/Types/types.js";
+import type { KYCStatus, Role } from "../../Infrastructure/Types/types.js";
 
 export class Admin {
   constructor(
@@ -9,6 +9,7 @@ export class Admin {
     public password: string | null,
     public role:Role,
     public isAdmin:boolean,
+    public kycStatus:KYCStatus,
     public walletBalance: number = 0,
     public isBlocked: boolean = false,
     public createdAt: Date = new Date(),

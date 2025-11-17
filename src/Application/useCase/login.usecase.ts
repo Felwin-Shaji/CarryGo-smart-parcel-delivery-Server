@@ -7,12 +7,14 @@ import { PasswordVo } from "../../Domain/ValueObjects/password.valueObject.js";
 import type { LoginDTO } from "../Dto/Auth/Auth.dto.js";
 import { STATUS } from "../../Infrastructure/constants/statusCodes.js";
 import type { IAdminRepository } from "../interfaces/repositories/admin/admin.repository.js";
+import type { IAgencyRepository } from "../interfaces/repositories/agency/agency.repository.js";
 
 @injectable()
 export class LoginUsecase implements ILoginUsecase {
     constructor(
         @inject("IUserRepository") private userRepo: IUserRepository,
-        @inject("IAdminRepository") private adminRepo:IAdminRepository
+        @inject("IAdminRepository") private adminRepo:IAdminRepository,
+        @inject("IAgencyRepository") private agencyRepo:IAgencyRepository
 
     ) { }
 
@@ -20,7 +22,7 @@ export class LoginUsecase implements ILoginUsecase {
         let user
         if (loginData.role === "user") user = await this.userRepo.findOne({ email: loginData.email });
         if(loginData.role === "admin")  user = await this.adminRepo.findOne({ email: loginData.email });
-        if(loginData.role === "agency")  user = await this.adminRepo.findOne({ email: loginData.email });
+        if(loginData.role === "agency")  user = await this.agencyRepo.findOne({ email: loginData.email });
 
         if (!user) throw new AppError("User not found", STATUS.NOT_FOUND);
 

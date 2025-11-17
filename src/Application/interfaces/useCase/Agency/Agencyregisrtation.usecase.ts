@@ -1,4 +1,4 @@
-import type { Agency } from "../../../../Domain/Entities/Agency.js";
+import { Agency } from "../../../../Domain/Entities/Agency/Agency.js";
 import type { AgencyDTO } from "../../../Dto/Auth/Auth.dto.js";
 
 export interface IRegisterAgencyUseCase {

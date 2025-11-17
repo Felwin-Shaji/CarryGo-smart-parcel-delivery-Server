@@ -6,7 +6,6 @@ import type { IVerifyOtpUseCase } from "../../Application/interfaces/useCase/ver
 import { VerifyOtpUseCase } from "../../Application/useCase/verifyOtpUseCase.js";
 import type { IGenerateTokenUseCase } from "../../Application/interfaces/useCase/GenerateToken.usecase.js";
 import { GenerateTokenUseCase } from "../../Application/useCase/GenerateToken.usecase.js";
-// import type { IRegisterUserUseCase } from "../../Application/interfaces/useCase/RegisterUser.useCase.js";
 import { RegisterUserUseCase } from "../../Application/useCase/User/RegisterUser.useCase.js";
 import type { IRefreshTokenUseCase } from "../../Application/interfaces/useCase/refreshToken.usecase.js";
 import { RefreshTokenUseCase } from "../../Application/useCase/refreshToken.usecase.js";
@@ -17,6 +16,13 @@ import { LogoutUsecase } from "../../Application/useCase/logout.usecase.js";
 import type { IRegisterUserUseCase } from "../../Application/interfaces/useCase/user/RegisterUser.useCase.js";
 import type { IRegisterAgencyUseCase } from "../../Application/interfaces/useCase/Agency/Agencyregisrtation.usecase.js";
 import { RegisterAgencyUseCase } from "../../Application/useCase/Agency/RegisterAgency.usecase.js";
+import { IUploadAgencyKycFilesUseCase } from "../../Application/interfaces/useCase/Agency/UploadAgencyKycFilesUseCase.js";
+import { UploadAgencyKycFilesUseCase } from "../../Application/useCase/Agency/UploadAgencyKycFiles.usecase.js";
+import { ISaveAgencyKycUseCase } from "../../Application/interfaces/useCase/Agency/SaveAgencyKycUseCase.js";
+import { SaveAgencyKycUseCase } from "../../Application/useCase/Agency/SaveAgencyKyc.usecase.js";
+import { IUpdateAgencyKycStatusUseCase } from "../../Application/interfaces/useCase/Agency/UpdateAgencyKycStatusUseCase.js";
+import { UpdateAgencyKycStatusUseCase } from "../../Application/useCase/Agency/UpdateAgencyKycStatus.usecase.js";
+
 
 
 export class UsecaseRegistery {
@@ -52,5 +58,18 @@ export class UsecaseRegistery {
         container.register<ILogoutUsecase>("ILogoutUsecase",{
             useClass:LogoutUsecase
         })
+
+        container.register<IUploadAgencyKycFilesUseCase>("IUploadAgencyKycFilesUseCase",{
+            useClass:UploadAgencyKycFilesUseCase
+        })
+
+        container.register<ISaveAgencyKycUseCase>("ISaveAgencyKycUseCase",{
+            useClass:SaveAgencyKycUseCase
+        })
+
+        container.register<IUpdateAgencyKycStatusUseCase>("IUpdateAgencyKycStatusUseCase",{
+            useClass:UpdateAgencyKycStatusUseCase
+        })
+
     }
 }

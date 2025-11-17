@@ -5,7 +5,7 @@
     "outDir": "./dist",
     /* ==== Environment ==== */
     "target": "ESNext",
-    "module": "NodeNext",
+    "module": "CommonJS",
     "lib": [
       "ESNext"
     ],
@@ -20,9 +20,10 @@
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
+    "allowSyntheticDefaultImports": true,
     /* ==== Module Behavior ==== */
     "esModuleInterop": true,
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": false,
     "isolatedModules": true,
     "skipLibCheck": true,
     /* ==== tsyringe decorators ==== */

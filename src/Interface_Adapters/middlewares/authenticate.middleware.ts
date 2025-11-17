@@ -5,6 +5,16 @@ import { STATUS } from "../../Infrastructure/constants/statusCodes.js";
 import { AppError } from "../../Domain/utils/customError.js";
 import type { Role } from "../../Infrastructure/Types/types.js";
 
+declare module "express" {
+  export interface Request {
+    user?: {
+      id: string;
+      email: string;
+      role: string;
+    };
+  }
+}
+
 export const authenticate = (allowedRoles?: Role[]) => {
   return (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -29,13 +39,13 @@ export const authenticate = (allowedRoles?: Role[]) => {
         throw new AppError("Forbidden: Role not allowed", STATUS.FORBIDDEN);
       }
 
-      (req as any).user = {
+      req.user = {
         id: decoded.userId,
         email: decoded.email,
         role: decoded.role,
       };
 
-      console.log("Authenticated user:", (req as any).user);
+      console.log("Authenticated user:", req.user);
       next();
     } catch (error) {
       next(error);

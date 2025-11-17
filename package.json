@@ -4,7 +4,6 @@
   "description": "",
   "license": "ISC",
   "author": "",
-  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --watch ./src --ext ts,json --exec ts-node ./src/index.ts",
@@ -21,6 +20,7 @@
     "@types/express": "^5.0.3",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/mongoose": "^5.11.96",
+    "@types/multer": "^2.0.0",
     "@types/node": "^24.7.2",
     "@types/nodemailer": "^7.0.2",
     "@types/winston": "^2.4.4",
@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "cloudinary": "^2.8.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
@@ -43,6 +44,7 @@
     "googleapis": "^164.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.19.1",
+    "multer": "^2.0.2",
     "nodemailer": "^7.0.9",
     "reflect-metadata": "^0.2.2",
     "tsyringe": "^4.10.0",

@@ -11,6 +11,8 @@ import type { IAdminRepository } from "../../Application/interfaces/repositories
 import { AdminRepository } from "../repositories/adminRepository.js";
 import type { IAgencyRepository } from "../../Application/interfaces/repositories/agency/agency.repository.js";
 import { AgencyRepository } from "../repositories/agencyRepository.js";
+import { IAgencyKYCRepository } from "../../Application/interfaces/repositories/agency/AgencyKYC.js";
+import { AgencyKYCRepository } from "../repositories/Agency/AgencyKYCRepository.js";
 
 
 export class RepositoryRegistry {
@@ -34,6 +36,10 @@ export class RepositoryRegistry {
 
         container.register<IAdminRepository>("IAdminRepository",{
             useClass:AdminRepository
+        })
+
+        container.register<IAgencyKYCRepository>("IAgencyKYCRepository",{
+            useClass:AgencyKYCRepository
         })
     }
 }

@@ -5,6 +5,7 @@ import { loggerMiddleware } from '../../Interface_Adapters/middlewares/loggerMid
 import cors from "cors";
 import dotenv from "dotenv";
 import { errorHandler } from '../../Interface_Adapters/middlewares/ErrorHandlers/errorHandler.js';
+import { AgencyRoute } from '../../Interface_Adapters/routes/agency.route.js';
 dotenv.config();
 
 
@@ -25,8 +26,11 @@ app.use(
 );
 
 
-const userRoute = new AuthRoute();
-app.use('/api/auth',userRoute.router);
+const authRoute = new AuthRoute();
+app.use('/api/auth',authRoute.router);
+
+const agencyRoute = new AgencyRoute()
+app.use('/api/agency',agencyRoute.router)
 
 app.use(errorHandler)
 

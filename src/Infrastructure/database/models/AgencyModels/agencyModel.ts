@@ -1,5 +1,6 @@
 import { model, Schema } from "mongoose";
-import type { Agency } from "../../../../Domain/Entities/Agency.js";
+import { Agency } from "../../../../Domain/Entities/Agency/Agency";
+
 
 const agencyModel = new Schema<Agency>({
     name: { type: String, required: true },

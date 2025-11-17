@@ -143,3 +143,115 @@
 {level:[32minfo[39m ---- message:[32m[2025-11-17T05:58:24.155Z] POST /api/auth/logout 200 - 302ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-17T05:58:24.155Z}
 {level:[32minfo[39m ---- message:[32m[2025-11-17T05:58:34.178Z] OPTIONS /api/auth/login 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T05:58:34.178Z}
 {level:[32minfo[39m ---- message:[32m[2025-11-17T05:58:34.703Z] POST /api/auth/login 200 - 516ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-17T05:58:34.703Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-17T14:06:13.373Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net[39m ---- timestamp:2025-11-17T14:06:15.181Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:23:46.363Z] OPTIONS /api/auth/refresh 204 - 6ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T14:23:46.364Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:23:46.368Z] OPTIONS /api/auth/refresh 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T14:23:46.369Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:23:48.199Z] POST /api/auth/refresh 200 - 1274ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-17T14:23:48.200Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:23:48.209Z] POST /api/auth/refresh 200 - 1250ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-17T14:23:48.209Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:23:48.612Z] POST /api/auth/refresh 200 - 289ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-17T14:23:48.612Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:24:13.123Z] OPTIONS /api/agency/kyc-varification 204 - 3ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T14:24:13.123Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:24:13.136Z] POST /api/agency/kyc-varification 404 - 3ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-17T14:24:13.136Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:24:55.467Z] OPTIONS /api/agency/kyc-varification 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T14:24:55.468Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:24:55.475Z] POST /api/agency/kyc-varification 404 - 2ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-17T14:24:55.475Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:25:35.674Z] OPTIONS /api/agency/kyc-varification 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T14:25:35.674Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:25:35.682Z] POST /api/agency/kyc-varification 404 - 1ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-17T14:25:35.682Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:26:51.180Z] OPTIONS /api/agency/kyc-varification 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T14:26:51.180Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:26:51.188Z] POST /api/agency/kyc-varification 404 - 1ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-17T14:26:51.188Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-17T14:29:46.631Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net[39m ---- timestamp:2025-11-17T14:29:48.943Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:29:51.998Z] OPTIONS /api/agency/kyc-varification 204 - 9ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T14:29:51.999Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:29:52.530Z] POST /api/agency/kyc-varification 201 - 485ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-17T14:29:52.530Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:30:02.347Z] OPTIONS /api/auth/refresh 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T14:30:02.347Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:30:02.771Z] POST /api/auth/refresh 200 - 401ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-17T14:30:02.771Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:30:02.779Z] POST /api/auth/refresh 200 - 427ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-17T14:30:02.779Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:30:03.073Z] POST /api/auth/refresh 200 - 249ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-17T14:30:03.073Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-17T14:34:08.154Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net[39m ---- timestamp:2025-11-17T14:34:10.072Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:34:53.557Z] OPTIONS /api/agency/kyc-varification 204 - 7ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T14:34:53.558Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:34:53.999Z] POST /api/agency/kyc-varification 201 - 400ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-17T14:34:54.000Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:38:02.926Z] OPTIONS /api/auth/refresh 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T14:38:02.926Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:38:03.273Z] POST /api/auth/refresh 200 - 342ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-17T14:38:03.273Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/agency/kyc-varification - Cannot read properties of undefined (reading 'id')[39m ---- timestamp:2025-11-17T14:39:37.778Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:39:37.780Z] POST /api/agency/kyc-varification 500 - 7ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T14:39:37.781Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/agency/kyc-varification - Cannot read properties of undefined (reading 'id')[39m ---- timestamp:2025-11-17T14:41:04.594Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:41:04.598Z] POST /api/agency/kyc-varification 500 - 7ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T14:41:04.598Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-17T14:46:40.564Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-02.sygyztr.mongodb.net[39m ---- timestamp:2025-11-17T14:46:44.773Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/agency/kyc-varification - Cannot read properties of undefined (reading 'id')[39m ---- timestamp:2025-11-17T14:46:45.497Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:46:45.510Z] POST /api/agency/kyc-varification 500 - 35ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T14:46:45.512Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/agency/kyc-varification - Cannot read properties of undefined (reading 'id')[39m ---- timestamp:2025-11-17T14:47:20.541Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:47:20.545Z] POST /api/agency/kyc-varification 500 - 11ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T14:47:20.545Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-17T14:48:53.824Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net[39m ---- timestamp:2025-11-17T14:48:56.053Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/agency/kyc-varification - Cannot read properties of undefined (reading 'id')[39m ---- timestamp:2025-11-17T14:49:13.926Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:49:13.938Z] POST /api/agency/kyc-varification 500 - 36ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T14:49:13.939Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-17T14:50:51.701Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net[39m ---- timestamp:2025-11-17T14:50:54.739Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/agency/kyc-varification - Cannot read properties of undefined (reading 'tradeLicenseNumber')[39m ---- timestamp:2025-11-17T14:51:29.834Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:51:29.857Z] POST /api/agency/kyc-varification 500 - 45ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T14:51:29.858Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-17T14:54:09.441Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net[39m ---- timestamp:2025-11-17T14:54:12.251Z}
+{level:[31merror[39m ---- message:[31m[POST] /api/agency/kyc-varification - Unauthorized: Access token missing[39m ---- timestamp:2025-11-17T14:54:14.550Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:54:14.563Z] POST /api/agency/kyc-varification 401 - 20ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T14:54:14.565Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:55:58.352Z] OPTIONS /api/auth/refresh 204 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T14:55:58.352Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:55:58.774Z] POST /api/auth/refresh 200 - 377ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-17T14:55:58.774Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:56:01.842Z] POST /api/auth/refresh 200 - 609ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-17T14:56:01.842Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T14:56:06.143Z] POST /api/auth/refresh 200 - 3029ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-17T14:56:06.143Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-17T15:02:36.103Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net[39m ---- timestamp:2025-11-17T15:02:37.482Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:04:22.292Z] POST /api/agency/kyc-varification 201 - 9380ms - IP: ::1-------{"tradeLicenseNumber":"11445566","PANnumber":"22222222","gst_number":"2222222","id":"6919a4dfd019d49d804ca294"}[39m ---- timestamp:2025-11-17T15:04:22.293Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:16:40.709Z] OPTIONS /api/auth/refresh 204 - 3ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T15:16:40.709Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:16:41.016Z] POST /api/auth/refresh 200 - 250ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T15:16:41.016Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:16:41.316Z] POST /api/auth/refresh 200 - 276ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T15:16:41.317Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:17:14.259Z] OPTIONS /api/auth/logout 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T15:17:14.259Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:17:14.502Z] POST /api/auth/logout 200 - 239ms - IP: ::1-------{"role":"agency","userId":"6919a4dfd019d49d804ca294"}[39m ---- timestamp:2025-11-17T15:17:14.502Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:17:42.387Z] OPTIONS /api/auth/login 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T15:17:42.388Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:17:42.812Z] POST /api/auth/login 200 - 418ms - IP: ::1-------{"email":"kickkart@gmail.com","password":"Asdasd12@","role":"agency"}[39m ---- timestamp:2025-11-17T15:17:42.812Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:18:20.436Z] OPTIONS /api/auth/refresh 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T15:18:20.437Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:18:21.068Z] POST /api/auth/refresh 200 - 623ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T15:18:21.068Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:18:21.121Z] POST /api/auth/refresh 200 - 664ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T15:18:21.121Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:18:21.362Z] POST /api/auth/refresh 200 - 233ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T15:18:21.362Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:19:03.996Z] POST /api/agency/kyc-varification 201 - 12466ms - IP: ::1-------{"tradeLicenseNumber":"11445566","PANnumber":"22222222","gst_number":"2222222","id":"6919a4dfd019d49d804ca294"}[39m ---- timestamp:2025-11-17T15:19:03.997Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:19:10.104Z] POST /api/agency/kyc-varification 201 - 30584ms - IP: ::1-------{"tradeLicenseNumber":"11445566","PANnumber":"22222222","gst_number":"2222222","id":"6919a4dfd019d49d804ca294"}[39m ---- timestamp:2025-11-17T15:19:10.104Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:19:15.673Z] OPTIONS /api/auth/refresh 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T15:19:15.673Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:19:16.259Z] POST /api/auth/refresh 200 - 572ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T15:19:16.259Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:19:16.458Z] POST /api/auth/refresh 200 - 781ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T15:19:16.458Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:19:16.564Z] POST /api/auth/refresh 200 - 270ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T15:19:16.564Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-17T15:23:17.510Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net[39m ---- timestamp:2025-11-17T15:23:21.914Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:23:24.161Z] OPTIONS /api/auth/login 204 - 10ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T15:23:24.162Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:23:25.091Z] POST /api/auth/login 200 - 892ms - IP: ::1-------{"email":"kickkart@gmail.com","password":"Asdasd12@","role":"agency"}[39m ---- timestamp:2025-11-17T15:23:25.092Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:23:52.804Z] OPTIONS /api/auth/refresh 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T15:23:52.805Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:23:52.811Z] OPTIONS /api/auth/refresh 204 - 2ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T15:23:52.811Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:23:53.150Z] POST /api/auth/refresh 200 - 317ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T15:23:53.150Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:23:53.159Z] POST /api/auth/refresh 200 - 344ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T15:23:53.160Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:23:54.068Z] POST /api/auth/refresh 200 - 870ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T15:23:54.068Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:24:20.262Z] POST /api/agency/kyc-varification 201 - 9416ms - IP: ::1-------{"tradeLicenseNumber":"11445566","PANnumber":"22222222","gst_number":"2222222","id":"6919a4dfd019d49d804ca294"}[39m ---- timestamp:2025-11-17T15:24:20.262Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:28:09.195Z] OPTIONS /api/auth/refresh 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T15:28:09.195Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:28:10.192Z] POST /api/auth/refresh 200 - 990ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T15:28:10.193Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:28:11.097Z] POST /api/auth/refresh 200 - 894ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T15:28:11.097Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T15:28:12.633Z] POST /api/auth/refresh 200 - 472ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T15:28:12.633Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T16:19:50.052Z] OPTIONS /api/auth/refresh 204 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T16:19:50.052Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T16:19:50.222Z] POST /api/auth/refresh 200 - 166ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T16:19:50.222Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T16:19:50.227Z] POST /api/auth/refresh 200 - 156ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T16:19:50.227Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T16:19:50.423Z] POST /api/auth/refresh 200 - 156ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T16:19:50.423Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-17T16:21:33.733Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net[39m ---- timestamp:2025-11-17T16:21:34.513Z}
+{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-17T17:34:44.264Z}
+{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net[39m ---- timestamp:2025-11-17T17:34:46.337Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T17:34:55.341Z] OPTIONS /api/auth/refresh 204 - 4ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T17:34:55.341Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T17:34:55.344Z] OPTIONS /api/auth/refresh 204 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T17:34:55.345Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T17:34:55.539Z] POST /api/auth/refresh 200 - 165ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T17:34:55.540Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T17:34:55.545Z] POST /api/auth/refresh 200 - 151ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T17:34:55.545Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T17:34:55.731Z] POST /api/auth/refresh 200 - 165ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T17:34:55.731Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T17:34:57.675Z] OPTIONS /api/auth/logout 204 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T17:34:57.676Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T17:34:58.292Z] POST /api/auth/logout 200 - 615ms - IP: ::1-------{"role":"agency","userId":"6919a4dfd019d49d804ca294"}[39m ---- timestamp:2025-11-17T17:34:58.292Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T17:35:14.099Z] OPTIONS /api/auth/login 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T17:35:14.099Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T17:35:14.414Z] POST /api/auth/login 200 - 312ms - IP: ::1-------{"email":"kickkartt@gmail.com","password":"Asdasd12@","role":"agency"}[39m ---- timestamp:2025-11-17T17:35:14.415Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T17:35:51.324Z] POST /api/agency/kyc-varification 200 - 10785ms - IP: ::1-------{"tradeLicenseNumber":"11445566","PANnumber":"22222222","gst_number":"2222222","id":"undefined"}[39m ---- timestamp:2025-11-17T17:35:51.324Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T17:35:55.665Z] OPTIONS /api/auth/refresh 204 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T17:35:55.665Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T17:35:55.673Z] OPTIONS /api/auth/refresh 204 - 0ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-17T17:35:55.673Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T17:35:55.845Z] POST /api/auth/refresh 200 - 169ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T17:35:55.845Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T17:35:55.849Z] POST /api/auth/refresh 200 - 181ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T17:35:55.849Z}
+{level:[32minfo[39m ---- message:[32m[2025-11-17T17:35:55.989Z] POST /api/auth/refresh 200 - 126ms - IP: ::1-------{"role":"agency"}[39m ---- timestamp:2025-11-17T17:35:55.989Z}

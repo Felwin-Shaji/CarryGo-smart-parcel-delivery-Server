@@ -1,5 +1,6 @@
-import type { KYCStatus, Role } from "../../Infrastructure/Types/types.js";
-import { AppError } from "../utils/customError.js";
+import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
+import { AppError } from "../../utils/customError";
+
 
 export class Agency {
   constructor(

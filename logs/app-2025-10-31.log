@@ -1,3 +1,0 @@
-{"level":"info","message":" server is running, http://localhost:3000","timestamp":"2025-10-30T19:11:58.330Z"}
-{"level":"info","message":"mongoDB connected: ac-8jqrmm4-shard-00-00.sygyztr.mongodb.net","timestamp":"2025-10-30T19:12:01.470Z"}
-{"level":"info","message":"[2025-10-30T19:12:36.263Z] POST /api/user/send-otp 200 - 8187ms - IP: ::1-------[object Object]","timestamp":"2025-10-30T19:12:36.263Z"}

@@ -1,9 +1,0 @@
-{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-08T06:01:09.699Z}
-{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net[39m ---- timestamp:2025-11-08T06:01:11.592Z}
-{level:[32minfo[39m ---- message:[32m server is running, http://localhost:3000[39m ---- timestamp:2025-11-08T06:02:58.579Z}
-{level:[32minfo[39m ---- message:[32mmongoDB connected: ac-8jqrmm4-shard-00-01.sygyztr.mongodb.net[39m ---- timestamp:2025-11-08T06:03:00.343Z}
-{level:[32minfo[39m ---- message:[32m[2025-11-08T06:05:30.173Z] OPTIONS /api/user/send-otp 204 - 5ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-08T06:05:30.174Z}
-{level:[32minfo[39m ---- message:[32m[2025-11-08T06:05:37.022Z] POST /api/user/send-otp 200 - 6802ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-08T06:05:37.022Z}
-{level:[32minfo[39m ---- message:[32m[2025-11-08T06:06:03.048Z] OPTIONS /api/user/verify-otp 204 - 1ms - IP: ::1-------undefined[39m ---- timestamp:2025-11-08T06:06:03.048Z}
-{level:[32minfo[39m ---- message:[32mUser registered successfully with email: demo5@gmail.com[39m ---- timestamp:2025-11-08T06:06:03.947Z}
-{level:[32minfo[39m ---- message:[32m[2025-11-08T06:06:03.951Z] POST /api/user/verify-otp 201 - 898ms - IP: ::1-------[object Object][39m ---- timestamp:2025-11-08T06:06:03.951Z}

@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
-import { IStorageService } from "../../interfaces/services/storage-service.interface";
+import { IStorageService } from "../../interfaces/services_Interfaces/storage-service.interface";
 import { AgencyKYC_DTO } from "../../Dto/Agency/agency.dto";
-import { IUploadAgencyKycFilesUseCase } from "../../interfaces/useCase/Agency/UploadAgencyKycFilesUseCase";
+import { IUploadAgencyKycFilesUseCase } from "../../interfaces/useCase_Interfaces/Agency/UploadAgencyKycFilesUseCase";
 
 @injectable()
 export class UploadAgencyKycFilesUseCase implements IUploadAgencyKycFilesUseCase {

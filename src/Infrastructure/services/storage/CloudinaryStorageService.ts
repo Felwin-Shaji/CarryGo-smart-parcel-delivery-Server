@@ -1,4 +1,4 @@
-import type { IStorageService } from "../../../Application/interfaces/services/storage-service.interface.js";
+import type { IStorageService } from "../../../Application/interfaces/services_Interfaces/storage-service.interface.js";
 import { v2 as cloudinary } from "cloudinary";
 import dotenv from "dotenv";
 dotenv.config();

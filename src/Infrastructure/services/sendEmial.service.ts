@@ -1,5 +1,5 @@
 import { google } from "googleapis";
-import type { IMailService } from "../../Application/interfaces/services/email-service.interface.js";
+import type { IMailService } from "../../Application/interfaces/services_Interfaces/email-service.interface.js";
 import dotenv from "dotenv"
 import nodemailer, { type Transporter } from "nodemailer";
 dotenv.config()

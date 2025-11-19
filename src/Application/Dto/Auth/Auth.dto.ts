@@ -58,3 +58,15 @@ export interface SendLogoutResponseDTO {
 }
 
 
+export interface ResendOtpDTO {
+  email: string;
+  role: string;
+}
+
+export interface VerifyOtpDTO {
+  email: string;
+  otp: string;
+  role: string;
+}
+
+

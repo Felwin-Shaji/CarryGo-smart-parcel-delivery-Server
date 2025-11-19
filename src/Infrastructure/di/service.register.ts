@@ -1,9 +1,9 @@
 import { container } from "tsyringe";
-import type { IMailService } from "../../Application/interfaces/services/email-service.interface.js";
+import type { IMailService } from "../../Application/interfaces/services_Interfaces/email-service.interface.js";
 import { MailService } from "../services/sendEmial.service.js";
-import type { ITokenService } from "../../Application/interfaces/services/token-service.interface.js";
+import type { ITokenService } from "../../Application/interfaces/services_Interfaces/token-service.interface.js";
 import { TokenService } from "../services/token.service.js";
-import { IStorageService } from "../../Application/interfaces/services/storage-service.interface.js";
+import { IStorageService } from "../../Application/interfaces/services_Interfaces/storage-service.interface.js";
 import { StorageService } from "../services/storage/CloudinaryStorageService.js";
 
 export class ServiceRegistory {

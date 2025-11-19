@@ -1,5 +1,5 @@
 import { authController } from "../../Infrastructure/di/resolver.js";
-import { authenticate } from "../middlewares/authenticate.middleware.js";
+import { authenticate } from "../middlewares/AuthMiddleware/authenticate.middleware.js";
 import { asyncHandler } from "../middlewares/ErrorHandlers/asyncHandler.js";
 import { BaseRoute } from "./base.route.js";
 

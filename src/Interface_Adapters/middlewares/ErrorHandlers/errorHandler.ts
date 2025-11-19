@@ -25,6 +25,6 @@ export function errorHandler(err: unknown, req: Request, res: Response, next: Ne
 
     if (appError.details) responseBody.details = appError.details;
     if (isDev) responseBody.stack = appError.stack;
-    console.log(responseBody.message,'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm')
+    console.log(responseBody.message,'❌ message from errorHandler middleware......')
     return res.status(appError.statusCode).json(responseBody);
 };

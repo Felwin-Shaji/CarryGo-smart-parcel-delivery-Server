@@ -1,0 +1,56 @@
+import { inject, injectable } from "tsyringe";
+import type { IOtpRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/otp.repository.js";
+import type { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
+import type { IMailService } from "../../interfaces/services_Interfaces/email-service.interface.js";
+import { EmailVo } from "../../../Domain/ValueObjects/Email.valueObject.js";
+import { AppError } from "../../../Domain/utils/customError.js";
+import { OtpVo } from "../../../Domain/ValueObjects/otp.valueObject.js";
+import type { IOtpModel } from "../../../Domain/Entities/Iotp.js";
+import type { ResendOtpDTO } from "../../Dto/Auth/Auth.dto.js";
+import { IResendOtpUseCase } from "../../interfaces/useCase_Interfaces/Auth/resendOtp.usecase.js";
+
+
+@injectable()
+export class ResendOtpUseCase implements IResendOtpUseCase {
+
+    constructor(
+        @inject("IOtpRepository")
+        private otpRepo: IOtpRepository,
+
+        @inject("IUserRepository")
+        private userRepo: IUserRepository,
+
+        @inject("IMailService")
+        private mailer: IMailService
+    ) { }
+
+    async execute(dto: ResendOtpDTO): Promise<IOtpModel> {
+
+        const emailVO = EmailVo.create(dto.email);
+
+        const existingUser = await this.userRepo.findOne({ email: emailVO.value });
+        if (existingUser) throw new AppError("User already registered");
+
+        const existingOtp = await this.otpRepo.findOne({ email: emailVO.value });
+        if (!existingOtp) throw new AppError("No OTP session found for this email");
+
+
+        const newOtp = this.otpRepo.generateOtp();
+        const otpVo = await OtpVo.create(newOtp);
+
+        existingOtp.otp = otpVo.value;
+        existingOtp.expiresAt = new Date(Date.now() + 2 * 60 * 1000);
+
+        await this.otpRepo.findOneAndUpdate(
+            { email: emailVO.value },
+            {
+                otp: otpVo.value,
+                expiresAt: existingOtp.expiresAt
+            }
+        );
+
+        await this.mailer.sendOTP(emailVO.value, newOtp);
+
+        return existingOtp;
+    }
+}

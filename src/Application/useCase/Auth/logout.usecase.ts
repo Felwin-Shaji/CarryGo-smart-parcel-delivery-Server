@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { ILogoutUsecase } from "../../interfaces/useCase_Interfaces/Auth/logout.usecase";
+import { ILogoutUsecase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/logout.usecase";
 import { ITokenService } from "../../interfaces/services_Interfaces/token-service.interface";
 import { IRefreshTokenRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/refreshToken.repository";
 

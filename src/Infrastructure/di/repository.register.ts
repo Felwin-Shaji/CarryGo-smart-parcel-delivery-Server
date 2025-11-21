@@ -10,9 +10,11 @@ import { RefreshTokenRepository } from "../repositories/refreshTokenRepository.j
 import type { IAdminRepository } from "../../Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository.js";
 import { AdminRepository } from "../repositories/adminRepository.js";
 import type { IAgencyRepository } from "../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
-import { AgencyRepository } from "../repositories/agencyRepository.js";
 import { IAgencyKYCRepository } from "../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/AgencyKYC.js";
 import { AgencyKYCRepository } from "../repositories/Agency/AgencyKYCRepository.js";
+import { AgencyRepository } from "../repositories/Agency/agencyRepository.js";
+import { IHubRepository } from "../../Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository.js";
+import { HubRepository } from "../repositories/Hub/hubRepository.js";
 
 
 export class RepositoryRegistry {
@@ -40,6 +42,10 @@ export class RepositoryRegistry {
 
         container.register<IAgencyKYCRepository>("IAgencyKYCRepository",{
             useClass:AgencyKYCRepository
+        })
+
+        container.register<IHubRepository>("IHubRepository",{
+            useClass:HubRepository
         })
     }
 }

@@ -31,8 +31,8 @@ export class AgencyController implements IAgencyController {
             await this._saveKYC.execute(dto, uploaded);
 
 
-            const agency = await this.updateStatus.execute(dto.agencyId,"REGISTERED");
-            if(!agency)throw new AppError("Registration went wrong")
+            const agency = await this.updateStatus.execute(dto.agencyId, "REGISTERED");
+            if (!agency) throw new AppError("Registration went wrong")
             const response = AgencyMapper.toAgencyKYCResponseDTO(agency)
 
             return res.status(200).json(response)
@@ -41,5 +41,5 @@ export class AgencyController implements IAgencyController {
             next(error);
         }
     };
-  
+
 }

@@ -7,7 +7,7 @@ import type { IRefreshTokenRepository } from "../../interfaces/repositories_inte
 import type { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
 import type { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository.js";
 import type { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
-import { IRefreshTokenUseCase } from "../../interfaces/useCase_Interfaces/Auth/refreshToken.usecase.js";
+import { IRefreshTokenUseCase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/refreshToken.usecase.js";
 
 
 @injectable()

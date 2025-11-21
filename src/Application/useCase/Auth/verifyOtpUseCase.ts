@@ -3,7 +3,7 @@ import type { IOtpRepository } from "../../interfaces/repositories_interfaces/au
 import { AppError } from "../../../Domain/utils/customError.js";
 import { OtpVo } from "../../../Domain/ValueObjects/otp.valueObject.js";
 import type { IOtpModel } from "../../../Domain/Entities/Iotp.js";
-import { IVerifyOtpUseCase } from "../../interfaces/useCase_Interfaces/Auth/verifyOtp.interface.js";
+import { IVerifyOtpUseCase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/verifyOtp.interface.js";
 
 @injectable()
 export class VerifyOtpUseCase implements IVerifyOtpUseCase {

@@ -7,7 +7,7 @@ import { AppError } from "../../../Domain/utils/customError.js";
 import { OtpVo } from "../../../Domain/ValueObjects/otp.valueObject.js";
 import type { IOtpModel } from "../../../Domain/Entities/Iotp.js";
 import type { ResendOtpDTO } from "../../Dto/Auth/Auth.dto.js";
-import { IResendOtpUseCase } from "../../interfaces/useCase_Interfaces/Auth/resendOtp.usecase.js";
+import { IResendOtpUseCase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/resendOtp.usecase.js";
 
 
 @injectable()

@@ -12,15 +12,15 @@ import { AppError } from "../../../Domain/utils/customError.js";
 // import type { IRefreshTokenUseCase } from "../../../Application/interfaces/useCase_Interfaces/refreshToken.usecase.js";
 import type { UserDTO } from "../../../Application/Dto/Auth/Auth.dto.js";
 // import type { ILoginUsecase } from "../../../Application/interfaces/useCase_Interfaces/login.usecase.js";
-import type { ILogoutUsecase } from "../../../Application/interfaces/useCase_Interfaces/Auth/logout.usecase.js";
+import type { ILogoutUsecase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/logout.usecase.js";
 import type { IRegisterUserUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/RegisterUser.useCase.js";
 import type { IRegisterAgencyUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/Agencyregisrtation.usecase.js";
-import { ISendOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/Auth/requestOtp.usecase.js";
-import { IResendOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/Auth/resendOtp.usecase.js";
-import { IVerifyOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/Auth/verifyOtp.interface.js";
-import { IGenerateTokenUseCase } from "../../../Application/interfaces/useCase_Interfaces/Auth/GenerateToken.usecase.js";
-import { IRefreshTokenUseCase } from "../../../Application/interfaces/useCase_Interfaces/Auth/refreshToken.usecase.js";
-import { ILoginUsecase } from "../../../Application/interfaces/useCase_Interfaces/Auth/login.usecase.js";
+import { ISendOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/requestOtp.usecase.js";
+import { IResendOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/resendOtp.usecase.js";
+import { IVerifyOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/verifyOtp.interface.js";
+import { IGenerateTokenUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/GenerateToken.usecase.js";
+import { IRefreshTokenUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/refreshToken.usecase.js";
+import { ILoginUsecase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/login.usecase.js";
 // import { IResendOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/resendOtp.usecase.js";
 
 

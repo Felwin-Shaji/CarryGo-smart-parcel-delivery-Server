@@ -25,4 +25,24 @@ export interface AgencyKYCResponseDTO extends BaseResponseDTO {
   }
 };
 
+export interface AddHubDTO {
+    agencyId: string;
+    name: string;
+    addressLine1: string;
+    addressLine2?: string;
+    city: string;
+    state: string;
+    pincode: string;
+    location_lat: number;
+    location_lng: number;
+    verificationImage?: Buffer | null;
+}
+
+export interface AddHubResponseDTO {
+    success: boolean;
+    message: string;
+}
+
+
+
  

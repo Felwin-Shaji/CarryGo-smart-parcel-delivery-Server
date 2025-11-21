@@ -12,3 +12,11 @@ export type AgencyKYCFileFields = {
   gst_certificate?: Express.Multer.File[];
 };
 
+export const agencyAddHub = multer({storage:multer.memoryStorage()}).fields([
+  {name:"verificationImage",maxCount:1}
+])
+
+export type AgencyAddHubFields = {
+  verificationImage?:Express.Multer.File[];
+}
+

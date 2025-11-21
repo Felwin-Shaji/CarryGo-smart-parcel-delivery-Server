@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import express from 'express';
 import { AuthRoute } from '../../Interface_Adapters/routes/auth.route.js';
 import cookieParser from "cookie-parser";

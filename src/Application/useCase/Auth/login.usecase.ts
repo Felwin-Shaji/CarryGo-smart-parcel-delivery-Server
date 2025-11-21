@@ -7,7 +7,7 @@ import type { LoginDTO } from "../../Dto/Auth/Auth.dto.js";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes.js";
 import type { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository.js";
 import type { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
-import { ILoginUsecase } from "../../interfaces/useCase_Interfaces/Auth/login.usecase.js";
+import { ILoginUsecase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/login.usecase.js";
 
 @injectable()
 export class LoginUsecase implements ILoginUsecase {

@@ -9,7 +9,7 @@ import { OtpVo } from "../../../Domain/ValueObjects/otp.valueObject.js";
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../Domain/utils/customError.js";
 import type { SendOtpDTO } from "../../Dto/Auth/Auth.dto.js";
-import { ISendOtpUseCase } from "../../interfaces/useCase_Interfaces/Auth/requestOtp.usecase.js";
+import { ISendOtpUseCase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/requestOtp.usecase.js";
 
 @injectable()
 export class SendOtpUseCase implements ISendOtpUseCase {

@@ -1,9 +1,9 @@
 import { Types } from "mongoose";
-import type { AgencyWithKYCDTO, IAgencyRepository, PaginatedData } from "../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
-import { Agency } from "../../Domain/Entities/Agency/Agency.js";
-import { AgencyModel } from "../database/models/AgencyModels/agencyModel.js";
-import { BaseRepository } from "./baseRepositories.js";
-import { AgencyKYC } from "../../Domain/Entities/Agency/AgencyKYC.js";
+import type { AgencyWithKYCDTO, IAgencyRepository, PaginatedData } from "../../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
+import { Agency } from "../../../Domain/Entities/Agency/Agency.js";
+import { AgencyModel } from "../../database/models/AgencyModels/agencyModel.js";
+import { BaseRepository } from "./..//baseRepositories.js";
+import { AgencyKYC } from "../../../Domain/Entities/Agency/AgencyKYC.js";
 
 export class AgencyRepository extends BaseRepository<Agency> implements IAgencyRepository {
     constructor() {

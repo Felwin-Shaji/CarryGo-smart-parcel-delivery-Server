@@ -1,7 +1,7 @@
 import { Agency } from "../../Domain/Entities/Agency/Agency";
 import { AppError } from "../../Domain/utils/customError";
-import { AgencyKYCFileFields } from "../../Infrastructure/services/storage/multer";
-import { AgencyKYC_DTO, AgencyKYCResponseDTO } from "../Dto/Agency/agency.dto";
+import { AgencyAddHubFields, AgencyKYCFileFields } from "../../Infrastructure/services/storage/multer";
+import { AddHubDTO, AgencyKYC_DTO, AgencyKYCResponseDTO } from "../Dto/Agency/agency.dto";
 import type { Request } from "express";
 
 
@@ -23,19 +23,48 @@ export class AgencyMapper {
         };
     }
 
-    static toAgencyKYCResponseDTO(agency:Agency): AgencyKYCResponseDTO {
+    static toAgencyKYCResponseDTO(agency: Agency): AgencyKYCResponseDTO {
 
         return {
             success: true,
             message: "KYC submitted successfully",
-            user:{
-                id:agency.id!,
-                name:agency.name,
-                email:agency.email,
-                role:agency.role,
-                kycStatus:agency.kycStatus
+            user: {
+                id: agency.id!,
+                name: agency.name,
+                email: agency.email,
+                role: agency.role,
+                kycStatus: agency.kycStatus
             },
 
+        };
+    }
+
+    static toAddHubDTO(req: Request): AddHubDTO {
+        if (!req.user) {
+            throw new AppError("Authenticated user is missing");
+        }
+
+        const files = req.files as AgencyAddHubFields;
+
+        return {
+            agencyId: req.user.id,
+            name: req.body.name,
+            addressLine1: req.body.addressLine1,
+            addressLine2: req.body.addressLine2,
+            city: req.body.city,
+            state: req.body.state,
+            pincode: req.body.pincode,
+            location_lat: Number(req.body.location_lat),
+            location_lng: Number(req.body.location_lng),
+            verificationImage: files.verificationImage?.[0]?.buffer || null,
+        };
+    }
+
+    static toAddHubResponse(hubId:string) {
+        return {
+            success: true,
+            message: "Hub created successfully",
+            hubId
         };
     }
 }

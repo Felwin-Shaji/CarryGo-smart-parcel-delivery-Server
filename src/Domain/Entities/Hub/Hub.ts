@@ -27,7 +27,7 @@ export class Hub {
         },
 
         public verificationImage: string,
-        public status: KYCStatus = "APPROVED",
+        public kycStatus: KYCStatus = "APPROVED",
         public walletBalance: number = 0,
         public isBlocked: boolean = false,
         public createdAt: Date = new Date(),

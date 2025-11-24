@@ -159,7 +159,7 @@ export class AgencyHubController implements IAgencyHubController {
                     name: savedHub.name,
                     email: savedHub.email,
                     role: savedHub.role,
-                    kycStatus: savedHub.status
+                    kycStatus: savedHub.kycStatus
                 },
 
             };

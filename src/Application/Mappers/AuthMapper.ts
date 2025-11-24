@@ -57,7 +57,7 @@ export class AuthMapper {
                 name,
                 email,
                 role,
-                kycStatus
+                kycStatus:kycStatus||null
             },
             accessToken: accessToken
         }

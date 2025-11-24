@@ -53,7 +53,7 @@ export class AuthController implements IAuthController {
 
         @inject("ILogoutUsecase")
         private _logoutUsecase: ILogoutUsecase
-    ) {}
+    ) { }
     sendOtp = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             if (req.body.isResend) {
@@ -125,7 +125,6 @@ export class AuthController implements IAuthController {
             )
 
             const response = AuthMapper.ToSendVerifyOtpResponse(registeredUser.id!, registeredUser.name, email, role, registeredUser.kycStatus, tokens.accessToken);
-            console.log(response, "........sss..............")
             return res.status(STATUS.CREATED).json(response);
 
         } catch (error) {
@@ -171,7 +170,6 @@ export class AuthController implements IAuthController {
             const loginData = AuthMapper.toLoginDTO(req);
 
             const users = await this._loginUsecase.execute(loginData);
-            console.log(users)
 
             const tokens = await this._generateTokenUseCase.execute(users.id, users.email, users.role)
 
@@ -184,6 +182,7 @@ export class AuthController implements IAuthController {
             );
 
             const response = AuthMapper.ToSendLoginResponse(tokens.user?.id!, tokens.user?.name!, loginData.email, loginData.role, users.kycStatus, tokens.accessToken);
+
             return res.status(STATUS.OK).json(response);
 
         } catch (error) {

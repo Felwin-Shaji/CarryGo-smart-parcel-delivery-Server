@@ -31,7 +31,7 @@ const hubSchema = new Schema<Hub>(
 
     verificationImage: { type: String, required: true },
 
-    status: {
+    kycStatus: {
       type: String,
       enum: ["PENDING", "REGISTERED", "APPROVED", "REJECTED"],
       default: "PENDING",

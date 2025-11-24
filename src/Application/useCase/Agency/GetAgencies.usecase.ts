@@ -9,7 +9,7 @@ export class GetAgenciesUseCase implements IGetAgenciesUseCase {
   constructor(
     @inject("IAgencyRepository")
     private agencyRepo: IAgencyRepository
-  ) {}
+  ) { }
 
   async execute(input: {
     page: number;

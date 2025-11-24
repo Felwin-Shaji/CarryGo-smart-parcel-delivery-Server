@@ -15,6 +15,8 @@ import { AgencyKYCRepository } from "../repositories/Agency/AgencyKYCRepository.
 import { AgencyRepository } from "../repositories/Agency/agencyRepository.js";
 import { IHubRepository } from "../../Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository.js";
 import { HubRepository } from "../repositories/Hub/hubRepository.js";
+import { IHubTempRepository } from "../../Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hubTemp.repository.js";
+import { HubTempRepository } from "../repositories/Hub/hubTempRepository.js";
 
 
 export class RepositoryRegistry {
@@ -22,30 +24,34 @@ export class RepositoryRegistry {
 
         container.register<IOtpRepository>("IOtpRepository", {
             useClass: OtpRepository
-        })
+        });
 
         container.register<IUserRepository>("IUserRepository", {
             useClass: UserRepository
-        })
+        });
 
-        container.register<IAgencyRepository>("IAgencyRepository",{
-            useClass:AgencyRepository
-        })
+        container.register<IAgencyRepository>("IAgencyRepository", {
+            useClass: AgencyRepository
+        });
 
         container.register<IRefreshTokenRepository>("IRefreshTokenRepository", {
             useClass: RefreshTokenRepository
-        })
+        });
 
-        container.register<IAdminRepository>("IAdminRepository",{
-            useClass:AdminRepository
-        })
+        container.register<IAdminRepository>("IAdminRepository", {
+            useClass: AdminRepository
+        });
 
-        container.register<IAgencyKYCRepository>("IAgencyKYCRepository",{
-            useClass:AgencyKYCRepository
-        })
+        container.register<IAgencyKYCRepository>("IAgencyKYCRepository", {
+            useClass: AgencyKYCRepository
+        });
 
-        container.register<IHubRepository>("IHubRepository",{
-            useClass:HubRepository
-        })
-    }
-}
+        container.register<IHubTempRepository>("IHubTempRepository", {
+            useClass: HubTempRepository
+        });
+
+        container.register<IHubRepository>("IHubRepository", {
+            useClass: HubRepository
+        });
+    };
+};

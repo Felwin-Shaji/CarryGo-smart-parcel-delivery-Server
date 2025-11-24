@@ -50,17 +50,21 @@ export class AgencyMapper {
             agencyId: req.user.id,
             name: req.body.name,
             addressLine1: req.body.addressLine1,
-            addressLine2: req.body.addressLine2,
+            // addressLine2: req.body.addressLine2,
             city: req.body.city,
             state: req.body.state,
             pincode: req.body.pincode,
             location_lat: Number(req.body.location_lat),
             location_lng: Number(req.body.location_lng),
             verificationImage: files.verificationImage?.[0]?.buffer || null,
+
+            email: "",
+            mobile: "",
+            role: ""
         };
     }
 
-    static toAddHubResponse(hubId:string) {
+    static toAddHubResponse(hubId: string) {
         return {
             success: true,
             message: "Hub created successfully",

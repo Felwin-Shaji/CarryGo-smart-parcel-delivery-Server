@@ -30,9 +30,17 @@ import { ILoginUsecase } from "../../Application/interfaces/useCase_Interfaces/A
 import { LogoutUsecase } from "../../Application/useCase/Auth/logout.usecase.js";
 import { UpdateAgencyKycStatusUseCase } from "../../Application/useCase/Agency/UpdateAgencyKyc.usecase.js";
 import { IAddHubUseCase } from "../../Application/interfaces/useCase_Interfaces/Hub/IAddHubUseCase.js";
-import { AddHubUsecase } from "../../Application/useCase/Hub/AddHubUseCase.js";
+import { AddHubUseCase } from "../../Application/useCase/Hub/AddHubUseCase.js";
 import { IUploadAddFilesUseCase } from "../../Application/interfaces/useCase_Interfaces/Hub/IUploadAddFilesUseCase.js";
 import { UploadAddFilesUseCase } from "../../Application/useCase/Hub/UploadAddFilesUseCase.js";
+import { IAddHubTempUseCase } from "../../Application/interfaces/useCase_Interfaces/Hub/IAddHubTempUseCase.js";
+import { AddHubTempUseCase } from "../../Application/useCase/Hub/AddNewHubBasicInfo.js";
+import { IAddNewHubResendOtp } from "../../Application/interfaces/useCase_Interfaces/Hub/IAddNewHubResendOtp.js";
+import { AddNewHubResendOtp } from "../../Application/useCase/Hub/AddNewHubReesendOtp.js";
+import { IAddNewHubVerifyOtpUseCase } from "../../Application/interfaces/useCase_Interfaces/Hub/IAddNewHubVerifyOtpUseCase .js";
+import { AddNewHubVerifyOtpUseCase } from "../../Application/useCase/Hub/AddNewHubVerifyOtpUseCase.js";
+import { ICheckTempHubStatusUseCase } from "../../Application/interfaces/useCase_Interfaces/Hub/ICheckTempHubStatusUseCase.js";
+import { CheckTempHubStatusUseCase } from "../../Application/useCase/Hub/CheckTempHubStatusUseCase.js";
 
 
 
@@ -98,13 +106,28 @@ export class UsecaseRegistery {
             useClass: GetAgencyWithKYCUseCase
         })
 
+        container.register<IAddHubTempUseCase>("IAddHubTempUseCase", {
+            useClass: AddHubTempUseCase
+        })
+
         container.register<IUploadAddFilesUseCase>("IUploadAddFilesUseCase", {
             useClass: UploadAddFilesUseCase
         })
 
         container.register<IAddHubUseCase>("IAddHubUseCase", {
-            useClass: AddHubUsecase
+            useClass: AddHubUseCase
         })
 
+        container.register<IAddNewHubVerifyOtpUseCase>("IAddNewHubVerifyOtpUseCase",{
+            useClass:AddNewHubVerifyOtpUseCase
+        })
+
+        container.register<IAddNewHubResendOtp>('IAddNewHubResendOtp',{
+            useClass:AddNewHubResendOtp
+        })
+
+        container.register<ICheckTempHubStatusUseCase>("ICheckTempHubStatusUseCase",{
+            useClass:CheckTempHubStatusUseCase
+        })
     }
 }

@@ -1,7 +1,10 @@
 import { Hub } from "../../../../Domain/Entities/Hub/Hub";
-import { AddHubDTO } from "../../../Dto/Agency/agency.dto";
-
+import { AddHubDTO, AddNewHubAddressDto } from "../../../Dto/Agency/agency.dto";
 
 export interface IAddHubUseCase {
-    execute(dto: AddHubDTO, uploadedFiles: any): Promise<Hub>;
+    execute(
+        tempHubId: string,
+        extraData:AddNewHubAddressDto,
+        imageUrl:string
+    ): Promise<Hub>;
 }

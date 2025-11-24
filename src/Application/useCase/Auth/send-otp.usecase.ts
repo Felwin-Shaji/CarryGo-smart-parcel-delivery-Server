@@ -26,16 +26,14 @@ export class SendOtpUseCase implements ISendOtpUseCase {
 
   async execute(otpData: SendOtpDTO): Promise<IOtpModel> {
 
-    const emailVO = EmailVo.create(otpData.email);
-
     const passwordVo = await PasswordVo.create(otpData.password);
     if (!passwordVo) throw new AppError("Invalid password");
 
 
-    const existingUser = await this.userRepo.findOne({ email: emailVO.value });
+    const existingUser = await this.userRepo.findOne({ email: otpData.email});
     if (existingUser) throw new AppError("User already registered");
 
-    const existingOtp = await this.otpRepo.findOne({ email: emailVO.value });
+    const existingOtp = await this.otpRepo.findOne({ email: otpData.email});
     if (existingOtp) throw new AppError("Please wait until the current OTP expires before requesting a new one.");
 
     const otp = this.otpRepo.generateOtp();
@@ -44,7 +42,7 @@ export class SendOtpUseCase implements ISendOtpUseCase {
 
     const otpDomain: IOtpModel = {
       name: otpData.name,
-      email: emailVO.value,
+      email: otpData.email,
       mobile: otpData.mobile || null,
       password: passwordVo.value ?? null,
       otp: otpVo.value,

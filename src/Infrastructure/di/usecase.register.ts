@@ -41,6 +41,10 @@ import { IAddNewHubVerifyOtpUseCase } from "../../Application/interfaces/useCase
 import { AddNewHubVerifyOtpUseCase } from "../../Application/useCase/Hub/AddNewHubVerifyOtpUseCase.js";
 import { ICheckTempHubStatusUseCase } from "../../Application/interfaces/useCase_Interfaces/Hub/ICheckTempHubStatusUseCase.js";
 import { CheckTempHubStatusUseCase } from "../../Application/useCase/Hub/CheckTempHubStatusUseCase.js";
+import { IVarifyEmailUseCase } from "../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/varifyEmail.usecase.js";
+import { VarifyEmailUseCase } from "../../Application/useCase/Auth/varifyEmail.usecase.js";
+import { IResetPasswordUseCase } from "../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/resetPassword.usecase.js";
+import { ResetPasswordUseCase } from "../../Application/useCase/Auth/ResetPasswordUseCase.js";
 
 
 
@@ -80,6 +84,14 @@ export class UsecaseRegistery {
 
         container.register<ILogoutUsecase>("ILogoutUsecase", {
             useClass: LogoutUsecase
+        })
+
+        container.register<IVarifyEmailUseCase>("IVarifyEmailUseCase",{
+            useClass:VarifyEmailUseCase
+        })
+
+        container.register<IResetPasswordUseCase>("IResetPasswordUseCase",{
+            useClass:ResetPasswordUseCase
         })
 
         container.register<IUploadAgencyKycFilesUseCase>("IUploadAgencyKycFilesUseCase", {

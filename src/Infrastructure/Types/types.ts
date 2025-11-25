@@ -1,18 +1,13 @@
 
 export type Role = "user" | "agency" | "admin" | "hub" | "worker";
 
-
 export type KYCStatus = "PENDING" | "REGISTERED" | "APPROVED" | "REJECTED";
-
-
-
 
 export interface AppJwtPayload {
     userId: string;
     email: string;
     role: Role;
 }
-
 
 export interface AuthUser {
     id: string;

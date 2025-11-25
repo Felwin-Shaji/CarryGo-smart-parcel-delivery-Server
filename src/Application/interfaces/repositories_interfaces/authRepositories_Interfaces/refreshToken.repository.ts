@@ -1,5 +1,4 @@
 import type { ITokenModel } from "../../../../Domain/Entities/token.js";
-import type { Role } from "../../../../Infrastructure/Types/types.js";
 import type { IBaseRepository } from "../base.repository.js";
 
 

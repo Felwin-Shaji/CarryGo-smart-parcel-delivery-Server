@@ -2,16 +2,10 @@ import type { NextFunction, Request, Response } from "express";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes.js";
 import { inject, injectable } from "tsyringe";
 import type { IAuthController } from "../../../Application/interfaces/Controllers_Interfaces/Auth_Interfases/auth.controller.js";
-// import type { ISendOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/requestOtp.usecase.js";
-// import type { IVerifyOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/verifyOtp.interface.js";
 import { AuthMapper } from "../../../Application/Mappers/AuthMapper.js";
 import { setAuthCookies } from "../../../Domain/utils/setAuthCookies.js";
 import { AppError } from "../../../Domain/utils/customError.js";
-// import type { IGenerateTokenUseCase } from "../../../Application/interfaces/useCase_Interfaces/GenerateToken.usecase.js";
-// import type { IRegisterUserUseCase } from "../../Application/interfaces/useCase/RegisterUser.useCase.js";
-// import type { IRefreshTokenUseCase } from "../../../Application/interfaces/useCase_Interfaces/refreshToken.usecase.js";
-import type { UserDTO } from "../../../Application/Dto/Auth/Auth.dto.js";
-// import type { ILoginUsecase } from "../../../Application/interfaces/useCase_Interfaces/login.usecase.js";
+import type { ForgotPasswordDTO, UserDTO } from "../../../Application/Dto/Auth/Auth.dto.js";
 import type { ILogoutUsecase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/logout.usecase.js";
 import type { IRegisterUserUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/RegisterUser.useCase.js";
 import type { IRegisterAgencyUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/Agencyregisrtation.usecase.js";
@@ -21,38 +15,29 @@ import { IVerifyOtpUseCase } from "../../../Application/interfaces/useCase_Inter
 import { IGenerateTokenUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/GenerateToken.usecase.js";
 import { IRefreshTokenUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/refreshToken.usecase.js";
 import { ILoginUsecase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/login.usecase.js";
-// import { IResendOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/resendOtp.usecase.js";
+import { IVarifyEmailUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/varifyEmail.usecase.js";
+import { IResetPasswordUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/resetPassword.usecase.js";
+
 
 
 @injectable()
 export class AuthController implements IAuthController {
     constructor(
-        @inject("ISendOtpUseCase")
-        private _sendOtpUseCase: ISendOtpUseCase,
+        @inject("ISendOtpUseCase") private _sendOtpUseCase: ISendOtpUseCase,
+        @inject("IResendOtpUseCase") private _resendOtpUseCase: IResendOtpUseCase,
+        @inject("IVerifyOtpUseCase") private _verifyOtpUseCase: IVerifyOtpUseCase,
 
-        @inject("IResendOtpUseCase")
-        private _resendOtpUseCase: IResendOtpUseCase,
+        @inject("IRegisterUserUseCase") private _registerUserUseCase: IRegisterUserUseCase,
+        @inject("IRegisterAgencyUseCase") private _registerAgencyUseCase: IRegisterAgencyUseCase,
 
-        @inject("IVerifyOtpUseCase")
-        private _verifyOtpUseCase: IVerifyOtpUseCase,
+        @inject("IGenerateTokenUseCase") private _generateTokenUseCase: IGenerateTokenUseCase,
+        @inject("IRefreshTokenUseCase") private _refreshTokenUseCase: IRefreshTokenUseCase,
 
-        @inject("IRegisterUserUseCase")
-        private _registerUserUseCase: IRegisterUserUseCase,
+        @inject("ILoginUsecase") private _loginUsecase: ILoginUsecase,
+        @inject("ILogoutUsecase") private _logoutUsecase: ILogoutUsecase,
 
-        @inject("IRegisterAgencyUseCase")
-        private _registerAgencyUseCase: IRegisterAgencyUseCase,
-
-        @inject("IGenerateTokenUseCase")
-        private _generateTokenUseCase: IGenerateTokenUseCase,
-
-        @inject("IRefreshTokenUseCase")
-        private _refreshTokenUseCase: IRefreshTokenUseCase,
-
-        @inject("ILoginUsecase")
-        private _loginUsecase: ILoginUsecase,
-
-        @inject("ILogoutUsecase")
-        private _logoutUsecase: ILogoutUsecase
+        @inject("IVarifyEmailUseCase") private _varifyEmailUseCase: IVarifyEmailUseCase,
+        @inject("IResetPasswordUseCase") private _resetPasswordUseCase: IResetPasswordUseCase,
     ) { }
     sendOtp = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
@@ -204,6 +189,49 @@ export class AuthController implements IAuthController {
             res.clearCookie(`${logoutData.role}refreshTokenName`, { httpOnly: true, sameSite: "strict", secure: true });
             const response = AuthMapper.toSendLogoutResponse();
             return res.status(STATUS.OK).json(response)
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    forgotPassword = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            const dto: ForgotPasswordDTO = {
+                email: req.body.email,
+                role: req.body.role
+            }
+
+            const result = await this._varifyEmailUseCase.execute(dto);
+
+            return res.status(STATUS.OK).json({
+                success: true,
+                message: "Reset link sent to your email"
+            });
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    resetPassword = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            const token = req.params.token;
+            const { password, role } = req.body;
+
+            if (!token) {
+                return res.status(STATUS.BAD_REQUEST).json({
+                    success: false,
+                    message: "Reset token missing"
+                });
+            }
+
+            await this._resetPasswordUseCase.execute({ token, newPassword: password, role });
+
+            return res.status(STATUS.OK).json({
+                success: true,
+                message: "Reset link sent to your email"
+            });
 
         } catch (error) {
             next(error)

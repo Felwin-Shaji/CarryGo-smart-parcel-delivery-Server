@@ -19,7 +19,7 @@ export class RefreshTokenUseCase implements IRefreshTokenUseCase {
         @inject("IAdminRepository") private _adminRepo:IAdminRepository,
         @inject("IAgencyRepository") private _agencyRepo:IAgencyRepository,
         @inject("IHubRepository") private _hubRepo:IHubRepository,
-        @inject("IRefreshTokenRepository") private refreshTokenRepo: IRefreshTokenRepository
+        @inject("IRefreshTokenRepository") private _refreshTokenRepo: IRefreshTokenRepository
     ) { }
 
     async execute(refreshToken: string): Promise<TokenObj> {
@@ -30,7 +30,7 @@ export class RefreshTokenUseCase implements IRefreshTokenUseCase {
 
         const { userId, email, role } = decoded;
 
-        const storedToken = await this.refreshTokenRepo.findOne({ token: refreshToken });
+        const storedToken = await this._refreshTokenRepo.findOne({ token: refreshToken });
         if (!storedToken) throw new AppError("Refresh token not found", STATUS.UNAUTHORIZED);
 
         let user

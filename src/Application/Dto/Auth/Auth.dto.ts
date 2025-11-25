@@ -69,4 +69,10 @@ export interface VerifyOtpDTO {
   role: string;
 }
 
+export interface ForgotPasswordDTO {
+    email: string;
+    role:Role
+}
+
+
 

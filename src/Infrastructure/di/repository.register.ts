@@ -17,6 +17,8 @@ import { IHubRepository } from "../../Application/interfaces/repositories_interf
 import { HubRepository } from "../repositories/Hub/hubRepository.js";
 import { IHubTempRepository } from "../../Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hubTemp.repository.js";
 import { HubTempRepository } from "../repositories/Hub/hubTempRepository.js";
+import { IResetTokenRepository } from "../../Application/interfaces/repositories_interfaces/authRepositories_Interfaces/resetToken.repository.js";
+import { ResetTokenRepository } from "../repositories/resetTokenRepository.js";
 
 
 export class RepositoryRegistry {
@@ -36,6 +38,10 @@ export class RepositoryRegistry {
 
         container.register<IRefreshTokenRepository>("IRefreshTokenRepository", {
             useClass: RefreshTokenRepository
+        });
+
+        container.register<IResetTokenRepository>("IResetTokenRepository", {
+            useClass: ResetTokenRepository
         });
 
         container.register<IAdminRepository>("IAdminRepository", {

@@ -10,25 +10,32 @@ export class TokenService implements ITokenService {
 
     generateAccessToken(payload: object): string {
         let token = jwt.sign(payload, this.accessSecret, { expiresIn: "15m" })
-        console.log(token)
         return token
     };
 
     generateRefreshToken(payload: object): string {
         let token = jwt.sign(payload, this.refreshSecret, { expiresIn: "7d" })
-        console.log(token)
         return token
     };
 
     verifyAccessToken(token: string): AppJwtPayload | null {
         let decoded = jwt.verify(token, this.accessSecret)
-        console.log(decoded)
         return decoded as AppJwtPayload
     };
 
     verifyRefreshToken(token: string): AppJwtPayload | null {
         let decoded = jwt.verify(token, this.refreshSecret)
-        console.log(decoded)
         return decoded as AppJwtPayload
     }
+
+    generateForgotPasswordToken(payload: object): string {
+        let token = jwt.sign(payload, this.accessSecret, { expiresIn: "5m" })
+        return token
+    }
+
+    verifyForgotPasswordToken(token: string): AppJwtPayload | null {
+        let decoded = jwt.verify(token, this.accessSecret)
+        return decoded as AppJwtPayload
+    }
+
 }

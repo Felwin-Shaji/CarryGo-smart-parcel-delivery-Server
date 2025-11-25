@@ -40,7 +40,7 @@ export class BaseRepository<T> implements IBaseRepository<T> {
         return query;
     }
 
-    async findOneAndUpdate(filter: FilterQuery<T>, value: object, session: ClientSession): Promise<T | null> {
+    async findOneAndUpdate(filter: FilterQuery<T>, value: object, session?: ClientSession): Promise<T | null> {
         const options: {
             new: boolean;
             session?: ClientSession;

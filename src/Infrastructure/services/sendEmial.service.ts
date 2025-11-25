@@ -111,4 +111,29 @@ export class MailService implements IMailService {
   }
 
 
+  async sendResetPasswordUrl(email: string, url: string): Promise<void> {
+    await this.initTransporter();   // <-- THIS WAS MISSING!!
+
+    const html = `
+      <div style="font-family:Arial,sans-serif;line-height:1.5;">
+        <h3>Password Reset Request</h3>
+        <p>You requested to reset your password.</p>
+        <p>
+          Click the link below to reset your password:<br/>
+          <a href="${url}" style="color:#1E3A8A; font-weight:bold;">Reset Password</a>
+        </p>
+        <p>This link expires in 15 minutes.</p>
+      </div>
+    `;
+
+    await this.transporter?.sendMail({
+      from: `"CarryGo" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: "Reset Your Password",
+      html,
+    });
+  }
+
+
+
 }

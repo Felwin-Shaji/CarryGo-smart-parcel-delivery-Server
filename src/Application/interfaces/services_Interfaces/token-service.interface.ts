@@ -6,4 +6,7 @@ export interface ITokenService {
 
   verifyAccessToken(token: string): AppJwtPayload | null;
   verifyRefreshToken(token: string): AppJwtPayload | null;
+
+  generateForgotPasswordToken(payload: object): string;
+  verifyForgotPasswordToken(token: string):AppJwtPayload | null;
 }

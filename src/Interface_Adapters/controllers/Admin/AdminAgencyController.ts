@@ -3,22 +3,22 @@ import { inject, injectable } from "tsyringe";
 import { IGetAgenciesUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/GetAgenciesUseCase";
 import { IGetAgencyWithKYCUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/GetAgencyWithKYCUseCase";
 import { AppError } from "../../../Domain/utils/customError";
-import { IAdminAgencyController } from "./interfaces/AdminController.interface";
 import { IUpdateAgencyKycStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/UpdateAgencyKycStatusUseCase";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { IAdminAgencyController } from "../../../Application/interfaces/Controllers_Interfaces/Admin_Interfaces/adminAgency.controller";
+import { IUpdateAgencyStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/UpdateAgencyStatusUseCase";
 
 @injectable()
 export class AdminAgencyController implements IAdminAgencyController {
 
     constructor(
-        @inject("IGetAgenciesUseCase")
-        private _getAgenciesUseCase: IGetAgenciesUseCase,
+        @inject("IGetAgenciesUseCase") private _getAgenciesUseCase: IGetAgenciesUseCase,
 
-        @inject("IGetAgencyWithKYCUseCase")
-        private _getAgencyWithKYCUseCase: IGetAgencyWithKYCUseCase,
+        @inject("IGetAgencyWithKYCUseCase") private _getAgencyWithKYCUseCase: IGetAgencyWithKYCUseCase,
 
-        @inject("IUpdateAgencyKycStatusUseCase")
-        private _updateAgencyKycStatusUseCase: IUpdateAgencyKycStatusUseCase
+        @inject("IUpdateAgencyKycStatusUseCase") private _updateAgencyKycStatusUseCase: IUpdateAgencyKycStatusUseCase,
+
+        @inject("IUpdateAgencyStatusUseCase") private _updateAgencyStatusUseCase: IUpdateAgencyStatusUseCase
     ) { }
 
     getAgencies = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
@@ -61,6 +61,36 @@ export class AdminAgencyController implements IAdminAgencyController {
 
         } catch (error) {
             next(error);
+        }
+    }
+
+    updateAgencyStatus = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            const { id } = req.params;
+            const { isBlocked } = req.body;
+
+            if (!id) {
+                return res.status(STATUS.BAD_REQUEST).json({
+                    success: false,
+                    message: "userId required"
+                })
+            }
+
+            const dto: { userId: string, isBlocked: boolean } = {
+                userId: id,
+                isBlocked
+            }
+
+            await this._updateAgencyStatusUseCase.execute(dto)
+
+            return res.status(STATUS.OK).json({
+                success: true,
+                message: "Agency status updated"
+            })
+
+
+        } catch (error) {
+            next(error)
         }
     }
 }

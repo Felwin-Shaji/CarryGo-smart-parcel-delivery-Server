@@ -29,6 +29,7 @@ export class LoginUsecase implements ILoginUsecase {
         if(loginData.role === "hub")  user = await this._hubRepo.findOne({ email: loginData.email });
 
         if (!user) throw new AppError("User not found", STATUS.NOT_FOUND);
+        if(user.isBlocked) throw new AppError(`${user.email} is blocked`,STATUS.UNAUTHORIZED);
 
         const passwordVo = PasswordVo.fromHashed(user.password!);
         const isMatch = await passwordVo.compare(loginData.password)

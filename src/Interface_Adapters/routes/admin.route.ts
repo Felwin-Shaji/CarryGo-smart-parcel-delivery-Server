@@ -12,8 +12,10 @@ export class AdminRoute extends BaseRoute {
         this.router.get("/agency", authenticate(["admin"]), asyncHandler(adminAgencyController.getAgencies));
         this.router.get("/agency/:id", authenticate(["admin"]), asyncHandler(adminAgencyController.getAgencyById));
         this.router.patch("/agency/:id/kyc-status", authenticate(["admin"]),asyncHandler(adminAgencyController.updateAgencyKyc));
+        this.router.patch("/agency/:id/status", authenticate(["admin"]),asyncHandler(adminAgencyController.updateAgencyStatus));
 
 
         this.router.get("/users", authenticate(["admin"]), asyncHandler(adminUserController.getUsers));
+        this.router.patch("/users/:id/status", authenticate(["admin"]), asyncHandler(adminUserController.UpdateStatus));
     };
 };

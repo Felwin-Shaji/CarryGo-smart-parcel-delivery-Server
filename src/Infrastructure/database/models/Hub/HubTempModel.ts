@@ -27,15 +27,13 @@ const hubTempSchema = new Schema<HubTemp>(
             default: "BASIC-Info",
         },
 
-        // 🔥 OTP expiration only (NOT A TTL field)
         expiresAt: { type: Date, required: true }
     },
     {
-        timestamps: true, // gives createdAt + updatedAt
+        timestamps: true, 
     }
 );
 
-// 🔥 Session expiry (10 min)
 hubTempSchema.index({ updatedAt: 1 }, { expireAfterSeconds: 600 });
 
 export const HubTempModel = model<HubTemp>("HubTemp", hubTempSchema);

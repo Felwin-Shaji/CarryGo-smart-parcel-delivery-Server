@@ -45,6 +45,10 @@ import { IVarifyEmailUseCase } from "../../Application/interfaces/useCase_Interf
 import { VarifyEmailUseCase } from "../../Application/useCase/Auth/varifyEmail.usecase.js";
 import { IResetPasswordUseCase } from "../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/resetPassword.usecase.js";
 import { ResetPasswordUseCase } from "../../Application/useCase/Auth/ResetPasswordUseCase.js";
+import { IUpdateUserStatusUseCase } from "../../Application/interfaces/useCase_Interfaces/user/UpdateUserStatus.usecase.js";
+import { UpdateUserStatusUseCase } from "../../Application/useCase/User/UpdateUserStatus.usecase.js";
+import { IUpdateAgencyStatusUseCase } from "../../Application/interfaces/useCase_Interfaces/Agency/UpdateAgencyStatusUseCase.js";
+import { UpdateAgencyStatusUseCase } from "../../Application/useCase/Agency/UpdateAgencyStatus.usecase.js";
 
 
 
@@ -140,6 +144,14 @@ export class UsecaseRegistery {
 
         container.register<ICheckTempHubStatusUseCase>("ICheckTempHubStatusUseCase",{
             useClass:CheckTempHubStatusUseCase
+        })
+
+        container.register<IUpdateUserStatusUseCase>("IUpdateUserStatusUseCase",{
+            useClass:UpdateUserStatusUseCase
+        })
+
+        container.register<IUpdateAgencyStatusUseCase>("IUpdateAgencyStatusUseCase",{
+            useClass:UpdateAgencyStatusUseCase
         })
     }
 }

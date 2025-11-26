@@ -8,7 +8,7 @@ import type { IRegisterUserUseCase } from "../../interfaces/useCase_Interfaces/u
 @injectable()
 export class RegisterUserUseCase implements IRegisterUserUseCase {
   constructor(
-    @inject("IUserRepository") private userRepo: IUserRepository,
+    @inject("IUserRepository") private _userRepo: IUserRepository,
   ) { }
 
   async execute(userData: UserDTO) {
@@ -27,7 +27,7 @@ export class RegisterUserUseCase implements IRegisterUserUseCase {
       false
     );
 
-    const savedUser = await this.userRepo.save(newUser);
+    const savedUser = await this._userRepo.save(newUser);
 
     return savedUser;
   };

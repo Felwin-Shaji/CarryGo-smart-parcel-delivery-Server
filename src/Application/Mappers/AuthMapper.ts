@@ -22,7 +22,7 @@ export class AuthMapper {
 
     static toResendOtpDTO(req:Request):ResendOtpDTO{
         return {
-            email:req.body.Email,
+            email:req.body.email,
             role:req.body.role
         }
     }

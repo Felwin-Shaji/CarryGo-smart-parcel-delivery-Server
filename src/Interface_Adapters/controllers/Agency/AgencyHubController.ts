@@ -54,16 +54,8 @@ export class AgencyHubController implements IAgencyHubController {
 
     addNewHubBasicInfo = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
-            const { name, email, mobile, role, agencyId } = req.body;
-
-            const dto: AddNewHubBaseDto = {
-                agencyId,
-                name,
-                email,
-                mobile,
-                role
-            };
-
+            const dto = req.body as AddNewHubBaseDto
+            
             const tempHub = await this._addHubTempUseCase.execute(dto);
 
             return res.status(STATUS.CREATED).json({
@@ -139,14 +131,7 @@ export class AgencyHubController implements IAgencyHubController {
             const files = req.files as AgencyAddHubFields;
             const imgUrl = await this._uploadAddFilesUseCase.execute(files);
 
-            const values: AddNewHubAddressDto = {
-                addressLine1: req.body.addressLine1,
-                city: req.body.city,
-                state: req.body.state,
-                pincode: req.body.pincode,
-                location_lat: req.body.location_lat,
-                location_lng: req.body.location_lng
-            }
+            const values = req.body as AddNewHubAddressDto
 
             console.log(imgUrl)
             const savedHub = await this._addHubUseCase.execute(tempHubId, values, imgUrl)

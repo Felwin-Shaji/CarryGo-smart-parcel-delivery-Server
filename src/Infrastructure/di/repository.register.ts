@@ -19,6 +19,12 @@ import { IHubTempRepository } from "../../Application/interfaces/repositories_in
 import { HubTempRepository } from "../repositories/Hub/hubTempRepository.js";
 import { IResetTokenRepository } from "../../Application/interfaces/repositories_interfaces/authRepositories_Interfaces/resetToken.repository.js";
 import { ResetTokenRepository } from "../repositories/resetTokenRepository.js";
+import { IHubWorkerKycRepository } from "../../Application/interfaces/repositories_interfaces/workerRepository_interfaces/wrokerKyc.repository.js";
+import { HubWorkerKycRepository } from "../repositories/Worker/hubWorkerKycRepository.js";
+import { IHubWorkersTempRepository } from "../../Application/interfaces/repositories_interfaces/workerRepository_interfaces/worersTemp.repository.js";
+import { HubWorkersTempRepository } from "../repositories/Worker/hubWorkersTempRepository.js";
+import { IHubWorkerRepository } from "../../Application/interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository.js";
+import { HubWorkerRepository } from "../repositories/Worker/hubWorkerRepository.js";
 
 
 export class RepositoryRegistry {
@@ -59,5 +65,18 @@ export class RepositoryRegistry {
         container.register<IHubRepository>("IHubRepository", {
             useClass: HubRepository
         });
+
+        container.register<IHubWorkersTempRepository>("IHubWorkersTempRepository",{
+            useClass:HubWorkersTempRepository
+        })
+
+        container.register<IHubWorkerRepository>("IHubWorkerRepository",{
+            useClass:HubWorkerRepository
+        })
+
+        container.register<IHubWorkerKycRepository>("IHubWorkerKycRepository",{
+            useClass:HubWorkerKycRepository
+        })
+
     };
 };

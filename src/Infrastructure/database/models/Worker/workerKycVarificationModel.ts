@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { IKYCVerification } from "../../../../Domain/Entities/Worker/WorkerKyc";
+import { IWrokerKYCVerification } from "../../../../Domain/Entities/Worker/WorkerKyc";
 
-const KYCVerificationSchema = new Schema<IKYCVerification>({
+const WorkerKYCVerificationSchema = new Schema<IWrokerKYCVerification>({
     subjectId: { type: String, required: true },
     subjectType: { type: String, enum: ["user", "worker"], required: true },
     idType: { type: String, enum: ["AADHAAR", "DL", "PASSPORT"], required: true, },
@@ -15,7 +15,7 @@ const KYCVerificationSchema = new Schema<IKYCVerification>({
     reviewedAt: { type: Date, default: null },
 });
 
-export const KYCVerificationModel = model<IKYCVerification>(
-    "KYCVerification",
-    KYCVerificationSchema
+export const KYCVerificationModel = model<IWrokerKYCVerification>(
+    "WrokerKYCVerification",
+    WorkerKYCVerificationSchema
 );

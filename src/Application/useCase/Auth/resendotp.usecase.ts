@@ -26,30 +26,26 @@ export class ResendOtpUseCase implements IResendOtpUseCase {
 
     async execute(dto: ResendOtpDTO): Promise<IOtpModel> {
 
-        const emailVO = EmailVo.create(dto.email);
-
-        const existingUser = await this.userRepo.findOne({ email: emailVO.value });
-        if (existingUser) throw new AppError("User already registered");
-
-        const existingOtp = await this.otpRepo.findOne({ email: emailVO.value });
+        const existingOtp = await this.otpRepo.findOne({ email: dto.email });
         if (!existingOtp) throw new AppError("No OTP session found for this email");
 
 
         const newOtp = this.otpRepo.generateOtp();
+        console.log("resendOtp:",newOtp)
         const otpVo = await OtpVo.create(newOtp);
 
         existingOtp.otp = otpVo.value;
         existingOtp.expiresAt = new Date(Date.now() + 2 * 60 * 1000);
 
         await this.otpRepo.findOneAndUpdate(
-            { email: emailVO.value },
+            { email: dto.email },
             {
                 otp: otpVo.value,
                 expiresAt: existingOtp.expiresAt
             }
         );
 
-        await this.mailer.sendOTP(emailVO.value, newOtp);
+        await this.mailer.sendOTP(dto.email , newOtp);
 
         return existingOtp;
     }

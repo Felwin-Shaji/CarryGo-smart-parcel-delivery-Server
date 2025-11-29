@@ -1,3 +1,4 @@
+import { Types } from "mongoose";
 import { KYCStatus, Role } from "../../../Infrastructure/Types/types.js";
 import { AppError } from "../../utils/customError.js";
 
@@ -5,6 +6,7 @@ import { AppError } from "../../utils/customError.js";
 export class HubWorker {
   constructor(
     public id: string | null,
+    public hubId: Types.ObjectId,
     public name: string,
     public email: string,
     public mobile: string | null,

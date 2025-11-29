@@ -49,6 +49,10 @@ import { IUpdateUserStatusUseCase } from "../../Application/interfaces/useCase_I
 import { UpdateUserStatusUseCase } from "../../Application/useCase/User/UpdateUserStatus.usecase.js";
 import { IUpdateAgencyStatusUseCase } from "../../Application/interfaces/useCase_Interfaces/Agency/UpdateAgencyStatusUseCase.js";
 import { UpdateAgencyStatusUseCase } from "../../Application/useCase/Agency/UpdateAgencyStatus.usecase.js";
+import { IAddWorkerTempUseCase } from "../../Application/interfaces/useCase_Interfaces/Worker/addWorkerUseCase.interface.js";
+import { AddWorkerTempUseCase } from "../../Application/useCase/Worker/AddWorkerTempUseCase.js";
+import { IWorkerVerifyOtpUseCase } from "../../Application/interfaces/useCase_Interfaces/Worker/addWorkerVerifyOtpUseCase.js";
+import { WorkerVerifyOtpUseCase } from "../../Application/useCase/Worker/addWorkerVerifyOtpUseCase.js";
 
 
 
@@ -153,5 +157,14 @@ export class UsecaseRegistery {
         container.register<IUpdateAgencyStatusUseCase>("IUpdateAgencyStatusUseCase",{
             useClass:UpdateAgencyStatusUseCase
         })
+
+        container.register<IAddWorkerTempUseCase>("IAddWorkerTempUseCase",{
+            useClass:AddWorkerTempUseCase
+        })
+
+        container.register<IWorkerVerifyOtpUseCase>("IWorkerVerifyOtpUseCase",{
+            useClass:WorkerVerifyOtpUseCase
+        })
+
     }
 }

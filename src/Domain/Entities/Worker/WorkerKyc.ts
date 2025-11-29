@@ -2,7 +2,7 @@ import { Role, KYCStatus } from "../../../Infrastructure/Types/types";
 
 export type IDType = "AADHAAR" | "DL" | "PASSPORT";
 
-export interface IKYCVerification {
+export interface IWrokerKYCVerification {
   id: string | null;
   subjectId: string;
   subjectType: Role;            

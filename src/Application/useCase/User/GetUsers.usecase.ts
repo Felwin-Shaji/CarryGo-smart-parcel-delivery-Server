@@ -8,7 +8,7 @@ export class GetUsersUseCase implements IGetUsersUseCase {
 
     constructor(
         @inject("IUserRepository")
-        private userRepo: IUserRepository
+        private _userRepo: IUserRepository
     ) { }
     async execute(input: {
         page: number;
@@ -25,7 +25,7 @@ export class GetUsersUseCase implements IGetUsersUseCase {
     }> {
         const { page, limit, search, sortBy, sortOrder } = input;
 
-        return await this.userRepo.getPaginatedUser(
+        return await this._userRepo.getPaginatedUser(
             page,
             limit,
             search,

@@ -7,7 +7,7 @@ import { Agency } from "../../../Domain/Entities/Agency/Agency.js";
 @injectable()
 export class RegisterAgencyUseCase  implements IRegisterAgencyUseCase {
     constructor(
-        @inject("IAgencyRepository") private agencyRepo:IAgencyRepository
+        @inject("IAgencyRepository") private _agencyRepo:IAgencyRepository
     ){}
 
     async execute(agencyData: AgencyDTO): Promise<Agency> {
@@ -21,7 +21,7 @@ export class RegisterAgencyUseCase  implements IRegisterAgencyUseCase {
             agencyData.role
         )
 
-        const savedData = await this.agencyRepo.save(newAgency);
+        const savedData = await this._agencyRepo.save(newAgency);
 
         return savedData;
     };

@@ -6,28 +6,28 @@ import { IUploadAgencyKycFilesUseCase } from "../../interfaces/useCase_Interface
 @injectable()
 export class UploadAgencyKycFilesUseCase implements IUploadAgencyKycFilesUseCase {
   constructor(
-    @inject("IStorageService") private storage: IStorageService
+    @inject("IStorageService") private _storage: IStorageService
   ) {}
 
   async execute(dto: AgencyKYC_DTO) {
     const uploaded: any = {};
 
     if (dto.tradeLicenseDocument) {
-      uploaded.tradeLicenseDocument = await this.storage.upload(
+      uploaded.tradeLicenseDocument = await this._storage.upload(
         dto.tradeLicenseDocument,
         "agency/trade-license"
       );
     }
 
     if (dto.PAN_photo) {
-      uploaded.PAN_photo = await this.storage.upload(
+      uploaded.PAN_photo = await this._storage.upload(
         dto.PAN_photo,
         "agency/pan"
       );
     }
 
     if (dto.gst_certificate) {
-      uploaded.gst_certificate = await this.storage.upload(
+      uploaded.gst_certificate = await this._storage.upload(
         dto.gst_certificate,
         "agency/gst"
       );

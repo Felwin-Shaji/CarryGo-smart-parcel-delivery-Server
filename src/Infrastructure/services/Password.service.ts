@@ -2,10 +2,10 @@ import bcrypt from "bcrypt";
 import type { IPasswordService } from "../../Application/interfaces/services_Interfaces/password-service.interface";
 
 export class PasswordService implements IPasswordService {
-    private readonly saltRounds = 10;
+    private readonly _saltRounds = 10;
 
     async hashPassword(password: string): Promise<string> {
-        return await bcrypt.hash(password, this.saltRounds);
+        return await bcrypt.hash(password, this._saltRounds);
     }
 
     async comparePassword(

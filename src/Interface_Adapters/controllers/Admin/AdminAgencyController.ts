@@ -13,11 +13,8 @@ export class AdminAgencyController implements IAdminAgencyController {
 
     constructor(
         @inject("IGetAgenciesUseCase") private _getAgenciesUseCase: IGetAgenciesUseCase,
-
         @inject("IGetAgencyWithKYCUseCase") private _getAgencyWithKYCUseCase: IGetAgencyWithKYCUseCase,
-
         @inject("IUpdateAgencyKycStatusUseCase") private _updateAgencyKycStatusUseCase: IUpdateAgencyKycStatusUseCase,
-
         @inject("IUpdateAgencyStatusUseCase") private _updateAgencyStatusUseCase: IUpdateAgencyStatusUseCase
     ) { }
 
@@ -29,9 +26,9 @@ export class AdminAgencyController implements IAdminAgencyController {
                 search: req.query.search?.toString() || "",
                 sortBy: req.query.sortBy?.toString() || "",
                 sortOrder: req.query.sortOrder === "desc" ? "desc" : "asc",
-            });
+            }); 
 
-            return res.status(200).json(result);
+            return res.status(STATUS.OK).json(result);
         } catch (error) {
             next(error);
         }
@@ -43,7 +40,7 @@ export class AdminAgencyController implements IAdminAgencyController {
             if (!agencyId) throw new AppError("Agency ID is missing");
 
             const result = await this._getAgencyWithKYCUseCase.execute(agencyId);
-            return res.status(200).json(result);
+            return res.status(STATUS.OK).json(result);
         } catch (error) {
             next(error);
         }

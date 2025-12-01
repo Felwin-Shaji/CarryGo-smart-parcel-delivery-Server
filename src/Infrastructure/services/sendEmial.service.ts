@@ -14,12 +14,12 @@ const oAuth2Client = new google.auth.OAuth2(
 oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN as string });
 
 export class MailService implements IMailService {
-  private transporter?: Transporter;
+  private _transporter?: Transporter;
 
   private async initTransporter() {
     const accessToken = (await oAuth2Client.getAccessToken()).token;
 
-    this.transporter = nodemailer.createTransport({
+    this._transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
         type: "OAuth2",
@@ -46,7 +46,7 @@ export class MailService implements IMailService {
       </div>
     `;
 
-    await this.transporter?.sendMail({
+    await this._transporter?.sendMail({
       from: `"CarryGo" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: "Your CarryGo OTP Code",
@@ -102,7 +102,7 @@ export class MailService implements IMailService {
     </div>
   `;
 
-    await this.transporter?.sendMail({
+    await this._transporter?.sendMail({
       from: `"CarryGo" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: "Your CarryGo Hub Account Login Details",
@@ -126,7 +126,7 @@ export class MailService implements IMailService {
       </div>
     `;
 
-    await this.transporter?.sendMail({
+    await this._transporter?.sendMail({
       from: `"CarryGo" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: "Reset Your Password",

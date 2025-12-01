@@ -8,17 +8,17 @@ import { IGenerateTokenUseCase } from "../../interfaces/useCase_Interfaces/AuthU
 @injectable()
 export class GenerateTokenUseCase implements IGenerateTokenUseCase {
   constructor(
-    @inject("ITokenService") private tokenService: ITokenService,
-    @inject("IRefreshTokenRepository") private refreshTokenRepo: IRefreshTokenRepository
+    @inject("ITokenService") private _tokenService: ITokenService,
+    @inject("IRefreshTokenRepository") private _refreshTokenRepo: IRefreshTokenRepository
   ) { }
 
   async execute(userId: string, email: string, role: Role): Promise<TokenObj>  {
     const payload = { userId, email, role };
 
-    const accessToken = this.tokenService.generateAccessToken(payload);
-    const refreshToken = this.tokenService.generateRefreshToken(payload);
+    const accessToken = this._tokenService.generateAccessToken(payload);
+    const refreshToken = this._tokenService.generateRefreshToken(payload);
 
-    await this.refreshTokenRepo.save({
+    await this._refreshTokenRepo.save({
       userId,
       token: refreshToken,
       role,

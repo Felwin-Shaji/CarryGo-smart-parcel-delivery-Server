@@ -8,7 +8,7 @@ export class GetAgenciesUseCase implements IGetAgenciesUseCase {
 
   constructor(
     @inject("IAgencyRepository")
-    private agencyRepo: IAgencyRepository
+    private _agencyRepo: IAgencyRepository
   ) { }
 
   async execute(input: {
@@ -26,7 +26,7 @@ export class GetAgenciesUseCase implements IGetAgenciesUseCase {
   }> {
     const { page, limit, search, sortBy, sortOrder } = input;
 
-    return await this.agencyRepo.getPaginatedAgencies(
+    return await this._agencyRepo.getPaginatedAgencies(
       page,
       limit,
       search,

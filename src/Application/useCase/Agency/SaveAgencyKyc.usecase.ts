@@ -7,11 +7,11 @@ import { AgencyKYC } from "../../../Domain/Entities/Agency/AgencyKYC";
 @injectable()
 export class SaveAgencyKycUseCase implements ISaveAgencyKycUseCase {
   constructor(
-    @inject("IAgencyKYCRepository") private kycRepo: IAgencyKYCRepository
+    @inject("IAgencyKYCRepository") private _kycRepo: IAgencyKYCRepository
   ) {}
 
   async execute(dto: AgencyKYC_DTO, uploadedFiles: any):Promise<AgencyKYC> {
-    return await this.kycRepo.saveKYC(dto.agencyId, {
+    return await this._kycRepo.saveKYC(dto.agencyId, {
       tradeLicenseNumber: dto.tradeLicenseNumber,
       PANnumber: dto.PANnumber,
       gst_number: dto.gst_number,

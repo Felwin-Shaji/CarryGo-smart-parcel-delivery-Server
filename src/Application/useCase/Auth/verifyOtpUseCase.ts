@@ -8,18 +8,18 @@ import { IVerifyOtpUseCase } from "../../interfaces/useCase_Interfaces/AuthUseca
 @injectable()
 export class VerifyOtpUseCase implements IVerifyOtpUseCase {
   constructor(
-    @inject("IOtpRepository") private otpRepo: IOtpRepository
+    @inject("IOtpRepository") private _otpRepo: IOtpRepository
   ) {}
 
 async execute(otp: string, email: string): Promise<IOtpModel> {
-  const otpData = await this.otpRepo.findOne({ email });
+  const otpData = await this._otpRepo.findOne({ email });
   if (!otpData) throw new AppError("OTP not found or expired.");
 
   const savedOtp = new OtpVo(otpData.otp);
   const isOtpValid = await savedOtp.compare(otp);
   if (!isOtpValid) throw new AppError("Invalid OTP.");
 
-  await this.otpRepo.delete({ email });
+  await this._otpRepo.delete({ email });
   return otpData; 
 }
 }

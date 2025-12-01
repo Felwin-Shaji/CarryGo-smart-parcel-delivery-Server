@@ -7,20 +7,20 @@ import { IRefreshTokenRepository } from "../../interfaces/repositories_interface
 @injectable()
 export class LogoutUsecase implements ILogoutUsecase {
     constructor(
-        @inject("ITokenService") private readonly tokenService: ITokenService,
-        @inject("IRefreshTokenRepository") private readonly refreshTokenRepo: IRefreshTokenRepository
+        @inject("ITokenService") private readonly _tokenService: ITokenService,
+        @inject("IRefreshTokenRepository") private readonly _refreshTokenRepo: IRefreshTokenRepository
     ) { }
 
     async execute(refreshToken: string,userId:string): Promise<void> {
         try {
-            const decoded = this.tokenService.verifyRefreshToken(refreshToken);
+            const decoded = this._tokenService.verifyRefreshToken(refreshToken);
 
             if (!decoded?.userId) {
                 throw new Error("Invalid refresh token");
             }
 
 
-            await this.refreshTokenRepo.deleteByUserId(userId);
+            await this._refreshTokenRepo.deleteByUserId(userId);
         } catch (error) {
             console.error("LogoutUsecase error:", error);
             throw new Error("Failed to log out user");

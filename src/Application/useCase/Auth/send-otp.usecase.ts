@@ -14,14 +14,11 @@ import { ISendOtpUseCase } from "../../interfaces/useCase_Interfaces/AuthUsecase
 @injectable()
 export class SendOtpUseCase implements ISendOtpUseCase {
   constructor(
-    @inject("IOtpRepository")
-    private otpRepo: IOtpRepository,
+    @inject("IOtpRepository") private _otpRepo: IOtpRepository,
 
-    @inject("IUserRepository")
-    private userRepo: IUserRepository,
+    @inject("IUserRepository") private _userRepo: IUserRepository,
 
-    @inject("IMailService")
-    private mailer: IMailService
+    @inject("IMailService") private _mailer: IMailService
   ) { };
 
   async execute(otpData: SendOtpDTO): Promise<IOtpModel> {
@@ -30,13 +27,13 @@ export class SendOtpUseCase implements ISendOtpUseCase {
     if (!passwordVo) throw new AppError("Invalid password");
 
 
-    const existingUser = await this.userRepo.findOne({ email: otpData.email});
+    const existingUser = await this._userRepo.findOne({ email: otpData.email});
     if (existingUser) throw new AppError("User already registered");
 
-    const existingOtp = await this.otpRepo.findOne({ email: otpData.email});
+    const existingOtp = await this._otpRepo.findOne({ email: otpData.email});
     if (existingOtp) throw new AppError("Please wait until the current OTP expires before requesting a new one.");
 
-    const otp = this.otpRepo.generateOtp();
+    const otp = this._otpRepo.generateOtp();
     console.log(otp);
     const otpVo = await OtpVo.create(otp);
 
@@ -50,8 +47,8 @@ export class SendOtpUseCase implements ISendOtpUseCase {
       expiresAt: new Date(Date.now() + 2 * 60 * 1000)
     };
 
-    await this.otpRepo.save(otpDomain);
-    await this.mailer.sendOTP(otpData.email, otp);
+    await this._otpRepo.save(otpDomain);
+    await this._mailer.sendOTP(otpData.email, otp);
     return otpDomain
   };
 };

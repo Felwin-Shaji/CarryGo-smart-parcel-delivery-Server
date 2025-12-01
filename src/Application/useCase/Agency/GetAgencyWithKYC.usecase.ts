@@ -7,11 +7,11 @@ import { AppError } from "../../../Domain/utils/customError";
 export class GetAgencyWithKYCUseCase implements IGetAgencyWithKYCUseCase  {
   constructor(
     @inject("IAgencyRepository")
-    private agencyRepo: IAgencyRepository
+    private _agencyRepo: IAgencyRepository
 ) {}
 
   async execute(id: string) {
-    const data = await this.agencyRepo.findAgencyWithKYC(id);
+    const data = await this._agencyRepo.findAgencyWithKYC(id);
 
     if (!data) throw new AppError("Agency not found", 404);
 

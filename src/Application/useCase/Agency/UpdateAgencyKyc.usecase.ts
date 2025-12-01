@@ -7,11 +7,10 @@ import { IUpdateAgencyKycStatusUseCase } from "../../interfaces/useCase_Interfac
 @injectable()
 export class UpdateAgencyKycStatusUseCase implements IUpdateAgencyKycStatusUseCase {
     constructor(
-        @inject("IAgencyRepository")
-        private agencyRepo: IAgencyRepository,
+        @inject("IAgencyRepository") private _agencyRepo: IAgencyRepository,
     ) { };
     async execute(agencyId: string, status: KYCStatus): Promise<Agency | null> {
-        const result = await this.agencyRepo.findOneAndUpdate(
+        const result = await this._agencyRepo.findOneAndUpdate(
             { _id: agencyId },
             { kycStatus: status }
         );

@@ -6,18 +6,14 @@ import { IUploadAgencyKycFilesUseCase } from "../../../Application/interfaces/us
 import { ISaveAgencyKycUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/SaveAgencyKycUseCase";
 import { IUpdateAgencyKycStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/UpdateAgencyKycStatusUseCase";
 import { AppError } from "../../../Domain/utils/customError";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 
 @injectable()
 export class AgencyController implements IAgencyController {
     constructor(
-        @inject("IUploadAgencyKycFilesUseCase")
-        private _uploadFiles: IUploadAgencyKycFilesUseCase,
-
-        @inject("ISaveAgencyKycUseCase")
-        private _saveKYC: ISaveAgencyKycUseCase,
-
-        @inject("IUpdateAgencyKycStatusUseCase")
-        private updateStatus: IUpdateAgencyKycStatusUseCase,
+        @inject("IUploadAgencyKycFilesUseCase") private _uploadFiles: IUploadAgencyKycFilesUseCase,
+        @inject("ISaveAgencyKycUseCase") private _saveKYC: ISaveAgencyKycUseCase,
+        @inject("IUpdateAgencyKycStatusUseCase") private _updateStatus: IUpdateAgencyKycStatusUseCase,
 
     ) { }
 
@@ -31,11 +27,11 @@ export class AgencyController implements IAgencyController {
             await this._saveKYC.execute(dto, uploaded);
 
 
-            const agency = await this.updateStatus.execute(dto.agencyId, "REGISTERED");
+            const agency = await this._updateStatus.execute(dto.agencyId, "REGISTERED");
             if (!agency) throw new AppError("Registration went wrong")
             const response = AgencyMapper.toAgencyKYCResponseDTO(agency)
 
-            return res.status(200).json(response)
+            return res.status(STATUS.OK).json(response)
 
         } catch (error) {
             next(error);

@@ -36,7 +36,7 @@ export class AgencyHubController implements IAgencyHubController {
             const email = req.query.email as string;
 
             if (!email) {
-                return res.status(400).json({
+                return res.status(STATUS.BAD_REQUEST).json({
                     success: false,
                     message: "Email is required"
                 });
@@ -44,7 +44,7 @@ export class AgencyHubController implements IAgencyHubController {
 
             const result = await this._checkTempHubStatusUseCase.execute(email);
 
-            return res.status(200).json(result);
+            return res.status(STATUS.OK).json(result);
 
         } catch (error) {
             next(error);

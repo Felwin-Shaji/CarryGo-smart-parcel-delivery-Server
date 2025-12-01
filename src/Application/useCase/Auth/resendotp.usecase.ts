@@ -14,30 +14,27 @@ import { IResendOtpUseCase } from "../../interfaces/useCase_Interfaces/AuthUseca
 export class ResendOtpUseCase implements IResendOtpUseCase {
 
     constructor(
-        @inject("IOtpRepository")
-        private otpRepo: IOtpRepository,
+        @inject("IOtpRepository") private _otpRepo: IOtpRepository,
 
-        @inject("IUserRepository")
-        private userRepo: IUserRepository,
+        @inject("IUserRepository") private _userRepo: IUserRepository,
 
-        @inject("IMailService")
-        private mailer: IMailService
+        @inject("IMailService") private _mailer: IMailService
     ) { }
 
     async execute(dto: ResendOtpDTO): Promise<IOtpModel> {
 
-        const existingOtp = await this.otpRepo.findOne({ email: dto.email });
+        const existingOtp = await this._otpRepo.findOne({ email: dto.email });
         if (!existingOtp) throw new AppError("No OTP session found for this email");
 
 
-        const newOtp = this.otpRepo.generateOtp();
+        const newOtp = this._otpRepo.generateOtp();
         console.log("resendOtp:",newOtp)
         const otpVo = await OtpVo.create(newOtp);
 
         existingOtp.otp = otpVo.value;
         existingOtp.expiresAt = new Date(Date.now() + 2 * 60 * 1000);
 
-        await this.otpRepo.findOneAndUpdate(
+        await this._otpRepo.findOneAndUpdate(
             { email: dto.email },
             {
                 otp: otpVo.value,
@@ -45,7 +42,7 @@ export class ResendOtpUseCase implements IResendOtpUseCase {
             }
         );
 
-        await this.mailer.sendOTP(dto.email , newOtp);
+        await this._mailer.sendOTP(dto.email , newOtp);
 
         return existingOtp;
     }

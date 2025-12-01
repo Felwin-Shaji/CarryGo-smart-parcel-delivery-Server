@@ -25,7 +25,7 @@ export class AdminUserController implements IAdminUserController {
         sortOrder: req.query.sortOrder === "desc" ? "desc" : "asc",
       });
 
-      return res.status(200).json(result);
+      return res.status(STATUS.OK).json(result);
     } catch (error) {
       next(error);
     }

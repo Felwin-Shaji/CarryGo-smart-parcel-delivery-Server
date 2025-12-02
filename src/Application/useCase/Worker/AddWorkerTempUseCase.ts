@@ -6,9 +6,10 @@ import { IHubWorkerRepository } from "../../interfaces/repositories_interfaces/w
 import { IOtpService } from "../../interfaces/services_Interfaces/otp-service.interface";
 import { IMailService } from "../../interfaces/services_Interfaces/email-service.interface";
 import { AppError } from "../../../Domain/utils/customError";
-
 import { HubWorkersTemp } from "../../../Domain/Entities/Worker/WrokersTemp";
 import { Role } from "../../../Infrastructure/Types/types";
+import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 
 interface AddWorkerTempDTO {
     hubId: string
@@ -37,13 +38,13 @@ export class AddWorkerTempUseCase implements IAddWorkerTempUseCase {
         const dto = req.body as AddWorkerTempDTO
 
         const existingWorker = await this._hubWorkerRepo.findOne({ email: dto.email });
-        if (existingWorker) throw new AppError("worker with this email already exists");
+        if (existingWorker) throw new AppError(WORKER_MESSAGES.EMAIL_ALREADY_EXISTS, STATUS.BAD_REQUEST);
 
         const existingTempWorker = await this._hubWorkersTempRepo.findOne({ email: dto.email });
 
         if (existingTempWorker) {
             if (existingTempWorker.status === "OTP-Verified") return existingTempWorker;
-            if (existingTempWorker.status === "BASIC-Info") throw new AppError("OTP already sent. Please verify the OTP.");
+            if (existingTempWorker.status === "BASIC-Info") throw new AppError(WORKER_MESSAGES.OTP_ALREADY_SENT, STATUS.BAD_REQUEST);
 
             await this._hubWorkersTempRepo.delete({ email: dto.email });
         }
@@ -67,10 +68,8 @@ export class AddWorkerTempUseCase implements IAddWorkerTempUseCase {
         };
 
         console.log("DEV OTP:", plainOtp);
-        // if (process.env.NODE_ENV === "production") 
         await this._mailer.sendOTP(dto.email, plainOtp);
 
-        // const saved = await this._hubWorkersTempRepo.save(tempWorker);
         console.log("Saving tempWorker:", tempWorker);
         const saved = await this._hubWorkersTempRepo.save(tempWorker);
         console.log("Saved result:", saved);

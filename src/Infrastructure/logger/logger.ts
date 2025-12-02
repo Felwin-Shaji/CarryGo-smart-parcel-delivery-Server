@@ -1,5 +1,6 @@
 import { createLogger, transports, format } from 'winston';
 import 'winston-daily-rotate-file';
+import { ENV } from '../constants/env';
 
 const consoleFormat = format.printf(({ level, message, timestamp, stack }) => {
   return `{level:${level} ---- message:${stack || message} ---- timestamp:${timestamp}}`
@@ -10,12 +11,12 @@ const dailyRotateFileTransport = new transports.DailyRotateFile({
   datePattern: 'YYYY-MM-DD',
   zippedArchive: true,              // compress old logs
   maxSize: '20m',                   // max size per file
-  maxFiles: '5d',                  // keep logs for 30 days
-  level: 'debug'
+  maxFiles: '5d',                  // keep logs for 5 days
+  level: ENV.IS_PROD ? "info" : "debug"
 });
 
 const logger = createLogger({
-    level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
+    level: ENV.IS_PROD ? 'info' : 'debug',
     format: format.combine(
         format.colorize({ all: true }),
         format.timestamp(),

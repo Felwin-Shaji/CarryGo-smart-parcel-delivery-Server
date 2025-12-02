@@ -8,6 +8,8 @@ import { OtpVo } from "../../../Domain/ValueObjects/otp.valueObject.js";
 import type { IOtpModel } from "../../../Domain/Entities/Iotp.js";
 import type { ResendOtpDTO } from "../../Dto/Auth/Auth.dto.js";
 import { IResendOtpUseCase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/resendOtp.usecase.js";
+import { OTP_MESSAGES } from "../../../Infrastructure/constants/messages/otpMessage.js";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes.js";
 
 
 @injectable()
@@ -24,11 +26,11 @@ export class ResendOtpUseCase implements IResendOtpUseCase {
     async execute(dto: ResendOtpDTO): Promise<IOtpModel> {
 
         const existingOtp = await this._otpRepo.findOne({ email: dto.email });
-        if (!existingOtp) throw new AppError("No OTP session found for this email");
+        if (!existingOtp) throw new AppError(OTP_MESSAGES.SESSION_NOT_FOUND,STATUS.NOT_FOUND);
 
 
         const newOtp = this._otpRepo.generateOtp();
-        console.log("resendOtp:",newOtp)
+        console.log("resendOtp:", newOtp)
         const otpVo = await OtpVo.create(newOtp);
 
         existingOtp.otp = otpVo.value;
@@ -42,7 +44,7 @@ export class ResendOtpUseCase implements IResendOtpUseCase {
             }
         );
 
-        await this._mailer.sendOTP(dto.email , newOtp);
+        await this._mailer.sendOTP(dto.email, newOtp);
 
         return existingOtp;
     }

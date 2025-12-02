@@ -2,7 +2,9 @@ import { inject, injectable } from "tsyringe";
 import { IHubTempRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hubTemp.repository";
 import { IOtpService } from "../../interfaces/services_Interfaces/otp-service.interface";
 import { AppError } from "../../../Domain/utils/customError";
-import { IAddNewHubVerifyOtpUseCase } from "../../interfaces/useCase_Interfaces/Hub/IAddNewHubVerifyOtpUseCase ";
+import { IAddNewHubVerifyOtpUseCase } from "../../interfaces/useCase_Interfaces/Hub/IAddNewHubVerifyOtpUseCase";
+import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 
 @injectable()
 export class AddNewHubVerifyOtpUseCase implements IAddNewHubVerifyOtpUseCase {
@@ -16,7 +18,7 @@ export class AddNewHubVerifyOtpUseCase implements IAddNewHubVerifyOtpUseCase {
 
         const tempHub = await this._hubTempRepo.findOne({ _id: tempHubId, email });
 
-        if (!tempHub) throw new AppError("Invalid tempHubId or email");
+        if (!tempHub) throw new AppError(HUB_MESSAGES.INVALID_TEMP_SESSION, STATUS.BAD_REQUEST);
 
         if (tempHub.status === "OTP-Verified") return true;
 

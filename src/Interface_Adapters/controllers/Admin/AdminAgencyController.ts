@@ -7,6 +7,8 @@ import { IUpdateAgencyKycStatusUseCase } from "../../../Application/interfaces/u
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { IAdminAgencyController } from "../../../Application/interfaces/Controllers_Interfaces/Admin_Interfaces/adminAgency.controller";
 import { IUpdateAgencyStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/UpdateAgencyStatusUseCase";
+import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
+
 
 @injectable()
 export class AdminAgencyController implements IAdminAgencyController {
@@ -37,7 +39,7 @@ export class AdminAgencyController implements IAdminAgencyController {
     getAgencyById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const agencyId = req.params.id;
-            if (!agencyId) throw new AppError("Agency ID is missing");
+            if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING,STATUS.BAD_REQUEST);
 
             const result = await this._getAgencyWithKYCUseCase.execute(agencyId);
             return res.status(STATUS.OK).json(result);
@@ -51,10 +53,10 @@ export class AdminAgencyController implements IAdminAgencyController {
             const agencyId = req.params.id;
             const status = req.body.status
 
-            if (!agencyId) throw new AppError("Agency ID is missing");
+            if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING,STATUS.BAD_REQUEST);
             const agencyData = await this._updateAgencyKycStatusUseCase.execute(agencyId, status)
 
-            return res.status(STATUS.OK).json(agencyData)
+            return res.status(STATUS.OK).json(agencyData)   
 
         } catch (error) {
             next(error);
@@ -69,7 +71,7 @@ export class AdminAgencyController implements IAdminAgencyController {
             if (!id) {
                 return res.status(STATUS.BAD_REQUEST).json({
                     success: false,
-                    message: "userId required"
+                    message: AGENCY_MESSAGES.ID_MISSING,
                 })
             }
 
@@ -82,7 +84,7 @@ export class AdminAgencyController implements IAdminAgencyController {
 
             return res.status(STATUS.OK).json({
                 success: true,
-                message: "Agency status updated"
+                message: AGENCY_MESSAGES.KYC_STATUS_UPDATED,
             })
 
 

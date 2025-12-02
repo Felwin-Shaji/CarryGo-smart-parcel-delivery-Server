@@ -37,7 +37,7 @@ import { IAddHubTempUseCase } from "../../Application/interfaces/useCase_Interfa
 import { AddHubTempUseCase } from "../../Application/useCase/Hub/AddNewHubBasicInfo.js";
 import { IAddNewHubResendOtp } from "../../Application/interfaces/useCase_Interfaces/Hub/IAddNewHubResendOtp.js";
 import { AddNewHubResendOtp } from "../../Application/useCase/Hub/AddNewHubReesendOtp.js";
-import { IAddNewHubVerifyOtpUseCase } from "../../Application/interfaces/useCase_Interfaces/Hub/IAddNewHubVerifyOtpUseCase .js";
+import { IAddNewHubVerifyOtpUseCase } from "../../Application/interfaces/useCase_Interfaces/Hub/IAddNewHubVerifyOtpUseCase.js";
 import { AddNewHubVerifyOtpUseCase } from "../../Application/useCase/Hub/AddNewHubVerifyOtpUseCase.js";
 import { ICheckTempHubStatusUseCase } from "../../Application/interfaces/useCase_Interfaces/Hub/ICheckTempHubStatusUseCase.js";
 import { CheckTempHubStatusUseCase } from "../../Application/useCase/Hub/CheckTempHubStatusUseCase.js";

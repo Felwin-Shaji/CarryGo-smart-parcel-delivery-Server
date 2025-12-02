@@ -9,7 +9,7 @@ export interface AppJwtPayload {
     role: Role;
 }
 
-export interface AuthUser {
+export interface AuthUserDTO {
     id: string;
     name: string;
     email: string;
@@ -20,5 +20,5 @@ export interface AuthUser {
 export interface TokenObj {
     accessToken: string;
     refreshToken: string;
-    user?: AuthUser;
+    user?: AuthUserDTO;
 }

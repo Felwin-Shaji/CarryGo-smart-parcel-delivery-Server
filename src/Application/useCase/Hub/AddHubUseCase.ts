@@ -7,9 +7,10 @@ import { AppError } from "../../../Domain/utils/customError";
 import { HubMapper } from "../../Mappers/HubMapper";
 import { IAddHubUseCase } from "../../interfaces/useCase_Interfaces/Hub/IAddHubUseCase";
 import { AddNewHubAddressDto } from "../../Dto/Agency/agency.dto";
+import { ENV } from "../../../Infrastructure/constants/env";
+import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 
-import dotenv from "dotenv";
-dotenv.config()
 
 @injectable()
 export class AddHubUseCase implements IAddHubUseCase {
@@ -27,9 +28,9 @@ export class AddHubUseCase implements IAddHubUseCase {
         imageUrl: string
     ) {
         const tempHub = await this._hubTempRepo.findOne({ _id: tempHubId });
-        if (!tempHub) throw new AppError("Invalid or expired hub registration session");
+        if (!tempHub) throw new AppError(HUB_MESSAGES.SESSION_INVALID, STATUS.BAD_REQUEST);
 
-        if (tempHub.status !== "OTP-Verified") throw new AppError("OTP verification not completed");
+        if (tempHub.status !== "OTP-Verified") throw new AppError(HUB_MESSAGES.OTP_NOT_VERIFIED, STATUS.BAD_REQUEST);
         
 
         const rawPassword = this._passwordService.generateCustomPassword(
@@ -54,7 +55,7 @@ export class AddHubUseCase implements IAddHubUseCase {
         const savedHub = await this._hubRepo.save(hubEntity);
 
         await this._hubTempRepo.delete({ _id: tempHubId });
-        if (process.env.NODE_ENV === "production") await this._mailService.sendCustomPassword(tempHub.email);
+        if (ENV.IS_PROD) await this._mailService.sendCustomPassword(tempHub.email);
 
         return savedHub;
     }

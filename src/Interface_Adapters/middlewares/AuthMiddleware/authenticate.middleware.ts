@@ -4,6 +4,8 @@ import { TokenService } from "../../../Infrastructure/services/token.service.js"
 import { STATUS } from "../../../Infrastructure/constants/statusCodes.js";
 import { AppError } from "../../../Domain/utils/customError.js";
 import type { Role } from "../../../Infrastructure/Types/types.js";
+import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages.js";
+
 
 declare module "express" {
   export interface Request {
@@ -31,16 +33,16 @@ export const authenticate = (allowedRoles?: Role[]) => {
       else if (url.startsWith("/api/hub")) accessToken = cookies?.hubaccessTokenName;
       else if (url.startsWith("/api/worker")) accessToken = cookies?.workeraccessTokenName;
 
-      
-      
-      if (!accessToken) throw new AppError("Unauthorized: Access token missing", STATUS.UNAUTHORIZED);
-      
+
+
+      if (!accessToken) throw new AppError(AUTH_MESSAGES.TOKEN_MISSING, STATUS.UNAUTHORIZED);
+
       const decoded = tokenService.verifyAccessToken(accessToken);
-      if (!decoded) throw new AppError("Invalid or expired token", STATUS.UNAUTHORIZED);
-      
+      if (!decoded) throw new AppError(AUTH_MESSAGES.TOKEN_INVALID, STATUS.UNAUTHORIZED);
+
       if (allowedRoles && !allowedRoles.includes(decoded.role)) {
         console.log(decoded)
-        throw new AppError("Forbidden: Role not allowed", STATUS.FORBIDDEN);
+        throw new AppError(AUTH_MESSAGES.ROLE_NOT_ALLOWED, STATUS.FORBIDDEN);
       }
 
       req.user = {

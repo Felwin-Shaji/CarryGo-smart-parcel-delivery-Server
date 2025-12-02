@@ -9,6 +9,9 @@ import { HubTempMapper } from "../../Mappers/HubMapper";
 import { IOtpService } from "../../interfaces/services_Interfaces/otp-service.interface";
 import { IMailService } from "../../interfaces/services_Interfaces/email-service.interface";
 import dotenv from "dotenv";
+import { ENV } from "../../../Infrastructure/constants/env";
+import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 dotenv.config()
 
 
@@ -26,24 +29,19 @@ export class AddHubTempUseCase implements IAddHubTempUseCase {
     async execute(dto: AddNewHubBaseDto): Promise<HubTemp> {
 
         const existingHub = await this._hubRepo.findOne({ email: dto.email });
-        if (existingHub) throw new AppError("Hub with this email already exists");
+        if (existingHub) throw new AppError(HUB_MESSAGES.EMAIL_ALREADY_EXISTS, STATUS.BAD_REQUEST);
 
         const hubSameName = await this._hubRepo.findOne({ name: dto.name, agencyId: dto.agencyId });
-        if (hubSameName) throw new AppError("Hub name already exists under this agency");
+        if (hubSameName) throw new AppError(HUB_MESSAGES.NAME_ALREADY_EXISTS, STATUS.BAD_REQUEST);
 
 
         const existingTempHub = await this._hubTempRepo.findOne({ email: dto.email });
 
         if (existingTempHub) {
-
             if (existingTempHub.status === "OTP-Verified") return existingTempHub;
-
-            if (existingTempHub.status === "BASIC-Info") throw new AppError("OTP already sent. Please verify the OTP.");
-
+            if (existingTempHub.status === "BASIC-Info") throw new AppError(HUB_MESSAGES.OTP_ALREADY_SENT, STATUS.BAD_REQUEST);
             await this._hubTempRepo.delete({ email: dto.email });
         }
-
-
 
         const plainOtp = this._otpService.generateOtp();
         const hashOtp = await this._otpService.hashOtp(plainOtp);
@@ -54,10 +52,7 @@ export class AddHubTempUseCase implements IAddHubTempUseCase {
 
         console.log("DEV OTP:", plainOtp);
 
-        if (process.env.NODE_ENV === "production") {
-            await this._mailer.sendOTP(dto.email, plainOtp);
-        }
-
+        if (ENV.IS_PROD) await this._mailer.sendOTP(dto.email, plainOtp);
 
         return saved;
     }

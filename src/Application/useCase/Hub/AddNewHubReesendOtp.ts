@@ -4,6 +4,8 @@ import { IHubTempRepository } from "../../interfaces/repositories_interfaces/hub
 import { IOtpService } from "../../interfaces/services_Interfaces/otp-service.interface";
 import { IMailService } from "../../interfaces/services_Interfaces/email-service.interface";
 import { AppError } from "../../../Domain/utils/customError";
+import { ENV } from "../../../Infrastructure/constants/env";
+import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
 
 @injectable()
 export class AddNewHubResendOtp implements IAddNewHubResendOtp {
@@ -17,7 +19,7 @@ export class AddNewHubResendOtp implements IAddNewHubResendOtp {
     async resend(email: string): Promise<{ success: boolean; expiresAt: string }> {
 
         const tempHub = await this._hubTempRepo.findOne({ email });
-        if (!tempHub) throw new AppError("No OTP process found for this email");
+        if (!tempHub) throw new AppError(HUB_MESSAGES.OTP_SESSION_NOT_FOUND);
 
         const newOtp = this._otpService.generateOtp();
         console.log("Resend Hub otp",newOtp)
@@ -28,7 +30,7 @@ export class AddNewHubResendOtp implements IAddNewHubResendOtp {
 
         await this._hubTempRepo.findOneAndUpdate({ _id: tempHub.id },tempHub);
 
-        if (process.env.NODE_ENV === "production")  await this._mailer.sendOTP(email, newOtp);
+        if (ENV.IS_PROD) await this._mailer.sendOTP(email, newOtp);
 
         return {
             success: true,

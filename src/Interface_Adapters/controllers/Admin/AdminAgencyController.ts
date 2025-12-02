@@ -8,6 +8,9 @@ import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { IAdminAgencyController } from "../../../Application/interfaces/Controllers_Interfaces/Admin_Interfaces/adminAgency.controller";
 import { IUpdateAgencyStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/UpdateAgencyStatusUseCase";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
+import { Agency } from "../../../Domain/Entities/Agency/Agency";
+import { GetAgenciesDTO } from "../../../Application/Dto/Agency/agency.dto";
+import { ApiResponse } from "../../presenters/ApiResponse";
 
 
 @injectable()
@@ -22,15 +25,28 @@ export class AdminAgencyController implements IAdminAgencyController {
 
     getAgencies = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
-            const result = await this._getAgenciesUseCase.execute({
+
+            const dto: GetAgenciesDTO = {
                 page: Number(req.query.page) || 1,
                 limit: Number(req.query.limit) || 10,
                 search: req.query.search?.toString() || "",
-                sortBy: req.query.sortBy?.toString() || "",
+                sortBy: req.query.sortBy?.toString() || "createdAt",
                 sortOrder: req.query.sortOrder === "desc" ? "desc" : "asc",
-            }); 
+                blocked: req.query.blocked === "true" ? true : req.query.blocked === "false" ? false : null,
+                kycStatus: req.query.kycStatus?.toString() || "",
+                startDate: req.query.startDate?.toString() || "",
+                endDate: req.query.endDate?.toString() || "",
+            };
 
-            return res.status(STATUS.OK).json(result);
+            const result = await this._getAgenciesUseCase.execute(dto);
+
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    AGENCY_MESSAGES.LIST_FETCH_SUCCESS,
+                    result,
+                    STATUS.OK
+                )
+            );
         } catch (error) {
             next(error);
         }
@@ -39,7 +55,7 @@ export class AdminAgencyController implements IAdminAgencyController {
     getAgencyById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const agencyId = req.params.id;
-            if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING,STATUS.BAD_REQUEST);
+            if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
 
             const result = await this._getAgencyWithKYCUseCase.execute(agencyId);
             return res.status(STATUS.OK).json(result);
@@ -53,10 +69,10 @@ export class AdminAgencyController implements IAdminAgencyController {
             const agencyId = req.params.id;
             const status = req.body.status
 
-            if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING,STATUS.BAD_REQUEST);
+            if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
             const agencyData = await this._updateAgencyKycStatusUseCase.execute(agencyId, status)
 
-            return res.status(STATUS.OK).json(agencyData)   
+            return res.status(STATUS.OK).json(agencyData)
 
         } catch (error) {
             next(error);

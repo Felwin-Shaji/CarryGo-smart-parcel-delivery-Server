@@ -1,3 +1,4 @@
+import { Agency } from "../../../Domain/Entities/Agency/Agency";
 import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
 
 export interface BaseResponseDTO {
@@ -46,13 +47,51 @@ export interface AddNewHubAddressDto {
   verificationImage?: Buffer | null;
 }
 
-export interface AddHubDTO extends AddNewHubBaseDto,AddNewHubAddressDto {
+export interface AddHubDTO extends AddNewHubBaseDto, AddNewHubAddressDto {
 }
 
 export interface AddHubResponseDTO {
   success: boolean;
   message: string;
 }
+
+
+/**
+ * get agency Dtos
+ */
+
+export interface GetAgenciesDTO {
+  page: number;
+  limit: number;
+  search: string;
+  sortBy: string;
+  sortOrder: "desc" | "asc";
+
+  blocked?: boolean | null;
+  kycStatus?: string;
+  startDate?: string;
+  endDate?: string;
+}
+
+export interface AgencyResponseDTO {
+  id: string;
+  name: string;
+  email: string;
+  mobile: string;
+  isBlocked: boolean;
+  kycStatus: string;
+  createdAt: Date;
+}
+
+
+export interface GetAgenciesResponseDTO {
+  data: AgencyResponseDTO[];
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+}
+
 
 
 

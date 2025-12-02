@@ -1,5 +1,6 @@
 import { Agency } from "../../../../Domain/Entities/Agency/Agency";
 import { AgencyKYC } from "../../../../Domain/Entities/Agency/AgencyKYC";
+import { GetAgenciesDTO } from "../../../Dto/Agency/agency.dto";
 import type { IBaseRepository } from "../base.repository";
 
 export interface PaginatedData {
@@ -19,7 +20,7 @@ export interface AgencyWithKYCDTO {
 export interface IAgencyRepository extends IBaseRepository<Agency> {
   getAgencies(): Promise<Agency[]>;
 
-  getPaginatedAgencies(page: number, limit: number, search: string, sortBy: string, sortOrder: "asc" | "desc"): Promise<PaginatedData>;
+  getPaginatedAgencies(dto: GetAgenciesDTO): Promise<PaginatedData>;
 
   findAgencyWithKYC(id: string): Promise<AgencyWithKYCDTO | null>;
 }

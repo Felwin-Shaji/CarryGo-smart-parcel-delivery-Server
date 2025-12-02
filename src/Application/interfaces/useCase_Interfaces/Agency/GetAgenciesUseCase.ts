@@ -1,17 +1,6 @@
-import { Agency } from "../../../../Domain/Entities/Agency/Agency";
+import { GetAgenciesDTO, GetAgenciesResponseDTO } from "../../../Dto/Agency/agency.dto";
+
 
 export interface IGetAgenciesUseCase {
-    execute(input: {
-        page: number;
-        limit: number;
-        search: string;
-        sortBy: string;
-        sortOrder: "asc" | "desc";
-    }): Promise<{
-        data: Agency[];
-        total: number;
-        page: number;
-        limit: number;
-        totalPages: number;
-    }>;
+    execute(dto: GetAgenciesDTO): Promise<GetAgenciesResponseDTO>;
 }

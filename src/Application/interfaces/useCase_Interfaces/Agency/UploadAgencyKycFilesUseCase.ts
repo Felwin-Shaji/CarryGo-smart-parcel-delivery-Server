@@ -1,8 +1,7 @@
-import { AgencyKYC } from "../../../../Domain/Entities/Agency/AgencyKYC.js";
-import { AgencyKYC_DTO } from "../../../Dto/Agency/agency.dto.js";
+import { AgencyKYCFileFields } from "../../../../Infrastructure/services/storage/multer.js";
 
 
 export interface IUploadAgencyKycFilesUseCase  {
-    execute(dto: AgencyKYC_DTO): Promise<void>;
+    execute(files:AgencyKYCFileFields): Promise<void>;
 }
 

@@ -25,8 +25,8 @@ export interface VerifyOtpResponseDTO {
     email: string;
     role: Role;
     kycStatus:KYCStatus;
+    accessToken: string
   }
-  accessToken: string
 };
 
 export interface SendLoginResponse extends VerifyOtpResponseDTO { }
@@ -39,7 +39,7 @@ export interface UserDTO {
   role: Role;
 }
 
-export interface AgencyDTO extends UserDTO { }
+
 
 export interface LoginDTO {
   email: string;

@@ -6,4 +6,8 @@ export const AGENCY_MESSAGES = {
     LIST_FETCH_SUCCESS: "Agencies fetched successfully.",
     STATUS_UPDATED: "Agency status updated successfully.",
     KYC_STATUS_UPDATED: "Agency KYC status updated successfully.",
+
+    KYC_SUBMITED:"Agency kyc submitted successfully",
+
+    FETCH_AGENCY_WITH_KYC:"Agency with kyc fetched successfully"
 } as const;

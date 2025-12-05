@@ -11,8 +11,7 @@ export interface PaginatedData {
   totalPages: number;
 }
 
-export interface AgencyWithKYCDTO {
-  agency: Agency;
+export interface AgencyWithKYC_DB_Result extends  Agency {
   kyc: AgencyKYC | null;
 }
 
@@ -22,5 +21,5 @@ export interface IAgencyRepository extends IBaseRepository<Agency> {
 
   getPaginatedAgencies(dto: GetAgenciesDTO): Promise<PaginatedData>;
 
-  findAgencyWithKYC(id: string): Promise<AgencyWithKYCDTO | null>;
+  findAgencyWithKYC(id: string): Promise<AgencyWithKYC_DB_Result  | null>;
 }

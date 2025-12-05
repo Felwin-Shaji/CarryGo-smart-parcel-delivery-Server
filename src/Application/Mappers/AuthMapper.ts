@@ -36,10 +36,10 @@ export class AuthMapper {
                 name,
                 email,
                 role,
-                kycStatus
+                kycStatus,
 
+                accessToken: accessToken
             },
-            accessToken: accessToken
         }
     }
 
@@ -57,9 +57,9 @@ export class AuthMapper {
                 name,
                 email,
                 role,
-                kycStatus:kycStatus||null
+                kycStatus:kycStatus||null,
+                accessToken: accessToken
             },
-            accessToken: accessToken
         }
     }
 

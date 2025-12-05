@@ -2,21 +2,10 @@ import { inject, injectable } from "tsyringe";
 import { IGetAgenciesUseCase } from "../../interfaces/useCase_Interfaces/Agency/GetAgenciesUseCase";
 import { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
 import { Agency } from "../../../Domain/Entities/Agency/Agency";
-import { AgencyResponseDTO, GetAgenciesDTO, GetAgenciesResponseDTO } from "../../Dto/Agency/agency.dto";
+import {  GetAgenciesDTO, GetAgenciesResponseDTO } from "../../Dto/Agency/agency.dto";
+import { AgencyMapper } from "../../Mappers/Agency/AgencyMapper";
 
-export class AgencyMapper {
-  static toResponseDTO(agency: Agency): AgencyResponseDTO {
-    return {
-      id: agency.id!,
-      name: agency.name,
-      email: agency.email,
-      mobile: agency.mobile!,
-      isBlocked: agency.isBlocked,
-      kycStatus: agency.kycStatus,
-      createdAt: agency.createdAt,
-    };
-  }
-}
+
 
 
 @injectable()

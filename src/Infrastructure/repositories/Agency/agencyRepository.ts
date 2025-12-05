@@ -1,9 +1,8 @@
 import { Types } from "mongoose";
-import type { AgencyWithKYCDTO, IAgencyRepository, PaginatedData } from "../../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
+import type { AgencyWithKYC_DB_Result , IAgencyRepository, PaginatedData } from "../../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
 import { Agency } from "../../../Domain/Entities/Agency/Agency.js";
 import { AgencyModel } from "../../database/models/AgencyModels/agencyModel.js";
 import { BaseRepository } from "./..//baseRepositories.js";
-import { AgencyKYC } from "../../../Domain/Entities/Agency/AgencyKYC.js";
 import { GetAgenciesDTO } from "../../../Application/Dto/Agency/agency.dto.js";
 
 export class AgencyRepository extends BaseRepository<Agency> implements IAgencyRepository {
@@ -54,7 +53,6 @@ export class AgencyRepository extends BaseRepository<Agency> implements IAgencyR
             this.model.countDocuments(filter),
         ]);
 
-        console.log(data,'lkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
 
         return {
             data,
@@ -66,7 +64,7 @@ export class AgencyRepository extends BaseRepository<Agency> implements IAgencyR
     }
 
 
-    async findAgencyWithKYC(id: string): Promise<AgencyWithKYCDTO | null> {
+    async findAgencyWithKYC(id: string): Promise<AgencyWithKYC_DB_Result | null> {
         const result = await this.model.aggregate([
             { $match: { _id: new Types.ObjectId(id) } },
             {
@@ -84,42 +82,9 @@ export class AgencyRepository extends BaseRepository<Agency> implements IAgencyR
 
         const agencyDoc = result[0];
 
-
-        const agency = new Agency(
-            agencyDoc._id.toString(),
-            agencyDoc.name,
-            agencyDoc.email,
-            agencyDoc.mobile,
-            agencyDoc.password,
-            agencyDoc.role,
-            agencyDoc.kycStatus,
-            agencyDoc.walletBalance,
-            agencyDoc.commisionRate,
-            agencyDoc.isBlocked,
-            agencyDoc.createdAt,
-            agencyDoc.updatedAt
-        );
-
-        const kyc: AgencyKYC | null = agencyDoc.kyc
-            ? {
-                id: agencyDoc.kyc._id.toString(),
-                agencyId: agencyDoc.kyc.agencyId.toString(),
-                tradeLicenseNumber: agencyDoc.kyc.tradeLicenseNumber,
-                tradeLicenseDocument: agencyDoc.kyc.tradeLicenseDocument,
-                PANnumber: agencyDoc.kyc.PANnumber,
-                PAN_photo: agencyDoc.kyc.PAN_photo,
-                gst_number: agencyDoc.kyc.gst_number,
-                gst_certificate: agencyDoc.kyc.gst_certificate,
-                status: agencyDoc.kyc.status,
-                createdAt: agencyDoc.kyc.createdAt,
-                updatedAt: agencyDoc.kyc.updatedAt
-            }
-            : null;
-
-        return { agency, kyc };
+        console.log(agencyDoc)
 
 
+        return agencyDoc as AgencyWithKYC_DB_Result;
     }
-
-
 };

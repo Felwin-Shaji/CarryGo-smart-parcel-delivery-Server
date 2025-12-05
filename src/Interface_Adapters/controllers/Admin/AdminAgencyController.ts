@@ -23,7 +23,7 @@ export class AdminAgencyController implements IAdminAgencyController {
         @inject("IUpdateAgencyStatusUseCase") private _updateAgencyStatusUseCase: IUpdateAgencyStatusUseCase
     ) { }
 
-    getAgencies = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    getAgencies = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => { //////////////////////
         try {
 
             const dto: GetAgenciesDTO = {
@@ -44,7 +44,6 @@ export class AdminAgencyController implements IAdminAgencyController {
                 ApiResponse.success(
                     AGENCY_MESSAGES.LIST_FETCH_SUCCESS,
                     result,
-                    STATUS.OK
                 )
             );
         } catch (error) {
@@ -52,13 +51,19 @@ export class AdminAgencyController implements IAdminAgencyController {
         }
     };
 
-    getAgencyById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    getAgencyById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => { ////////////////////////
         try {
             const agencyId = req.params.id;
             if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
 
             const result = await this._getAgencyWithKYCUseCase.execute(agencyId);
-            return res.status(STATUS.OK).json(result);
+            
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    AGENCY_MESSAGES.FETCH_AGENCY_WITH_KYC,
+                    result
+                )
+            );
         } catch (error) {
             next(error);
         }

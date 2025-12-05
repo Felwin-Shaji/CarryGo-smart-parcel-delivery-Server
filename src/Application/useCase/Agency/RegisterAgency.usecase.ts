@@ -1,8 +1,10 @@
 import { inject, injectable } from "tsyringe";
 import type { IRegisterAgencyUseCase } from "../../interfaces/useCase_Interfaces/Agency/Agencyregisrtation.usecase.js";
 import type { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
-import type { AgencyDTO } from "../../Dto/Auth/Auth.dto.js";
 import { Agency } from "../../../Domain/Entities/Agency/Agency.js";
+import { RegisterAgencyDTO, RegisterAgencyResponseDTO } from "../../Dto/Agency/agency.dto.js";
+
+
 
 @injectable()
 export class RegisterAgencyUseCase  implements IRegisterAgencyUseCase {
@@ -10,7 +12,7 @@ export class RegisterAgencyUseCase  implements IRegisterAgencyUseCase {
         @inject("IAgencyRepository") private _agencyRepo:IAgencyRepository
     ){}
 
-    async execute(agencyData: AgencyDTO): Promise<Agency> {
+    async execute(agencyData: RegisterAgencyDTO): Promise<RegisterAgencyResponseDTO> {
         
         const newAgency = new Agency(
             null,
@@ -23,6 +25,6 @@ export class RegisterAgencyUseCase  implements IRegisterAgencyUseCase {
 
         const savedData = await this._agencyRepo.save(newAgency);
 
-        return savedData;
+        return savedData as RegisterAgencyResponseDTO;
     };
 };

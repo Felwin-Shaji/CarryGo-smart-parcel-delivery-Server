@@ -2,6 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { IStorageService } from "../../interfaces/services_Interfaces/storage-service.interface";
 import { AgencyKYC_DTO } from "../../Dto/Agency/agency.dto";
 import { IUploadAgencyKycFilesUseCase } from "../../interfaces/useCase_Interfaces/Agency/UploadAgencyKycFilesUseCase";
+import { AgencyKYCFileFields } from "../../../Infrastructure/services/storage/multer";
 
 @injectable()
 export class UploadAgencyKycFilesUseCase implements IUploadAgencyKycFilesUseCase {
@@ -9,26 +10,26 @@ export class UploadAgencyKycFilesUseCase implements IUploadAgencyKycFilesUseCase
     @inject("IStorageService") private _storage: IStorageService
   ) {}
 
-  async execute(dto: AgencyKYC_DTO) {
+  async execute(files:AgencyKYCFileFields) {
     const uploaded: any = {};
 
-    if (dto.tradeLicenseDocument) {
+    if (files.tradeLicenseDocument) {
       uploaded.tradeLicenseDocument = await this._storage.upload(
-        dto.tradeLicenseDocument,
+        files?.tradeLicenseDocument?.[0]?.buffer!,
         "agency/trade-license"
       );
     }
 
-    if (dto.PAN_photo) {
+    if (files.PAN_photo) {
       uploaded.PAN_photo = await this._storage.upload(
-        dto.PAN_photo,
+        files.PAN_photo?.[0]?.buffer!,
         "agency/pan"
       );
     }
 
-    if (dto.gst_certificate) {
+    if (files.gst_certificate) {
       uploaded.gst_certificate = await this._storage.upload(
-        dto.gst_certificate,
+        files.gst_certificate?.[0]?.buffer!,
         "agency/gst"
       );
     }

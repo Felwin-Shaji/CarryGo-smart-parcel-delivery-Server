@@ -1,6 +1,6 @@
-import { Agency } from "../../../../Domain/Entities/Agency/Agency.js";
-import type { AgencyDTO } from "../../../Dto/Auth/Auth.dto.js";
+
+import { RegisterAgencyDTO, RegisterAgencyResponseDTO } from "../../../Dto/Agency/agency.dto.js";
 
 export interface IRegisterAgencyUseCase {
-    execute(agencyData:AgencyDTO): Promise<Agency>;
+    execute(agencyData:RegisterAgencyDTO): Promise<RegisterAgencyResponseDTO>;
 }

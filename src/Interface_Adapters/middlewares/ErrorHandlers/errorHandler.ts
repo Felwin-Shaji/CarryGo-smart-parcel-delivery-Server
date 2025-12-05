@@ -35,7 +35,6 @@ export function errorHandler(
     ApiResponse.failure(
       appError.message,
       ERROR_MESSAGES.INTERNAL_ERROR,
-      appError._statusCode
     )
   );
 }

@@ -9,7 +9,7 @@ import { UserDTO } from "../Auth/Auth.dto";
 export interface RegisterAgencyDTO extends UserDTO { }
 
 export interface RegisterAgencyResponseDTO {
-  id: string;
+  _id: string;
   name: string;
   email: string;
   mobile: string | null;

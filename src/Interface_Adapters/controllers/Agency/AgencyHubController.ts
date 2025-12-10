@@ -12,7 +12,7 @@ import { AgencyAddHubFields } from "../../../Infrastructure/services/storage/mul
 import { ICheckTempHubStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/ICheckTempHubStatusUseCase";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
-import { Interface } from "readline";
+
 
 
 @injectable()
@@ -56,7 +56,7 @@ export class AgencyHubController implements IAgencyHubController {
                 ApiResponse.success(
                     AGENCY_MESSAGES.OTP_SENT_SUCCESSFULLY,
                     {
-                        tempHubId: tempHub.id,
+                        tempHubId: tempHub._id,
                         email: tempHub.email,
                         expiresAt: tempHub.expiresAt
                     }

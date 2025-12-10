@@ -1,7 +1,7 @@
 import { Role } from "../../../Infrastructure/Types/types";
 
 export interface HubWorkersTemp {
-    // _id: string | null;
+    _id: string | null;
     hubId: string;
     name: string;
     email: string;

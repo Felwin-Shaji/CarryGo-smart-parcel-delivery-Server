@@ -2,7 +2,7 @@ import type { KYCStatus, Role } from "../../Infrastructure/Types/types.js";
 
 export class Admin {
   constructor(
-    public id: string | null,
+    public _id: string | null,
     public name: string,
     public email: string,
     public mobile: string | null,

@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
 
 export interface AgencyKYC  {
-    id?: string;
+    _id?: string;
     agencyId: Types.ObjectId;
     tradeLicenseNumber: string;
     tradeLicenseDocument: string;  

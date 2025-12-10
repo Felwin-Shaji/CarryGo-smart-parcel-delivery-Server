@@ -96,7 +96,7 @@ export class AuthController implements IAuthController {
 
 
             const tokens = await this._generateTokenUseCase.execute(
-                registeredUser.id!,
+                registeredUser._id!,
                 registeredUser.email,
                 registeredUser.role
             );
@@ -109,7 +109,7 @@ export class AuthController implements IAuthController {
                 `${role}refreshTokenName`
             )
 
-            const response = AuthMapper.ToSendVerifyOtpResponse(registeredUser.id!, registeredUser.name, email, role, registeredUser.kycStatus, tokens.accessToken);
+            const response = AuthMapper.ToSendVerifyOtpResponse(registeredUser._id!, registeredUser.name, email, role, registeredUser.kycStatus, tokens.accessToken);
             return res.status(STATUS.CREATED).json(response);
 
         } catch (error) {
@@ -156,7 +156,7 @@ export class AuthController implements IAuthController {
 
             const users = await this._loginUsecase.execute(loginData);
 
-            const tokens = await this._generateTokenUseCase.execute(users.id, users.email, users.role)
+            const tokens = await this._generateTokenUseCase.execute(users._id, users.email, users.role)
 
             setAuthCookies(
                 res,
@@ -166,7 +166,7 @@ export class AuthController implements IAuthController {
                 `${loginData.role}refreshTokenName`
             );
 
-            const response = AuthMapper.ToSendLoginResponse(tokens.user?.id!, tokens.user?.name!, loginData.email, loginData.role, users.kycStatus, tokens.accessToken);
+            const response = AuthMapper.ToSendLoginResponse(tokens.user?._id!, tokens.user?.name!, loginData.email, loginData.role, users.kycStatus, tokens.accessToken);
 
             return res.status(STATUS.OK).json(response);
 

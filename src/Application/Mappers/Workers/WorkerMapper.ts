@@ -36,7 +36,7 @@ export class WorkerMapper {
     ): IWrokerKYCVerification {
 
         return {
-            id: null,
+            _id: null,
             subjectId: workerId,
             subjectType: "worker",
             idType,

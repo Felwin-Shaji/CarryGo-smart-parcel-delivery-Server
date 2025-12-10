@@ -4,7 +4,7 @@ import { AppError } from "../../utils/customError";
 
 export class Agency {
   constructor(
-    public id: string | null,
+    public _id: string | null,
     public name: string,
     public email: string,
     public mobile: string | null,

@@ -9,7 +9,7 @@ export class HubTempMapper {
         const expiresAt = new Date(Date.now() + 1000 * 60 * 2);
 
         return {
-            id: null,
+            _id: null,
             agencyId: dto.agencyId,
             name: dto.name,
             email: dto.email,
@@ -67,7 +67,7 @@ export class HubMapper {
 
     static toAgencyAddHubResponseDTO(hub: Hub):agencyAddHubResponseDTO {
         return {
-            id: hub.id!,
+            id: hub._id!,
             name: hub.name,
             email: hub.email,
             role: hub.role,

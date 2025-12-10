@@ -64,7 +64,7 @@ export class AddWorkerTempUseCase implements IAddWorkerTempUseCase {
             otp: hashOtp,
             status: "BASIC-Info",
             expiresAt, 
-            // _id: null,
+            _id: null,
             hubId: dto.hubId
         };
 

@@ -49,7 +49,7 @@ export class AddWorkerUsecase implements IAddWorkerUsecase {
         await this._hubWorkersTempRepo.delete({ email });
 
         const kycEntity = WorkerMapper.toWorkerKycEntity(
-            savedWorker.id!,
+            savedWorker._id!,
             idType,
             documentUrl,
             selfieUrl,

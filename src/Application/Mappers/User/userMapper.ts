@@ -6,7 +6,7 @@ export class UserMapper {
     static toResponseDTO(getUsersResult:GetUsersDBResult):GetUserResponseDto {
 
         const userDto = getUsersResult.data.map((user:User) => ({
-            id: user.id!,
+            id: user._id!,
             name: user.name,
             email: user.email,
             mobile: user.mobile!,

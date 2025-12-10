@@ -10,7 +10,7 @@ export interface AppJwtPayload {
 }
 
 export interface AuthUserDTO {
-    id: string;
+    _id: string;
     name: string;
     email: string;
     role: Role;

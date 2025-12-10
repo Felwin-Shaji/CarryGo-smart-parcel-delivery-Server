@@ -13,6 +13,7 @@ export class UpdateAgencyStatusUseCase implements IUpdateAgencyStatusUseCase {
     ) { }
     async execute(agencyId: string, isBlocked: boolean ): Promise<void> {
         const user = await this._agencyRepo.findById({ _id: agencyId });
+        console.log(user)
         
         if (!user) throw new AppError(AGENCY_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
 

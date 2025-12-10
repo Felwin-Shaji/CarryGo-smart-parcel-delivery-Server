@@ -1,7 +1,7 @@
 import { Role } from "../../../Infrastructure/Types/types";
 
 export interface HubTemp {
-    id: string | null;
+    _id: string | null;
 
     agencyId: string;
 

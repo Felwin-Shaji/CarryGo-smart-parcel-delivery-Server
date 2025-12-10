@@ -45,13 +45,13 @@ export class VarifyEmailUseCase implements IVarifyEmailUseCase {
         if (!user) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND);
 
         const resetToken = this._tokenService.generateForgotPasswordToken({
-            userId: user.id,
+            userId: user._id,
             email: user.email,
             role: user.role
         });
 
         const data: ITokenModel = {
-            userId: user.id!,
+            userId: user._id!,
             token: resetToken,
             role: user.role,
             createdAt: new Date(),

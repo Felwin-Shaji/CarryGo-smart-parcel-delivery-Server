@@ -85,7 +85,7 @@ export class AdminAgencyController implements IAdminAgencyController {
 
             return res.status(STATUS.OK).json(
                 ApiResponse.success(
-                    AGENCY_MESSAGES.KYC_STATUS_UPDATED,agencyStatus
+                    AGENCY_MESSAGES.KYC_STATUS_UPDATED, agencyStatus
                 )
             )
 

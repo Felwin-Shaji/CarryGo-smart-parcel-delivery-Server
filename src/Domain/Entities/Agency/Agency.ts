@@ -11,6 +11,7 @@ export class Agency {
     public password: string | null,
     public role: Role,
     public kycStatus: KYCStatus = "PENDING",
+    public rejectReason: string | null = null,
     public walletBalance: number = 0,
     public commisionRate:number = 1,
     public isBlocked: boolean = false,

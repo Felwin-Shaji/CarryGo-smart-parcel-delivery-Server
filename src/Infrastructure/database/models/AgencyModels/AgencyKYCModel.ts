@@ -10,7 +10,7 @@ const agencyKYCModel = new Schema<AgencyKYC>(
         PAN_photo: { type: String, required: true },
         gst_number: { type: String, required: true },
         gst_certificate: { type: String, required: true },
-        status: { type: String, enum: ["PENDING", "APPROVED", "REJECTED"], default: "PENDING" }
+        status: { type: String, enum: ["PENDING", "APPROVED", "REJECTED", "RESUBMITTED"], default: "PENDING" }
     },
     {
         timestamps: true

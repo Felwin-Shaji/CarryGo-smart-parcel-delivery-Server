@@ -9,6 +9,7 @@ export const HUB_MESSAGES = {
 
     OTP_SESSION_NOT_FOUND: "No OTP process found for this email",
     OTP_RESENT: "Hub OTP resent successfully",
+    OTP_NOT_SENT_YET: "OTP has not been sent yet for this temp hub",
 
 
     INVALID_TEMP_SESSION: "Invalid tempHubId or email",

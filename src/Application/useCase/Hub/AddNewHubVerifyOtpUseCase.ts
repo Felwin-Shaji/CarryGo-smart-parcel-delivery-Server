@@ -5,6 +5,7 @@ import { AppError } from "../../../Domain/utils/customError";
 import { IAddNewHubVerifyOtpUseCase } from "../../interfaces/useCase_Interfaces/Hub/IAddNewHubVerifyOtpUseCase";
 import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { AddNewHubVerifyOtpDTO } from "../../Dto/Agency/agency.dto";
 
 @injectable()
 export class AddNewHubVerifyOtpUseCase implements IAddNewHubVerifyOtpUseCase {
@@ -14,19 +15,20 @@ export class AddNewHubVerifyOtpUseCase implements IAddNewHubVerifyOtpUseCase {
         @inject("IOtpService") private _otpService: IOtpService
     ) { }
 
-    async verify(email: string, tempHubId: string, otp: string): Promise<boolean> {
+    async verify(dto: AddNewHubVerifyOtpDTO): Promise<boolean> {
 
-        const tempHub = await this._hubTempRepo.findOne({ _id: tempHubId, email });
+        const tempHub = await this._hubTempRepo.findOne({ _id: dto.tempHubId, email: dto.email });
 
         if (!tempHub) throw new AppError(HUB_MESSAGES.INVALID_TEMP_SESSION, STATUS.BAD_REQUEST);
 
         if (tempHub.status === "OTP-Verified") return true;
-
-        const match = await this._otpService.compareOtp(otp, tempHub.otp!);
+        if (tempHub.status !== "BASIC-Info") throw new AppError(HUB_MESSAGES.OTP_NOT_SENT_YET, STATUS.BAD_REQUEST);
+        
+        const match = await this._otpService.compareOtp(dto.otp, tempHub.otp!);
         if (!match) return false;
 
         await this._hubTempRepo.findOneAndUpdate(
-            { _id: tempHubId },
+            { _id: dto.tempHubId },
             { status: "OTP-Verified", updateAt: new Date() }
         );
         return true;

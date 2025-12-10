@@ -53,6 +53,10 @@ import { IAddWorkerTempUseCase } from "../../Application/interfaces/useCase_Inte
 import { AddWorkerTempUseCase } from "../../Application/useCase/Worker/AddWorkerTempUseCase.js";
 import { IWorkerVerifyOtpUseCase } from "../../Application/interfaces/useCase_Interfaces/Worker/addWorkerVerifyOtpUseCase.js";
 import { WorkerVerifyOtpUseCase } from "../../Application/useCase/Worker/addWorkerVerifyOtpUseCase.js";
+import { IRsubmitAgencyKycUseCase } from "../../Application/interfaces/useCase_Interfaces/Agency/ResubmitAgencyKycUseCase.js";
+import { RsubmitAgencyKycUseCase } from "../../Application/useCase/Agency/ResubmitAgencyKyc.usecase.js";
+
+
 
 
 
@@ -165,6 +169,11 @@ export class UsecaseRegistery {
         container.register<IWorkerVerifyOtpUseCase>("IWorkerVerifyOtpUseCase",{
             useClass:WorkerVerifyOtpUseCase
         })
+
+        container.register<IRsubmitAgencyKycUseCase>("IRsubmitAgencyKycUseCase",{
+            useClass:RsubmitAgencyKycUseCase
+        })
+
 
     }
 }

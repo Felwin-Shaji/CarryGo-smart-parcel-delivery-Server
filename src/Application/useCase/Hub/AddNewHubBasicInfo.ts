@@ -8,11 +8,9 @@ import { AppError } from "../../../Domain/utils/customError";
 import { HubTempMapper } from "../../Mappers/HubMapper";
 import { IOtpService } from "../../interfaces/services_Interfaces/otp-service.interface";
 import { IMailService } from "../../interfaces/services_Interfaces/email-service.interface";
-import dotenv from "dotenv";
 import { ENV } from "../../../Infrastructure/constants/env";
 import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-dotenv.config()
 
 
 

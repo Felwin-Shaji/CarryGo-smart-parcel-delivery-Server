@@ -9,5 +9,5 @@ export interface IBaseRepository<T> {
 
     delete(filter:FilterQuery<T>, session?:ClientSession):Promise<T | null>;
 
-    findOneAndUpdate(filter:FilterQuery<T>, value:object,session?:ClientSession):Promise<T | null>;
+    findOneAndUpdate(filter:FilterQuery<T>, value:object, unset?:object,session?:ClientSession):Promise<T | null>;
 };

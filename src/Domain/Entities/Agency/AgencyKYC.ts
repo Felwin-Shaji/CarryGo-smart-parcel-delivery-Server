@@ -9,7 +9,7 @@ export interface AgencyKYC  {
     PAN_photo: string;             
     gst_number: string;
     gst_certificate: string;        
-    status: "PENDING" | "APPROVED" | "REJECTED";
+    status: "PENDING" | "APPROVED" | "REJECTED" | "RESUBMITTED";
     createdAt?: Date;
     updatedAt?: Date;
 }

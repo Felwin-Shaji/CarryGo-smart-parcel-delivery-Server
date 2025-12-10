@@ -4,12 +4,15 @@ import { inject, injectable } from "tsyringe";
 import { IUploadAddFilesUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IUploadAddFilesUseCase";
 import { IAddHubUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IAddHubUseCase";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { AddNewHubAddressDto, AddNewHubBaseDto } from "../../../Application/Dto/Agency/agency.dto";
+import { AddNewHubAddressDto, AddNewHubBaseDto, AddNewHubVerifyOtpDTO } from "../../../Application/Dto/Agency/agency.dto";
 import { IAddHubTempUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IAddHubTempUseCase";
 import { IAddNewHubResendOtp } from "../../../Application/interfaces/useCase_Interfaces/Hub/IAddNewHubResendOtp";
 import { IAddNewHubVerifyOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IAddNewHubVerifyOtpUseCase";
 import { AgencyAddHubFields } from "../../../Infrastructure/services/storage/multer";
 import { ICheckTempHubStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/ICheckTempHubStatusUseCase";
+import { ApiResponse } from "../../presenters/ApiResponse";
+import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
+import { Interface } from "readline";
 
 
 @injectable()
@@ -29,20 +32,13 @@ export class AgencyHubController implements IAgencyHubController {
 
     ) { }
 
-    checkTempStatus = async (req: Request, res: Response, next: NextFunction) => {
+    checkTempStatus = async (req: Request, res: Response, next: NextFunction) => { ////////////////////////
         try {
             const email = req.query.email as string;
 
-            if (!email) {
-                return res.status(STATUS.BAD_REQUEST).json({
-                    success: false,
-                    message: "Email is required"
-                });
-            }
-
             const result = await this._checkTempHubStatusUseCase.execute(email);
 
-            return res.status(STATUS.OK).json(result);
+            return res.status(STATUS.OK).json(ApiResponse.success(AGENCY_MESSAGES.STATUS_CHECHED_SUCCESS, result));
 
         } catch (error) {
             next(error);
@@ -50,107 +46,79 @@ export class AgencyHubController implements IAgencyHubController {
     };
 
 
-    addNewHubBasicInfo = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    addNewHubBasicInfo = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {///////////////
         try {
             const dto = req.body as AddNewHubBaseDto
-            
+
             const tempHub = await this._addHubTempUseCase.execute(dto);
 
-            return res.status(STATUS.CREATED).json({
-                success: true,
-                message: "OTP sent successfully. Proceed to verification.",
-                tempHubId: tempHub.id,
-                email: tempHub.email,
-                expiresAt: tempHub.expiresAt
-            });
+            return res.status(STATUS.CREATED).json(
+                ApiResponse.success(
+                    AGENCY_MESSAGES.OTP_SENT_SUCCESSFULLY,
+                    {
+                        tempHubId: tempHub.id,
+                        email: tempHub.email,
+                        expiresAt: tempHub.expiresAt
+                    }
+                )
+            );
 
         } catch (error) {
             next(error);
         }
     };
 
-    addNewHubVerifyOtp = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    addNewHubVerifyOtp = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => { /////////////////
         try {
-            const { email, tempHubId, otp } = req.body;
+            const dto = req.body as AddNewHubVerifyOtpDTO;
 
-            if (!email || !tempHubId || !otp) {
-                return res.status(STATUS.BAD_REQUEST).json({
-                    success: false,
-                    message: "Email, tempHubId and OTP are required"
-                });
-            }
+            const verified = await this._addNewHubVerifyOtpUseCase.verify(dto);
 
-            const verified = await this._addNewHubVerifyOtpUseCase.verify(email, tempHubId, otp);
+            if (!verified) return res.status(STATUS.BAD_REQUEST).json(ApiResponse.failure(AGENCY_MESSAGES.INVALID_OTP));
 
-            if (!verified) {
-                return res.status(STATUS.BAD_REQUEST).json({
-                    success: false,
-                    message: "Invalid OTP"
-                });
-            }
-
-            return res.status(STATUS.OK).json({
-                success: true,
-                message: "OTP verified successfully"
-            });
+            return res.status(STATUS.OK).json(ApiResponse.success(AGENCY_MESSAGES.OTP_SENT_SUCCESSFULLY, { verified }));
 
         } catch (error) {
             next(error);
         }
     };
 
-    addNewHubResendOtp = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    addNewHubResendOtp = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {////////////////
         try {
             const { email } = req.body;
 
-            if (!email) {
-                return res.status(STATUS.BAD_REQUEST).json({
-                    success: false,
-                    message: "Email is required"
-                });
-            }
-
             const result = await this._addNewHubResendOtp.resend(email);
 
-            return res.status(STATUS.OK).json({
-                success: true,
-                message: "OTP resent successfully",
-                expiresAt: result.expiresAt
-            });
+            return res.status(STATUS.OK).json(ApiResponse.success(AGENCY_MESSAGES.OTP_RESENT, result));
 
         } catch (error) {
             next(error);
         }
     };
 
-    addNewHub = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    addNewHub = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => { ////////////////
         try {
             const { tempHubId } = req.body
             const files = req.files as AgencyAddHubFields;
             const imgUrl = await this._uploadAddFilesUseCase.execute(files);
 
-            const values = req.body as AddNewHubAddressDto
+            const values = req.body as AddNewHubAddressDto;
 
-            console.log(imgUrl)
-            const savedHub = await this._addHubUseCase.execute(tempHubId, values, imgUrl)
+            console.log(imgUrl);
+            const savedHub = await this._addHubUseCase.execute(tempHubId, values, imgUrl);
 
-            const response = {
-                success: true,
-                message: "KYC submitted successfully",
-                user: {
-                    id: savedHub.id!,
-                    name: savedHub.name,
-                    email: savedHub.email,
-                    role: savedHub.role,
-                    kycStatus: savedHub.kycStatus
-                },
-
-            };
-
-            return res.status(STATUS.CREATED).json(response);
+            return res.status(STATUS.CREATED).json(ApiResponse.success(AGENCY_MESSAGES.HUB_ADDED_SUCCESSFULLY, savedHub));///////////////
 
         } catch (error) {
             next(error)
         }
     }
+}
+
+export interface agencyAddHubResponseDTO {
+    id: string;
+    name: string;
+    email: string;
+    role: string;
+    kycStatus: string;
 }

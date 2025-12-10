@@ -8,6 +8,10 @@ import { AgencyKYCModel } from "../../database/models/AgencyModels/AgencyKYCMode
 @injectable()
 export class AgencyKYCRepository extends BaseRepository<AgencyKYC> implements IAgencyKYCRepository {
 
+    constructor() {
+        super(AgencyKYCModel);
+    }
+
     async saveKYC(agencyId: string, data: Partial<AgencyKYC>) {
         return AgencyKYCModel.findOneAndUpdate(
             { agencyId },

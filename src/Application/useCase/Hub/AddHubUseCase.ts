@@ -31,7 +31,7 @@ export class AddHubUseCase implements IAddHubUseCase {
         if (!tempHub) throw new AppError(HUB_MESSAGES.SESSION_INVALID, STATUS.BAD_REQUEST);
 
         if (tempHub.status !== "OTP-Verified") throw new AppError(HUB_MESSAGES.OTP_NOT_VERIFIED, STATUS.BAD_REQUEST);
-        
+
 
         const rawPassword = this._passwordService.generateCustomPassword(
             tempHub.email,
@@ -46,17 +46,15 @@ export class AddHubUseCase implements IAddHubUseCase {
         tempHub.location_lat = extraData.location_lat;
         tempHub.location_lng = extraData.location_lng;
 
-        const hubEntity = HubMapper.toCreateHub(
-            tempHub,
-            hashedPassword,
-            imageUrl
-        );
+        const hubEntity = HubMapper.toCreateHub(tempHub, hashedPassword, imageUrl);
 
         const savedHub = await this._hubRepo.save(hubEntity);
 
         await this._hubTempRepo.delete({ _id: tempHubId });
         if (ENV.IS_PROD) await this._mailService.sendCustomPassword(tempHub.email);
 
-        return savedHub;
+        const responseDTO = HubMapper.toAgencyAddHubResponseDTO(savedHub);
+
+        return responseDTO;
     }
 }

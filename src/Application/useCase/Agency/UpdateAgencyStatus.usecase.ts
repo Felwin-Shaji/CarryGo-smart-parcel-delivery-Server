@@ -11,11 +11,12 @@ export class UpdateAgencyStatusUseCase implements IUpdateAgencyStatusUseCase {
     constructor(
         @inject("IAgencyRepository") private _agencyRepo: IAgencyRepository,
     ) { }
-    async execute(dto: { userId: string, isBlocked: boolean }): Promise<void> {
-        const user = await this._agencyRepo.findById({ _id: dto.userId });
+    async execute(agencyId: string, isBlocked: boolean ): Promise<void> {
+        const user = await this._agencyRepo.findById({ _id: agencyId });
+        
         if (!user) throw new AppError(AGENCY_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
 
-        await this._agencyRepo.findOneAndUpdate({ _id: dto.userId }, { isBlocked: dto.isBlocked })
+        await this._agencyRepo.findOneAndUpdate({ _id: agencyId }, { isBlocked: isBlocked })
 
     }
 } 

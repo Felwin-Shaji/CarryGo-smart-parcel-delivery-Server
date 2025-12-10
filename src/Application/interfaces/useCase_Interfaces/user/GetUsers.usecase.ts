@@ -1,17 +1,5 @@
-import { User } from "../../../../Domain/Entities/User";
+import { GetUserDto, GetUserResponseDto } from "../../../Dto/User/user.dto";
 
 export interface IGetUsersUseCase {
-    execute(input: {
-        page: number;
-        limit: number;
-        search: string;
-        sortBy: string;
-        sortOrder: "asc" | "desc";
-    }): Promise<{
-        data: User[];
-        total: number;
-        page: number;
-        limit: number;
-        totalPages: number;
-    }>;
+    execute(dto: GetUserDto): Promise<GetUserResponseDto>;
 }

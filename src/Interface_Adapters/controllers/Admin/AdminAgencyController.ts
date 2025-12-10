@@ -8,10 +8,15 @@ import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { IAdminAgencyController } from "../../../Application/interfaces/Controllers_Interfaces/Admin_Interfaces/adminAgency.controller";
 import { IUpdateAgencyStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/UpdateAgencyStatusUseCase";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
-import { Agency } from "../../../Domain/Entities/Agency/Agency";
-import { GetAgenciesDTO } from "../../../Application/Dto/Agency/agency.dto";
+import { GetAgenciesDTO, updateAgencyKycStatusDTO, } from "../../../Application/Dto/Agency/agency.dto";
 import { ApiResponse } from "../../presenters/ApiResponse";
 
+
+function parseBlockedQuery(value: unknown): boolean | null {
+    if (value === "true") return true;
+    if (value === "false") return false;
+    return null;
+}
 
 @injectable()
 export class AdminAgencyController implements IAdminAgencyController {
@@ -23,7 +28,7 @@ export class AdminAgencyController implements IAdminAgencyController {
         @inject("IUpdateAgencyStatusUseCase") private _updateAgencyStatusUseCase: IUpdateAgencyStatusUseCase
     ) { }
 
-    getAgencies = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => { //////////////////////
+    getAgencies = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => { //////////////////////✅
         try {
 
             const dto: GetAgenciesDTO = {
@@ -32,7 +37,7 @@ export class AdminAgencyController implements IAdminAgencyController {
                 search: req.query.search?.toString() || "",
                 sortBy: req.query.sortBy?.toString() || "createdAt",
                 sortOrder: req.query.sortOrder === "desc" ? "desc" : "asc",
-                blocked: req.query.blocked === "true" ? true : req.query.blocked === "false" ? false : null,
+                blocked: parseBlockedQuery(req.query.blocked),
                 kycStatus: req.query.kycStatus?.toString() || "",
                 startDate: req.query.startDate?.toString() || "",
                 endDate: req.query.endDate?.toString() || "",
@@ -51,13 +56,13 @@ export class AdminAgencyController implements IAdminAgencyController {
         }
     };
 
-    getAgencyById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => { ////////////////////////
+    getAgencyById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => { ////////////////////////✅
         try {
             const agencyId = req.params.id;
             if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
 
             const result = await this._getAgencyWithKYCUseCase.execute(agencyId);
-            
+
             return res.status(STATUS.OK).json(
                 ApiResponse.success(
                     AGENCY_MESSAGES.FETCH_AGENCY_WITH_KYC,
@@ -69,48 +74,43 @@ export class AdminAgencyController implements IAdminAgencyController {
         }
     };
 
-    updateAgencyKyc = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    updateAgencyKyc = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {////////////////////////
         try {
             const agencyId = req.params.id;
-            const status = req.body.status
+            const dto = req.body as updateAgencyKycStatusDTO;
+
 
             if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
-            const agencyData = await this._updateAgencyKycStatusUseCase.execute(agencyId, status)
+            const agencyStatus = await this._updateAgencyKycStatusUseCase.execute(agencyId, dto)
 
-            return res.status(STATUS.OK).json(agencyData)
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    AGENCY_MESSAGES.KYC_STATUS_UPDATED,agencyStatus
+                )
+            )
 
         } catch (error) {
             next(error);
         }
     }
 
-    updateAgencyStatus = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    updateAgencyStatus = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => { /////////////////////
         try {
-            const { id } = req.params;
+            const agencyId = req.params.id;
             const { isBlocked } = req.body;
 
-            if (!id) {
-                return res.status(STATUS.BAD_REQUEST).json({
-                    success: false,
-                    message: AGENCY_MESSAGES.ID_MISSING,
-                })
-            }
+            if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
 
-            const dto: { userId: string, isBlocked: boolean } = {
-                userId: id,
-                isBlocked
-            }
+            await this._updateAgencyStatusUseCase.execute(agencyId, isBlocked);
 
-            await this._updateAgencyStatusUseCase.execute(dto)
-
-            return res.status(STATUS.OK).json({
-                success: true,
-                message: AGENCY_MESSAGES.KYC_STATUS_UPDATED,
-            })
-
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    AGENCY_MESSAGES.STATUS_UPDATED,
+                )
+            )
 
         } catch (error) {
-            next(error)
+            next(error);
         }
     }
 }

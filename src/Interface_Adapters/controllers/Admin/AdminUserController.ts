@@ -4,6 +4,10 @@ import { IGetUsersUseCase } from "../../../Application/interfaces/useCase_Interf
 import { IUpdateUserStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/UpdateUserStatus.usecase";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { IAdminUserController } from "../../../Application/interfaces/Controllers_Interfaces/Admin_Interfaces/adminUser.controller";
+import { GetUserDto } from "../../../Application/Dto/User/user.dto";
+import { ApiResponse } from "../../presenters/ApiResponse";
+import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
+
 
 
 @injectable()
@@ -15,45 +19,45 @@ export class AdminUserController implements IAdminUserController {
     @inject("IUpdateUserStatusUseCase") private _updateUserStatusUseCase: IUpdateUserStatusUseCase
   ) { }
 
-  getUsers = async (req: Request, res: Response, next: NextFunction) => {
+  getUsers = async (req: Request, res: Response, next: NextFunction) => { ////////////////////////////
     try {
-      const result = await this._getUsersUseCase.execute({
+
+      const dto: GetUserDto = {
         page: Number(req.query.page) || 1,
         limit: Number(req.query.limit) || 10,
         search: req.query.search?.toString() || "",
         sortBy: req.query.sortBy?.toString() || "",
         sortOrder: req.query.sortOrder === "desc" ? "desc" : "asc",
-      });
+      };
 
-      return res.status(STATUS.OK).json(result);
+      const result = await this._getUsersUseCase.execute(dto);
+
+      return res.status(STATUS.OK).json(
+        ApiResponse.success(
+          USER_MESSAGES.LIST_FETCH_SUCCESS,
+          result,
+        )
+      );
+
     } catch (error) {
       next(error);
     }
   };
 
-  UpdateStatus = async (req: Request, res: Response, next: NextFunction) => {
+  UpdateStatus = async (req: Request, res: Response, next: NextFunction) => { 
     try {
-      const { id } = req.params;
+      const userId = req.params.id;
       const { isBlocked } = req.body;
 
-      if (!id ) {
-        return res.status(STATUS.BAD_REQUEST).json({
-          success: false,
-          message: "userId required"
-        })
-      }
+      if (!userId) return res.status(STATUS.BAD_REQUEST).json(ApiResponse.failure(USER_MESSAGES.USER_ID_MISSING));
 
-      const dto: { userId: string, isBlocked: boolean } = {
-        userId:id,
-        isBlocked
-      }
+      await this._updateUserStatusUseCase.execute(userId, isBlocked);
 
-      await this._updateUserStatusUseCase.execute(dto)
-
-      return res.status(STATUS.OK).json({
-        success: true,
-        message: "User status updated"
-      })
+      return res.status(STATUS.OK).json(
+        ApiResponse.success(
+          USER_MESSAGES.STATUS_UPDATED,
+        )
+      )
 
     } catch (error) {
       next(error)

@@ -1,5 +1,7 @@
 import { User } from "../../../../Domain/Entities/User";
+import { GetUsersDBResult } from "../../../Dto/User/user.dto";
 import type { IBaseRepository } from "../base.repository";
+
 
 export interface IUserRepository extends IBaseRepository<User> {
   getPaginatedUser(
@@ -8,11 +10,5 @@ export interface IUserRepository extends IBaseRepository<User> {
     search: string,
     sortBy: string,
     sortOrder: "asc" | "desc"
-  ): Promise<{
-    data: User[];
-    total: number;
-    page: number;
-    limit: number;
-    totalPages: number;
-  }>;
+  ): Promise<GetUsersDBResult>
 }

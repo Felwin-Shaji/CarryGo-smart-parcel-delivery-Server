@@ -1,3 +1,3 @@
 export interface IUpdateAgencyStatusUseCase {
-    execute(dto: { userId: string, isBlocked: boolean }): Promise<void>
+    execute( agencyId: string, isBlocked: boolean ): Promise<void>
 }

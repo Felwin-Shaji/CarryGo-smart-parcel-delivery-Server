@@ -4,7 +4,7 @@ import type { User } from "../../Domain/Entities/User.js";
 import type { IUserRepository } from "../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
 import { UserModel } from "../database/models/UserModels/userModel.js";
 
-export class UserRepository<T> extends BaseRepository<User> implements IUserRepository {
+export class UserRepository extends BaseRepository<User> implements IUserRepository {
     constructor() {
         super(UserModel)
     }

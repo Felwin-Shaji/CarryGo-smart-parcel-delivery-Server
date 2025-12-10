@@ -9,6 +9,7 @@ const agencyModel = new Schema<Agency>({
     password: { type: String },
     role: { type: String, enum: ["user", "agency", "admin", "hub", "worker"], default: "agency" },
     kycStatus: { type: String, enum: ["PENDING", "REGISTERED", "APPROVED" , "REJECTED", ], default: "PENDING" },
+    rejectReason: { type: String, default: null },
     walletBalance: { type: Number, required: true, default: 0 },
     commisionRate:{type: Number, required: true, default: 1 },  
     isBlocked: { type: Boolean, required: true, default: false },

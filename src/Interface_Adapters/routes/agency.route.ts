@@ -11,6 +11,8 @@ export class AgencyRoute extends BaseRoute {
 
     protected initializeRoutes(): void {
         this.router.post("/kyc-varification", authenticate(["agency"]), agencyuploadKYC, asyncHandler(agencyController.submitKYC))
+        this.router.get("/dashboard/resubmit-kyc/:id", authenticate(["agency"]), asyncHandler(agencyController.getReSubmitKyc))
+        this.router.put("/dashboard/resubmit-kyc", authenticate(["agency"]), agencyuploadKYC, asyncHandler(agencyController.reSubmitKyc))
         // this.router.get("/agency",authenticate(["agency"]),asyncHandler(agencyController.submitKYC))
 
 

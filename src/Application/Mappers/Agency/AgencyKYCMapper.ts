@@ -1,5 +1,5 @@
 import { AgencyKYC } from "../../../Domain/Entities/Agency/AgencyKYC";
-import { AgencyKYC_DTO } from "../../Dto/Agency/agency.dto";
+import { AgencyKYC_DTO, AgencyResubmitKycDTO } from "../../Dto/Agency/agency.dto";
 import { Types } from "mongoose";
 
 export class AgencyKYCMapper {
@@ -16,6 +16,29 @@ export class AgencyKYCMapper {
       gst_certificate: uploadedFiles?.gst_certificate || null,
       status: "PENDING",
       createdAt: new Date(),
+    };
+  }
+
+  static toAgencyKycResponseDTO(agencyKYC: AgencyKYC): AgencyKYC_DTO {
+    return {
+      id: agencyKYC.agencyId.toString(),
+      tradeLicenseNumber: agencyKYC.tradeLicenseNumber,
+      PANnumber: agencyKYC.PANnumber,
+      gst_number: agencyKYC.gst_number,
+      status: agencyKYC.status,
+    };
+  }
+
+
+  static toResubmitDTO(agencyKYC: AgencyKYC): AgencyResubmitKycDTO {
+    return {  
+      agencyId: agencyKYC.agencyId.toString(),
+      tradeLicenseNumber: agencyKYC.tradeLicenseNumber,
+      PANnumber: agencyKYC.PANnumber,
+      gst_number: agencyKYC.gst_number,
+      tradeLicenseDocument: agencyKYC?.tradeLicenseDocument ,
+      PAN_photo: agencyKYC?.PAN_photo ,
+      gst_certificate: agencyKYC?.gst_certificate ,
     };
   }
 }

@@ -21,7 +21,7 @@ export class BaseRepository<T> implements IBaseRepository<T> {
     async findOne(filter: mongoose.FilterQuery<T>, session?: ClientSession): Promise<T | null> {
         const query = this.model.findOne(filter);
         if (session) query.session(session);
-        return query;
+        return  query;
     };
 
     async save(data: T, session?: ClientSession): Promise<T> {
@@ -40,15 +40,32 @@ export class BaseRepository<T> implements IBaseRepository<T> {
         return query;
     }
 
-    async findOneAndUpdate(filter: FilterQuery<T>, value: object, session?: ClientSession): Promise<T | null> {
+    async findOneAndUpdate(filter: FilterQuery<T>, value: object, unsetData?: object, session?: ClientSession): Promise<T | null> {
         const options: {
             new: boolean;
             session?: ClientSession;
         } = { new: true };
 
+        const update: {
+            $set: object;
+            $unset?: object;
+        } = { $set: value };
+
+        if (unsetData) {
+            const cleanedUnset: Record<string, string> = {};
+
+            for (const key in unsetData) {
+                cleanedUnset[key] = "";
+            }
+
+            update.$unset = cleanedUnset;
+        }
+
+
         if (session) options.session = session;
-        const query = this.model.findOneAndUpdate(filter, { $set: value });
-        return query;
+
+        return this.model.findOneAndUpdate(filter, update, options);
     }
+
 
 };

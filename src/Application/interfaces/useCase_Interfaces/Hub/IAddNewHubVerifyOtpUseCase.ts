@@ -1,3 +1,5 @@
+import { AddNewHubVerifyOtpDTO } from "../../../Dto/Agency/agency.dto";
+
 export interface IAddNewHubVerifyOtpUseCase {
-    verify(email: string, tempHubId: string, otp: string): Promise<boolean>;
+    verify(dto:AddNewHubVerifyOtpDTO): Promise<boolean>;
 }

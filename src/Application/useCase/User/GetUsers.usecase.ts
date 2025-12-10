@@ -1,7 +1,9 @@
 import { inject, injectable } from "tsyringe";
 import { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
-import { User } from "../../../Domain/Entities/User";
 import { IGetUsersUseCase } from "../../interfaces/useCase_Interfaces/user/GetUsers.usecase";
+import { GetUserDto, GetUserResponseDto } from "../../Dto/User/user.dto";
+import { UserMapper } from "../../Mappers/User/userMapper";
+
 
 @injectable()
 export class GetUsersUseCase implements IGetUsersUseCase {
@@ -10,27 +12,20 @@ export class GetUsersUseCase implements IGetUsersUseCase {
         @inject("IUserRepository")
         private _userRepo: IUserRepository
     ) { }
-    async execute(input: {
-        page: number;
-        limit: number;
-        search: string;
-        sortBy: string;
-        sortOrder: "asc" | "desc";
-    }): Promise<{
-        data: User[];
-        total: number;
-        page: number;
-        limit: number;
-        totalPages: number;
-    }> {
-        const { page, limit, search, sortBy, sortOrder } = input;
+    async execute(dto: GetUserDto): Promise<GetUserResponseDto> {
 
-        return await this._userRepo.getPaginatedUser(
+        const { page, limit, search, sortBy, sortOrder } = dto;
+
+        const getUsersResult = await this._userRepo.getPaginatedUser(
             page,
             limit,
             search,
             sortBy,
             sortOrder
         );
+
+        const responseData = UserMapper.toResponseDTO(getUsersResult);
+
+        return responseData;
     }
 }

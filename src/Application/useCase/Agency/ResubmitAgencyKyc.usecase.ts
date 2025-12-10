@@ -20,23 +20,16 @@ export class RsubmitAgencyKycUseCase implements IRsubmitAgencyKycUseCase {
         private readonly _agencyRepo: IAgencyRepository
     ) { }
     async execute(dto: AgencyResubmitKycDTO): Promise<AgencyResubmitKycDTO> {
-        console.log("1111111111111111111111111111111111111111111111111111111111111111111111111111111111");
         const agency = await this._agencyRepo.findById({ _id: dto.agencyId });
 
         console.log("Agency fetched:", agency);
 
         if (!agency) throw new AppError(AGENCY_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
         if (agency.kycStatus !== "REJECTED") throw new AppError(AGENCY_MESSAGES.CANNOT_RESUBMIT_KYC, STATUS.BAD_REQUEST);
-        console.log("222222222222222222222222222222222222222222222222222222222222222222222222222222222");
 
         const agencyId = new Types.ObjectId(dto.agencyId)
-
         const kycData = await this._kycRepo.findOne({agencyId: agencyId});
-
-
-        console.log("33333333333333333333333333333333333333333333333333333333333333333333333333333333");
         if (!kycData) throw new AppError(AGENCY_MESSAGES.AGENCY_KYC_NOT_FOUND, STATUS.NOT_FOUND);
-
 
         const updatedkyc = await this._kycRepo.findOneAndUpdate({agencyId: agencyId}, {
             ...dto,
@@ -46,8 +39,6 @@ export class RsubmitAgencyKycUseCase implements IRsubmitAgencyKycUseCase {
         }, {
             rejectionReason: undefined,
         });
-        console.log("44444444444444444444444444444444444444444444444444444444444444444444444444444444");
-
 
         await this._agencyRepo.findOneAndUpdate({ _id:agencyId}, {
             kycStatus: "RESUBMITTED",

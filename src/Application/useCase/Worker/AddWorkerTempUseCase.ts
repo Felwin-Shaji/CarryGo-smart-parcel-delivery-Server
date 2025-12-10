@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { IAddWorkerTempUseCase } from "../../interfaces/useCase_Interfaces/Worker/addWorkerUseCase.interface";
+import { IAddWorkerTempUseCase } from "../../interfaces/useCase_Interfaces/Worker/addWorkerTempUseCase.interface";
 import { Request } from "express";
 import { IHubWorkersTempRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/worersTemp.repository";
 import { IHubWorkerRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";
@@ -10,6 +10,7 @@ import { HubWorkersTemp } from "../../../Domain/Entities/Worker/WrokersTemp";
 import { Role } from "../../../Infrastructure/Types/types";
 import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { ENV } from "../../../Infrastructure/constants/env";
 
 interface AddWorkerTempDTO {
     hubId: string
@@ -62,18 +63,15 @@ export class AddWorkerTempUseCase implements IAddWorkerTempUseCase {
             role: dto.role,
             otp: hashOtp,
             status: "BASIC-Info",
-            expiresAt,
-            _id: null,
+            expiresAt, 
+            // _id: null,
             hubId: dto.hubId
         };
 
         console.log("DEV OTP:", plainOtp);
-        await this._mailer.sendOTP(dto.email, plainOtp);
+        if(ENV.IS_PROD)await this._mailer.sendOTP(dto.email, plainOtp);
 
-        console.log("Saving tempWorker:", tempWorker);
         const saved = await this._hubWorkersTempRepo.save(tempWorker);
-        console.log("Saved result:", saved);
-
 
         return saved
 

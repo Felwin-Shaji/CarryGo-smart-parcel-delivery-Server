@@ -12,6 +12,7 @@ import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { IResetTokenRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/resetToken.repository";
 import { ITokenModel } from "../../../Domain/Entities/token";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
+import { IHubWorkerRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";
 
 
 @injectable()
@@ -21,6 +22,8 @@ export class VarifyEmailUseCase implements IVarifyEmailUseCase {
         @inject("IAdminRepository") private _adminRepo: IAdminRepository,
         @inject("IAgencyRepository") private _agencyRepo: IAgencyRepository,
         @inject("IHubRepository") private _hubRepo: IHubRepository,
+                @inject("IHubWorkerRepository") private _workerRepo: IHubWorkerRepository,
+
 
         @inject("IResetTokenRepository") private _resetTokenRepo: IResetTokenRepository,
 
@@ -37,6 +40,7 @@ export class VarifyEmailUseCase implements IVarifyEmailUseCase {
         if (dto.role === "admin") user = await this._adminRepo.findOne({ email: dto.email });
         if (dto.role === "agency") user = await this._agencyRepo.findOne({ email: dto.email });
         if (dto.role === "hub") user = await this._hubRepo.findOne({ email: dto.email });
+        if (dto.role === "worker") user = await this._workerRepo.findOne({ email: dto.email });
 
         if (!user) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND);
 

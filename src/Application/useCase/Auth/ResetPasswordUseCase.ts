@@ -11,6 +11,7 @@ import { IResetTokenRepository } from "../../interfaces/repositories_interfaces/
 import { AppError } from "../../../Domain/utils/customError";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { PASSWORD_RESET_MESSAGES } from "../../../Infrastructure/constants/messages/passwordResetMessage";
+import { IHubWorkerRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";
 
 @injectable()
 export class ResetPasswordUseCase implements IResetPasswordUseCase {
@@ -19,6 +20,8 @@ export class ResetPasswordUseCase implements IResetPasswordUseCase {
         @inject("IAdminRepository") private _adminRepo: IAdminRepository,
         @inject("IAgencyRepository") private _agencyRepo: IAgencyRepository,
         @inject("IHubRepository") private _hubRepo: IHubRepository,
+        @inject("IHubWorkerRepository") private _workerRepo: IHubWorkerRepository,
+
 
         @inject("IResetTokenRepository") private _resetTokenRepo: IResetTokenRepository,
 
@@ -50,6 +53,7 @@ export class ResetPasswordUseCase implements IResetPasswordUseCase {
         if (role === "admin") user = await this._adminRepo.findById({ _id: jwtPayload.userId });
         if (role === "agency") user = await this._agencyRepo.findById({ _id: jwtPayload.userId });
         if (role === "hub") user = await this._hubRepo.findById({ _id: jwtPayload.userId });
+        if (role === "worker") user = await this._workerRepo.findById({ _id: jwtPayload.userId });
 
         if (!user) throw new AppError(PASSWORD_RESET_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND);
 
@@ -60,6 +64,7 @@ export class ResetPasswordUseCase implements IResetPasswordUseCase {
         if (role === "admin") await this._adminRepo.findOneAndUpdate({ _id: jwtPayload.userId }, { password: hashedPassword });
         if (role === "agency") await this._agencyRepo.findOneAndUpdate({ _id: jwtPayload.userId }, { password: hashedPassword });
         if (role === "hub") await this._hubRepo.findOneAndUpdate({ _id: jwtPayload.userId }, { password: hashedPassword });
+        if (role === "worker") await this._workerRepo.findOneAndUpdate({ _id: jwtPayload.userId }, { password: hashedPassword });
 
         await this._resetTokenRepo.delete({ token });
     }

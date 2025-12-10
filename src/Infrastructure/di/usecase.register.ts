@@ -49,12 +49,16 @@ import { IUpdateUserStatusUseCase } from "../../Application/interfaces/useCase_I
 import { UpdateUserStatusUseCase } from "../../Application/useCase/User/UpdateUserStatus.usecase.js";
 import { IUpdateAgencyStatusUseCase } from "../../Application/interfaces/useCase_Interfaces/Agency/UpdateAgencyStatusUseCase.js";
 import { UpdateAgencyStatusUseCase } from "../../Application/useCase/Agency/UpdateAgencyStatus.usecase.js";
-import { IAddWorkerTempUseCase } from "../../Application/interfaces/useCase_Interfaces/Worker/addWorkerUseCase.interface.js";
+import { IAddWorkerTempUseCase } from "../../Application/interfaces/useCase_Interfaces/Worker/addWorkerTempUseCase.interface.js";
 import { AddWorkerTempUseCase } from "../../Application/useCase/Worker/AddWorkerTempUseCase.js";
 import { IWorkerVerifyOtpUseCase } from "../../Application/interfaces/useCase_Interfaces/Worker/addWorkerVerifyOtpUseCase.js";
 import { WorkerVerifyOtpUseCase } from "../../Application/useCase/Worker/addWorkerVerifyOtpUseCase.js";
 import { IRsubmitAgencyKycUseCase } from "../../Application/interfaces/useCase_Interfaces/Agency/ResubmitAgencyKycUseCase.js";
 import { RsubmitAgencyKycUseCase } from "../../Application/useCase/Agency/ResubmitAgencyKyc.usecase.js";
+import { IUploadWorkerKycFilesUsecase } from "../../Application/interfaces/useCase_Interfaces/Worker/uploadWorkerKycFilesUsecase.js";
+import { UploadWorkerKycFilesUsecase } from "../../Application/useCase/Worker/UploadWorkerKycFiles.usecase.js";
+import { IAddWorkerUsecase } from "../../Application/interfaces/useCase_Interfaces/Worker/AddWorkerUsecase.js";
+import { AddWorkerUsecase } from "../../Application/useCase/Worker/AddWorkerUsecase.js";
 
 
 
@@ -174,6 +178,12 @@ export class UsecaseRegistery {
             useClass:RsubmitAgencyKycUseCase
         })
 
+        container.register<IUploadWorkerKycFilesUsecase>("IUploadWorkerKycFilesUsecase",{
+            useClass:UploadWorkerKycFilesUsecase
+        })
 
+        container.register<IAddWorkerUsecase>("IAddWorkerUsecase",{
+            useClass:AddWorkerUsecase
+        })
     }
 }

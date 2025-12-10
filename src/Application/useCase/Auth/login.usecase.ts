@@ -10,6 +10,7 @@ import { ILoginUsecase } from "../../interfaces/useCase_Interfaces/AuthUsecase_I
 import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository.js";
 import { IPasswordService } from "../../interfaces/services_Interfaces/password-service.interface.js";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages.js";
+import { IHubWorkerRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository.js";
 
 @injectable()
 export class LoginUsecase implements ILoginUsecase {
@@ -18,6 +19,7 @@ export class LoginUsecase implements ILoginUsecase {
         @inject("IAdminRepository") private _adminRepo: IAdminRepository,
         @inject("IAgencyRepository") private _agencyRepo: IAgencyRepository,
         @inject("IHubRepository") private _hubRepo: IHubRepository,
+        @inject("IHubWorkerRepository") private _workerRepo: IHubWorkerRepository,
 
         @inject("IPasswordService") private _passwordService:IPasswordService
 
@@ -29,6 +31,7 @@ export class LoginUsecase implements ILoginUsecase {
         if (loginData.role === "admin") user = await this._adminRepo.findOne({ email: loginData.email });
         if (loginData.role === "agency") user = await this._agencyRepo.findOne({ email: loginData.email });
         if (loginData.role === "hub") user = await this._hubRepo.findOne({ email: loginData.email });
+        if (loginData.role === "worker") user = await this._workerRepo.findOne({ email: loginData.email });
 
         if (!user) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND);
         if (user.isBlocked) throw new AppError(AUTH_MESSAGES.USER_BLOCKED, STATUS.UNAUTHORIZED);

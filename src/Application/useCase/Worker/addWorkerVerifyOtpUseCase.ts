@@ -14,12 +14,13 @@ export class WorkerVerifyOtpUseCase implements IWorkerVerifyOtpUseCase {
         @inject("IOtpService") private _otpService: IOtpService
     ) {}
 
-    async verify(email: string, tempWorkerId: string, otp: string): Promise<boolean> {
+    async verify(email: string, otp: string): Promise<boolean> {
 
         const tempWorker = await this._tempWorkerRepo.findOne({ email });
+        console.log("TEMPORARY CODE:", tempWorker  );
+        
 
         if (!tempWorker) throw new AppError(WORKER_MESSAGES.OTP_SESSION_NOT_FOUND, STATUS.NOT_FOUND);
-        if (tempWorker._id !== tempWorkerId) throw new AppError(WORKER_MESSAGES.OTP_SESSION_NOT_FOUND, STATUS.NOT_FOUND);
 
         if (tempWorker.expiresAt < new Date()) {
             throw new AppError(WORKER_MESSAGES.OTP_EXPIRED, STATUS.BAD_REQUEST);
@@ -29,9 +30,9 @@ export class WorkerVerifyOtpUseCase implements IWorkerVerifyOtpUseCase {
 
         if (!isValid) return false;
 
-        tempWorker.status = "OTP-Verified";
+        tempWorker.status = "OTP-Verified"; 
 
-        await this._tempWorkerRepo.findOneAndUpdate({ _id: tempWorker._id }, tempWorker);
+        await this._tempWorkerRepo.findOneAndUpdate({ email }, tempWorker);
 
         return true;
     }

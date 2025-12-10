@@ -6,4 +6,8 @@ export const WORKER_MESSAGES = {
   OTP_EXPIRED: "OTP expired. Please request a new one.",
   OTP_MISMATCH: "Invalid OTP",
   OTP_VERIFIED: "Worker OTP verified successfully",
+  WORKER_ADDED_SUCCESSFULLY: "Worker added successfully",
+
+  SESSION_NOT_FOUND: "No session found. Please start the registration process again.",
+  KYC_FILES_REQUIRED: "KYC files (document and selfie) are required.",
 } as const;

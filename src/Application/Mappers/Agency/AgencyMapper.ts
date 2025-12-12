@@ -7,7 +7,7 @@ export class AgencyMapper {
 
     static toResponseDTO(agency: Agency): AgencyResponseDTO {
         return {
-            id: agency._id!,
+            id: agency.id!,
             name: agency.name,
             email: agency.email,
             mobile: agency.mobile!,
@@ -19,7 +19,7 @@ export class AgencyMapper {
 
     static toResponseWithKycDTO(agency: AgencyWithKYC_DB_Result): AgencyWithKYCResponseDTO {
         return {
-            id: agency._id!,
+            id: agency.id!,
             name: agency.name,
             email: agency.email,
             mobile: agency.mobile!,
@@ -31,7 +31,7 @@ export class AgencyMapper {
 
             kyc: agency.kyc
                 ? {
-                    id: agency.kyc._id!,
+                    id: agency.kyc.id!,
                     PAN_photo: agency.kyc.PAN_photo,
                     PANnumber: agency.kyc.PANnumber,
                     gst_certificate: agency.kyc.gst_certificate,
@@ -49,7 +49,7 @@ export class AgencyMapper {
 
     static toKycResponseDTO(agency:AgencyKYC ): KycResponseDTO  {
         return {
-            id: agency._id!,
+            id: agency.id!,
             PAN_photo: agency.PAN_photo,
             PANnumber: agency.PANnumber,
             gst_certificate: agency.gst_certificate,

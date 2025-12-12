@@ -55,7 +55,7 @@ export class RefreshTokenUseCase implements IRefreshTokenUseCase {
             accessToken: newAccessToken,
             refreshToken,
             user: {
-                _id: user._id!,
+                id: user.id!,
                 name: user.name,
                 email: user.email,
                 role: user.role,

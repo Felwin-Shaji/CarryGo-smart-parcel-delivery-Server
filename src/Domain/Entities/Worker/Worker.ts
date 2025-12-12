@@ -5,7 +5,7 @@ import { AppError } from "../../utils/customError.js";
 
 export class HubWorker {
   constructor(
-    public _id: string | null,
+    public id: string | null,
     public hubId: Types.ObjectId,
     public name: string,
     public email: string,

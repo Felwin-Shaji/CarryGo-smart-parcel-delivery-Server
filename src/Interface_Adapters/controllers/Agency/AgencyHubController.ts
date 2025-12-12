@@ -56,7 +56,7 @@ export class AgencyHubController implements IAgencyHubController {
                 ApiResponse.success(
                     AGENCY_MESSAGES.OTP_SENT_SUCCESSFULLY,
                     {
-                        tempHubId: tempHub._id,
+                        tempHubId: tempHub.id,
                         email: tempHub.email,
                         expiresAt: tempHub.expiresAt
                     }

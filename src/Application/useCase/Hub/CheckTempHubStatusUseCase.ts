@@ -19,7 +19,7 @@ export class CheckTempHubStatusUseCase implements ICheckTempHubStatusUseCase {
         return {
             exists: true,
             status: tempHub.status,
-            tempHubId: tempHub._id,
+            tempHubId: tempHub.id,
             expiresAt: tempHub.expiresAt
         };
     }

@@ -5,7 +5,7 @@ import { KYCStatus, Role } from "../../../Infrastructure/Types/types.js";
 
 export class Hub {
     constructor(
-        public _id: string | null,
+        public id: string | null,
         public agencyId: Types.ObjectId,
 
         public name: string,

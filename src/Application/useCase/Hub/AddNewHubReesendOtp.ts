@@ -28,7 +28,7 @@ export class AddNewHubResendOtp implements IAddNewHubResendOtp {
         tempHub.otp = hashedOtp;
         tempHub.expiresAt = new Date(Date.now() + 2 * 60 * 1000); // 2 mins
 
-        await this._hubTempRepo.findOneAndUpdate({ _id: tempHub._id },tempHub);
+        await this._hubTempRepo.findOneAndUpdate({ _id: tempHub.id },tempHub);
 
         if (ENV.IS_PROD) await this._mailer.sendOTP(email, newOtp);
 

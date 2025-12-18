@@ -4,7 +4,7 @@ import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepo
 import { IPasswordService } from "../../interfaces/services_Interfaces/password-service.interface";
 import { IMailService } from "../../interfaces/services_Interfaces/email-service.interface";
 import { AppError } from "../../../Domain/utils/customError";
-import { HubMapper } from "../../Mappers/HubMapper";
+import { HubMapper } from "../../Mappers/Hub/HubMapper";
 import { IAddHubUseCase } from "../../interfaces/useCase_Interfaces/Hub/IAddHubUseCase";
 import { AddNewHubAddressDto } from "../../Dto/Agency/agency.dto";
 import { ENV } from "../../../Infrastructure/constants/env";

@@ -12,7 +12,15 @@ import { AgencyAddHubFields } from "../../../Infrastructure/services/storage/mul
 import { ICheckTempHubStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/ICheckTempHubStatusUseCase";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
+import { GetHubsDTO } from "../../../Application/Dto/Hub/hub.dto";
+import { IGetHubsUsecase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IGetHubsUsecase";
+import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
 
+function parseBlockedQuery(value: unknown): boolean | null {
+    if (value === "true") return true;
+    if (value === "false") return false;
+    return null;
+}
 
 
 @injectable()
@@ -28,7 +36,9 @@ export class AgencyHubController implements IAgencyHubController {
 
         @inject("IAddNewHubVerifyOtpUseCase") private _addNewHubVerifyOtpUseCase: IAddNewHubVerifyOtpUseCase,
 
-        @inject("ICheckTempHubStatusUseCase") private _checkTempHubStatusUseCase: ICheckTempHubStatusUseCase
+        @inject("ICheckTempHubStatusUseCase") private _checkTempHubStatusUseCase: ICheckTempHubStatusUseCase,
+
+        @inject("IGetHubsUsecase") private _getHubsUsecase:IGetHubsUsecase
 
     ) { }
 
@@ -112,7 +122,32 @@ export class AgencyHubController implements IAgencyHubController {
         } catch (error) {
             next(error)
         }
-    }
+    };
+
+    getHubs = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => { 
+        try {
+            const dto:GetHubsDTO = {
+                page: Number(req.query.page) || 1,
+                limit: Number(req.query.limit) || 10,
+                search: req.query.search?.toString() || "",
+                sortBy: req.query.sortBy?.toString() || "createdAt",
+                sortOrder: req.query.sortOrder === "desc" ? "desc" : "asc",
+                blocked: parseBlockedQuery(req.query.blocked),
+                kycStatus: req.query.kycStatus?.toString() || "",
+                startDate: req.query.startDate?.toString() || "",
+                endDate: req.query.endDate?.toString() || "",
+            };
+
+            const result = await this._getHubsUsecase.execute(dto);
+
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(HUB_MESSAGES.EMAIL_ALREADY_EXISTS,result)
+            )
+
+        } catch (error) {
+            
+        }
+    };
 }
 
 export interface agencyAddHubResponseDTO {

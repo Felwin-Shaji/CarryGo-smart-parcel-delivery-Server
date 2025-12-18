@@ -59,6 +59,8 @@ import { IUploadWorkerKycFilesUsecase } from "../../Application/interfaces/useCa
 import { UploadWorkerKycFilesUsecase } from "../../Application/useCase/Worker/UploadWorkerKycFiles.usecase.js";
 import { IAddWorkerUsecase } from "../../Application/interfaces/useCase_Interfaces/Worker/AddWorkerUsecase.js";
 import { AddWorkerUsecase } from "../../Application/useCase/Worker/AddWorkerUsecase.js";
+import { IGetHubsUsecase } from "../../Application/interfaces/useCase_Interfaces/Hub/IGetHubsUsecase.js";
+import { GetHubsUsecase } from "../../Application/useCase/Hub/GetHubsUseCase.js";
 
 
 
@@ -184,6 +186,10 @@ export class UsecaseRegistery {
 
         container.register<IAddWorkerUsecase>("IAddWorkerUsecase",{
             useClass:AddWorkerUsecase
+        })
+
+        container.register<IGetHubsUsecase>("IGetHubsUsecase",{
+            useClass:GetHubsUsecase
         })
     }
 }

@@ -5,7 +5,7 @@ import { IAddHubTempUseCase } from "../../interfaces/useCase_Interfaces/Hub/IAdd
 import { IHubTempRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hubTemp.repository";
 import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
 import { AppError } from "../../../Domain/utils/customError";
-import { HubTempMapper } from "../../Mappers/HubMapper";
+import { HubTempMapper } from "../../Mappers/Hub/HubMapper";
 import { IOtpService } from "../../interfaces/services_Interfaces/otp-service.interface";
 import { IMailService } from "../../interfaces/services_Interfaces/email-service.interface";
 import { ENV } from "../../../Infrastructure/constants/env";

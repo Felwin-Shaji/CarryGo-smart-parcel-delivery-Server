@@ -20,7 +20,9 @@ export class AgencyRoute extends BaseRoute {
         this.router.post("/hub/resend-otp", authenticate(["agency"]), asyncHandler(agencyHubController.addNewHubResendOtp));
         this.router.post("/hub/verify-otp", authenticate(["agency"]), asyncHandler(agencyHubController.addNewHubVerifyOtp));
         this.router.get("/hub/temp-status", authenticate(["agency"]), asyncHandler(agencyHubController.checkTempStatus));
+
         this.router.post("/add-newHub", authenticate(["agency"]), agencyAddHub, asyncHandler(agencyHubController.addNewHub));
+        this.router.get("/hubs", authenticate(["agency"]),asyncHandler(agencyHubController.getHubs))
     }
 
 }

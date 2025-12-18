@@ -1,4 +1,4 @@
-import { Types } from "mongoose";
+import { FilterQuery, Types } from "mongoose";
 import type { AgencyWithKYC_DB_Result , IAgencyRepository, PaginatedData } from "../../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
 import { Agency } from "../../../Domain/Entities/Agency/Agency.js";
 import { AgencyModel } from "../../database/models/AgencyModels/agencyModel.js";
@@ -18,7 +18,7 @@ export class AgencyRepository extends BaseRepository<Agency> implements IAgencyR
         const { page, limit, search, sortBy, sortOrder, blocked, kycStatus, startDate, endDate } = dto;
         const skip = (page - 1) * limit;
 
-        const filter: any = {};
+        const filter: FilterQuery<Agency> = {};
 
         if (search) {
             filter.$or = [

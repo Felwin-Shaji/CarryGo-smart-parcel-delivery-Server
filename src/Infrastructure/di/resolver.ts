@@ -6,6 +6,7 @@ import { AdminAgencyController } from "../../Interface_Adapters/controllers/Admi
 import { AdminUserController } from "../../Interface_Adapters/controllers/Admin/AdminUserController.js";
 import { AgencyHubController } from "../../Interface_Adapters/controllers/Agency/AgencyHubController.js";
 import { HubWorkerController } from "../../Interface_Adapters/controllers/Hub/hubWorkerController.js";
+import { UserController } from "../../Interface_Adapters/controllers/User/userController.js";
 // import { AdminController } from "../../Interface_Adapters/controllers/Admin/AdminController.js";
 
 
@@ -13,6 +14,8 @@ import { HubWorkerController } from "../../Interface_Adapters/controllers/Hub/hu
 DependancyInjection.registerAll();
 
 export const authController = container.resolve(AuthController);
+
+export const userController = container.resolve(UserController)
 
 export const agencyController = container.resolve(AgencyController);
 export const agencyHubController = container.resolve(AgencyHubController)

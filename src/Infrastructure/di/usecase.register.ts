@@ -61,6 +61,8 @@ import { IAddWorkerUsecase } from "../../Application/interfaces/useCase_Interfac
 import { AddWorkerUsecase } from "../../Application/useCase/Worker/AddWorkerUsecase.js";
 import { IGetHubsUsecase } from "../../Application/interfaces/useCase_Interfaces/Hub/IGetHubsUsecase.js";
 import { GetHubsUsecase } from "../../Application/useCase/Hub/GetHubsUseCase.js";
+import { IGetUserProfileUseCase } from "../../Application/interfaces/useCase_Interfaces/user/GetUserProfile.useCase.js";
+import { GetUserProfileUseCase } from "../../Application/useCase/User/GetUserProfile.usecase.js";
 
 
 
@@ -190,6 +192,10 @@ export class UsecaseRegistery {
 
         container.register<IGetHubsUsecase>("IGetHubsUsecase",{
             useClass:GetHubsUsecase
+        })
+
+        container.register<IGetUserProfileUseCase>("IGetUserProfileUseCase",{
+            useClass:GetUserProfileUseCase
         })
     }
 }

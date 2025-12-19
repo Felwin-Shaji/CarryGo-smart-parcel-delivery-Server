@@ -9,6 +9,7 @@ import { errorHandler } from '../../Interface_Adapters/middlewares/ErrorHandlers
 import { AgencyRoute } from '../../Interface_Adapters/routes/agency.route.js';
 import { AdminRoute } from '../../Interface_Adapters/routes/admin.route.js';
 import { HubRoute } from "../../Interface_Adapters/routes/hub.route.js";
+import { UserRoute } from "../../Interface_Adapters/routes/user.route.js";
 dotenv.config();
 
 
@@ -31,6 +32,9 @@ app.use(
 
 const authRoute = new AuthRoute();
 app.use('/api/auth',authRoute.router);
+
+const userRoute = new UserRoute();
+app.use('/api/user',userRoute.router)
 
 const agencyRoute = new AgencyRoute()
 app.use('/api/agency',agencyRoute.router)

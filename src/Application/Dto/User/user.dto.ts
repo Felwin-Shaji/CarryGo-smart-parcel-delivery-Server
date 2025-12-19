@@ -1,4 +1,5 @@
 import { User } from "../../../Domain/Entities/User";
+import { Role } from "../../../Infrastructure/Types/types";
 import { AgencyResponseDTO } from "../Agency/agency.dto";
 
 
@@ -10,17 +11,36 @@ export interface GetUsersDBResult {
   totalPages: number;
 }
 
+/**
+ * This is Base User Response DTO
+ */
+export interface BaseUserResponseDTO {
+  id: string;
+  name: string;
+  email: string;
+  mobile: string;
+  isBlocked: boolean;
+  kycStatus: string;
+  createdAt: Date;
+}
+
+/**
+ * Represents the response structure for a user Profile.
+ */
+export interface UserProfileResponseDTO extends BaseUserResponseDTO{
+  role:Role
+}
 
 
 /**
  * Data Transfer Objects (DTOs) for user-related operations.
  */
 export interface GetUserDto {
-    page: number;
-    limit: number;
-    search: string;
-    sortBy: string;
-    sortOrder: "desc" | "asc";
+  page: number;
+  limit: number;
+  search: string;
+  sortBy: string;
+  sortOrder: "desc" | "asc";
 };
 
 /**
@@ -32,9 +52,9 @@ export interface UserResponseDto extends AgencyResponseDTO { }
  * Represents the response structure for fetching a paginated list of users.
  */
 export interface GetUserResponseDto {
-    data: UserResponseDto[];
-    total: number;
-    page: number;
-    limit: number;
-    totalPages: number;
+  data: UserResponseDto[];
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
 };

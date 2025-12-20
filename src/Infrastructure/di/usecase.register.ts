@@ -65,6 +65,8 @@ import { IGetUserProfileUseCase } from "../../Application/interfaces/useCase_Int
 import { GetUserProfileUseCase } from "../../Application/useCase/User/GetUserProfile.usecase.js";
 import { IEditUserProfileUseCase } from "../../Application/interfaces/useCase_Interfaces/user/EditUserProfile.usecase.js";
 import { EditUserProfileUseCase } from "../../Application/useCase/User/EditUserProfile.usecase.js";
+import { IUserReserUserPassword } from "../../Application/interfaces/useCase_Interfaces/user/ReserUserPassword.usecase.js";
+import { UserReserUserPassword } from "../../Application/useCase/User/ReserUserPassword.usecase.js";
 
 
 
@@ -202,6 +204,10 @@ export class UsecaseRegistery {
 
         container.register<IEditUserProfileUseCase>("IEditUserProfileUseCase",{
             useClass:EditUserProfileUseCase
+        })
+
+        container.register<IUserReserUserPassword>("IUserReserUserPassword",{
+            useClass:UserReserUserPassword
         })
     }
 }

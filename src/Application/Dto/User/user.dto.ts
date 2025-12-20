@@ -42,7 +42,20 @@ export interface BaseEditUserProfileRequestDto {
 /**
  * request structure for edit user Profile
  */
-export interface EditUserProfileRequestDto extends BaseEditUserProfileRequestDto { }
+export interface EditUserProfileRequestDto extends BaseEditUserProfileRequestDto { };
+
+/**
+ * Base request reset passowrd data
+ */
+export interface BaseResetPasswordRequestDTO {
+  currentPassword: string;
+  newPassword: string;
+}
+
+/**
+ * response reset password
+ */
+export interface UserResetPasswordRequestDTO extends BaseResetPasswordRequestDTO { };
 
 
 /**

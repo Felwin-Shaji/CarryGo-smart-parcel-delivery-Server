@@ -11,5 +11,6 @@ export class UserRoute extends BaseRoute {
     protected initializeRoutes(): void {
         this.router.get("/profile",authenticate(["user"]),asyncHandler(userController.getUserProfile))
         this.router.patch("/edit-profile",authenticate(["user"]),asyncHandler(userController.updateUserProfile))
+        this.router.patch("/reset-password",authenticate(["user"]),asyncHandler(userController.resetUserPassword))
     }
 }

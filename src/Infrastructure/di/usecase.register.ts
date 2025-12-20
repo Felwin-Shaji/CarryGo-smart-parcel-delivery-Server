@@ -63,6 +63,8 @@ import { IGetHubsUsecase } from "../../Application/interfaces/useCase_Interfaces
 import { GetHubsUsecase } from "../../Application/useCase/Hub/GetHubsUseCase.js";
 import { IGetUserProfileUseCase } from "../../Application/interfaces/useCase_Interfaces/user/GetUserProfile.useCase.js";
 import { GetUserProfileUseCase } from "../../Application/useCase/User/GetUserProfile.usecase.js";
+import { IEditUserProfileUseCase } from "../../Application/interfaces/useCase_Interfaces/user/EditUserProfile.usecase.js";
+import { EditUserProfileUseCase } from "../../Application/useCase/User/EditUserProfile.usecase.js";
 
 
 
@@ -196,6 +198,10 @@ export class UsecaseRegistery {
 
         container.register<IGetUserProfileUseCase>("IGetUserProfileUseCase",{
             useClass:GetUserProfileUseCase
+        })
+
+        container.register<IEditUserProfileUseCase>("IEditUserProfileUseCase",{
+            useClass:EditUserProfileUseCase
         })
     }
 }

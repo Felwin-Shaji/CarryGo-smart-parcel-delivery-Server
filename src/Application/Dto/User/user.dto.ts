@@ -27,9 +27,22 @@ export interface BaseUserResponseDTO {
 /**
  * Represents the response structure for a user Profile.
  */
-export interface UserProfileResponseDTO extends BaseUserResponseDTO{
-  role:Role
+export interface UserProfileResponseDTO extends BaseUserResponseDTO {
+  role: Role
 }
+
+/**
+ * Base request structure for edit profile
+ */
+export interface BaseEditUserProfileRequestDto {
+  name: string;
+  mobile: string;
+};
+
+/**
+ * request structure for edit user Profile
+ */
+export interface EditUserProfileRequestDto extends BaseEditUserProfileRequestDto { }
 
 
 /**

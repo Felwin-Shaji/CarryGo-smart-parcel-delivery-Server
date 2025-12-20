@@ -1,5 +1,11 @@
 export const ENV = {
-  IS_DEV: process.env.NODE_ENV === "development",
-  IS_PROD: process.env.NODE_ENV === "production",
-  IS_TEST: process.env.NODE_ENV === "test",
-} as const;
+  get IS_DEV() {
+    return process.env.NODE_ENV === "development";
+  },
+  get IS_PROD() {
+    return process.env.NODE_ENV === "production";
+  },
+  get IS_TEST() {
+    return process.env.NODE_ENV === "test";
+  },
+};

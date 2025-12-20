@@ -20,10 +20,18 @@ export class ApiResponse {
         error: unknown,
         safeMessage: string = "Something went wrong",
     ) {
+        const message =
+            error instanceof Error
+                ? error.message
+                : typeof error === "string"
+                    ? error
+                    : safeMessage;
+
         return {
             success: false,
-            message: isDev ? String(error) : safeMessage,
-            error: isDev ? error : undefined, // optional detailed error
+            message: message,
+            error: isDev ? error : undefined,
         };
-    }
+    };
+
 }

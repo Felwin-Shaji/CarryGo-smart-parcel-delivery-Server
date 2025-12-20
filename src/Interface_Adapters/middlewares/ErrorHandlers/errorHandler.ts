@@ -12,19 +12,16 @@ export function errorHandler(
   res: Response,
   next: NextFunction
 ) {
-  const isDev = ENV.IS_DEV 
+  const isDev = ENV.IS_DEV
   let appError: AppError;
 
   if (err instanceof AppError) {
     appError = err;
   } else if (err instanceof Error) {
-    appError = new AppError(
-      isDev ? err.message : ERROR_MESSAGES.INTERNAL_ERROR,
-      STATUS.INTERNAL_SERVER_ERROR
-    );
+    appError = new AppError(err.message, STATUS.INTERNAL_SERVER_ERROR);
   } else {
     appError = new AppError(
-      isDev ? ERROR_MESSAGES.UNKNOWN_ERROR : ERROR_MESSAGES.INTERNAL_ERROR,
+      ERROR_MESSAGES.UNKNOWN_ERROR,
       STATUS.INTERNAL_SERVER_ERROR
     );
   }

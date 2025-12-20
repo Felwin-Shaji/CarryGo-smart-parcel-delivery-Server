@@ -4,11 +4,15 @@ import { ApiResponse } from "../../presenters/ApiResponse";
 import { inject, injectable } from "tsyringe";
 import { IGetUserProfileUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/GetUserProfile.useCase";
 import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
+import { BaseEditUserProfileRequestDto } from "../../../Application/Dto/User/user.dto";
+import { IEditUserProfileUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/EditUserProfile.usecase";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 
 @injectable()
 export class UserController implements IUserController {
     constructor(
         @inject("IGetUserProfileUseCase") private _getUserProfileUseCase: IGetUserProfileUseCase,
+        @inject("IEditUserProfileUseCase") private _editUserProfileUseCase: IEditUserProfileUseCase,
     ) { }
 
     getUserProfile = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
@@ -23,6 +27,24 @@ export class UserController implements IUserController {
             ))
         } catch (error) {
             next(error);
+        }
+    }
+
+    updateUserProfile = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            const dto = req.body as BaseEditUserProfileRequestDto;
+            const userId = req.user?.id!;
+
+            await this._editUserProfileUseCase.execute(userId,dto);
+
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    USER_MESSAGES.PROFILE_UPDATED
+                )
+            )
+
+        } catch (error) {
+            next(error)
         }
     }
 };

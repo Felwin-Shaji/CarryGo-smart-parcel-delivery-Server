@@ -22,9 +22,6 @@ export class RefreshTokenUseCase implements IRefreshTokenUseCase {
         @inject("IAgencyRepository") private _agencyRepo: IAgencyRepository,
         @inject("IHubRepository") private _hubRepo: IHubRepository,
         @inject("IHubWorkerRepository") private _workerRepo: IHubWorkerRepository,
-
-
-        @inject("IRefreshTokenRepository") private _refreshTokenRepo: IRefreshTokenRepository
     ) { }
 
     async execute(refreshToken: string): Promise<TokenObj> {
@@ -34,9 +31,6 @@ export class RefreshTokenUseCase implements IRefreshTokenUseCase {
         if (!decoded) throw new AppError(AUTH_MESSAGES.REFRESH_TOKEN_NOT_FOUND, STATUS.UNAUTHORIZED);
 
         const { userId, email, role } = decoded;
-
-        const storedToken = await this._refreshTokenRepo.findOne({ token: refreshToken });
-        if (!storedToken) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.UNAUTHORIZED);
 
         let user
         if (role === "user") user = await this._userRepo.findOne({ email });

@@ -9,6 +9,8 @@ import { IUploadWorkerKycFilesUsecase } from "../../../Application/interfaces/us
 import { IAddWorkerUsecase } from "../../../Application/interfaces/useCase_Interfaces/Worker/AddWorkerUsecase";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
+import { AddWorkerTempRequestDTO } from "../../../Application/Dto/Hub/hub.dto";
+import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
 
 @injectable()
 export class HubWorkerController implements IHubWorkerController {
@@ -25,13 +27,17 @@ export class HubWorkerController implements IHubWorkerController {
     addNewWorker = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
 
-            const savedTempWorker = await this._addWorkerTempUseCase.execute(req);
+            const dto = req.body as AddWorkerTempRequestDTO
+            const hubId = req.user?.id!;
 
-            return res.status(STATUS.OK).json({
-                success: true,
-                message: "OTP sent successfully",
-                data: savedTempWorker
-            });
+            const savedTempWorker = await this._addWorkerTempUseCase.execute(hubId,dto);
+
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    HUB_MESSAGES.OTP_SEND_SICCESS,
+                    savedTempWorker
+                )
+            )
 
         } catch (error) {
             next(error);
@@ -43,26 +49,13 @@ export class HubWorkerController implements IHubWorkerController {
         try {
             const { email, otp } = req.body;
 
-            if (!email  || !otp) {
-                return res.status(STATUS.BAD_REQUEST).json({
-                    success: false,
-                    message: "Email, tempWorkerId and OTP are required"
-                });
-            }
+            await this._workerVerifyOtpUseCase.verify(email , otp);
 
-            const verified = await this._workerVerifyOtpUseCase.verify(email , otp);
-
-            if (!verified) {
-                return res.status(STATUS.BAD_REQUEST).json({
-                    success: false,
-                    message: "Invalid OTP"
-                });
-            }
-
-            return res.status(STATUS.OK).json({
-                success: true,
-                message: "OTP verified successfully"
-            });
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    HUB_MESSAGES.OTP_VERIFIED
+                )
+            )
 
         } catch (error) {
             next(error);
@@ -72,17 +65,14 @@ export class HubWorkerController implements IHubWorkerController {
 
     uploadWorkerKYC = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
-            // Implementation for uploading worker KYC goes here
-            console.log(req.body);
 
-            const { email,idType } = req.body;
+            const { email,idType, idNumber} = req.body;
+            const hubId = req.user?.id!;
 
             const files = req.files as WorkerKYCFileFields;
             const uploaded = await this._uploadWorkerKycFilesUsecase.execute(files);
 
-            console.log("Uploaded KYC files for worker:", uploaded);
-
-            const workers = await this._addWorkerUsecase.execute(email,idType, uploaded);
+            const workers = await this._addWorkerUsecase.execute(email,idType,idNumber, hubId,uploaded);
 
             console.log(workers);
 

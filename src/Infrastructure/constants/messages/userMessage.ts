@@ -13,3 +13,7 @@ export const USER_MESSAGES = {
   STATUS_UPDATED: "User status updated successfully",
   LIST_FETCH_SUCCESS: "Users fetched successfully",
 } as const;
+
+export const BOOKING_MESSAGE = {
+  PINCODE_VALIED:"picode is validated",
+}

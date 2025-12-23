@@ -7,6 +7,7 @@ import { AdminUserController } from "../../Interface_Adapters/controllers/Admin/
 import { AgencyHubController } from "../../Interface_Adapters/controllers/Agency/AgencyHubController.js";
 import { HubWorkerController } from "../../Interface_Adapters/controllers/Hub/hubWorkerController.js";
 import { UserController } from "../../Interface_Adapters/controllers/User/userController.js";
+import { UserBookingController } from "../../Interface_Adapters/controllers/User/bookingController.js";
 // import { AdminController } from "../../Interface_Adapters/controllers/Admin/AdminController.js";
 
 
@@ -16,6 +17,7 @@ DependancyInjection.registerAll();
 export const authController = container.resolve(AuthController);
 
 export const userController = container.resolve(UserController)
+export const bookingController = container.resolve(UserBookingController)
 
 export const agencyController = container.resolve(AgencyController);
 export const agencyHubController = container.resolve(AgencyHubController)

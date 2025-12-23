@@ -9,6 +9,13 @@ export interface AppJwtPayload {
     role: Role;
 }
 
+export interface PincodeDetails{
+      pincode: string;
+      city: string;
+      state: string;
+      district: string;
+}
+
 export interface AuthUserDTO {
     id: string;
     name: string;

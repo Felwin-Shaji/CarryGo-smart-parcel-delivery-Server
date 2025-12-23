@@ -9,6 +9,8 @@ import { IPasswordService } from "../../Application/interfaces/services_Interfac
 import { PasswordService } from "../services/Password.service.js";
 import { IOtpService } from "../../Application/interfaces/services_Interfaces/otp-service.interface.js";
 import { OtpService } from "../services/otp.service.js";
+import { IPincodeLookupService } from "../../Application/interfaces/services_Interfaces/pincodeLookupService.interface.js";
+import { PincodeLookupService } from "../services/Apis/IndiaPostProvider.js";
 
 export class ServiceRegistory {
     static registerServices(): void {
@@ -32,5 +34,9 @@ export class ServiceRegistory {
         container.register<IOtpService>("IOtpService", {
             useClass: OtpService
         });
+
+        container.register<IPincodeLookupService>("IPincodeLookupService",{
+            useClass:PincodeLookupService
+        })
     }
 }

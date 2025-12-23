@@ -30,3 +30,12 @@ It includes separate dashboards and modules for agencies, workers, hubs, and rou
 2. **Clean Architecture** ====> // https://medium.com/@deivisonisidoro_94304/revolutionizing-software-development-unveiling-the-power-of-clean-architecture-with-typescript-5ee968357d35
 
 3. **SOLID Principle** ====> // https://blog.logrocket.com/applying-solid-principles-typescript
+
+
+## api 
+1. **Reverse Geocoding: (Convert coordinates to address)** ===> https://geocode.maps.co/reverse?lat=latitude&lon=longitude&api_key=YOUR_SECRET_API_KEY
+
+2. **Forward Geocoding: (Search or convert address to coordinates)** ====> https://geocode.maps.co/search?q=address&api_key=YOUR_SECRET_API_KEY
+
+3. **India Post Official PIN Code API (Free)** ===> GET https://api.postalpincode.in/pincode/110001 || GET https://api.postalpincode.in/postoffice/Thiruvananthapuram
+

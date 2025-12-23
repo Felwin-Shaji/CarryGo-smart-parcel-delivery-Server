@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { IAgencyHubController } from "../../../Application/interfaces/Controllers_Interfaces/Agency_Interfases/IAgencyHub.controller";
+import { IAgencyHubController } from "../../Interface/Controllers_Interfaces/Agency_Interfases/IAgencyHub.controller";
 import { inject, injectable } from "tsyringe";
 import { IUploadAddFilesUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IUploadAddFilesUseCase";
 import { IAddHubUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IAddHubUseCase";

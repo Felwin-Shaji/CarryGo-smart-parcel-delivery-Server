@@ -1,7 +1,7 @@
 import type { Model } from "mongoose";
 import { BaseRepository } from "./baseRepositories.js";
 import type { User } from "../../Domain/Entities/User.js";
-import type { IUserRepository } from "../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
+import type { IUserRepository } from "../Interface/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
 import { UserModel } from "../database/models/UserModels/userModel.js";
 
 export class UserRepository extends BaseRepository<User> implements IUserRepository {

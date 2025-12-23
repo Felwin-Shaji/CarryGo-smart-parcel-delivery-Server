@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IGetUserProfileUseCase } from "../../interfaces/useCase_Interfaces/user/GetUserProfile.useCase";
-import { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
+import { IUserRepository } from "../../../Infrastructure/Interface/repositories_interfaces/userRepositories_Interfaces/user.repository";
 import { UserProfileMapper } from "../../Mappers/User/userProfileMapper";
 import { AppError } from "../../../Domain/utils/customError";
 import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";

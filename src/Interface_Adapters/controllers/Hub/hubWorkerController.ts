@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { IHubWorkerController } from "../../../Application/interfaces/Controllers_Interfaces/Hub_interface/HubWorkerController";
+import { IHubWorkerController } from "../../Interface/Controllers_Interfaces/Hub_interface/HubWorkerController";
 import { inject, injectable } from "tsyringe";
 import { IAddWorkerTempUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/addWorkerTempUseCase.interface";
 import { IWorkerVerifyOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/addWorkerVerifyOtpUseCase";

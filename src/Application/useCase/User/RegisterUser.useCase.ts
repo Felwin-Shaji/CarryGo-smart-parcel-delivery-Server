@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { User } from "../../../Domain/Entities/User.js";
-import type { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
+import type { IUserRepository } from "../../../Infrastructure/Interface/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
 import type { UserDTO } from "../../Dto/Auth/Auth.dto.js";
 import type { IRegisterUserUseCase } from "../../interfaces/useCase_Interfaces/user/RegisterUser.useCase.js";
 

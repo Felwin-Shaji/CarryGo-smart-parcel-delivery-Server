@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
-import { IHubWorkersTempRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/worersTemp.repository";
-import { IHubWorkerRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";
+import { IHubWorkersTempRepository } from "../../../Infrastructure/Interface/repositories_interfaces/workerRepository_interfaces/worersTemp.repository";
+import { IHubWorkerRepository } from "../../../Infrastructure/Interface/repositories_interfaces/workerRepository_interfaces/worker.repository";
 import { IMailService } from "../../interfaces/services_Interfaces/email-service.interface";
 import { IPasswordService } from "../../interfaces/services_Interfaces/password-service.interface";
 import { AppError } from "../../../Domain/utils/customError";
@@ -10,7 +10,7 @@ import { WorkerMapper } from "../../Mappers/Workers/WorkerMapper";
 import { ENV } from "../../../Infrastructure/constants/env";
 import { WorkerResponseDTO } from "../../Dto/Workers/worker.dto";
 import { IAddWorkerUsecase } from "../../interfaces/useCase_Interfaces/Worker/AddWorkerUsecase";
-import { IHubWorkerKycRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/wrokerKyc.repository";
+import { IHubWorkerKycRepository } from "../../../Infrastructure/Interface/repositories_interfaces/workerRepository_interfaces/wrokerKyc.repository";
 import { IDType } from "../../../Domain/Entities/Worker/WorkerKyc";
 
 @injectable()

@@ -5,7 +5,7 @@ import { IGetAgencyWithKYCUseCase } from "../../../Application/interfaces/useCas
 import { AppError } from "../../../Domain/utils/customError";
 import { IUpdateAgencyKycStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/UpdateAgencyKycStatusUseCase";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { IAdminAgencyController } from "../../../Application/interfaces/Controllers_Interfaces/Admin_Interfaces/adminAgency.controller";
+import { IAdminAgencyController } from "../../Interface/Controllers_Interfaces/Admin_Interfaces/adminAgency.controller";
 import { IUpdateAgencyStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/UpdateAgencyStatusUseCase";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
 import { GetAgenciesDTO, updateAgencyKycStatusDTO, } from "../../../Application/Dto/Agency/agency.dto";

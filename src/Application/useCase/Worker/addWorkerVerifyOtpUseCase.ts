@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { IHubWorkersTempRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/worersTemp.repository";
+import { IHubWorkersTempRepository } from "../../../Infrastructure/Interface/repositories_interfaces/workerRepository_interfaces/worersTemp.repository";
 import { IOtpService } from "../../interfaces/services_Interfaces/otp-service.interface";
 import { AppError } from "../../../Domain/utils/customError";
 import { IWorkerVerifyOtpUseCase } from "../../interfaces/useCase_Interfaces/Worker/addWorkerVerifyOtpUseCase";

@@ -1,5 +1,5 @@
 import { FilterQuery, Types } from "mongoose";
-import type { AgencyWithKYC_DB_Result , IAgencyRepository, PaginatedData } from "../../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
+import type { AgencyWithKYC_DB_Result , IAgencyRepository, PaginatedData } from "../../Interface/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
 import { Agency } from "../../../Domain/Entities/Agency/Agency.js";
 import { AgencyModel } from "../../database/models/AgencyModels/agencyModel.js";
 import { BaseRepository } from "./..//baseRepositories.js";

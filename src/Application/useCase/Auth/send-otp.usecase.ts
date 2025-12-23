@@ -1,6 +1,6 @@
 import type { IOtpModel } from "../../../Domain/Entities/Iotp.js";
-import type { IOtpRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/otp.repository.js";
-import type { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
+import type { IOtpRepository } from "../../../Infrastructure/Interface/repositories_interfaces/authRepositories_Interfaces/otp.repository.js";
+import type { IUserRepository } from "../../../Infrastructure/Interface/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
 import type { IMailService } from "../../interfaces/services_Interfaces/email-service.interface.js";
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../Domain/utils/customError.js";

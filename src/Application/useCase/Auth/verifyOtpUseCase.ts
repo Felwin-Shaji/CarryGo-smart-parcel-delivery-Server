@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import type { IOtpRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/otp.repository.js";
+import type { IOtpRepository } from "../../../Infrastructure/Interface/repositories_interfaces/authRepositories_Interfaces/otp.repository.js";
 import { AppError } from "../../../Domain/utils/customError.js";
 import type { IOtpModel } from "../../../Domain/Entities/Iotp.js";
 import { IVerifyOtpUseCase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/verifyOtp.interface.js";

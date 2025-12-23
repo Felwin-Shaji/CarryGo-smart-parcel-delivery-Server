@@ -1,4 +1,4 @@
-import { IHubWorkersTempRepository } from "../../../Application/interfaces/repositories_interfaces/workerRepository_interfaces/worersTemp.repository";
+import { IHubWorkersTempRepository } from "../../Interface/repositories_interfaces/workerRepository_interfaces/worersTemp.repository";
 import { HubWorkersTemp } from "../../../Domain/Entities/Worker/WrokersTemp";
 import { HubWorkerTempModel } from "../../database/models/Worker/WorkerTempModel";
 import { BaseRepository } from "../baseRepositories";

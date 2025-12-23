@@ -10,8 +10,6 @@ export class UploadWorkerKycFilesUsecase implements IUploadWorkerKycFilesUsecase
     ) {}
 
     async execute(files:WorkerKYCFileFields): Promise<void> {
-        // Implementation for uploading worker KYC files goes here
-        // console.log("Uploading worker KYC files:", files);
 
         const uploaded: any = {};
         if (files.document) {

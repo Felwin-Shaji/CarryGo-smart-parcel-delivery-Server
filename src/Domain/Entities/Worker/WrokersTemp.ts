@@ -1,8 +1,6 @@
 import { Role } from "../../../Infrastructure/Types/types";
 
 export interface HubWorkersTemp {
-    id: string | null;
-    hubId: string;
     name: string;
     email: string;
     mobile: string; 
@@ -10,4 +8,5 @@ export interface HubWorkersTemp {
     role: Role | "worker";
     status: "BASIC-Info" | "OTP-Verified";
     expiresAt: Date;
+    _id?: string | null;
 }

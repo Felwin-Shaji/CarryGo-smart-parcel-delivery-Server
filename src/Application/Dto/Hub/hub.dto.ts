@@ -1,3 +1,5 @@
+import { Role } from "../../../Infrastructure/Types/types";
+
 export interface GetHubsDTO {
     page: number;
     limit: number;
@@ -27,3 +29,22 @@ export interface GetHubsResponseDTO {
     limit: number;
     totalPages: number;
 };
+
+
+
+/**
+ * Hub add new worker request
+ */
+export interface AddWorkerTempRequestDTO {
+    hubId: string
+    name: string,
+    email: string,
+    mobile: string,
+    role: Role
+}
+
+export interface AddWorkerTempResponseDTO {
+    email: string;
+    expiresAt: Date;
+    tempWorkerId: string;
+}

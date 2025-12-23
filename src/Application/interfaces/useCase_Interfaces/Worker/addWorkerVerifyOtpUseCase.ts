@@ -1,3 +1,3 @@
 export interface IWorkerVerifyOtpUseCase {
-    verify(email: string,  otp: string): Promise<boolean>;
+    verify(email: string,  otp: string): Promise<void>;
 }

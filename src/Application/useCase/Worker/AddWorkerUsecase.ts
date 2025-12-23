@@ -22,7 +22,7 @@ export class AddWorkerUsecase implements IAddWorkerUsecase {
         @inject("IPasswordService") private _passwordService: IPasswordService,
         @inject("IMailService") private _mailer: IMailService
     ) { }
-    async execute(email: string, idType: IDType, files: any): Promise<WorkerResponseDTO> {
+    async execute(email: string, idType: IDType,idNumber: string,hubId:string, files: any): Promise<WorkerResponseDTO> {
 
         const tempWorker = await this._hubWorkersTempRepo.findOne({ email });
         if (!tempWorker || tempWorker.status !== "OTP-Verified") throw new AppError(WORKER_MESSAGES.SESSION_NOT_FOUND, STATUS.NOT_FOUND);
@@ -32,17 +32,13 @@ export class AddWorkerUsecase implements IAddWorkerUsecase {
         const documentUrl = files.document as string
         const selfieUrl = files.selfie as string
 
-        console.log(documentUrl,selfieUrl,'llllllllllllllllllllllllllll')
-
-
-        console.log(files)
-
         const rawPassword = this._passwordService.generateCustomPassword(tempWorker.email, tempWorker.mobile);
         const hashedPassword = await this._passwordService.hashPassword(rawPassword);
 
         const workerEntity = WorkerMapper.toCreateWorker(
             tempWorker,
             hashedPassword,
+            hubId
         );
 
         const savedWorker = await this._hubWorkerRepo.save(workerEntity);
@@ -53,11 +49,11 @@ export class AddWorkerUsecase implements IAddWorkerUsecase {
             idType,
             documentUrl,
             selfieUrl,
-            "11111111111"
+            idNumber
 
         );
 
-        await this._hubWorkerKycRepo.save(kycEntity);
+        const savedWorkerKyc = await this._hubWorkerKycRepo.save(kycEntity);
 
         if (ENV.IS_PROD) {
             await this._mailer.sendCustomPassword(tempWorker.email);

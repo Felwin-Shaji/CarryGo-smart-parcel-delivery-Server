@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import type { IAgencyKYCRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/AgencyKYC";
+import type { IAgencyKYCRepository } from "../../../Infrastructure/Interface/repositories_interfaces/agencyRepositories_Interfaces/AgencyKYC";
 import type { ISaveAgencyKycUseCase } from "../../interfaces/useCase_Interfaces/Agency/SaveAgencyKycUseCase";
 
 import { AgencyKYC_DTO } from "../../Dto/Agency/agency.dto";

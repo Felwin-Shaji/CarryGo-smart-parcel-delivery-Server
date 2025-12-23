@@ -1,5 +1,5 @@
 import { Hub } from "../../../../Domain/Entities/Hub/Hub";
-import { GetHubsDTO } from "../../../Dto/Hub/hub.dto";
+import { GetHubsDTO } from "../../../../Application/Dto/Hub/hub.dto";
 import { IBaseRepository } from "../base.repository";
 export interface PaginatedHubData {
   data: Hub[];

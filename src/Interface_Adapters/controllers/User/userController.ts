@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { IUserController } from "../../../Application/interfaces/Controllers_Interfaces/User_interfaces/IUserController";
+import { IUserController } from "../../Interface/Controllers_Interfaces/User_interfaces/IUserController";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { inject, injectable } from "tsyringe";
 import { IGetUserProfileUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/GetUserProfile.useCase";

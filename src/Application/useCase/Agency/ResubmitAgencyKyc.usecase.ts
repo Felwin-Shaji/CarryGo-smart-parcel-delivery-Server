@@ -1,12 +1,12 @@
 import { inject, injectable } from "tsyringe";
 import { AgencyKYC_DTO, AgencyResubmitKycDTO } from "../../Dto/Agency/agency.dto";
-import { IAgencyKYCRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/AgencyKYC";
+import { IAgencyKYCRepository } from "../../../Infrastructure/Interface/repositories_interfaces/agencyRepositories_Interfaces/AgencyKYC";
 import { AgencyKYCMapper } from "../../Mappers/Agency/AgencyKYCMapper";
 import { IRsubmitAgencyKycUseCase } from "../../interfaces/useCase_Interfaces/Agency/ResubmitAgencyKycUseCase";
 import { AppError } from "../../../Domain/utils/customError";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
+import { IAgencyRepository } from "../../../Infrastructure/Interface/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
 import { Types } from "mongoose";
 
 

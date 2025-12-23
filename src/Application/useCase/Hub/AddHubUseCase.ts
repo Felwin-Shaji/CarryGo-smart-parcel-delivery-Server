@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
-import { IHubTempRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hubTemp.repository";
-import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
+import { IHubTempRepository } from "../../../Infrastructure/Interface/repositories_interfaces/hubRepositories_Interfaces/hubTemp.repository";
+import { IHubRepository } from "../../../Infrastructure/Interface/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
 import { IPasswordService } from "../../interfaces/services_Interfaces/password-service.interface";
 import { IMailService } from "../../interfaces/services_Interfaces/email-service.interface";
 import { AppError } from "../../../Domain/utils/customError";

@@ -4,7 +4,7 @@ import { IValidatePincodeUsecase } from "../../../Application/interfaces/useCase
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { BOOKING_MESSAGE } from "../../../Infrastructure/constants/messages/userMessage";
-import { IUserBookingController } from "../../../Application/interfaces/Controllers_Interfaces/User_interfaces/Booking/IUserBookingController";
+import { IUserBookingController } from "../../Interface/Controllers_Interfaces/User_interfaces/Booking/IUserBookingController";
 
 @injectable()
 export class UserBookingController implements IUserBookingController {

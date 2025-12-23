@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes.js";
 import { inject, injectable } from "tsyringe";
-import type { IAuthController } from "../../../Application/interfaces/Controllers_Interfaces/Auth_Interfases/auth.controller.js";
+import type { IAuthController } from "../../Interface/Controllers_Interfaces/Auth_Interfases/auth.controller.js";
 import { AuthMapper } from "../../../Application/Mappers/AuthMapper.js";
 import { setAuthCookies } from "../../../Domain/utils/setAuthCookies.js";
 import { AppError } from "../../../Domain/utils/customError.js";

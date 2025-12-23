@@ -2,28 +2,28 @@
 import { container } from "tsyringe";
 
 import { OtpRepository } from "../repositories/otpRepository.js";
-import type { IOtpRepository } from "../../Application/interfaces/repositories_interfaces/authRepositories_Interfaces/otp.repository.js";
+import type { IOtpRepository } from "../Interface/repositories_interfaces/authRepositories_Interfaces/otp.repository.js";
 import { UserRepository } from "../repositories/userRepository.js";
-import type { IUserRepository } from "../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
-import type { IRefreshTokenRepository } from "../../Application/interfaces/repositories_interfaces/authRepositories_Interfaces/refreshToken.repository.js";
+import type { IUserRepository } from "../Interface/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
+import type { IRefreshTokenRepository } from "../Interface/repositories_interfaces/authRepositories_Interfaces/refreshToken.repository.js";
 import { RefreshTokenRepository } from "../repositories/refreshTokenRepository.js";
-import type { IAdminRepository } from "../../Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository.js";
+import type { IAdminRepository } from "../Interface/repositories_interfaces/adminRepositories_Interfaces/admin.repository.js";
 import { AdminRepository } from "../repositories/adminRepository.js";
-import type { IAgencyRepository } from "../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
-import { IAgencyKYCRepository } from "../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/AgencyKYC.js";
+import type { IAgencyRepository } from "../Interface/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
+import { IAgencyKYCRepository } from "../Interface/repositories_interfaces/agencyRepositories_Interfaces/AgencyKYC.js";
 import { AgencyKYCRepository } from "../repositories/Agency/AgencyKYCRepository.js";
 import { AgencyRepository } from "../repositories/Agency/agencyRepository.js";
-import { IHubRepository } from "../../Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository.js";
+import { IHubRepository } from "../Interface/repositories_interfaces/hubRepositories_Interfaces/hub.repository.js";
 import { HubRepository } from "../repositories/Hub/hubRepository.js";
-import { IHubTempRepository } from "../../Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hubTemp.repository.js";
+import { IHubTempRepository } from "../Interface/repositories_interfaces/hubRepositories_Interfaces/hubTemp.repository.js";
 import { HubTempRepository } from "../repositories/Hub/hubTempRepository.js";
-import { IResetTokenRepository } from "../../Application/interfaces/repositories_interfaces/authRepositories_Interfaces/resetToken.repository.js";
+import { IResetTokenRepository } from "../Interface/repositories_interfaces/authRepositories_Interfaces/resetToken.repository.js";
 import { ResetTokenRepository } from "../repositories/resetTokenRepository.js";
-import { IHubWorkerKycRepository } from "../../Application/interfaces/repositories_interfaces/workerRepository_interfaces/wrokerKyc.repository.js";
+import { IHubWorkerKycRepository } from "../Interface/repositories_interfaces/workerRepository_interfaces/wrokerKyc.repository.js";
 import { HubWorkerKycRepository } from "../repositories/Worker/hubWorkerKycRepository.js";
-import { IHubWorkersTempRepository } from "../../Application/interfaces/repositories_interfaces/workerRepository_interfaces/worersTemp.repository.js";
+import { IHubWorkersTempRepository } from "../Interface/repositories_interfaces/workerRepository_interfaces/worersTemp.repository.js";
 import { HubWorkersTempRepository } from "../repositories/Worker/hubWorkersTempRepository.js";
-import { IHubWorkerRepository } from "../../Application/interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository.js";
+import { IHubWorkerRepository } from "../Interface/repositories_interfaces/workerRepository_interfaces/worker.repository.js";
 import { HubWorkerRepository } from "../repositories/Worker/hubWorkerRepository.js";
 
 

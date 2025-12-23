@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IGetAgenciesUseCase } from "../../interfaces/useCase_Interfaces/Agency/GetAgenciesUseCase";
-import { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
+import { IAgencyRepository } from "../../../Infrastructure/Interface/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
 import { Agency } from "../../../Domain/Entities/Agency/Agency";
 import {  GetAgenciesDTO, GetAgenciesResponseDTO } from "../../Dto/Agency/agency.dto";
 import { AgencyMapper } from "../../Mappers/Agency/AgencyMapper";

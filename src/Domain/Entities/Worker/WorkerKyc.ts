@@ -3,7 +3,6 @@ import { Role, KYCStatus } from "../../../Infrastructure/Types/types";
 export type IDType = "AADHAAR" | "DL" | "PASSPORT";
 
 export interface IWrokerKYCVerification {
-  id: string | null;
   subjectId: string;
   subjectType: Role;            
   idType: IDType;                
@@ -13,4 +12,5 @@ export interface IWrokerKYCVerification {
   status: KYCStatus;             
   createdAt: Date;
   reviewedAt: Date | null;
+  _id?: string | null;
 }

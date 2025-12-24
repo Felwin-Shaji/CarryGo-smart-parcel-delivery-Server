@@ -1,5 +1,4 @@
 import { ENV } from "../../Infrastructure/constants/env";
-import { STATUS, type StatusCode } from "../../Infrastructure/constants/statusCodes";
 
 const isDev = ENV.IS_DEV; 
 

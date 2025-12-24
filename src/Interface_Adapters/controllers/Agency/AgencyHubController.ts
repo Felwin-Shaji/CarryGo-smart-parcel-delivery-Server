@@ -145,7 +145,7 @@ export class AgencyHubController implements IAgencyHubController {
             )
 
         } catch (error) {
-            
+            next(error)
         }
     };
 }

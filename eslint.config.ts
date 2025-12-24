@@ -25,7 +25,7 @@ export default defineConfig([
       "@typescript-eslint": tseslint.plugin,
     },
     rules: {
-      semi: ["warn", "always"],
+      // semi: ["warn", "always"],
       // quotes: ["error", "double"],
       // indent: ["error", 4],
       "@typescript-eslint/no-unused-vars": ["warn"],

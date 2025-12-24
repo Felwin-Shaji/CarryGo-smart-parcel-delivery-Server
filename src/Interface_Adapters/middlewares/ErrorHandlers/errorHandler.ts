@@ -3,7 +3,6 @@ import { AppError } from "../../../Domain/utils/customError.js";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes.js";
 import logger from "../../../Infrastructure/logger/logger.js";
 import { ApiResponse } from "../../presenters/ApiResponse.js";
-import { ENV } from "../../../Infrastructure/constants/env.js";
 import { ERROR_MESSAGES } from "../../../Infrastructure/constants/messages/errorMessages.js";
 
 export function errorHandler(
@@ -12,7 +11,6 @@ export function errorHandler(
   res: Response,
   next: NextFunction
 ) {
-  const isDev = ENV.IS_DEV
   let appError: AppError;
 
   if (err instanceof AppError) {

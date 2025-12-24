@@ -29,7 +29,7 @@ export interface VerifyOtpResponseDTO {
   }
 };
 
-export interface SendLoginResponse extends VerifyOtpResponseDTO { }
+export type SendLoginResponse = VerifyOtpResponseDTO;
 
 export interface UserDTO {
   name: string;

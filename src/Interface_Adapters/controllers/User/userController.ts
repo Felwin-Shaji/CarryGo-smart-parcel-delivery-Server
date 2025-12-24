@@ -8,6 +8,7 @@ import { BaseEditUserProfileRequestDto, UserResetPasswordRequestDTO } from "../.
 import { IEditUserProfileUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/EditUserProfile.usecase";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { IUserReserUserPassword } from "../../../Application/interfaces/useCase_Interfaces/user/ReserUserPassword.usecase";
+import { AppError } from "../../../Domain/utils/customError";
 
 @injectable()
 export class UserController implements IUserController {
@@ -19,7 +20,8 @@ export class UserController implements IUserController {
 
     getUserProfile = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
-            const userId = req.user?.id!;
+            const userId = req.user?.id;
+            if(!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING,STATUS.BAD_REQUEST)
 
             const userProfileData = await this._getUserProfileUseCase.execute(userId)
 
@@ -35,7 +37,8 @@ export class UserController implements IUserController {
     updateUserProfile = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const dto = req.body as BaseEditUserProfileRequestDto;
-            const userId = req.user?.id!;
+            const userId = req.user?.id;
+            if(!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING,STATUS.BAD_REQUEST)
 
             await this._editUserProfileUseCase.execute(userId,dto);
 
@@ -53,7 +56,8 @@ export class UserController implements IUserController {
     resetUserPassword = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const dto = req.body as UserResetPasswordRequestDTO;
-            const userId = req.user?.id!;
+            const userId = req.user?.id;
+            if(!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING,STATUS.BAD_REQUEST)
             
             await this._userReserUserPassword.execute(userId,dto);
 

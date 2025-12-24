@@ -9,32 +9,32 @@ export class TokenService implements ITokenService {
     private readonly _refreshSecret = process.env.REFRESH_TOKEN_SECRET!;
 
     generateAccessToken(payload: object): string {
-        let token = jwt.sign(payload, this._accessSecret, { expiresIn: "15m" })
+        const token = jwt.sign(payload, this._accessSecret, { expiresIn: "15m" })
         return token
     };
 
     generateRefreshToken(payload: object): string {
-        let token = jwt.sign(payload, this._refreshSecret, { expiresIn: "7d" })
+        const token = jwt.sign(payload, this._refreshSecret, { expiresIn: "7d" })
         return token
     };
 
     verifyAccessToken(token: string): AppJwtPayload | null {
-        let decoded = jwt.verify(token, this._accessSecret)
+        const decoded = jwt.verify(token, this._accessSecret)
         return decoded as AppJwtPayload
     };
 
     verifyRefreshToken(token: string): AppJwtPayload | null {
-        let decoded = jwt.verify(token, this._refreshSecret)
+        const decoded = jwt.verify(token, this._refreshSecret)
         return decoded as AppJwtPayload
     }
 
     generateForgotPasswordToken(payload: object): string {
-        let token = jwt.sign(payload, this._accessSecret, { expiresIn: "5m" })
+        const token = jwt.sign(payload, this._accessSecret, { expiresIn: "5m" })
         return token
     }
 
     verifyForgotPasswordToken(token: string): AppJwtPayload | null {
-        let decoded = jwt.verify(token, this._accessSecret)
+        const decoded = jwt.verify(token, this._accessSecret)
         return decoded as AppJwtPayload
     }
 

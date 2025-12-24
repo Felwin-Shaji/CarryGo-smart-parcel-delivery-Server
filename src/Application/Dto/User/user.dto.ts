@@ -42,7 +42,7 @@ export interface BaseEditUserProfileRequestDto {
 /**
  * request structure for edit user Profile
  */
-export interface EditUserProfileRequestDto extends BaseEditUserProfileRequestDto { };
+export type EditUserProfileRequestDto = BaseEditUserProfileRequestDto;
 
 /**
  * Base request reset passowrd data
@@ -55,8 +55,7 @@ export interface BaseResetPasswordRequestDTO {
 /**
  * response reset password
  */
-export interface UserResetPasswordRequestDTO extends BaseResetPasswordRequestDTO { };
-
+export type UserResetPasswordRequestDTO = BaseResetPasswordRequestDTO;
 
 /**
  * Data Transfer Objects (DTOs) for user-related operations.
@@ -72,7 +71,7 @@ export interface GetUserDto {
 /**
  * Represents the response structure for a user.
  */
-export interface UserResponseDto extends AgencyResponseDTO { }
+export type UserResponseDto = AgencyResponseDTO;
 
 /**
  * Represents the response structure for fetching a paginated list of users.

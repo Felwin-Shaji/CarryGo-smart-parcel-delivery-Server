@@ -2,6 +2,7 @@ export const HUB_MESSAGES = {
     SESSION_INVALID: "Invalid or expired hub registration session",
     OTP_NOT_VERIFIED: "OTP verification not completed",
     HUB_CREATED: "Hub created successfully",
+    HUBID_MISSING:"Please login agein",
 
     EMAIL_ALREADY_EXISTS: "Hub with this email already exists",
     NAME_ALREADY_EXISTS: "Hub name already exists under this agency",

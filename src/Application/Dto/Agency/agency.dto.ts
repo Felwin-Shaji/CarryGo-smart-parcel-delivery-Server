@@ -5,8 +5,7 @@ import { UserDTO } from "../Auth/Auth.dto";
 /**
  * RegisterAgency Dtos
  */
-
-export interface RegisterAgencyDTO extends UserDTO { }
+export type RegisterAgencyDTO = UserDTO;
 
 export interface RegisterAgencyResponseDTO {
   id: string;

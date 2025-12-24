@@ -79,16 +79,13 @@ export class WorkerMapper {
     }
 
 
-    static toAddWorkerResponseDTO(worker: any): WorkerResponseDTO {
+    static toAddWorkerResponseDTO(worker: HubWorker): WorkerResponseDTO {
         return {
-            id: worker._id,
-            hubId: worker.hubId,
+            hubId: worker.hubId.toString(),
             name: worker.name,
             email: worker.email,
-            mobile: worker.mobile,
-            kycStatus: worker.kycStatus,
-            kycDocumentUrl: worker.kycDocumentUrl ?? null,
-            kycSelfieUrl: worker.kycSelfieUrl ?? null,
+            mobile: worker.mobile!,
+            kycStatus: worker.kycStatus!,
             role: worker.role,
             createdAt: worker.createdAt,
         };

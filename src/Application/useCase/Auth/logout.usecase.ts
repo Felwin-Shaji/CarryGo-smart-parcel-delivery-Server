@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { ILogoutUsecase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/logout.usecase";
 import { ITokenService } from "../../interfaces/services_Interfaces/token-service.interface";
-import { IRefreshTokenRepository } from "../../../Infrastructure/Interface/repositories_interfaces/authRepositories_Interfaces/refreshToken.repository";
+import { IRefreshTokenRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/refreshToken.repository";
 import { AppError } from "../../../Domain/utils/customError";
 
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";

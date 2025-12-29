@@ -1,7 +1,7 @@
 import { FilterQuery } from "mongoose";
 import { GetHubsDTO } from "../../../Application/Dto/Hub/hub.dto";
 // import { PaginatedData } from "../../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
-import { IHubRepository, PaginatedHubData } from "../../Interface/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
+import { IHubRepository, PaginatedHubData } from "../../../Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
 import { Hub } from "../../../Domain/Entities/Hub/Hub";
 import { HubModel } from "../../database/models/Hub/HubModel";
 import { BaseRepository } from "../baseRepositories";

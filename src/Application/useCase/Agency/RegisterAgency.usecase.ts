@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import type { IRegisterAgencyUseCase } from "../../interfaces/useCase_Interfaces/Agency/Agencyregisrtation.usecase.js";
-import type { IAgencyRepository } from "../../../Infrastructure/Interface/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
+import type { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
 import { Agency } from "../../../Domain/Entities/Agency/Agency.js";
 import { RegisterAgencyDTO, RegisterAgencyResponseDTO } from "../../Dto/Agency/agency.dto.js";
 

@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import type { ITokenService } from "../../interfaces/services_Interfaces/token-service.interface.js";
-import type { IRefreshTokenRepository } from "../../../Infrastructure/Interface/repositories_interfaces/authRepositories_Interfaces/refreshToken.repository.js";
+import type { IRefreshTokenRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/refreshToken.repository.js";
 import type { Role, TokenObj } from "../../../Infrastructure/Types/types.js";
 import { IGenerateTokenUseCase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/GenerateToken.usecase.js";
 

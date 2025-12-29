@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IAddNewHubResendOtp } from "../../interfaces/useCase_Interfaces/Hub/IAddNewHubResendOtp";
-import { IHubTempRepository } from "../../../Infrastructure/Interface/repositories_interfaces/hubRepositories_Interfaces/hubTemp.repository";
+import { IHubTempRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hubTemp.repository";
 import { IOtpService } from "../../interfaces/services_Interfaces/otp-service.interface";
 import { IMailService } from "../../interfaces/services_Interfaces/email-service.interface";
 import { AppError } from "../../../Domain/utils/customError";

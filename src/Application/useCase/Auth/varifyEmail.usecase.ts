@@ -1,18 +1,18 @@
 import { inject, injectable } from "tsyringe";
 import { IVarifyEmailUseCase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/varifyEmail.usecase";
-import { IUserRepository } from "../../../Infrastructure/Interface/repositories_interfaces/userRepositories_Interfaces/user.repository";
-import { IAdminRepository } from "../../../Infrastructure/Interface/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
-import { IAgencyRepository } from "../../../Infrastructure/Interface/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
-import { IHubRepository } from "../../../Infrastructure/Interface/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
+import { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
+import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
+import { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
+import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
 import { Role } from "../../../Infrastructure/Types/types";
 import { IMailService } from "../../interfaces/services_Interfaces/email-service.interface";
 import { ITokenService } from "../../interfaces/services_Interfaces/token-service.interface";
 import { AppError } from "../../../Domain/utils/customError";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { IResetTokenRepository } from "../../../Infrastructure/Interface/repositories_interfaces/authRepositories_Interfaces/resetToken.repository";
+import { IResetTokenRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/resetToken.repository";
 import { ITokenModel } from "../../../Domain/Entities/token";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
-import { IHubWorkerRepository } from "../../../Infrastructure/Interface/repositories_interfaces/workerRepository_interfaces/worker.repository";
+import { IHubWorkerRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";
 
 
 @injectable()

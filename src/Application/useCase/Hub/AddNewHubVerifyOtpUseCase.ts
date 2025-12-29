@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { IHubTempRepository } from "../../../Infrastructure/Interface/repositories_interfaces/hubRepositories_Interfaces/hubTemp.repository";
+import { IHubTempRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hubTemp.repository";
 import { IOtpService } from "../../interfaces/services_Interfaces/otp-service.interface";
 import { AppError } from "../../../Domain/utils/customError";
 import { IAddNewHubVerifyOtpUseCase } from "../../interfaces/useCase_Interfaces/Hub/IAddNewHubVerifyOtpUseCase";

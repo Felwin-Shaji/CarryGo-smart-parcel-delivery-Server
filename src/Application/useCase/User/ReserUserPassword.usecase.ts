@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IUserReserUserPassword } from "../../interfaces/useCase_Interfaces/user/ReserUserPassword.usecase";
 import { UserResetPasswordRequestDTO } from "../../Dto/User/user.dto";
-import { IUserRepository } from "../../../Infrastructure/Interface/repositories_interfaces/userRepositories_Interfaces/user.repository";
+import { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
 import { AppError } from "../../../Domain/utils/customError";
 import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";

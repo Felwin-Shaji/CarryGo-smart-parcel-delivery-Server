@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { GetHubsDTO, GetHubsResponseDTO } from "../../Dto/Hub/hub.dto";
 import { IGetHubsUsecase } from "../../interfaces/useCase_Interfaces/Hub/IGetHubsUsecase";
-import { IHubRepository } from "../../../Infrastructure/Interface/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
+import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
 
 @injectable()
 export class GetHubsUsecase implements IGetHubsUsecase{

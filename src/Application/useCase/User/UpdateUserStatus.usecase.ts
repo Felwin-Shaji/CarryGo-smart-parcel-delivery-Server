@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IUpdateUserStatusUseCase } from "../../interfaces/useCase_Interfaces/user/UpdateUserStatus.usecase";
-import { IUserRepository } from "../../../Infrastructure/Interface/repositories_interfaces/userRepositories_Interfaces/user.repository";
+import { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
 import { AppError } from "../../../Domain/utils/customError";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";

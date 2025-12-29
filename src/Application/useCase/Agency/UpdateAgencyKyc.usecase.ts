@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { KYCStatus } from "../../../Infrastructure/Types/types";
-import { IAgencyRepository } from "../../../Infrastructure/Interface/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
+import { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
 import { IUpdateAgencyKycStatusUseCase } from "../../interfaces/useCase_Interfaces/Agency/UpdateAgencyKycStatusUseCase";
 import { updateAgencyKycStatusDTO } from "../../Dto/Agency/agency.dto";
 import { AppError } from "../../../Domain/utils/customError";

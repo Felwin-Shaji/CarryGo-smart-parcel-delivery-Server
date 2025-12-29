@@ -3,14 +3,14 @@ import { AppError } from "../../../Domain/utils/customError.js";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes.js";
 import type { TokenObj } from "../../../Infrastructure/Types/types.js";
 import type { ITokenService } from "../../interfaces/services_Interfaces/token-service.interface.js";
-import type { IRefreshTokenRepository } from "../../../Infrastructure/Interface/repositories_interfaces/authRepositories_Interfaces/refreshToken.repository.js";
-import type { IUserRepository } from "../../../Infrastructure/Interface/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
-import type { IAdminRepository } from "../../../Infrastructure/Interface/repositories_interfaces/adminRepositories_Interfaces/admin.repository.js";
-import type { IAgencyRepository } from "../../../Infrastructure/Interface/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
+import type { IRefreshTokenRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/refreshToken.repository.js";
+import type { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
+import type { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository.js";
+import type { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
 import { IRefreshTokenUseCase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/refreshToken.usecase.js";
-import { IHubRepository } from "../../../Infrastructure/Interface/repositories_interfaces/hubRepositories_Interfaces/hub.repository.js";
+import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository.js";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages.js";
-import { IHubWorkerRepository } from "../../../Infrastructure/Interface/repositories_interfaces/workerRepository_interfaces/worker.repository.js";
+import { IHubWorkerRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository.js";
 
 
 @injectable()

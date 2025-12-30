@@ -5,7 +5,7 @@ import type { IAuthController } from "../../Interface/Controllers_Interfaces/Aut
 import { AuthMapper } from "../../../Application/Mappers/AuthMapper.js";
 import { setAuthCookies } from "../../../Domain/utils/setAuthCookies.js";
 import { AppError } from "../../../Domain/utils/customError.js";
-import type { ForgotPasswordDTO, UserDTO } from "../../../Application/Dto/Auth/Auth.dto.js";
+import type { ForgotPasswordDTO, SendOtpDTO, UserDTO } from "../../../Application/Dto/Auth/Auth.dto.js";
 import type { ILogoutUsecase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/logout.usecase.js";
 import type { IRegisterUserUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/RegisterUser.useCase.js";
 import type { IRegisterAgencyUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/Agencyregisrtation.usecase.js";
@@ -38,27 +38,18 @@ export class AuthController implements IAuthController {
 
         @inject("IVarifyEmailUseCase") private _varifyEmailUseCase: IVarifyEmailUseCase,
         @inject("IResetPasswordUseCase") private _resetPasswordUseCase: IResetPasswordUseCase,
-    ) { }
+    ) { } 
     sendOtp = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             if (req.body.isResend) {
-
-                const dto = AuthMapper.toResendOtpDTO(req);
-
-                if (!req.body.email) {
-                    return res.status(STATUS.BAD_REQUEST).json({
-                        success: false,
-                        message: "Email required"
-                    });
-                }
+                const dto = req.body as SendOtpDTO;
 
                 const result = await this._resendOtpUseCase.execute(dto);
                 const response = AuthMapper.toSendOtpResponse(result);
-
                 return res.status(STATUS.OK).json(response);
             }
 
-            const dto = AuthMapper.toSendOtpDTO(req);
+            const dto = req.body as SendOtpDTO
             if (!dto.email) return res.status(STATUS.BAD_REQUEST).json({ success: false, message: "email required" });
 
             const result = await this._sendOtpUseCase.execute(dto);

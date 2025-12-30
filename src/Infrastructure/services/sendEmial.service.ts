@@ -2,6 +2,9 @@ import { google } from "googleapis";
 import type { IMailService } from "../../Application/interfaces/services_Interfaces/email-service.interface.js";
 import dotenv from "dotenv";
 import nodemailer, { type Transporter } from "nodemailer";
+import { ENV } from "../constants/env.js";
+
+const isDev = ENV.IS_DEV;
 
 dotenv.config();
 
@@ -45,6 +48,8 @@ export class MailService implements IMailService {
         <p>If you didn't request this, ignore this email.</p>
       </div>
     `;
+
+    if(isDev) return 
 
     await this._transporter?.sendMail({
       from: `"CarryGo" <${process.env.EMAIL_USER}>`,
@@ -101,7 +106,7 @@ export class MailService implements IMailService {
       <p>— CarryGo Team</p>
     </div>
   `;
-
+if(isDev) return 
     await this._transporter?.sendMail({
       from: `"CarryGo" <${process.env.EMAIL_USER}>`,
       to: email,

@@ -27,9 +27,6 @@ export class AddWorkerUsecase implements IAddWorkerUsecase {
         const tempWorker = await this._hubWorkersTempRepo.findOne({ email });
         if (!tempWorker || tempWorker.status !== "OTP-Verified") throw new AppError(WORKER_MESSAGES.SESSION_NOT_FOUND, STATUS.NOT_FOUND);
 
-        console.log('')
-        await this._hubWorkerRepo.countWorket(hubId);
-
         if (!files.document || !files.selfie) throw new AppError(WORKER_MESSAGES.KYC_FILES_REQUIRED, STATUS.BAD_REQUEST);
 
         const documentUrl = files.document as string

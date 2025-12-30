@@ -13,7 +13,7 @@ export interface OtpResponseDTO {
   message: string;
   email: string;
   role: string;
-  expiresAt: Date;
+  expiresAt: number;
 };
 
 export interface VerifyOtpResponseDTO {

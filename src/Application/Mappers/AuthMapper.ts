@@ -1,14 +1,9 @@
 import type { IOtpModel } from "../../Domain/Entities/Iotp.js";
 import type { Request } from "express";
-import type { LoginDTO, LogoutDTO, OtpResponseDTO, ResendOtpDTO, SendLoginResponse, SendLogoutResponseDTO, SendOtpDTO, VerifyOtpResponseDTO } from "../Dto/Auth/Auth.dto.js";
+import type { LoginDTO, LogoutDTO, OtpResponseDTO, ResendOtpDTO, SendLoginResponse, SendLogoutResponseDTO, VerifyOtpResponseDTO } from "../Dto/Auth/Auth.dto.js";
 import type { KYCStatus, Role } from "../../Infrastructure/Types/types.js";
 
 export class AuthMapper {
-
-    static toSendOtpDTO(req: Request): SendOtpDTO {
-        const { name, email, mobile, password, role } = req.body;
-        return { name, email, mobile, password, role };
-    }
 
     static toSendOtpResponse(result: IOtpModel): OtpResponseDTO {
         return {
@@ -16,7 +11,7 @@ export class AuthMapper {
             message: "Otp sent successfully",
             email: result.email,
             role: result.role,
-            expiresAt: result.expiresAt!,
+            expiresAt: result.expiresAt.getTime(),
         }
     }
 

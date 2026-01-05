@@ -11,11 +11,14 @@ export class HubRepository extends BaseRepository<Hub> implements IHubRepository
         super(HubModel)
     };
 
-    async getPaginatedAgencies(dto: GetHubsDTO): Promise<PaginatedHubData> {
+    async getPaginatedHubsByAgency(agencyId: string, dto: GetHubsDTO): Promise<PaginatedHubData> {
         const { page, limit, search, sortBy, sortOrder, blocked, kycStatus, startDate, endDate } = dto;
-        const skip = (page - 1) * limit;
 
-        const filter: FilterQuery<Hub> = {};
+        const safeLimit = Math.min(limit, 50);
+        const skip = (page - 1) * safeLimit;
+
+        const filter: FilterQuery<Hub> = { agencyId };
+        
         if (search) {
             filter.$or = [
                 { name: { $regex: search, $options: "i" } },
@@ -48,7 +51,6 @@ export class HubRepository extends BaseRepository<Hub> implements IHubRepository
             this.model.find(filter).sort(sort).skip(skip).limit(limit),
             this.model.countDocuments(filter),
         ]);
-
 
         return {
             data,

@@ -82,9 +82,6 @@ export class AgencyRepository extends BaseRepository<Agency> implements IAgencyR
 
         const agencyDoc = result[0];
 
-        console.log(agencyDoc)
-
-
         return agencyDoc as AgencyWithKYC_DB_Result;
     }
 };

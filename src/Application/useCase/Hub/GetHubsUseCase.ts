@@ -9,8 +9,9 @@ export class GetHubsUsecase implements IGetHubsUsecase{
         @inject("IHubRepository") private _hubRepo:IHubRepository,
     ){}
 
-    async execute(dto: GetHubsDTO): Promise<GetHubsResponseDTO> {
-        const hubs = await this._hubRepo.getPaginatedAgencies(dto);;
+    async execute(agencyId: string,dto: GetHubsDTO): Promise<GetHubsResponseDTO> {
+
+        const hubs = await this._hubRepo.getPaginatedHubsByAgency(agencyId,dto);
 
         return hubs as unknown as GetHubsResponseDTO
     };

@@ -1,5 +1,6 @@
 import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
 import { UserDTO } from "../Auth/Auth.dto";
+import { GetHubsResponseDTO } from "../Hub/hub.dto";
 
 
 /**
@@ -153,12 +154,20 @@ export interface AgencyWithKYCResponseDTO {
   rejectReason?: string | null;
 
   kyc: KycResponseDTO | null;
-}
+};
+
+
+/**
+ * Agency over view kyc_detail and  
+ */
+export interface GetAgencyOverviewResponseDTO {
+  agency:AgencyWithKYCResponseDTO,
+  hubs:GetHubsResponseDTO
+};
 
 /**
  * updateAgencyKycStatus Dtos
  */
-
 export interface updateAgencyKycStatusDTO {
   status: KYCStatus,
   rejectReason?: string

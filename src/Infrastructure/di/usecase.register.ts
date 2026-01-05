@@ -69,6 +69,8 @@ import { IUserReserUserPassword } from "../../Application/interfaces/useCase_Int
 import { UserReserUserPassword } from "../../Application/useCase/User/ReserUserPassword.usecase.js";
 import { IValidatePincodeUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/validatePincode.usecase.js";
 import { ValidatePincodeUsecase } from "../../Application/useCase/User/Booking/ValidatePincode.usecase.js";
+import { IGetAgencyOverviewUseCase } from "../../Application/interfaces/useCase_Interfaces/Agency/GetAgencyOverview.usecase.js";
+import { GetAgencyOverviewUseCase } from "../../Application/useCase/Agency/GetAgencyOverview.usecase.js";
 
 
 
@@ -214,6 +216,10 @@ export class UsecaseRegistery {
 
         container.register<IValidatePincodeUsecase>("IValidatePincodeUsecase",{
             useClass:ValidatePincodeUsecase
+        })
+
+        container.register<IGetAgencyOverviewUseCase>("IGetAgencyOverviewUseCase",{
+            useClass:GetAgencyOverviewUseCase
         })
     }
 }

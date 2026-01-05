@@ -10,6 +10,8 @@ import { IUpdateAgencyStatusUseCase } from "../../../Application/interfaces/useC
 import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
 import { GetAgenciesDTO, updateAgencyKycStatusDTO, } from "../../../Application/Dto/Agency/agency.dto";
 import { ApiResponse } from "../../presenters/ApiResponse";
+import { IGetAgencyOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/GetAgencyOverview.usecase";
+import { GetHubsDTO } from "../../../Application/Dto/Hub/hub.dto";
 
 
 function parseBlockedQuery(value: unknown): boolean | null {
@@ -23,7 +25,7 @@ export class AdminAgencyController implements IAdminAgencyController {
 
     constructor(
         @inject("IGetAgenciesUseCase") private _getAgenciesUseCase: IGetAgenciesUseCase,
-        @inject("IGetAgencyWithKYCUseCase") private _getAgencyWithKYCUseCase: IGetAgencyWithKYCUseCase,
+        @inject("IGetAgencyOverviewUseCase") private _getAgencyOverviewUseCase: IGetAgencyOverviewUseCase,
         @inject("IUpdateAgencyKycStatusUseCase") private _updateAgencyKycStatusUseCase: IUpdateAgencyKycStatusUseCase,
         @inject("IUpdateAgencyStatusUseCase") private _updateAgencyStatusUseCase: IUpdateAgencyStatusUseCase
     ) { }
@@ -61,7 +63,7 @@ export class AdminAgencyController implements IAdminAgencyController {
             const agencyId = req.params.id;
             if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
 
-            const result = await this._getAgencyWithKYCUseCase.execute(agencyId);
+            const result = await this._getAgencyOverviewUseCase.execute(agencyId);
 
             return res.status(STATUS.OK).json(
                 ApiResponse.success(

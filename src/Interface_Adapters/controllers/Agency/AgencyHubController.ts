@@ -15,6 +15,8 @@ import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agen
 import { GetHubsDTO } from "../../../Application/Dto/Hub/hub.dto";
 import { IGetHubsUsecase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IGetHubsUsecase";
 import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
+import { AppError } from "../../../Domain/utils/customError";
+import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
 
 function parseBlockedQuery(value: unknown): boolean | null {
     if (value === "true") return true;
@@ -126,6 +128,9 @@ export class AgencyHubController implements IAgencyHubController {
 
     getHubs = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => { 
         try {
+            const agencyId = req.user?.id;
+            if(!agencyId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND);
+            
             const dto:GetHubsDTO = {
                 page: Number(req.query.page) || 1,
                 limit: Number(req.query.limit) || 10,
@@ -138,7 +143,7 @@ export class AgencyHubController implements IAgencyHubController {
                 endDate: req.query.endDate?.toString() || "",
             };
 
-            const result = await this._getHubsUsecase.execute(dto);
+            const result = await this._getHubsUsecase.execute(agencyId,dto);
 
             return res.status(STATUS.OK).json(
                 ApiResponse.success(HUB_MESSAGES.EMAIL_ALREADY_EXISTS,result)

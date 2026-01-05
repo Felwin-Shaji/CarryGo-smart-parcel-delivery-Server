@@ -10,5 +10,5 @@ export interface PaginatedHubData {
 }
 
 export interface IHubRepository extends IBaseRepository<Hub> {
-    getPaginatedAgencies(dto:GetHubsDTO):Promise<PaginatedHubData>
+    getPaginatedHubsByAgency(agencyId: string,dto: GetHubsDTO):Promise<PaginatedHubData>
 }

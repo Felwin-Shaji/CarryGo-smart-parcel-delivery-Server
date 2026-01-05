@@ -8,6 +8,7 @@ import { AgencyHubController } from "../../Interface_Adapters/controllers/Agency
 import { HubWorkerController } from "../../Interface_Adapters/controllers/Hub/hubWorkerController.js";
 import { UserController } from "../../Interface_Adapters/controllers/User/userController.js";
 import { UserBookingController } from "../../Interface_Adapters/controllers/User/bookingController.js";
+import { AdminPricingPolicyController } from "../../Interface_Adapters/controllers/Admin/AdminPricingPolicyController.js";
 // import { AdminController } from "../../Interface_Adapters/controllers/Admin/AdminController.js";
 
 
@@ -25,5 +26,6 @@ export const agencyHubController = container.resolve(AgencyHubController)
 
 export const adminAgencyController = container.resolve(AdminAgencyController);
 export const adminUserController = container.resolve(AdminUserController);
+export const adminPricingPolicyController = container.resolve(AdminPricingPolicyController);
 
 export const hubWorkerController = container.resolve(HubWorkerController)

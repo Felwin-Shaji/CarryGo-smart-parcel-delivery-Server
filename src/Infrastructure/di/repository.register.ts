@@ -23,6 +23,8 @@ import { IHubWorkersTempRepository } from "../../Application/interfaces/reposito
 import { HubWorkersTempRepository } from "../repositories/Worker/hubWorkersTempRepository.js";
 import { IHubWorkerRepository } from "../../Application/interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository.js";
 import { HubWorkerRepository } from "../repositories/Worker/hubWorkerRepository.js";
+import { IPricingPolicyRepository } from "../../Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/pricingPolicy.repository.js";
+import { PricingPolicyRepository } from "../repositories/Admin/PricingPolicyRepository.js";
 
 
 export class RepositoryRegistry {
@@ -74,6 +76,10 @@ export class RepositoryRegistry {
 
         container.register<IHubWorkerKycRepository>("IHubWorkerKycRepository",{
             useClass:HubWorkerKycRepository
+        })
+
+        container.register<IPricingPolicyRepository>("IPricingPolicyRepository",{
+            useClass:PricingPolicyRepository
         })
 
     };

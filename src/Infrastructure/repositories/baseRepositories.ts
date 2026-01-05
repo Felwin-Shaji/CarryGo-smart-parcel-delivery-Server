@@ -24,7 +24,7 @@ export class BaseRepository<T> implements IBaseRepository<T> {
         return  query;
     };
 
-    async save(data: T, session?: ClientSession): Promise<T> {
+    async save(data: Partial<T>, session?: ClientSession): Promise<T> {
         const document = new this.model(data);
         if (session) {
             await document.save({ session });

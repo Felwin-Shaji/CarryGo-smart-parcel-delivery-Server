@@ -15,14 +15,20 @@ export class PricingPolicyRepository
     async createPricingPolicy(policy: PricingPolicy): Promise<PricingPolicy> {
         const pricingPolicyDocument = {
             deliveryModel: policy.deliveryModel,
+
             minBasePrice: policy.minBasePrice,
             maxBasePrice: policy.maxBasePrice,
+
             minPricePerKm: policy.minPricePerKm,
             maxPricePerKm: policy.maxPricePerKm,
-            minPricePerKg: policy.minPricePerKg,
-            maxPricePerKg: policy.maxPricePerKg,
+
+            minSizePrice: policy.minSizePrice,
+            maxSizePrice: policy.maxSizePrice,
+
             platformFeePercent: policy.platformFeePercent,
-            isActive: policy.isActive
+            isActive: policy.isActive,
+            policyVersion: policy.policyVersion
+
         };
 
         const doc = await this.save(pricingPolicyDocument);
@@ -39,28 +45,21 @@ export class PricingPolicyRepository
         return doc ? this.toDomain(doc) : null;
     };
 
+    async deactivateActivePolicy(model: "AGENCY" | "TRAVELER"): Promise<void> {
+        await this.model.updateMany(
+            { deliveryModel: model, isActive: true },
+            { isActive: false }
+        );
+    };
 
-    async updatePricingPolicy(policy: PricingPolicy): Promise<PricingPolicy> {
-
-        const doc = await this.findOneAndUpdate(
-            { deliveryModel: policy.deliveryModel },
-            {
-                minBasePrice: policy.minBasePrice,
-                maxBasePrice: policy.maxBasePrice,
-                minPricePerKm: policy.minPricePerKm,
-                maxPricePerKm: policy.maxPricePerKm,
-                minPricePerKg: policy.minPricePerKg,
-                maxPricePerKg: policy.maxPricePerKg,
-                platformFeePercent: policy.platformFeePercent,
-                isActive: policy.isActive,
-            }
+    async getLatestPolicyVersion(model: "AGENCY" | "TRAVELER"): Promise<number> {
+        const doc = await this.model.findOne(
+            { deliveryModel: model },
+            { policyVersion: 1 },
+            { sort: { policyVersion: -1 } }
         );
 
-        if (!doc) {
-            throw new AppError("Pricing policy not found");
-        };
-
-        return this.toDomain(doc);
+        return doc?.policyVersion ?? 0;
     };
 
     /* 
@@ -77,11 +76,12 @@ export class PricingPolicyRepository
             doc.minPricePerKm,
             doc.maxPricePerKm,
 
-            doc.minPricePerKg,
-            doc.maxPricePerKg,
+            doc.minSizePrice,
+            doc.maxSizePrice,
 
             doc.platformFeePercent,
             doc.isActive,
+            doc.policyVersion,
 
             doc.createdAt,
             doc.updatedAt

@@ -71,8 +71,12 @@ import { IValidatePincodeUsecase } from "../../Application/interfaces/useCase_In
 import { ValidatePincodeUsecase } from "../../Application/useCase/User/Booking/ValidatePincode.usecase.js";
 import { IGetAgencyOverviewUseCase } from "../../Application/interfaces/useCase_Interfaces/Agency/GetAgencyOverview.usecase.js";
 import { GetAgencyOverviewUseCase } from "../../Application/useCase/Agency/GetAgencyOverview.usecase.js";
-import { IGetPricingUseCase } from "../../Application/interfaces/useCase_Interfaces/Admin_Pricing_Policy/getPricing.usecase.js";
-import { GetPricingUseCase } from "../../Application/useCase/Admin_Pricing_Policy/GetPricingPolicy.usecase.js";
+import { IGetPricingUseCase } from "../../Application/interfaces/useCase_Interfaces/Princing/getPricing.usecase.js";
+import { GetPricingUseCase } from "../../Application/useCase/Pricing/GetPricingPolicy.usecase.js";
+import { GetAgencyPricingUsecase } from "../../Application/useCase/Pricing/GetAgencyPricing.usecase.js";
+import { IGetAgencyPricingUsecase } from "../../Application/interfaces/useCase_Interfaces/Princing/IGetAgencyPricingUsecase.js";
+import { IUpsertAgencyPricingUseCase } from "../../Application/interfaces/useCase_Interfaces/Princing/IUpsertAgencyPricingUseCase.js";
+import { UpsertAgencyPricingUseCase } from "../../Application/useCase/Pricing/UpsertAgencyPricing.usecase.js";
 
 
 
@@ -226,6 +230,14 @@ export class UsecaseRegistery {
 
         container.register<IGetPricingUseCase>("IGetPricingUseCase",{
             useClass:GetPricingUseCase
+        })
+
+        container.register<IGetAgencyPricingUsecase>("IGetAgencyPricingUsecase",{
+            useClass:GetAgencyPricingUsecase
+        })
+
+        container.register<IUpsertAgencyPricingUseCase>("IUpsertAgencyPricingUseCase",{
+            useClass:UpsertAgencyPricingUseCase
         })
     }
 }

@@ -2,18 +2,27 @@ import { Document, model, ObjectId, Schema } from "mongoose";
 
 export interface PricingPolicySchemaType extends Document {
   _id: ObjectId;
+
   deliveryModel: "AGENCY" | "TRAVELER";
+
   minBasePrice: number;
   maxBasePrice: number;
+
   minPricePerKm: number;
   maxPricePerKm: number;
-  minPricePerKg: number;
-  maxPricePerKg: number;
+
+  minSizePrice: number;
+  maxSizePrice: number;
+
   platformFeePercent: number;
+
   isActive: boolean;
+  policyVersion: number;
+
   createdAt?: Date;
   updatedAt?: Date;
 }
+
 
 const PricingPolicySchema = new Schema<PricingPolicySchemaType>(
   {
@@ -21,14 +30,17 @@ const PricingPolicySchema = new Schema<PricingPolicySchemaType>(
       type: String,
       enum: ["AGENCY", "TRAVELER"],
       required: true,
-      unique: true,
+      index: true,
     },
+
     minBasePrice: { type: Number, required: true, min: 0 },
     maxBasePrice: { type: Number, required: true, min: 0 },
+
     minPricePerKm: { type: Number, required: true, min: 0 },
     maxPricePerKm: { type: Number, required: true, min: 0 },
-    minPricePerKg: { type: Number, required: true, min: 0 },
-    maxPricePerKg: { type: Number, required: true, min: 0 },
+
+    minSizePrice: { type: Number, required: true, min: 0 },
+    maxSizePrice: { type: Number, required: true, min: 0 },
 
     platformFeePercent: {
       type: Number,
@@ -40,6 +52,13 @@ const PricingPolicySchema = new Schema<PricingPolicySchemaType>(
     isActive: {
       type: Boolean,
       default: true,
+      index: true,
+    },
+
+    policyVersion: {
+      type: Number,
+      required: true,
+      min: 1,
     },
   },
   {
@@ -47,6 +66,7 @@ const PricingPolicySchema = new Schema<PricingPolicySchemaType>(
     versionKey: false,
   }
 );
+
 
 export const PricingPolicyModel = model<PricingPolicySchemaType>(
   "PricingPolicy",

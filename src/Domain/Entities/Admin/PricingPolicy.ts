@@ -14,12 +14,13 @@ export class PricingPolicy {
     public minPricePerKm: number,
     public maxPricePerKm: number,
 
-    public minPricePerKg: number,
-    public maxPricePerKg: number,
+    public minSizePrice: number,
+    public maxSizePrice: number,
 
     public platformFeePercent: number,
 
     public isActive: boolean,
+    public policyVersion: number,
 
     public readonly createdAt?: Date,
     public readonly updatedAt?: Date,
@@ -36,8 +37,8 @@ export class PricingPolicy {
       throw new AppError("minPricePerKm cannot be greater than maxPricePerKm");
     }
 
-    if (this.minPricePerKg > this.maxPricePerKg) {
-      throw new AppError("minPricePerKg cannot be greater than maxPricePerKg");
+    if (this.minSizePrice > this.minSizePrice) {
+      throw new AppError("minSizePrice cannot be greater than maxPricePerKg");
     }
 
     if (this.platformFeePercent < 0 || this.platformFeePercent > 100) {

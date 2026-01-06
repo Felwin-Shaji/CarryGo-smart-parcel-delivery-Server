@@ -3,10 +3,12 @@ import { PricingPolicySchemaType } from "../../../../Infrastructure/database/mod
 import { IBaseRepository } from "../base.repository";
 
 export interface IPricingPolicyRepository extends IBaseRepository<PricingPolicySchemaType> {
-  
+
   getActiveByDeliveryModel(model: "AGENCY" | "TRAVELER"): Promise<PricingPolicy | null>;
 
   createPricingPolicy(policy: PricingPolicy): Promise<PricingPolicy>;
 
-  updatePricingPolicy(policy: PricingPolicy): Promise<PricingPolicy>;
+  deactivateActivePolicy(model: "AGENCY" | "TRAVELER"): Promise<void>;
+
+  getLatestPolicyVersion(model: "AGENCY" | "TRAVELER"): Promise<number>
 }

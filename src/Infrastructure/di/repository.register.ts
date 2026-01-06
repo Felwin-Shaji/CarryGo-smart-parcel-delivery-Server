@@ -25,6 +25,8 @@ import { IHubWorkerRepository } from "../../Application/interfaces/repositories_
 import { HubWorkerRepository } from "../repositories/Worker/hubWorkerRepository.js";
 import { IPricingPolicyRepository } from "../../Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/pricingPolicy.repository.js";
 import { PricingPolicyRepository } from "../repositories/Admin/PricingPolicyRepository.js";
+import { IAgencyPricingRepository } from "../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agencyPricing.repository.js";
+import { AgencyPricingRepository } from "../repositories/Agency/AgencyPricingRepository.js";
 
 
 export class RepositoryRegistry {
@@ -80,6 +82,10 @@ export class RepositoryRegistry {
 
         container.register<IPricingPolicyRepository>("IPricingPolicyRepository",{
             useClass:PricingPolicyRepository
+        })
+
+        container.register<IAgencyPricingRepository>("IAgencyPricingRepository",{
+            useClass:AgencyPricingRepository
         })
 
     };

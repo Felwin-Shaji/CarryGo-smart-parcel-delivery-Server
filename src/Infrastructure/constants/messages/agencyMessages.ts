@@ -19,4 +19,9 @@ export const AGENCY_MESSAGES = {
 
     INVALID_OTP: "Invalid OTP. Please try again.",
     OTP_RESENT: "OTP resent successfully.",
+
+    PROFILE_FETCHED: "Agency profile fetched successfully.",
+    PROFILE_UPDATED: "Agency profile updated successfully.",
+    PASSWORD_RESET: "Agency password reset successfully.",
+    PROFILE_UPDATE_FAILURE: "Failed to update agency profile.",
 } as const;

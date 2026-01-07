@@ -85,6 +85,12 @@ import { EditAdminProfileUseCase } from "../../Application/useCase/Admin/editAdm
 import { IEditAdminProfileUseCase } from "../../Application/interfaces/useCase_Interfaces/Admin/IEditAdminProfileUseCase.js";
 import { ResetAdminPasswordUseCase } from "../../Application/useCase/Admin/resetAdminPassword.usecase.js";
 import { IResetAdminPasswordUsecase } from "../../Application/interfaces/useCase_Interfaces/Admin/IResetAdminPasswordUscase.js";
+import { GetAgencyProfileUseCase } from "../../Application/useCase/Agency/getAgencyProfile.usecase.js";
+import { IGetAgencyProfileUseCase } from "../../Application/interfaces/useCase_Interfaces/Agency/IGetAgencyProfileUseCase.js";
+import { EditAgencyProfileUseCase } from "../../Application/useCase/Agency/editAgencyProfile.usecase.js";
+import { IEditAgencyProfileUseCase } from "../../Application/interfaces/useCase_Interfaces/Agency/IEditAgencyProfileUseCase.js";
+import { ResetAgencyPasswordUseCase } from "../../Application/useCase/Agency/resetAgencyPassword.usecase.js";
+import { IResetAgencyPasswordUseCase } from "../../Application/interfaces/useCase_Interfaces/Agency/IResetAgencyPasswordUseCase.js";
 
 
 
@@ -262,6 +268,18 @@ export class UsecaseRegistery {
 
         container.register<IResetAdminPasswordUsecase>("IResetAdminPasswordUsecase", {  
             useClass: ResetAdminPasswordUseCase 
+        });
+
+        container.register<IGetAgencyProfileUseCase>("IGetAgencyProfileUseCase", {
+            useClass: GetAgencyProfileUseCase
+        });
+        
+        container.register<IEditAgencyProfileUseCase>("IEditAgencyProfileUseCase", {
+            useClass: EditAgencyProfileUseCase
+        });
+
+        container.register<IResetAgencyPasswordUseCase>("IResetAgencyPasswordUseCase", {
+            useClass: ResetAgencyPasswordUseCase
         });
     }
 }

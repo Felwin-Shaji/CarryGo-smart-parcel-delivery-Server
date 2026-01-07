@@ -1,4 +1,4 @@
-import { agencyController, agencyHubController } from "../../Infrastructure/di/resolver";
+import { agencyController, agencyHubController, agencyPricingController } from "../../Infrastructure/di/resolver";
 import { agencyAddHub, agencyuploadKYC } from "../../Infrastructure/services/storage/multer";
 import { authenticate } from "../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../middlewares/ErrorHandlers/asyncHandler";
@@ -14,6 +14,9 @@ export class AgencyRoute extends BaseRoute {
         this.router.get("/dashboard/resubmit-kyc/:id", authenticate(["agency"]), asyncHandler(agencyController.getReSubmitKyc))
         this.router.put("/dashboard/resubmit-kyc", authenticate(["agency"]), agencyuploadKYC, asyncHandler(agencyController.reSubmitKyc))
         // this.router.get("/agency",authenticate(["agency"]),asyncHandler(agencyController.submitKYC))
+
+        this.router.get("/agency-pricing-policy", authenticate(["agency"]), agencyuploadKYC, asyncHandler(agencyPricingController.getAgencyPricing))
+        this.router.post("/agency-pricing-policy", authenticate(["agency"]), agencyuploadKYC, asyncHandler(agencyPricingController.upsertAgencyPricing))
 
 
         this.router.post("/hub/temp-register", authenticate(["agency"]), asyncHandler(agencyHubController.addNewHubBasicInfo));

@@ -10,6 +10,7 @@ import { UserController } from "../../Interface_Adapters/controllers/User/userCo
 import { UserBookingController } from "../../Interface_Adapters/controllers/User/bookingController.js";
 import { AdminPricingPolicyController } from "../../Interface_Adapters/controllers/Admin/AdminPricingPolicyController.js";
 import { AgencyPricingController } from "../../Interface_Adapters/controllers/Agency/AgencyPricing.controller.js";
+import { AdminProfileController } from "../../Interface_Adapters/controllers/Admin/AdminProfile.controller.js";
 // import { AdminController } from "../../Interface_Adapters/controllers/Admin/AdminController.js";
 
 
@@ -17,6 +18,7 @@ import { AgencyPricingController } from "../../Interface_Adapters/controllers/Ag
 DependancyInjection.registerAll();
 
 export const authController = container.resolve(AuthController);
+export const adminProfileController = container.resolve(AdminProfileController);
 
 export const userController = container.resolve(UserController)
 export const bookingController = container.resolve(UserBookingController)

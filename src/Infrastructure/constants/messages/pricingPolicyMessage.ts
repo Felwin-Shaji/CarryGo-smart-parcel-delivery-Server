@@ -8,5 +8,7 @@ export const PRICING_POLICY_MESSAGE = {
     ADMIN_PRICING_POLICY_NOT_FOUND: "Admin Pricing policy is not found",
 
     BASE_PRICE_OUTSIDE_LIMIT: "Base price is outside allowed admin limits",
-    SIZE_PRICE_OUTSIDE_LIMIT: "Size price is outside allowed admin limits"
+    SIZE_PRICE_OUTSIDE_LIMIT: "Size price is outside allowed admin limits",
+
+    CREATE_PRICING_POLICY_SUCCESS: "Pricing policy created successfully",
 }

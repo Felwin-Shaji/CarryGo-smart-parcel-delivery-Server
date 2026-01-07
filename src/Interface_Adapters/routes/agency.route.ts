@@ -1,4 +1,4 @@
-import { agencyController, agencyHubController, agencyPricingController } from "../../Infrastructure/di/resolver";
+import { agencyController, agencyHubController, agencyPricingController, agencyProfileController } from "../../Infrastructure/di/resolver";
 import { agencyAddHub, agencyuploadKYC } from "../../Infrastructure/services/storage/multer";
 import { authenticate } from "../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../middlewares/ErrorHandlers/asyncHandler";
@@ -15,6 +15,11 @@ export class AgencyRoute extends BaseRoute {
         this.router.put("/dashboard/resubmit-kyc", authenticate(["agency"]), agencyuploadKYC, asyncHandler(agencyController.reSubmitKyc))
         // this.router.get("/agency",authenticate(["agency"]),asyncHandler(agencyController.submitKYC))
 
+        this.router.get("/profile", authenticate(["agency"]), asyncHandler(agencyProfileController.getAgencyProfile));
+        this.router.put("/edit-profile", authenticate(["agency"]), asyncHandler(agencyProfileController.editAgencyProfile));
+        this.router.put("/reset-password", authenticate(["agency"]), asyncHandler(agencyProfileController.resetAgencyPassword));
+
+
         this.router.get("/agency-pricing-policy", authenticate(["agency"]), agencyuploadKYC, asyncHandler(agencyPricingController.getAgencyPricing))
         this.router.post("/agency-pricing-policy", authenticate(["agency"]), agencyuploadKYC, asyncHandler(agencyPricingController.upsertAgencyPricing))
 
@@ -25,7 +30,7 @@ export class AgencyRoute extends BaseRoute {
         this.router.get("/hub/temp-status", authenticate(["agency"]), asyncHandler(agencyHubController.checkTempStatus));
 
         this.router.post("/add-newHub", authenticate(["agency"]), agencyAddHub, asyncHandler(agencyHubController.addNewHub));
-        this.router.get("/hubs", authenticate(["agency"]),asyncHandler(agencyHubController.getHubs))
+        this.router.get("/hubs", authenticate(["agency"]), asyncHandler(agencyHubController.getHubs))
     }
 
 }

@@ -11,6 +11,7 @@ import { UserBookingController } from "../../Interface_Adapters/controllers/User
 import { AdminPricingPolicyController } from "../../Interface_Adapters/controllers/Admin/AdminPricingPolicyController.js";
 import { AgencyPricingController } from "../../Interface_Adapters/controllers/Agency/AgencyPricing.controller.js";
 import { AdminProfileController } from "../../Interface_Adapters/controllers/Admin/AdminProfile.controller.js";
+import { AgencyProfileController } from "../../Interface_Adapters/controllers/Agency/AgencyProfile.controller.js";
 // import { AdminController } from "../../Interface_Adapters/controllers/Admin/AdminController.js";
 
 
@@ -24,6 +25,7 @@ export const userController = container.resolve(UserController)
 export const bookingController = container.resolve(UserBookingController)
 
 export const agencyController = container.resolve(AgencyController);
+export const agencyProfileController = container.resolve(AgencyProfileController);
 export const agencyHubController = container.resolve(AgencyHubController);
 export const agencyPricingController = container.resolve(AgencyPricingController);
 

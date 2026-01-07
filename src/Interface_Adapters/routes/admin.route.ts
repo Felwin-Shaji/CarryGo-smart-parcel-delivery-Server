@@ -18,5 +18,6 @@ export class AdminRoute extends BaseRoute {
         this.router.patch("/users/:id/status", authenticate(["admin"]), asyncHandler(adminUserController.UpdateStatus));
 
         this.router.get("/admin-pricing",authenticate(["admin"]),asyncHandler(adminPricingPolicyController.getAdminPricing));
+        this.router.post("/admin-pricing",authenticate(["admin"]),asyncHandler(adminPricingPolicyController.createAdminPricing));
     };
 };

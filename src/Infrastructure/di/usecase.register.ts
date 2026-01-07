@@ -77,6 +77,8 @@ import { GetAgencyPricingUsecase } from "../../Application/useCase/Pricing/GetAg
 import { IGetAgencyPricingUsecase } from "../../Application/interfaces/useCase_Interfaces/Princing/IGetAgencyPricingUsecase.js";
 import { IUpsertAgencyPricingUseCase } from "../../Application/interfaces/useCase_Interfaces/Princing/IUpsertAgencyPricingUseCase.js";
 import { UpsertAgencyPricingUseCase } from "../../Application/useCase/Pricing/UpsertAgencyPricing.usecase.js";
+import { CreateAdminPricingPolicyUseCase } from "../../Application/useCase/Pricing/CreateAdminPricingPolicy.usecase.js";
+import { ICreateAdminPricingPolicyUseCase } from "../../Application/interfaces/useCase_Interfaces/Princing/ICreateAdminPricingPolicyUseCase.js";
 
 
 
@@ -238,6 +240,10 @@ export class UsecaseRegistery {
 
         container.register<IUpsertAgencyPricingUseCase>("IUpsertAgencyPricingUseCase",{
             useClass:UpsertAgencyPricingUseCase
+        })
+
+        container.register<ICreateAdminPricingPolicyUseCase>("ICreateAdminPricingPolicyUseCase",{
+            useClass:CreateAdminPricingPolicyUseCase
         })
     }
 }

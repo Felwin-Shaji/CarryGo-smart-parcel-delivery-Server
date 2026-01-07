@@ -79,6 +79,12 @@ import { IUpsertAgencyPricingUseCase } from "../../Application/interfaces/useCas
 import { UpsertAgencyPricingUseCase } from "../../Application/useCase/Pricing/UpsertAgencyPricing.usecase.js";
 import { CreateAdminPricingPolicyUseCase } from "../../Application/useCase/Pricing/CreateAdminPricingPolicy.usecase.js";
 import { ICreateAdminPricingPolicyUseCase } from "../../Application/interfaces/useCase_Interfaces/Princing/ICreateAdminPricingPolicyUseCase.js";
+import { IGetAdminProfileUseCase } from "../../Application/interfaces/useCase_Interfaces/Admin/IGetAdminProfileUseCase.js";
+import { GetAdminProfileUseCase } from "../../Application/useCase/Admin/getAdminProfile.usecase.js";
+import { EditAdminProfileUseCase } from "../../Application/useCase/Admin/editAdminProfile.usecase.js";
+import { IEditAdminProfileUseCase } from "../../Application/interfaces/useCase_Interfaces/Admin/IEditAdminProfileUseCase.js";
+import { ResetAdminPasswordUseCase } from "../../Application/useCase/Admin/resetAdminPassword.usecase.js";
+import { IResetAdminPasswordUsecase } from "../../Application/interfaces/useCase_Interfaces/Admin/IResetAdminPasswordUscase.js";
 
 
 
@@ -245,5 +251,17 @@ export class UsecaseRegistery {
         container.register<ICreateAdminPricingPolicyUseCase>("ICreateAdminPricingPolicyUseCase",{
             useClass:CreateAdminPricingPolicyUseCase
         })
+
+        container.register<IGetAdminProfileUseCase>("IGetAdminProfileUseCase", {    
+            useClass: GetAdminProfileUseCase
+        });
+
+        container.register<IEditAdminProfileUseCase>("IEditAdminProfileUseCase", {
+            useClass: EditAdminProfileUseCase
+        }); 
+
+        container.register<IResetAdminPasswordUsecase>("IResetAdminPasswordUsecase", {  
+            useClass: ResetAdminPasswordUseCase 
+        });
     }
 }

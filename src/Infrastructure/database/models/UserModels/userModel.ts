@@ -1,5 +1,6 @@
 import { model, Schema } from "mongoose";
 import type { User } from "../../../../Domain/Entities/User.js";
+import { AddressSchema } from "./AddressSchema.js";
 
 const userModel = new Schema<User>({
     name: { type: String, required: true },
@@ -12,6 +13,10 @@ const userModel = new Schema<User>({
     kycStatus: { type: String, enum: ["PENDING", "REGISTERED", "APPROVED", "REJECTED",], default: "PENDING" },
     walletBalance: { type: Number, required: true, default: 0 },
     isBlocked: { type: Boolean, required: true, default: false },
+    addresses: {
+        type: [AddressSchema],
+        default: [],
+    },
 }, {
     timestamps: true
 });

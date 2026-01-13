@@ -1,5 +1,6 @@
 import type { KYCStatus, Role } from "../../Infrastructure/Types/types.js";
 import { AppError } from "../utils/customError.js";
+import { Address } from "./User/Address.js";
 
 export class User {
   constructor(
@@ -14,6 +15,7 @@ export class User {
     public kycStatus: KYCStatus = "PENDING",
     public walletBalance: number = 0,
     public isBlocked: boolean = false,
+    public addresses: Address[] = [],
     public createdAt: Date = new Date(),
     public updatedAt: Date = new Date()
   ) {

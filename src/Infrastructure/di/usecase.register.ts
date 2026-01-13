@@ -91,6 +91,8 @@ import { EditAgencyProfileUseCase } from "../../Application/useCase/Agency/editA
 import { IEditAgencyProfileUseCase } from "../../Application/interfaces/useCase_Interfaces/Agency/IEditAgencyProfileUseCase.js";
 import { ResetAgencyPasswordUseCase } from "../../Application/useCase/Agency/resetAgencyPassword.usecase.js";
 import { IResetAgencyPasswordUseCase } from "../../Application/interfaces/useCase_Interfaces/Agency/IResetAgencyPasswordUseCase.js";
+import { ICreateAddressFromLocationUseCase } from "../../Application/interfaces/useCase_Interfaces/user/Address/ICreateAddressFromLocationUseCase.js";
+import { CreateAddressFromLocationUseCase } from "../../Application/useCase/User/Address/CreateAddressFromLocation.usecase.js";
 
 
 
@@ -280,6 +282,10 @@ export class UsecaseRegistery {
 
         container.register<IResetAgencyPasswordUseCase>("IResetAgencyPasswordUseCase", {
             useClass: ResetAgencyPasswordUseCase
+        });
+
+        container.register<ICreateAddressFromLocationUseCase>("ICreateAddressFromLocationUseCase",{
+            useClass: CreateAddressFromLocationUseCase
         });
     }
 }

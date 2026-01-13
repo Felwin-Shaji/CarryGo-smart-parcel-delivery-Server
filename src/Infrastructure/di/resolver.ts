@@ -12,6 +12,7 @@ import { AdminPricingPolicyController } from "../../Interface_Adapters/controlle
 import { AgencyPricingController } from "../../Interface_Adapters/controllers/Agency/AgencyPricing.controller.js";
 import { AdminProfileController } from "../../Interface_Adapters/controllers/Admin/AdminProfile.controller.js";
 import { AgencyProfileController } from "../../Interface_Adapters/controllers/Agency/AgencyProfile.controller.js";
+import { AddressController } from "../../Interface_Adapters/controllers/User/address.controller.js";
 // import { AdminController } from "../../Interface_Adapters/controllers/Admin/AdminController.js";
 
 
@@ -22,7 +23,10 @@ export const authController = container.resolve(AuthController);
 export const adminProfileController = container.resolve(AdminProfileController);
 
 export const userController = container.resolve(UserController)
-export const bookingController = container.resolve(UserBookingController)
+export const bookingController = container.resolve(UserBookingController);
+export const addressController = container.resolve(AddressController);
+
+
 
 export const agencyController = container.resolve(AgencyController);
 export const agencyProfileController = container.resolve(AgencyProfileController);

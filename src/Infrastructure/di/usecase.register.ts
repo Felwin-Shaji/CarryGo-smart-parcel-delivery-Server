@@ -93,6 +93,14 @@ import { ResetAgencyPasswordUseCase } from "../../Application/useCase/Agency/res
 import { IResetAgencyPasswordUseCase } from "../../Application/interfaces/useCase_Interfaces/Agency/IResetAgencyPasswordUseCase.js";
 import { ICreateAddressFromLocationUseCase } from "../../Application/interfaces/useCase_Interfaces/user/Address/ICreateAddressFromLocationUseCase.js";
 import { CreateAddressFromLocationUseCase } from "../../Application/useCase/User/Address/CreateAddressFromLocation.usecase.js";
+import { AddUserAddressUseCase } from "../../Application/useCase/User/Address/addUserAddress.usecase.js";
+import { IAddUserAddressUseCase } from "../../Application/interfaces/useCase_Interfaces/user/Address/IAddUserAddressUseCase.js";
+import { IGetUserAddressesUseCase } from "../../Application/interfaces/useCase_Interfaces/user/Address/IGetUserAddressesUseCase.js";
+import { GetUserAddressesUseCase } from "../../Application/useCase/User/Address/getUserAddresses.usecase.js";
+import { IDeleteUserAddressUseCase } from "../../Application/interfaces/useCase_Interfaces/user/Address/IDeleteUserAddressUseCase.js";
+import { DeleteUserAddressUseCase } from "../../Application/useCase/User/Address/deleteUserAddressu.secase.js";
+import { ISetDefaultUserAddressUseCase } from "../../Application/interfaces/useCase_Interfaces/user/Address/ISetDefaultUserAddressUseCase.js";
+import { SetDefaultUserAddressUseCase } from "../../Application/useCase/User/Address/setDefaultUserAddress.usecase.js";
 
 
 
@@ -286,6 +294,22 @@ export class UsecaseRegistery {
 
         container.register<ICreateAddressFromLocationUseCase>("ICreateAddressFromLocationUseCase",{
             useClass: CreateAddressFromLocationUseCase
+        });
+
+        container.register<IAddUserAddressUseCase>("IAddUserAddressUseCase",{
+            useClass: AddUserAddressUseCase
+        });
+
+        container.register<IGetUserAddressesUseCase>("IGetUserAddressesUseCase",{
+            useClass: GetUserAddressesUseCase
+        });
+
+        container.register<IDeleteUserAddressUseCase>("IDeleteUserAddressUseCase",{
+            useClass: DeleteUserAddressUseCase
+        });
+
+        container.register<ISetDefaultUserAddressUseCase>("ISetDefaultUserAddressUseCase",{
+            useClass: SetDefaultUserAddressUseCase
         });
     }
 }

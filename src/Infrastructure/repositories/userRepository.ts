@@ -3,6 +3,10 @@ import { BaseRepository } from "./baseRepositories.js";
 import type { User } from "../../Domain/Entities/User.js";
 import type { IUserRepository } from "../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
 import { UserModel } from "../database/models/UserModels/userModel.js";
+import { Address } from "../../Domain/Entities/User/Address.js";
+import { AppError } from "../../Domain/utils/customError.js";
+import { USER_MESSAGES } from "../constants/messages/userMessage.js";
+import { STATUS } from "../constants/statusCodes.js";
 
 export class UserRepository extends BaseRepository<User> implements IUserRepository {
     constructor() {
@@ -43,5 +47,14 @@ export class UserRepository extends BaseRepository<User> implements IUserReposit
             limit,
             totalPages: Math.ceil(total / limit),
         };
-    }
+    };
+
+    async addAddress(userId: string, address: Address): Promise<void> {
+        const user = await this.model.findById(userId);
+
+        if (!user) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
+
+        user.addresses.push(address);
+        await user.save();
+    };
 }

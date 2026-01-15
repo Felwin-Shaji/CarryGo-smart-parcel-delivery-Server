@@ -15,5 +15,10 @@ export class UserRoute extends BaseRoute {
 
         this.router.post("/booking/pincode/validate",authenticate(["user"]),asyncHandler(bookingController.validatePincode));
         this.router.get("/geocode/reverse",authenticate(["user"]),asyncHandler(addressController.reverseGeocode));
+
+        this.router.post("/address",authenticate(["user"]),asyncHandler(addressController.addUserAddress));
+        this.router.get("/addresses",authenticate(["user"]),asyncHandler(addressController.getAddresses));
+        this.router.delete("/address/:addressId",authenticate(["user"]),asyncHandler(addressController.deleteAddress));
+        this.router.patch("/address/default/:addressId",authenticate(["user"]),asyncHandler(addressController.setDefaultAddress));
     }
 }

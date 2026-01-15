@@ -1,5 +1,6 @@
 export class Address {
   constructor(
+    public id: string | null,
     public label: "Home" | "Office" | "Warehouse" | "Other",
     public addressLine1: string,
     public addressLine2: string | null,

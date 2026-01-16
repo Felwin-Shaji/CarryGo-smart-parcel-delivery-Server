@@ -7,7 +7,7 @@ import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepo
 import { ITokenService } from "../../interfaces/services_Interfaces/token-service.interface";
 import { Role } from "../../../Infrastructure/Types/types";
 import { IPasswordService } from "../../interfaces/services_Interfaces/password-service.interface";
-import { IResetTokenRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/resetToken.repository";
+import { IResetPasswordTokenRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/resetPasswordToken.repository";
 import { AppError } from "../../../Domain/utils/customError";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { PASSWORD_RESET_MESSAGES } from "../../../Infrastructure/constants/messages/passwordResetMessage";
@@ -23,7 +23,7 @@ export class ResetPasswordUseCase implements IResetPasswordUseCase {
         @inject("IHubWorkerRepository") private _workerRepo: IHubWorkerRepository,
 
 
-        @inject("IResetTokenRepository") private _resetTokenRepo: IResetTokenRepository,
+        @inject("IResetPasswordTokenRepository") private _resetPasswordTokenRepo: IResetPasswordTokenRepository,
 
         @inject("IPasswordService") private _passwordService: IPasswordService,
         @inject("ITokenService") private _tokenService: ITokenService
@@ -36,14 +36,14 @@ export class ResetPasswordUseCase implements IResetPasswordUseCase {
         if (!jwtPayload) throw new AppError(PASSWORD_RESET_MESSAGES.INVALID_OR_EXPIRED_TOKEN, STATUS.UNAUTHORIZED);
 
         const decodedToken = decodeURIComponent(dto.token);
-        const storedToken = await this._resetTokenRepo.findOne({ token: decodedToken });
+        const storedToken = await this._resetPasswordTokenRepo.findOne({ token: decodedToken });
         if (!storedToken) throw new AppError(PASSWORD_RESET_MESSAGES.RESET_LINK_INVALID, STATUS.BAD_REQUEST);
 
         if (!storedToken.createdAt || !storedToken.expiresInSeconds) throw new AppError(PASSWORD_RESET_MESSAGES.SESSION_EXPIRED, STATUS.BAD_REQUEST)
 
         const expireDate = new Date(storedToken.createdAt.getTime() + storedToken.expiresInSeconds * 1000);
         if (expireDate < new Date()) {
-            await this._resetTokenRepo.delete({ userId: jwtPayload.userId, token });
+            await this._resetPasswordTokenRepo.delete({ userId: jwtPayload.userId, token });
             throw new AppError(PASSWORD_RESET_MESSAGES.RESET_LINK_EXPIRED, STATUS.BAD_REQUEST);
         }
 
@@ -66,6 +66,6 @@ export class ResetPasswordUseCase implements IResetPasswordUseCase {
         if (role === "hub") await this._hubRepo.findOneAndUpdate({ _id: jwtPayload.userId }, { password: hashedPassword });
         if (role === "worker") await this._workerRepo.findOneAndUpdate({ _id: jwtPayload.userId }, { password: hashedPassword });
 
-        await this._resetTokenRepo.delete({ token });
+        await this._resetPasswordTokenRepo.delete({ token });
     }
 } 

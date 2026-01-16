@@ -1,8 +1,10 @@
 import { model, Schema, type Document } from "mongoose";
-import type { ITokenModel } from "../../../Domain/Entities/token.js";
+import type { IResetPasswordTokenModel } from "../../../Domain/Entities/token.js";
+
+export type ITokenModel = IResetPasswordTokenModel & Document;
 
 
-const refreshTokenSchema = new Schema<ITokenModel>({
+const resetPasswordTokenSchema = new Schema<IResetPasswordTokenModel>({
     userId: { type: String, required: true, index: true },
     token: { type: String, required: true },
     role: { type: String, require: true },
@@ -14,4 +16,4 @@ const refreshTokenSchema = new Schema<ITokenModel>({
     expiresInSeconds:{type:Number },
 });
 
-export const RefreshTokenModel = model<ITokenModel>("RefreshToken", refreshTokenSchema);
+export const ResetPasswordTokenModel = model<IResetPasswordTokenModel>("ResetPasswordToken", resetPasswordTokenSchema);

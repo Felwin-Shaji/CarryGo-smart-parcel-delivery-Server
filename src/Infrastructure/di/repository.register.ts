@@ -3,8 +3,6 @@ import { OtpRepository } from "../repositories/otpRepository.js";
 import type { IOtpRepository } from "../../Application/interfaces/repositories_interfaces/authRepositories_Interfaces/otp.repository.js";
 import { UserRepository } from "../repositories/userRepository.js";
 import type { IUserRepository } from "../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
-import type { IRefreshTokenRepository } from "../../Application/interfaces/repositories_interfaces/authRepositories_Interfaces/refreshToken.repository.js";
-import { RefreshTokenRepository } from "../repositories/refreshTokenRepository.js";
 import type { IAdminRepository } from "../../Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository.js";
 import { AdminRepository } from "../repositories/adminRepository.js";
 import type { IAgencyRepository } from "../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
@@ -15,8 +13,8 @@ import { IHubRepository } from "../../Application/interfaces/repositories_interf
 import { HubRepository } from "../repositories/Hub/hubRepository.js";
 import { IHubTempRepository } from "../../Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hubTemp.repository.js";
 import { HubTempRepository } from "../repositories/Hub/hubTempRepository.js";
-import { IResetTokenRepository } from "../../Application/interfaces/repositories_interfaces/authRepositories_Interfaces/resetToken.repository.js";
-import { ResetTokenRepository } from "../repositories/resetTokenRepository.js";
+import { IResetPasswordTokenRepository } from "../../Application/interfaces/repositories_interfaces/authRepositories_Interfaces/resetPasswordToken.repository.js";
+import { ResetPasswordTokenRepository } from "../repositories/resetPasswordTokenRepository.js";
 import { IHubWorkerKycRepository } from "../../Application/interfaces/repositories_interfaces/workerRepository_interfaces/wrokerKyc.repository.js";
 import { HubWorkerKycRepository } from "../repositories/Worker/hubWorkerKycRepository.js";
 import { IHubWorkersTempRepository } from "../../Application/interfaces/repositories_interfaces/workerRepository_interfaces/worersTemp.repository.js";
@@ -44,12 +42,8 @@ export class RepositoryRegistry {
             useClass: AgencyRepository
         });
 
-        container.register<IRefreshTokenRepository>("IRefreshTokenRepository", {
-            useClass: RefreshTokenRepository
-        });
-
-        container.register<IResetTokenRepository>("IResetTokenRepository", {
-            useClass: ResetTokenRepository
+        container.register<IResetPasswordTokenRepository>("IResetPasswordTokenRepository", {
+            useClass: ResetPasswordTokenRepository
         });
 
         container.register<IAdminRepository>("IAdminRepository", {

@@ -3,7 +3,6 @@ import { AppError } from "../../../Domain/utils/customError.js";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes.js";
 import type { TokenObj } from "../../../Infrastructure/Types/types.js";
 import type { ITokenService } from "../../interfaces/services_Interfaces/token-service.interface.js";
-import type { IRefreshTokenRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/refreshToken.repository.js";
 import type { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
 import type { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository.js";
 import type { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";

@@ -9,10 +9,10 @@ import { IMailService } from "../../interfaces/services_Interfaces/email-service
 import { ITokenService } from "../../interfaces/services_Interfaces/token-service.interface";
 import { AppError } from "../../../Domain/utils/customError";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { IResetTokenRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/resetToken.repository";
-import { ITokenModel } from "../../../Domain/Entities/token";
+import { IResetPasswordTokenRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/resetPasswordToken.repository";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
 import { IHubWorkerRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";
+import { IResetPasswordTokenModel } from "../../../Domain/Entities/token";
 
 
 @injectable()
@@ -25,7 +25,7 @@ export class VarifyEmailUseCase implements IVarifyEmailUseCase {
                 @inject("IHubWorkerRepository") private _workerRepo: IHubWorkerRepository,
 
 
-        @inject("IResetTokenRepository") private _resetTokenRepo: IResetTokenRepository,
+        @inject("IResetPasswordTokenRepository") private _resetPasswordTokenRepo: IResetPasswordTokenRepository,
 
         @inject("IMailService") private _mailer: IMailService,
         @inject("ITokenService") private _tokenService: ITokenService,
@@ -50,7 +50,7 @@ export class VarifyEmailUseCase implements IVarifyEmailUseCase {
             role: user.role
         });
 
-        const data: ITokenModel = {
+        const data: IResetPasswordTokenModel = {
             userId: user.id!,
             token: resetToken,
             role: user.role,
@@ -58,7 +58,7 @@ export class VarifyEmailUseCase implements IVarifyEmailUseCase {
             expiresInSeconds: 300,
         }
 
-        await this._resetTokenRepo.save(data)
+        await this._resetPasswordTokenRepo.save(data)
 
         const encodedToken = encodeURIComponent(resetToken);
         

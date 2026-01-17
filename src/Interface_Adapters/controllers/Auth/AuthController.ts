@@ -17,6 +17,8 @@ import { IRefreshTokenUseCase } from "../../../Application/interfaces/useCase_In
 import { ILoginUsecase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/login.usecase.js";
 import { IVarifyEmailUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/varifyEmail.usecase.js";
 import { IResetPasswordUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/resetPassword.usecase.js";
+import { ApiResponse } from "../../presenters/ApiResponse.js";
+import { OTP_MESSAGES } from "../../../Infrastructure/constants/messages/otpMessage.js";
 
 
 
@@ -38,30 +40,36 @@ export class AuthController implements IAuthController {
 
         @inject("IVarifyEmailUseCase") private _varifyEmailUseCase: IVarifyEmailUseCase,
         @inject("IResetPasswordUseCase") private _resetPasswordUseCase: IResetPasswordUseCase,
-    ) { } 
+    ) { }
     sendOtp = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             if (req.body.isResend) {
                 const dto = req.body as SendOtpDTO;
 
                 const result = await this._resendOtpUseCase.execute(dto);
-                const response = AuthMapper.toSendOtpResponse(result);
-                return res.status(STATUS.OK).json(response);
+                return res.status(STATUS.OK).json(
+                    ApiResponse.success(
+                        OTP_MESSAGES.OTP_RESENT,
+                        result
+                    )
+                );
             }
 
             const dto = req.body as SendOtpDTO
             if (!dto.email) return res.status(STATUS.BAD_REQUEST).json({ success: false, message: "email required" });
 
             const result = await this._sendOtpUseCase.execute(dto);
-            const response = AuthMapper.toSendOtpResponse(result);
 
-            return res.status(STATUS.OK).json(response);
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    OTP_MESSAGES.OTP_SENT_SUCCESS,
+                    result
+                )
+            );
 
         } catch (error) {
             next(error)
-        }
-
-
+        };
     };
 
     verifyOtp = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {

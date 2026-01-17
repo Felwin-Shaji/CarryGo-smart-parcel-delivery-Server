@@ -9,5 +9,6 @@ export const OTP_MESSAGES = {
     OTP_SENT_SUCCESS: "OTP sent successfully",
 
     OTP_RESENT: "OTP resent successfully",
+    OTP_RESEND_FAILED: "Failed to resend OTP",
 } as const;
 

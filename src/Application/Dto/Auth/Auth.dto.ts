@@ -9,8 +9,6 @@ export interface SendOtpDTO {
 };
 
 export interface OtpResponseDTO {
-  success: boolean;
-  message: string;
   email: string;
   role: string;
   expiresAt: number;

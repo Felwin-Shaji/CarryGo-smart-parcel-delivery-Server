@@ -1,7 +1,6 @@
-import { IOtpModel } from "../../../../Domain/Entities/Iotp";
-import { ResendOtpDTO } from "../../../Dto/Auth/Auth.dto";
+import { OtpResponseDTO, ResendOtpDTO } from "../../../Dto/Auth/Auth.dto";
 
 
 export interface IResendOtpUseCase {
-    execute(dto: ResendOtpDTO): Promise<IOtpModel> 
+    execute(dto: ResendOtpDTO): Promise<OtpResponseDTO> 
 }

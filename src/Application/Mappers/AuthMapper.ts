@@ -1,24 +1,34 @@
 import type { IOtpModel } from "../../Domain/Entities/Iotp.js";
 import type { Request } from "express";
-import type { LoginDTO, LogoutDTO, OtpResponseDTO, ResendOtpDTO, SendLoginResponse, SendLogoutResponseDTO, VerifyOtpResponseDTO } from "../Dto/Auth/Auth.dto.js";
+import type { LoginDTO, LogoutDTO, OtpResponseDTO, ResendOtpDTO, SendLoginResponse, SendLogoutResponseDTO, SendOtpDTO, VerifyOtpResponseDTO } from "../Dto/Auth/Auth.dto.js";
 import type { KYCStatus, Role } from "../../Infrastructure/Types/types.js";
 
 export class AuthMapper {
 
+    static toOtpDomain(otpData: SendOtpDTO, hashedPassword: string, hashedOtp: string): IOtpModel {
+        return {
+            name: otpData.name,
+            email: otpData.email,
+            mobile: otpData.mobile || null,
+            password: hashedPassword ?? null,
+            otp: hashedOtp,
+            role: otpData.role,
+            expiresAt: new Date(Date.now() + 2 * 60 * 1000)
+        };
+    }
+
     static toSendOtpResponse(result: IOtpModel): OtpResponseDTO {
         return {
-            success: true,
-            message: "Otp sent successfully",
             email: result.email,
             role: result.role,
             expiresAt: result.expiresAt.getTime(),
         }
     }
 
-    static toResendOtpDTO(req:Request):ResendOtpDTO{
+    static toResendOtpDTO(req: Request): ResendOtpDTO {
         return {
-            email:req.body.email,
-            role:req.body.role
+            email: req.body.email,
+            role: req.body.role
         }
     }
 
@@ -52,7 +62,7 @@ export class AuthMapper {
                 name,
                 email,
                 role,
-                kycStatus:kycStatus||null,
+                kycStatus: kycStatus || null,
                 accessToken: accessToken
             },
         }

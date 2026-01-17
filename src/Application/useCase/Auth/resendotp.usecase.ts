@@ -6,10 +6,11 @@ import { EmailVo } from "../../../Domain/ValueObjects/Email.valueObject.js";
 import { AppError } from "../../../Domain/utils/customError.js";
 import { OtpVo } from "../../../Domain/ValueObjects/otp.valueObject.js";
 import type { IOtpModel } from "../../../Domain/Entities/Iotp.js";
-import type { ResendOtpDTO } from "../../Dto/Auth/Auth.dto.js";
+import type { OtpResponseDTO, ResendOtpDTO } from "../../Dto/Auth/Auth.dto.js";
 import { IResendOtpUseCase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/resendOtp.usecase.js";
 import { OTP_MESSAGES } from "../../../Infrastructure/constants/messages/otpMessage.js";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes.js";
+import { AuthMapper } from "../../Mappers/AuthMapper.js";
 
 
 @injectable()
@@ -23,7 +24,7 @@ export class ResendOtpUseCase implements IResendOtpUseCase {
         @inject("IMailService") private _mailer: IMailService
     ) { }
 
-    async execute(dto: ResendOtpDTO): Promise<IOtpModel> {
+    async execute(dto: ResendOtpDTO): Promise<OtpResponseDTO> {
 
         const existingOtp = await this._otpRepo.findOne({ email: dto.email });
         if (!existingOtp) throw new AppError(OTP_MESSAGES.SESSION_NOT_FOUND,STATUS.NOT_FOUND);
@@ -36,7 +37,7 @@ export class ResendOtpUseCase implements IResendOtpUseCase {
         existingOtp.otp = otpVo.value;
         existingOtp.expiresAt = new Date(Date.now() + 2 * 60 * 1000);
 
-        await this._otpRepo.findOneAndUpdate(
+        const updateOtp = await this._otpRepo.findOneAndUpdate(
             { email: dto.email },
             {
                 otp: otpVo.value,
@@ -44,8 +45,10 @@ export class ResendOtpUseCase implements IResendOtpUseCase {
             }
         );
 
+        if(!updateOtp) throw new AppError(OTP_MESSAGES.OTP_RESEND_FAILED, STATUS.NOT_FOUND);
+
         await this._mailer.sendOTP(dto.email, newOtp);
 
-        return existingOtp;
+        return AuthMapper.toSendOtpResponse(updateOtp);
     }
 }

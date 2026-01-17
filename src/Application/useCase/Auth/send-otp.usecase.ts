@@ -4,12 +4,13 @@ import type { IUserRepository } from "../../interfaces/repositories_interfaces/u
 import type { IMailService } from "../../interfaces/services_Interfaces/email-service.interface.js";
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../Domain/utils/customError.js";
-import type { SendOtpDTO } from "../../Dto/Auth/Auth.dto.js";
+import type { OtpResponseDTO, SendOtpDTO } from "../../Dto/Auth/Auth.dto.js";
 import { ISendOtpUseCase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/requestOtp.usecase.js";
 import { IPasswordService } from "../../interfaces/services_Interfaces/password-service.interface.js";
 import { IOtpService } from "../../interfaces/services_Interfaces/otp-service.interface.js";
 import { OTP_MESSAGES } from "../../../Infrastructure/constants/messages/otpMessage.js";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes.js";
+import { AuthMapper } from "../../Mappers/AuthMapper.js";
 
 @injectable()
 export class SendOtpUseCase implements ISendOtpUseCase {
@@ -25,7 +26,7 @@ export class SendOtpUseCase implements ISendOtpUseCase {
     @inject("IOtpService") private _otpService: IOtpService
   ) { };
 
-  async execute(otpData: SendOtpDTO): Promise<IOtpModel> {
+  async execute(otpData: SendOtpDTO): Promise<OtpResponseDTO> {
 
     const hashedPassword = await this._passwordService.hashPassword(otpData.password)
 
@@ -40,18 +41,11 @@ export class SendOtpUseCase implements ISendOtpUseCase {
     console.log("otp :", otp);
     const hashedOtp = await this._otpService.hashOtp(otp)
 
-    const otpDomain: IOtpModel = {
-      name: otpData.name,
-      email: otpData.email,
-      mobile: otpData.mobile || null,
-      password: hashedPassword ?? null,
-      otp: hashedOtp,
-      role: otpData.role,
-      expiresAt: new Date(Date.now() + 2 * 60 * 1000)
-    };
+    const otpDomain = AuthMapper.toOtpDomain(otpData, hashedPassword, hashedOtp);
 
-    await this._otpRepo.save(otpDomain);
+    const savedOtp = await this._otpRepo.save(otpDomain);
     await this._mailer.sendOTP(otpData.email, otp);
-    return otpDomain
+
+    return AuthMapper.toSendOtpResponse(savedOtp);
   };
 };

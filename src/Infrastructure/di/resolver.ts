@@ -13,6 +13,7 @@ import { AgencyPricingController } from "../../Interface_Adapters/controllers/Ag
 import { AdminProfileController } from "../../Interface_Adapters/controllers/Admin/AdminProfile.controller.js";
 import { AgencyProfileController } from "../../Interface_Adapters/controllers/Agency/AgencyProfile.controller.js";
 import { AddressController } from "../../Interface_Adapters/controllers/User/address.controller.js";
+import { AdminHubController } from "../../Interface_Adapters/controllers/Admin/AdminHubController.js";
 // import { AdminController } from "../../Interface_Adapters/controllers/Admin/AdminController.js";
 
 
@@ -35,6 +36,7 @@ export const agencyPricingController = container.resolve(AgencyPricingController
 
 
 export const adminAgencyController = container.resolve(AdminAgencyController);
+export const adminHubController = container.resolve(AdminHubController);
 export const adminUserController = container.resolve(AdminUserController);
 export const adminPricingPolicyController = container.resolve(AdminPricingPolicyController);
 

@@ -17,6 +17,7 @@ import { IGetHubsUsecase } from "../../../Application/interfaces/useCase_Interfa
 import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
 import { AppError } from "../../../Domain/utils/customError";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
+import { IGetHubOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IGetHubOverviewUseCase";
 
 function parseBlockedQuery(value: unknown): boolean | null {
     if (value === "true") return true;
@@ -40,7 +41,10 @@ export class AgencyHubController implements IAgencyHubController {
 
         @inject("ICheckTempHubStatusUseCase") private _checkTempHubStatusUseCase: ICheckTempHubStatusUseCase,
 
-        @inject("IGetHubsUsecase") private _getHubsUsecase:IGetHubsUsecase
+        @inject("IGetHubsUsecase") private _getHubsUsecase:IGetHubsUsecase,
+
+        @inject("IGetHubOverviewUseCase") private _getHubOverviewUseCase:IGetHubOverviewUseCase,
+
 
     ) { }
 
@@ -153,6 +157,23 @@ export class AgencyHubController implements IAgencyHubController {
             next(error)
         }
     };
+
+    getHubById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> =>{
+        try {
+            const hubId = req.params.id as string;  ``
+
+            const hubOverview = await this._getHubOverviewUseCase.execute(hubId); 
+
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    HUB_MESSAGES.FETCH_SUCCESS,
+                    hubOverview
+                )
+            )
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 export interface agencyAddHubResponseDTO {

@@ -13,5 +13,7 @@ export class HubRoute extends BaseRoute {
         this.router.post("/worker/temp-register",authenticate(["hub"]),asyncHandler(hubWorkerController.addNewWorker));
         this.router.post("/worker/verify-otp",authenticate(["hub"]),asyncHandler(hubWorkerController.verifyWorkerOtp));
         this.router.post("/worker/kyc-upload",authenticate(["hub"]),workerKYCUpload,asyncHandler(hubWorkerController.uploadWorkerKYC));
+
+        this.router.get("/workers",authenticate(["hub"]),workerKYCUpload,asyncHandler(hubWorkerController.getHubWorkers));
     }
 }

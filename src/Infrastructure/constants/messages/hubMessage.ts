@@ -3,6 +3,10 @@ export const HUB_MESSAGES = {
     OTP_NOT_VERIFIED: "OTP verification not completed",
     HUB_CREATED: "Hub created successfully",
     HUBID_MISSING:"Please login agein",
+    FETCH_SUCCESS: "Hub fetched successfully",
+    NOT_FOUND:"Hub not found",
+    STATUS_UPDATED:"Hub Status updated",
+    REASON_NOT_FOUND:"Reject reason is required",
 
     EMAIL_ALREADY_EXISTS: "Hub with this email already exists",
     NAME_ALREADY_EXISTS: "Hub name already exists under this agency",

@@ -8,6 +8,10 @@ export const WORKER_MESSAGES = {
   OTP_VERIFIED: "Worker OTP verified successfully",
   WORKER_ADDED_SUCCESSFULLY: "Worker added successfully",
 
+  LIST_FETCHED:"Wrokers list fetched successfully",
+
+  WORKERS_NOT_FOUND:"No workers found add new workers",
+
   SESSION_NOT_FOUND: "No session found. Please start the registration process again.",
   KYC_FILES_REQUIRED: "KYC files (document and selfie) are required.",
 } as const;

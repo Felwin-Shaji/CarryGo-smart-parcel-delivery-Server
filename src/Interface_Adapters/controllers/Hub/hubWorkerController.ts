@@ -12,6 +12,15 @@ import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/work
 import { AddWorkerTempRequestDTO } from "../../../Application/Dto/Hub/hub.dto";
 import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
 import { AppError } from "../../../Domain/utils/customError";
+import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
+import { GetWorkersDTO } from "../../../Application/Dto/Workers/worker.dto";
+import { IGetWorkersUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkersUseCase";
+
+function parseBlockedQuery(value: unknown): boolean | null {
+    if (value === "true") return true;
+    if (value === "false") return false;
+    return null;
+}
 
 @injectable()
 export class HubWorkerController implements IHubWorkerController {
@@ -23,6 +32,7 @@ export class HubWorkerController implements IHubWorkerController {
         @inject("IUploadWorkerKycFilesUsecase") private _uploadWorkerKycFilesUsecase: IUploadWorkerKycFilesUsecase,
 
         @inject("IAddWorkerUsecase") private _addWorkerUsecase: IAddWorkerUsecase,
+        @inject("IGetWorkersUseCase") private _getWorkersUseCase: IGetWorkersUseCase,
     ) { }
 
     addNewWorker = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
@@ -93,5 +103,38 @@ export class HubWorkerController implements IHubWorkerController {
             next(error);
         }
     };
+
+    getHubWorkers = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            const hubId = req.user?.id;
+            if (!hubId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND);
+
+            const dto: GetWorkersDTO = {
+                page: Number(req.query.page) || 1,
+                limit: Number(req.query.limit) || 10,
+                search: req.query.search?.toString() || "",
+                sortBy: req.query.sortBy?.toString() || "createdAt",
+                sortOrder: req.query.sortOrder === "desc" ? "desc" : "asc",
+                blocked: parseBlockedQuery(req.query.blocked),
+                kycStatus: req.query.kycStatus?.toString() || "",
+                startDate: req.query.startDate?.toString() || "",
+                endDate: req.query.endDate?.toString() || "",
+            };
+
+            const hubs = await this._getWorkersUseCase.execute(hubId,dto);
+
+            console.log(hubs);
+
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    WORKER_MESSAGES.LIST_FETCHED,
+                    STATUS.OK
+                )
+            );
+
+        } catch (error) {
+            next(error)
+        }
+    }
 
 }

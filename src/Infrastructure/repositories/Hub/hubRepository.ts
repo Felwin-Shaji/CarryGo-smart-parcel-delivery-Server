@@ -1,16 +1,55 @@
 import { FilterQuery } from "mongoose";
-import { GetHubsDTO } from "../../../Application/Dto/Hub/hub.dto";
+import { GetHubsDTO, updateHubKycStatusDTO } from "../../../Application/Dto/Hub/hub.dto";
 // import { PaginatedData } from "../../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
 import { IHubRepository, PaginatedHubData } from "../../../Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
 import { Hub } from "../../../Domain/Entities/Hub/Hub";
 import { HubModel } from "../../database/models/Hub/HubModel";
 import { BaseRepository } from "../baseRepositories";
 import { ServiceableHubWithAgencyDTO } from "../../../Application/Dto/User/Booking.dto";
+import { AppError } from "../../../Domain/utils/customError";
+import { HUB_MESSAGES } from "../../constants/messages/hubMessage";
+import { STATUS } from "../../constants/statusCodes";
 
 export class HubRepository extends BaseRepository<Hub> implements IHubRepository {
     constructor() {
         super(HubModel)
     };
+
+    async getHubById(hubId: string): Promise<Hub> {
+        const hub = await this.findById({ _id: hubId });
+
+        if (!hub) throw new AppError(HUB_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND)
+
+        return hub
+    }
+
+    async updateKycSatus(hubId: string, dto: updateHubKycStatusDTO): Promise<void> {
+
+        const { status, rejectReason } = dto;
+
+        const updateData: Partial<Hub> = {
+            kycStatus: status,
+        };
+
+        if (status === "REJECTED") {
+            if (!rejectReason) {
+                throw new AppError(HUB_MESSAGES.REASON_NOT_FOUND, STATUS.BAD_REQUEST);
+            }
+            updateData.rejectReason = rejectReason;
+        } else {
+            updateData.rejectReason = null;
+        }
+
+        const updatedHub = await this.findOneAndUpdate(
+            { _id: hubId },
+            updateData,
+            { new: true }
+        );
+
+        if (!updatedHub) {
+            throw new AppError(HUB_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND)
+        }
+    }
 
     async getPaginatedHubsByAgency(agencyId: string, dto: GetHubsDTO): Promise<PaginatedHubData> {
         const { page, limit, search, sortBy, sortOrder, blocked, kycStatus, startDate, endDate } = dto;

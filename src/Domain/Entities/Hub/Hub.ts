@@ -13,7 +13,7 @@ export class Hub {
         public mobile: string,
         public password: string,
 
-        public role: Role="hub",
+        public role: Role = "hub",
 
         public address: {
             addressLine1: string;
@@ -28,6 +28,7 @@ export class Hub {
 
         public verificationImage: string,
         public kycStatus: KYCStatus = "APPROVED",
+        public rejectReason: string | null = null,
         public walletBalance: number = 0,
         public isBlocked: boolean = false,
         public createdAt: Date = new Date(),

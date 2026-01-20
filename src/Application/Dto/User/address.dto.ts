@@ -25,3 +25,22 @@ export interface addUserAddressRequestDTO {
     lng: number;
   };
 }
+
+export interface AddressByPincodeREsponseDTO {
+  id: string | null;
+  label: "Home" | "Office" | "Warehouse" | "Other";
+  addressLine1: string;
+  addressLine2?: string | null;
+  city: string;
+  state: string;
+  country: string;
+  pincode: string;
+  formattedAddress?: string | null;
+  location: {
+    lat: number;
+    lng: number;
+  };
+  isDefault?: boolean;
+  isActive?: boolean;
+}
+

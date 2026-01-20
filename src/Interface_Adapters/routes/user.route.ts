@@ -14,6 +14,9 @@ export class UserRoute extends BaseRoute {
         this.router.patch("/reset-password",authenticate(["user"]),asyncHandler(userController.resetUserPassword))
 
         this.router.post("/booking/pincode/validate",authenticate(["user"]),asyncHandler(bookingController.validatePincode));
+        this.router.get("/booking/serviceable-agencies",authenticate(["user"]),asyncHandler(bookingController.getServiceableHubsWithAgency));
+        this.router.get("/booking/serviceable-addresses",authenticate(["user"]),asyncHandler(bookingController.getAddressByPincode));
+
         this.router.get("/geocode/reverse",authenticate(["user"]),asyncHandler(addressController.reverseGeocode));
 
         this.router.post("/address",authenticate(["user"]),asyncHandler(addressController.addUserAddress));

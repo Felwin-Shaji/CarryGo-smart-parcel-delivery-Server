@@ -31,6 +31,7 @@ export class AgencyRoute extends BaseRoute {
 
         this.router.post("/add-newHub", authenticate(["agency"]), agencyAddHub, asyncHandler(agencyHubController.addNewHub));
         this.router.get("/hubs", authenticate(["agency"]), asyncHandler(agencyHubController.getHubs))
+        this.router.get("/hubs/:id", authenticate(["agency"]), asyncHandler(agencyHubController.getHubById))
     }
 
 }

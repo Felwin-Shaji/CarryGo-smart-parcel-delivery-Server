@@ -105,6 +105,14 @@ import { IFindServicableAgencyUsecase } from "../../Application/interfaces/useCa
 import { FindServicableAgencyUsecase } from "../../Application/useCase/User/Booking/findServicableAgency.usecase.js";
 import { IGetAddressesByPincodeUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/IGetAddressesByPincodeUsecase.js";
 import { GetAddressesByPincodeUsecase } from "../../Application/useCase/User/Booking/getAddressesByPincode.usecase.js";
+import { IGetWorkersUseCase } from "../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkersUseCase.js";
+import { GetWorkersUseCase } from "../../Application/useCase/Worker/GetWorkers.usecase.js";
+import { IGetHubUseCase } from "../../Application/interfaces/useCase_Interfaces/Hub/IGetHubUseCase.js";
+import { GetHubUseCase } from "../../Application/useCase/Hub/GetHub.usecase.js";
+import { IGetHubOverviewUseCase } from "../../Application/interfaces/useCase_Interfaces/Hub/IGetHubOverviewUseCase.js";
+import { GetHubOverviewUseCase } from "../../Application/useCase/Hub/GetHubOverview.usecase.js";
+import { IUpdateHubKycStatusUseCase } from "../../Application/interfaces/useCase_Interfaces/Hub/IUpdateHubKycStatusUseCase.js";
+import { UpdateHubKycStatusUseCase } from "../../Application/useCase/Hub/UpdateHubKycStatus.usecase.js";
 
 
 export class UsecaseRegistery {
@@ -319,6 +327,22 @@ export class UsecaseRegistery {
 
         container.register<IGetAddressesByPincodeUsecase>("IGetAddressesByPincodeUsecase",{
             useClass:GetAddressesByPincodeUsecase
+        });
+
+        container.register<IGetWorkersUseCase>("IGetWorkersUseCase",{
+            useClass:GetWorkersUseCase
+        });
+
+        container.register<IGetHubUseCase>("IGetHubUseCase",{
+            useClass:GetHubUseCase
+        })
+
+        container.register<IGetHubOverviewUseCase>("IGetHubOverviewUseCase",{
+            useClass:GetHubOverviewUseCase
+        });
+
+        container.register<IUpdateHubKycStatusUseCase>("IUpdateHubKycStatusUseCase",{
+            useClass:UpdateHubKycStatusUseCase
         })
     }
 }

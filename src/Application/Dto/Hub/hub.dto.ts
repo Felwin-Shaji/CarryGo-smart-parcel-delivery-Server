@@ -1,4 +1,4 @@
-import { Role } from "../../../Infrastructure/Types/types";
+import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
 
 export interface GetHubsDTO {
     page: number;
@@ -48,3 +48,11 @@ export interface AddWorkerTempResponseDTO {
     expiresAt: Date;
     tempWorkerId: string;
 }
+
+/**
+ * updateAgencyKycStatus Dtos
+ */
+export interface updateHubKycStatusDTO {
+  status: KYCStatus,
+  rejectReason?: string
+};

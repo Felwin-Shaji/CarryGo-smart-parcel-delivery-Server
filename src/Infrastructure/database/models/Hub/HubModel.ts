@@ -38,6 +38,8 @@ const hubSchema = new Schema<Hub>(
       required: true
     },
 
+    rejectReason : {type:String},
+
     walletBalance: { type: Number, default: 0 },
 
     isBlocked: { type: Boolean, default: false },

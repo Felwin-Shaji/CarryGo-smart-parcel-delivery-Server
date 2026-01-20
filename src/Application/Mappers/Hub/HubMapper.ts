@@ -2,6 +2,7 @@ import { Types } from "mongoose";
 import { Hub } from "../../../Domain/Entities/Hub/Hub";
 import { HubTemp } from "../../../Domain/Entities/Hub/HubTemp";
 import { AddNewHubBaseDto, agencyAddHubResponseDTO } from "../../Dto/Agency/agency.dto";
+import { HubOverviewResponseDTO } from "../../Dto/Hub/hubOverview.dto";
 
 export class HubTempMapper {
     static toHubTemp(dto: AddNewHubBaseDto, hashOtp: string): HubTemp {
@@ -58,6 +59,7 @@ export class HubMapper {
             },
             imageUrl,
             "PENDING",
+            null,
             0,
             false,
             new Date(),
@@ -65,7 +67,7 @@ export class HubMapper {
         );
     }
 
-    static toAgencyAddHubResponseDTO(hub: Hub):agencyAddHubResponseDTO {
+    static toAgencyAddHubResponseDTO(hub: Hub): agencyAddHubResponseDTO {
         return {
             id: hub.id!,
             name: hub.name,
@@ -73,5 +75,31 @@ export class HubMapper {
             role: hub.role,
             kycStatus: hub.kycStatus,
         };
+    }
+
+    static toHubOverviewResponseDTO(hub: Hub): HubOverviewResponseDTO {
+        return {
+            id: hub.id!,
+            agencyId: hub.agencyId.toString(),
+            name: hub.name,
+            email: hub.email,
+            mobile: hub.mobile,
+            role: "hub",
+            address: {
+                addressLine1: hub.address.addressLine1,
+                city: hub.address.city,
+                state: hub.address.state,
+                pincode: hub.address.pincode
+            },
+            location: {
+                lat: hub.location.lat,
+                lng: hub.location.lng
+            },
+            verificationImage: hub.verificationImage,
+            kycStatus: hub.kycStatus,
+            walletBalance: hub.walletBalance,
+            isBlocked: hub.isBlocked,
+            createdAt: hub.createdAt
+        }
     }
 }

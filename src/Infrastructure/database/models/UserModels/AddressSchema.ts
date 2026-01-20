@@ -28,3 +28,30 @@ export const AddressSchema = new Schema(
         timestamps: true,
     }
 );
+
+
+// export type AddressDBResult = {
+//   _id: string;
+
+//   label: "Home" | "Office" | "Warehouse" | "Other";
+
+//   addressLine1: string;
+//   addressLine2?: string;
+
+//   city: string;
+//   state: string;
+//   country: string;
+
+//   pincode: string;
+
+//   formattedAddress?: string;
+
+//   location: {
+//     lat: number;
+//     lng: number;
+//   };
+
+//   isDefault: boolean;
+//   isActive: boolean;
+// };
+

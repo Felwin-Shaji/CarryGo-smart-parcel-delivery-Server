@@ -1,4 +1,4 @@
-import type { Model } from "mongoose";
+import type { FlattenMaps, Model } from "mongoose";
 import { BaseRepository } from "./baseRepositories.js";
 import type { User } from "../../Domain/Entities/User.js";
 import type { IUserRepository } from "../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
@@ -57,4 +57,41 @@ export class UserRepository extends BaseRepository<User> implements IUserReposit
         user.addresses.push(address);
         await user.save();
     };
+
+    async findAddressByPincode(
+        userId: string,
+        pincode: string
+    ): Promise<Address[]> {
+
+        const user = await this.model
+            .findById(userId, { addresses: 1 })
+            .lean();
+
+        if (!user || !user.addresses.length) return [];
+
+        const addressByPincode = user.addresses
+            .filter((addr) => addr.pincode === pincode)
+            .map(
+                (addr) =>
+                    new Address(
+                        addr.id,
+                        addr.label,
+                        addr.addressLine1,
+                        addr.addressLine2 || null,
+                        addr.city,
+                        addr.state,
+                        addr.country,
+                        addr.pincode,
+                        addr.formattedAddress || null,
+                        addr.location,
+                        addr.isDefault,
+                        addr.isActive
+                    )
+            );
+
+
+        return addressByPincode
+    }
+
 }
+

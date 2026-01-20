@@ -5,6 +5,7 @@ import { IHubRepository, PaginatedHubData } from "../../../Application/interface
 import { Hub } from "../../../Domain/Entities/Hub/Hub";
 import { HubModel } from "../../database/models/Hub/HubModel";
 import { BaseRepository } from "../baseRepositories";
+import { ServiceableHubWithAgencyDTO } from "../../../Application/Dto/User/Booking.dto";
 
 export class HubRepository extends BaseRepository<Hub> implements IHubRepository {
     constructor() {
@@ -18,7 +19,7 @@ export class HubRepository extends BaseRepository<Hub> implements IHubRepository
         const skip = (page - 1) * safeLimit;
 
         const filter: FilterQuery<Hub> = { agencyId };
-        
+
         if (search) {
             filter.$or = [
                 { name: { $regex: search, $options: "i" } },
@@ -59,5 +60,96 @@ export class HubRepository extends BaseRepository<Hub> implements IHubRepository
             limit,
             totalPages: Math.ceil(total / limit),
         };
+    }
+
+
+    async findServiceableAgenciesWithHubs(fromPincode: string, toPincode: string): Promise<ServiceableHubWithAgencyDTO[]> {
+
+        const result = await HubModel.aggregate([
+            {
+                $match: {
+                    "address.pincode": { $in: [fromPincode, toPincode] },
+                    isBlocked: false
+                }
+            },
+            {
+                $group: {
+                    _id: "$agencyId",
+                    hubs: { $push: "$$ROOT" },
+                    pincodes: { $addToSet: "$address.pincode" }
+                }
+            },
+            {
+                $match: {
+                    pincodes: { $all: [fromPincode, toPincode] }
+                }
+            },
+            {
+                $lookup: {
+                    from: "agencies",
+                    localField: "_id",
+                    foreignField: "_id",
+                    as: "agency"
+                }
+            },
+            { $unwind: "$agency" },
+            {
+                $match: {
+                    "agency.isBlocked": false,
+                    "agency.kycStatus": "APPROVED"
+                }
+            },
+
+            {
+                $project: {
+                    agency: {
+                        agencyId: { $toString: "$agency._id" },
+                        name: "$agency.name",
+                        commissionRate: "$agency.commisionRate"
+                    },
+
+                    fromHub: {
+                        $first: {
+                            $filter: {
+                                input: "$hubs",
+                                as: "hub",
+                                cond: { $eq: ["$$hub.address.pincode", fromPincode] }
+                            }
+                        }
+                    },
+
+                    toHub: {
+                        $first: {
+                            $filter: {
+                                input: "$hubs",
+                                as: "hub",
+                                cond: { $eq: ["$$hub.address.pincode", toPincode] }
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                $project: {
+                    agency: 1,
+
+                    fromHub: {
+                        hubId: { $toString: "$fromHub._id" },
+                        hubName: "$fromHub.name",
+                        address: "$fromHub.address",
+                        location: "$fromHub.location"
+                    },
+
+                    toHub: {
+                        hubId: { $toString: "$toHub._id" },
+                        hubName: "$toHub.name",
+                        address: "$toHub.address",
+                        location: "$toHub.location"
+                    }
+                }
+            }
+        ]);
+
+        return result;
     }
 }

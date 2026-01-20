@@ -14,4 +14,5 @@ export interface IUserRepository extends IBaseRepository<User> {
   ): Promise<GetUsersDBResult>
 
   addAddress(userId: string, address: Address): Promise<void>;
+  findAddressByPincode(userId:string,pincode:string):Promise<Address[]>
 }

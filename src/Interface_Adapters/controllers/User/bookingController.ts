@@ -10,6 +10,8 @@ import { AppError } from "../../../Domain/utils/customError";
 import { IGetAddressesByPincodeUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IGetAddressesByPincodeUsecase";
 import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
 import { ADDRESS_MESSAGES } from "../../../Infrastructure/constants/messages/addressMessages";
+import { ICalculateBookingPriceUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/ICalculateBookingPriceUsecase";
+import { CalculatePriceRequestDTO } from "../../../Application/Dto/User/Booking.dto";
 
 @injectable()
 export class UserBookingController implements IUserBookingController {
@@ -17,6 +19,7 @@ export class UserBookingController implements IUserBookingController {
         @inject("IValidatePincodeUsecase") private _validatePincodeUsecase: IValidatePincodeUsecase,
         @inject("IFindServicableAgencyUsecase") private _findServicableAgencyUsecase: IFindServicableAgencyUsecase,
         @inject("IGetAddressesByPincodeUsecase") private _getAddressesByPincodeUsecase: IGetAddressesByPincodeUsecase,
+        @inject("ICalculateBookingPriceUsecase") private _calculateBookingPriceUsecase: ICalculateBookingPriceUsecase,
     ) { };
 
     validatePincode = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
@@ -85,6 +88,28 @@ export class UserBookingController implements IUserBookingController {
                 )
             )
 
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    calculatePrice = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+
+            const userId = req.user?.id
+            const dto = req.body as CalculatePriceRequestDTO
+
+            if (!userId) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
+
+            const pricing = await this._calculateBookingPriceUsecase.execute(userId, dto)
+
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    BOOKING_MESSAGE.PRICE_CALCULATED,
+                    pricing
+                )
+            );
 
         } catch (error) {
             next(error)

@@ -1,4 +1,4 @@
-import type { FlattenMaps, Model } from "mongoose";
+import { STATES, type FlattenMaps, type Model } from "mongoose";
 import { BaseRepository } from "./baseRepositories.js";
 import type { User } from "../../Domain/Entities/User.js";
 import type { IUserRepository } from "../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
@@ -7,6 +7,7 @@ import { Address } from "../../Domain/Entities/User/Address.js";
 import { AppError } from "../../Domain/utils/customError.js";
 import { USER_MESSAGES } from "../constants/messages/userMessage.js";
 import { STATUS } from "../constants/statusCodes.js";
+import { AddressDBResult } from "../database/models/UserModels/AddressSchema.js";
 
 export class UserRepository extends BaseRepository<User> implements IUserRepository {
     constructor() {
@@ -58,6 +59,37 @@ export class UserRepository extends BaseRepository<User> implements IUserReposit
         await user.save();
     };
 
+    async getAddressById(userId: string, addressId: string): Promise<Address> {
+        const user = await this.model.findOne(
+            { _id: userId },
+            { addresses: { $elemMatch: { _id: addressId } } }
+        ).lean<{ addresses: AddressDBResult[] }>();
+
+        if (!user || !user.addresses || user.addresses.length === 0) {
+            throw new AppError("Address not found", STATUS.NOT_FOUND);
+        };
+
+        const addr = user.addresses[0];
+        if (!addr) throw new AppError("Address not found", STATUS.NOT_FOUND);
+
+        return new Address(
+            addr._id.toString(),
+            addr.label,
+            addr.addressLine1,
+            addr.addressLine2 ?? null,
+            addr.city,
+            addr.state,
+            addr.country,
+            addr.pincode,
+            addr.formattedAddress ?? null,
+            addr.location,
+            addr.isDefault,
+            addr.isActive
+        );
+
+
+    }
+
     async findAddressByPincode(
         userId: string,
         pincode: string
@@ -65,7 +97,7 @@ export class UserRepository extends BaseRepository<User> implements IUserReposit
 
         const user = await this.model
             .findById(userId, { addresses: 1 })
-            .lean();
+            .lean<{ addresses: AddressDBResult[] }>();
 
         if (!user || !user.addresses.length) return [];
 
@@ -74,7 +106,7 @@ export class UserRepository extends BaseRepository<User> implements IUserReposit
             .map(
                 (addr) =>
                     new Address(
-                        addr.id,
+                        addr._id.toString(),
                         addr.label,
                         addr.addressLine1,
                         addr.addressLine2 || null,

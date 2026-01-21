@@ -20,6 +20,8 @@ export const AGENCY_MESSAGES = {
     INVALID_OTP: "Invalid OTP. Please try again.",
     OTP_RESENT: "OTP resent successfully.",
 
+    PRICING_NOT_FOUND:"Agency pricong is not found",
+
     PROFILE_FETCHED: "Agency profile fetched successfully.",
     PROFILE_UPDATED: "Agency profile updated successfully.",
     PASSWORD_RESET: "Agency password reset successfully.",

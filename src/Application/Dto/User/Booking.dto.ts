@@ -69,5 +69,32 @@ export type AddressResponseDTO = {
   isDefault: boolean;
 };
 
+export interface CalculatePriceRequestDTO {
+  deliveryType: "AGENCY" | "TRAVELER";
+  partnerId?: string;
+
+  packageDetails: {
+    category: string;
+    size: "SMALL" | "MEDIUM" | "LARGE";
+    weightKg: number;
+  };
+
+  pickupAddressId: string;
+  deliveryAddressId: string;
+}
+
+export interface CalculatePriceResponseDTO {
+  distanceKm: number;
+
+  basePrice: number;
+  distanceCharge: number;
+  sizeCharge: number;
+  platformFee: number;
+
+  totalPrice: number;
+  currency: "INR";
+}
+
+
 
 

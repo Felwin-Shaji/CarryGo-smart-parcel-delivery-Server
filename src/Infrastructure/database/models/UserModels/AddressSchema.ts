@@ -1,3 +1,4 @@
+import { Types } from "mongoose";
 import { Schema } from "mongoose";
 
 export const AddressSchema = new Schema(
@@ -30,28 +31,21 @@ export const AddressSchema = new Schema(
 );
 
 
-// export type AddressDBResult = {
-//   _id: string;
-
-//   label: "Home" | "Office" | "Warehouse" | "Other";
-
-//   addressLine1: string;
-//   addressLine2?: string;
-
-//   city: string;
-//   state: string;
-//   country: string;
-
-//   pincode: string;
-
-//   formattedAddress?: string;
-
-//   location: {
-//     lat: number;
-//     lng: number;
-//   };
-
-//   isDefault: boolean;
-//   isActive: boolean;
-// };
+export type AddressDBResult = {
+  _id: Types.ObjectId;
+  label: "Home" | "Office" | "Warehouse" | "Other";
+  addressLine1: string;
+  addressLine2?: string | null;
+  city: string;
+  state: string;
+  country: string;
+  pincode: string;
+  formattedAddress?: string | null;
+  location: {
+    lat: number;
+    lng: number;
+  };
+  isDefault: boolean;
+  isActive: boolean;
+};
 

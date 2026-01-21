@@ -8,6 +8,9 @@ export const USER_MESSAGES = {
   RESET_PASSWORD:"New password updated",
   PASSWORD_NOT_MATCHED:"password does not match",
   RESET_PASSWORD_FAILURE:"Reset password failed , please try again later",
+  INVALID_ADDRESS:"Invalid address selection",
+
+
 
 
   STATUS_UPDATED: "User status updated successfully",

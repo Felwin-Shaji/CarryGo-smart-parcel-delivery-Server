@@ -5,5 +5,6 @@ export const BOOKING_MESSAGE = {
     INVALID_REQUEST_PARAMETERS:"Invalid request parameters",
     PINCODE_VALIED:"Pincode is validated",
 
-    SERVICEABLE_AGENCY_FOUND:"Serviceable agency found for the given pincodes"
+    SERVICEABLE_AGENCY_FOUND:"Serviceable agency found for the given pincodes",
+    PRICE_CALCULATED:"order price is calculated"
 }

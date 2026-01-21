@@ -13,6 +13,8 @@ import { IPincodeLookupService } from "../../Application/interfaces/services_Int
 import { PincodeLookupService } from "../services/Apis/IndiaPostProvider.js";
 import { IGeocodingService } from "../../Application/interfaces/services_Interfaces/IGeocodingService.js";
 import { GeocodingService } from "../services/Apis/Geocoding.service.js";
+import { IDistanceService } from "../../Application/interfaces/services_Interfaces/IDistanceService.js";
+import { DistanceService } from "../services/Distance.Service.js";
 
 export class ServiceRegistory {
     static registerServices(): void {
@@ -37,12 +39,16 @@ export class ServiceRegistory {
             useClass: OtpService
         });
 
-        container.register<IPincodeLookupService>("IPincodeLookupService",{
-            useClass:PincodeLookupService
+        container.register<IPincodeLookupService>("IPincodeLookupService", {
+            useClass: PincodeLookupService
         });
 
-        container.register<IGeocodingService>("IGeocodingService",{
-            useClass:GeocodingService
+        container.register<IGeocodingService>("IGeocodingService", {
+            useClass: GeocodingService
+        });
+
+        container.register<IDistanceService>("IDistanceService", {
+            useClass: DistanceService
         });
     }
 }

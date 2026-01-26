@@ -93,7 +93,26 @@ export interface CalculatePriceResponseDTO {
 
   totalPrice: number;
   currency: "INR";
+};
+
+
+export interface CreateBookingRequestDTO {
+  // userId: string;
+
+  deliveryType: "AGENCY" | "TRAVELER";
+  partnerId?: string;
+
+  pickupAddressId: string;
+  deliveryAddressId: string;
+
+  packageDetails: {
+    category: string;
+    size: "SMALL" | "MEDIUM" | "LARGE";
+    weightKg: number;
+  };
 }
+
+
 
 
 

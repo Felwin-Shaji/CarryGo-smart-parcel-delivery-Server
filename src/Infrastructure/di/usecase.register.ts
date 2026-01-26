@@ -115,6 +115,8 @@ import { IUpdateHubKycStatusUseCase } from "../../Application/interfaces/useCase
 import { UpdateHubKycStatusUseCase } from "../../Application/useCase/Hub/UpdateHubKycStatus.usecase.js";
 import { ICalculateBookingPriceUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/ICalculateBookingPriceUsecase.js";
 import { CalculateBookingPriceUsecase } from "../../Application/useCase/User/Booking/CalculateBookingPrice.usecase.js";
+import { ICreateBookingUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/ICreateBookingUsecase.js";
+import { CreateBookingUsecase } from "../../Application/useCase/User/Booking/CreateBooking.usecase.js";
 
 
 export class UsecaseRegistery {
@@ -350,5 +352,9 @@ export class UsecaseRegistery {
         container.register<ICalculateBookingPriceUsecase>("ICalculateBookingPriceUsecase",{
             useClass:CalculateBookingPriceUsecase
         });
+
+        container.register<ICreateBookingUsecase>("ICreateBookingUsecase",{
+            useClass:CreateBookingUsecase
+        })
     }
 }

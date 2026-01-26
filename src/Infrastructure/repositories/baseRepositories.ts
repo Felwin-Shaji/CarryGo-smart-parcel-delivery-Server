@@ -3,7 +3,7 @@ import type { ClientSession, FilterQuery, Model } from "mongoose";
 import type { IBaseRepository } from "../../Application/interfaces/repositories_interfaces/base.repository.js";
 
 export class BaseRepository<T> implements IBaseRepository<T> {
-
+    
     constructor(protected model: Model<T>) { }
 
     async find(filter: FilterQuery<T>, session?: ClientSession): Promise<T[]> {

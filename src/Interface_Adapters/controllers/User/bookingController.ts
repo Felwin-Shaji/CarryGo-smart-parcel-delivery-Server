@@ -11,7 +11,8 @@ import { IGetAddressesByPincodeUsecase } from "../../../Application/interfaces/u
 import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
 import { ADDRESS_MESSAGES } from "../../../Infrastructure/constants/messages/addressMessages";
 import { ICalculateBookingPriceUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/ICalculateBookingPriceUsecase";
-import { CalculatePriceRequestDTO } from "../../../Application/Dto/User/Booking.dto";
+import { CalculatePriceRequestDTO, CreateBookingRequestDTO } from "../../../Application/Dto/User/Booking.dto";
+import { ICreateBookingUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/ICreateBookingUsecase";
 
 @injectable()
 export class UserBookingController implements IUserBookingController {
@@ -20,6 +21,7 @@ export class UserBookingController implements IUserBookingController {
         @inject("IFindServicableAgencyUsecase") private _findServicableAgencyUsecase: IFindServicableAgencyUsecase,
         @inject("IGetAddressesByPincodeUsecase") private _getAddressesByPincodeUsecase: IGetAddressesByPincodeUsecase,
         @inject("ICalculateBookingPriceUsecase") private _calculateBookingPriceUsecase: ICalculateBookingPriceUsecase,
+        @inject("ICreateBookingUsecase") private _createBookingUsecase: ICreateBookingUsecase,
     ) { };
 
     validatePincode = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
@@ -111,6 +113,29 @@ export class UserBookingController implements IUserBookingController {
                 )
             );
 
+        } catch (error) {
+            next(error)
+        }
+    }
+
+
+    createBooking = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            console.log(req.body);
+
+            const userId = req.user?.id;
+            const dto = req.body as CreateBookingRequestDTO;
+
+            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_GATEWAY)
+
+            const bookingId = await this._createBookingUsecase.execute(userId, dto)
+
+            return res.status(200).json(
+                ApiResponse.success(
+                    BOOKING_MESSAGE.SUCCESS,
+                    bookingId
+                )
+            )
         } catch (error) {
             next(error)
         }

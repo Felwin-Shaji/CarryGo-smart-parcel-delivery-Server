@@ -1,9 +1,13 @@
 import { FilterQuery, Types } from "mongoose";
-import type { AgencyWithKYC_DB_Result , IAgencyRepository, PaginatedData } from "../../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
+import type { AgencyWithKYC_DB_Result, IAgencyRepository, PaginatedData } from "../../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
 import { Agency } from "../../../Domain/Entities/Agency/Agency.js";
 import { AgencyModel } from "../../database/models/AgencyModels/agencyModel.js";
 import { BaseRepository } from "./..//baseRepositories.js";
 import { GetAgenciesDTO } from "../../../Application/Dto/Agency/agency.dto.js";
+import { threadCpuUsage } from "process";
+import { AppError } from "../../../Domain/utils/customError.js";
+import { AGENCY_MESSAGES } from "../../constants/messages/agencyMessages.js";
+import { STATUS } from "../../constants/statusCodes.js";
 
 export class AgencyRepository extends BaseRepository<Agency> implements IAgencyRepository {
     constructor() {
@@ -12,6 +16,12 @@ export class AgencyRepository extends BaseRepository<Agency> implements IAgencyR
 
     async getAgencies(): Promise<Agency[]> {
         return this.find({});
+    }
+
+    async getAgencyById(agencyId: string): Promise<Agency> {
+        const agency = await this.findById({ _id: agencyId });
+        if (!agency) throw new AppError(AGENCY_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
+        return agency
     }
 
     async getPaginatedAgencies(dto: GetAgenciesDTO): Promise<PaginatedData> {

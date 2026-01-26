@@ -25,6 +25,8 @@ import { IPricingPolicyRepository } from "../../Application/interfaces/repositor
 import { PricingPolicyRepository } from "../repositories/Admin/PricingPolicyRepository.js";
 import { IAgencyPricingRepository } from "../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agencyPricing.repository.js";
 import { AgencyPricingRepository } from "../repositories/Agency/AgencyPricingRepository.js";
+import { IBookingRepository } from "../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository.js";
+import { BookingRepository } from "../repositories/User/Booking.repository.js";
 
 
 export class RepositoryRegistry {
@@ -62,24 +64,28 @@ export class RepositoryRegistry {
             useClass: HubRepository
         });
 
-        container.register<IHubWorkersTempRepository>("IHubWorkersTempRepository",{
-            useClass:HubWorkersTempRepository
+        container.register<IHubWorkersTempRepository>("IHubWorkersTempRepository", {
+            useClass: HubWorkersTempRepository
         })
 
-        container.register<IHubWorkerRepository>("IHubWorkerRepository",{
-            useClass:HubWorkerRepository
+        container.register<IHubWorkerRepository>("IHubWorkerRepository", {
+            useClass: HubWorkerRepository
         })
 
-        container.register<IHubWorkerKycRepository>("IHubWorkerKycRepository",{
-            useClass:HubWorkerKycRepository
+        container.register<IHubWorkerKycRepository>("IHubWorkerKycRepository", {
+            useClass: HubWorkerKycRepository
         })
 
-        container.register<IPricingPolicyRepository>("IPricingPolicyRepository",{
-            useClass:PricingPolicyRepository
+        container.register<IPricingPolicyRepository>("IPricingPolicyRepository", {
+            useClass: PricingPolicyRepository
         })
 
-        container.register<IAgencyPricingRepository>("IAgencyPricingRepository",{
-            useClass:AgencyPricingRepository
+        container.register<IAgencyPricingRepository>("IAgencyPricingRepository", {
+            useClass: AgencyPricingRepository
+        });
+
+        container.register<IBookingRepository>("IBookingRepository", {
+            useClass: BookingRepository
         })
 
     };

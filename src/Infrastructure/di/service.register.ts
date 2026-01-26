@@ -15,6 +15,8 @@ import { IGeocodingService } from "../../Application/interfaces/services_Interfa
 import { GeocodingService } from "../services/Apis/Geocoding.service.js";
 import { IDistanceService } from "../../Application/interfaces/services_Interfaces/IDistanceService.js";
 import { DistanceService } from "../services/Distance.Service.js";
+import { PricingService } from "../services/Pricing.service.js";
+import { IPricingService } from "../../Application/interfaces/services_Interfaces/IPricingService.js";
 
 export class ServiceRegistory {
     static registerServices(): void {
@@ -49,6 +51,10 @@ export class ServiceRegistory {
 
         container.register<IDistanceService>("IDistanceService", {
             useClass: DistanceService
+        });
+
+        container.register<IPricingService>("IPricingService",{
+            useClass:PricingService
         });
     }
 }

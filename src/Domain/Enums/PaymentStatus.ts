@@ -1,0 +1,7 @@
+export enum PaymentStatus {
+  NOT_INITIATED = "NOT_INITIATED",
+  ORDER_CREATED = "ORDER_CREATED",
+  PAID = "PAID",
+  FAILED = "FAILED",
+  REFUNDED = "REFUNDED",
+}

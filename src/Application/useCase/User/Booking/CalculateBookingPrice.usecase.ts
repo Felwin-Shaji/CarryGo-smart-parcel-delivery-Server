@@ -31,10 +31,7 @@ export class CalculateBookingPriceUsecase implements ICalculateBookingPriceUseca
             throw new AppError(USER_MESSAGES.INVALID_ADDRESS, STATUS.BAD_REQUEST);
         }
 
-        const distanceKm = this._distanceService.calculateDistanceInKilometers(
-            pickupAddress.location,
-            deliveryAddress.location
-        );
+        const distanceKm = this._distanceService.calculateDistanceInKilometers(pickupAddress.location, deliveryAddress.location);
 
         const pricingPolicy = await this._pricingPolicyRepository.getActiveByDeliveryModel(deliveryType);
         if (!pricingPolicy) throw new AppError(PRICING_POLICY_MESSAGE.ADMIN_PRICING_POLICY_NOT_FOUND, STATUS.NOT_FOUND);
@@ -56,7 +53,12 @@ export class CalculateBookingPriceUsecase implements ICalculateBookingPriceUseca
         let sizeCharge = pricingPolicy.minSizePrice;
 
         if (deliveryType === "AGENCY") {
-            const agencyPricing = await this._agencyPricingRepository.getPricingByAgency(partnerId!, "STANDARD");
+
+            if (!partnerId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
+
+            const agencyPricing = await this._agencyPricingRepository.getPricingByAgency(partnerId, "STANDARD");
+
+            console.log(agencyPricing, "llllllllllllllllllllllllssssssssssssssssssssssssssssssssssssss..............................");
 
             if (!agencyPricing) throw new AppError(AGENCY_MESSAGES.PRICING_NOT_FOUND, STATUS.NOT_FOUND)
 

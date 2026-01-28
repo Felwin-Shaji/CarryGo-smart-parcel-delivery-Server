@@ -1,8 +1,8 @@
 import crypto from "crypto";
 import { razorpayClient } from "./razorpay.client";
-import { CreateOrderInput, CreateOrderOutput, IPaymentGateway } from "../../../Application/interfaces/services_Interfaces/payment/IPaymentGateway";
+import { CreateOrderInput, CreateOrderOutput, IPaymentGatewayService } from "../../../Application/interfaces/services_Interfaces/payment/IPaymentGateway";
 
-export class RazorpayPaymentGateway implements IPaymentGateway {
+export class RazorpayPaymentGateway implements IPaymentGatewayService {
 
     async createOrder(input: CreateOrderInput): Promise<CreateOrderOutput> {
 

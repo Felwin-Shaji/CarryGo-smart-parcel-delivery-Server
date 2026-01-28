@@ -1,18 +1,18 @@
 import { inject, injectable } from "tsyringe";
-import { IPaymentGateway } from "../../interfaces/services_Interfaces/payment/IPaymentGateway";
+import { IPaymentGatewayService } from "../../interfaces/services_Interfaces/payment/IPaymentGateway";
 import { ICreatePaymentOrderUsecase } from "../../interfaces/useCase_Interfaces/Payment/ICreatePaymentOrderUsecase";
 
 @injectable()
 export class CreatePaymentOrderUsecase implements ICreatePaymentOrderUsecase {
     constructor(
-        @inject("IPaymentGateway") private paymentGateway: IPaymentGateway
+        @inject("IPaymentGatewayService") private _paymentGatewayService: IPaymentGatewayService
     ) { }
 
     async execute(payload: {
         bookingId: string;
         amount: number;
     }) {
-        const order = await this.paymentGateway.createOrder({
+        const order = await this._paymentGatewayService.createOrder({
             amount: payload.amount,
             currency: "INR",
             receipt: payload.bookingId,

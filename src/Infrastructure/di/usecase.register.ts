@@ -117,6 +117,8 @@ import { ICalculateBookingPriceUsecase } from "../../Application/interfaces/useC
 import { CalculateBookingPriceUsecase } from "../../Application/useCase/User/Booking/CalculateBookingPrice.usecase.js";
 import { ICreateBookingUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/ICreateBookingUsecase.js";
 import { CreateBookingUsecase } from "../../Application/useCase/User/Booking/CreateBooking.usecase.js";
+import { ICreatePaymentOrderUsecase } from "../../Application/interfaces/useCase_Interfaces/Payment/ICreatePaymentOrderUsecase.js";
+import { CreatePaymentOrderUsecase } from "../../Application/useCase/Payment/CreatePaymentOrder.usecase.js";
 
 
 export class UsecaseRegistery {
@@ -355,6 +357,10 @@ export class UsecaseRegistery {
 
         container.register<ICreateBookingUsecase>("ICreateBookingUsecase",{
             useClass:CreateBookingUsecase
+        })
+
+        container.register<ICreatePaymentOrderUsecase>("ICreatePaymentOrderUsecase",{
+            useClass:CreatePaymentOrderUsecase
         })
     }
 }

@@ -13,6 +13,7 @@ import { ADDRESS_MESSAGES } from "../../../Infrastructure/constants/messages/add
 import { ICalculateBookingPriceUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/ICalculateBookingPriceUsecase";
 import { CalculatePriceRequestDTO, CreateBookingRequestDTO } from "../../../Application/Dto/User/Booking.dto";
 import { ICreateBookingUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/ICreateBookingUsecase";
+import { ICreatePaymentOrderUsecase } from "../../../Application/interfaces/useCase_Interfaces/Payment/ICreatePaymentOrderUsecase";
 
 @injectable()
 export class UserBookingController implements IUserBookingController {
@@ -22,6 +23,7 @@ export class UserBookingController implements IUserBookingController {
         @inject("IGetAddressesByPincodeUsecase") private _getAddressesByPincodeUsecase: IGetAddressesByPincodeUsecase,
         @inject("ICalculateBookingPriceUsecase") private _calculateBookingPriceUsecase: ICalculateBookingPriceUsecase,
         @inject("ICreateBookingUsecase") private _createBookingUsecase: ICreateBookingUsecase,
+        @inject("ICreatePaymentOrderUsecase") private _createPaymentOrderUsecase: ICreatePaymentOrderUsecase,
     ) { };
 
     validatePincode = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
@@ -136,6 +138,41 @@ export class UserBookingController implements IUserBookingController {
                     bookingId
                 )
             )
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    createPaymentOrder = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            console.log("............................................................................... /n ...........................................................................")
+            const key = process.env.RAZORPAY_KEY_ID
+            console.log(key)
+
+            const order = await this._createPaymentOrderUsecase.execute({ bookingId: "697773a1f6b2df0741b4e781", amount: 13801 })
+
+            const respomse = {
+                "orderId":order.orderId ,
+                "amount": order.amount,
+                "currency": order.currency,
+                "key": "" + key
+            }
+            return res.status(STATUS.ACCEPTED).json(
+                ApiResponse.success(BOOKING_MESSAGE.INVALID_AMOUNT, respomse)
+            )
+        } catch (error) {
+            next(error)
+        }
+    };
+
+
+    verifyPayment = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+
+            return res.status(STATUS.ACCEPTED).json(
+                ApiResponse.success(BOOKING_MESSAGE.INVALID_AMOUNT,)
+            )
+
         } catch (error) {
             next(error)
         }

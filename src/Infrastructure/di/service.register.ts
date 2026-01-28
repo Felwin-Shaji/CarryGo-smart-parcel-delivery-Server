@@ -17,6 +17,9 @@ import { IDistanceService } from "../../Application/interfaces/services_Interfac
 import { DistanceService } from "../services/Distance.Service.js";
 import { PricingService } from "../services/Pricing.service.js";
 import { IPricingService } from "../../Application/interfaces/services_Interfaces/IPricingService.js";
+import { IPaymentGatewayService } from "../../Application/interfaces/services_Interfaces/payment/IPaymentGateway.js";
+import { PaymentGateway } from "../../Domain/Enums/PaymentGateway.js";
+import { RazorpayPaymentGateway } from "../services/Payment/RazorpayPaymentGateway.js";
 
 export class ServiceRegistory {
     static registerServices(): void {
@@ -56,5 +59,9 @@ export class ServiceRegistory {
         container.register<IPricingService>("IPricingService",{
             useClass:PricingService
         });
+
+        container.register<IPaymentGatewayService>("IPaymentGatewayService",{
+            useClass:RazorpayPaymentGateway
+        })
     }
 }

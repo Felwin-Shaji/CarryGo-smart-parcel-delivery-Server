@@ -10,7 +10,7 @@ export type CreateOrderOutput = {
     currency: string;
 };
 
-export interface IPaymentGateway {
+export interface IPaymentGatewayService {
     createOrder(input: CreateOrderInput): Promise<CreateOrderOutput>;
 
     verifyPayment?(payload: { orderId: string; paymentId: string; signature: string }): boolean;

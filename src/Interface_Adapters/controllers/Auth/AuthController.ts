@@ -19,6 +19,7 @@ import { IVarifyEmailUseCase } from "../../../Application/interfaces/useCase_Int
 import { IResetPasswordUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/resetPassword.usecase.js";
 import { ApiResponse } from "../../presenters/ApiResponse.js";
 import { OTP_MESSAGES } from "../../../Infrastructure/constants/messages/otpMessage.js";
+import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages.js";
 
 
 
@@ -97,7 +98,8 @@ export class AuthController implements IAuthController {
             const tokens = await this._generateTokenUseCase.execute(
                 registeredUser.id!,
                 registeredUser.email,
-                registeredUser.role
+                registeredUser.role,
+                registeredUser.tokenVersion
             );
 
             setAuthCookies(
@@ -122,11 +124,9 @@ export class AuthController implements IAuthController {
             const refreshToken = req.cookies[`${role}refreshTokenName`];
 
             if (!refreshToken) {
-                return res.status(STATUS.OK).json({
-                    success: true,
-                    user: null,
-                    accessToken: null,
-                });
+                res.clearCookie(`${role}accessTokenName`, { httpOnly: true, sameSite: "strict", secure: true });
+                res.clearCookie(`${role}refreshTokenName`, { httpOnly: true, sameSite: "strict", secure: true });
+                throw new AppError(AUTH_MESSAGES.REFRESH_TOKEN_NOT_FOUND, STATUS.UNAUTHORIZED)
             }
 
             const tokens = await this._refreshTokenUseCase.execute(refreshToken);
@@ -138,11 +138,13 @@ export class AuthController implements IAuthController {
                 `${tokens.user?.role}refreshTokenName`,
             );
 
-            return res.status(STATUS.OK).json({
-                success: true,
-                user: tokens.user,
-                accessToken: tokens.accessToken,
-            });
+
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    AUTH_MESSAGES.REFRESH_TOKEN_FOUND,
+                    { user: tokens.user, accessToken: tokens.accessToken }
+                )
+            )
 
         } catch (error) {
             next(error)
@@ -155,7 +157,7 @@ export class AuthController implements IAuthController {
 
             const users = await this._loginUsecase.execute(loginData);
 
-            const tokens = await this._generateTokenUseCase.execute(users.id, users.email, users.role)
+            const tokens = await this._generateTokenUseCase.execute(users.id, users.email, users.role, users.tokenVersion)
 
             setAuthCookies(
                 res,

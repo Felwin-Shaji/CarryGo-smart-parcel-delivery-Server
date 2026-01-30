@@ -62,6 +62,7 @@ export class HubMapper {
             null,
             0,
             false,
+            0,
             new Date(),
             new Date()
         );

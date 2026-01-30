@@ -15,6 +15,7 @@ export class HubWorker {
     public kycStatus: KYCStatus = "PENDING",
     public walletBalance: number = 0,
     public isBlocked: boolean = false,
+    public tokenVersion:number = 0,
     public createdAt: Date = new Date(),
     public updatedAt: Date = new Date()
   ) {

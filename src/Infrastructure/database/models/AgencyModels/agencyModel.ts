@@ -13,6 +13,7 @@ const agencyModel = new Schema<Agency>({
     walletBalance: { type: Number, required: true, default: 0 },
     commisionRate:{type: Number, required: true, default: 1 },  
     isBlocked: { type: Boolean, required: true, default: false },
+    tokenVersion :{type:Number, required: true, default: 0 },
 },{
     timestamps:true,
 });

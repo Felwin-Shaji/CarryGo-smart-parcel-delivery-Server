@@ -18,6 +18,7 @@ export interface RegisterAgencyResponseDTO {
   walletBalance: number;
   commisionRate: number;
   isBlocked: boolean;
+  tokenVersion: number;
   createdAt: Date;
   updatedAt: Date;
 }

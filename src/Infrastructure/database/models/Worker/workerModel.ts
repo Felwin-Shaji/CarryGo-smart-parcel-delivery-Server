@@ -11,6 +11,7 @@ const hubWorkerModel = new Schema<HubWorker>({
     kycStatus: { type: String, enum: ["PENDING", "REGISTERED", "APPROVED", "REJECTED",], default: "PENDING" },
     walletBalance: { type: Number, required: true, default: 0 },
     isBlocked: { type: Boolean, required: true, default: false },
+    tokenVersion :{type:Number, required: true, default: 0 },
 }, {
     timestamps: true
 });

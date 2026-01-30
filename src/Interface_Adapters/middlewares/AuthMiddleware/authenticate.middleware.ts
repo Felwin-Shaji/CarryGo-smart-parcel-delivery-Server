@@ -5,6 +5,7 @@ import { STATUS } from "../../../Infrastructure/constants/statusCodes.js";
 import { AppError } from "../../../Domain/utils/customError.js";
 import type { Role } from "../../../Infrastructure/Types/types.js";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages.js";
+import { IValidateSessionUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/IValidateSessionUseCase.js";
 
 
 declare module "express" {
@@ -13,14 +14,16 @@ declare module "express" {
       id: string;
       email: string;
       role: string;
+      tokenVersion: number;
     };
   }
 }
 
 export const authenticate = (allowedRoles?: Role[]) => {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return async (req: Request, res: Response, next: NextFunction) => {
     try {
       const tokenService = container.resolve(TokenService);
+      const validateSession = container.resolve<IValidateSessionUseCase>("IValidateSessionUseCase");
 
       const cookies = req.cookies;
       const url = req.baseUrl;
@@ -45,10 +48,17 @@ export const authenticate = (allowedRoles?: Role[]) => {
         throw new AppError(AUTH_MESSAGES.ROLE_NOT_ALLOWED, STATUS.FORBIDDEN);
       }
 
+      await validateSession.execute({
+        userId: decoded.userId,
+        role: decoded.role,
+        tokenVersion: decoded.tokenVersion,
+      })
+
       req.user = {
         id: decoded.userId,
         email: decoded.email,
         role: decoded.role,
+        tokenVersion: decoded.tokenVersion
       };
 
       next();

@@ -119,6 +119,8 @@ import { ICreateBookingUsecase } from "../../Application/interfaces/useCase_Inte
 import { CreateBookingUsecase } from "../../Application/useCase/User/Booking/CreateBooking.usecase.js";
 import { ICreatePaymentOrderUsecase } from "../../Application/interfaces/useCase_Interfaces/Payment/ICreatePaymentOrderUsecase.js";
 import { CreatePaymentOrderUsecase } from "../../Application/useCase/Payment/CreatePaymentOrder.usecase.js";
+import { IValidateSessionUseCase } from "../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/IValidateSessionUseCase.js";
+import { ValidateSessionUseCase } from "../../Application/useCase/Auth/ValidateSession.usecase.js";
 
 
 export class UsecaseRegistery {
@@ -153,6 +155,10 @@ export class UsecaseRegistery {
 
         container.register<ILoginUsecase>("ILoginUsecase", {
             useClass: LoginUsecase
+        })
+        
+        container.register<IValidateSessionUseCase>("IValidateSessionUseCase",{
+            useClass:ValidateSessionUseCase
         })
 
         container.register<ILogoutUsecase>("ILogoutUsecase", {

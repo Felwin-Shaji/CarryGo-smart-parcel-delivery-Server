@@ -10,6 +10,7 @@ export const AUTH_MESSAGES = {
     REFRESH_TOKEN_MISSING: "No refresh token found",
     REFRESH_TOKEN_INVALID: "Invalid refresh token",
     REFRESH_TOKEN_NOT_FOUND: "Refresh token not found",
+    REFRESH_TOKEN_FOUND:"Refreshing completelu successfully",
 
     LOGOUT_FAILED: "Failed to log out user",
     LOGOUT_SUCCESS: "User logged out successfully",

@@ -7,6 +7,7 @@ export interface AppJwtPayload {
     userId: string;
     email: string;
     role: Role;
+    tokenVersion:number;
 }
 
 export interface PincodeDetails {
@@ -22,6 +23,7 @@ export interface AuthUserDTO {
     email: string;
     role: Role;
     kycStatus: KYCStatus;
+    tokenVersion: number;
 }
 
 export interface TokenObj {

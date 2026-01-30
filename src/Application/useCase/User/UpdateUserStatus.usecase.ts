@@ -10,11 +10,13 @@ export class UpdateUserStatusUseCase implements IUpdateUserStatusUseCase {
     constructor(
         @inject("IUserRepository") private _userRepo: IUserRepository,
     ) { }
-    async execute(userId: string, isBlocked: boolean ): Promise<void> {
+    async execute(userId: string, isBlocked: boolean): Promise<void> {
         const user = await this._userRepo.findById({ _id: userId });
         if (!user) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
 
-        await this._userRepo.findOneAndUpdate({ _id: userId }, { isBlocked: isBlocked })
+        const newTokenVersion = user.tokenVersion+1
+
+        await this._userRepo.findOneAndUpdate({ _id: userId }, { isBlocked: isBlocked, tokenVersion: newTokenVersion })
 
     }
 } 

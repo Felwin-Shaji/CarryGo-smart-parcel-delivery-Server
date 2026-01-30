@@ -10,6 +10,11 @@ import { IRefreshTokenUseCase } from "../../interfaces/useCase_Interfaces/AuthUs
 import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository.js";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages.js";
 import { IHubWorkerRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository.js";
+import { User } from "../../../Domain/Entities/User.js";
+import { Admin } from "../../../Domain/Entities/admin.js";
+import { Agency } from "../../../Domain/Entities/Agency/Agency.js";
+import { Hub } from "../../../Domain/Entities/Hub/Hub.js";
+import { HubWorker } from "../../../Domain/Entities/Worker/Worker.js";
 
 
 @injectable()
@@ -29,9 +34,9 @@ export class RefreshTokenUseCase implements IRefreshTokenUseCase {
         const decoded = this._tokenService.verifyRefreshToken(refreshToken);
         if (!decoded) throw new AppError(AUTH_MESSAGES.REFRESH_TOKEN_NOT_FOUND, STATUS.UNAUTHORIZED);
 
-        const { userId, email, role } = decoded;
+        const { userId, email, role, tokenVersion } = decoded;
 
-        let user
+        let user: User | Admin | Agency | Hub | HubWorker | null = null
         if (role === "user") user = await this._userRepo.findOne({ email });
         if (role === "admin") user = await this._adminRepo.findOne({ email });
         if (role === "agency") user = await this._agencyRepo.findOne({ email });
@@ -40,7 +45,9 @@ export class RefreshTokenUseCase implements IRefreshTokenUseCase {
 
         if (!user) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND);
         if (user.isBlocked) throw new AppError(AUTH_MESSAGES.USER_BLOCKED, STATUS.UNAUTHORIZED);
-
+        if (user.tokenVersion !== decoded.tokenVersion) {
+            throw new AppError(AUTH_MESSAGES.TOKEN_INVALID, STATUS.UNAUTHORIZED);
+        }
 
         const newAccessToken = this._tokenService.generateAccessToken({ userId, email, role });
 
@@ -53,6 +60,7 @@ export class RefreshTokenUseCase implements IRefreshTokenUseCase {
                 email: user.email,
                 role: user.role,
                 kycStatus: user.kycStatus,
+                tokenVersion: user.tokenVersion
             },
         };
 

@@ -43,6 +43,7 @@ const hubSchema = new Schema<Hub>(
     walletBalance: { type: Number, default: 0 },
 
     isBlocked: { type: Boolean, default: false },
+    tokenVersion :{type:Number, required: true, default: 0 },
   },
   {
     timestamps: true,

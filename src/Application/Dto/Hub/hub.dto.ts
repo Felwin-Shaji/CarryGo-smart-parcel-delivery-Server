@@ -54,5 +54,5 @@ export interface AddWorkerTempResponseDTO {
  */
 export interface updateHubKycStatusDTO {
   status: KYCStatus,
-  rejectReason?: string
+  reason?: string
 };

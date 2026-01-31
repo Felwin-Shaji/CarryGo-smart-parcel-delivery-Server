@@ -35,8 +35,9 @@ export class LoginUsecase implements ILoginUsecase {
 
         if (!user) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND);
         if (user.isBlocked) throw new AppError(AUTH_MESSAGES.USER_BLOCKED, STATUS.UNAUTHORIZED);
+        if(!user.password) throw new AppError(AUTH_MESSAGES.WRONG_PASSWORD,STATUS.BAD_REQUEST)
 
-        const isMatchPassword = this._passwordService.comparePassword(loginData.password,user.password!)
+        const isMatchPassword = await this._passwordService.comparePassword(loginData.password,user.password)
         if (!isMatchPassword) throw new AppError(AUTH_MESSAGES.WRONG_PASSWORD, STATUS.UNAUTHORIZED);
 
         return user as AuthUserDTO

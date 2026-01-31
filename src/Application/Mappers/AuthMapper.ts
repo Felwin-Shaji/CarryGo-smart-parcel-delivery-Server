@@ -48,11 +48,6 @@ export class AuthMapper {
         }
     }
 
-    static toLoginDTO(req: Request): LoginDTO {
-        const { email, password, role } = req.body;
-        return { email, password, role }
-    }
-
     static ToSendLoginResponse(id: string, name: string, email: string, role: Role, kycStatus: KYCStatus, accessToken: string): SendLoginResponse {
         return {
             success: true,

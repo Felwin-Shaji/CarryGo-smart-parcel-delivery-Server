@@ -49,7 +49,7 @@ export class RefreshTokenUseCase implements IRefreshTokenUseCase {
             throw new AppError(AUTH_MESSAGES.TOKEN_INVALID, STATUS.UNAUTHORIZED);
         }
 
-        const newAccessToken = this._tokenService.generateAccessToken({ userId, email, role });
+        const newAccessToken = this._tokenService.generateAccessToken({ userId, email, role, tokenVersion });
 
         return {
             accessToken: newAccessToken,

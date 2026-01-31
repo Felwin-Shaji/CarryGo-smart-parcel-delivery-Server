@@ -12,7 +12,8 @@ export class PasswordService implements IPasswordService {
         plainPassword: string,
         hashedPassword: string
     ): Promise<boolean> {
-        return await bcrypt.compare(plainPassword, hashedPassword);
+        const isMatchPassword = await bcrypt.compare(plainPassword, hashedPassword);
+        return isMatchPassword
     }
 
     generateCustomPassword(email: string, mobile: string): string {

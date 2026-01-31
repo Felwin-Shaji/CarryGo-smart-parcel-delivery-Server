@@ -5,7 +5,7 @@ import type { IAuthController } from "../../Interface/Controllers_Interfaces/Aut
 import { AuthMapper } from "../../../Application/Mappers/AuthMapper.js";
 import { setAuthCookies } from "../../../Domain/utils/setAuthCookies.js";
 import { AppError } from "../../../Domain/utils/customError.js";
-import type { ForgotPasswordDTO, SendOtpDTO, UserDTO } from "../../../Application/Dto/Auth/Auth.dto.js";
+import type { ForgotPasswordDTO, LoginDTO, SendOtpDTO, UserDTO } from "../../../Application/Dto/Auth/Auth.dto.js";
 import type { ILogoutUsecase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/logout.usecase.js";
 import type { IRegisterUserUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/RegisterUser.useCase.js";
 import type { IRegisterAgencyUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/Agencyregisrtation.usecase.js";
@@ -153,7 +153,7 @@ export class AuthController implements IAuthController {
 
     login = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
-            const loginData = AuthMapper.toLoginDTO(req);
+            const loginData = req.body as LoginDTO
 
             const users = await this._loginUsecase.execute(loginData);
 
@@ -167,9 +167,12 @@ export class AuthController implements IAuthController {
                 `${loginData.role}refreshTokenName`
             );
 
-            const response = AuthMapper.ToSendLoginResponse(tokens.user?.id!, tokens.user?.name!, loginData.email, loginData.role, users.kycStatus, tokens.accessToken);
-
-            return res.status(STATUS.OK).json(response);
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    AUTH_MESSAGES.LOGIN_SUCCESS,
+                    { users, accessToken: tokens.accessToken }
+                )
+            );
 
         } catch (error) {
             next(error)

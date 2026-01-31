@@ -25,17 +25,19 @@ export class HubRepository extends BaseRepository<Hub> implements IHubRepository
 
     async updateKycSatus(hubId: string, dto: updateHubKycStatusDTO): Promise<void> {
 
-        const { status, rejectReason } = dto;
+        const { status, reason } = dto;
+
+        console.log(dto)
 
         const updateData: Partial<Hub> = {
             kycStatus: status,
         };
 
         if (status === "REJECTED") {
-            if (!rejectReason) {
+            if (!reason) {
                 throw new AppError(HUB_MESSAGES.REASON_NOT_FOUND, STATUS.BAD_REQUEST);
             }
-            updateData.rejectReason = rejectReason;
+            updateData.rejectReason = reason;
         } else {
             updateData.rejectReason = null;
         }

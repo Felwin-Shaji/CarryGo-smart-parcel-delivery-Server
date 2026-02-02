@@ -9,7 +9,7 @@ export class TokenService implements ITokenService {
     private readonly _refreshSecret = process.env.REFRESH_TOKEN_SECRET!;
 
     generateAccessToken(payload: object): string {
-        const token = jwt.sign(payload, this._accessSecret, { expiresIn: "15m" })
+        const token = jwt.sign(payload, this._accessSecret, { expiresIn: "30m" })
         return token
     };
 

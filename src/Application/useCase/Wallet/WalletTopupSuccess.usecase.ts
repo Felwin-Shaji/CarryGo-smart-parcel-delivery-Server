@@ -29,10 +29,13 @@ export class WalletTopupSuccessUseCase implements IWalletTopupSuccessUseCase {
         wallet.credit(transaction.amount);
         await this._walletRepo.update(wallet);
 
+        console.log(transaction.id,"✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅")
+
         await this._transactionRepo.markSuccess(transaction.id!, {
             balanceAfter: wallet.balance,
             gatewayPaymentId: razorpayPaymentId,
         });
+        console.log(transaction.id,"✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅")
 
     }
 }

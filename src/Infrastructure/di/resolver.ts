@@ -16,6 +16,10 @@ import { AddressController } from "../../Interface_Adapters/controllers/User/add
 import { AdminHubController } from "../../Interface_Adapters/controllers/Admin/AdminHubController.js";
 import { WalletController } from "../../Interface_Adapters/controllers/User/wallet.controller.js";
 import { PaymentController } from "../../Interface_Adapters/controllers/Payment/Payment.controller.js";
+import { WorkerWalletController } from "../../Interface_Adapters/controllers/Worker/WorkerWallet.controller.js";
+import { HubWalletController } from "../../Interface_Adapters/controllers/Hub/HubWallet.controller.js";
+import { AdminWalletController } from "../../Interface_Adapters/controllers/Admin/AdminWallet.controller.js";
+import { AgencyWalletController } from "../../Interface_Adapters/controllers/Agency/AgencyWallet.controller.js";
 // import { AdminController } from "../../Interface_Adapters/controllers/Admin/AdminController.js";
 
 
@@ -36,14 +40,21 @@ export const agencyController = container.resolve(AgencyController);
 export const agencyProfileController = container.resolve(AgencyProfileController);
 export const agencyHubController = container.resolve(AgencyHubController);
 export const agencyPricingController = container.resolve(AgencyPricingController);
+export const agencyWalletController = container.resolve(AgencyWalletController);
+
 
 
 export const adminAgencyController = container.resolve(AdminAgencyController);
 export const adminHubController = container.resolve(AdminHubController);
 export const adminUserController = container.resolve(AdminUserController);
 export const adminPricingPolicyController = container.resolve(AdminPricingPolicyController);
+export const adminWalletController = container.resolve(AdminWalletController);
+
 
 export const hubWorkerController = container.resolve(HubWorkerController);
+export const hubWalletController = container.resolve(HubWalletController);
 
+
+export const workerWalletController = container.resolve(WorkerWalletController);
 
 export const paymentController = container.resolve(PaymentController)

@@ -1,4 +1,4 @@
-import { agencyController, agencyHubController, agencyPricingController, agencyProfileController } from "../../Infrastructure/di/resolver";
+import { agencyController, agencyHubController, agencyPricingController, agencyProfileController, agencyWalletController } from "../../Infrastructure/di/resolver";
 import { agencyAddHub, agencyuploadKYC } from "../../Infrastructure/services/storage/multer";
 import { authenticate } from "../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../middlewares/ErrorHandlers/asyncHandler";
@@ -32,6 +32,9 @@ export class AgencyRoute extends BaseRoute {
         this.router.post("/add-newHub", authenticate(["agency"]), agencyAddHub, asyncHandler(agencyHubController.addNewHub));
         this.router.get("/hubs", authenticate(["agency"]), asyncHandler(agencyHubController.getHubs))
         this.router.get("/hubs/:id", authenticate(["agency"]), asyncHandler(agencyHubController.getHubById))
+
+        this.router.get('/wallet', authenticate(["agency"]), asyncHandler(agencyWalletController.getAgencyWalletOverview))
+        this.router.post('/wallet/create-order', authenticate(["agency"]), asyncHandler(agencyWalletController.createAddMoneyOrder))
     }
 
 }

@@ -18,7 +18,6 @@ export class PaymentController {
             const rawBody = Buffer.isBuffer(req.body)
                 ? req.body
                 : Buffer.from(JSON.stringify(req.body));
-            console.log(rawBody)
 
             const expectedSignature = crypto
                 .createHmac("sha256", process.env.RAZORPAY_WEBHOOK_SECRET!)
@@ -31,16 +30,10 @@ export class PaymentController {
 
             const event = JSON.parse(rawBody.toString());
 
-            console.log("🔔 Razorpay webhook:", event.event);
-
             if (event.event === "payment.captured") {
                 const payment = event.payload.payment.entity;
-                console.log(payment, "ccccccccccccccccccccccccccccccccccccccccccccccc")
-
                 await this._walletTopupSuccessUseCase.execute(payment.order_id, payment.id,);
             }
-
-            // carrygo_webhook_secret
 
             return res.status(STATUS.OK).send("OK");
 

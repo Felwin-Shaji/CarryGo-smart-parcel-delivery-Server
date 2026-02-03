@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from "express";
-import { IWalletController } from "../../Interface/Controllers_Interfaces/User_interfaces/IWalletController";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { AppError } from "../../../Domain/utils/customError";
@@ -9,22 +8,21 @@ import { IGetWalletOverviewUseCase } from "../../../Application/interfaces/useCa
 import { Role } from "../../../Domain/Enums/Roles";
 import { WALLET_MESSAGES } from "../../../Infrastructure/constants/messages/walletMessages";
 import { ICreateWalletTopupOrderUseCase } from "../../../Application/interfaces/useCase_Interfaces/Wallet/ICreateWalletTopupOrderUseCase";
-import { IWalletTopupSuccessUseCase } from "../../../Application/interfaces/useCase_Interfaces/Wallet/IWalletTopupSuccessUseCase";
+import { IAgencyWalletController } from "../../Interface/Controllers_Interfaces/Agency_Interfases/IAgencyWalletController";
 
 @injectable()
-export class WalletController implements IWalletController {
+export class AgencyWalletController implements IAgencyWalletController {
     constructor(
         @inject("IGetWalletOverviewUseCase") private _getWalletOverviewUseCase: IGetWalletOverviewUseCase,
         @inject("ICreateWalletTopupOrderUseCase") private _createWalletTopupOrderUseCase: ICreateWalletTopupOrderUseCase,
-        @inject("IWalletTopupSuccessUseCase") private _walletTopupSuccessUseCase: IWalletTopupSuccessUseCase,
     ) { }
-    getWalletOverview = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    getAgencyWalletOverview = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
 
             const userId = req.user?.id;
             if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
 
-            const response = await this._getWalletOverviewUseCase.execute({ ownerId: userId, ownerType: Role.USER })
+            const response = await this._getWalletOverviewUseCase.execute({ ownerId: userId, ownerType: Role.AGENCY })
 
             return res.status(STATUS.OK).json(
                 ApiResponse.success(
@@ -44,7 +42,7 @@ export class WalletController implements IWalletController {
             if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
 
             const amount = req.body.amount
-            const order = await this._createWalletTopupOrderUseCase.execute(Role.USER, userId, Number(amount));
+            const order = await this._createWalletTopupOrderUseCase.execute(Role.AGENCY, userId, Number(amount));
 
             return res.status(STATUS.OK).json(
                 ApiResponse.success(

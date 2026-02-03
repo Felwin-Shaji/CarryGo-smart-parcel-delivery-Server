@@ -11,6 +11,7 @@ import { AdminRoute } from '../../Interface_Adapters/routes/admin.route.js';
 import { HubRoute } from "../../Interface_Adapters/routes/hub.route.js";
 import { UserRoute } from "../../Interface_Adapters/routes/user.route.js";
 import { PaymentRoute } from "../../Interface_Adapters/routes/payment.routes.js";
+import { WrokerRoute } from "../../Interface_Adapters/routes/worker.route.js";
 dotenv.config();
 
 
@@ -46,6 +47,8 @@ app.use('/api/admin',adminRoute.router)
 const hubRoute = new HubRoute();
 app.use("/api/hub",hubRoute.router);
 
+const wrokerRoute = new WrokerRoute();
+app.use("/api/worker",wrokerRoute.router)
 
 const paymentRoute = new PaymentRoute();
 app.use("/api/webhooks",paymentRoute.router)

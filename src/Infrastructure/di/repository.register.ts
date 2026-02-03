@@ -27,6 +27,10 @@ import { IAgencyPricingRepository } from "../../Application/interfaces/repositor
 import { AgencyPricingRepository } from "../repositories/Agency/AgencyPricingRepository.js";
 import { IBookingRepository } from "../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository.js";
 import { BookingRepository } from "../repositories/User/Booking.repository.js";
+import { ITransactionRepository } from "../../Application/interfaces/repositories_interfaces/walletRepositories_Interfaces/ITransactionRepository.js";
+import { TransactionRepository } from "../repositories/Wallet/transaction.repository.js";
+import { IWalletRepository } from "../../Application/interfaces/repositories_interfaces/walletRepositories_Interfaces/IWalletRepository.js";
+import { WalletRepository } from "../repositories/Wallet/wallet.repository.js";
 
 
 export class RepositoryRegistry {
@@ -87,6 +91,14 @@ export class RepositoryRegistry {
         container.register<IBookingRepository>("IBookingRepository", {
             useClass: BookingRepository
         })
+
+        container.register<IWalletRepository>("IWalletRepository",{
+            useClass:WalletRepository
+        })
+
+        container.register<ITransactionRepository>("ITransactionRepository",{
+            useClass:TransactionRepository
+        });
 
     };
 };

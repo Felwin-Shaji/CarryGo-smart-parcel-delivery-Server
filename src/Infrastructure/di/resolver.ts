@@ -14,6 +14,8 @@ import { AdminProfileController } from "../../Interface_Adapters/controllers/Adm
 import { AgencyProfileController } from "../../Interface_Adapters/controllers/Agency/AgencyProfile.controller.js";
 import { AddressController } from "../../Interface_Adapters/controllers/User/address.controller.js";
 import { AdminHubController } from "../../Interface_Adapters/controllers/Admin/AdminHubController.js";
+import { WalletController } from "../../Interface_Adapters/controllers/User/wallet.controller.js";
+import { PaymentController } from "../../Interface_Adapters/controllers/Payment/Payment.controller.js";
 // import { AdminController } from "../../Interface_Adapters/controllers/Admin/AdminController.js";
 
 
@@ -26,6 +28,7 @@ export const adminProfileController = container.resolve(AdminProfileController);
 export const userController = container.resolve(UserController)
 export const bookingController = container.resolve(UserBookingController);
 export const addressController = container.resolve(AddressController);
+export const walletController = container.resolve(WalletController);
 
 
 
@@ -40,4 +43,7 @@ export const adminHubController = container.resolve(AdminHubController);
 export const adminUserController = container.resolve(AdminUserController);
 export const adminPricingPolicyController = container.resolve(AdminPricingPolicyController);
 
-export const hubWorkerController = container.resolve(HubWorkerController)
+export const hubWorkerController = container.resolve(HubWorkerController);
+
+
+export const paymentController = container.resolve(PaymentController)

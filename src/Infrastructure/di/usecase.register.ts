@@ -121,6 +121,14 @@ import { ICreatePaymentOrderUsecase } from "../../Application/interfaces/useCase
 import { CreatePaymentOrderUsecase } from "../../Application/useCase/Payment/CreatePaymentOrder.usecase.js";
 import { IValidateSessionUseCase } from "../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/IValidateSessionUseCase.js";
 import { ValidateSessionUseCase } from "../../Application/useCase/Auth/ValidateSession.usecase.js";
+import { IGetWalletOverviewUseCase } from "../../Application/interfaces/useCase_Interfaces/Wallet/IGetWalletOverviewUseCase.js";
+import { GetWalletOverviewUseCase } from "../../Application/useCase/Wallet/GetWalletOverview.usecase.js";
+import { IGetWalletUseCase } from "../../Application/interfaces/useCase_Interfaces/Wallet/IGetWalletUseCase.js";
+import { GetWalletUseCase } from "../../Application/useCase/Wallet/GetWallet.usecase.js";
+import { IWalletTopupSuccessUseCase } from "../../Application/interfaces/useCase_Interfaces/Wallet/IWalletTopupSuccessUseCase.js";
+import { WalletTopupSuccessUseCase } from "../../Application/useCase/Wallet/WalletTopupSuccess.usecase.js";
+import { ICreateWalletTopupOrderUseCase } from "../../Application/interfaces/useCase_Interfaces/Wallet/ICreateWalletTopupOrderUseCase.js";
+import { CreateWalletTopupOrderUseCase } from "../../Application/useCase/Wallet/CreateWalletTopupOrder.usecase.js";
 
 
 export class UsecaseRegistery {
@@ -368,5 +376,21 @@ export class UsecaseRegistery {
         container.register<ICreatePaymentOrderUsecase>("ICreatePaymentOrderUsecase",{
             useClass:CreatePaymentOrderUsecase
         })
+
+        container.register<IGetWalletOverviewUseCase>("IGetWalletOverviewUseCase",{
+            useClass:GetWalletOverviewUseCase
+        });
+
+        container.register<IGetWalletUseCase>("IGetWalletUseCase",{
+            useClass:GetWalletUseCase
+        });
+
+        container.register<IWalletTopupSuccessUseCase>("IWalletTopupSuccessUseCase",{
+            useClass:WalletTopupSuccessUseCase
+        });
+
+        container.register<ICreateWalletTopupOrderUseCase>("ICreateWalletTopupOrderUseCase",{
+            useClass:CreateWalletTopupOrderUseCase
+        });
     }
 }

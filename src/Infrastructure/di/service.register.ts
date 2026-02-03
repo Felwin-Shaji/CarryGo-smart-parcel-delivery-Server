@@ -20,6 +20,8 @@ import { IPricingService } from "../../Application/interfaces/services_Interface
 import { IPaymentGatewayService } from "../../Application/interfaces/services_Interfaces/payment/IPaymentGateway.js";
 import { PaymentGateway } from "../../Domain/Enums/PaymentGateway.js";
 import { RazorpayPaymentGateway } from "../services/Payment/RazorpayPaymentGateway.js";
+import { IWalletService } from "../../Application/interfaces/services_Interfaces/IWalletService.js";
+import { WalletService } from "../services/Payment/wallet.services.js";
 
 export class ServiceRegistory {
     static registerServices(): void {
@@ -63,5 +65,9 @@ export class ServiceRegistory {
         container.register<IPaymentGatewayService>("IPaymentGatewayService",{
             useClass:RazorpayPaymentGateway
         })
+
+        container.register<IWalletService>("IWalletService",{
+            useClass:WalletService
+        });
     }
 }

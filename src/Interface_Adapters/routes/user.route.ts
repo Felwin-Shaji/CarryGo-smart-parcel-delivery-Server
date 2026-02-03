@@ -1,4 +1,4 @@
-import { addressController, bookingController, userController } from "../../Infrastructure/di/resolver";
+import { addressController, bookingController, userController, walletController } from "../../Infrastructure/di/resolver";
 import { authenticate } from "../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../middlewares/ErrorHandlers/asyncHandler";
 import { BaseRoute } from "./base.route";
@@ -26,5 +26,8 @@ export class UserRoute extends BaseRoute {
         this.router.get("/addresses",authenticate(["user"]),asyncHandler(addressController.getAddresses));
         this.router.delete("/address/:addressId",authenticate(["user"]),asyncHandler(addressController.deleteAddress));
         this.router.patch("/address/default/:addressId",authenticate(["user"]),asyncHandler(addressController.setDefaultAddress));
+
+        this.router.get('/wallet',authenticate(["user"]),asyncHandler(walletController.getWalletOverview))
+        this.router.post('/wallet/create-order',authenticate(["user"]),asyncHandler(walletController.createAddMoneyOrder))
     }
 }

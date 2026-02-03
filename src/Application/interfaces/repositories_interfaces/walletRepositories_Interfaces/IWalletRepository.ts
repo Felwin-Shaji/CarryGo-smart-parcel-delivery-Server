@@ -1,18 +1,11 @@
 import { Wallet } from "../../../../Domain/Entities/Wallet/Wallet";
-
-export type WalletOwnerType = "USER" | "AGENCY" | "ADMIN";
-
+import { Role } from "../../../../Infrastructure/Types/types";
+import type { ClientSession } from "mongoose";
 
 export interface IWalletRepository {
-    findByOwner(ownerType: WalletOwnerType, ownerId: string): Promise<Wallet | null>;
+  findByOwner(ownerType: Role, ownerId: string): Promise<Wallet | null>;
+  findWalletById(walletId: string): Promise<Wallet | null>;
 
-    // createWallet(ownerType: WalletOwnerType, ownerId: string): Promise<Wallet>;
-
-    // creditBalance(walletId: string, amount: number): Promise<void>;
-
-    // debitBalance(walletId: string, amount: number): Promise<void>;
-
-    // lockAmount(walletId: string, amount: number): Promise<void>;
-
-    // releaseLockedAmount(walletId: string, amount: number): Promise<void>;
+  update(wallet: Wallet, session?: ClientSession): Promise<void>;
+  create(wallet: Wallet): Promise<void>; 
 }

@@ -20,7 +20,7 @@ const WalletSchema = new Schema<WalletDocument>(
   {
     ownerType: {
       type: String,
-      enum: ["USER", "AGENCY", "ADMIN"],
+      enum: ["user", "agency", "admin", "hub", "worker"],
       required: true,
     },
 

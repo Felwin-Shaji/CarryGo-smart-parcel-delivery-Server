@@ -3,12 +3,16 @@ import { inject, injectable } from "tsyringe";
 import crypto from "crypto";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { IWalletTopupSuccessUseCase } from "../../../Application/interfaces/useCase_Interfaces/Wallet/IWalletTopupSuccessUseCase";
+import { IBookingPaymentSuccessUseCase } from "../../../Application/interfaces/useCase_Interfaces/Payment/IBookingPaymentSuccessUseCase";
+import stakeholders from "razorpay/dist/types/stakeholders";
+import logger from "../../../Infrastructure/logger/logger";
 
 @injectable()
 export class PaymentController {
 
     constructor(
-        @inject("IWalletTopupSuccessUseCase") private readonly _walletTopupSuccessUseCase: IWalletTopupSuccessUseCase
+        @inject("IWalletTopupSuccessUseCase") private readonly _walletTopupSuccessUseCase: IWalletTopupSuccessUseCase,
+        @inject("IBookingPaymentSuccessUseCase") private readonly _bookingPaymentSuccessUseCase: IBookingPaymentSuccessUseCase,
     ) { }
 
     razorpayWebhook = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
@@ -30,18 +34,35 @@ export class PaymentController {
 
             const event = JSON.parse(rawBody.toString());
 
+            console.log(event.payload.payment.entity, 'event event event event event event event event event event event ')
+
             if (event.event === "payment.captured") {
-                const payment = event.payload.payment.entity;
-                await this._walletTopupSuccessUseCase.execute(payment.order_id, payment.id,);
+                const payment = event.payload.payment.entity; //////////////////fix here
+
+                // 🔀 Decide flow based on receipt / notes
+                if (payment.notes?.type === "WALLET_TOPUP") {
+                    console.log(payment.notes?.type)
+                    await this._walletTopupSuccessUseCase.execute(
+                        payment.order_id,
+                        payment.id,
+                    );
+                }
+
+                if (payment.notes?.type === "BOOKING_PAYMENT") {
+                    console.log(payment.receipt);
+                    console.log(payment.notes.bookingId)
+                    await this._bookingPaymentSuccessUseCase.execute(
+                        payment.notes.bookingId,
+                        payment.id,
+                    );
+                }
             }
 
             return res.status(STATUS.OK).send("OK");
 
         } catch (error) {
-            console.error("Webhook error:", error);
-
-            next(error)
-
+            logger.error(error);
+            return res.status(200).send("ACK");
         }
     };
 }

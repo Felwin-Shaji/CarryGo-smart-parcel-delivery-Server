@@ -1,5 +1,8 @@
 import { IBookingRepository } from "../../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
 import { Booking } from "../../../Domain/Entities/Booking/Booking";
+import { AppError } from "../../../Domain/utils/customError";
+import { BOOKING_MESSAGE } from "../../constants/messages/bookingMessages";
+import { STATUS } from "../../constants/statusCodes";
 import { BookingDocument, BookingModel } from "../../database/models/Booking/BookingSchema";
 import { BookingStatusType, PaymentStatusType } from "../../Types/types";
 import { BaseRepository } from "../baseRepositories";
@@ -32,6 +35,14 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
         });
 
         return this.toDomain(doc);
+    }
+
+    async getBookingById(bookingId: string): Promise<Booking> {
+        const doc = await this.model.findById(bookingId);
+
+        if(!doc) throw new AppError(BOOKING_MESSAGE.NOT_FOUND,STATUS.NOT_FOUND)
+
+        return this.toDomain(doc)
     }
 
     async updatePayment(

@@ -44,33 +44,33 @@ export class UserBookingController implements IUserBookingController {
         };
     };
 
-    getServiceableHubsWithAgency = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const { fromPincode, toPincode } = req.query as {
-                fromPincode?: string;
-                toPincode?: string;
-            };
+    // getServiceableHubsWithAgency = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    //     try {
+    //         const { fromPincode, toPincode } = req.query as {
+    //             fromPincode?: string;
+    //             toPincode?: string;
+    //         };
 
-            console.log(fromPincode, toPincode)
+    //         console.log(fromPincode, toPincode)
 
 
-            if (!fromPincode || !toPincode) {
-                throw new AppError(BOOKING_MESSAGE.INVALID_REQUEST_PARAMETERS, STATUS.BAD_REQUEST);
-            }
+    //         if (!fromPincode || !toPincode) {
+    //             throw new AppError(BOOKING_MESSAGE.INVALID_REQUEST_PARAMETERS, STATUS.BAD_REQUEST);
+    //         }
 
-            const agencies = await this._findServicableAgencyUsecase.execute(fromPincode, toPincode);
+    //         const agencies = await this._findServicableAgencyUsecase.execute(fromPincode, toPincode);
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    BOOKING_MESSAGE.SERVICEABLE_AGENCY_FOUND,
-                    agencies
-                )
-            )
+    //         return res.status(STATUS.OK).json(
+    //             ApiResponse.success(
+    //                 BOOKING_MESSAGE.SERVICEABLE_AGENCY_FOUND,
+    //                 agencies
+    //             )
+    //         )
 
-        } catch (error) {
-            next(error);
-        }
-    };
+    //     } catch (error) {
+    //         next(error);
+    //     }
+    // };
 
     getAddressByPincode = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
@@ -147,18 +147,18 @@ export class UserBookingController implements IUserBookingController {
         try {
             console.log("............................................................................... /n ...........................................................................")
             const key = process.env.RAZORPAY_KEY_ID
+            console.log(req.params,req.query,"🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻")
+            const { bookingId } = req.params
             console.log(key)
+            const userId = req.user?.id;
+            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_GATEWAY)
 
-            const order = await this._createPaymentOrderUsecase.execute({ bookingId: "697773a1f6b2df0741b4e781", amount: 13801 })
+            if (!bookingId) throw new AppError(BOOKING_MESSAGE.NOT_FOUND, STATUS.NOT_FOUND);
 
-            const respomse = {
-                "orderId":order.orderId ,
-                "amount": order.amount,
-                "currency": order.currency,
-                "key": "" + key
-            }
+            const order = await this._createPaymentOrderUsecase.execute(userId, bookingId)
+            
             return res.status(STATUS.ACCEPTED).json(
-                ApiResponse.success(BOOKING_MESSAGE.INVALID_AMOUNT, respomse)
+                ApiResponse.success(BOOKING_MESSAGE.INVALID_AMOUNT, order)
             )
         } catch (error) {
             next(error)

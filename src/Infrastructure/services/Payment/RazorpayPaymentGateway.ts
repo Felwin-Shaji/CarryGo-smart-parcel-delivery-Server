@@ -14,6 +14,7 @@ export class RazorpayPaymentGateway implements IPaymentGatewayService {
                 currency: input.currency,
                 receipt: input.receipt,
                 payment_capture: true,
+                notes:input.notes
             });
 
             if (!order) throw new AppError("razorepay gatway error",STATUS.GATEWAY_TIMEOUT)

@@ -26,14 +26,17 @@ export class CreateWalletTopupOrderUseCase implements ICreateWalletTopupOrderUse
 
 
         const wallet = await this._walletRepo.findByOwner(owner, ownerId);
-        console.log(wallet,'hub worker wallet')
         if (!wallet) throw new AppError(WALLET_MESSAGES.WALLET_NOT_FOUND, STATUS.NOT_FOUND);
 
         const order = await this._paymentGateway.createOrder({
             amount,
             currency: "INR",
-            receipt: `wt_${ownerId.slice(-6)}_${Date.now().toString().slice(-6)}`
-
+            receipt: `wt_${ownerId.slice(-6)}_${Date.now().toString().slice(-6)}`,
+            notes: {
+                type: "WALLET_TOPUP",
+                ownerId,
+                ownerRole: owner,
+            },
         });
 
         const transaction = new Transaction(

@@ -1,5 +1,5 @@
-import { CreatePaymentOrderRequestDTO, CreatePaymentOrderResponseDTO } from "../../../Dto/Payment/payment.dto";
+import { CreatePaymentOrderResponseDTO } from "../../../Dto/Payment/payment.dto";
 
 export interface ICreatePaymentOrderUsecase {
-    execute(payload: CreatePaymentOrderRequestDTO): Promise<CreatePaymentOrderResponseDTO>;
+    execute(userId: string, bookingId: string): Promise<CreatePaymentOrderResponseDTO>;
 } 

@@ -129,6 +129,10 @@ import { IWalletTopupSuccessUseCase } from "../../Application/interfaces/useCase
 import { WalletTopupSuccessUseCase } from "../../Application/useCase/Wallet/WalletTopupSuccess.usecase.js";
 import { ICreateWalletTopupOrderUseCase } from "../../Application/interfaces/useCase_Interfaces/Wallet/ICreateWalletTopupOrderUseCase.js";
 import { CreateWalletTopupOrderUseCase } from "../../Application/useCase/Wallet/CreateWalletTopupOrder.usecase.js";
+import { IGetBookingUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/IGetBookingUsecase.js";
+import { GetBookingUsecase } from "../../Application/useCase/User/Booking/GetBooking.usecase.js";
+import { IBookingPaymentSuccessUseCase } from "../../Application/interfaces/useCase_Interfaces/Payment/IBookingPaymentSuccessUseCase.js";
+import { BookingPaymentSuccessUseCase } from "../../Application/useCase/Payment/BookingPaymentSuccess.usecase.js";
 
 
 export class UsecaseRegistery {
@@ -392,5 +396,13 @@ export class UsecaseRegistery {
         container.register<ICreateWalletTopupOrderUseCase>("ICreateWalletTopupOrderUseCase",{
             useClass:CreateWalletTopupOrderUseCase
         });
+
+        container.register<IGetBookingUsecase>("IGetBookingUsecase",{
+            useClass:GetBookingUsecase
+        });
+
+        container.register<IBookingPaymentSuccessUseCase>("IBookingPaymentSuccessUseCase",{
+            useClass:BookingPaymentSuccessUseCase
+        })
     }
 }

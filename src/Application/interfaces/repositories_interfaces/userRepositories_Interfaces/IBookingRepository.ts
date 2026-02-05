@@ -3,6 +3,8 @@ import { Booking } from "../../../../Domain/Entities/Booking/Booking";
 export interface IBookingRepository {
     create(booking: Booking): Promise<Booking>
 
+    getBookingById(bookingId:string):Promise<Booking>
+
     updatePayment(
         bookingId: string,
         payment: {

@@ -133,6 +133,8 @@ import { IGetBookingUsecase } from "../../Application/interfaces/useCase_Interfa
 import { GetBookingUsecase } from "../../Application/useCase/User/Booking/GetBooking.usecase.js";
 import { IBookingPaymentSuccessUseCase } from "../../Application/interfaces/useCase_Interfaces/Payment/IBookingPaymentSuccessUseCase.js";
 import { BookingPaymentSuccessUseCase } from "../../Application/useCase/Payment/BookingPaymentSuccess.usecase.js";
+import { IUserBookingsUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/IUserBookingsUsecase.js";
+import { UserBookingsUsecase } from "../../Application/useCase/User/Booking/UserBookings.usecase.js";
 
 
 export class UsecaseRegistery {
@@ -403,6 +405,10 @@ export class UsecaseRegistery {
 
         container.register<IBookingPaymentSuccessUseCase>("IBookingPaymentSuccessUseCase",{
             useClass:BookingPaymentSuccessUseCase
+        })
+
+        container.register<IUserBookingsUsecase>("IUserBookingsUsecase",{
+            useClass:UserBookingsUsecase
         })
     }
 }

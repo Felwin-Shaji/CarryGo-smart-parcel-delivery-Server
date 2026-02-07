@@ -1,3 +1,5 @@
+import { AddressEntity, HubJourney, PartnerEntity } from "../../../Domain/Entities/Booking/Booking";
+import { BookingStatusType, DeliveryPartnerType, PackageSizeType, PaymentGatewayType, PaymentMethodType, PaymentStatusType } from "../../../Infrastructure/Types/types";
 
 /**
  * Represents the response structure for user booking validate picode
@@ -113,7 +115,93 @@ export interface CreateBookingRequestDTO {
 }
 
 
+export interface UserBookingResponseDTO {
+  id: string;
 
+  createdAt: string;
+
+  deliveryPartnerType: DeliveryPartnerType;
+  partnerSnapshot?: {
+    name: string;
+    type: DeliveryPartnerType;
+  } | null;
+
+  pickupAddress: {
+    city: string;
+    pincode: string;
+  };
+
+  deliveryAddress: {
+    city: string;
+    pincode: string;
+  };
+
+  packageDetails: {
+    category: string;
+    size: PackageSizeType;
+    weightKg: number;
+  };
+
+  pricing: {
+    totalAmount: number;
+    currency: "INR";
+  };
+
+  distanceKm: number;
+
+  payment: {
+    paymentStatus: PaymentStatusType;
+  };
+
+  status: BookingStatusType;
+}
+
+export interface BookingDetailsResponse {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+
+  deliveryPartnerType: DeliveryPartnerType;
+  partnerSnapshot: PartnerEntity | null;
+
+  pickupAddress: AddressEntity;
+  deliveryAddress: AddressEntity;
+
+  packageDetails: {
+    category: string;
+    size: PackageSizeType;
+    weightKg: number;
+  };
+
+  pricing: {
+    basePrice: number;
+    distanceCharge: number;
+    sizeCharge: number;
+    platformFee: number;
+    totalAmount: number;
+    currency: "INR";
+  };
+
+  distanceKm: number;
+
+  payment: {
+    gateway: PaymentGatewayType;
+    paymentMethod?: PaymentMethodType;
+    paymentStatus: PaymentStatusType;
+    orderRef?: string;
+    paymentRef?: string;
+    paidAt?: string;
+    refundedAt?: string;
+  };
+
+  status: BookingStatusType;
+
+  logistics?: {
+    routeHubs: HubJourney[];
+    currentHubId?: string;
+    lastUpdatedAt?: string;
+  };
+}
 
 
 

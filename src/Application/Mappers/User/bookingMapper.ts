@@ -1,12 +1,15 @@
 import { Booking, PartnerEntity } from "../../../Domain/Entities/Booking/Booking";
 import { Address } from "../../../Domain/Entities/User/Address";
-import { CalculatePriceResponseDTO } from "../../Dto/User/Booking.dto";
+import { CalculatePriceResponseDTO, UserBookingResponseDTO } from "../../Dto/User/Booking.dto";
 import {
     BookingStatusType,
     PaymentGatewayType,
     PaymentStatusType,
     DeliveryPartnerType,
 } from "../../../Infrastructure/Types/types";
+import { AppError } from "../../../Domain/utils/customError";
+import { BOOKING_MESSAGE } from "../../../Infrastructure/constants/messages/bookingMessages";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 
 export class BookingMapper {
     static createNew(params: {
@@ -90,4 +93,104 @@ export class BookingMapper {
 
         );
     }
+
+    static toUsersBookingListResponseDTO(
+        bookings: Booking[]
+    ): UserBookingResponseDTO[] {
+        return bookings.map((booking) => {
+
+            if (!booking.id) throw new AppError(BOOKING_MESSAGE.NOT_FOUND, STATUS.NOT_FOUND)
+
+            return {
+                id: booking.id!,
+
+                createdAt: booking.createdAt.toISOString(),
+
+                deliveryPartnerType: booking.deliveryPartnerType,
+
+                partnerSnapshot: booking.partnerSnapshot
+                    ? {
+                        name: booking.partnerSnapshot.name,
+                        type: booking.partnerSnapshot.type,
+                    }
+                    : null,
+
+                pickupAddress: {
+                    city: booking.pickupAddress.city,
+                    pincode: booking.pickupAddress.pincode,
+                },
+
+                deliveryAddress: {
+                    city: booking.deliveryAddress.city,
+                    pincode: booking.deliveryAddress.pincode,
+                },
+
+                packageDetails: {
+                    category: booking.packageDetails.category,
+                    size: booking.packageDetails.size,
+                    weightKg: booking.packageDetails.weightKg,
+                },
+
+                pricing: {
+                    totalAmount: booking.pricing.totalAmount,
+                    currency: booking.pricing.currency,
+                },
+
+                distanceKm: booking.distanceKm,
+
+                payment: {
+                    paymentStatus: booking.payment.paymentStatus,
+                },
+
+                status: booking.status,
+            }
+        });
+    }
+
+    // static toUsersBookingResponseDTO(booking:Booking):UserBookingResponseDTO{
+    //     return  return {
+    //             id: booking.id!,
+
+    //             createdAt: booking.createdAt.toISOString(),
+
+    //             deliveryPartnerType: booking.deliveryPartnerType,
+
+    //             partnerSnapshot: booking.partnerSnapshot
+    //                 ? {
+    //                     name: booking.partnerSnapshot.name,
+    //                     type: booking.partnerSnapshot.type,
+    //                 }
+    //                 : null,
+
+    //             pickupAddress: {
+    //                 city: booking.pickupAddress.city,
+    //                 pincode: booking.pickupAddress.pincode,
+    //             },
+
+    //             deliveryAddress: {
+    //                 city: booking.deliveryAddress.city,
+    //                 pincode: booking.deliveryAddress.pincode,
+    //             },
+
+    //             packageDetails: {
+    //                 category: booking.packageDetails.category,
+    //                 size: booking.packageDetails.size,
+    //                 weightKg: booking.packageDetails.weightKg,
+    //             },
+
+    //             pricing: {
+    //                 totalAmount: booking.pricing.totalAmount,
+    //                 currency: booking.pricing.currency,
+    //             },
+
+    //             distanceKm: booking.distanceKm,
+
+    //             payment: {
+    //                 paymentStatus: booking.payment.paymentStatus,
+    //             },
+
+    //             status: booking.status,
+    //         }
+    // }
+
 }

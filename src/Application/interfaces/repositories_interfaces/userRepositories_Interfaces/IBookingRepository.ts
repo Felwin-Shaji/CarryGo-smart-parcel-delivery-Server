@@ -5,6 +5,8 @@ export interface IBookingRepository {
 
     getBookingById(bookingId:string):Promise<Booking>
 
+    getBooingsByUserId(userId:string):Promise<Booking[]>
+
     updatePayment(
         bookingId: string,
         payment: {

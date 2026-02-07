@@ -20,6 +20,8 @@ export class UserRoute extends BaseRoute {
         this.router.post("/booking",authenticate(["user"]),asyncHandler(bookingController.createBooking));
         this.router.post("/booking/:bookingId/payment/order",authenticate(["user"]),asyncHandler(bookingController.createPaymentOrder));
         this.router.post("/booking/payment/verify",authenticate(["user"]),asyncHandler(bookingController.verifyPayment));
+        this.router.get("/booking",authenticate(["user"]),asyncHandler(bookingController.userBookings));
+        this.router.get("/booking/:bookingId",authenticate(["user"]),asyncHandler(bookingController.getBookingById));
 
         this.router.get("/geocode/reverse",authenticate(["user"]),asyncHandler(addressController.reverseGeocode));
         this.router.post("/address",authenticate(["user"]),asyncHandler(addressController.addUserAddress));

@@ -14,16 +14,19 @@ import { ICalculateBookingPriceUsecase } from "../../../Application/interfaces/u
 import { CalculatePriceRequestDTO, CreateBookingRequestDTO } from "../../../Application/Dto/User/Booking.dto";
 import { ICreateBookingUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/ICreateBookingUsecase";
 import { ICreatePaymentOrderUsecase } from "../../../Application/interfaces/useCase_Interfaces/Payment/ICreatePaymentOrderUsecase";
+import { IUserBookingsUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IUserBookingsUsecase";
+import { IGetBookingUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IGetBookingUsecase";
 
 @injectable()
 export class UserBookingController implements IUserBookingController {
     constructor(
         @inject("IValidatePincodeUsecase") private _validatePincodeUsecase: IValidatePincodeUsecase,
-        @inject("IFindServicableAgencyUsecase") private _findServicableAgencyUsecase: IFindServicableAgencyUsecase,
         @inject("IGetAddressesByPincodeUsecase") private _getAddressesByPincodeUsecase: IGetAddressesByPincodeUsecase,
         @inject("ICalculateBookingPriceUsecase") private _calculateBookingPriceUsecase: ICalculateBookingPriceUsecase,
         @inject("ICreateBookingUsecase") private _createBookingUsecase: ICreateBookingUsecase,
         @inject("ICreatePaymentOrderUsecase") private _createPaymentOrderUsecase: ICreatePaymentOrderUsecase,
+        @inject("IUserBookingsUsecase") private _userBookingsUsecase: IUserBookingsUsecase,
+        @inject("IGetBookingUsecase") private _getBookingUsecase: IGetBookingUsecase,
     ) { };
 
     validatePincode = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
@@ -43,34 +46,6 @@ export class UserBookingController implements IUserBookingController {
             next(error);
         };
     };
-
-    // getServiceableHubsWithAgency = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-    //     try {
-    //         const { fromPincode, toPincode } = req.query as {
-    //             fromPincode?: string;
-    //             toPincode?: string;
-    //         };
-
-    //         console.log(fromPincode, toPincode)
-
-
-    //         if (!fromPincode || !toPincode) {
-    //             throw new AppError(BOOKING_MESSAGE.INVALID_REQUEST_PARAMETERS, STATUS.BAD_REQUEST);
-    //         }
-
-    //         const agencies = await this._findServicableAgencyUsecase.execute(fromPincode, toPincode);
-
-    //         return res.status(STATUS.OK).json(
-    //             ApiResponse.success(
-    //                 BOOKING_MESSAGE.SERVICEABLE_AGENCY_FOUND,
-    //                 agencies
-    //             )
-    //         )
-
-    //     } catch (error) {
-    //         next(error);
-    //     }
-    // };
 
     getAddressByPincode = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
@@ -147,7 +122,7 @@ export class UserBookingController implements IUserBookingController {
         try {
             console.log("............................................................................... /n ...........................................................................")
             const key = process.env.RAZORPAY_KEY_ID
-            console.log(req.params,req.query,"🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻")
+            console.log(req.params, req.query, "🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻")
             const { bookingId } = req.params
             console.log(key)
             const userId = req.user?.id;
@@ -156,7 +131,7 @@ export class UserBookingController implements IUserBookingController {
             if (!bookingId) throw new AppError(BOOKING_MESSAGE.NOT_FOUND, STATUS.NOT_FOUND);
 
             const order = await this._createPaymentOrderUsecase.execute(userId, bookingId)
-            
+
             return res.status(STATUS.ACCEPTED).json(
                 ApiResponse.success(BOOKING_MESSAGE.INVALID_AMOUNT, order)
             )
@@ -177,4 +152,43 @@ export class UserBookingController implements IUserBookingController {
             next(error)
         }
     }
-};
+
+    userBookings = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+
+            const userId = req.user?.id
+            if (!userId) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
+
+            const respose = await this._userBookingsUsecase.execute(userId);
+
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    BOOKING_MESSAGE.FOUND,
+                    respose
+                )
+            )
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    getBookingById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            const { bookingId } = req.params
+            if (!bookingId) throw new AppError(BOOKING_MESSAGE.NOT_FOUND, STATUS.NOT_FOUND);
+
+            const bookingResponse = await this._getBookingUsecase.execute(bookingId);
+
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    BOOKING_MESSAGE.FOUND,
+                    bookingResponse
+                )
+            )
+
+        } catch (error) {
+            next(error)
+        }
+    }
+}; 

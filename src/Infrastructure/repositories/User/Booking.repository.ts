@@ -40,9 +40,18 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
     async getBookingById(bookingId: string): Promise<Booking> {
         const doc = await this.model.findById(bookingId);
 
-        if(!doc) throw new AppError(BOOKING_MESSAGE.NOT_FOUND,STATUS.NOT_FOUND)
+        if (!doc) throw new AppError(BOOKING_MESSAGE.NOT_FOUND, STATUS.NOT_FOUND)
 
         return this.toDomain(doc)
+    }
+
+    async getBooingsByUserId(userId: string): Promise<Booking[]> {
+        const docs = await this.model.find({ userId })
+
+        const bookings = docs.map((doc) => this.toDomain(doc));
+
+        return bookings
+
     }
 
     async updatePayment(

@@ -12,5 +12,6 @@ export const BOOKING_MESSAGE = {
     SERVICEABLE_AGENCY_FOUND:"Serviceable agency found for the given pincodes",
     PRICE_CALCULATED:"order price is calculated",
 
+    FOUND:"Users booking found successfully",
     NOT_FOUND:"Booking not found"
 }

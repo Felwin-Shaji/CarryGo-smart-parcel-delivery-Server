@@ -12,6 +12,7 @@ import { WorkerResponseDTO } from "../../Dto/Workers/worker.dto";
 import { IAddWorkerUsecase } from "../../interfaces/useCase_Interfaces/Worker/AddWorkerUsecase";
 import { IHubWorkerKycRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/wrokerKyc.repository";
 import { IDType } from "../../../Domain/Entities/Worker/WorkerKyc";
+import { UploadedWorkerKycFiles } from "../../interfaces/useCase_Interfaces/Worker/uploadWorkerKycFilesUsecase";
 
 @injectable()
 export class AddWorkerUsecase implements IAddWorkerUsecase {
@@ -22,7 +23,7 @@ export class AddWorkerUsecase implements IAddWorkerUsecase {
         @inject("IPasswordService") private _passwordService: IPasswordService,
         @inject("IMailService") private _mailer: IMailService
     ) { }
-    async execute(email: string, idType: IDType,idNumber: string,hubId:string, files: any): Promise<WorkerResponseDTO> {
+    async execute(email: string, idType: IDType,idNumber: string,hubId:string, files: UploadedWorkerKycFiles): Promise<WorkerResponseDTO> {
 
         const tempWorker = await this._hubWorkersTempRepo.findOne({ email });
         if (!tempWorker || tempWorker.status !== "OTP-Verified") throw new AppError(WORKER_MESSAGES.SESSION_NOT_FOUND, STATUS.NOT_FOUND);
@@ -49,11 +50,11 @@ export class AddWorkerUsecase implements IAddWorkerUsecase {
             idType,
             documentUrl,
             selfieUrl,
-            idNumber
-
+            idNumber,
+            "worker"
         );
 
-        const savedWorkerKyc = await this._hubWorkerKycRepo.save(kycEntity);
+        await this._hubWorkerKycRepo.save(kycEntity);
 
         if (ENV.IS_PROD) {
             await this._mailer.sendCustomPassword(tempWorker.email);

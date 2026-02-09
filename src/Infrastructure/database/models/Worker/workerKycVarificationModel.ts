@@ -10,7 +10,7 @@ const WorkerKYCVerificationSchema = new Schema<IWrokerKYCVerification>({
     selfieUrl: { type: String, required: true },
 
     status: { type: String, enum: ["PENDING", "APPROVED", "REJECTED"], default: "PENDING", },
-
+ 
     createdAt: { type: Date, default: Date.now },
     reviewedAt: { type: Date, default: null },
 });

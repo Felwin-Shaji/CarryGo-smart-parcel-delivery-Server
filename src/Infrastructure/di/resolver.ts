@@ -20,6 +20,7 @@ import { WorkerWalletController } from "../../Interface_Adapters/controllers/Wor
 import { HubWalletController } from "../../Interface_Adapters/controllers/Hub/HubWallet.controller.js";
 import { AdminWalletController } from "../../Interface_Adapters/controllers/Admin/AdminWallet.controller.js";
 import { AgencyWalletController } from "../../Interface_Adapters/controllers/Agency/AgencyWallet.controller.js";
+import { TravelerController } from "../../Interface_Adapters/controllers/User/traveler.controller.js";
 // import { AdminController } from "../../Interface_Adapters/controllers/Admin/AdminController.js";
 
 
@@ -33,6 +34,7 @@ export const userController = container.resolve(UserController)
 export const bookingController = container.resolve(UserBookingController);
 export const addressController = container.resolve(AddressController);
 export const walletController = container.resolve(WalletController);
+export const travelerController = container.resolve(TravelerController);
 
 
 

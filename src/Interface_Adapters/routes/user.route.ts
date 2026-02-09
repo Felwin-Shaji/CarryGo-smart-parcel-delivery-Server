@@ -1,4 +1,5 @@
-import { addressController, bookingController, userController, walletController } from "../../Infrastructure/di/resolver";
+import { addressController, bookingController, travelerController, userController, walletController } from "../../Infrastructure/di/resolver";
+import { workerKYCUpload } from "../../Infrastructure/services/storage/multer";
 import { authenticate } from "../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../middlewares/ErrorHandlers/asyncHandler";
 import { BaseRoute } from "./base.route";
@@ -31,5 +32,7 @@ export class UserRoute extends BaseRoute {
 
         this.router.get('/wallet',authenticate(["user"]),asyncHandler(walletController.getWalletOverview))
         this.router.post('/wallet/create-order',authenticate(["user"]),asyncHandler(walletController.createAddMoneyOrder))
+
+        this.router.post('/traveler/kyc',authenticate(["user"]),workerKYCUpload,asyncHandler(travelerController.submitKYC));
     }
 }

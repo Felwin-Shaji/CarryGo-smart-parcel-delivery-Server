@@ -35,3 +35,6 @@ export type WorkerKYCFileFields = {
   document?: Express.Multer.File[];
   selfie?: Express.Multer.File[];
 };
+
+
+

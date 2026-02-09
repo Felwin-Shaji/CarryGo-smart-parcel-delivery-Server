@@ -2,7 +2,7 @@ import { Types } from "mongoose";
 import { HubWorker } from "../../../Domain/Entities/Worker/Worker";
 import { WorkerResponseDTO } from "../../Dto/Workers/worker.dto";
 import { IDType, IWrokerKYCVerification } from "../../../Domain/Entities/Worker/WorkerKyc";
-import { KYCStatus } from "../../../Infrastructure/Types/types";
+import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
 import { AddWorkerTempRequestDTO, AddWorkerTempResponseDTO } from "../../Dto/Hub/hub.dto";
 import { HubWorkersTemp } from "../../../Domain/Entities/Worker/WrokersTemp";
 import { AppError } from "../../../Domain/utils/customError";
@@ -61,13 +61,14 @@ export class WorkerMapper {
         idType: IDType,
         documentUrl: string,
         selfieUrl: string,
-        idNumberEncrypted: string
+        idNumberEncrypted: string,
+        role?:Role
     ): IWrokerKYCVerification {
 
         return {
             _id: null,
             subjectId: workerId,
-            subjectType: "worker",
+            subjectType: role || "worker",
             idType,
             idNumberEncrypted,
             documentUrl,

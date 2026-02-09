@@ -135,6 +135,8 @@ import { IBookingPaymentSuccessUseCase } from "../../Application/interfaces/useC
 import { BookingPaymentSuccessUseCase } from "../../Application/useCase/Payment/BookingPaymentSuccess.usecase.js";
 import { IUserBookingsUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/IUserBookingsUsecase.js";
 import { UserBookingsUsecase } from "../../Application/useCase/User/Booking/UserBookings.usecase.js";
+import { ISubmitTravelerKycUseCase } from "../../Application/interfaces/useCase_Interfaces/user/Traveler/ISubmitTravelerKycUseCase.js";
+import { SubmitTravelerKycUseCase } from "../../Application/useCase/User/Traveler/SubmitTravelerKyc.usecase.js";
 
 
 export class UsecaseRegistery {
@@ -409,6 +411,10 @@ export class UsecaseRegistery {
 
         container.register<IUserBookingsUsecase>("IUserBookingsUsecase",{
             useClass:UserBookingsUsecase
+        })
+
+        container.register<ISubmitTravelerKycUseCase>("ISubmitTravelerKycUseCase",{
+            useClass:SubmitTravelerKycUseCase
         })
     }
 }

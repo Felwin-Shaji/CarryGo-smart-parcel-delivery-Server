@@ -33,7 +33,7 @@ export class UserRepository extends BaseRepository<User> implements IUserReposit
             }
             : {};
 
-        const sort: any = {};
+        const sort: Record<string, 1 | -1> = {};
         if (sortBy) sort[sortBy] = sortOrder === "asc" ? 1 : -1;
 
         const [data, total] = await Promise.all([
@@ -49,6 +49,12 @@ export class UserRepository extends BaseRepository<User> implements IUserReposit
             totalPages: Math.ceil(total / limit),
         };
     };
+
+    async getUserById(userId: string): Promise<User> {
+        const doc = await this.model.findById(userId);
+        if (!doc) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
+        return doc as User;
+    }
 
     async addAddress(userId: string, address: Address): Promise<void> {
         const user = await this.model.findById(userId);

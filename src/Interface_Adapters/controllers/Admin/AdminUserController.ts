@@ -4,9 +4,13 @@ import { IGetUsersUseCase } from "../../../Application/interfaces/useCase_Interf
 import { IUpdateUserStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/UpdateUserStatus.usecase";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { IAdminUserController } from "../../Interface/Controllers_Interfaces/Admin_Interfaces/adminUser.controller";
-import { GetUserDto } from "../../../Application/Dto/User/user.dto";
+import { GetUserDto, updateUserKycStatusDTO } from "../../../Application/Dto/User/user.dto";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
+import { KYCStatus } from "../../../Infrastructure/Types/types";
+import { AppError } from "../../../Domain/utils/customError";
+import { IUpdateUserKycStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/IUpdateuSERKycStatusUseCase";
+import { IGetUserOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/IGetUserOverviewUseCase";
 
 
 
@@ -15,8 +19,9 @@ export class AdminUserController implements IAdminUserController {
 
   constructor(
     @inject("IGetUsersUseCase") private _getUsersUseCase: IGetUsersUseCase,
-
-    @inject("IUpdateUserStatusUseCase") private _updateUserStatusUseCase: IUpdateUserStatusUseCase
+    @inject("IUpdateUserStatusUseCase") private _updateUserStatusUseCase: IUpdateUserStatusUseCase,
+    @inject("IUpdateUserKycStatusUseCase") private _updateUserKycStatusUseCase: IUpdateUserKycStatusUseCase,
+    @inject("IGetUserOverviewUseCase") private _getUserOverviewUseCase: IGetUserOverviewUseCase
   ) { }
 
   getUsers = async (req: Request, res: Response, next: NextFunction) => { ////////////////////////////
@@ -44,7 +49,27 @@ export class AdminUserController implements IAdminUserController {
     }
   };
 
-  UpdateStatus = async (req: Request, res: Response, next: NextFunction) => { 
+  getUserById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const userId = req.params.id;
+      if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
+
+      const userOverview = await this._getUserOverviewUseCase.execute(userId);
+
+      return res.status(STATUS.OK).json(
+        ApiResponse.success(
+          USER_MESSAGES.USER_FETCH_SUCCESS,
+          userOverview
+        )
+      )
+
+
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  UpdateStatus = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const userId = req.params.id;
       const { isBlocked } = req.body;
@@ -56,6 +81,25 @@ export class AdminUserController implements IAdminUserController {
       return res.status(STATUS.OK).json(
         ApiResponse.success(
           USER_MESSAGES.STATUS_UPDATED,
+        )
+      )
+
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  updateUserKyc = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const userId = req.params.id;
+      if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
+      const dto = req.body as updateUserKycStatusDTO;
+
+      const kycStatus = await this._updateUserKycStatusUseCase.execute(userId, dto)
+
+      return res.status(STATUS.OK).json(
+        ApiResponse.success(
+          USER_MESSAGES.KYC_STATUS_UPDATED, kycStatus
         )
       )
 

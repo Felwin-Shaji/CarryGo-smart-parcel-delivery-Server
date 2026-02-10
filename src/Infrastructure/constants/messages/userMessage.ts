@@ -1,6 +1,7 @@
 export const USER_MESSAGES = {
   NOT_FOUND: "User not found",
   USER_ID_MISSING: "User ID is required.",
+  USER_FETCH_SUCCESS: "User details fetched successfully",
 
   PROFILE_FETCHED:"User profile fetched", 
   PROFILE_UPDATED:"User profile updated successfully",
@@ -16,6 +17,8 @@ export const USER_MESSAGES = {
   TRAVELER_FILE_UPLOAD_FAILURE: "Failed to upload traveler KYC files",
   KYC_ALREADY_APPROVED: "KYC is already approved for this user",
   KYC_SUBMITTED_SUCCESS: "Traveler KYC submitted successfully",
+  UPDATE_FAILED: "Failed to update user KYC status",
+  KYC_STATUS_UPDATED: "User KYC status updated successfully",  
 } as const;
 
 export const BOOKING_MESSAGE = {

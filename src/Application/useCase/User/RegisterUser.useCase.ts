@@ -23,6 +23,7 @@ export class RegisterUserUseCase implements IRegisterUserUseCase {
       null,
       "local",
       "PENDING",
+      null,
       0,
       false
     );

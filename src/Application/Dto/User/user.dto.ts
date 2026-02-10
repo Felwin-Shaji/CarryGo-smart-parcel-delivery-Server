@@ -1,5 +1,5 @@
 import { User } from "../../../Domain/Entities/User";
-import { Role } from "../../../Infrastructure/Types/types";
+import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
 import { AgencyResponseDTO } from "../Agency/agency.dto";
 
 
@@ -83,3 +83,42 @@ export interface GetUserResponseDto {
   limit: number;
   totalPages: number;
 };
+
+/**
+ * updateAgencyKycStatus Dtos
+ */
+export interface updateUserKycStatusDTO {
+  kycStatus: KYCStatus,
+  rejectReason?: string
+};
+
+export interface userKycResponseDTO {
+  id:string;
+  subjectId: string;
+  subjectType: Role;
+  idType: string;
+  idNumberEncrypted: string;
+  documentUrl: string;
+  selfieUrl: string;
+  status: KYCStatus;
+  createdAt: Date;
+  reviewedAt: Date | null;
+}
+
+
+
+export interface GetUserOverviewResponseDTO {
+  id: string;
+  name: string;
+  email: string;
+  mobile?: string;
+  role:Role;
+  kycStatus: string;
+  walletBalance: number;
+  isBlocked: boolean;
+  createdAt: Date;
+  rejectReason?: string | null;
+  
+  kyc: userKycResponseDTO | null;
+}
+

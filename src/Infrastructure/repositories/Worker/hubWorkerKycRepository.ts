@@ -4,8 +4,12 @@ import { KYCVerificationModel } from "../../database/models/Worker/workerKycVari
 import { BaseRepository } from "../baseRepositories";
 
 
-export class HubWorkerKycRepository extends BaseRepository<IWrokerKYCVerification> implements IHubWorkerKycRepository{
-    constructor(){
+export class HubWorkerKycRepository extends BaseRepository<IWrokerKYCVerification> implements IHubWorkerKycRepository {
+    constructor() {
         super(KYCVerificationModel)
+    };
+
+    getKycBySubjectId(subjectId: string, subjectType: "user" | "worker"): Promise<IWrokerKYCVerification | null> {
+        return this.model.findOne({ subjectId, subjectType }).exec();
     }
 }

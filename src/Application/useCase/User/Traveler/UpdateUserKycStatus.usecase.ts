@@ -16,9 +16,11 @@ export class UpdateUserKycStatusUseCase implements IUpdateUserKycStatusUseCase {
         const user = await this._userRepository.findById({ _id: userId });
         if (!user) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
 
+        user.kycStatus = dto.kycStatus;
+        user.rejectReason = dto.rejectReason || null;
         const updatedUser = await this._userRepository.findOneAndUpdate(
             { _id: userId },
-            { kycStatus: dto.kycStatus, rejectReason: dto.rejectReason || null }
+            user
         );
         if (!updatedUser) throw new AppError(USER_MESSAGES.UPDATE_FAILED, STATUS.INTERNAL_SERVER_ERROR);
 

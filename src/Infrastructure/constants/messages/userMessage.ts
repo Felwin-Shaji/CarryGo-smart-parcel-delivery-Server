@@ -18,7 +18,11 @@ export const USER_MESSAGES = {
   KYC_ALREADY_APPROVED: "KYC is already approved for this user",
   KYC_SUBMITTED_SUCCESS: "Traveler KYC submitted successfully",
   UPDATE_FAILED: "Failed to update user KYC status",
-  KYC_STATUS_UPDATED: "User KYC status updated successfully",  
+  KYC_STATUS_UPDATED: "User KYC status updated successfully", 
+  KYC_NOT_FOUND: "KYC information not found for this user", 
+  KYC_FETCH_SUCCESS: "Traveler KYC information fetched successfully",
+  KYC_RESUBMITTED_SUCCESS: "Traveler KYC resubmitted successfully",
+  KYC_NOT_ELIGIBLE_FOR_RESUBMIT: "KYC is not eligible for resubmission. Only REJECTED KYC can be resubmitted.",
 } as const;
 
 export const BOOKING_MESSAGE = {

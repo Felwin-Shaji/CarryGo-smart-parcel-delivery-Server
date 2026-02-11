@@ -141,6 +141,11 @@ import { IUpdateUserKycStatusUseCase } from "../../Application/interfaces/useCas
 import { UpdateUserKycStatusUseCase } from "../../Application/useCase/User/Traveler/UpdateUserKycStatus.usecase.js";
 import { GetUserOverviewUseCase } from "../../Application/useCase/User/GetUserOverview.usecase.js";
 import { IGetUserOverviewUseCase } from "../../Application/interfaces/useCase_Interfaces/user/IGetUserOverviewUseCase.js";
+import { IGetTravelerKycUseCase } from "../../Application/interfaces/useCase_Interfaces/user/Traveler/IGetTravelerKycUseCase.js";
+import { GetTravelerKycUseCase } from "../../Application/useCase/User/Traveler/GetTravelerKyc.usecase.js";
+import { IReSubmitTravelerKycUseCase } from "../../Application/interfaces/useCase_Interfaces/user/Traveler/IReSubmitTravelerKycUseCase.js";
+import { ReSubmitTravelerKycUseCase } from "../../Application/useCase/User/Traveler/ReSubmitTravelerKyc.usecase.js";
+
 
 
 export class UsecaseRegistery {
@@ -427,6 +432,14 @@ export class UsecaseRegistery {
 
         container.register<IGetUserOverviewUseCase>("IGetUserOverviewUseCase",{
             useClass:GetUserOverviewUseCase
+        })
+
+        container.register<IGetTravelerKycUseCase>("IGetTravelerKycUseCase",{
+            useClass:GetTravelerKycUseCase
+        })
+
+        container.register<IReSubmitTravelerKycUseCase>("IReSubmitTravelerKycUseCase",{
+            useClass:ReSubmitTravelerKycUseCase
         })
     }
 }

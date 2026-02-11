@@ -122,3 +122,10 @@ export interface GetUserOverviewResponseDTO {
   kyc: userKycResponseDTO | null;
 }
 
+export interface GetTravelerKycResponseDTO {
+  idType: "AADHAAR" | "DL" | "PASSPORT";
+  idNumber: string;
+  documentUrl: string;
+  selfieUrl: string;
+  rejectionReason?: string | null;
+}

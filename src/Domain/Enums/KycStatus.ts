@@ -1,0 +1,7 @@
+export enum KycStatus {
+    PENDING = "PENDING",
+    REGISTERED = "REGISTERED",
+    APPROVED = "APPROVED",
+    REJECTED = "REJECTED",
+    RESUBMITTED = "RESUBMITTED"
+}

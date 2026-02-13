@@ -7,7 +7,7 @@ export interface AppJwtPayload {
     userId: string;
     email: string;
     role: Role;
-    tokenVersion:number;
+    tokenVersion: number;
 }
 
 export interface PincodeDetails {
@@ -42,6 +42,8 @@ export type BookingStatusType =
     | "DELIVERED"
     | "CANCELLED_BEFORE_PICKUP"
     | "CANCELLED_AFTER_PICKUP"
+    | "CANCELLED_BY_USER"
+    | "CANCELLED_BY_TRAVELER"
     | "REFUNDED"
     | "SETTLED";
 
@@ -59,11 +61,10 @@ export type PackageSizeType = "SMALL" | "MEDIUM" | "LARGE";
 
 export type DeliveryPartnerType = "AGENCY" | "TRAVELER";
 
-
-export type HubJourneyStatusType =  "PENDING" | "RECEIVED" | "DISPATCHED";
+export type HubJourneyStatusType = "PENDING" | "RECEIVED" | "DISPATCHED";
 
 export type AddressLabelType = "Home" | "Office" | "Warehouse" | "Other";
 
 export type PaymentMethodType = "CARD" | "UPI" | "NETBANKING" | "WALLET";
 
-export type PaymentGatewayType = "RAZORPAY" ;
+export type PaymentGatewayType = "RAZORPAY";

@@ -145,6 +145,8 @@ import { IGetTravelerKycUseCase } from "../../Application/interfaces/useCase_Int
 import { GetTravelerKycUseCase } from "../../Application/useCase/User/Traveler/GetTravelerKyc.usecase.js";
 import { IReSubmitTravelerKycUseCase } from "../../Application/interfaces/useCase_Interfaces/user/Traveler/IReSubmitTravelerKycUseCase.js";
 import { ReSubmitTravelerKycUseCase } from "../../Application/useCase/User/Traveler/ReSubmitTravelerKyc.usecase.js";
+import { ICreateTravelRequestUseCase } from "../../Application/interfaces/useCase_Interfaces/user/Traveler/ICreateTravelRequestUseCase.js";
+import { CreateTravelRequestUseCase } from "../../Application/useCase/User/Traveler/CreateTravelRequest.usecase.js";
 
 
 
@@ -440,6 +442,10 @@ export class UsecaseRegistery {
 
         container.register<IReSubmitTravelerKycUseCase>("IReSubmitTravelerKycUseCase",{
             useClass:ReSubmitTravelerKycUseCase
+        })
+
+        container.register<ICreateTravelRequestUseCase>("ICreateTravelRequestUseCase",{
+            useClass:CreateTravelRequestUseCase
         })
     }
 }

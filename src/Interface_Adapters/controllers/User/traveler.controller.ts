@@ -5,11 +5,12 @@ import { ITravelerController } from "../../Interface/Controllers_Interfaces/User
 import { WorkerKYCFileFields } from "../../../Infrastructure/services/storage/multer";
 import { inject, injectable } from "tsyringe";
 import { ISubmitTravelerKycUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Traveler/ISubmitTravelerKycUseCase";
-import { SubmitTravelerKycRequestDTO } from "../../../Application/Dto/User/traveler.dto";
+import { CreateTravelRequestDTO, SubmitTravelerKycRequestDTO } from "../../../Application/Dto/User/traveler.dto";
 import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
 import { AppError } from "../../../Domain/utils/customError";
 import { IGetTravelerKycUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Traveler/IGetTravelerKycUseCase";
 import { IReSubmitTravelerKycUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Traveler/IReSubmitTravelerKycUseCase";
+import { ICreateTravelRequestUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Traveler/ICreateTravelRequestUseCase";
 
 
 @injectable()
@@ -18,6 +19,7 @@ export class TravelerController implements ITravelerController {
         @inject("ISubmitTravelerKycUseCase") private readonly _submitTravelerKycUseCase: ISubmitTravelerKycUseCase,
         @inject("IGetTravelerKycUseCase") private readonly _getTravelerKycUseCase: IGetTravelerKycUseCase,
         @inject("IReSubmitTravelerKycUseCase") private readonly _reSubmitTravelerKycUseCase: IReSubmitTravelerKycUseCase,
+        @inject("ICreateTravelRequestUseCase") private readonly _createTravelRequestUseCase: ICreateTravelRequestUseCase
     ) { };
 
     submitKYC = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
@@ -61,7 +63,6 @@ export class TravelerController implements ITravelerController {
         }
     };
 
-
     reSubmitKYC = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
         try {
             const userId = req.user?.id;
@@ -78,6 +79,26 @@ export class TravelerController implements ITravelerController {
                 )
             );
 
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    createTravelRequest = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+        try {
+            console.log("Received request to create travel request with body:", req.body);
+            const userId = req.user?.id;
+            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
+
+            const dto = req.body as CreateTravelRequestDTO;
+
+            await this._createTravelRequestUseCase.execute(userId, dto);
+
+            res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    USER_MESSAGES.TRAVEL_REQUEST_CREATED_SUCCESS
+                )
+            );
         } catch (error) {
             next(error);
         }

@@ -23,6 +23,8 @@ export const USER_MESSAGES = {
   KYC_FETCH_SUCCESS: "Traveler KYC information fetched successfully",
   KYC_RESUBMITTED_SUCCESS: "Traveler KYC resubmitted successfully",
   KYC_NOT_ELIGIBLE_FOR_RESUBMIT: "KYC is not eligible for resubmission. Only REJECTED KYC can be resubmitted.",
+  TRAVEL_REQUEST_CREATED_SUCCESS: "Travel request created successfully",
+  TRAVEL_REQUEST_SAME_ADDRESS_ERROR: "Start address and end address cannot be the same.",
 } as const;
 
 export const BOOKING_MESSAGE = {

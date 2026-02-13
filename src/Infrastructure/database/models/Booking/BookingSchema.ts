@@ -15,6 +15,7 @@ export interface BookingDocument extends Document {
     userId: Types.ObjectId;
 
     deliveryPartnerType: DeliveryPartnerType;
+    travelRequestId?: Types.ObjectId;
     partnerSnapshot?: PartnerSnapshotDocument | null;
 
     pickupAddress: BookingAddressDocument;
@@ -42,6 +43,11 @@ export interface BookingDocument extends Document {
         currentHubId?: Types.ObjectId;
         lastUpdatedAt?: Date;
     };
+    travelerJourney?: {
+        acceptedAt?: Date;
+        pickedUpAt?: Date;
+        deliveredAt?: Date;
+    };
 
     payment: {
         gateway: PaymentGatewayType,
@@ -66,13 +72,11 @@ const bookingSchema = new Schema<BookingDocument>(
 
         deliveryPartnerType: { type: String, enum: Object.values(DeliveryPartner), required: true },
 
-        partnerSnapshot: {
-            type: PartnerSnapshotSchema,
-            default: null,
-        },
+        travelRequestId: { type: Schema.Types.ObjectId, ref: "TravelRequest", required: false, index: true, },
+
+        partnerSnapshot: { type: PartnerSnapshotSchema, default: null, },
 
         pickupAddress: { type: BookingAddressSchema, required: true, },
-
         deliveryAddress: { type: BookingAddressSchema, required: true, },
 
         packageDetails: {
@@ -93,9 +97,14 @@ const bookingSchema = new Schema<BookingDocument>(
         },
 
         logistics: {
-            routeHubs: { type: [HubJourneySchema], default: [] },
+            routeHubs: { type: [HubJourneySchema] },
             currentHubId: { type: Types.ObjectId, ref: "Hub", },
             lastUpdatedAt: Date,
+        },
+        travelerJourney: {
+            acceptedAt: Date,
+            pickedUpAt: Date,
+            deliveredAt: Date,
         },
 
         payment: {
@@ -110,9 +119,23 @@ const bookingSchema = new Schema<BookingDocument>(
 
         status: { type: String, enum: Object.values(BookingStatus), default: BookingStatus.CREATED, index: true },
     },
-    {   
+    {
         timestamps: true,
     }
 );
 
 export const BookingModel = model<BookingDocument>("Booking", bookingSchema);
+
+
+bookingSchema.pre("save", function (next) {
+
+    if (this.deliveryPartnerType === "TRAVELER" && !this.travelRequestId) {
+        return next(new Error("Traveler booking must have travelRequestId"));
+    }
+
+    if (this.deliveryPartnerType === "AGENCY" && this.travelRequestId) {
+        return next(new Error("Agency booking cannot have travelRequestId"));
+    }
+
+    next();
+});

@@ -42,6 +42,7 @@ export class Booking {
 
         public userId: string,
 
+
         public deliveryPartnerType: DeliveryPartnerType,
         public partnerSnapshot: PartnerEntity | null,
 
@@ -83,8 +84,16 @@ export class Booking {
 
         public status: BookingStatusType,
 
+        public travelRequestId?: string | null,
+        public travelerJourney?: {
+            acceptedAt?: Date;
+            pickedUpAt?: Date;
+            deliveredAt?: Date;
+        },
+
+
         public logistics?: {
-            routeHubs: HubJourney[]  | [] ;
+            routeHubs?: HubJourney[];
             currentHubId?: string | undefined;
             lastUpdatedAt?: Date | undefined;
         },

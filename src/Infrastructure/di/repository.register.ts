@@ -31,6 +31,8 @@ import { ITransactionRepository } from "../../Application/interfaces/repositorie
 import { TransactionRepository } from "../repositories/Wallet/transaction.repository.js";
 import { IWalletRepository } from "../../Application/interfaces/repositories_interfaces/walletRepositories_Interfaces/IWalletRepository.js";
 import { WalletRepository } from "../repositories/Wallet/wallet.repository.js";
+import { ITravelRequestRepository } from "../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/ITravelRequestRepository.js";
+import { TravelRequestRepository } from "../repositories/User/TravelRequest.repository.js";
 
 
 export class RepositoryRegistry {
@@ -99,6 +101,10 @@ export class RepositoryRegistry {
         container.register<ITransactionRepository>("ITransactionRepository",{
             useClass:TransactionRepository
         });
+
+        container.register<ITravelRequestRepository>("ITravelRequestRepository",{
+            useClass:TravelRequestRepository
+        })
 
     };
 };

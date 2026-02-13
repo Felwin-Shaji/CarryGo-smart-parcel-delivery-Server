@@ -27,11 +27,14 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
             pricing: booking.pricing,
             distanceKm: booking.distanceKm,
 
-            logistics: booking.logistics,
-
             payment: booking.payment,
 
             status: booking.status,
+
+            travelRequestId: booking.travelRequestId ?? null,
+            travelerJourney: booking.travelerJourney ?? null,
+
+            logistics: booking.logistics ?? null,
         });
 
         return this.toDomain(doc);
@@ -148,17 +151,21 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
             },
 
             doc.status,
-            {
-                routeHubs: doc.logistics.routeHubs.map(hub => ({
-                    hubId: hub.hubId.toString(),
-                    hubName: hub.hubName,
-                    status: hub.status,
-                    arrivedAt: hub.arrivedAt,
-                    departedAt: hub.departedAt,
-                })),
-                currentHubId: doc.logistics.currentHubId?.toString(),
-                lastUpdatedAt: doc.logistics.lastUpdatedAt,
-            },
+            doc.travelRequestId?.toString() ?? null,
+            doc.travelerJourney ?? undefined,
+            doc.logistics
+                ? {
+                    routeHubs: doc.logistics.routeHubs?.map(hub => ({
+                        hubId: hub.hubId.toString(),
+                        hubName: hub.hubName,
+                        status: hub.status,
+                        arrivedAt: hub.arrivedAt,
+                        departedAt: hub.departedAt,
+                    })) ?? [],
+                    currentHubId: doc.logistics.currentHubId?.toString(),
+                    lastUpdatedAt: doc.logistics.lastUpdatedAt,
+                }
+                : undefined,
 
             doc.createdAt,
             doc.updatedAt

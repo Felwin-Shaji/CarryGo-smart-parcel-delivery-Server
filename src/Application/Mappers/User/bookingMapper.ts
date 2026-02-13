@@ -15,7 +15,8 @@ export class BookingMapper {
     static createNew(params: {
         userId: string;
         deliveryPartnerType: DeliveryPartnerType;
-        partnerSnapshot: PartnerEntity | null
+        partnerSnapshot: PartnerEntity | null;
+        travelRequestId?: string | null;
         pickup: Address;
         delivery: Address;
 
@@ -32,11 +33,14 @@ export class BookingMapper {
             userId,
             deliveryPartnerType,
             partnerSnapshot,
+            travelRequestId=null,
             pickup,
             delivery,
             packageDetails,
             pricing,
         } = params;
+
+        const isTraveler = deliveryPartnerType === "TRAVELER";
 
         return new Booking(
             null,
@@ -86,9 +90,11 @@ export class BookingMapper {
             },
 
             "PAYMENT_PENDING" as BookingStatusType,
-            {
-                routeHubs: [],
-            },
+            isTraveler ? travelRequestId : null,
+
+            isTraveler ? {} : undefined,
+
+            !isTraveler ? { routeHubs: [] } : undefined,
 
 
         );
@@ -146,51 +152,4 @@ export class BookingMapper {
             }
         });
     }
-
-    // static toUsersBookingResponseDTO(booking:Booking):UserBookingResponseDTO{
-    //     return  return {
-    //             id: booking.id!,
-
-    //             createdAt: booking.createdAt.toISOString(),
-
-    //             deliveryPartnerType: booking.deliveryPartnerType,
-
-    //             partnerSnapshot: booking.partnerSnapshot
-    //                 ? {
-    //                     name: booking.partnerSnapshot.name,
-    //                     type: booking.partnerSnapshot.type,
-    //                 }
-    //                 : null,
-
-    //             pickupAddress: {
-    //                 city: booking.pickupAddress.city,
-    //                 pincode: booking.pickupAddress.pincode,
-    //             },
-
-    //             deliveryAddress: {
-    //                 city: booking.deliveryAddress.city,
-    //                 pincode: booking.deliveryAddress.pincode,
-    //             },
-
-    //             packageDetails: {
-    //                 category: booking.packageDetails.category,
-    //                 size: booking.packageDetails.size,
-    //                 weightKg: booking.packageDetails.weightKg,
-    //             },
-
-    //             pricing: {
-    //                 totalAmount: booking.pricing.totalAmount,
-    //                 currency: booking.pricing.currency,
-    //             },
-
-    //             distanceKm: booking.distanceKm,
-
-    //             payment: {
-    //                 paymentStatus: booking.payment.paymentStatus,
-    //             },
-
-    //             status: booking.status,
-    //         }
-    // }
-
 }

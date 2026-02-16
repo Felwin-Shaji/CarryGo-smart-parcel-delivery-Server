@@ -11,6 +11,8 @@ import { AppError } from "../../../Domain/utils/customError";
 import { IGetTravelerKycUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Traveler/IGetTravelerKycUseCase";
 import { IReSubmitTravelerKycUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Traveler/IReSubmitTravelerKycUseCase";
 import { ICreateTravelRequestUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Traveler/ICreateTravelRequestUseCase";
+import { IGetTravelRequestsUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Traveler/IGetTravelRequestsUseCase";
+import { IGetTravelerTripOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Traveler/IGetTravelerTripOverviewUseCase";
 
 
 @injectable()
@@ -19,7 +21,9 @@ export class TravelerController implements ITravelerController {
         @inject("ISubmitTravelerKycUseCase") private readonly _submitTravelerKycUseCase: ISubmitTravelerKycUseCase,
         @inject("IGetTravelerKycUseCase") private readonly _getTravelerKycUseCase: IGetTravelerKycUseCase,
         @inject("IReSubmitTravelerKycUseCase") private readonly _reSubmitTravelerKycUseCase: IReSubmitTravelerKycUseCase,
-        @inject("ICreateTravelRequestUseCase") private readonly _createTravelRequestUseCase: ICreateTravelRequestUseCase
+        @inject("ICreateTravelRequestUseCase") private readonly _createTravelRequestUseCase: ICreateTravelRequestUseCase,
+        @inject("IGetTravelRequestsUseCase") private readonly _getTravelRequestsUseCase: IGetTravelRequestsUseCase,
+        @inject("IGetTravelerTripOverviewUseCase") private readonly _getTravelerTripOverviewUseCase: IGetTravelerTripOverviewUseCase,
     ) { };
 
     submitKYC = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
@@ -97,6 +101,45 @@ export class TravelerController implements ITravelerController {
             res.status(STATUS.OK).json(
                 ApiResponse.success(
                     USER_MESSAGES.TRAVEL_REQUEST_CREATED_SUCCESS
+                )
+            );
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    getTravelRequests = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+        try {
+            const userId = req.user?.id;
+            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
+
+            const travelRequests = await this._getTravelRequestsUseCase.execute(userId);
+
+            res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    USER_MESSAGES.TRAVEL_REQUESTS_FETCHED_SUCCESS,
+                    travelRequests
+                )
+            );
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    getTravelRequestById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+        try {
+            const userId = req.user?.id;
+            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
+
+            const travelRequestId = req.params.id;
+            if (!travelRequestId) throw new AppError(USER_MESSAGES.TRAVEL_REQUEST_ID_MISSING, STATUS.BAD_REQUEST);
+
+            const travelRequest = await this._getTravelerTripOverviewUseCase.execute(userId, travelRequestId);
+
+            res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    USER_MESSAGES.TRAVEL_REQUESTS_FETCHED_SUCCESS,
+                    travelRequest
                 )
             );
         } catch (error) {

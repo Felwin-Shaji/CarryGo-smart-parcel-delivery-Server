@@ -37,5 +37,7 @@ export class UserRoute extends BaseRoute {
         this.router.put('/traveler/kyc',authenticate(["user"]),workerKYCUpload,asyncHandler(travelerController.reSubmitKYC));
         this.router.get('/traveler/kyc',authenticate(["user"]),asyncHandler(travelerController.getKyc));
         this.router.post('/traveler/travel-requests',authenticate(["user"]),asyncHandler(travelerController.createTravelRequest));
+        this.router.get('/traveler/travel-requests',authenticate(["user"]),asyncHandler(travelerController.getTravelRequests));
+        this.router.get('/traveler/travel-requests/:id',authenticate(["user"]),asyncHandler(travelerController.getTravelRequestById));
     }
 }

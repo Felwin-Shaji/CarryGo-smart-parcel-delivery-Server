@@ -1,5 +1,6 @@
 import { IBookingRepository } from "../../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
 import { Booking } from "../../../Domain/Entities/Booking/Booking";
+import { DeliveryPartner } from "../../../Domain/Enums/DeliveryPartnerType";
 import { AppError } from "../../../Domain/utils/customError";
 import { BOOKING_MESSAGE } from "../../constants/messages/bookingMessages";
 import { STATUS } from "../../constants/statusCodes";
@@ -86,6 +87,22 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
             { _id: bookingId },
             { $set: { status } }
         );
+    }
+
+    async findByTravelRequestId(travelRequestId: string): Promise<Booking[]> {
+
+        const docs = await this.model
+            .find({
+                travelRequestId,
+                deliveryPartnerType: DeliveryPartner.TRAVELER
+            })
+            .sort({ createdAt: -1 });
+
+        if (!docs.length) {
+            return [];
+        }
+
+        return docs.map(doc => this.toDomain(doc));
     }
 
 

@@ -147,6 +147,10 @@ import { IReSubmitTravelerKycUseCase } from "../../Application/interfaces/useCas
 import { ReSubmitTravelerKycUseCase } from "../../Application/useCase/User/Traveler/ReSubmitTravelerKyc.usecase.js";
 import { ICreateTravelRequestUseCase } from "../../Application/interfaces/useCase_Interfaces/user/Traveler/ICreateTravelRequestUseCase.js";
 import { CreateTravelRequestUseCase } from "../../Application/useCase/User/Traveler/CreateTravelRequest.usecase.js";
+import { IGetTravelRequestsUseCase } from "../../Application/interfaces/useCase_Interfaces/user/Traveler/IGetTravelRequestsUseCase.js";
+import { GetTravelRequestsUseCase } from "../../Application/useCase/User/Traveler/GetTravelRequests.usecase.js";
+import { GetTravelerTripOverviewUseCase } from "../../Application/useCase/User/Traveler/GetTravelerTripOverview.usecase.js";
+import { IGetTravelerTripOverviewUseCase } from "../../Application/interfaces/useCase_Interfaces/user/Traveler/IGetTravelerTripOverviewUseCase.js";
 
 
 
@@ -446,6 +450,14 @@ export class UsecaseRegistery {
 
         container.register<ICreateTravelRequestUseCase>("ICreateTravelRequestUseCase",{
             useClass:CreateTravelRequestUseCase
+        })
+
+        container.register<IGetTravelRequestsUseCase>("IGetTravelRequestsUseCase",{
+            useClass:GetTravelRequestsUseCase
+        })
+
+        container.register<IGetTravelerTripOverviewUseCase>("IGetTravelerTripOverviewUseCase",{
+            useClass:GetTravelerTripOverviewUseCase
         })
     }
 }

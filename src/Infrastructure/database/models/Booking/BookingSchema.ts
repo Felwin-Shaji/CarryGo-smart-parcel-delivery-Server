@@ -15,8 +15,8 @@ export interface BookingDocument extends Document {
     userId: Types.ObjectId;
 
     deliveryPartnerType: DeliveryPartnerType;
-    travelRequestId?: Types.ObjectId;
-    partnerSnapshot?: PartnerSnapshotDocument | null;
+    travelRequestId?: Types.ObjectId | undefined;
+    partnerSnapshot?: PartnerSnapshotDocument | null | undefined;
 
     pickupAddress: BookingAddressDocument;
     deliveryAddress: BookingAddressDocument;
@@ -44,10 +44,10 @@ export interface BookingDocument extends Document {
         lastUpdatedAt?: Date;
     };
     travelerJourney?: {
-        acceptedAt?: Date;
-        pickedUpAt?: Date;
-        deliveredAt?: Date;
-    };
+    acceptedAt?: Date;
+    pickedUpAt?: Date;
+    deliveredAt?: Date;
+} | undefined;
 
     payment: {
         gateway: PaymentGatewayType,

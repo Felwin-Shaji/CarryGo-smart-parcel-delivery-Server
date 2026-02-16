@@ -76,7 +76,7 @@ const travelRequestSchema = new Schema<TravelRequestDocument>(
 
         modeOfTransport: {
             type: String,
-            enum: ["FLIGHT", "TRAIN", "CAR", "BUS"],
+            enum: ["FLIGHT", "TRAIN", "CAR", "BUS","BIKE"],
             required: true,
         },
 

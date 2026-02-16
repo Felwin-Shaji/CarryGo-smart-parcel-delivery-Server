@@ -19,4 +19,6 @@ export interface IBookingRepository {
 
     updateStatus(bookingId: string, status: string): Promise<void>;
 
+    findByTravelRequestId(travelRequestId: string): Promise<Booking[]>;
+
 }

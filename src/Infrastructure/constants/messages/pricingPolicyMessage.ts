@@ -11,4 +11,6 @@ export const PRICING_POLICY_MESSAGE = {
     SIZE_PRICE_OUTSIDE_LIMIT: "Size price is outside allowed admin limits",
 
     CREATE_PRICING_POLICY_SUCCESS: "Pricing policy created successfully",
+
+    INVALID_POLICY:"Invalid pricing policy type"
 }

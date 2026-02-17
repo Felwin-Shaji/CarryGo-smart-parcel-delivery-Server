@@ -17,7 +17,7 @@ export class GetTravelerTripOverviewUseCase implements IGetTravelerTripOverviewU
 
   async execute(userId: string, travelRequestId: string) {
 
-    const trip = await this._travelRequestRepository.getTravelRequestById(userId, travelRequestId)
+    const trip = await this._travelRequestRepository.getTravelRequestById(travelRequestId)
     if (!trip) throw new AppError(USER_MESSAGES.TRAVEL_REQUEST_NOT_FOUND, STATUS.NOT_FOUND);
 
     const bookings = await this._bookingRepo.findByTravelRequestId(travelRequestId);

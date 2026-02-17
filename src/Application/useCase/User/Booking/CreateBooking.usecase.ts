@@ -1,16 +1,16 @@
 import { inject, injectable } from "tsyringe";
 import { ICreateBookingUsecase } from "../../../interfaces/useCase_Interfaces/user/Booking/ICreateBookingUsecase";
-import { IDistanceService } from "../../../interfaces/services_Interfaces/IDistanceService";
 import { IUserRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
 import { IBookingRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
-import { CalculatePriceRequestDTO, CreateBookingRequestDTO } from "../../../Dto/User/Booking.dto";
+import {  CreateBookingRequestDTO } from "../../../Dto/User/Booking.dto";
 import { USER_MESSAGES } from "../../../../Infrastructure/constants/messages/userMessage";
 import { AppError } from "../../../../Domain/utils/customError";
 import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
-import { Booking, PartnerEntity } from "../../../../Domain/Entities/Booking/Booking";
+import { PartnerEntity } from "../../../../Domain/Entities/Booking/Booking";
 import { IAgencyRepository } from "../../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
-import { IPricingService } from "../../../interfaces/services_Interfaces/IPricingService";
 import { BookingMapper } from "../../../Mappers/User/bookingMapper";
+import { ICalculateBookingPriceUsecase } from "../../../interfaces/useCase_Interfaces/user/Booking/ICalculateBookingPriceUsecase";
+import { ITravelRequestRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/ITravelRequestRepository";
 
 @injectable()
 export class CreateBookingUsecase implements ICreateBookingUsecase {
@@ -18,7 +18,9 @@ export class CreateBookingUsecase implements ICreateBookingUsecase {
         @inject("IUserRepository") private _userRepo: IUserRepository,
         @inject("IAgencyRepository") private _agencyRepo: IAgencyRepository,
         @inject("IBookingRepository") private _bookingRepo: IBookingRepository,
-        @inject("IPricingService") private _pricingService: IPricingService
+        @inject("ICalculateBookingPriceUsecase") private _calculateBookingPriceUsecase: ICalculateBookingPriceUsecase,
+        @inject("ITravelRequestRepository") private _travelRequestRepo: ITravelRequestRepository,
+
 
     ) { };
 
@@ -34,21 +36,48 @@ export class CreateBookingUsecase implements ICreateBookingUsecase {
         let partnerSnapshot: PartnerEntity | null = null;
 
         if (payload.partnerId) {
-            const agency = await this._agencyRepo.getAgencyById(payload.partnerId);
 
-            partnerSnapshot = {
-                partnerId: payload.partnerId,
-                name: agency?.name ?? "Unknown",
-                type: payload.deliveryType,
-                contact: {
-                    email: agency?.email,
-                    phone: agency?.mobile,
-                },
-            };
-        };
+            if (payload.deliveryType === "AGENCY") {
+
+                const agency =
+                    await this._agencyRepo.getAgencyById(payload.partnerId);
+
+                if (!agency)
+                    throw new AppError("Agency not found", STATUS.NOT_FOUND);
+
+                partnerSnapshot = {
+                    partnerId: payload.partnerId,
+                    name: agency.name,
+                    type: "AGENCY",
+                    contact: {
+                        email: agency.email,
+                        phone: agency.mobile,
+                    },
+                };
+            }
+
+            if (payload.deliveryType === "TRAVELER") {
+
+                const travelRequest =
+                    await this._travelRequestRepo.getTravelRequestById(payload.partnerId);
+
+                if (!travelRequest)
+                    throw new AppError("Travel request not found", STATUS.NOT_FOUND);
+
+                partnerSnapshot = {
+                    partnerId: travelRequest.id!,
+                    name: "Traveler", 
+                    type: "TRAVELER",
+                    contact: {
+                        email:'traveler@gmail.com',
+                        phone:"9072876656"
+                    }, 
+                };
+            }
+        }
 
 
-        const pricing = await this._pricingService.calculate(userId, payload);
+        const pricing = await this._calculateBookingPriceUsecase.execute(userId, payload);
 
 
         const booking = BookingMapper.createNew({

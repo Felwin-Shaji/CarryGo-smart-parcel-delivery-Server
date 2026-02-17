@@ -1,4 +1,4 @@
-import { PricingPolicy } from "../../../Domain/Entities/Admin/PricingPolicy";
+import { AgencyPricingPolicy } from "../../../Domain/Entities/Admin/AgencyPricingPolicy";
 import { AgencyPricing } from "../../../Domain/Entities/Agency/AgencyPricing";
 import { UpdateAgencyPricingDTO } from "../../Dto/Pricing/AgencyPricing.dto";
 
@@ -19,7 +19,7 @@ export class AgencyPricingMapper {
         );
     }
 
-    static toAdminDefaultPricing(agencyId: string, policy: PricingPolicy):AgencyPricing{
+    static toAdminDefaultPricing(agencyId: string, policy: AgencyPricingPolicy):AgencyPricing{
         return new AgencyPricing(
             null,
             agencyId,

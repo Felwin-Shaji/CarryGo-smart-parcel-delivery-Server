@@ -114,7 +114,6 @@ import { GetHubOverviewUseCase } from "../../Application/useCase/Hub/GetHubOverv
 import { IUpdateHubKycStatusUseCase } from "../../Application/interfaces/useCase_Interfaces/Hub/IUpdateHubKycStatusUseCase.js";
 import { UpdateHubKycStatusUseCase } from "../../Application/useCase/Hub/UpdateHubKycStatus.usecase.js";
 import { ICalculateBookingPriceUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/ICalculateBookingPriceUsecase.js";
-import { CalculateBookingPriceUsecase } from "../../Application/useCase/User/Booking/CalculateBookingPrice.usecase.js";
 import { ICreateBookingUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/ICreateBookingUsecase.js";
 import { CreateBookingUsecase } from "../../Application/useCase/User/Booking/CreateBooking.usecase.js";
 import { ICreatePaymentOrderUsecase } from "../../Application/interfaces/useCase_Interfaces/Payment/ICreatePaymentOrderUsecase.js";
@@ -151,6 +150,12 @@ import { IGetTravelRequestsUseCase } from "../../Application/interfaces/useCase_
 import { GetTravelRequestsUseCase } from "../../Application/useCase/User/Traveler/GetTravelRequests.usecase.js";
 import { GetTravelerTripOverviewUseCase } from "../../Application/useCase/User/Traveler/GetTravelerTripOverview.usecase.js";
 import { IGetTravelerTripOverviewUseCase } from "../../Application/interfaces/useCase_Interfaces/user/Traveler/IGetTravelerTripOverviewUseCase.js";
+import { CalculateBookingPriceUsecase } from "../../Application/useCase/User/Booking/CalculatePricing/CalculateBookingPrice.usecase.js";
+import { ICalculatePriceUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/CalculatePricing/ICalculatePrice.js";
+import { CalculateAgencyPriceUsecase } from "../../Application/useCase/User/Booking/CalculatePricing/CalculateAgencyPrice.usecase.js";
+import { TravelerPricingUsecase } from "../../Application/useCase/User/Booking/CalculatePricing/CalculateTravelerPrice.usecase.js";
+import { ICreateAdminTravelerPricingUsecase } from "../../Application/interfaces/useCase_Interfaces/Princing/ICreateAdminTravelerPricingUsecase.js";
+import { CreateAdminTravelerPricingUsecase } from "../../Application/useCase/Pricing/CreateAdminTravelerPricing.usecase.js";
 
 
 
@@ -392,6 +397,14 @@ export class UsecaseRegistery {
             useClass:CalculateBookingPriceUsecase
         });
 
+        container.register<ICalculatePriceUsecase>("CalculateAgencyPriceUsecase",{
+            useClass:CalculateAgencyPriceUsecase
+        })
+
+        container.register<ICalculatePriceUsecase>("TravelerPricingUsecase",{
+            useClass:TravelerPricingUsecase
+        })
+
         container.register<ICreateBookingUsecase>("ICreateBookingUsecase",{
             useClass:CreateBookingUsecase
         })
@@ -458,6 +471,10 @@ export class UsecaseRegistery {
 
         container.register<IGetTravelerTripOverviewUseCase>("IGetTravelerTripOverviewUseCase",{
             useClass:GetTravelerTripOverviewUseCase
+        })
+
+        container.register<ICreateAdminTravelerPricingUsecase>("ICreateAdminTravelerPricingUsecase",{
+            useClass:CreateAdminTravelerPricingUsecase
         })
     }
 }

@@ -10,3 +10,15 @@ export interface AdminPricingRequestDTO {
     isActive: boolean;
     policyVersion: number;
 }
+
+export interface AdminTravelerPricingRequestDTO {
+    basePricePerKg: number;
+
+    flightMultiplier: number;
+    trainMultiplier: number;
+    carMultiplier: number;
+    busMultiplier: number;
+    bikeMultiplier: number;
+
+    platformFeePercent: number;
+}

@@ -1,6 +1,7 @@
-import { PricingPolicy } from "../../../../Domain/Entities/Admin/PricingPolicy";
+import { AgencyPricingPolicy } from "../../../../Domain/Entities/Admin/AgencyPricingPolicy";
+import { BasePricingPolicy } from "../../../../Domain/Entities/Admin/BasePricingPolicy";
 import { AdminPricingRequestDTO } from "../../../Dto/Pricing/adminPricing.dto";
 
 export interface ICreateAdminPricingPolicyUseCase {
-    execute(dto: AdminPricingRequestDTO): Promise<PricingPolicy>;
+    execute(dto: AdminPricingRequestDTO): Promise<BasePricingPolicy>;
 }

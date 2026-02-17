@@ -1,5 +1,5 @@
-import { PricingPolicy } from "../../../../Domain/Entities/Admin/PricingPolicy";
+import { BasePricingPolicy } from "../../../../Domain/Entities/Admin/BasePricingPolicy";
 
 export interface IGetPricingUseCase {
-    execute(model: "AGENCY" | "TRAVELER"): Promise<PricingPolicy>;
+    execute(model: "AGENCY" | "TRAVELER"): Promise<BasePricingPolicy>;
 };

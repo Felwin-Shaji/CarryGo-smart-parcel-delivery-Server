@@ -1,51 +1,74 @@
-import { PricingPolicy } from "../../Domain/Entities/Admin/PricingPolicy";
+import { AgencyPricingPolicy } from "../../Domain/Entities/Admin/AgencyPricingPolicy";
 import { IPricingPolicyRepository } from "../../Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/pricingPolicy.repository";
+import { DeliveryPartner } from "../../Domain/Enums/DeliveryPartnerType";
+import { TravelerPricingPolicy } from "../../Domain/Entities/Admin/TravelerPricingPolicy";
 
 export async function bootstrapPricingPolicies(
   pricingRepo: IPricingPolicyRepository
 ): Promise<void> {
 
-  const defaults = [
-    {
-      model: "AGENCY" as const,
-      base: { min: 30, max: 100 },
-      km: { min: 8, max: 20 },
-      size: { min: 2, max: 6 },
-      fee: 10,
-    },
-    {
-      model: "TRAVELER" as const,
-      base: { min: 10, max: 50 },
-      km: { min: 5, max: 15 },
-      size: { min: 2, max: 6 },
-      fee: 5,
-    },
-  ];
 
-  for (const d of defaults) {
-    const activePolicy =
-      await pricingRepo.getActiveByDeliveryModel(d.model);
+  const agencyDefault = {
+    minBasePrice: 30,
+    maxBasePrice: 100,
+    minPricePerKm: 8,
+    maxPricePerKm: 20,
+    minSizePrice: 2,
+    maxSizePrice: 6,
+    platformFeePercent: 10,
+  };
 
-    if (!activePolicy) {
-      const policy = new PricingPolicy(
-        null,
-        d.model,
+  const travelerDefault = {
+    basePricePerKg: 25,
 
-        d.base.min,
-        d.base.max,
+    flightMultiplier: 1.5,
+    trainMultiplier: 1.2,
+    carMultiplier: 1.1,
+    busMultiplier: 1.0,
+    bikeMultiplier: 0.8,
 
-        d.km.min,
-        d.km.max,
+    platformFeePercent: 5,
+  };
 
-        d.size.min,
-        d.size.max,
 
-        d.fee,
-        true,
-        1
-      );
+  const activeAgency =
+    await pricingRepo.getActiveByDeliveryModel(DeliveryPartner.AGENCY);
 
-      await pricingRepo.createPricingPolicy(policy);
-    }
+  if (!activeAgency) {
+    const agencyPolicy = new AgencyPricingPolicy(
+      null,
+      agencyDefault.minBasePrice,
+      agencyDefault.maxBasePrice,
+      agencyDefault.minPricePerKm,
+      agencyDefault.maxPricePerKm,
+      agencyDefault.minSizePrice,
+      agencyDefault.maxSizePrice,
+      agencyDefault.platformFeePercent,
+      true,
+      1
+    );
+
+
+    await pricingRepo.createPricingPolicy(agencyPolicy);
+  }
+
+  const activeTraveler =
+    await pricingRepo.getActiveByDeliveryModel(DeliveryPartner.TRAVELER);
+
+  if (!activeTraveler) {
+    const travelerPolicy = new TravelerPricingPolicy(
+      null,
+      travelerDefault.basePricePerKg,
+      travelerDefault.flightMultiplier,
+      travelerDefault.trainMultiplier,
+      travelerDefault.carMultiplier,
+      travelerDefault.busMultiplier,
+      travelerDefault.bikeMultiplier,
+      travelerDefault.platformFeePercent,
+      true,
+      1
+    );
+
+    await pricingRepo.createPricingPolicy(travelerPolicy);
   }
 }

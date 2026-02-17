@@ -43,8 +43,8 @@ export class TravelRequestRepository extends BaseRepository<TravelRequestDocumen
         return docs.map(doc => this.toDomain(doc))
     }
 
-    async getTravelRequestById(travelerId: string, travelRequestId: string): Promise<TravelRequest> {
-        const doc = await this.model.findOne({ _id: travelRequestId, travelerId });
+    async getTravelRequestById( travelRequestId: string): Promise<TravelRequest> {
+        const doc = await this.model.findOne({ _id: travelRequestId });
         if (!doc) throw new AppError(USER_MESSAGES.TRAVEL_REQUEST_NOT_FOUND, STATUS.NOT_FOUND);
         return this.toDomain(doc);
     }

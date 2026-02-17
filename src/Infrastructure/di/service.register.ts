@@ -15,10 +15,7 @@ import { IGeocodingService } from "../../Application/interfaces/services_Interfa
 import { GeocodingService } from "../services/Apis/Geocoding.service.js";
 import { IDistanceService } from "../../Application/interfaces/services_Interfaces/IDistanceService.js";
 import { DistanceService } from "../services/Distance.Service.js";
-import { PricingService } from "../services/Pricing.service.js";
-import { IPricingService } from "../../Application/interfaces/services_Interfaces/IPricingService.js";
 import { IPaymentGatewayService } from "../../Application/interfaces/services_Interfaces/payment/IPaymentGateway.js";
-import { PaymentGateway } from "../../Domain/Enums/PaymentGateway.js";
 import { RazorpayPaymentGateway } from "../services/Payment/RazorpayPaymentGateway.js";
 import { IWalletService } from "../../Application/interfaces/services_Interfaces/IWalletService.js";
 import { WalletService } from "../services/Payment/wallet.services.js";
@@ -56,10 +53,6 @@ export class ServiceRegistory {
 
         container.register<IDistanceService>("IDistanceService", {
             useClass: DistanceService
-        });
-
-        container.register<IPricingService>("IPricingService",{
-            useClass:PricingService
         });
 
         container.register<IPaymentGatewayService>("IPaymentGatewayService",{

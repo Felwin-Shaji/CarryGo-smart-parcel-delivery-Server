@@ -1,4 +1,4 @@
-import { PricingPolicy } from "../../../Domain/Entities/Admin/PricingPolicy";
+import { AgencyPricingPolicy} from "../../../Domain/Entities/Admin/AgencyPricingPolicy";
 import { AgencyPricing } from "../../../Domain/Entities/Agency/AgencyPricing";
 
 export interface UpdateAgencyPricingDTO {
@@ -14,6 +14,6 @@ export interface UpdateAgencyPricingDTO {
 
 export interface AgencyPricingResponseDTO{
     agencyPricing:AgencyPricing;
-    policy:PricingPolicy;
+    policy:AgencyPricingPolicy;
     isOutdated:boolean;
 }

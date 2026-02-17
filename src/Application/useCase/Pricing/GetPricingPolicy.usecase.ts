@@ -1,9 +1,9 @@
 import { inject, injectable, injectAll } from "tsyringe";
 import { IGetPricingUseCase } from "../../interfaces/useCase_Interfaces/Princing/getPricing.usecase";
 import { IPricingPolicyRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/pricingPolicy.repository";
-import { PricingPolicy } from "../../../Domain/Entities/Admin/PricingPolicy";
 import { AppError } from "../../../Domain/utils/customError";
 import { PRICING_POLICY_MESSAGE } from "../../../Infrastructure/constants/messages/pricingPolicyMessage";
+import { BasePricingPolicy } from "../../../Domain/Entities/Admin/BasePricingPolicy";
 
 @injectable()
 export class GetPricingUseCase implements IGetPricingUseCase {
@@ -11,8 +11,8 @@ export class GetPricingUseCase implements IGetPricingUseCase {
         @inject("IPricingPolicyRepository") private _pricingPolicyRepo: IPricingPolicyRepository
     ) { }
 
-    async execute(model: "AGENCY" | "TRAVELER"): Promise<PricingPolicy> {
-        const pricing = await this._pricingPolicyRepo.getActiveByDeliveryModel(model = "AGENCY");
+    async execute(model: "AGENCY" | "TRAVELER"): Promise<BasePricingPolicy> {
+        const pricing = await this._pricingPolicyRepo.getActiveByDeliveryModel(model);
         if (!pricing) throw new AppError(PRICING_POLICY_MESSAGE.FETCH_PRICING_POLICY_FAILED);
         return pricing
     }

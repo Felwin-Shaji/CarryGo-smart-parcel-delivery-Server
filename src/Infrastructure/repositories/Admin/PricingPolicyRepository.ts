@@ -1,46 +1,51 @@
 import { IPricingPolicyRepository } from "../../../Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/pricingPolicy.repository";
-import { PricingPolicy } from "../../../Domain/Entities/Admin/PricingPolicy";
-import { AppError } from "../../../Domain/utils/customError";
-import { PricingPolicyModel, PricingPolicySchemaType } from "../../database/models/Admin/pricingPolicy";
+import { AgencyPricingPolicy } from "../../../Domain/Entities/Admin/AgencyPricingPolicy";
+import { BasePricingPolicy } from "../../../Domain/Entities/Admin/BasePricingPolicy";
+import { TravelerPricingPolicy } from "../../../Domain/Entities/Admin/TravelerPricingPolicy";
+import { BasePricingPolicySchemaType, PricingPolicyModel } from "../../database/models/Admin/Pricing/BasePricingPolicySchema";
+import { TravelerPricingPolicyModel, TravelerPricingPolicySchemaType } from "../../database/models/Admin/Pricing/TravelerPricingPolicySchema";
+import { AgencyPricingPolicyModel, AgencyPricingPolicySchemaType } from "../../database/models/Admin/Pricing/AgencyPricingPolicySchema";
 import { BaseRepository } from "../baseRepositories";
+import { AppError } from "../../../Domain/utils/customError";
+import { DeliveryPartner } from "../../../Domain/Enums/DeliveryPartnerType";
 
 export class PricingPolicyRepository
-    extends BaseRepository<PricingPolicySchemaType>
+    extends BaseRepository<BasePricingPolicySchemaType>
     implements IPricingPolicyRepository {
 
     constructor() {
         super(PricingPolicyModel);
     };
 
-    async createPricingPolicy(policy: PricingPolicy): Promise<PricingPolicy> {
-        const pricingPolicyDocument = {
-            deliveryModel: policy.deliveryModel,
+    async createPricingPolicy(
+        policy: BasePricingPolicy
+    ): Promise<BasePricingPolicy> {
 
-            minBasePrice: policy.minBasePrice,
-            maxBasePrice: policy.maxBasePrice,
+        const persistenceObject = policy.toPersistence();
 
-            minPricePerKm: policy.minPricePerKm,
-            maxPricePerKm: policy.maxPricePerKm,
+        let doc;
 
-            minSizePrice: policy.minSizePrice,
-            maxSizePrice: policy.maxSizePrice,
+        if (policy.deliveryModel === DeliveryPartner.AGENCY) {
+            doc = await AgencyPricingPolicyModel.create(persistenceObject);
+        } else if (policy.deliveryModel === DeliveryPartner.TRAVELER) {
+            doc = await TravelerPricingPolicyModel.create(persistenceObject);
+        } else {
+            throw new AppError("Unsupported delivery model");
+        }
 
-            platformFeePercent: policy.platformFeePercent,
-            isActive: policy.isActive,
-            policyVersion: policy.policyVersion
+        return this.toDomain(doc.toObject());
+    }
 
-        };
 
-        const doc = await this.save(pricingPolicyDocument);
-        return this.toDomain(doc)
-    };
+    async getActiveByDeliveryModel(model: "AGENCY" | "TRAVELER"): Promise<BasePricingPolicy | null> {
 
-    async getActiveByDeliveryModel(model: "AGENCY" | "TRAVELER"): Promise<PricingPolicy | null> {
+        const doc = await this.model
+            .findOne({
+                deliveryModel: model,
+                isActive: true,
+            })
+            .lean<BasePricingPolicySchemaType>();
 
-        const doc = await this.findOne({
-            deliveryModel: model,
-            isActive: true,
-        });
 
         return doc ? this.toDomain(doc) : null;
     };
@@ -65,26 +70,47 @@ export class PricingPolicyRepository
     /* 
     MAPPER
     */
-    private toDomain(doc: PricingPolicySchemaType): PricingPolicy {
-        return new PricingPolicy(
-            doc._id.toString(),
-            doc.deliveryModel,
+    private toDomain(doc: BasePricingPolicySchemaType): BasePricingPolicy {
 
-            doc.minBasePrice,
-            doc.maxBasePrice,
+        if (doc.deliveryModel === "AGENCY") {
+            const agencyDoc = doc as AgencyPricingPolicySchemaType;
+            const agencyPricing = new AgencyPricingPolicy(
+                agencyDoc._id.toString(),
+                agencyDoc.minBasePrice,
+                agencyDoc.maxBasePrice,
+                agencyDoc.minPricePerKm,
+                agencyDoc.maxPricePerKm,
+                agencyDoc.minSizePrice,
+                agencyDoc.maxSizePrice,
+                agencyDoc.platformFeePercent,
+                agencyDoc.isActive,
+                agencyDoc.policyVersion,
+                agencyDoc.createdAt,
+                agencyDoc.updatedAt
+            );
 
-            doc.minPricePerKm,
-            doc.maxPricePerKm,
+            return agencyPricing
+        }
 
-            doc.minSizePrice,
-            doc.maxSizePrice,
+        if (doc.deliveryModel === "TRAVELER") {
+            const travelerDoc = doc as TravelerPricingPolicySchemaType;
+            return new TravelerPricingPolicy(
+                travelerDoc._id.toString(),
+                travelerDoc.basePricePerKg,
+                travelerDoc.flightMultiplier,
+                travelerDoc.trainMultiplier,
+                travelerDoc.carMultiplier,
+                travelerDoc.busMultiplier,
+                travelerDoc.bikeMultiplier,
+                travelerDoc.platformFeePercent,
+                travelerDoc.isActive,
+                travelerDoc.policyVersion,
+                travelerDoc.createdAt,
+                travelerDoc.updatedAt
+            );
+        }
 
-            doc.platformFeePercent,
-            doc.isActive,
-            doc.policyVersion,
+        throw new Error("Unsupported delivery model");
+    }
 
-            doc.createdAt,
-            doc.updatedAt
-        );
-    };
 };

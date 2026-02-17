@@ -1,12 +1,12 @@
-import { PricingPolicy } from "../../../../Domain/Entities/Admin/PricingPolicy";
-import { PricingPolicySchemaType } from "../../../../Infrastructure/database/models/Admin/pricingPolicy";
+import { BasePricingPolicy } from "../../../../Domain/Entities/Admin/BasePricingPolicy";
+import { BasePricingPolicySchemaType } from "../../../../Infrastructure/database/models/Admin/Pricing/BasePricingPolicySchema";
 import { IBaseRepository } from "../base.repository";
 
-export interface IPricingPolicyRepository extends IBaseRepository<PricingPolicySchemaType> {
+export interface IPricingPolicyRepository extends IBaseRepository<BasePricingPolicySchemaType> {
 
-  getActiveByDeliveryModel(model: "AGENCY" | "TRAVELER"): Promise<PricingPolicy | null>;
+  getActiveByDeliveryModel(model: "AGENCY" | "TRAVELER"): Promise<BasePricingPolicy | null>;
 
-  createPricingPolicy(policy: PricingPolicy): Promise<PricingPolicy>;
+  createPricingPolicy(policy: BasePricingPolicy): Promise<BasePricingPolicy>;
 
   deactivateActivePolicy(model: "AGENCY" | "TRAVELER"): Promise<void>;
 

@@ -20,7 +20,7 @@ export class CreateAdminTravelerPricingUsecase implements ICreateAdminTravelerPr
         await this.pricingPolicyRepo.deactivateActivePolicy(DeliveryPartner.TRAVELER);
 
         const newPolicy = AdminPricingPolicyMapper.toTravelerPricingPolicy(dto, latestVersion);
-
+        newPolicy.isActive = true;
         const createdPolicy = await this.pricingPolicyRepo.createPricingPolicy(newPolicy);
 
         return createdPolicy;

@@ -23,7 +23,7 @@ export class UpsertAgencyPricingUseCase implements IUpsertAgencyPricingUseCase {
         const policy = await this.pricingPolicyRepo.getActiveByDeliveryModel(DeliveryPartner.AGENCY);
 
         if (!policy) throw new AppError(PRICING_POLICY_MESSAGE.ADMIN_PRICING_POLICY_NOT_FOUND, STATUS.NOT_FOUND);
-        if (!(policy instanceof AgencyPricingPolicy)) throw new AppError(PRICING_POLICY_MESSAGE.INVALID_POLICY);
+        if (!(policy instanceof AgencyPricingPolicy)) throw new AppError(PRICING_POLICY_MESSAGE.INVALID_POLICY,STATUS.BAD_REQUEST);
 
 
         if (

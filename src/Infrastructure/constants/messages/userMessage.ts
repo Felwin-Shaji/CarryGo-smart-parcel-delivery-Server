@@ -23,11 +23,13 @@ export const USER_MESSAGES = {
   KYC_FETCH_SUCCESS: "Traveler KYC information fetched successfully",
   KYC_RESUBMITTED_SUCCESS: "Traveler KYC resubmitted successfully",
   KYC_NOT_ELIGIBLE_FOR_RESUBMIT: "KYC is not eligible for resubmission. Only REJECTED KYC can be resubmitted.",
+  
   TRAVEL_REQUEST_CREATED_SUCCESS: "Travel request created successfully",
   TRAVEL_REQUEST_SAME_ADDRESS_ERROR: "Start address and end address cannot be the same.",
   TRAVEL_REQUESTS_FETCHED_SUCCESS: "Travel requests fetched successfully",
   TRAVEL_REQUEST_ID_MISSING: "Travel request ID is required",
   TRAVEL_REQUEST_NOT_FOUND: "Travel request not found",
+  REMAINING_CAPACITY_ERROR:"Not enough remaining capacity"
 } as const;
 
 export const BOOKING_MESSAGE = {

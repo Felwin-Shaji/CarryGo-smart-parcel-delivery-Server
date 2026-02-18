@@ -4,16 +4,18 @@ import { AppError } from "../../../../Domain/utils/customError";
 import { BOOKING_MESSAGE } from "../../../../Infrastructure/constants/messages/bookingMessages";
 import { IValidatePincodeUsecase } from "../../../interfaces/useCase_Interfaces/user/Booking/validatePincode.usecase";
 import { IFindServicableAgencyUsecase } from "../../../interfaces/useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase";
+import { IFindServiceableTravelerUsecase } from "../../../interfaces/useCase_Interfaces/user/Booking/IFindServiceableTravelerUsecase";
+import { ServiceableAgencyAndTravelerDTO } from "../../../Dto/User/Booking.dto";
 
 @injectable()
 export class ValidatePincodeUsecase implements IValidatePincodeUsecase {
   constructor(
     @inject("IPincodeLookupService") private pincodeLookupService: IPincodeLookupService,
     @inject("IFindServicableAgencyUsecase") private _findServicableAgencyUsecase: IFindServicableAgencyUsecase,
-
+    @inject("IFindServiceableTravelerUsecase") private _findServiceableTravelerUsecase: IFindServiceableTravelerUsecase,
   ) { }
 
-  async execute(fromPincode: string, toPincode: string) {
+  async execute(fromPincode: string, toPincode: string):Promise<ServiceableAgencyAndTravelerDTO> {
     if (fromPincode === toPincode) {
       throw new AppError(BOOKING_MESSAGE.PINCODE_CANNOT_BE_SAME);
     }
@@ -24,7 +26,9 @@ export class ValidatePincodeUsecase implements IValidatePincodeUsecase {
     if (!from || !to) throw new AppError(BOOKING_MESSAGE.NOT_SERVICEABLE_PINCODE);
     const agencies = await this._findServicableAgencyUsecase.execute(fromPincode, toPincode);
 
+    const travelers = await this._findServiceableTravelerUsecase.execute(fromPincode, toPincode);
 
-    return agencies
+
+    return {agencies,travelers}
   }
 }

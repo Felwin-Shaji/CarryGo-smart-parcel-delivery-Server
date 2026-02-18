@@ -1,3 +1,4 @@
+import { ServiceableTravelerDTO } from "../../../Application/Dto/User/Booking.dto";
 import { ITravelRequestRepository } from "../../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/ITravelRequestRepository";
 import { TravelRequest } from "../../../Domain/Entities/User/TravelRequest";
 import { AppError } from "../../../Domain/utils/customError";
@@ -18,7 +19,9 @@ export class TravelRequestRepository extends BaseRepository<TravelRequestDocumen
             startLocation: travelRequest.startLocation,
             startAddress: travelRequest.startAddress,
             endLocation: travelRequest.endLocation,
+            startPincode:travelRequest.startPincode,
             endAddress: travelRequest.endAddress,
+            endPincode:travelRequest.endPincode,
             departureAt: travelRequest.departureAt,
             arrivalAt: travelRequest.arrivalAt,
             capacityKg: travelRequest.capacityKg,
@@ -43,11 +46,98 @@ export class TravelRequestRepository extends BaseRepository<TravelRequestDocumen
         return docs.map(doc => this.toDomain(doc))
     }
 
-    async getTravelRequestById( travelRequestId: string): Promise<TravelRequest> {
-        const doc = await this.model.findOne({ _id: travelRequestId });
+    async getTravelRequestById(travelRequestId: string): Promise<TravelRequest> {
+        const doc = await this.model.findById({ _id: travelRequestId });
         if (!doc) throw new AppError(USER_MESSAGES.TRAVEL_REQUEST_NOT_FOUND, STATUS.NOT_FOUND);
         return this.toDomain(doc);
     }
+
+    async findServiceableTravelers(fromPincode: string,toPincode: string): Promise<ServiceableTravelerDTO[]> {
+
+        const now = new Date();
+
+        const result = await TravelRequestModel.aggregate([
+
+            {
+                $match: {
+                    startPincode: fromPincode,
+                    endPincode: toPincode,
+                    status: { $in: ["ACTIVE", "PARTIALLY_BOOKED","DRAFT"] },
+                    remainingCapacityKg: { $gt: 0 },
+                    departureAt: { $gt: now }
+                }
+            },
+
+            {
+                $lookup: {
+                    from: "users",
+                    localField: "travelerId",
+                    foreignField: "_id",
+                    as: "traveler"
+                }
+            },
+
+            { $unwind: "$traveler" },
+
+            {
+                $match: {
+                    "traveler.isBlocked": false,
+                    "traveler.kycStatus": "APPROVED"
+                }
+            },
+
+            {
+                $project: {
+
+                    traveler: {
+                        travelerId: { $toString: "$traveler._id" },
+                        name: "$traveler.name",
+                        email: "$traveler.email",
+                        mobile: "$traveler.mobile"
+                    },
+
+                    travelRequest: {
+                        travelRequestId: { $toString: "$_id" },
+                        from: "$startAddress",
+                        to: "$endAddress",
+                        departureAt: "$departureAt",
+                        arrivalAt: "$arrivalAt",
+                        remainingCapacityKg: "$remainingCapacityKg",
+                        pricePerKg: "$pricePerKg",
+                        modeOfTransport: "$modeOfTransport"
+                    }
+                }
+            }
+
+        ]);
+
+        console.log(result,"✅✅✅✅✅✅")
+
+        return result;
+    }
+
+    async update(travelRequest: TravelRequest): Promise<void> {
+
+    const result = await this.model.updateOne(
+        { _id: travelRequest.id },
+        {
+            $set: {
+                remainingCapacityKg: travelRequest.remainingCapacityKg,
+                status: travelRequest.status,
+                updatedAt: new Date(),
+            }
+        }
+    );
+
+    if (result.matchedCount === 0) {
+        throw new AppError(
+            USER_MESSAGES.TRAVEL_REQUEST_NOT_FOUND,
+            STATUS.NOT_FOUND
+        );
+    }
+}
+ 
+
 
     toDomain(doc: TravelRequestDocument): TravelRequest {
         return new TravelRequest(
@@ -55,8 +145,10 @@ export class TravelRequestRepository extends BaseRepository<TravelRequestDocumen
             doc.travelerId.toString(),
             doc.startLocation,
             doc.startAddress,
+            doc.startPincode,
             doc.endLocation,
             doc.endAddress,
+            doc.endPincode,
             doc.departureAt,
             doc.arrivalAt ?? null,
             doc.capacityKg,

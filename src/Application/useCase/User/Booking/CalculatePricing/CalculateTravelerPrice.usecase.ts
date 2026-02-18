@@ -6,6 +6,8 @@ import { PRICING_POLICY_MESSAGE } from "../../../../../Infrastructure/constants/
 import { CalculatePriceRequestDTO, CalculatePriceResponseDTO } from "../../../../Dto/User/Booking.dto";
 import { ICalculatePriceUsecase } from "../../../../interfaces/useCase_Interfaces/user/Booking/CalculatePricing/ICalculatePrice";
 import { ITravelRequestRepository } from "../../../../interfaces/repositories_interfaces/userRepositories_Interfaces/ITravelRequestRepository";
+import { USER_MESSAGES } from "../../../../../Infrastructure/constants/messages/userMessage";
+import { STATUS } from "../../../../../Infrastructure/constants/statusCodes";
 
 @injectable()
 export class TravelerPricingUsecase implements ICalculatePriceUsecase {
@@ -16,22 +18,35 @@ export class TravelerPricingUsecase implements ICalculatePriceUsecase {
 
     async execute(policy: BasePricingPolicy, dto: CalculatePriceRequestDTO, distanceKm: number): Promise<CalculatePriceResponseDTO> {
 
+        console.log(dto, '❤️❤️❤️❤️')
+
         if (!(policy instanceof TravelerPricingPolicy)) throw new AppError(PRICING_POLICY_MESSAGE.INVALID_POLICY);
+        if (!dto.travelRequestId) throw new AppError(USER_MESSAGES.TRAVEL_REQUEST_ID_MISSING, STATUS.BAD_REQUEST);
+
+        const travelRequest = await this._travelRequestRepository.getTravelRequestById(dto.travelRequestId);
 
         const weight = dto.packageDetails.weightKg;
+        if (weight > travelRequest.remainingCapacityKg) throw new AppError(USER_MESSAGES.REMAINING_CAPACITY_ERROR, STATUS.BAD_REQUEST);
 
-        const travelRequest = await this._travelRequestRepository.getTravelRequestById(dto.partnerId!)
-        const multiplier = policy.getMultiplier(travelRequest.modeOfTransport)
+        const effectivePricePerKg = travelRequest.pricePerKg ?? policy.basePricePerKg;
+        const transportMultiplier = policy.getMultiplier(travelRequest.modeOfTransport);
+        const weightCost = effectivePricePerKg * weight * transportMultiplier;
+        const distanceCost = distanceKm * 2;/////adgest later
+        const subTotal = weightCost + distanceCost;
+        const platformFee = (subTotal * policy.platformFeePercent) / 100;
 
-        const base = policy.basePricePerKg * weight * multiplier;
 
-        const platformFee = (base * policy.platformFeePercent) / 100;
+        const totalPrice = Math.round(subTotal + platformFee);
 
-        const totalPrice = Math.round(base + platformFee);
+        console.log(dto.partnerId, "👆👆👆👆🔻🔻🔻")
+
+
+
+
 
         return {
             distanceKm: this.round(distanceKm),
-            basePrice: this.round(base),
+            basePrice: this.round(weightCost),
             distanceCharge: 0,
             sizeCharge: 0,
             platformFee: this.round(platformFee),

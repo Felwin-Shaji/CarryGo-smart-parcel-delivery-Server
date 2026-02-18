@@ -30,9 +30,12 @@ export class TravelRequest {
 
     public startLocation: GeoPoint,
     public startAddress: string,
+    public startPincode: string,
 
     public endLocation: GeoPoint,
     public endAddress: string,
+    public endPincode: string,
+
 
     public departureAt: Date,
     public arrivalAt: Date | null,
@@ -63,10 +66,6 @@ export class TravelRequest {
 
     if (this.remainingCapacityKg > this.capacityKg) {
       throw new AppError("Remaining capacity cannot exceed total capacity");
-    }
-
-    if (this.departureAt < new Date()) {
-      throw new AppError("Departure date must be in the future");
     }
 
     if (this.pricePerKg !== null && this.pricePerKg <= 0) {

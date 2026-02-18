@@ -1,5 +1,5 @@
-import { ServiceableHubWithAgencyDTO } from "../../../../Dto/User/Booking.dto";
+import { ServiceableAgencyAndTravelerDTO } from "../../../../Dto/User/Booking.dto";
 
 export interface IValidatePincodeUsecase {
-    execute(fromPincode: string, toPincode: string):Promise<ServiceableHubWithAgencyDTO[]>
+    execute(fromPincode: string, toPincode: string):Promise<ServiceableAgencyAndTravelerDTO>
 }

@@ -21,6 +21,7 @@ export const AGENCY_MESSAGES = {
     OTP_RESENT: "OTP resent successfully.",
 
     PRICING_NOT_FOUND:"Agency pricong is not found",
+    PRICING_NOT_UPDATED:"Agency pricing policy version is not updated",
 
     PROFILE_FETCHED: "Agency profile fetched successfully.",
     PROFILE_UPDATED: "Agency profile updated successfully.",

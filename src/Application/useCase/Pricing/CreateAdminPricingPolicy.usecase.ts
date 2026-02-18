@@ -18,9 +18,13 @@ export class CreateAdminPricingPolicyUseCase implements ICreateAdminPricingPolic
 
         const newPolicy = AdminPricingPolicyMapper.toAgencyPricingPolicyDTO(dto, latestVersion);
 
-        const createdPolicy = await this.pricingPolicyRepo.createPricingPolicy(newPolicy);
+        newPolicy.isActive = true;
 
         await this.pricingPolicyRepo.deactivateActivePolicy(DeliveryPartner.AGENCY);
+
+        console.log(newPolicy);
+        const createdPolicy = await this.pricingPolicyRepo.createPricingPolicy(newPolicy);
+
 
         return createdPolicy;
     }

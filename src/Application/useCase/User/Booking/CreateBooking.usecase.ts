@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { ICreateBookingUsecase } from "../../../interfaces/useCase_Interfaces/user/Booking/ICreateBookingUsecase";
 import { IUserRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
 import { IBookingRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
-import {  CreateBookingRequestDTO } from "../../../Dto/User/Booking.dto";
+import { CreateBookingRequestDTO } from "../../../Dto/User/Booking.dto";
 import { USER_MESSAGES } from "../../../../Infrastructure/constants/messages/userMessage";
 import { AppError } from "../../../../Domain/utils/customError";
 import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
@@ -11,6 +11,9 @@ import { IAgencyRepository } from "../../../interfaces/repositories_interfaces/a
 import { BookingMapper } from "../../../Mappers/User/bookingMapper";
 import { ICalculateBookingPriceUsecase } from "../../../interfaces/useCase_Interfaces/user/Booking/ICalculateBookingPriceUsecase";
 import { ITravelRequestRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/ITravelRequestRepository";
+import { AGENCY_MESSAGES } from "../../../../Infrastructure/constants/messages/agencyMessages";
+import { afterEach } from "node:test";
+import { DeliveryPartner } from "../../../../Domain/Enums/DeliveryPartnerType";
 
 @injectable()
 export class CreateBookingUsecase implements ICreateBookingUsecase {
@@ -37,18 +40,18 @@ export class CreateBookingUsecase implements ICreateBookingUsecase {
 
         if (payload.partnerId) {
 
-            if (payload.deliveryType === "AGENCY") {
+            if (payload.deliveryType === DeliveryPartner.AGENCY) {
 
                 const agency =
                     await this._agencyRepo.getAgencyById(payload.partnerId);
 
                 if (!agency)
-                    throw new AppError("Agency not found", STATUS.NOT_FOUND);
+                    throw new AppError(AGENCY_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
 
                 partnerSnapshot = {
                     partnerId: payload.partnerId,
                     name: agency.name,
-                    type: "AGENCY",
+                    type: DeliveryPartner.AGENCY,
                     contact: {
                         email: agency.email,
                         phone: agency.mobile,
@@ -56,22 +59,32 @@ export class CreateBookingUsecase implements ICreateBookingUsecase {
                 };
             }
 
-            if (payload.deliveryType === "TRAVELER") {
+            if (payload.deliveryType === DeliveryPartner.TRAVELER) {
 
-                const travelRequest =
-                    await this._travelRequestRepo.getTravelRequestById(payload.partnerId);
+                if (!payload.travelRequestId) throw new AppError(USER_MESSAGES.TRAVEL_REQUEST_ID_MISSING, STATUS.BAD_REQUEST);
+
+                const travelRequest = await this._travelRequestRepo.getTravelRequestById(payload.travelRequestId);
+
+                if (payload.packageDetails.weightKg > travelRequest.remainingCapacityKg) throw new AppError(USER_MESSAGES.REMAINING_CAPACITY_ERROR, STATUS.BAD_REQUEST);
+                travelRequest.reduceCapacity(payload.packageDetails.weightKg);
+
+                const traveler = await this._userRepo.findById({_id:travelRequest.travelerId})
+                if(!traveler) throw new AppError(USER_MESSAGES.NOT_FOUND,STATUS.NOT_FOUND)
+
+                await this._travelRequestRepo.update(travelRequest);
+
 
                 if (!travelRequest)
-                    throw new AppError("Travel request not found", STATUS.NOT_FOUND);
+                    throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
 
                 partnerSnapshot = {
                     partnerId: travelRequest.id!,
-                    name: "Traveler", 
-                    type: "TRAVELER",
+                    name: traveler?.name,
+                    type: DeliveryPartner.TRAVELER,
                     contact: {
-                        email:'traveler@gmail.com',
-                        phone:"9072876656"
-                    }, 
+                        email: traveler.email,
+                        phone: traveler.mobile
+                    },
                 };
             }
         }

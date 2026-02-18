@@ -8,12 +8,15 @@ import { STATUS } from "../../../../../Infrastructure/constants/statusCodes";
 import { CalculatePriceRequestDTO, CalculatePriceResponseDTO } from "../../../../Dto/User/Booking.dto";
 import { ICalculatePriceUsecase } from "../../../../interfaces/useCase_Interfaces/user/Booking/CalculatePricing/ICalculatePrice";
 import { IAgencyPricingRepository } from "../../../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agencyPricing.repository";
+import { IPricingPolicyRepository } from "../../../../interfaces/repositories_interfaces/adminRepositories_Interfaces/pricingPolicy.repository";
+import { DeliveryPartner } from "../../../../../Domain/Enums/DeliveryPartnerType";
+import { USER_MESSAGES } from "../../../../../Infrastructure/constants/messages/userMessage";
 
 @injectable()
 export class CalculateAgencyPriceUsecase implements ICalculatePriceUsecase {
     constructor(
         @inject("IAgencyPricingRepository") private _agencyPricingRepository: IAgencyPricingRepository,
-
+        @inject("IPricingPolicyRepository") private _pricingPolicyRepository: IPricingPolicyRepository,
     ) { }
     async execute(policy: BasePricingPolicy, dto: CalculatePriceRequestDTO, distanceKm: number): Promise<CalculatePriceResponseDTO> {
 
@@ -22,16 +25,21 @@ export class CalculateAgencyPriceUsecase implements ICalculatePriceUsecase {
         const { partnerId, packageDetails } = dto;
         if (!partnerId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
 
-        const agencyPricing = await this._agencyPricingRepository.getPricingByAgency(partnerId, "STANDARD");
-        if (!agencyPricing) throw new AppError(AGENCY_MESSAGES.PRICING_NOT_FOUND);
+        const adminPricing = await this._pricingPolicyRepository.getActiveByDeliveryModel(DeliveryPartner.AGENCY)
 
-        const basePrice = policy.minBasePrice;
-        const pricePerKm = policy.minPricePerKm;
+        const agencyPricing = await this._agencyPricingRepository.getPricingByAgency(partnerId, "STANDARD");
+        if (!agencyPricing ) throw new AppError(AGENCY_MESSAGES.PRICING_NOT_FOUND);
+
+        if(adminPricing?.policyVersion !== agencyPricing.policyVersion) throw new AppError(AGENCY_MESSAGES.PRICING_NOT_UPDATED,STATUS.SERVICE_UNAVAILABLE);
+
+        const basePrice = agencyPricing.basePrice;
+        const pricePerKm = agencyPricing.pricePerKm;
+
 
         const distanceCharge = distanceKm * pricePerKm;
 
-        const sizeCharge =
-            agencyPricing.sizePricing[packageDetails.size].price;
+        const sizeCharge = agencyPricing.sizePricing[packageDetails.size].price;
+
 
         const subTotal = basePrice + distanceCharge + sizeCharge;
         const platformFee =

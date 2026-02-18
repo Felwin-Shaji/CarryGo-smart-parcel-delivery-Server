@@ -46,6 +46,38 @@ export interface ServiceableHubWithAgencyDTO {
   };
 };
 
+export interface ServiceableTravelerDTO {
+  traveler: {
+    travelerId: string;
+    name: string;
+  };
+
+  travelRequest: {
+    travelRequestId: string;
+    from: {
+      city: string;
+      state: string;
+      pincode: string;
+    };
+    to: {
+      city: string;
+      state: string;
+      pincode: string;
+    };
+    departureAt: Date;
+    arrivalAt: Date | null;
+    remainingCapacityKg: number;
+    pricePerKg: number | null;
+    modeOfTransport: string;
+  };
+}
+
+export interface ServiceableAgencyAndTravelerDTO{
+  agencies:ServiceableHubWithAgencyDTO[],
+  travelers:ServiceableTravelerDTO[]
+}
+
+
 
 export type AddressResponseDTO = {
   id: string | null;
@@ -74,6 +106,7 @@ export type AddressResponseDTO = {
 export interface CalculatePriceRequestDTO {
   deliveryType: "AGENCY" | "TRAVELER";
   partnerId?: string;
+  travelRequestId?:string;
 
   packageDetails: {
     category: string;
@@ -98,21 +131,35 @@ export interface CalculatePriceResponseDTO {
 };
 
 
-export interface CreateBookingRequestDTO {
-  // userId: string;
-
-  deliveryType: "AGENCY" | "TRAVELER";
-  partnerId?: string;
-
+type AgencyBookingDTO = {
+  deliveryType: "AGENCY";
+  partnerId: string;
   pickupAddressId: string;
   deliveryAddressId: string;
-
   packageDetails: {
     category: string;
     size: "SMALL" | "MEDIUM" | "LARGE";
     weightKg: number;
   };
-}
+};
+
+type TravelerBookingDTO = {
+  deliveryType: "TRAVELER";
+  partnerId: string; // travelerId
+  travelRequestId: string; // REQUIRED
+  pickupAddressId: string;
+  deliveryAddressId: string;
+  packageDetails: {
+    category: string;
+    size: "SMALL" | "MEDIUM" | "LARGE";
+    weightKg: number;
+  };
+};
+
+export type CreateBookingRequestDTO =
+  | AgencyBookingDTO
+  | TravelerBookingDTO;
+
 
 
 export interface UserBookingResponseDTO {

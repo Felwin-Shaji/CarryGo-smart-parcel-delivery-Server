@@ -27,9 +27,11 @@ export interface TravelRequestDocument extends Document {
 
     startLocation: { lat: number; lng: number; };
     startAddress: string;
+    startPincode:string;
 
     endLocation: { lat: number; lng: number; };
     endAddress: string;
+    endPincode:string;
 
     departureAt: Date;
     arrivalAt?: Date;
@@ -59,12 +61,14 @@ const travelRequestSchema = new Schema<TravelRequestDocument>(
             lng: { type: Number, required: true },
         },
         startAddress: { type: String, required: true, },
-
+        startPincode: { type: String, required: true, index: true },
+        
         endLocation: {
             lat: { type: Number, required: true },
             lng: { type: Number, required: true },
         },
         endAddress: { type: String, required: true, },
+        endPincode: { type: String, required: true, index: true },
 
         departureAt: { type: Date, required: true, index: true, },
         arrivalAt: { type: Date, },

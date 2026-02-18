@@ -156,6 +156,8 @@ import { CalculateAgencyPriceUsecase } from "../../Application/useCase/User/Book
 import { TravelerPricingUsecase } from "../../Application/useCase/User/Booking/CalculatePricing/CalculateTravelerPrice.usecase.js";
 import { ICreateAdminTravelerPricingUsecase } from "../../Application/interfaces/useCase_Interfaces/Princing/ICreateAdminTravelerPricingUsecase.js";
 import { CreateAdminTravelerPricingUsecase } from "../../Application/useCase/Pricing/CreateAdminTravelerPricing.usecase.js";
+import { IFindServiceableTravelerUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServiceableTravelerUsecase.js";
+import { FindServiceableTravelerUsecase } from "../../Application/useCase/User/Booking/FindServiceableTraveler.usecase.js";
 
 
 
@@ -475,6 +477,10 @@ export class UsecaseRegistery {
 
         container.register<ICreateAdminTravelerPricingUsecase>("ICreateAdminTravelerPricingUsecase",{
             useClass:CreateAdminTravelerPricingUsecase
+        })
+
+        container.register<IFindServiceableTravelerUsecase>("IFindServiceableTravelerUsecase",{
+            useClass:FindServiceableTravelerUsecase
         })
     }
 }

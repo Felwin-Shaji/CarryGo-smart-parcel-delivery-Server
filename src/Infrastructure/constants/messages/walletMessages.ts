@@ -13,6 +13,8 @@ export const WALLET_MESSAGES = {
     PAYMENTGATEWAY_KEY_NOT_FOUND:"payment gateway keu is not found",
 
     TRANSACTION_NOT_FOUND:"transaction not found",
-    PAYMENT_NOT_ALLOWED:"If the status is not pending the payment is not allowed "
+    PAYMENT_NOT_ALLOWED:"If the status is not pending the payment is not allowed ",
+
+    WITHDRAWED_SUCCESS:"Money withdrawn successfully"
 
 } as const

@@ -68,3 +68,6 @@ export type AddressLabelType = "Home" | "Office" | "Warehouse" | "Other";
 export type PaymentMethodType = "CARD" | "UPI" | "NETBANKING" | "WALLET";
 
 export type PaymentGatewayType = "RAZORPAY";
+
+
+

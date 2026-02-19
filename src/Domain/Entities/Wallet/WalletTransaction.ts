@@ -9,6 +9,7 @@ export type TransactionType =
 
 export type TransactionReason =
     | "WALLET_TOPUP"
+    | "WALLET_WITHDRAW"
     | "BOOKING_PAYMENT"
     | "REFUND"
     | "COMMISSION"

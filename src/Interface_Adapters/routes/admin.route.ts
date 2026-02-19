@@ -35,6 +35,7 @@ export class AdminRoute extends BaseRoute {
 
         this.router.get('/wallet', authenticate(["admin"]), asyncHandler(adminWalletController.getAdminWalletOverview))
         this.router.post('/wallet/create-order', authenticate(["admin"]), asyncHandler(adminWalletController.createAddMoneyOrder))
+        this.router.post('/wallet/withdraw', authenticate(["admin"]), asyncHandler(adminWalletController.withdrawMoney))
 
     };
 };

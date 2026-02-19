@@ -35,3 +35,10 @@ export interface CreateWalletTopupOrderDTO {
     amount: number;
     currency: string
 }
+
+
+export interface withdrawWalletMoneyDTO{
+    payoutId: string,
+    amount:number,
+    balance:number ,
+}

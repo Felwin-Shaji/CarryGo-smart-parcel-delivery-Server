@@ -18,5 +18,7 @@ export class HubRoute extends BaseRoute {
 
         this.router.get('/wallet', authenticate(["hub"]), asyncHandler(hubWalletController.getHubWalletOverview))
         this.router.post('/wallet/create-order', authenticate(["hub"]), asyncHandler(hubWalletController.createAddMoneyOrder))
+        this.router.post('/wallet/withdraw', authenticate(["hub"]), asyncHandler(hubWalletController.withdrawMoney))
+        
     }
 }

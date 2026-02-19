@@ -158,6 +158,8 @@ import { ICreateAdminTravelerPricingUsecase } from "../../Application/interfaces
 import { CreateAdminTravelerPricingUsecase } from "../../Application/useCase/Pricing/CreateAdminTravelerPricing.usecase.js";
 import { IFindServiceableTravelerUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServiceableTravelerUsecase.js";
 import { FindServiceableTravelerUsecase } from "../../Application/useCase/User/Booking/FindServiceableTraveler.usecase.js";
+import { IWithdrawWalletMoneyUseCase } from "../../Application/interfaces/useCase_Interfaces/Wallet/IWithdrawWalletMoneyUseCase.js";
+import { WithdrawWalletMoneyUseCase } from "../../Application/useCase/Wallet/WithdrawWalletMoney.usecase.js";
 
 
 
@@ -481,6 +483,10 @@ export class UsecaseRegistery {
 
         container.register<IFindServiceableTravelerUsecase>("IFindServiceableTravelerUsecase",{
             useClass:FindServiceableTravelerUsecase
+        })
+
+        container.register<IWithdrawWalletMoneyUseCase>("IWithdrawWalletMoneyUseCase",{
+            useClass:WithdrawWalletMoneyUseCase
         })
     }
 }

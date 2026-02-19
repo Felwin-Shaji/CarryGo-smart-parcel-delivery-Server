@@ -13,5 +13,6 @@ export class WrokerRoute extends BaseRoute {
     protected initializeRoutes(): void {
         this.router.get('/wallet', authenticate(["worker"]), asyncHandler(workerWalletController.getWorkerWalletOverview))
         this.router.post('/wallet/create-order', authenticate(["worker"]), asyncHandler(workerWalletController.createAddMoneyOrder))
+        this.router.post('/wallet/withdraw', authenticate(["worker"]), asyncHandler(workerWalletController.withdrawMoney))
     }
 }

@@ -32,6 +32,7 @@ export class UserRoute extends BaseRoute {
 
         this.router.get('/wallet',authenticate(["user"]),asyncHandler(walletController.getWalletOverview))
         this.router.post('/wallet/create-order',authenticate(["user"]),asyncHandler(walletController.createAddMoneyOrder))
+        this.router.post('/wallet/withdraw',authenticate(["user"]),asyncHandler(walletController.withdrawMoney))
 
         this.router.post('/traveler/kyc',authenticate(["user"]),workerKYCUpload,asyncHandler(travelerController.submitKYC));
         this.router.put('/traveler/kyc',authenticate(["user"]),workerKYCUpload,asyncHandler(travelerController.reSubmitKYC));

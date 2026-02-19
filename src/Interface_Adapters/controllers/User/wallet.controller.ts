@@ -10,6 +10,7 @@ import { Role } from "../../../Domain/Enums/Roles";
 import { WALLET_MESSAGES } from "../../../Infrastructure/constants/messages/walletMessages";
 import { ICreateWalletTopupOrderUseCase } from "../../../Application/interfaces/useCase_Interfaces/Wallet/ICreateWalletTopupOrderUseCase";
 import { IWalletTopupSuccessUseCase } from "../../../Application/interfaces/useCase_Interfaces/Wallet/IWalletTopupSuccessUseCase";
+import { IWithdrawWalletMoneyUseCase } from "../../../Application/interfaces/useCase_Interfaces/Wallet/IWithdrawWalletMoneyUseCase";
 
 @injectable()
 export class WalletController implements IWalletController {
@@ -17,6 +18,8 @@ export class WalletController implements IWalletController {
         @inject("IGetWalletOverviewUseCase") private _getWalletOverviewUseCase: IGetWalletOverviewUseCase,
         @inject("ICreateWalletTopupOrderUseCase") private _createWalletTopupOrderUseCase: ICreateWalletTopupOrderUseCase,
         @inject("IWalletTopupSuccessUseCase") private _walletTopupSuccessUseCase: IWalletTopupSuccessUseCase,
+        @inject("IWithdrawWalletMoneyUseCase") private _withdrawWalletMoneyUseCase: IWithdrawWalletMoneyUseCase,
+
     ) { }
     getWalletOverview = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
@@ -52,6 +55,26 @@ export class WalletController implements IWalletController {
                     order
                 )
             )
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
+
+    withdrawMoney = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const userId = req.user?.id;
+            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
+            const amount = Number(req.body.amount);
+
+            const result = await this._withdrawWalletMoneyUseCase.execute(Role.USER, userId, amount);
+
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    WALLET_MESSAGES.WITHDRAWED_SUCCESS, 
+                    result)
+            );
 
         } catch (error) {
             next(error)

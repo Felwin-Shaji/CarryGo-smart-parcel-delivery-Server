@@ -1,3 +1,4 @@
+import { BookingFilterDTO } from "../../../Application/Dto/User/Booking.dto";
 import { IBookingRepository } from "../../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
 import { Booking } from "../../../Domain/Entities/Booking/Booking";
 import { DeliveryPartner } from "../../../Domain/Enums/DeliveryPartnerType";
@@ -49,12 +50,54 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
         return this.toDomain(doc)
     }
 
-    async getBooingsByUserId(userId: string): Promise<Booking[]> {
-        const docs = await this.model.find({ userId })
+    async getBooingsByUserId(userId: string, dto: BookingFilterDTO): Promise<{ bookings: Booking[]; totalCount: number; }> {
+        const {
+            page,
+            limit,
+            deliveryType,
+            status,
+            paymentStatus,
+            size,
+            minPrice,
+            maxPrice,
+        } = dto;
 
-        const bookings = docs.map((doc) => this.toDomain(doc));
+        const query: any = { userId };
 
-        return bookings
+        if (deliveryType && deliveryType !== "ALL") {
+            query.deliveryPartnerType = deliveryType;
+        }
+
+        if (status && status !== "ALL") {
+            query.status = status;
+        }
+
+        if (paymentStatus && paymentStatus !== "ALL") {
+            query["payment.paymentStatus"] = paymentStatus;
+        }
+
+        if (size && size !== "ALL") {
+            query["packageDetails.size"] = size;
+        }
+
+        if (minPrice || maxPrice) {
+            query["pricing.totalAmount"] = {};
+            if (minPrice) query["pricing.totalAmount"].$gte = minPrice;
+            if (maxPrice) query["pricing.totalAmount"].$lte = maxPrice;
+        }
+
+        const skip = (page - 1) * limit;
+
+        const [bookings, totalCount] = await Promise.all([
+            this.model.find(query)
+                .sort({ createdAt: -1 })
+                .skip(skip)
+                .limit(limit),
+
+            this.model.countDocuments(query),
+        ]);
+
+        return { bookings: bookings.map(doc => this.toDomain(doc)), totalCount };
 
     }
 

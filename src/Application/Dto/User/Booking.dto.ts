@@ -72,9 +72,9 @@ export interface ServiceableTravelerDTO {
   };
 }
 
-export interface ServiceableAgencyAndTravelerDTO{
-  agencies:ServiceableHubWithAgencyDTO[],
-  travelers:ServiceableTravelerDTO[]
+export interface ServiceableAgencyAndTravelerDTO {
+  agencies: ServiceableHubWithAgencyDTO[],
+  travelers: ServiceableTravelerDTO[]
 }
 
 
@@ -106,7 +106,7 @@ export type AddressResponseDTO = {
 export interface CalculatePriceRequestDTO {
   deliveryType: "AGENCY" | "TRAVELER";
   partnerId?: string;
-  travelRequestId?:string;
+  travelRequestId?: string;
 
   packageDetails: {
     category: string;
@@ -162,7 +162,7 @@ export type CreateBookingRequestDTO =
 
 
 
-export interface UserBookingResponseDTO {
+export interface UserBookingsDTO {
   id: string;
 
   createdAt: string;
@@ -201,6 +201,12 @@ export interface UserBookingResponseDTO {
   };
 
   status: BookingStatusType;
+}
+
+export interface BookingListResponseDTO {
+  bookings: UserBookingsDTO[],
+  totalPages: number;
+  totalCount: number;
 }
 
 export interface BookingDetailsResponse {
@@ -251,4 +257,16 @@ export interface BookingDetailsResponse {
 }
 
 
+export interface BookingFilterDTO {
+  page: number;
+  limit: number;
 
+  deliveryType?: string;
+  status?: string;
+  paymentStatus?: string;
+
+  size?: string;
+
+  minPrice?: number;
+  maxPrice?: number;
+}

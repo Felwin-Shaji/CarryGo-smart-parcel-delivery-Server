@@ -11,11 +11,13 @@ import { IGetAddressesByPincodeUsecase } from "../../../Application/interfaces/u
 import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
 import { ADDRESS_MESSAGES } from "../../../Infrastructure/constants/messages/addressMessages";
 import { ICalculateBookingPriceUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/ICalculateBookingPriceUsecase";
-import { CalculatePriceRequestDTO, CreateBookingRequestDTO } from "../../../Application/Dto/User/Booking.dto";
+import { BookingFilterDTO, CalculatePriceRequestDTO, CreateBookingRequestDTO } from "../../../Application/Dto/User/Booking.dto";
 import { ICreateBookingUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/ICreateBookingUsecase";
 import { ICreatePaymentOrderUsecase } from "../../../Application/interfaces/useCase_Interfaces/Payment/ICreatePaymentOrderUsecase";
 import { IUserBookingsUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IUserBookingsUsecase";
 import { IGetBookingUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IGetBookingUsecase";
+import { DeliveryPartner } from "../../../Domain/Enums/DeliveryPartnerType";
+import { query } from "winston";
 
 @injectable()
 export class UserBookingController implements IUserBookingController {
@@ -157,9 +159,17 @@ export class UserBookingController implements IUserBookingController {
         try {
 
             const userId = req.user?.id
+            const dto: BookingFilterDTO = {
+                page: Number(req.query.page) || 1,
+                limit: Number(req.query.limit) || 10,
+                deliveryType: req.query.deliveryType?.toString() || '',
+                status:req.query.status?.toString()||"",
+                paymentStatus:req.query.paymentStatus?.toString()||"",
+                size:req.query.size?.toString()||"",
+            }
             if (!userId) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
 
-            const respose = await this._userBookingsUsecase.execute(userId);
+            const respose = await this._userBookingsUsecase.execute(userId, dto);
 
             return res.status(STATUS.OK).json(
                 ApiResponse.success(

@@ -1,5 +1,5 @@
-import { UserBookingResponseDTO } from "../../../../Dto/User/Booking.dto";
+import { BookingFilterDTO, BookingListResponseDTO } from "../../../../Dto/User/Booking.dto";
 
 export interface IUserBookingsUsecase {
-    execute(userId: string): Promise<UserBookingResponseDTO[]>
+    execute(userId: string, dto: BookingFilterDTO): Promise<BookingListResponseDTO>;
 }

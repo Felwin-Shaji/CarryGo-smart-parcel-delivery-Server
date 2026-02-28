@@ -1,6 +1,6 @@
 import { Booking, PartnerEntity } from "../../../Domain/Entities/Booking/Booking";
 import { Address } from "../../../Domain/Entities/User/Address";
-import { CalculatePriceResponseDTO, UserBookingResponseDTO } from "../../Dto/User/Booking.dto";
+import { BookingListResponseDTO, CalculatePriceResponseDTO, UserBookingsDTO, } from "../../Dto/User/Booking.dto";
 import {
     BookingStatusType,
     PaymentGatewayType,
@@ -33,7 +33,7 @@ export class BookingMapper {
             userId,
             deliveryPartnerType,
             partnerSnapshot,
-            travelRequestId=null,
+            travelRequestId = null,
             pickup,
             delivery,
             packageDetails,
@@ -101,14 +101,18 @@ export class BookingMapper {
     }
 
     static toUsersBookingListResponseDTO(
-        bookings: Booking[]
-    ): UserBookingResponseDTO[] {
-        return bookings.map((booking) => {
+        bookings: Booking[],
+        totalPages: number,
+        totalCount: number
+    ): BookingListResponseDTO {
 
-            if (!booking.id) throw new AppError(BOOKING_MESSAGE.NOT_FOUND, STATUS.NOT_FOUND)
+        const bookingDTOs: UserBookingsDTO[] = bookings.map((booking) => {
+
+            if (!booking.id)
+                throw new AppError(BOOKING_MESSAGE.NOT_FOUND, STATUS.NOT_FOUND);
 
             return {
-                id: booking.id!,
+                id: booking.id,
 
                 createdAt: booking.createdAt.toISOString(),
 
@@ -149,7 +153,13 @@ export class BookingMapper {
                 },
 
                 status: booking.status,
-            }
+            };
         });
+
+        return {
+            bookings: bookingDTOs,
+            totalPages,
+            totalCount,
+        };
     }
 }

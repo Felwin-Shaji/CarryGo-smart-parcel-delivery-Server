@@ -1,7 +1,44 @@
 import { model, Schema } from "mongoose";
-import { Hub } from "../../../../Domain/Entities/Hub/Hub";
+import { Document, Types } from "mongoose";
+import { KYCStatus, Role } from "../../../Types/types";
 
-const hubSchema = new Schema<Hub>(
+export interface HubDocument extends Document {
+  _id:Types.ObjectId;
+  agencyId: Types.ObjectId;
+
+  name: string;
+  email: string;
+  mobile: string;
+  password: string;
+
+  role: Role;
+
+  address: {
+    addressLine1: string;
+    city: string;
+    state: string;
+    pincode: string;
+  };
+
+  location: {
+    type: "Point";
+    coordinates: [number, number];
+  };
+
+  verificationImage: string;
+
+  kycStatus: KYCStatus;
+  rejectReason?: string;
+
+  walletBalance: number;
+  isBlocked: boolean;
+  tokenVersion: number;
+
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const hubSchema = new Schema<HubDocument>(
   {
     agencyId: { type: Schema.Types.ObjectId, ref: "Agency", required: true },
 
@@ -25,8 +62,15 @@ const hubSchema = new Schema<Hub>(
     },
 
     location: {
-      lat: { type: Number, required: true },
-      lng: { type: Number, required: true },
+      type: {
+        type: String,
+        enum: ["Point"],
+        required: true
+      },
+      coordinates: {
+        type: [Number], // [lng, lat]
+        required: true
+      }
     },
 
     verificationImage: { type: String, required: true },
@@ -38,16 +82,18 @@ const hubSchema = new Schema<Hub>(
       required: true
     },
 
-    rejectReason : {type:String},
+    rejectReason: { type: String },
 
     walletBalance: { type: Number, default: 0 },
 
     isBlocked: { type: Boolean, default: false },
-    tokenVersion :{type:Number, required: true, default: 0 },
+    tokenVersion: { type: Number, required: true, default: 0 },
   },
   {
     timestamps: true,
   }
 );
 
-export const HubModel = model<Hub>("Hub", hubSchema);
+hubSchema.index({ location: "2dsphere" });
+
+export const HubModel = model<HubDocument>("Hub", hubSchema);

@@ -7,6 +7,7 @@ export const HUB_MESSAGES = {
     NOT_FOUND:"Hub not found",
     STATUS_UPDATED:"Hub Status updated",
     REASON_NOT_FOUND:"Reject reason is required",
+    LOCATTION_NOT_FOUND:"location not found",
 
     EMAIL_ALREADY_EXISTS: "Hub with this email already exists",
     NAME_ALREADY_EXISTS: "Hub name already exists under this agency",

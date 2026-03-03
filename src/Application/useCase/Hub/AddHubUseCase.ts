@@ -11,8 +11,6 @@ import { ENV } from "../../../Infrastructure/constants/env";
 import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 
-let addHubCount = 0;
-
 @injectable()
 export class AddHubUseCase implements IAddHubUseCase {
 
@@ -48,15 +46,9 @@ export class AddHubUseCase implements IAddHubUseCase {
         tempHub.location_lng = extraData.location_lng;
 
         const hubEntity = HubMapper.toCreateHub(tempHub, hashedPassword, imageUrl);
-        if(addHubCount>2) throw new AppError("can only add 2 hub a day");
 
 
-        const savedHub = await this._hubRepo.save(hubEntity);
-        if(savedHub){
-            addHubCount++
-            console.log(addHubCount,'addHubCount')
-        };
-
+        const savedHub = await this._hubRepo.saveHub(hubEntity);
 
         await this._hubTempRepo.delete({ _id: tempHubId });
         if (ENV.IS_PROD) await this._mailService.sendCustomPassword(tempHub.email);

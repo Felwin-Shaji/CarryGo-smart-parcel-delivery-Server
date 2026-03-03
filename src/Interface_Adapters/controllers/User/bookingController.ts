@@ -1,29 +1,26 @@
 import { inject, injectable } from "tsyringe";
 import { Request, Response, NextFunction } from "express";
-import { IValidatePincodeUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/validatePincode.usecase";
+import { ICheckServiceablePartnersUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/ICheckServiceablePartnersUsecase";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { IUserBookingController } from "../../Interface/Controllers_Interfaces/User_interfaces/Booking/IUserBookingController";
-import { IFindServicableAgencyUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase";
 import { BOOKING_MESSAGE } from "../../../Infrastructure/constants/messages/bookingMessages";
 import { AppError } from "../../../Domain/utils/customError";
-import { IGetAddressesByPincodeUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IGetAddressesByPincodeUsecase";
+// import { IGetAddressesByPincodeUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IGetAddressesByPincodeUsecase";
 import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
-import { ADDRESS_MESSAGES } from "../../../Infrastructure/constants/messages/addressMessages";
 import { ICalculateBookingPriceUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/ICalculateBookingPriceUsecase";
 import { BookingFilterDTO, CalculatePriceRequestDTO, CreateBookingRequestDTO } from "../../../Application/Dto/User/Booking.dto";
 import { ICreateBookingUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/ICreateBookingUsecase";
 import { ICreatePaymentOrderUsecase } from "../../../Application/interfaces/useCase_Interfaces/Payment/ICreatePaymentOrderUsecase";
 import { IUserBookingsUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IUserBookingsUsecase";
 import { IGetBookingUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IGetBookingUsecase";
-import { DeliveryPartner } from "../../../Domain/Enums/DeliveryPartnerType";
-import { query } from "winston";
+
 
 @injectable()
 export class UserBookingController implements IUserBookingController {
     constructor(
-        @inject("IValidatePincodeUsecase") private _validatePincodeUsecase: IValidatePincodeUsecase,
-        @inject("IGetAddressesByPincodeUsecase") private _getAddressesByPincodeUsecase: IGetAddressesByPincodeUsecase,
+        @inject("ICheckServiceablePartnersUsecase") private _checkServiceablePartnersUsecase: ICheckServiceablePartnersUsecase,
+        // @inject("IGetAddressesByPincodeUsecase") private _getAddressesByPincodeUsecase: IGetAddressesByPincodeUsecase,
         @inject("ICalculateBookingPriceUsecase") private _calculateBookingPriceUsecase: ICalculateBookingPriceUsecase,
         @inject("ICreateBookingUsecase") private _createBookingUsecase: ICreateBookingUsecase,
         @inject("ICreatePaymentOrderUsecase") private _createPaymentOrderUsecase: ICreatePaymentOrderUsecase,
@@ -31,11 +28,11 @@ export class UserBookingController implements IUserBookingController {
         @inject("IGetBookingUsecase") private _getBookingUsecase: IGetBookingUsecase,
     ) { };
 
-    validatePincode = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    checkServiceablePartners = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
-            const { fromPincode, toPincode } = req.body;
+            const { pickupLocation, deliveryLocation } = req.body;
 
-            const isValidate = await this._validatePincodeUsecase.execute(fromPincode, toPincode);
+            const isValidate = await this._checkServiceablePartnersUsecase.execute(pickupLocation, deliveryLocation);
 
             return res.status(STATUS.OK).json(
                 ApiResponse.success(
@@ -49,31 +46,6 @@ export class UserBookingController implements IUserBookingController {
         };
     };
 
-    getAddressByPincode = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const userId = req.user?.id;
-            const pincode = req.query.pincode as string;
-
-            if (!userId) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
-
-            console.log(pincode);
-
-            const response = await this._getAddressesByPincodeUsecase.execute(userId, pincode);
-
-            console.log(response)
-
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    ADDRESS_MESSAGES.ADDRESS_FETCHED,
-                    response
-                )
-            )
-
-
-        } catch (error) {
-            next(error)
-        }
-    }
 
     calculatePrice = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {

@@ -1,26 +1,61 @@
-import { FilterQuery } from "mongoose";
+import { ClientSession, FilterQuery } from "mongoose";
 import { GetHubsDTO, updateHubKycStatusDTO } from "../../../Application/Dto/Hub/hub.dto";
 // import { PaginatedData } from "../../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
 import { IHubRepository, PaginatedHubData } from "../../../Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
 import { Hub } from "../../../Domain/Entities/Hub/Hub";
-import { HubModel } from "../../database/models/Hub/HubModel";
+import { HubDocument, HubModel } from "../../database/models/Hub/HubModel";
 import { BaseRepository } from "../baseRepositories";
 import { ServiceableHubWithAgencyDTO } from "../../../Application/Dto/User/Booking.dto";
 import { AppError } from "../../../Domain/utils/customError";
 import { HUB_MESSAGES } from "../../constants/messages/hubMessage";
 import { STATUS } from "../../constants/statusCodes";
+import { GeoLocation } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/ICheckServiceablePartnersUsecase";
 
-export class HubRepository extends BaseRepository<Hub> implements IHubRepository {
+export class HubRepository extends BaseRepository<HubDocument> implements IHubRepository {
     constructor() {
         super(HubModel)
     };
+
+    async findOneHub(filter: FilterQuery<HubDocument>): Promise<Hub> {
+        const docs = await this.model.findOne(filter);
+        if (!docs) throw new AppError(HUB_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
+        return this.toDomain(docs);
+    }
+
+    async saveHub(hub: Hub): Promise<Hub> {
+
+        const doc = await this.model.create({
+            agencyId: hub.agencyId,
+            name: hub.name,
+            email: hub.email,
+            mobile: hub.mobile,
+            password: hub.password,
+            role: hub.role,
+            address: hub.address,
+            location: {
+                type: "Point",
+                coordinates: [
+                    hub.location.lng,
+                    hub.location.lat
+                ]
+            },
+            verificationImage: hub.verificationImage,
+            kycStatus: hub.kycStatus,
+            rejectReason: hub.rejectReason,
+            walletBalance: hub.walletBalance,
+            isBlocked: hub.isBlocked,
+            tokenVersion: hub.tokenVersion
+        });
+
+        return this.toDomain(doc);
+    }
 
     async getHubById(hubId: string): Promise<Hub> {
         const hub = await this.findById({ _id: hubId });
 
         if (!hub) throw new AppError(HUB_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND)
 
-        return hub
+        return this.toDomain(hub)
     }
 
     async updateKycSatus(hubId: string, dto: updateHubKycStatusDTO): Promise<void> {
@@ -95,7 +130,7 @@ export class HubRepository extends BaseRepository<Hub> implements IHubRepository
         ]);
 
         return {
-            data,
+            data: data.map(d => this.toDomain(d)),
             total,
             page,
             limit,
@@ -104,27 +139,72 @@ export class HubRepository extends BaseRepository<Hub> implements IHubRepository
     }
 
 
-    async findServiceableAgenciesWithHubs(fromPincode: string, toPincode: string): Promise<ServiceableHubWithAgencyDTO[]> {
+    async findServiceableAgenciesWithHubs(pickupLocation: GeoLocation, deliveryLocation: GeoLocation): Promise<ServiceableHubWithAgencyDTO[]> {
+
+        const MAX_DISTANCE = 20000;
 
         const result = await HubModel.aggregate([
+            // 1️ Find hubs near pickup location
             {
-                $match: {
-                    "address.pincode": { $in: [fromPincode, toPincode] },
-                    isBlocked: false
+                $geoNear: {
+                    near: {
+                        type: "Point",
+                        coordinates: [pickupLocation.lng, pickupLocation.lat],
+                    },
+                    distanceField: "pickupDistance",
+                    maxDistance: MAX_DISTANCE,
+                    spherical: true,
                 }
             },
+
+            {
+                $match: {
+                    isBlocked: false,
+                    kycStatus: "APPROVED"
+                }
+            },
+
+            // 2️ Group pickup hubs by agency
             {
                 $group: {
                     _id: "$agencyId",
-                    hubs: { $push: "$$ROOT" },
-                    pincodes: { $addToSet: "$address.pincode" }
+                    pickupHub: { $first: "$$ROOT" }
                 }
             },
+
+            // 3️ Lookup delivery hub from same agency
             {
-                $match: {
-                    pincodes: { $all: [fromPincode, toPincode] }
+                $lookup: {
+                    from: "hubs",
+                    let: { agencyId: "$_id" },
+                    pipeline: [
+                        {
+                            $geoNear: {
+                                near: {
+                                    type: "Point",
+                                    coordinates: [deliveryLocation.lng, deliveryLocation.lat],
+                                },
+                                distanceField: "deliveryDistance",
+                                maxDistance: MAX_DISTANCE,
+                                spherical: true,
+                            }
+                        },
+                        {
+                            $match: {
+                                $expr: { $eq: ["$agencyId", "$$agencyId"] },
+                                isBlocked: false,
+                                kycStatus: "APPROVED"
+                            }
+                        },
+                        { $limit: 1 }
+                    ],
+                    as: "deliveryHub"
                 }
             },
+
+            { $unwind: "$deliveryHub" },
+
+            // 4️ Lookup agency
             {
                 $lookup: {
                     from: "agencies",
@@ -133,7 +213,9 @@ export class HubRepository extends BaseRepository<Hub> implements IHubRepository
                     as: "agency"
                 }
             },
+
             { $unwind: "$agency" },
+
             {
                 $match: {
                     "agency.isBlocked": false,
@@ -141,6 +223,7 @@ export class HubRepository extends BaseRepository<Hub> implements IHubRepository
                 }
             },
 
+            // 5️ Final projection
             {
                 $project: {
                     agency: {
@@ -150,47 +233,52 @@ export class HubRepository extends BaseRepository<Hub> implements IHubRepository
                     },
 
                     fromHub: {
-                        $first: {
-                            $filter: {
-                                input: "$hubs",
-                                as: "hub",
-                                cond: { $eq: ["$$hub.address.pincode", fromPincode] }
-                            }
+                        hubId: { $toString: "$pickupHub._id" },
+                        hubName: "$pickupHub.name",
+                        location: {
+                            lat: { $arrayElemAt: ["$pickupHub.location.coordinates", 1] },
+                            lng: { $arrayElemAt: ["$pickupHub.location.coordinates", 0] }
                         }
                     },
 
                     toHub: {
-                        $first: {
-                            $filter: {
-                                input: "$hubs",
-                                as: "hub",
-                                cond: { $eq: ["$$hub.address.pincode", toPincode] }
-                            }
+                        hubId: { $toString: "$deliveryHub._id" },
+                        hubName: "$deliveryHub.name",
+                        location: {
+                            lat: { $arrayElemAt: ["$deliveryHub.location.coordinates", 1] },
+                            lng: { $arrayElemAt: ["$deliveryHub.location.coordinates", 0] }
                         }
-                    }
-                }
-            },
-            {
-                $project: {
-                    agency: 1,
-
-                    fromHub: {
-                        hubId: { $toString: "$fromHub._id" },
-                        hubName: "$fromHub.name",
-                        address: "$fromHub.address",
-                        location: "$fromHub.location"
-                    },
-
-                    toHub: {
-                        hubId: { $toString: "$toHub._id" },
-                        hubName: "$toHub.name",
-                        address: "$toHub.address",
-                        location: "$toHub.location"
                     }
                 }
             }
         ]);
 
-        return result;
+        return result
+
+    }
+
+    private toDomain(doc: HubDocument): Hub {
+        return new Hub(
+            doc._id.toString(),
+            doc.agencyId,
+            doc.name,
+            doc.email,
+            doc.mobile,
+            doc.password,
+            doc.role,
+            doc.address,
+            {
+                lat: doc.location.coordinates[1],
+                lng: doc.location.coordinates[0],
+            },
+            doc.verificationImage,
+            doc.kycStatus,
+            doc.rejectReason,
+            doc.walletBalance,
+            doc.isBlocked,
+            doc.tokenVersion,
+            doc.createdAt,
+            doc.updatedAt
+        );
     }
 }

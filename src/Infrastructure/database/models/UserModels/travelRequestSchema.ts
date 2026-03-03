@@ -25,13 +25,19 @@ export interface TravelRequestDocument extends Document {
     _id: Types.ObjectId;
     travelerId: Types.ObjectId;
 
-    startLocation: { lat: number; lng: number; };
+    startLocation: {
+        type: "Point";
+        coordinates: [number, number]; // [lng, lat]
+    };
     startAddress: string;
-    startPincode:string;
+    startPincode: string;
 
-    endLocation: { lat: number; lng: number; };
+    endLocation: {
+        type: "Point";
+        coordinates: [number, number]; // [lng, lat]
+    };
     endAddress: string;
-    endPincode:string;
+    endPincode: string;
 
     departureAt: Date;
     arrivalAt?: Date;
@@ -57,15 +63,29 @@ const travelRequestSchema = new Schema<TravelRequestDocument>(
         travelerId: { type: Schema.Types.ObjectId, ref: "User", required: true, index: true, },
 
         startLocation: {
-            lat: { type: Number, required: true },
-            lng: { type: Number, required: true },
+            type: {
+                type: String,
+                enum: ["Point"],
+                required: true,
+            },
+            coordinates: {
+                type: [Number], // [lng, lat]
+                required: true,
+            },
         },
         startAddress: { type: String, required: true, },
         startPincode: { type: String, required: true, index: true },
-        
+
         endLocation: {
-            lat: { type: Number, required: true },
-            lng: { type: Number, required: true },
+            type: {
+                type: String,
+                enum: ["Point"],
+                required: true,
+            },
+            coordinates: {
+                type: [Number], // [lng, lat]
+                required: true,
+            },
         },
         endAddress: { type: String, required: true, },
         endPincode: { type: String, required: true, index: true },
@@ -80,7 +100,7 @@ const travelRequestSchema = new Schema<TravelRequestDocument>(
 
         modeOfTransport: {
             type: String,
-            enum: ["FLIGHT", "TRAIN", "CAR", "BUS","BIKE"],
+            enum: ["FLIGHT", "TRAIN", "CAR", "BUS", "BIKE"],
             required: true,
         },
 
@@ -105,6 +125,9 @@ const travelRequestSchema = new Schema<TravelRequestDocument>(
         timestamps: true,
     }
 );
+
+travelRequestSchema.index({ startLocation: "2dsphere" });
+travelRequestSchema.index({ endLocation: "2dsphere" });
 
 
 export const TravelRequestModel = model<TravelRequestDocument>("TravelRequest", travelRequestSchema);

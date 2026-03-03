@@ -96,40 +96,40 @@ export class UserRepository extends BaseRepository<User> implements IUserReposit
 
     }
 
-    async findAddressByPincode(
-        userId: string,
-        pincode: string
-    ): Promise<Address[]> {
+    // async findAddressByPincode(
+    //     userId: string,
+    //     pincode: string
+    // ): Promise<Address[]> {
 
-        const user = await this.model
-            .findById(userId, { addresses: 1 })
-            .lean<{ addresses: AddressDBResult[] }>();
+    //     const user = await this.model
+    //         .findById(userId, { addresses: 1 })
+    //         .lean<{ addresses: AddressDBResult[] }>();
 
-        if (!user || !user.addresses.length) return [];
+    //     if (!user || !user.addresses.length) return [];
 
-        const addressByPincode = user.addresses
-            .filter((addr) => addr.pincode === pincode)
-            .map(
-                (addr) =>
-                    new Address(
-                        addr._id.toString(),
-                        addr.label,
-                        addr.addressLine1,
-                        addr.addressLine2 || null,
-                        addr.city,
-                        addr.state,
-                        addr.country,
-                        addr.pincode,
-                        addr.formattedAddress || null,
-                        addr.location,
-                        addr.isDefault,
-                        addr.isActive
-                    )
-            );
+    //     const addressByPincode = user.addresses
+    //         .filter((addr) => addr.pincode === pincode)
+    //         .map(
+    //             (addr) =>
+    //                 new Address(
+    //                     addr._id.toString(),
+    //                     addr.label,
+    //                     addr.addressLine1,
+    //                     addr.addressLine2 || null,
+    //                     addr.city,
+    //                     addr.state,
+    //                     addr.country,
+    //                     addr.pincode,
+    //                     addr.formattedAddress || null,
+    //                     addr.location,
+    //                     addr.isDefault,
+    //                     addr.isActive
+    //                 )
+    //         );
 
 
-        return addressByPincode
-    }
+    //     return addressByPincode
+    // }
 
 }
 

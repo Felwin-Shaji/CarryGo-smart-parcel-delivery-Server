@@ -99,12 +99,12 @@ import { IDeleteUserAddressUseCase } from "../../Application/interfaces/useCase_
 import { DeleteUserAddressUseCase } from "../../Application/useCase/User/Address/deleteUserAddressu.secase.js";
 import { ISetDefaultUserAddressUseCase } from "../../Application/interfaces/useCase_Interfaces/user/Address/ISetDefaultUserAddressUseCase.js";
 import { SetDefaultUserAddressUseCase } from "../../Application/useCase/User/Address/setDefaultUserAddress.usecase.js";
-import { IValidatePincodeUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/validatePincode.usecase.js";
-import { ValidatePincodeUsecase } from "../../Application/useCase/User/Booking/ValidatePincode.usecase.js";
+import { ICheckServiceablePartnersUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/ICheckServiceablePartnersUsecase.js";
+import { CheckServiceablePartnersUsecase } from "../../Application/useCase/User/Booking/CheckServiceablePartners.usecase.js";
 import { IFindServicableAgencyUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase.js";
 import { FindServicableAgencyUsecase } from "../../Application/useCase/User/Booking/findServicableAgency.usecase.js";
-import { IGetAddressesByPincodeUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/IGetAddressesByPincodeUsecase.js";
-import { GetAddressesByPincodeUsecase } from "../../Application/useCase/User/Booking/getAddressesByPincode.usecase.js";
+// import { IGetAddressesByPincodeUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/IGetAddressesByPincodeUsecase.js";
+// import { GetAddressesByPincodeUsecase } from "../../Application/useCase/User/Booking/getAddressesByPincode.usecase.js";
 import { IGetWorkersUseCase } from "../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkersUseCase.js";
 import { GetWorkersUseCase } from "../../Application/useCase/Worker/GetWorkers.usecase.js";
 import { IGetHubUseCase } from "../../Application/interfaces/useCase_Interfaces/Hub/IGetHubUseCase.js";
@@ -369,17 +369,17 @@ export class UsecaseRegistery {
             useClass: SetDefaultUserAddressUseCase
         });
 
-        container.register<IValidatePincodeUsecase>("IValidatePincodeUsecase",{
-            useClass:ValidatePincodeUsecase
+        container.register<ICheckServiceablePartnersUsecase>("ICheckServiceablePartnersUsecase",{
+            useClass:CheckServiceablePartnersUsecase
         })
 
         container.register<IFindServicableAgencyUsecase>("IFindServicableAgencyUsecase",{
             useClass: FindServicableAgencyUsecase
         });
 
-        container.register<IGetAddressesByPincodeUsecase>("IGetAddressesByPincodeUsecase",{
-            useClass:GetAddressesByPincodeUsecase
-        });
+        // container.register<IGetAddressesByPincodeUsecase>("IGetAddressesByPincodeUsecase",{
+        //     useClass:GetAddressesByPincodeUsecase
+        // });
 
         container.register<IGetWorkersUseCase>("IGetWorkersUseCase",{
             useClass:GetWorkersUseCase

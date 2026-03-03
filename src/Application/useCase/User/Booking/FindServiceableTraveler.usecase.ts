@@ -3,6 +3,7 @@ import { IFindServiceableTravelerUsecase } from "../../../interfaces/useCase_Int
 import { ITravelRequestRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/ITravelRequestRepository";
 import { IUserRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
 import { ServiceableTravelerDTO } from "../../../Dto/User/Booking.dto";
+import { GeoLocation } from "../../../interfaces/useCase_Interfaces/user/Booking/ICheckServiceablePartnersUsecase";
 
 @injectable()
 export class FindServiceableTravelerUsecase implements IFindServiceableTravelerUsecase {
@@ -13,9 +14,9 @@ export class FindServiceableTravelerUsecase implements IFindServiceableTravelerU
 
     ) { }
 
-    async execute(fromPincode: string, toPincode: string): Promise<ServiceableTravelerDTO[]> {
+    async execute(pickupLocation: GeoLocation, deliveryLocation: GeoLocation): Promise<ServiceableTravelerDTO[]> {
 
-        const travelRequests = await this._travelRequestRepository.findServiceableTravelers(fromPincode, toPincode);
+        const travelRequests = await this._travelRequestRepository.findServiceableTravelers(pickupLocation, pickupLocation);
 
         return travelRequests
     }

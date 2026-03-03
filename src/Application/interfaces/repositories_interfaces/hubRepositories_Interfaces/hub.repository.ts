@@ -1,6 +1,9 @@
+import { FilterQuery } from "mongoose";
 import { Hub } from "../../../../Domain/Entities/Hub/Hub";
+import { HubDocument } from "../../../../Infrastructure/database/models/Hub/HubModel";
 import { GetHubsDTO, updateHubKycStatusDTO } from "../../../Dto/Hub/hub.dto";
 import { ServiceableHubWithAgencyDTO } from "../../../Dto/User/Booking.dto";
+import { GeoLocation } from "../../useCase_Interfaces/user/Booking/ICheckServiceablePartnersUsecase";
 import { IBaseRepository } from "../base.repository";
 export interface PaginatedHubData {
   data: Hub[];
@@ -10,9 +13,11 @@ export interface PaginatedHubData {
   totalPages: number;
 }
 
-export interface IHubRepository extends IBaseRepository<Hub> {
-    getHubById(hubId:string):Promise<Hub>;
-    updateKycSatus(hubId: string, dto: updateHubKycStatusDTO):Promise<void>;
-    getPaginatedHubsByAgency(agencyId: string,dto: GetHubsDTO):Promise<PaginatedHubData>;
-    findServiceableAgenciesWithHubs(fromPincode: string, toPincode: string):Promise<ServiceableHubWithAgencyDTO[]>;
+export interface IHubRepository extends IBaseRepository<HubDocument> {
+  findOneHub(filter: FilterQuery<HubDocument>): Promise<Hub> 
+  saveHub(hub: Hub): Promise<Hub>
+  getHubById(hubId: string): Promise<Hub>;
+  updateKycSatus(hubId: string, dto: updateHubKycStatusDTO): Promise<void>;
+  getPaginatedHubsByAgency(agencyId: string, dto: GetHubsDTO): Promise<PaginatedHubData>;
+  findServiceableAgenciesWithHubs(pickupLocation: GeoLocation, deliveryLocation: GeoLocation): Promise<ServiceableHubWithAgencyDTO[]>;
 }

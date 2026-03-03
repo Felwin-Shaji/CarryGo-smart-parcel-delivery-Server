@@ -1,5 +1,6 @@
 import { ServiceableTravelerDTO } from "../../../Application/Dto/User/Booking.dto";
 import { ITravelRequestRepository } from "../../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/ITravelRequestRepository";
+import { GeoLocation } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/ICheckServiceablePartnersUsecase";
 import { TravelRequest } from "../../../Domain/Entities/User/TravelRequest";
 import { AppError } from "../../../Domain/utils/customError";
 import { USER_MESSAGES } from "../../constants/messages/userMessage";
@@ -52,69 +53,104 @@ export class TravelRequestRepository extends BaseRepository<TravelRequestDocumen
         return this.toDomain(doc);
     }
 
-    async findServiceableTravelers(fromPincode: string,toPincode: string): Promise<ServiceableTravelerDTO[]> {
+    async findServiceableTravelers(
+  pickupLocation: GeoLocation,
+  deliveryLocation: GeoLocation
+): Promise<ServiceableTravelerDTO[]> {
 
-        const now = new Date();
+  const MAX_DISTANCE = 20000; // 20km in meters
+  const now = new Date();
 
-        const result = await TravelRequestModel.aggregate([
+  const result = await TravelRequestModel.aggregate([
 
-            {
-                $match: {
-                    startPincode: fromPincode,
-                    endPincode: toPincode,
-                    status: { $in: ["ACTIVE", "PARTIALLY_BOOKED","DRAFT"] },
-                    remainingCapacityKg: { $gt: 0 },
-                    departureAt: { $gt: now }
-                }
-            },
+    // 1️⃣ Find travel requests near pickup
+    {
+      $geoNear: {
+        near: {
+          type: "Point",
+          coordinates: [pickupLocation.lng, pickupLocation.lat],
+        },
+        distanceField: "pickupDistance",
+        maxDistance: MAX_DISTANCE,
+        spherical: true,
+        key: "startLocation"
+      }
+    },
 
-            {
-                $lookup: {
-                    from: "users",
-                    localField: "travelerId",
-                    foreignField: "_id",
-                    as: "traveler"
-                }
-            },
+    // 2️⃣ Filter end location manually
+    {
+      $match: {
+        endLocation: {
+          $geoWithin: {
+            $centerSphere: [
+              [deliveryLocation.lng, deliveryLocation.lat],
+              MAX_DISTANCE / 6378137 // convert meters → radians
+            ]
+          }
+        },
+        status: { $in: ["ACTIVE", "PARTIALLY_BOOKED", "DRAFT"] },
+        remainingCapacityKg: { $gt: 0 },
+        departureAt: { $gt: now }
+      }
+    },
 
-            { $unwind: "$traveler" },
+    // 3️⃣ Lookup traveler user
+    {
+      $lookup: {
+        from: "users",
+        localField: "travelerId",
+        foreignField: "_id",
+        as: "traveler"
+      }
+    },
 
-            {
-                $match: {
-                    "traveler.isBlocked": false,
-                    "traveler.kycStatus": "APPROVED"
-                }
-            },
+    { $unwind: "$traveler" },
 
-            {
-                $project: {
+    {
+      $match: {
+        "traveler.isBlocked": false,
+        "traveler.kycStatus": "APPROVED"
+      }
+    },
 
-                    traveler: {
-                        travelerId: { $toString: "$traveler._id" },
-                        name: "$traveler.name",
-                        email: "$traveler.email",
-                        mobile: "$traveler.mobile"
-                    },
+    // 4️⃣ Final projection
+    {
+      $project: {
 
-                    travelRequest: {
-                        travelRequestId: { $toString: "$_id" },
-                        from: "$startAddress",
-                        to: "$endAddress",
-                        departureAt: "$departureAt",
-                        arrivalAt: "$arrivalAt",
-                        remainingCapacityKg: "$remainingCapacityKg",
-                        pricePerKg: "$pricePerKg",
-                        modeOfTransport: "$modeOfTransport"
-                    }
-                }
-            }
+        traveler: {
+          travelerId: { $toString: "$traveler._id" },
+          name: "$traveler.name",
+          email: "$traveler.email",
+          mobile: "$traveler.mobile"
+        },
 
-        ]);
+        travelRequest: {
+          travelRequestId: { $toString: "$_id" },
+          from: "$startAddress",
+          to: "$endAddress",
+          departureAt: "$departureAt",
+          arrivalAt: "$arrivalAt",
+          remainingCapacityKg: "$remainingCapacityKg",
+          pricePerKg: "$pricePerKg",
+          modeOfTransport: "$modeOfTransport",
 
-        console.log(result,"✅✅✅✅✅✅")
+          startLocation: {
+            lat: { $arrayElemAt: ["$startLocation.coordinates", 1] },
+            lng: { $arrayElemAt: ["$startLocation.coordinates", 0] }
+          },
 
-        return result;
+          endLocation: {
+            lat: { $arrayElemAt: ["$endLocation.coordinates", 1] },
+            lng: { $arrayElemAt: ["$endLocation.coordinates", 0] }
+          }
+        }
+      }
     }
+
+  ]);
+
+  return result;
+}
 
     async update(travelRequest: TravelRequest): Promise<void> {
 
@@ -140,26 +176,35 @@ export class TravelRequestRepository extends BaseRepository<TravelRequestDocumen
 
 
     toDomain(doc: TravelRequestDocument): TravelRequest {
-        return new TravelRequest(
-            doc._id.toString(),
-            doc.travelerId.toString(),
-            doc.startLocation,
-            doc.startAddress,
-            doc.startPincode,
-            doc.endLocation,
-            doc.endAddress,
-            doc.endPincode,
-            doc.departureAt,
-            doc.arrivalAt ?? null,
-            doc.capacityKg,
-            doc.remainingCapacityKg,
-            doc.allowedPackageSizes,
-            doc.pricePerKg ?? null,
-            doc.modeOfTransport,
-            doc.description ?? null,
-            doc.status,
-            doc.createdAt,
-            doc.updatedAt
-        );
-    }
+    return new TravelRequest(
+        doc._id.toString(),
+        doc.travelerId.toString(),
+
+        {
+            lat: doc.startLocation.coordinates[1],
+            lng: doc.startLocation.coordinates[0],
+        },
+        doc.startAddress,
+        doc.startPincode,
+
+        {
+            lat: doc.endLocation.coordinates[1],
+            lng: doc.endLocation.coordinates[0],
+        },
+        doc.endAddress,
+        doc.endPincode,
+
+        doc.departureAt,
+        doc.arrivalAt ?? null,
+        doc.capacityKg,
+        doc.remainingCapacityKg,
+        doc.allowedPackageSizes,
+        doc.pricePerKg ?? null,
+        doc.modeOfTransport,
+        doc.description ?? null,
+        doc.status,
+        doc.createdAt,
+        doc.updatedAt
+    );
+}
 }

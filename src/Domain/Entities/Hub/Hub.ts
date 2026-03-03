@@ -25,13 +25,12 @@ export class Hub {
             lat: number;
             lng: number;
         },
-
         public verificationImage: string,
-        public kycStatus: KYCStatus = "APPROVED",
+        public kycStatus: KYCStatus = "PENDING",
         public rejectReason: string | null = null,
         public walletBalance: number = 0,
         public isBlocked: boolean = false,
-        public tokenVersion:number = 0,
+        public tokenVersion: number = 0,
         public createdAt: Date = new Date(),
         public updatedAt: Date = new Date()
     ) {

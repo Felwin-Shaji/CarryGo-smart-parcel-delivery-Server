@@ -14,6 +14,7 @@ export class CreateAddressFromLocationUseCase  implements ICreateAddressFromLoca
     async execute(lat: number, lon: number): Promise<ReverseGeocodeRawDTO> {
 
         const reverseGeocodeAddress = await this.geocodingService.reverseGeocode(lat, lon);
+        console.log(reverseGeocodeAddress,'☆*: .｡. o(≧▽≦)o .｡.:*☆☆*: .｡. o(≧▽≦)o .｡.:*☆☆*: .｡. o(≧▽≦)o .｡.:*☆☆*: .｡. o(≧▽≦)o .｡.:*☆☆*: .｡. o(≧▽≦)o .｡.:*☆☆*: .｡. o(≧▽≦)o .｡.:*☆')
 
         // const hubs = await this.getHubsUseCase.execute();
 

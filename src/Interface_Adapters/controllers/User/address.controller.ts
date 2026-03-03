@@ -59,6 +59,8 @@ export class AddressController implements IAddressController {
         try {
             const userId = req.user?.id!;
 
+            console.log(userId)
+
             const addresses = await this.getUserAddressesUseCase.execute(userId);
 
             return res.status(STATUS.OK).json(

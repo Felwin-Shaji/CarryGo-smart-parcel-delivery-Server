@@ -169,8 +169,7 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
 
             {
                 label: doc.pickupAddress.label,
-                addressLine1: doc.pickupAddress.addressLine1,
-                addressLine2: doc.pickupAddress.addressLine2 ?? null,
+                formattedAddress:doc.pickupAddress.formattedAddress,
                 city: doc.pickupAddress.city,
                 state: doc.pickupAddress.state,
                 country: doc.pickupAddress.country,
@@ -180,8 +179,7 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
 
             {
                 label: doc.deliveryAddress.label,
-                addressLine1: doc.deliveryAddress.addressLine1,
-                addressLine2: doc.deliveryAddress.addressLine2 ?? null,
+                formattedAddress: doc.deliveryAddress.formattedAddress,
                 city: doc.deliveryAddress.city,
                 state: doc.deliveryAddress.state,
                 country: doc.deliveryAddress.country,

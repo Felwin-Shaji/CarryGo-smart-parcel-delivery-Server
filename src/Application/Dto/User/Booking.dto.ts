@@ -84,8 +84,7 @@ export type AddressResponseDTO = {
 
   label: "Home" | "Office" | "Warehouse" | "Other";
 
-  addressLine1: string;
-  addressLine2: string | null;
+  formattedAddress: string | null;
 
   city: string;
   state: string;
@@ -93,7 +92,6 @@ export type AddressResponseDTO = {
 
   pincode: string;
 
-  formattedAddress: string | null;
 
   location: {
     lat: number;

@@ -6,6 +6,7 @@ import { GeoLocation, ICheckServiceablePartnersUsecase } from "../../../interfac
 import { IFindServicableAgencyUsecase } from "../../../interfaces/useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase";
 import { IFindServiceableTravelerUsecase } from "../../../interfaces/useCase_Interfaces/user/Booking/IFindServiceableTravelerUsecase";
 import { ServiceableAgencyAndTravelerDTO } from "../../../Dto/User/Booking.dto";
+import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
 
 @injectable()
 export class CheckServiceablePartnersUsecase implements ICheckServiceablePartnersUsecase {
@@ -19,13 +20,11 @@ export class CheckServiceablePartnersUsecase implements ICheckServiceablePartner
     pickupLocation: GeoLocation,
     deliveryLocation: GeoLocation
   ): Promise<ServiceableAgencyAndTravelerDTO> {
-    console.log("😂😂😂😂😂😂😂")
-
     if (
       pickupLocation.lat === deliveryLocation.lat &&
       pickupLocation.lng === deliveryLocation.lng
     ) {
-      throw new AppError(BOOKING_MESSAGE.NOT_SERVICEABLE_SAME_LOCATION);
+      throw new AppError(BOOKING_MESSAGE.NOT_SERVICEABLE_SAME_LOCATION,STATUS.BAD_REQUEST);
     }
 
     const agencies =
@@ -39,8 +38,6 @@ export class CheckServiceablePartnersUsecase implements ICheckServiceablePartner
         pickupLocation,
         deliveryLocation
       );
-
-      console.log(agencies, travelers,":🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️🗑️")
 
     return { agencies, travelers }
   }

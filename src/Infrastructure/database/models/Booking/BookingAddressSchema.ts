@@ -3,8 +3,7 @@ import { AddressLabelType } from "../../../Types/types";
 
 export interface BookingAddressDocument {
     label: AddressLabelType;
-    addressLine1: string;
-    addressLine2?: string | null;
+    formattedAddress: string;
     city: string;
     state: string;
     country: string;
@@ -19,8 +18,7 @@ export interface BookingAddressDocument {
 export const BookingAddressSchema = new Schema<BookingAddressDocument>(
     {
         label: { type: String, required: true },
-        addressLine1: { type: String, required: true },
-        addressLine2: String,
+        formattedAddress: String,
         city: { type: String, required: true },
         state: { type: String, required: true },
         country: { type: String, required: true },

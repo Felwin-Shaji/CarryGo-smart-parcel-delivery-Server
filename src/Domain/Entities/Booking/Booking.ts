@@ -4,8 +4,7 @@ import { AddressLabelType, BookingStatusType, DeliveryPartnerType, HubJourneySta
 
 export interface AddressEntity {
     label: AddressLabelType,
-    addressLine1: string;
-    addressLine2?: string | null;
+    formattedAddress:string,
     city: string;
     state: string;
     country: string;

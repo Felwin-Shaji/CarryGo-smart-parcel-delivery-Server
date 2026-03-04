@@ -11,13 +11,9 @@ import { GetTravelerKycResponseDTO } from "../../Dto/User/user.dto";
 export class TravelerMapper {
 
     static toDomainTravelerKyc(dto: CreateTravelRequestDTO, travelerId: string, startAddress: Address, endAddress: Address): TravelRequest {
-        const formattedStartAddress =
-            startAddress.formattedAddress ??
-            `${startAddress.addressLine1}, ${startAddress.city}`;
+        const formattedStartAddress = startAddress.formattedAddress 
 
-        const formattedEndAddress =
-            endAddress.formattedAddress ??
-            `${endAddress.addressLine1}, ${endAddress.city}`;
+        const formattedEndAddress = endAddress.formattedAddress 
 
         return new TravelRequest(
             null,

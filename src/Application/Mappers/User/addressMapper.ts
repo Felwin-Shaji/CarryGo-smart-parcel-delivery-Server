@@ -7,13 +7,11 @@ export class AddressMapper {
         return new Address(
             null,
             dto.label,
-            dto.addressLine1,
-            dto.addressLine2 || null,
+            dto.formattedAddress,        
             dto.city,
             dto.state,
-            "CountryPlaceholder", // Assuming country is not provided in DTO
+            dto.country || "india", // Assuming country is not provided in DTO
             dto.pincode,
-            dto.formattedAddress,
             {
                 lat: dto.location.lat,
                 lng: dto.location.lng
@@ -27,13 +25,11 @@ export class AddressMapper {
         return addresses.map((address) => ({
             id: address.id,
             label: address.label,
-            addressLine1: address.addressLine1,
-            addressLine2: address.addressLine2,
+            formattedAddress: address.formattedAddress,
             city: address.city,
             state: address.state,
             country: address.country,
             pincode: address.pincode,
-            formattedAddress: address.formattedAddress,
             location: {
                 lat: address.location.lat,
                 lng: address.location.lng,

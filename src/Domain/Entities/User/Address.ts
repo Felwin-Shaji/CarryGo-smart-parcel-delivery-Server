@@ -2,13 +2,11 @@ export class Address {
   constructor(
     public id: string | null,
     public label: "Home" | "Office" | "Warehouse" | "Other",
-    public addressLine1: string,
-    public addressLine2: string | null,
+    public formattedAddress: string,
     public city: string,
     public state: string,
     public country: string,
     public pincode: string,
-    public formattedAddress: string | null,
     public location: {
       lat: number;
       lng: number;
@@ -20,9 +18,6 @@ export class Address {
   }
 
   private validate(): void {
-    if (!this.addressLine1) {
-      throw new Error("Address line 1 is required");
-    }
 
     if (!/^[0-9]{6}$/.test(this.pincode)) {
       throw new Error("Invalid pincode");

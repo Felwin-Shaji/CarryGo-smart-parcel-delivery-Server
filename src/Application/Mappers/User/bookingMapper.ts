@@ -51,8 +51,7 @@ export class BookingMapper {
 
             {
                 label: pickup.label,
-                addressLine1: pickup.addressLine1,
-                addressLine2: pickup.addressLine2 ?? null,
+                formattedAddress: pickup.formattedAddress,
                 city: pickup.city,
                 state: pickup.state,
                 country: pickup.country,
@@ -62,8 +61,7 @@ export class BookingMapper {
 
             {
                 label: delivery.label,
-                addressLine1: delivery.addressLine1,
-                addressLine2: delivery.addressLine2 ?? null,
+                formattedAddress:delivery.formattedAddress,
                 city: delivery.city,
                 state: delivery.state,
                 country: delivery.country,

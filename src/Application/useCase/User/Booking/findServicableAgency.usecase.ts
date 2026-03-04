@@ -20,9 +20,9 @@ export class FindServicableAgencyUsecase implements IFindServicableAgencyUsecase
             );
 
 
-        if (!agencies.length) {
-            throw new AppError(BOOKING_MESSAGE.NO_SERVICEABLE_AGENCY_FOUND);
-        };
+        // if (!agencies.length) {
+        //     throw new AppError(BOOKING_MESSAGE.NO_SERVICEABLE_AGENCY_FOUND);
+        // };
 
         return agencies;
     }

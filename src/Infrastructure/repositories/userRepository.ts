@@ -1,4 +1,3 @@
-import { STATES, type FlattenMaps, type Model } from "mongoose";
 import { BaseRepository } from "./baseRepositories.js";
 import type { User } from "../../Domain/Entities/User.js";
 import type { IUserRepository } from "../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
@@ -81,13 +80,11 @@ export class UserRepository extends BaseRepository<User> implements IUserReposit
         return new Address(
             addr._id.toString(),
             addr.label,
-            addr.addressLine1,
-            addr.addressLine2 ?? null,
+            addr.formattedAddress,
             addr.city,
             addr.state,
             addr.country,
             addr.pincode,
-            addr.formattedAddress ?? null,
             addr.location,
             addr.isDefault,
             addr.isActive

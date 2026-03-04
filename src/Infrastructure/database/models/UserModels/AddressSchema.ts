@@ -5,9 +5,6 @@ export const AddressSchema = new Schema(
     {
         label: { type: String, enum: ["Home", "Office", "Warehouse", "Other"], default: "Home" },
 
-        addressLine1: { type: String, required: true, trim: true },
-        addressLine2: { type: String, trim: true },
-
         city: { type: String, required: true, trim: true },
         state: { type: String, required: true, trim: true },
         country: { type: String, default: "India", trim: true },
@@ -34,13 +31,11 @@ export const AddressSchema = new Schema(
 export type AddressDBResult = {
   _id: Types.ObjectId;
   label: "Home" | "Office" | "Warehouse" | "Other";
-  addressLine1: string;
-  addressLine2?: string | null;
+  formattedAddress: string ;
   city: string;
   state: string;
   country: string;
   pincode: string;
-  formattedAddress?: string | null;
   location: {
     lat: number;
     lng: number;

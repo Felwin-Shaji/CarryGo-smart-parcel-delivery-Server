@@ -48,7 +48,7 @@ export class TravelerPricingUsecase implements ICalculatePriceUsecase {
             distanceKm: this.round(distanceKm),
             basePrice: this.round(weightCost),
             distanceCharge: 0,
-            sizeCharge: 0,
+            volumetricCharge: 0,
             platformFee: this.round(platformFee),
             totalPrice,
             currency: "INR",

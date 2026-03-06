@@ -22,8 +22,14 @@ export class BookingMapper {
 
         packageDetails: {
             category: string;
-            size: "SMALL" | "MEDIUM" | "LARGE";
             weightKg: number;
+            dimensions: {
+                lengthCm: number;
+                widthCm: number;
+                heightCm: number;
+            };
+            volumetricWeightKg?: number;
+            fragile?: boolean;
         };
 
         pricing: CalculatePriceResponseDTO;
@@ -61,7 +67,7 @@ export class BookingMapper {
 
             {
                 label: delivery.label,
-                formattedAddress:delivery.formattedAddress,
+                formattedAddress: delivery.formattedAddress,
                 city: delivery.city,
                 state: delivery.state,
                 country: delivery.country,
@@ -74,7 +80,7 @@ export class BookingMapper {
             {
                 basePrice: pricing.basePrice,
                 distanceCharge: pricing.distanceCharge,
-                sizeCharge: pricing.sizeCharge,
+                volumetricCharge: pricing.volumetricCharge,
                 platformFee: pricing.platformFee,
                 totalAmount: pricing.totalPrice,
                 currency: "INR",
@@ -135,8 +141,16 @@ export class BookingMapper {
 
                 packageDetails: {
                     category: booking.packageDetails.category,
-                    size: booking.packageDetails.size,
+
                     weightKg: booking.packageDetails.weightKg,
+
+                    dimensions: {
+                        lengthCm: booking.packageDetails.dimensions.lengthCm,
+                        widthCm: booking.packageDetails.dimensions.widthCm,
+                        heightCm: booking.packageDetails.dimensions.heightCm,
+                    },
+
+                    fragile: booking.packageDetails.fragile ?? false,
                 },
 
                 pricing: {

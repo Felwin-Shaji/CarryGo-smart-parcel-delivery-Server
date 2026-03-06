@@ -4,6 +4,7 @@ import { IPricingPolicyRepository } from "../../interfaces/repositories_interfac
 import { AppError } from "../../../Domain/utils/customError";
 import { PRICING_POLICY_MESSAGE } from "../../../Infrastructure/constants/messages/pricingPolicyMessage";
 import { BasePricingPolicy } from "../../../Domain/Entities/Admin/BasePricingPolicy";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 
 @injectable()
 export class GetPricingUseCase implements IGetPricingUseCase {
@@ -13,7 +14,7 @@ export class GetPricingUseCase implements IGetPricingUseCase {
 
     async execute(model: "AGENCY" | "TRAVELER"): Promise<BasePricingPolicy> {
         const pricing = await this._pricingPolicyRepo.getActiveByDeliveryModel(model);
-        if (!pricing) throw new AppError(PRICING_POLICY_MESSAGE.FETCH_PRICING_POLICY_FAILED);
+        if (!pricing) throw new AppError(PRICING_POLICY_MESSAGE.FETCH_PRICING_POLICY_FAILED,STATUS.NOT_FOUND);
         return pricing
     }
 }

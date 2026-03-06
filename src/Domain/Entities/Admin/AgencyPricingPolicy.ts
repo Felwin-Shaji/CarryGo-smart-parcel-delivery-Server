@@ -10,10 +10,12 @@ export class AgencyPricingPolicy extends BasePricingPolicy {
 
     public minBasePrice: number,
     public maxBasePrice: number,
+
     public minPricePerKm: number,
     public maxPricePerKm: number,
-    public minSizePrice: number,
-    public maxSizePrice: number,
+
+    public minPricePerKg: number,
+    public maxPricePerKg: number,
 
     platformFeePercent: number,
     isActive: boolean,
@@ -21,7 +23,16 @@ export class AgencyPricingPolicy extends BasePricingPolicy {
     createdAt?: Date,
     updatedAt?: Date
   ) {
-    super(id, DeliveryPartner.AGENCY, platformFeePercent, isActive, policyVersion, createdAt, updatedAt);
+    super(
+      id,
+      DeliveryPartner.AGENCY,
+      platformFeePercent,
+      isActive,
+      policyVersion,
+      createdAt,
+      updatedAt
+    );
+
     this.validate();
   }
 
@@ -34,24 +45,27 @@ export class AgencyPricingPolicy extends BasePricingPolicy {
       throw new AppError("Invalid price per km range");
     }
 
-    if (this.minSizePrice > this.maxSizePrice) {
-      throw new AppError("Invalid size price range");
+    if (this.minPricePerKg > this.maxPricePerKg) {
+      throw new AppError("Invalid price per kg range");
     }
-  };
+  }
 
   toPersistence() {
     return {
       deliveryModel: this.deliveryModel,
+
       minBasePrice: this.minBasePrice,
       maxBasePrice: this.maxBasePrice,
+
       minPricePerKm: this.minPricePerKm,
       maxPricePerKm: this.maxPricePerKm,
-      minSizePrice: this.minSizePrice,
-      maxSizePrice: this.maxSizePrice,
+
+      minPricePerKg: this.minPricePerKg,
+      maxPricePerKg: this.maxPricePerKg,
+
       platformFeePercent: this.platformFeePercent,
       isActive: this.isActive,
       policyVersion: this.policyVersion,
     };
   }
-
 }

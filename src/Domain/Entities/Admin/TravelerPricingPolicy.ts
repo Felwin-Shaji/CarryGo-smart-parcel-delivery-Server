@@ -3,60 +3,81 @@ import { AppError } from "../../utils/customError";
 import { TransportMode } from "../User/TravelRequest";
 import { BasePricingPolicy } from "./BasePricingPolicy";
 
+export type TransportMultiplierMap = Record<string, number>;
+
 export class TravelerPricingPolicy extends BasePricingPolicy {
-    constructor(
-        id: string | null,
+  constructor(
+    id: string | null,
 
-        public basePricePerKg: number,
+    public basePrice: number,
+    public pricePerKm: number,
 
-        public flightMultiplier: number,
-        public trainMultiplier: number,
-        public carMultiplier: number,
-        public busMultiplier: number,
-        public bikeMultiplier: number,
+    public basePricePerKg: number,
 
-        platformFeePercent: number,
-        isActive: boolean,
-        policyVersion: number,
-        createdAt?: Date,
-        updatedAt?: Date
-    ) {
-        super(id, DeliveryPartner.TRAVELER, platformFeePercent, isActive, policyVersion, createdAt, updatedAt);
-        this.validate();
+    public transportMultipliers: TransportMultiplierMap,
+
+    platformFeePercent: number,
+    isActive: boolean,
+    policyVersion: number,
+    createdAt?: Date,
+    updatedAt?: Date
+  ) {
+    super(
+      id,
+      DeliveryPartner.TRAVELER,
+      platformFeePercent,
+      isActive,
+      policyVersion,
+      createdAt,
+      updatedAt
+    );
+
+    this.validate();
+  }
+
+  validate(): void {
+    if (this.basePrice < 0) {
+      throw new AppError("Base price cannot be negative");
     }
 
-    validate(): void {
-        if (this.basePricePerKg <= 0) {
-            throw new AppError("Base price per kg must be positive");
-        }
+    if (this.pricePerKm <= 0) {
+      throw new AppError("Price per km must be positive");
+    }
+
+    if (this.basePricePerKg <= 0) {
+      throw new AppError("Base price per kg must be positive");
+    }
+
+    for (const [mode, multiplier] of Object.entries(this.transportMultipliers)) {
+      if (multiplier <= 0) {
+        throw new AppError(`Invalid multiplier for ${mode}`);
+      }
+    }
+  }
+
+  toPersistence() {
+    return {
+      deliveryModel: this.deliveryModel,
+
+      basePrice: this.basePrice,
+      pricePerKm: this.pricePerKm,
+      basePricePerKg: this.basePricePerKg,
+
+      transportMultipliers: this.transportMultipliers,
+
+      platformFeePercent: this.platformFeePercent,
+      isActive: this.isActive,
+      policyVersion: this.policyVersion,
     };
+  }
 
-    toPersistence() {
-        return {
-            deliveryModel: this.deliveryModel,
-            basePricePerKg: this.basePricePerKg,
-            flightMultiplier: this.flightMultiplier,
-            trainMultiplier: this.trainMultiplier,
-            carMultiplier: this.carMultiplier,
-            busMultiplier: this.busMultiplier,
-            bikeMultiplier: this.bikeMultiplier,
-            platformFeePercent: this.platformFeePercent,
-            isActive: this.isActive,
-            policyVersion: this.policyVersion,
-        };
+  public getMultiplier(mode: TransportMode): number {
+    const multiplier = this.transportMultipliers[mode];
+
+    if (!multiplier) {
+      throw new AppError(`Multiplier not defined for ${mode}`);
     }
 
-    public getMultiplier(mode: TransportMode): number {
-        switch (mode) {
-            case "FLIGHT": return this.flightMultiplier;
-            case "TRAIN": return this.trainMultiplier;
-            case "CAR": return this.carMultiplier;
-            case "BUS": return this.busMultiplier;
-            case "BIKE": return this.bikeMultiplier;
-            default:
-                throw new AppError("Invalid transport mode");
-        }
-    }
-
-
+    return multiplier;
+  }
 }

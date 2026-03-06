@@ -1,24 +1,28 @@
 export interface AdminPricingRequestDTO {
-    deliveryModel: "AGENCY" | "TRAVELER";   
+    deliveryModel: "AGENCY" | "TRAVELER";
     minBasePrice: number;
     maxBasePrice: number;
     minPricePerKm: number;
     maxPricePerKm: number;
-    minSizePrice: number;
-    maxSizePrice: number;
+    minPricePerKg: number;
+    maxPricePerKg: number;
     platformFeePercent: number;
     isActive: boolean;
     policyVersion: number;
 }
 
 export interface AdminTravelerPricingRequestDTO {
-    basePricePerKg: number;
+  basePrice: number;
+  pricePerKm: number;
+  basePricePerKg: number;
 
-    flightMultiplier: number;
-    trainMultiplier: number;
-    carMultiplier: number;
-    busMultiplier: number;
-    bikeMultiplier: number;
+  transportMultipliers: {
+    FLIGHT: number;
+    TRAIN: number;
+    CAR: number;
+    BUS: number;
+    BIKE: number;
+  };
 
-    platformFeePercent: number;
+  platformFeePercent: number;
 }

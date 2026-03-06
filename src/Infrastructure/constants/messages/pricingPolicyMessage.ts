@@ -10,6 +10,9 @@ export const PRICING_POLICY_MESSAGE = {
     BASE_PRICE_OUTSIDE_LIMIT: "Base price is outside allowed admin limits",
     SIZE_PRICE_OUTSIDE_LIMIT: "Size price is outside allowed admin limits",
 
+    PRICE_PER_KM_OUTSIDE_LIMIT:"KM price is outside allowed admin limits",
+    PRICE_PER_KG_OUTSIDE_LIMIT:"KG price is outside allowed admin limits",
+
     CREATE_PRICING_POLICY_SUCCESS: "Pricing policy created successfully",
 
     INVALID_POLICY:"Invalid pricing policy type"

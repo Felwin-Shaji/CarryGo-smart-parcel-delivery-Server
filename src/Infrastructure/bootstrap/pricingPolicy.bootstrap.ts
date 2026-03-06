@@ -19,16 +19,22 @@ export async function bootstrapPricingPolicies(
   };
 
   const travelerDefault = {
+    basePrice: 20,
+    pricePerKm: 4,
+
     basePricePerKg: 25,
 
-    flightMultiplier: 1.5,
-    trainMultiplier: 1.2,
-    carMultiplier: 1.1,
-    busMultiplier: 1.0,
-    bikeMultiplier: 0.8,
+    transportMultipliers: {
+      FLIGHT: 1.5,
+      TRAIN: 1.2,
+      CAR: 1.1,
+      BUS: 1.0,
+      BIKE: 0.8,
+    },
 
     platformFeePercent: 5,
   };
+
 
 
   const activeAgency =
@@ -58,12 +64,14 @@ export async function bootstrapPricingPolicies(
   if (!activeTraveler) {
     const travelerPolicy = new TravelerPricingPolicy(
       null,
+
+      travelerDefault.basePrice,
+      travelerDefault.pricePerKm,
+
       travelerDefault.basePricePerKg,
-      travelerDefault.flightMultiplier,
-      travelerDefault.trainMultiplier,
-      travelerDefault.carMultiplier,
-      travelerDefault.busMultiplier,
-      travelerDefault.bikeMultiplier,
+
+      travelerDefault.transportMultipliers,
+
       travelerDefault.platformFeePercent,
       true,
       1

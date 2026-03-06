@@ -80,8 +80,8 @@ export class PricingPolicyRepository
                 agencyDoc.maxBasePrice,
                 agencyDoc.minPricePerKm,
                 agencyDoc.maxPricePerKm,
-                agencyDoc.minSizePrice,
-                agencyDoc.maxSizePrice,
+                agencyDoc.minPricePerKg,
+                agencyDoc.maxPricePerKg,
                 agencyDoc.platformFeePercent,
                 agencyDoc.isActive,
                 agencyDoc.policyVersion,
@@ -93,22 +93,25 @@ export class PricingPolicyRepository
         }
 
         if (doc.deliveryModel === "TRAVELER") {
-            const travelerDoc = doc as TravelerPricingPolicySchemaType;
-            return new TravelerPricingPolicy(
-                travelerDoc._id.toString(),
-                travelerDoc.basePricePerKg,
-                travelerDoc.flightMultiplier,
-                travelerDoc.trainMultiplier,
-                travelerDoc.carMultiplier,
-                travelerDoc.busMultiplier,
-                travelerDoc.bikeMultiplier,
-                travelerDoc.platformFeePercent,
-                travelerDoc.isActive,
-                travelerDoc.policyVersion,
-                travelerDoc.createdAt,
-                travelerDoc.updatedAt
-            );
-        }
+    const travelerDoc = doc as TravelerPricingPolicySchemaType;
+
+    return new TravelerPricingPolicy(
+        travelerDoc._id.toString(),
+
+        travelerDoc.basePrice,
+        travelerDoc.pricePerKm,
+
+        travelerDoc.basePricePerKg,
+
+        travelerDoc.transportMultipliers as Record<string, number>,
+
+        travelerDoc.platformFeePercent,
+        travelerDoc.isActive,
+        travelerDoc.policyVersion,
+        travelerDoc.createdAt,
+        travelerDoc.updatedAt
+    );
+}
 
         throw new Error("Unsupported delivery model");
     }

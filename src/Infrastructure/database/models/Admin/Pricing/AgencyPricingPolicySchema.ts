@@ -10,8 +10,8 @@ export interface AgencyPricingPolicySchemaType
   minPricePerKm: number;
   maxPricePerKm: number;
 
-  minSizePrice: number;
-  maxSizePrice: number;
+  minPricePerKg: number;
+  maxPricePerKg: number;
 }
 
 const AgencyPricingPolicySchema = new Schema<AgencyPricingPolicySchemaType>({
@@ -21,8 +21,8 @@ const AgencyPricingPolicySchema = new Schema<AgencyPricingPolicySchemaType>({
   minPricePerKm: { type: Number, required: true, min: 0 },
   maxPricePerKm: { type: Number, required: true, min: 0 },
 
-  minSizePrice: { type: Number, required: true, min: 0 },
-  maxSizePrice: { type: Number, required: true, min: 0 },
+  minPricePerKg: { type: Number, required: true, min: 0 },
+  maxPricePerKg: { type: Number, required: true, min: 0 },
 });
 
 export const AgencyPricingPolicyModel =

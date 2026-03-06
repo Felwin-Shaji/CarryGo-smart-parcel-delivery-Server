@@ -1,8 +1,6 @@
 import { Document, ObjectId, Schema, Types, model } from "mongoose";
 
-export interface SizePricingSchemaType {
-  price: number;
-}
+
 
 export interface AgencyPricingSchemaType extends Document {
   _id: ObjectId;
@@ -12,12 +10,7 @@ export interface AgencyPricingSchemaType extends Document {
 
   basePrice: number;
   pricePerKm: number;
-
-  sizePricing: {
-    SMALL: SizePricingSchemaType;
-    MEDIUM: SizePricingSchemaType;
-    LARGE: SizePricingSchemaType;
-  };
+  pricePerKg: number;
 
   isActive: boolean;
   policyVersion: number;
@@ -27,13 +20,6 @@ export interface AgencyPricingSchemaType extends Document {
 }
 
 
-
-const SizePricingSchema = new Schema(
-  {
-    price: { type: Number, required: true, min: 0 },
-  },
-  { _id: false }
-);
 
 
 const AgencyPricingSchema = new Schema<AgencyPricingSchemaType>(
@@ -54,11 +40,7 @@ const AgencyPricingSchema = new Schema<AgencyPricingSchemaType>(
     basePrice: { type: Number, required: true },
     pricePerKm: { type: Number, required: true },
 
-    sizePricing: {
-      SMALL: { type: SizePricingSchema, required: true },
-      MEDIUM: { type: SizePricingSchema, required: true },
-      LARGE: { type: SizePricingSchema, required: true },
-    },
+    pricePerKg: { type: Number, required: true, min: 0 },
 
     isActive: { type: Boolean, default: true },
 

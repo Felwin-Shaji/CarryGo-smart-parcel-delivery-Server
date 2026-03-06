@@ -4,7 +4,7 @@ import { AddressLabelType, BookingStatusType, DeliveryPartnerType, HubJourneySta
 
 export interface AddressEntity {
     label: AddressLabelType,
-    formattedAddress:string,
+    formattedAddress: string,
     city: string;
     state: string;
     country: string;
@@ -23,6 +23,22 @@ export interface PartnerEntity {
         email?: string;
         phone?: string | null;
     };
+}
+
+export interface PackageDimensions {
+    lengthCm: number;
+    widthCm: number;
+    heightCm: number;
+}
+
+export interface PackageDetails {
+    category: string;
+    weightKg: number;
+
+    dimensions: PackageDimensions;
+
+    volumetricWeightKg?: number;
+    fragile?: boolean;
 }
 
 export interface HubJourney {
@@ -48,17 +64,13 @@ export class Booking {
         public pickupAddress: AddressEntity,
         public deliveryAddress: AddressEntity,
 
-        public packageDetails: {
-            category: string;
-            size: PackageSizeType;
-            weightKg: number;
-        },
+        public packageDetails: PackageDetails,
 
 
         public pricing: {
             basePrice: number;
             distanceCharge: number;
-            sizeCharge: number;
+            volumetricCharge: number;
             platformFee: number;
             totalAmount: number;
             currency: "INR";

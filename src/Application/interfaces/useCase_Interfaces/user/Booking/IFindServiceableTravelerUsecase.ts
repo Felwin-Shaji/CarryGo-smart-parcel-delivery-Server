@@ -1,5 +1,5 @@
 import { ServiceableTravelerDTO } from "../../../../Dto/User/Booking.dto";
-import { GeoLocation } from "./ICheckServiceablePartnersUsecase";
+import { GeoLocation } from "./IFindServicableAgencyUsecase";
 
 export interface IFindServiceableTravelerUsecase {
   execute(

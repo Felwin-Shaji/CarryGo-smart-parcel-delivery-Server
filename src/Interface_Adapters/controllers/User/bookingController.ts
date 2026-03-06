@@ -1,6 +1,5 @@
 import { inject, injectable } from "tsyringe";
 import { Request, Response, NextFunction } from "express";
-import { ICheckServiceablePartnersUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/ICheckServiceablePartnersUsecase";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { IUserBookingController } from "../../Interface/Controllers_Interfaces/User_interfaces/Booking/IUserBookingController";
@@ -14,30 +13,37 @@ import { ICreateBookingUsecase } from "../../../Application/interfaces/useCase_I
 import { ICreatePaymentOrderUsecase } from "../../../Application/interfaces/useCase_Interfaces/Payment/ICreatePaymentOrderUsecase";
 import { IUserBookingsUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IUserBookingsUsecase";
 import { IGetBookingUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IGetBookingUsecase";
+import { IFindServicableAgencyUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase";
+import { IFindServiceableTravelerUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServiceableTravelerUsecase";
 
 
 @injectable()
 export class UserBookingController implements IUserBookingController {
     constructor(
-        @inject("ICheckServiceablePartnersUsecase") private _checkServiceablePartnersUsecase: ICheckServiceablePartnersUsecase,
+        // @inject("ICheckServiceablePartnersUsecase") private _checkServiceablePartnersUsecase: ICheckServiceablePartnersUsecase,
         // @inject("IGetAddressesByPincodeUsecase") private _getAddressesByPincodeUsecase: IGetAddressesByPincodeUsecase,
         @inject("ICalculateBookingPriceUsecase") private _calculateBookingPriceUsecase: ICalculateBookingPriceUsecase,
         @inject("ICreateBookingUsecase") private _createBookingUsecase: ICreateBookingUsecase,
         @inject("ICreatePaymentOrderUsecase") private _createPaymentOrderUsecase: ICreatePaymentOrderUsecase,
         @inject("IUserBookingsUsecase") private _userBookingsUsecase: IUserBookingsUsecase,
         @inject("IGetBookingUsecase") private _getBookingUsecase: IGetBookingUsecase,
+        @inject("IFindServicableAgencyUsecase") private _findServicableAgencyUsecase: IFindServicableAgencyUsecase,
+        @inject("IFindServiceableTravelerUsecase") private _findServiceableTravelerUsecase: IFindServiceableTravelerUsecase,
+
+
     ) { };
 
-    checkServiceablePartners = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    checkServiceableAgency = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const { pickupLocation, deliveryLocation } = req.body;
 
-            const isValidate = await this._checkServiceablePartnersUsecase.execute(pickupLocation, deliveryLocation);
+            // const isValidate = await this._checkServiceablePartnersUsecase.execute(pickupLocation, deliveryLocation);
+            const servicableAgency = await this._findServicableAgencyUsecase.execute(pickupLocation, deliveryLocation);
 
             return res.status(STATUS.OK).json(
                 ApiResponse.success(
                     BOOKING_MESSAGE.PINCODE_VALIED,
-                    isValidate
+                    servicableAgency
                 )
             )
 
@@ -45,6 +51,24 @@ export class UserBookingController implements IUserBookingController {
             next(error);
         };
     };
+
+    checkServiceableTravelers = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            const { pickupLocation, deliveryLocation } = req.body;
+
+            const servicableTravelers = this._findServiceableTravelerUsecase.execute(pickupLocation, deliveryLocation)
+
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    BOOKING_MESSAGE.PINCODE_VALIED,
+                    servicableTravelers
+                )
+            )
+
+        } catch (error) {
+            next(error)
+        }
+    }
 
 
     calculatePrice = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
@@ -135,9 +159,9 @@ export class UserBookingController implements IUserBookingController {
                 page: Number(req.query.page) || 1,
                 limit: Number(req.query.limit) || 10,
                 deliveryType: req.query.deliveryType?.toString() || '',
-                status:req.query.status?.toString()||"",
-                paymentStatus:req.query.paymentStatus?.toString()||"",
-                size:req.query.size?.toString()||"",
+                status: req.query.status?.toString() || "",
+                paymentStatus: req.query.paymentStatus?.toString() || "",
+                size: req.query.size?.toString() || "",
             }
             if (!userId) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
 

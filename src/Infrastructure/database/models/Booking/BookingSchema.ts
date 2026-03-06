@@ -23,14 +23,23 @@ export interface BookingDocument extends Document {
 
     packageDetails: {
         category: string;
-        size: PackageSizeType
-        weightKg: number
+
+        weightKg: number;
+
+        dimensions: {
+            lengthCm: number;
+            widthCm: number;
+            heightCm: number;
+        };
+
+        volumetricWeightKg?: number;
+        fragile?: boolean;
     };
 
     pricing: {
         basePrice: number,
         distanceCharge: number,
-        sizeCharge: number,
+        volumetricCharge: number,
         platformFee: number,
         totalAmount: number,
         currency: "INR",
@@ -44,10 +53,10 @@ export interface BookingDocument extends Document {
         lastUpdatedAt?: Date;
     };
     travelerJourney?: {
-    acceptedAt?: Date;
-    pickedUpAt?: Date;
-    deliveredAt?: Date;
-} | undefined;
+        acceptedAt?: Date;
+        pickedUpAt?: Date;
+        deliveredAt?: Date;
+    } | undefined;
 
     payment: {
         gateway: PaymentGatewayType,
@@ -81,8 +90,18 @@ const bookingSchema = new Schema<BookingDocument>(
 
         packageDetails: {
             category: { type: String, required: true },
-            size: { type: String, enum: Object.values(PackageSize), required: true },
+
             weightKg: { type: Number, required: true },
+
+            dimensions: {
+                lengthCm: { type: Number, required: true },
+                widthCm: { type: Number, required: true },
+                heightCm: { type: Number, required: true },
+            },
+
+            volumetricWeightKg: { type: Number },
+
+            fragile: { type: Boolean, default: false },
         },
 
         distanceKm: { type: Number, required: true },
@@ -90,7 +109,7 @@ const bookingSchema = new Schema<BookingDocument>(
         pricing: {
             basePrice: { type: Number, required: true },
             distanceCharge: { type: Number, required: true },
-            sizeCharge: { type: Number, required: true },
+            volumetricCharge: { type: Number, required: true },
             platformFee: { type: Number, required: true },
             totalAmount: { type: Number, required: true },
             currency: { type: String, default: "INR" },

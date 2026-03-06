@@ -9,7 +9,7 @@ import { ServiceableHubWithAgencyDTO } from "../../../Application/Dto/User/Booki
 import { AppError } from "../../../Domain/utils/customError";
 import { HUB_MESSAGES } from "../../constants/messages/hubMessage";
 import { STATUS } from "../../constants/statusCodes";
-import { GeoLocation } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/ICheckServiceablePartnersUsecase";
+import { GeoLocation } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase";
 
 export class HubRepository extends BaseRepository<HubDocument> implements IHubRepository {
     constructor() {
@@ -233,8 +233,14 @@ export class HubRepository extends BaseRepository<HubDocument> implements IHubRe
                     },
 
                     fromHub: {
-                        hubId: { $toString: "$pickupHub._id" },
+                        hubId: { $toString: "$pickupHub._id     " },
                         hubName: "$pickupHub.name",
+                        address: {
+                            city: "$pickupHub.address.city",
+                            state: "$pickupHub.address.state",
+                            pincode: "$pickupHub.address.pincode"
+                        },
+
                         location: {
                             lat: { $arrayElemAt: ["$pickupHub.location.coordinates", 1] },
                             lng: { $arrayElemAt: ["$pickupHub.location.coordinates", 0] }
@@ -244,6 +250,11 @@ export class HubRepository extends BaseRepository<HubDocument> implements IHubRe
                     toHub: {
                         hubId: { $toString: "$deliveryHub._id" },
                         hubName: "$deliveryHub.name",
+                        address: {
+                            city: "$deliveryHub.address.city",
+                            state: "$deliveryHub.address.state",
+                            pincode: "$deliveryHub.address.pincode"
+                        },
                         location: {
                             lat: { $arrayElemAt: ["$deliveryHub.location.coordinates", 1] },
                             lng: { $arrayElemAt: ["$deliveryHub.location.coordinates", 0] }

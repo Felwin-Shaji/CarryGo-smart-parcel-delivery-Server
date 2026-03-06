@@ -1,4 +1,4 @@
-import { AddressEntity, HubJourney, PartnerEntity } from "../../../Domain/Entities/Booking/Booking";
+import { AddressEntity, HubJourney, PackageDetails, PartnerEntity } from "../../../Domain/Entities/Booking/Booking";
 import { BookingStatusType, DeliveryPartnerType, PackageSizeType, PaymentGatewayType, PaymentMethodType, PaymentStatusType } from "../../../Infrastructure/Types/types";
 
 /**
@@ -108,8 +108,16 @@ export interface CalculatePriceRequestDTO {
 
   packageDetails: {
     category: string;
-    size: "SMALL" | "MEDIUM" | "LARGE";
+
     weightKg: number;
+
+    dimensions: {
+      lengthCm: number;
+      widthCm: number;
+      heightCm: number;
+    };
+
+    fragile?: boolean;
   };
 
   pickupAddressId: string;
@@ -121,7 +129,7 @@ export interface CalculatePriceResponseDTO {
 
   basePrice: number;
   distanceCharge: number;
-  sizeCharge: number;
+  volumetricCharge: number;
   platformFee: number;
 
   totalPrice: number;
@@ -132,25 +140,46 @@ export interface CalculatePriceResponseDTO {
 type AgencyBookingDTO = {
   deliveryType: "AGENCY";
   partnerId: string;
+
   pickupAddressId: string;
   deliveryAddressId: string;
+
   packageDetails: {
     category: string;
-    size: "SMALL" | "MEDIUM" | "LARGE";
+
     weightKg: number;
+
+    dimensions: {
+      lengthCm: number;
+      widthCm: number;
+      heightCm: number;
+    };
+
+    fragile?: boolean;
   };
 };
 
 type TravelerBookingDTO = {
   deliveryType: "TRAVELER";
-  partnerId: string; // travelerId
-  travelRequestId: string; // REQUIRED
+
+  partnerId: string;
+  travelRequestId: string;
+
   pickupAddressId: string;
   deliveryAddressId: string;
+
   packageDetails: {
     category: string;
-    size: "SMALL" | "MEDIUM" | "LARGE";
+
     weightKg: number;
+
+    dimensions: {
+      lengthCm: number;
+      widthCm: number;
+      heightCm: number;
+    };
+
+    fragile?: boolean;
   };
 };
 
@@ -181,11 +210,7 @@ export interface UserBookingsDTO {
     pincode: string;
   };
 
-  packageDetails: {
-    category: string;
-    size: PackageSizeType;
-    weightKg: number;
-  };
+  packageDetails: PackageDetails
 
   pricing: {
     totalAmount: number;

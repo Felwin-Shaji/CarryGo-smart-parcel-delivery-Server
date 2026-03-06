@@ -169,7 +169,7 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
 
             {
                 label: doc.pickupAddress.label,
-                formattedAddress:doc.pickupAddress.formattedAddress,
+                formattedAddress: doc.pickupAddress.formattedAddress,
                 city: doc.pickupAddress.city,
                 state: doc.pickupAddress.state,
                 country: doc.pickupAddress.country,
@@ -189,8 +189,18 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
 
             {
                 category: doc.packageDetails.category,
-                size: doc.packageDetails.size,
+
                 weightKg: doc.packageDetails.weightKg,
+
+                dimensions: {
+                    lengthCm: doc.packageDetails.dimensions.lengthCm,
+                    widthCm: doc.packageDetails.dimensions.widthCm,
+                    heightCm: doc.packageDetails.dimensions.heightCm,
+                },
+
+                volumetricWeightKg: doc.packageDetails.volumetricWeightKg ?? 0,
+
+                fragile: doc.packageDetails.fragile ?? false,
             },
 
             doc.pricing,

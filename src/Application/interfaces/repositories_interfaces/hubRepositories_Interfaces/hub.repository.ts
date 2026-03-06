@@ -3,8 +3,8 @@ import { Hub } from "../../../../Domain/Entities/Hub/Hub";
 import { HubDocument } from "../../../../Infrastructure/database/models/Hub/HubModel";
 import { GetHubsDTO, updateHubKycStatusDTO } from "../../../Dto/Hub/hub.dto";
 import { ServiceableHubWithAgencyDTO } from "../../../Dto/User/Booking.dto";
-import { GeoLocation } from "../../useCase_Interfaces/user/Booking/ICheckServiceablePartnersUsecase";
 import { IBaseRepository } from "../base.repository";
+import { GeoLocation } from "../../useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase";
 export interface PaginatedHubData {
   data: Hub[];
   total: number;

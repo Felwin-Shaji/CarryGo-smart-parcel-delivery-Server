@@ -4,74 +4,79 @@ import { AgencyPricing } from "../../../Domain/Entities/Agency/AgencyPricing";
 import { AgencyPricingModel, AgencyPricingSchemaType } from "../../database/models/AgencyModels/agencyPricing.model";
 import { BaseRepository } from "../baseRepositories";
 
-export class AgencyPricingRepository extends BaseRepository<AgencyPricingSchemaType> implements IAgencyPricingRepository {
-    constructor() {
-        super(AgencyPricingModel)
+export class AgencyPricingRepository
+  extends BaseRepository<AgencyPricingSchemaType>
+  implements IAgencyPricingRepository {
+
+  constructor() {
+    super(AgencyPricingModel);
+  }
+
+  async getPricingByAgency(
+    agencyId: string,
+    serviceType: "STANDARD" | "EXPRESS"
+  ): Promise<AgencyPricing | null> {
+
+    const doc = await this.findOne({
+      agencyId: new Types.ObjectId(agencyId),
+      serviceType,
+      isActive: true,
+    });
+
+    return doc ? this.toDomain(doc) : null;
+  }
+
+  async upsertPricing(pricing: AgencyPricing): Promise<AgencyPricing> {
+
+    const doc = await this.findOneAndUpdate(
+      {
+        agencyId: new Types.ObjectId(pricing.agencyId),
+        serviceType: pricing.serviceType,
+      },
+      {
+        basePrice: pricing.basePrice,
+        pricePerKm: pricing.pricePerKm,
+        pricePerKg: pricing.pricePerKg,
+        isActive: pricing.isActive,
+        policyVersion: pricing.policyVersion,
+      }
+    );
+
+    if (doc) {
+      return this.toDomain(doc);
     }
 
-    async getPricingByAgency(agencyId: string, serviceType: "STANDARD" | "EXPRESS"): Promise<AgencyPricing | null> {
+    const created = await this.save({
+      agencyId: new Types.ObjectId(pricing.agencyId),
+      serviceType: pricing.serviceType,
 
-        const doc = await this.findOne({
-            agencyId: new Types.ObjectId(agencyId),
-            serviceType,
-            isActive: true,
-        });
+      basePrice: pricing.basePrice,
+      pricePerKm: pricing.pricePerKm,
+      pricePerKg: pricing.pricePerKg,
 
-        return doc ? this.toDomain(doc) : null;
-    };
+      isActive: pricing.isActive,
+      policyVersion: pricing.policyVersion,
+    });
 
-    /* */
-    async upsertPricing(pricing: AgencyPricing): Promise<AgencyPricing> {
+    return this.toDomain(created);
+  }
 
-        const doc = await this.findOneAndUpdate(
-            {
-                agencyId: new Types.ObjectId(pricing.agencyId),
-                serviceType: pricing.serviceType,
-            },
-            {
-                basePrice: pricing.basePrice,
-                pricePerKm: pricing.pricePerKm,
-                sizePricing: pricing.sizePricing,
-                isActive: pricing.isActive,
-                policyVersion: pricing.policyVersion,
-            }
-        );
+  private toDomain(doc: AgencyPricingSchemaType): AgencyPricing {
 
-        if (doc) {
-            return this.toDomain(doc);
-        }
+    return new AgencyPricing(
+      doc._id.toString(),
+      doc.agencyId.toString(),
+      doc.serviceType,
 
-        const created = await this.save({
-            agencyId: new Types.ObjectId(pricing.agencyId),
-            serviceType: pricing.serviceType,
-            basePrice: pricing.basePrice,
-            pricePerKm: pricing.pricePerKm,
-            sizePricing: pricing.sizePricing,
-            isActive: pricing.isActive,
-            policyVersion: pricing.policyVersion,
-        });
+      doc.basePrice,
+      doc.pricePerKm,
+      doc.pricePerKg,
 
-        return this.toDomain(created);
-    }
+      doc.isActive,
+      doc.policyVersion,
 
-
-    private toDomain(doc: AgencyPricingSchemaType): AgencyPricing {
-        return new AgencyPricing(
-            doc._id.toString(),
-            doc.agencyId.toString(),
-            doc.serviceType,
-
-            doc.basePrice,
-            doc.pricePerKm,
-
-            doc.sizePricing,
-
-            doc.isActive,
-            doc.policyVersion,
-
-            doc.createdAt,
-            doc.updatedAt
-        );
-    }
-
+      doc.createdAt,
+      doc.updatedAt
+    );
+  }
 }

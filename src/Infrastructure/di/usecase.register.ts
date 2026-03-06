@@ -99,8 +99,8 @@ import { IDeleteUserAddressUseCase } from "../../Application/interfaces/useCase_
 import { DeleteUserAddressUseCase } from "../../Application/useCase/User/Address/deleteUserAddressu.secase.js";
 import { ISetDefaultUserAddressUseCase } from "../../Application/interfaces/useCase_Interfaces/user/Address/ISetDefaultUserAddressUseCase.js";
 import { SetDefaultUserAddressUseCase } from "../../Application/useCase/User/Address/setDefaultUserAddress.usecase.js";
-import { ICheckServiceablePartnersUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/ICheckServiceablePartnersUsecase.js";
-import { CheckServiceablePartnersUsecase } from "../../Application/useCase/User/Booking/CheckServiceablePartners.usecase.js";
+// import { ICheckServiceablePartnersUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/ICheckServiceablePartnersUsecase.js";
+// import { CheckServiceablePartnersUsecase } from "../../Application/useCase/User/Booking/CheckServiceablePartners.usecase.js";
 import { IFindServicableAgencyUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase.js";
 import { FindServicableAgencyUsecase } from "../../Application/useCase/User/Booking/findServicableAgency.usecase.js";
 // import { IGetAddressesByPincodeUsecase } from "../../Application/interfaces/useCase_Interfaces/user/Booking/IGetAddressesByPincodeUsecase.js";
@@ -369,9 +369,9 @@ export class UsecaseRegistery {
             useClass: SetDefaultUserAddressUseCase
         });
 
-        container.register<ICheckServiceablePartnersUsecase>("ICheckServiceablePartnersUsecase",{
-            useClass:CheckServiceablePartnersUsecase
-        })
+        // container.register<ICheckServiceablePartnersUsecase>("ICheckServiceablePartnersUsecase",{
+        //     useClass:CheckServiceablePartnersUsecase
+        // })
 
         container.register<IFindServicableAgencyUsecase>("IFindServicableAgencyUsecase",{
             useClass: FindServicableAgencyUsecase

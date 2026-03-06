@@ -1,17 +1,6 @@
 import { AppError } from "../../utils/customError";
 
 export type ServiceType = "STANDARD" | "EXPRESS";
-export type SizeCategory = "SMALL" | "MEDIUM" | "LARGE";
-
-export interface SizePricing {
-  price: number;
-}
-
-export interface SizePricingMap {
-  SMALL: SizePricing;
-  MEDIUM: SizePricing;
-  LARGE: SizePricing;
-}
 
 export class AgencyPricing {
   constructor(
@@ -23,13 +12,13 @@ export class AgencyPricing {
     public basePrice: number,
     public pricePerKm: number,
 
-    public sizePricing: SizePricingMap,
+    public pricePerKg: number,
 
     public isActive: boolean,
-    public policyVersion:number,
+    public policyVersion: number,
 
     public readonly createdAt?: Date,
-    public readonly updatedAt?: Date,
+    public readonly updatedAt?: Date
   ) {
     this.validate();
   }
@@ -43,10 +32,8 @@ export class AgencyPricing {
       throw new AppError("Price per km must be greater than zero");
     }
 
-    for (const [size, pricing] of Object.entries(this.sizePricing)) {
-      if (pricing.price < 0) {
-        throw new AppError(`Invalid price for size ${size}`);
-      }
+    if (this.pricePerKg <= 0) {
+      throw new AppError("Price per kg must be greater than zero");
     }
   }
 }

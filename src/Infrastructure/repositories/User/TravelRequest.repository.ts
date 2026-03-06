@@ -1,6 +1,6 @@
 import { ServiceableTravelerDTO } from "../../../Application/Dto/User/Booking.dto";
 import { ITravelRequestRepository } from "../../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/ITravelRequestRepository";
-import { GeoLocation } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/ICheckServiceablePartnersUsecase";
+import { GeoLocation } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase";
 import { TravelRequest } from "../../../Domain/Entities/User/TravelRequest";
 import { AppError } from "../../../Domain/utils/customError";
 import { USER_MESSAGES } from "../../constants/messages/userMessage";

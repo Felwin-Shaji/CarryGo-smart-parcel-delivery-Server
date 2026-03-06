@@ -11,28 +11,32 @@ export class AdminPricingPolicyMapper {
             dto.maxBasePrice,
             dto.minPricePerKm,
             dto.maxPricePerKm,
-            dto.minSizePrice,
-            dto.maxSizePrice,
+            dto.minPricePerKg,
+            dto.maxPricePerKg,
             dto.platformFeePercent,
             true,
             latestVersion + 1
         );
     }
 
-    static toTravelerPricingPolicy(dto: AdminTravelerPricingRequestDTO, latestVersion: number): TravelerPricingPolicy {
+    static toTravelerPricingPolicy(
+        dto: AdminTravelerPricingRequestDTO,
+        latestVersion: number
+    ): TravelerPricingPolicy {
         return new TravelerPricingPolicy(
             null,
+
+            dto.basePrice,
+            dto.pricePerKm,
+
             dto.basePricePerKg,
-            dto.flightMultiplier,
-            dto.trainMultiplier,
-            dto.carMultiplier,
-            dto.busMultiplier,
-            dto.bikeMultiplier,
+
+            dto.transportMultipliers,
+
             dto.platformFeePercent,
             true,
             latestVersion + 1
-        )
+        );
     }
-
 
 }

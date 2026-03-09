@@ -3,13 +3,14 @@ import { IPaymentGatewayService } from "../../interfaces/services_Interfaces/pay
 import { ICreatePaymentOrderUsecase } from "../../interfaces/useCase_Interfaces/Payment/ICreatePaymentOrderUsecase";
 import { IGetBookingUsecase } from "../../interfaces/useCase_Interfaces/user/Booking/IGetBookingUsecase";
 import { Role } from "../../../Domain/Enums/Roles";
+import { IBookingRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
 
 @injectable()
 export class CreatePaymentOrderUsecase implements ICreatePaymentOrderUsecase {
     constructor(
         @inject("IPaymentGatewayService") private _paymentGatewayService: IPaymentGatewayService,
         @inject("IGetBookingUsecase") private _getBookingUsecase: IGetBookingUsecase,
-
+        @inject("IBookingRepository") private readonly _bookingRepo: IBookingRepository,
     ) { }
 
     async execute(userId: string, bookingId: string) {
@@ -30,6 +31,11 @@ export class CreatePaymentOrderUsecase implements ICreatePaymentOrderUsecase {
             },
         });
 
+        await this._bookingRepo.updatePayment(booking.id!, {
+            orderRef: order.orderId,
+            paymentStatus: "ORDER_CREATED"
+        });
+        
         return {
             orderId: order.orderId,
             amount: order.amount,

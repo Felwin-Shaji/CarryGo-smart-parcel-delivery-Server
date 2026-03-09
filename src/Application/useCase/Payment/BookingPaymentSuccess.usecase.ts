@@ -9,31 +9,34 @@ import { ITransactionRepository } from "../../interfaces/repositories_interfaces
 export class BookingPaymentSuccessUseCase implements IBookingPaymentSuccessUseCase {
 
     constructor(
-        @inject("IBookingRepository") private readonly bookingRepo: IBookingRepository,
+        @inject("IBookingRepository") private readonly _bookingRepo: IBookingRepository,
 
-        @inject("IWalletRepository") private readonly walletRepo: IWalletRepository,
+        @inject("IWalletRepository") private readonly _walletRepo: IWalletRepository,
 
-        @inject("ITransactionRepository") private readonly transactionRepo: ITransactionRepository
+        @inject("ITransactionRepository") private readonly _transactionRepo: ITransactionRepository
     ) { }
 
     async execute(bookingId: string, razorpayPaymentId: string): Promise<void> {
-        if(!bookingId) return 
+        if (!bookingId) return
 
-        const booking = await this.bookingRepo.getBookingById(bookingId);
+        const booking = await this._bookingRepo.getBookingById(bookingId);
         if (!booking) return;
 
         if (booking.payment.paymentStatus === "PAID") return;
 
-        const adminWallet =
-            await this.walletRepo.findByOwner("admin", "6916fac9e1872f40684651c2");
-
+        const adminWallet = await this._walletRepo.getAdminWallet();
         if (!adminWallet) return;
 
-        // 🔒 ESCROW HOLD
-        adminWallet.hold(booking.pricing.totalAmount);
-        await this.walletRepo.update(adminWallet);
+        const existingTxn = await this._transactionRepo.findByGatewayReferenceId(razorpayPaymentId);
+        if (existingTxn) return;
 
-        await this.transactionRepo.create(
+        // ESCROW HOLD
+        adminWallet.hold(booking.pricing.totalAmount);
+        await this._walletRepo.update(adminWallet);
+
+
+
+        await this._transactionRepo.create(
             new Transaction(
                 null,
                 adminWallet.id!,
@@ -48,8 +51,12 @@ export class BookingPaymentSuccessUseCase implements IBookingPaymentSuccessUseCa
             )
         );
 
+        await this._bookingRepo.updatePayment(bookingId, {
+            paymentRef: razorpayPaymentId,
+            paymentStatus: "PAID",
+            paidAt: new Date()
+        })
 
-
-        await this.bookingRepo.updateStatus(bookingId, "PAID_PENDING_PICKUP");
+        await this._bookingRepo.updateStatus(bookingId, "PAID_PENDING_PICKUP");
     }
 }

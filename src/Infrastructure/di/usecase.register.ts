@@ -160,6 +160,8 @@ import { IFindServiceableTravelerUsecase } from "../../Application/interfaces/us
 import { FindServiceableTravelerUsecase } from "../../Application/useCase/User/Booking/FindServiceableTraveler.usecase.js";
 import { IWithdrawWalletMoneyUseCase } from "../../Application/interfaces/useCase_Interfaces/Wallet/IWithdrawWalletMoneyUseCase.js";
 import { WithdrawWalletMoneyUseCase } from "../../Application/useCase/Wallet/WithdrawWalletMoney.usecase.js";
+import { IBookingPaymentFailedUseCase } from "../../Application/interfaces/useCase_Interfaces/Payment/IBookingPaymentFailedUseCase.js";
+import { BookingPaymentFailedUseCase } from "../../Application/useCase/Payment/BookingPaymentFailed.usecase.js";
 
 
 
@@ -440,6 +442,10 @@ export class UsecaseRegistery {
         container.register<IBookingPaymentSuccessUseCase>("IBookingPaymentSuccessUseCase",{
             useClass:BookingPaymentSuccessUseCase
         })
+
+        container.register<IBookingPaymentFailedUseCase>("IBookingPaymentFailedUseCase",{
+            useClass:BookingPaymentFailedUseCase
+        });
 
         container.register<IUserBookingsUsecase>("IUserBookingsUsecase",{
             useClass:UserBookingsUsecase

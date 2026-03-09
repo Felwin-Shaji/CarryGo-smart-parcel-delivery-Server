@@ -1,4 +1,5 @@
 import { Booking } from "../../../../Domain/Entities/Booking/Booking";
+import { BookingStatusType, PaymentStatusType } from "../../../../Infrastructure/Types/types";
 import { BookingFilterDTO } from "../../../Dto/User/Booking.dto";
 
 export interface IBookingRepository {
@@ -13,12 +14,12 @@ export interface IBookingRepository {
         payment: {
             orderRef?: string;
             paymentRef?: string;
-            paymentStatus: string;
+            paymentStatus: PaymentStatusType;
             paidAt?: Date;
         }
     ): Promise<void>;
 
-    updateStatus(bookingId: string, status: string): Promise<void>;
+    updateStatus(bookingId: string, status: BookingStatusType): Promise<void>;
 
     findByTravelRequestId(travelRequestId: string): Promise<Booking[]>;
 

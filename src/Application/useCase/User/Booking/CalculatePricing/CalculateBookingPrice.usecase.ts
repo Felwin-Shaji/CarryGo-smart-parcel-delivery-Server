@@ -23,10 +23,10 @@ export class CalculateBookingPriceUsecase implements ICalculateBookingPriceUseca
 
     async execute(userId: string, dto: CalculatePriceRequestDTO): Promise<CalculatePriceResponseDTO> {
 
-        const { deliveryType, pickupAddressId, deliveryAddressId } = dto;
+        const { deliveryType, pickupAddress, deliveryAddress } = dto;
 
-        const pickupAddress = await this._userRepo.getAddressById(userId, pickupAddressId);
-        const deliveryAddress = await this._userRepo.getAddressById(userId, deliveryAddressId);
+        // const pickupAddresss = await this._userRepo.getAddressById(userId, pickupAddressId);
+        // const deliveryAddress = await this._userRepo.getAddressById(userId, deliveryAddressId);
 
         if (!pickupAddress || !deliveryAddress) {
             throw new AppError(USER_MESSAGES.INVALID_ADDRESS, STATUS.BAD_REQUEST);

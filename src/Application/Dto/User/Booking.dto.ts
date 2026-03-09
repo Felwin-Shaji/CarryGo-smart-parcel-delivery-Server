@@ -80,7 +80,7 @@ export interface ServiceableAgencyAndTravelerDTO {
 
 
 export type AddressResponseDTO = {
-  id: string | null;
+  id?: string | null;
 
   label: "Home" | "Office" | "Warehouse" | "Other";
 
@@ -101,6 +101,8 @@ export type AddressResponseDTO = {
   isDefault: boolean;
 };
 
+export type BookingAddressDTO = AddressResponseDTO;
+
 export interface CalculatePriceRequestDTO {
   deliveryType: "AGENCY" | "TRAVELER";
   partnerId?: string;
@@ -120,8 +122,8 @@ export interface CalculatePriceRequestDTO {
     fragile?: boolean;
   };
 
-  pickupAddressId: string;
-  deliveryAddressId: string;
+  pickupAddress: BookingAddressDTO;
+  deliveryAddress: BookingAddressDTO;
 }
 
 export interface CalculatePriceResponseDTO {
@@ -141,8 +143,8 @@ type AgencyBookingDTO = {
   deliveryType: "AGENCY";
   partnerId: string;
 
-  pickupAddressId: string;
-  deliveryAddressId: string;
+  pickupAddress: BookingAddressDTO;
+  deliveryAddress: BookingAddressDTO;
 
   packageDetails: {
     category: string;
@@ -165,8 +167,8 @@ type TravelerBookingDTO = {
   partnerId: string;
   travelRequestId: string;
 
-  pickupAddressId: string;
-  deliveryAddressId: string;
+  pickupAddress: BookingAddressDTO;
+  deliveryAddress: BookingAddressDTO;
 
   packageDetails: {
     category: string;
@@ -288,7 +290,7 @@ export interface BookingFilterDTO {
   status?: string;
   paymentStatus?: string;
 
-  size?: string;
+  // size?: string;
 
   minPrice?: number;
   maxPrice?: number;

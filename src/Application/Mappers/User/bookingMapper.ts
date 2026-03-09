@@ -1,6 +1,6 @@
 import { Booking, PartnerEntity } from "../../../Domain/Entities/Booking/Booking";
 import { Address } from "../../../Domain/Entities/User/Address";
-import { BookingListResponseDTO, CalculatePriceResponseDTO, UserBookingsDTO, } from "../../Dto/User/Booking.dto";
+import { AddressResponseDTO, BookingListResponseDTO, CalculatePriceResponseDTO, UserBookingsDTO, } from "../../Dto/User/Booking.dto";
 import {
     BookingStatusType,
     PaymentGatewayType,
@@ -17,8 +17,8 @@ export class BookingMapper {
         deliveryPartnerType: DeliveryPartnerType;
         partnerSnapshot: PartnerEntity | null;
         travelRequestId?: string | null;
-        pickup: Address;
-        delivery: Address;
+        pickup: AddressResponseDTO;
+        delivery: AddressResponseDTO;
 
         packageDetails: {
             category: string;
@@ -57,7 +57,7 @@ export class BookingMapper {
 
             {
                 label: pickup.label,
-                formattedAddress: pickup.formattedAddress,
+                formattedAddress: pickup.formattedAddress!,
                 city: pickup.city,
                 state: pickup.state,
                 country: pickup.country,
@@ -67,7 +67,7 @@ export class BookingMapper {
 
             {
                 label: delivery.label,
-                formattedAddress: delivery.formattedAddress,
+                formattedAddress: delivery.formattedAddress!,
                 city: delivery.city,
                 state: delivery.state,
                 country: delivery.country,

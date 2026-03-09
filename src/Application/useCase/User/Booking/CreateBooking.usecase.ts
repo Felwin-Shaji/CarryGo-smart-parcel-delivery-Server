@@ -29,8 +29,8 @@ export class CreateBookingUsecase implements ICreateBookingUsecase {
 
     async execute(userId: string, payload: CreateBookingRequestDTO): Promise<{ bookingId: string }> {
 
-        const pickup = await this._userRepo.getAddressById(userId, payload.pickupAddressId);
-        const delivery = await this._userRepo.getAddressById(userId, payload.deliveryAddressId);
+        const pickup = payload.pickupAddress;
+        const delivery = payload.deliveryAddress;
 
         if (!pickup || !delivery) {
             throw new AppError(USER_MESSAGES.INVALID_ADDRESS, STATUS.BAD_REQUEST);

@@ -1,3 +1,4 @@
+import { FilterQuery } from "mongoose";
 import { BookingFilterDTO } from "../../../Application/Dto/User/Booking.dto";
 import { IBookingRepository } from "../../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
 import { Booking } from "../../../Domain/Entities/Booking/Booking";
@@ -57,12 +58,12 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
             deliveryType,
             status,
             paymentStatus,
-            size,
+            // size,
             minPrice,
             maxPrice,
         } = dto;
 
-        const query: any = { userId };
+        const query: FilterQuery<BookingDocument> = { userId };
 
         if (deliveryType && deliveryType !== "ALL") {
             query.deliveryPartnerType = deliveryType;
@@ -74,10 +75,6 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
 
         if (paymentStatus && paymentStatus !== "ALL") {
             query["payment.paymentStatus"] = paymentStatus;
-        }
-
-        if (size && size !== "ALL") {
-            query["packageDetails.size"] = size;
         }
 
         if (minPrice || maxPrice) {
@@ -106,24 +103,34 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
         payment: {
             orderRef?: string;
             paymentRef?: string;
-            paymentStatus: PaymentStatusType;
+            paymentStatus?: PaymentStatusType;
             paidAt?: Date;
         }
     ): Promise<void> {
 
-        await this.findOneAndUpdate(
-            { _id: bookingId },
-            {
-                $set: {
-                    "payment.orderRef": payment.orderRef,
-                    "payment.paymentRef": payment.paymentRef,
-                    "payment.paymentStatus": payment.paymentStatus,
-                    "payment.paidAt": payment.paidAt,
-                },
-            }
-        );
+        const updateFields: Record<string, string | Date | PaymentStatusType> = {};
 
-    };
+        if (payment.orderRef !== undefined) {
+            updateFields["payment.orderRef"] = payment.orderRef;
+        }
+
+        if (payment.paymentRef !== undefined) {
+            updateFields["payment.paymentRef"] = payment.paymentRef;
+        }
+
+        if (payment.paymentStatus !== undefined) {
+            updateFields["payment.paymentStatus"] = payment.paymentStatus;
+        }
+
+        if (payment.paidAt !== undefined) {
+            updateFields["payment.paidAt"] = payment.paidAt;
+        }
+
+        await this.model.findOneAndUpdate(
+            { _id: bookingId },
+            { $set: updateFields }
+        );
+    }
 
     async updateStatus(bookingId: string, status: BookingStatusType): Promise<void> {
         await this.model.updateOne(

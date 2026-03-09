@@ -16,6 +16,11 @@ export class WalletRepository extends BaseRepository<WalletDocument> implements 
         return wallet ? this.toEntity(wallet) : null;
     }
 
+    async getAdminWallet(): Promise<Wallet | null> {
+        const wallet = await this.model.findOne({ ownerType: "admin", ownerId:"6916fac9e1872f40684651c2" }).lean();
+        return wallet ? this.toEntity(wallet) : null;
+    }
+
     async findWalletById(walletId: string): Promise<Wallet | null> {
         const wallet = await this.model.findById(walletId).lean();
         return wallet ? this.toEntity(wallet) : null;

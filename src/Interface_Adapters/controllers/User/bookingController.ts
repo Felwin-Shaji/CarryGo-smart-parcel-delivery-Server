@@ -15,6 +15,9 @@ import { IUserBookingsUsecase } from "../../../Application/interfaces/useCase_In
 import { IGetBookingUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IGetBookingUsecase";
 import { IFindServicableAgencyUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase";
 import { IFindServiceableTravelerUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServiceableTravelerUsecase";
+import { STATES } from "mongoose";
+import { IBookingPaymentFailedUseCase } from "../../../Application/interfaces/useCase_Interfaces/Payment/IBookingPaymentFailedUseCase";
+import { error } from "console";
 
 
 @injectable()
@@ -29,6 +32,7 @@ export class UserBookingController implements IUserBookingController {
         @inject("IGetBookingUsecase") private _getBookingUsecase: IGetBookingUsecase,
         @inject("IFindServicableAgencyUsecase") private _findServicableAgencyUsecase: IFindServicableAgencyUsecase,
         @inject("IFindServiceableTravelerUsecase") private _findServiceableTravelerUsecase: IFindServiceableTravelerUsecase,
+        @inject("IBookingPaymentFailedUseCase") private _bookingPaymentFailedUseCase: IBookingPaymentFailedUseCase,
 
 
     ) { };
@@ -143,13 +147,29 @@ export class UserBookingController implements IUserBookingController {
         try {
 
             return res.status(STATUS.ACCEPTED).json(
-                ApiResponse.success(BOOKING_MESSAGE.INVALID_AMOUNT,)
+                ApiResponse.success(BOOKING_MESSAGE.INVALID_AMOUNT, STATUS.OK)
             )
 
         } catch (error) {
             next(error)
         }
     }
+
+    paymentfailure = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            const { bookingId } = req.body;
+            console.log(bookingId,error)
+            if (!bookingId) throw new AppError(BOOKING_MESSAGE.NOT_FOUND, STATUS.NOT_FOUND);
+
+            await this._bookingPaymentFailedUseCase.execute(bookingId)
+            return res.status(STATUS.ACCEPTED).json(
+                ApiResponse.success(BOOKING_MESSAGE.INVALID_AMOUNT, STATUS.OK)
+            )
+
+        } catch (error) {
+            next(error)
+        }
+    };
 
     userBookings = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
@@ -161,7 +181,7 @@ export class UserBookingController implements IUserBookingController {
                 deliveryType: req.query.deliveryType?.toString() || '',
                 status: req.query.status?.toString() || "",
                 paymentStatus: req.query.paymentStatus?.toString() || "",
-                size: req.query.size?.toString() || "",
+                // size: req.query.size?.toString() || "",
             }
             if (!userId) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
 

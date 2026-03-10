@@ -16,10 +16,6 @@ export type TransportMode =
     | "BUS"
     | "BIKE";
 
-export type PackageSizeType =
-    | "SMALL"
-    | "MEDIUM"
-    | "LARGE";
 
 export interface TravelRequestDocument extends Document {
     _id: Types.ObjectId;
@@ -40,16 +36,25 @@ export interface TravelRequestDocument extends Document {
     endPincode: string;
 
     departureAt: Date;
-    arrivalAt?: Date;
+    arrivalAt?: Date | null;
 
     capacityKg: number;
     remainingCapacityKg: number;
-    allowedPackageSizes: PackageSizeType[];
-    pricePerKg?: number;
+
+    totalVolumeCm3: number;
+    remainingVolumeCm3: number;
+
+    allowedPackageDimensions: {
+        maxLengthCm: number;
+        maxWidthCm: number;
+        maxHeightCm: number;
+    };
+
+    pricePerKg?: number | null;
 
     modeOfTransport: TransportMode;
 
-    description?: string;
+    description?: string | null;
 
     status: TravelRequestStatus;
 
@@ -95,7 +100,16 @@ const travelRequestSchema = new Schema<TravelRequestDocument>(
 
         capacityKg: { type: Number, required: true, },
         remainingCapacityKg: { type: Number, required: true, },
-        allowedPackageSizes: { type: [String], enum: ["SMALL", "MEDIUM", "LARGE"], required: true, },
+
+        totalVolumeCm3: { type: Number, required: true, },
+        remainingVolumeCm3: { type: Number, required: true, },
+
+        allowedPackageDimensions: {
+            maxLengthCm: { type: Number, required: true, },
+            maxWidthCm: { type: Number, required: true, },
+            maxHeightCm: { type: Number, required: true, },
+        },
+
         pricePerKg: { type: Number, },
 
         modeOfTransport: {

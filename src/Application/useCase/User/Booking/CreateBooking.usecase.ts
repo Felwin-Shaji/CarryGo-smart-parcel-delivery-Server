@@ -12,7 +12,6 @@ import { BookingMapper } from "../../../Mappers/User/bookingMapper";
 import { ICalculateBookingPriceUsecase } from "../../../interfaces/useCase_Interfaces/user/Booking/ICalculateBookingPriceUsecase";
 import { ITravelRequestRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/ITravelRequestRepository";
 import { AGENCY_MESSAGES } from "../../../../Infrastructure/constants/messages/agencyMessages";
-import { afterEach } from "node:test";
 import { DeliveryPartner } from "../../../../Domain/Enums/DeliveryPartnerType";
 
 @injectable()
@@ -64,12 +63,15 @@ export class CreateBookingUsecase implements ICreateBookingUsecase {
                 if (!payload.travelRequestId) throw new AppError(USER_MESSAGES.TRAVEL_REQUEST_ID_MISSING, STATUS.BAD_REQUEST);
 
                 const travelRequest = await this._travelRequestRepo.getTravelRequestById(payload.travelRequestId);
+                if (!travelRequest) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
 
-                if (payload.packageDetails.weightKg > travelRequest.remainingCapacityKg) throw new AppError(USER_MESSAGES.REMAINING_CAPACITY_ERROR, STATUS.BAD_REQUEST);
-                travelRequest.reduceCapacity(payload.packageDetails.weightKg);
+                if (!travelRequest.canAcceptPackage(payload.packageDetails)) {
+                    throw new AppError(USER_MESSAGES.REMAINING_CAPACITY_ERROR, STATUS.BAD_REQUEST);
+                }
+                travelRequest.reduceCapacity(payload.packageDetails);
 
-                const traveler = await this._userRepo.findById({_id:travelRequest.travelerId})
-                if(!traveler) throw new AppError(USER_MESSAGES.NOT_FOUND,STATUS.NOT_FOUND)
+                const traveler = await this._userRepo.findById({ _id: travelRequest.travelerId })
+                if (!traveler) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND)
 
                 await this._travelRequestRepo.update(travelRequest);
 

@@ -56,8 +56,6 @@ export type PaymentStatusType =
     | "REFUNDED";
 
 
-export type PackageSizeType = "SMALL" | "MEDIUM" | "LARGE";
-
 
 export type DeliveryPartnerType = "AGENCY" | "TRAVELER";
 

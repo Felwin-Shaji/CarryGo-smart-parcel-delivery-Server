@@ -1,26 +1,49 @@
-import { TransportMode } from "../../../Domain/Entities/User/TravelRequest";
+import { TransportMode, TravelRequest } from "../../../Domain/Entities/User/TravelRequest";
 import { IDType } from "../../../Domain/Entities/Worker/WorkerKyc";
-import { PackageSizeType } from "../../../Infrastructure/Types/types";
+import { AddressResponseDTO } from "./Booking.dto";
 
 export interface SubmitTravelerKycRequestDTO {
-    idType: IDType;
-    idNumber: string;
+  idType: IDType;
+  idNumber: string;
 }
 
+export type TravelerRequestAddressDTO = AddressResponseDTO;
+
+
 export interface CreateTravelRequestDTO {
-  startAddressId: string;
-  endAddressId: string;
+  startAddress: TravelerRequestAddressDTO;
+  endAddress: TravelerRequestAddressDTO;
 
   departureAt: string;
   arrivalAt?: string;
 
   capacityKg: number;
-  remainingCapacityKg: number;
 
-  allowedPackageSizes: PackageSizeType[];
+  totalVolumeCm3: number;
+
+  allowedPackageDimensions: {
+    maxLengthCm: number;
+    maxWidthCm: number;
+    maxHeightCm: number;
+  };
+
+  pricePerKg?: number;
+
   modeOfTransport: TransportMode;
 
   description?: string;
+}
+
+export interface TravelerRequestFilterDTO {
+    page: number;
+  limit: number;
+  status :string;
+}
+
+export interface PaginatedTravelRequestResponceDTO {
+  data: TravelRequest[];
+  totalPages: number;
+  totalItems: number;
 }
 
 
@@ -54,7 +77,14 @@ export interface TripDetailsResponseDTO {
   capacityKg: number;
   remainingCapacityKg: number;
 
-  allowedPackageSizes: string[];
+  totalVolumeCm3: number;
+  remainingVolumeCm3: number;
+
+  allowedPackageDimensions: {
+    maxLengthCm: number;
+    maxWidthCm: number;
+    maxHeightCm: number;
+  };
 
   description?: string;
 

@@ -1,4 +1,4 @@
-import { FilterQuery } from "mongoose";
+import { FilterQuery, Types } from "mongoose";
 import { BookingFilterDTO } from "../../../Application/Dto/User/Booking.dto";
 import { IBookingRepository } from "../../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
 import { Booking } from "../../../Domain/Entities/Booking/Booking";
@@ -139,11 +139,11 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
         );
     }
 
-    async findByTravelRequestId(travelRequestId: string): Promise<Booking[]> {
+    async  findByTravelRequestId(travelRequestId: string): Promise<Booking[]> {
 
         const docs = await this.model
             .find({
-                travelRequestId,
+                "partnerSnapshot.partnerId": new Types.ObjectId(travelRequestId),
                 deliveryPartnerType: DeliveryPartner.TRAVELER
             })
             .sort({ createdAt: -1 });

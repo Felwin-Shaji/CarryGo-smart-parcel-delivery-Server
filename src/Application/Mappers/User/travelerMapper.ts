@@ -1,40 +1,62 @@
 import { Booking } from "../../../Domain/Entities/Booking/Booking";
 import { User } from "../../../Domain/Entities/User";
-import { Address } from "../../../Domain/Entities/User/Address";
 import { TravelRequest } from "../../../Domain/Entities/User/TravelRequest";
 import { IWrokerKYCVerification } from "../../../Domain/Entities/Worker/WorkerKyc";
 import { PaymentStatus } from "../../../Domain/Enums/PaymentStatus";
+import { AppError } from "../../../Domain/utils/customError";
+import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { BookingStatusType } from "../../../Infrastructure/Types/types";
-import { CreateTravelRequestDTO, TripDetailsResponseDTO } from "../../Dto/User/traveler.dto";
+import { CreateTravelRequestDTO, TravelerRequestAddressDTO, TripDetailsResponseDTO } from "../../Dto/User/traveler.dto";
 import { GetTravelerKycResponseDTO } from "../../Dto/User/user.dto";
 
 export class TravelerMapper {
 
-    static toDomainTravelerKyc(dto: CreateTravelRequestDTO, travelerId: string, startAddress: Address, endAddress: Address): TravelRequest {
-        const formattedStartAddress = startAddress.formattedAddress 
+    static toDomainTravelRequest(
+        dto: CreateTravelRequestDTO,
+        travelerId: string,
+        startAddress: TravelerRequestAddressDTO,
+        endAddress: TravelerRequestAddressDTO
+    ): TravelRequest {
 
-        const formattedEndAddress = endAddress.formattedAddress 
+        const formattedStartAddress = startAddress.formattedAddress;
+        const formattedEndAddress = endAddress.formattedAddress;
+
+        if (!formattedStartAddress || !formattedEndAddress) {
+            throw new AppError(USER_MESSAGES.TRAVEL_REQUEST_ADDRESS_ERROR, STATUS.BAD_REQUEST);
+        }
 
         return new TravelRequest(
             null,
             travelerId,
+
             startAddress.location,
             formattedStartAddress,
             startAddress.pincode,
+
             endAddress.location,
-            endAddress.pincode,
             formattedEndAddress,
+            endAddress.pincode,
+
             new Date(dto.departureAt),
             dto.arrivalAt ? new Date(dto.arrivalAt) : null,
+
             dto.capacityKg,
             dto.capacityKg,
-            dto.allowedPackageSizes,
-            null,
+
+            dto.totalVolumeCm3,
+            dto.totalVolumeCm3,
+
+            dto.allowedPackageDimensions,
+
+            dto.pricePerKg ?? null,
+
             dto.modeOfTransport,
+
             dto.description ?? null,
+
             "DRAFT"
         );
-
     }
 
     static toGetTravelerKycResponseDTO(kyc: IWrokerKYCVerification, user: User): GetTravelerKycResponseDTO {
@@ -141,7 +163,10 @@ export class TravelerMapper {
             capacityKg: travelRequest.capacityKg,
             remainingCapacityKg: travelRequest.remainingCapacityKg,
 
-            allowedPackageSizes: travelRequest.allowedPackageSizes,
+            totalVolumeCm3: travelRequest.totalVolumeCm3,
+            remainingVolumeCm3: travelRequest.remainingVolumeCm3,
+
+            allowedPackageDimensions: travelRequest.allowedPackageDimensions,
 
             description: travelRequest.description ?? "",
 

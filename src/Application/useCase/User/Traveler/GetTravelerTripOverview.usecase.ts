@@ -20,7 +20,11 @@ export class GetTravelerTripOverviewUseCase implements IGetTravelerTripOverviewU
     const trip = await this._travelRequestRepository.getTravelRequestById(travelRequestId)
     if (!trip) throw new AppError(USER_MESSAGES.TRAVEL_REQUEST_NOT_FOUND, STATUS.NOT_FOUND);
 
+    if (trip.travelerId !== userId) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.FORBIDDEN);
+
     const bookings = await this._bookingRepo.findByTravelRequestId(travelRequestId);
-    return TravelerMapper.toGetTravelRequestByIdResponseDTO(trip, bookings);
+
+    const response = TravelerMapper.toGetTravelRequestByIdResponseDTO(trip, bookings);
+    return response
   }
 }

@@ -1,5 +1,5 @@
 import { AddressEntity, HubJourney, PackageDetails, PartnerEntity } from "../../../Domain/Entities/Booking/Booking";
-import { BookingStatusType, DeliveryPartnerType, PackageSizeType, PaymentGatewayType, PaymentMethodType, PaymentStatusType } from "../../../Infrastructure/Types/types";
+import { BookingStatusType, DeliveryPartnerType, PaymentGatewayType, PaymentMethodType, PaymentStatusType } from "../../../Infrastructure/Types/types";
 
 /**
  * Represents the response structure for user booking validate picode
@@ -245,11 +245,7 @@ export interface BookingDetailsResponse {
   pickupAddress: AddressEntity;
   deliveryAddress: AddressEntity;
 
-  packageDetails: {
-    category: string;
-    size: PackageSizeType;
-    weightKg: number;
-  };
+  packageDetails: PackageDetails
 
   pricing: {
     basePrice: number;

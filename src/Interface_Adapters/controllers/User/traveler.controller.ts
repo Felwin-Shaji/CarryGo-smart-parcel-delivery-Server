@@ -5,7 +5,7 @@ import { ITravelerController } from "../../Interface/Controllers_Interfaces/User
 import { WorkerKYCFileFields } from "../../../Infrastructure/services/storage/multer";
 import { inject, injectable } from "tsyringe";
 import { ISubmitTravelerKycUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Traveler/ISubmitTravelerKycUseCase";
-import { CreateTravelRequestDTO, SubmitTravelerKycRequestDTO } from "../../../Application/Dto/User/traveler.dto";
+import { CreateTravelRequestDTO, SubmitTravelerKycRequestDTO, TravelerRequestFilterDTO } from "../../../Application/Dto/User/traveler.dto";
 import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
 import { AppError } from "../../../Domain/utils/customError";
 import { IGetTravelerKycUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Traveler/IGetTravelerKycUseCase";
@@ -113,7 +113,13 @@ export class TravelerController implements ITravelerController {
             const userId = req.user?.id;
             if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
 
-            const travelRequests = await this._getTravelRequestsUseCase.execute(userId);
+            const dto: TravelerRequestFilterDTO = {
+                page: Number(req.query.page) || 1,
+                limit: Number(req.query.limit) || 5,
+                status: req.query.status as string | "",
+            }
+
+            const travelRequests = await this._getTravelRequestsUseCase.execute(userId, dto);
 
             res.status(STATUS.OK).json(
                 ApiResponse.success(
@@ -126,6 +132,7 @@ export class TravelerController implements ITravelerController {
         }
     };
 
+
     getTravelRequestById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
         try {
             const userId = req.user?.id;
@@ -135,6 +142,7 @@ export class TravelerController implements ITravelerController {
             if (!travelRequestId) throw new AppError(USER_MESSAGES.TRAVEL_REQUEST_ID_MISSING, STATUS.BAD_REQUEST);
 
             const travelRequest = await this._getTravelerTripOverviewUseCase.execute(userId, travelRequestId);
+
 
             res.status(STATUS.OK).json(
                 ApiResponse.success(
@@ -146,4 +154,5 @@ export class TravelerController implements ITravelerController {
             next(error);
         }
     }
+
 }

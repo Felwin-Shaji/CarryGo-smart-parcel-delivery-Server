@@ -60,7 +60,7 @@ export class UserBookingController implements IUserBookingController {
         try {
             const { pickupLocation, deliveryLocation } = req.body;
 
-            const servicableTravelers = this._findServiceableTravelerUsecase.execute(pickupLocation, deliveryLocation)
+            const servicableTravelers = await this._findServiceableTravelerUsecase.execute(pickupLocation, deliveryLocation)
 
             return res.status(STATUS.OK).json(
                 ApiResponse.success(
@@ -122,11 +122,8 @@ export class UserBookingController implements IUserBookingController {
 
     createPaymentOrder = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
-            console.log("............................................................................... /n ...........................................................................")
             const key = process.env.RAZORPAY_KEY_ID
-            console.log(req.params, req.query, "🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻")
             const { bookingId } = req.params
-            console.log(key)
             const userId = req.user?.id;
             if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_GATEWAY)
 
@@ -158,7 +155,6 @@ export class UserBookingController implements IUserBookingController {
     paymentfailure = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const { bookingId } = req.body;
-            console.log(bookingId,error)
             if (!bookingId) throw new AppError(BOOKING_MESSAGE.NOT_FOUND, STATUS.NOT_FOUND);
 
             await this._bookingPaymentFailedUseCase.execute(bookingId)

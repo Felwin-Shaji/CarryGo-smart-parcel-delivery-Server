@@ -7,7 +7,7 @@ export const USER_MESSAGES = {
   PROFILE_UPDATED:"User profile updated successfully",
   PROFILE_UPDATE_FAILURE:"User profile updation failed",
   RESET_PASSWORD:"New password updated",
-  PASSWORD_NOT_MATCHED:"password does not match",
+  PASSWORD_NOT_MATCHED:"The old password you entered is incorrect.",
   RESET_PASSWORD_FAILURE:"Reset password failed , please try again later",
   INVALID_ADDRESS:"Invalid address selection",
 

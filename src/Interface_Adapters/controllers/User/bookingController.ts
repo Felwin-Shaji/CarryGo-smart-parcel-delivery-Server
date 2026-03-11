@@ -5,26 +5,21 @@ import { ApiResponse } from "../../presenters/ApiResponse";
 import { IUserBookingController } from "../../Interface/Controllers_Interfaces/User_interfaces/Booking/IUserBookingController";
 import { BOOKING_MESSAGE } from "../../../Infrastructure/constants/messages/bookingMessages";
 import { AppError } from "../../../Domain/utils/customError";
-// import { IGetAddressesByPincodeUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IGetAddressesByPincodeUsecase";
 import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
 import { ICalculateBookingPriceUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/ICalculateBookingPriceUsecase";
-import { BookingFilterDTO, CalculatePriceRequestDTO, CreateBookingRequestDTO } from "../../../Application/Dto/User/Booking.dto";
+import { BookingFilterDTO, CalculatePriceRequestDTO, CheckServiceableAgencyDTO, CheckServiceableTravelerDTO, CreateBookingRequestDTO } from "../../../Application/Dto/User/Booking.dto";
 import { ICreateBookingUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/ICreateBookingUsecase";
 import { ICreatePaymentOrderUsecase } from "../../../Application/interfaces/useCase_Interfaces/Payment/ICreatePaymentOrderUsecase";
 import { IUserBookingsUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IUserBookingsUsecase";
 import { IGetBookingUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IGetBookingUsecase";
 import { IFindServicableAgencyUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase";
 import { IFindServiceableTravelerUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServiceableTravelerUsecase";
-import { STATES } from "mongoose";
 import { IBookingPaymentFailedUseCase } from "../../../Application/interfaces/useCase_Interfaces/Payment/IBookingPaymentFailedUseCase";
-import { error } from "console";
 
 
 @injectable()
 export class UserBookingController implements IUserBookingController {
     constructor(
-        // @inject("ICheckServiceablePartnersUsecase") private _checkServiceablePartnersUsecase: ICheckServiceablePartnersUsecase,
-        // @inject("IGetAddressesByPincodeUsecase") private _getAddressesByPincodeUsecase: IGetAddressesByPincodeUsecase,
         @inject("ICalculateBookingPriceUsecase") private _calculateBookingPriceUsecase: ICalculateBookingPriceUsecase,
         @inject("ICreateBookingUsecase") private _createBookingUsecase: ICreateBookingUsecase,
         @inject("ICreatePaymentOrderUsecase") private _createPaymentOrderUsecase: ICreatePaymentOrderUsecase,
@@ -39,10 +34,9 @@ export class UserBookingController implements IUserBookingController {
 
     checkServiceableAgency = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
-            const { pickupLocation, deliveryLocation } = req.body;
+            const dto = req.body as CheckServiceableAgencyDTO;
 
-            // const isValidate = await this._checkServiceablePartnersUsecase.execute(pickupLocation, deliveryLocation);
-            const servicableAgency = await this._findServicableAgencyUsecase.execute(pickupLocation, deliveryLocation);
+            const servicableAgency = await this._findServicableAgencyUsecase.execute(dto);
 
             return res.status(STATUS.OK).json(
                 ApiResponse.success(
@@ -58,9 +52,9 @@ export class UserBookingController implements IUserBookingController {
 
     checkServiceableTravelers = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
-            const { pickupLocation, deliveryLocation } = req.body;
+            const dto = req.body as CheckServiceableTravelerDTO;
 
-            const servicableTravelers = await this._findServiceableTravelerUsecase.execute(pickupLocation, deliveryLocation)
+            const servicableTravelers = await this._findServiceableTravelerUsecase.execute(dto)
 
             return res.status(STATUS.OK).json(
                 ApiResponse.success(

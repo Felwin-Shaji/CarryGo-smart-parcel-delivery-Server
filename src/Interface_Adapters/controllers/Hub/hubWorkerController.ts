@@ -128,7 +128,7 @@ export class HubWorkerController implements IHubWorkerController {
             return res.status(STATUS.OK).json(
                 ApiResponse.success(
                     WORKER_MESSAGES.LIST_FETCHED,
-                    STATUS.OK
+                    hubs
                 )
             );
 

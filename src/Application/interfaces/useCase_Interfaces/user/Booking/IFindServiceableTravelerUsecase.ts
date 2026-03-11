@@ -1,9 +1,7 @@
-import { ServiceableTravelerDTO } from "../../../../Dto/User/Booking.dto";
-import { GeoLocation } from "./IFindServicableAgencyUsecase";
+import { CheckServiceableTravelerDTO, PaginationResponseDTO, ServiceableTravelerDTO } from "../../../../Dto/User/Booking.dto";
 
 export interface IFindServiceableTravelerUsecase {
   execute(
-    pickupLocation: GeoLocation,
-    deliveryLocation: GeoLocation
-  ): Promise<ServiceableTravelerDTO[]>;
+    dto: CheckServiceableTravelerDTO
+  ): Promise<PaginationResponseDTO<ServiceableTravelerDTO>>;
 }

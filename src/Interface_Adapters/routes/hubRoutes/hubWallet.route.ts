@@ -1,0 +1,29 @@
+import { BaseRoute } from "../base.route";
+import { hubWalletController } from "../../../Infrastructure/di/resolver";
+import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
+import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
+
+export class HubWalletRoute extends BaseRoute {
+
+  protected initializeRoutes(): void {
+
+    this.router.get(
+      "/wallet",
+      authenticate(["hub"]),
+      asyncHandler(hubWalletController.getHubWalletOverview)
+    );
+
+    this.router.post(
+      "/wallet/create-order",
+      authenticate(["hub"]),
+      asyncHandler(hubWalletController.createAddMoneyOrder)
+    );
+
+    this.router.post(
+      "/wallet/withdraw",
+      authenticate(["hub"]),
+      asyncHandler(hubWalletController.withdrawMoney)
+    );
+
+  }
+}

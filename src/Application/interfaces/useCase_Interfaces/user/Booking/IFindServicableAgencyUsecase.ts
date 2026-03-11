@@ -1,4 +1,4 @@
-import { ServiceableHubWithAgencyDTO } from "../../../../Dto/User/Booking.dto";
+import { CheckServiceableAgencyDTO, PaginationResponseDTO, ServiceableHubWithAgencyDTO } from "../../../../Dto/User/Booking.dto";
 
 export interface GeoLocation {
   lat: number;
@@ -7,7 +7,6 @@ export interface GeoLocation {
 
 export interface IFindServicableAgencyUsecase {
   execute(
-    pickupLocation: GeoLocation,
-    deliveryLocation: GeoLocation
-  ): Promise<ServiceableHubWithAgencyDTO[]>;
+    dto: CheckServiceableAgencyDTO
+  ): Promise<PaginationResponseDTO<ServiceableHubWithAgencyDTO>>;
 }

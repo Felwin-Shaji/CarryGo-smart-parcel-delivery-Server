@@ -1,5 +1,6 @@
 import { AddressEntity, HubJourney, PackageDetails, PartnerEntity } from "../../../Domain/Entities/Booking/Booking";
 import { BookingStatusType, DeliveryPartnerType, PaymentGatewayType, PaymentMethodType, PaymentStatusType } from "../../../Infrastructure/Types/types";
+import { GeoLocation } from "../../interfaces/useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase";
 
 /**
  * Represents the response structure for user booking validate picode
@@ -275,6 +276,28 @@ export interface BookingDetailsResponse {
     currentHubId?: string;
     lastUpdatedAt?: string;
   };
+}
+
+export interface CheckServiceableAgencyDTO {
+  pickupLocation: GeoLocation;
+  deliveryLocation: GeoLocation;
+  page?: number;
+  limit?: number;
+}
+
+export interface CheckServiceableTravelerDTO {
+  pickupLocation: { lat: number; lng: number };
+  deliveryLocation: { lat: number; lng: number };
+  page?: number;
+  limit?: number;
+}
+
+export interface PaginationResponseDTO<T> {
+  data: T[];
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
 }
 
 

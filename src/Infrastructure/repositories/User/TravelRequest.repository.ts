@@ -1,5 +1,5 @@
 import { FilterQuery, Types } from "mongoose";
-import { ServiceableTravelerDTO } from "../../../Application/Dto/User/Booking.dto";
+import { PaginationResponseDTO, ServiceableTravelerDTO } from "../../../Application/Dto/User/Booking.dto";
 import { ITravelRequestRepository } from "../../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/ITravelRequestRepository";
 import { GeoLocation } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase";
 import { TravelRequest } from "../../../Domain/Entities/User/TravelRequest";
@@ -112,11 +112,13 @@ export class TravelRequestRepository extends BaseRepository<TravelRequestDocumen
 
   async findServiceableTravelers(
     pickupLocation: GeoLocation,
-    deliveryLocation: GeoLocation
-  ): Promise<ServiceableTravelerDTO[]> {
+    deliveryLocation: GeoLocation,
+    page: number,
+    limit: number
+  ): Promise<PaginationResponseDTO<ServiceableTravelerDTO>> {
 
     const MAX_DISTANCE = 20000; // 20km in meters
-    const now = new Date();
+    const skip = (page - 1) * limit;
 
     const result = await TravelRequestModel.aggregate([
 
@@ -202,11 +204,29 @@ export class TravelRequestRepository extends BaseRepository<TravelRequestDocumen
             }
           }
         }
+      },
+      {
+        $facet: {
+          metadata: [{ $count: "total" }],
+          data: [
+            { $skip: skip },
+            { $limit: limit }
+          ]
+        }
       }
 
     ]);
 
-    return result;
+    const total = result[0]?.metadata[0]?.total || 0;
+    const data = result[0]?.data || [];
+
+    return {
+      data,
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit)
+    };
   }
 
   async update(travelRequest: TravelRequest): Promise<void> {

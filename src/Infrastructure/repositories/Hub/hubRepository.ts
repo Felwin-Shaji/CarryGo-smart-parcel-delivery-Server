@@ -5,7 +5,7 @@ import { IHubRepository, PaginatedHubData } from "../../../Application/interface
 import { Hub } from "../../../Domain/Entities/Hub/Hub";
 import { HubDocument, HubModel } from "../../database/models/Hub/HubModel";
 import { BaseRepository } from "../baseRepositories";
-import { ServiceableHubWithAgencyDTO } from "../../../Application/Dto/User/Booking.dto";
+import { PaginationResponseDTO, ServiceableHubWithAgencyDTO } from "../../../Application/Dto/User/Booking.dto";
 import { AppError } from "../../../Domain/utils/customError";
 import { HUB_MESSAGES } from "../../constants/messages/hubMessage";
 import { STATUS } from "../../constants/statusCodes";
@@ -138,10 +138,15 @@ export class HubRepository extends BaseRepository<HubDocument> implements IHubRe
         };
     }
 
-
-    async findServiceableAgenciesWithHubs(pickupLocation: GeoLocation, deliveryLocation: GeoLocation): Promise<ServiceableHubWithAgencyDTO[]> {
+    async findServiceableAgenciesWithHubs(
+        pickupLocation: GeoLocation,
+        deliveryLocation: GeoLocation,
+        page: number,
+        limit: number
+    ): Promise<PaginationResponseDTO<ServiceableHubWithAgencyDTO>> {
 
         const MAX_DISTANCE = 20000;
+        const skip = (page - 1) * limit;
 
         const result = await HubModel.aggregate([
             // 1️ Find hubs near pickup location
@@ -261,10 +266,30 @@ export class HubRepository extends BaseRepository<HubDocument> implements IHubRe
                         }
                     }
                 }
+            },
+
+            {
+                $facet: {
+                    metadata: [{ $count: "total" }],
+                    data: [
+                        { $skip: skip },
+                        { $limit: limit }
+                    ]
+                }
             }
         ]);
 
-        return result
+        const total = result[0]?.metadata[0]?.total || 0;
+        const data = result[0]?.data || [];
+
+
+        return {
+            data: data,
+            total,
+            page,
+            limit,
+            totalPages: Math.ceil(total / limit)
+        };
 
     }
 

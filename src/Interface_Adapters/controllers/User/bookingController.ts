@@ -53,8 +53,11 @@ export class UserBookingController implements IUserBookingController {
     checkServiceableTravelers = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const dto = req.body as CheckServiceableTravelerDTO;
+            const userId = req.user?.id
+            if (!userId) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
 
-            const servicableTravelers = await this._findServiceableTravelerUsecase.execute(dto)
+
+            const servicableTravelers = await this._findServiceableTravelerUsecase.execute(userId,dto)
 
             return res.status(STATUS.OK).json(
                 ApiResponse.success(

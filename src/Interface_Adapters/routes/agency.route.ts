@@ -1,42 +1,19 @@
-import { agencyController, agencyHubController, agencyPricingController, agencyProfileController, agencyWalletController } from "../../Infrastructure/di/resolver";
-import { agencyAddHub, agencyuploadKYC } from "../../Infrastructure/services/storage/multer";
-import { authenticate } from "../middlewares/AuthMiddleware/authenticate.middleware";
-import { asyncHandler } from "../middlewares/ErrorHandlers/asyncHandler";
 import { BaseRoute } from "./base.route";
+import { AgencyKycRoute } from "./agencyRoutes/agencyKyc.route";
+import { AgencyProfileRoute } from "./agencyRoutes/agencyProfile.route";
+import { AgencyPricingRoute } from "./agencyRoutes/agencyPricing.route";
+import { AgencyHubRoute } from "./agencyRoutes/agencyHub.route";
+import { AgencyWalletRoute } from "./agencyRoutes/agencyWallet.route";
 
 export class AgencyRoute extends BaseRoute {
-    constructor() {
-        super()
-    }
 
-    protected initializeRoutes(): void {
-        this.router.post("/kyc-varification", authenticate(["agency"]), agencyuploadKYC, asyncHandler(agencyController.submitKYC))
-        this.router.get("/dashboard/resubmit-kyc/:id", authenticate(["agency"]), asyncHandler(agencyController.getReSubmitKyc))
-        this.router.put("/dashboard/resubmit-kyc", authenticate(["agency"]), agencyuploadKYC, asyncHandler(agencyController.reSubmitKyc))
-        // this.router.get("/agency",authenticate(["agency"]),asyncHandler(agencyController.submitKYC))
+  protected initializeRoutes(): void {
 
-        this.router.get("/profile", authenticate(["agency"]), asyncHandler(agencyProfileController.getAgencyProfile));
-        this.router.put("/edit-profile", authenticate(["agency"]), asyncHandler(agencyProfileController.editAgencyProfile));
-        this.router.put("/reset-password", authenticate(["agency"]), asyncHandler(agencyProfileController.resetAgencyPassword));
+    this.router.use(new AgencyKycRoute().router);
+    this.router.use(new AgencyProfileRoute().router);
+    this.router.use(new AgencyPricingRoute().router);
+    this.router.use(new AgencyHubRoute().router);
+    this.router.use(new AgencyWalletRoute().router);
 
-
-        this.router.get("/agency-pricing-policy", authenticate(["agency"]), agencyuploadKYC, asyncHandler(agencyPricingController.getAgencyPricing))
-        this.router.post("/agency-pricing-policy", authenticate(["agency"]), agencyuploadKYC, asyncHandler(agencyPricingController.upsertAgencyPricing))
-
-
-        this.router.post("/hub/temp-register", authenticate(["agency"]), asyncHandler(agencyHubController.addNewHubBasicInfo));
-        this.router.post("/hub/resend-otp", authenticate(["agency"]), asyncHandler(agencyHubController.addNewHubResendOtp));
-        this.router.post("/hub/verify-otp", authenticate(["agency"]), asyncHandler(agencyHubController.addNewHubVerifyOtp));
-        this.router.get("/hub/temp-status", authenticate(["agency"]), asyncHandler(agencyHubController.checkTempStatus));
-
-        this.router.post("/add-newHub", authenticate(["agency"]), agencyAddHub, asyncHandler(agencyHubController.addNewHub));
-        this.router.get("/hubs", authenticate(["agency"]), asyncHandler(agencyHubController.getHubs))
-        this.router.get("/hubs/:id", authenticate(["agency"]), asyncHandler(agencyHubController.getHubById))
-
-        this.router.get('/wallet', authenticate(["agency"]), asyncHandler(agencyWalletController.getAgencyWalletOverview))
-        this.router.post('/wallet/create-order', authenticate(["agency"]), asyncHandler(agencyWalletController.createAddMoneyOrder))
-        this.router.post('/wallet/withdraw', authenticate(["agency"]), asyncHandler(agencyWalletController.withdrawMoney))
-
-    }
-
+  }
 }

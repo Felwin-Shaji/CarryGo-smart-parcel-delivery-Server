@@ -1,17 +1,17 @@
 import "reflect-metadata";
 import express from 'express';
-import { AuthRoute } from '../../Interface_Adapters/routes/auth.route.js';
+import { AuthRoute } from '../../Interface_Adapters/routes/auth.route';
 import cookieParser from "cookie-parser";
-import { loggerMiddleware } from '../../Interface_Adapters/middlewares/LoggerMiddleware/loggerMiddleware.js';
+import { loggerMiddleware } from '../../Interface_Adapters/middlewares/LoggerMiddleware/loggerMiddleware';
 import cors from "cors";
 import dotenv from "dotenv";
-import { errorHandler } from '../../Interface_Adapters/middlewares/ErrorHandlers/errorHandler.js';
-import { AgencyRoute } from '../../Interface_Adapters/routes/agency.route.js';
-import { AdminRoute } from '../../Interface_Adapters/routes/admin.route.js';
-import { HubRoute } from "../../Interface_Adapters/routes/hub.route.js";
-import { UserRoute } from "../../Interface_Adapters/routes/user.route.js";
-import { PaymentRoute } from "../../Interface_Adapters/routes/payment.routes.js";
-import { WrokerRoute } from "../../Interface_Adapters/routes/worker.route.js";
+import { errorHandler } from '../../Interface_Adapters/middlewares/ErrorHandlers/errorHandler';
+import { AgencyRoute } from '../../Interface_Adapters/routes/agency.route';
+import { AdminRoute } from '../../Interface_Adapters/routes/admin.route';
+import { HubRoute } from "../../Interface_Adapters/routes/hub.route";
+import { UserRoute } from "../../Interface_Adapters/routes/user.route";
+import { PaymentRoute } from "../../Interface_Adapters/routes/payment.routes";
+import { WrokerRoute } from "../../Interface_Adapters/routes/worker.route";
 dotenv.config();
 
 

@@ -113,6 +113,7 @@ export class TravelRequestRepository extends BaseRepository<TravelRequestDocumen
   async findServiceableTravelers(
     pickupLocation: GeoLocation,
     deliveryLocation: GeoLocation,
+    userId:string,
     page: number,
     limit: number
   ): Promise<PaginationResponseDTO<ServiceableTravelerDTO>> {
@@ -139,6 +140,7 @@ export class TravelRequestRepository extends BaseRepository<TravelRequestDocumen
       // 2️ Filter end location manually
       {
         $match: {
+          travelerId: { $ne: new Types.ObjectId(userId) }, 
           endLocation: {
             $geoWithin: {
               $centerSphere: [

@@ -1,25 +1,25 @@
 import type { NextFunction, Request, Response } from "express";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes.js";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { inject, injectable } from "tsyringe";
-import type { IAuthController } from "../../Interface/Controllers_Interfaces/Auth_Interfases/auth.controller.js";
-import { AuthMapper } from "../../../Application/Mappers/AuthMapper.js";
-import { setAuthCookies } from "../../../Domain/utils/setAuthCookies.js";
-import { AppError } from "../../../Domain/utils/customError.js";
-import type { ForgotPasswordDTO, LoginDTO, SendOtpDTO, UserDTO } from "../../../Application/Dto/Auth/Auth.dto.js";
-import type { ILogoutUsecase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/logout.usecase.js";
-import type { IRegisterUserUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/RegisterUser.useCase.js";
-import type { IRegisterAgencyUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/Agencyregisrtation.usecase.js";
-import { ISendOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/requestOtp.usecase.js";
-import { IResendOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/resendOtp.usecase.js";
-import { IVerifyOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/verifyOtp.interface.js";
-import { IGenerateTokenUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/GenerateToken.usecase.js";
-import { IRefreshTokenUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/refreshToken.usecase.js";
-import { ILoginUsecase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/login.usecase.js";
-import { IVarifyEmailUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/varifyEmail.usecase.js";
-import { IResetPasswordUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/resetPassword.usecase.js";
-import { ApiResponse } from "../../presenters/ApiResponse.js";
-import { OTP_MESSAGES } from "../../../Infrastructure/constants/messages/otpMessage.js";
-import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages.js";
+import type { IAuthController } from "../../Interface/Controllers_Interfaces/Auth_Interfases/auth.controller";
+import { AuthMapper } from "../../../Application/Mappers/AuthMapper";
+import { setAuthCookies } from "../../../Domain/utils/setAuthCookies";
+import { AppError } from "../../../Domain/utils/customError";
+import type { ForgotPasswordDTO, LoginDTO, SendOtpDTO, UserDTO } from "../../../Application/Dto/Auth/Auth.dto";
+import type { ILogoutUsecase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/logout.usecase";
+import type { IRegisterUserUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/RegisterUser.useCase";
+import type { IRegisterAgencyUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/Agencyregisrtation.usecase";
+import { ISendOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/requestOtp.usecase";
+import { IResendOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/resendOtp.usecase";
+import { IVerifyOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/verifyOtp.interface";
+import { IGenerateTokenUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/GenerateToken.usecase";
+import { IRefreshTokenUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/refreshToken.usecase";
+import { ILoginUsecase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/login.usecase";
+import { IVarifyEmailUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/varifyEmail.usecase";
+import { IResetPasswordUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/resetPassword.usecase";
+import { ApiResponse } from "../../presenters/ApiResponse";
+import { OTP_MESSAGES } from "../../../Infrastructure/constants/messages/otpMessage";
+import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
 
 
 

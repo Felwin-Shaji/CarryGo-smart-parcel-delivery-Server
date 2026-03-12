@@ -1,12 +1,12 @@
-import { BaseRepository } from "./baseRepositories.js";
-import type { User } from "../../Domain/Entities/User.js";
-import type { IUserRepository } from "../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
-import { UserModel } from "../database/models/UserModels/userModel.js";
-import { Address } from "../../Domain/Entities/User/Address.js";
-import { AppError } from "../../Domain/utils/customError.js";
-import { USER_MESSAGES } from "../constants/messages/userMessage.js";
-import { STATUS } from "../constants/statusCodes.js";
-import { AddressDBResult } from "../database/models/UserModels/AddressSchema.js";
+import { BaseRepository } from "./baseRepositories";
+import type { User } from "../../Domain/Entities/User";
+import type { IUserRepository } from "../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
+import { UserModel } from "../database/models/UserModels/userModel";
+import { Address } from "../../Domain/Entities/User/Address";
+import { AppError } from "../../Domain/utils/customError";
+import { USER_MESSAGES } from "../constants/messages/userMessage";
+import { STATUS } from "../constants/statusCodes";
+import { AddressDBResult } from "../database/models/UserModels/AddressSchema";
 
 export class UserRepository extends BaseRepository<User> implements IUserRepository {
     constructor() {

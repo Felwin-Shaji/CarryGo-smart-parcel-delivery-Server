@@ -1,13 +1,13 @@
 import { FilterQuery, Types } from "mongoose";
-import type { AgencyWithKYC_DB_Result, IAgencyRepository, PaginatedData } from "../../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository.js";
-import { Agency } from "../../../Domain/Entities/Agency/Agency.js";
-import { AgencyModel } from "../../database/models/AgencyModels/agencyModel.js";
-import { BaseRepository } from "./..//baseRepositories.js";
-import { GetAgenciesDTO } from "../../../Application/Dto/Agency/agency.dto.js";
+import type { AgencyWithKYC_DB_Result, IAgencyRepository, PaginatedData } from "../../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
+import { Agency } from "../../../Domain/Entities/Agency/Agency";
+import { AgencyModel } from "../../database/models/AgencyModels/agencyModel";
+import { BaseRepository } from "./..//baseRepositories";
+import { GetAgenciesDTO } from "../../../Application/Dto/Agency/agency.dto";
 import { threadCpuUsage } from "process";
-import { AppError } from "../../../Domain/utils/customError.js";
-import { AGENCY_MESSAGES } from "../../constants/messages/agencyMessages.js";
-import { STATUS } from "../../constants/statusCodes.js";
+import { AppError } from "../../../Domain/utils/customError";
+import { AGENCY_MESSAGES } from "../../constants/messages/agencyMessages";
+import { STATUS } from "../../constants/statusCodes";
 
 export class AgencyRepository extends BaseRepository<Agency> implements IAgencyRepository {
     constructor() {

@@ -2,6 +2,7 @@ import { CheckServiceableTravelerDTO, PaginationResponseDTO, ServiceableTraveler
 
 export interface IFindServiceableTravelerUsecase {
   execute(
+    userId:string,
     dto: CheckServiceableTravelerDTO
   ): Promise<PaginationResponseDTO<ServiceableTravelerDTO>>;
 }

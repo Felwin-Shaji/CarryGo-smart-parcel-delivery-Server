@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
-import { AppError } from "../../utils/customError.js";
-import { KYCStatus, Role } from "../../../Infrastructure/Types/types.js";
+import { AppError } from "../../utils/customError";
+import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
 
 
 export class Hub {

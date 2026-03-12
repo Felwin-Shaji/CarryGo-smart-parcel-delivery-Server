@@ -1,6 +1,6 @@
-import type { KYCStatus, Role } from "../../Infrastructure/Types/types.js";
-import { AppError } from "../utils/customError.js";
-import { Address } from "./User/Address.js";
+import type { KYCStatus, Role } from "../../Infrastructure/Types/types";
+import { AppError } from "../utils/customError";
+import { Address } from "./User/Address";
 
 export class User {
   constructor(

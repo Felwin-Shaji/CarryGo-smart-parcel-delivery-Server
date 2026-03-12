@@ -1,4 +1,4 @@
-import type { Role } from "../../Infrastructure/Types/types.js";
+import type { Role } from "../../Infrastructure/Types/types";
 
 export interface IOtpModel {
     id?: string | null;

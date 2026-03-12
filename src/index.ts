@@ -2,12 +2,12 @@ import "reflect-metadata";
 import { createServer } from "http";
 import dotenv from "dotenv";
 
-import { connectDB } from "./Infrastructure/database/monogdb.js";
-import { app } from "./Infrastructure/express/express.js";
-import logger from "./Infrastructure/logger/logger.js";
+import { connectDB } from "./Infrastructure/database/monogdb";
+import { app } from "./Infrastructure/express/express";
+import logger from "./Infrastructure/logger/logger";
 
-import { bootstrapPricingPolicies } from "./Infrastructure/bootstrap/pricingPolicy.bootstrap.js";
-import { PricingPolicyRepository } from "./Infrastructure/repositories/Admin/PricingPolicyRepository.js";
+import { bootstrapPricingPolicies } from "./Infrastructure/bootstrap/pricingPolicy.bootstrap";
+import { PricingPolicyRepository } from "./Infrastructure/repositories/Admin/PricingPolicyRepository";
 
 dotenv.config();
 

@@ -1,24 +1,24 @@
 import { container } from "tsyringe";
-import type { IMailService } from "../../Application/interfaces/services_Interfaces/email-service.interface.js";
-import { MailService } from "../services/sendEmial.service.js";
-import type { ITokenService } from "../../Application/interfaces/services_Interfaces/token-service.interface.js";
-import { TokenService } from "../services/token.service.js";
-import { IStorageService } from "../../Application/interfaces/services_Interfaces/storage-service.interface.js";
-import { StorageService } from "../services/storage/CloudinaryStorageService.js";
-import { IPasswordService } from "../../Application/interfaces/services_Interfaces/password-service.interface.js";
-import { PasswordService } from "../services/Password.service.js";
-import { IOtpService } from "../../Application/interfaces/services_Interfaces/otp-service.interface.js";
-import { OtpService } from "../services/otp.service.js";
-import { IPincodeLookupService } from "../../Application/interfaces/services_Interfaces/pincodeLookupService.interface.js";
-import { PincodeLookupService } from "../services/Apis/IndiaPostProvider.js";
-import { IGeocodingService } from "../../Application/interfaces/services_Interfaces/IGeocodingService.js";
-import { GeocodingService } from "../services/Apis/Geocoding.service.js";
-import { IDistanceService } from "../../Application/interfaces/services_Interfaces/IDistanceService.js";
-import { DistanceService } from "../services/Distance.Service.js";
-import { IPaymentGatewayService } from "../../Application/interfaces/services_Interfaces/payment/IPaymentGateway.js";
-import { RazorpayPaymentGateway } from "../services/Payment/RazorpayPaymentGateway.js";
-import { IWalletService } from "../../Application/interfaces/services_Interfaces/IWalletService.js";
-import { WalletService } from "../services/Payment/wallet.services.js";
+import type { IMailService } from "../../Application/interfaces/services_Interfaces/email-service.interface";
+import { MailService } from "../services/sendEmial.service";
+import type { ITokenService } from "../../Application/interfaces/services_Interfaces/token-service.interface";
+import { TokenService } from "../services/token.service";
+import { IStorageService } from "../../Application/interfaces/services_Interfaces/storage-service.interface";
+import { StorageService } from "../services/storage/CloudinaryStorageService";
+import { IPasswordService } from "../../Application/interfaces/services_Interfaces/password-service.interface";
+import { PasswordService } from "../services/Password.service";
+import { IOtpService } from "../../Application/interfaces/services_Interfaces/otp-service.interface";
+import { OtpService } from "../services/otp.service";
+import { IPincodeLookupService } from "../../Application/interfaces/services_Interfaces/pincodeLookupService.interface";
+import { PincodeLookupService } from "../services/Apis/IndiaPostProvider";
+import { IGeocodingService } from "../../Application/interfaces/services_Interfaces/IGeocodingService";
+import { GeocodingService } from "../services/Apis/Geocoding.service";
+import { IDistanceService } from "../../Application/interfaces/services_Interfaces/IDistanceService";
+import { DistanceService } from "../services/Distance.Service";
+import { IPaymentGatewayService } from "../../Application/interfaces/services_Interfaces/payment/IPaymentGateway";
+import { RazorpayPaymentGateway } from "../services/Payment/RazorpayPaymentGateway";
+import { IWalletService } from "../../Application/interfaces/services_Interfaces/IWalletService";
+import { WalletService } from "../services/Payment/wallet.services";
 
 export class ServiceRegistory {
     static registerServices(): void {

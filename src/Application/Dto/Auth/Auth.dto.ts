@@ -1,4 +1,4 @@
-import type { KYCStatus, Role } from "../../../Infrastructure/Types/types.js";
+import type { KYCStatus, Role } from "../../../Infrastructure/Types/types";
 
 export interface SendOtpDTO {
   name: string;

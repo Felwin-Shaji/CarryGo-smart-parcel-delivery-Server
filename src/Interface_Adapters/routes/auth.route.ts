@@ -1,6 +1,6 @@
-import { authController } from "../../Infrastructure/di/resolver.js";
-import { asyncHandler } from "../middlewares/ErrorHandlers/asyncHandler.js";
-import { BaseRoute } from "./base.route.js";
+import { authController } from "../../Infrastructure/di/resolver";
+import { asyncHandler } from "../middlewares/ErrorHandlers/asyncHandler";
+import { BaseRoute } from "./base.route";
 
 export class AuthRoute extends BaseRoute{
     constructor(){

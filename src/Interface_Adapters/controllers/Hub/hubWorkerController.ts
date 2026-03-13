@@ -15,6 +15,9 @@ import { AppError } from "../../../Domain/utils/customError";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
 import { GetWorkersDTO } from "../../../Application/Dto/Workers/worker.dto";
 import { IGetWorkersUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkersUseCase";
+import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
+import { ICheckTempHubStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/ICheckTempHubStatusUseCase";
+import { ICheckTempWorkerStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/ICheckTempWorkerStatusUseCase";
 
 function parseBlockedQuery(value: unknown): boolean | null {
     if (value === "true") return true;
@@ -30,6 +33,8 @@ export class HubWorkerController implements IHubWorkerController {
         @inject("IWorkerVerifyOtpUseCase") private _workerVerifyOtpUseCase: IWorkerVerifyOtpUseCase,
 
         @inject("IUploadWorkerKycFilesUsecase") private _uploadWorkerKycFilesUsecase: IUploadWorkerKycFilesUsecase,
+        @inject("ICheckTempWorkerStatusUseCase") private _checkTempWorkerStatusUseCase: ICheckTempWorkerStatusUseCase,
+
 
         @inject("IAddWorkerUsecase") private _addWorkerUsecase: IAddWorkerUsecase,
         @inject("IGetWorkersUseCase") private _getWorkersUseCase: IGetWorkersUseCase,
@@ -51,6 +56,21 @@ export class HubWorkerController implements IHubWorkerController {
                     savedTempWorker
                 )
             )
+
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    checkTempWorkerStatus = async (req: Request, res: Response, next: NextFunction) => { ////////////////////////
+        try {
+            const email = req.query.email as string;
+
+            console.log(email)
+
+            const result = await this._checkTempWorkerStatusUseCase.execute(email);
+
+            return res.status(STATUS.OK).json(ApiResponse.success(AGENCY_MESSAGES.STATUS_CHECHED_SUCCESS, result));
 
         } catch (error) {
             next(error);
@@ -121,7 +141,7 @@ export class HubWorkerController implements IHubWorkerController {
                 endDate: req.query.endDate?.toString() || "",
             };
 
-            const hubs = await this._getWorkersUseCase.execute(hubId,dto);
+            const hubs = await this._getWorkersUseCase.execute(hubId, dto);
 
             console.log(hubs);
 

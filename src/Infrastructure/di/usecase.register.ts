@@ -158,6 +158,8 @@ import { IWithdrawWalletMoneyUseCase } from "../../Application/interfaces/useCas
 import { WithdrawWalletMoneyUseCase } from "../../Application/useCase/Wallet/WithdrawWalletMoney.usecase";
 import { IBookingPaymentFailedUseCase } from "../../Application/interfaces/useCase_Interfaces/Payment/IBookingPaymentFailedUseCase";
 import { BookingPaymentFailedUseCase } from "../../Application/useCase/Payment/BookingPaymentFailed.usecase";
+import { ICheckTempWorkerStatusUseCase } from "../../Application/interfaces/useCase_Interfaces/Worker/ICheckTempWorkerStatusUseCase";
+import { CheckTempWorkerStatusUseCase } from "../../Application/useCase/Worker/CheckTempWorkerStatus.usecase";
 
 
 
@@ -265,6 +267,10 @@ export class UsecaseRegistery {
 
         container.register<IUpdateAgencyStatusUseCase>("IUpdateAgencyStatusUseCase",{
             useClass:UpdateAgencyStatusUseCase
+        })
+
+        container.register<ICheckTempWorkerStatusUseCase>("ICheckTempWorkerStatusUseCase",{
+            useClass:CheckTempWorkerStatusUseCase
         })
 
         container.register<IAddWorkerTempUseCase>("IAddWorkerTempUseCase",{

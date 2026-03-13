@@ -33,5 +33,11 @@ export class HubWorkerRoute extends BaseRoute {
       asyncHandler(hubWorkerController.getHubWorkers)
     );
 
+    this.router.get(
+      "/worker/check-status",
+      authenticate(["hub"]),
+      asyncHandler(hubWorkerController.checkTempWorkerStatus)
+    )
+
   }
 }

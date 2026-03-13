@@ -40,7 +40,7 @@ export class AddWorkerTempUseCase implements IAddWorkerTempUseCase {
         if (existingTempWorker) {
             const response = WorkerMapper.toAddWorkerTempResponse(existingTempWorker)
             if (existingTempWorker.status === "OTP-Verified") return response;
-            if (existingTempWorker.status === "BASIC-Info") throw new AppError(WORKER_MESSAGES.OTP_ALREADY_SENT, STATUS.BAD_REQUEST);
+            if (existingTempWorker.status === "BASIC-Info") return response
 
             await this._hubWorkersTempRepo.delete({ email: dto.email });
         }

@@ -29,7 +29,7 @@ export class AgencyHubRoute extends BaseRoute {
     this.router.get(
       "/hub/temp-status",
       authenticate(["agency"]),
-      asyncHandler(agencyHubController.checkTempStatus)
+      asyncHandler(agencyHubController.checkTempHubStatus)
     );
 
     this.router.post(

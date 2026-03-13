@@ -12,6 +12,8 @@ export class CheckTempHubStatusUseCase implements ICheckTempHubStatusUseCase {
 
         const tempHub = await this._hubTempRepo.findOne({ email });
 
+        console.log(tempHub)
+
         if (!tempHub) {
             return { exists: false };
         }
@@ -19,8 +21,8 @@ export class CheckTempHubStatusUseCase implements ICheckTempHubStatusUseCase {
         return {
             exists: true,
             status: tempHub.status,
-            tempHubId: tempHub.id,
-            expiresAt: tempHub.expiresAt
+            tempHubId: tempHub.id!,
+            expiresAt: tempHub.expiresAt!
         };
     }
 }

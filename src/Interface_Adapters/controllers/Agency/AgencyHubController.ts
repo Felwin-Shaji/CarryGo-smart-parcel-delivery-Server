@@ -48,7 +48,7 @@ export class AgencyHubController implements IAgencyHubController {
 
     ) { }
 
-    checkTempStatus = async (req: Request, res: Response, next: NextFunction) => { ////////////////////////
+    checkTempHubStatus = async (req: Request, res: Response, next: NextFunction) => { ////////////////////////
         try {
             const email = req.query.email as string;
 

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import logger from "../logger/logger.js";
+import logger from "../logger/logger";
 dotenv.config();
 
 

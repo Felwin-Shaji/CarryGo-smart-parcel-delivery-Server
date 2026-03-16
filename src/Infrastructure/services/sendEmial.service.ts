@@ -1,8 +1,8 @@
 import { google } from "googleapis";
-import type { IMailService } from "../../Application/interfaces/services_Interfaces/email-service.interface.js";
+import type { IMailService } from "../../Application/interfaces/services_Interfaces/email-service.interface";
 import dotenv from "dotenv";
 import nodemailer, { type Transporter } from "nodemailer";
-import { ENV } from "../constants/env.js";
+import { ENV } from "../constants/env";
 
 const isDev = ENV.IS_DEV;
 

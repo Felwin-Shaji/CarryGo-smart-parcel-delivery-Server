@@ -1,9 +1,9 @@
 import type { Request, Response, NextFunction } from "express";
-import { AppError } from "../../../Domain/utils/customError.js";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes.js";
-import logger from "../../../Infrastructure/logger/logger.js";
-import { ApiResponse } from "../../presenters/ApiResponse.js";
-import { ERROR_MESSAGES } from "../../../Infrastructure/constants/messages/errorMessages.js";
+import { AppError } from "../../../Domain/utils/customError";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import logger from "../../../Infrastructure/logger/logger";
+import { ApiResponse } from "../../presenters/ApiResponse";
+import { ERROR_MESSAGES } from "../../../Infrastructure/constants/messages/errorMessages";
 
 export function errorHandler(
   err: unknown,

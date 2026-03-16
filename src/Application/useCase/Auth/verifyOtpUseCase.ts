@@ -1,11 +1,11 @@
 import { inject, injectable } from "tsyringe";
-import type { IOtpRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/otp.repository.js";
-import { AppError } from "../../../Domain/utils/customError.js";
-import type { IOtpModel } from "../../../Domain/Entities/Iotp.js";
-import { IVerifyOtpUseCase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/verifyOtp.interface.js";
-import { OTP_MESSAGES } from "../../../Infrastructure/constants/messages/otpMessage.js";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes.js";
-import { IOtpService } from "../../interfaces/services_Interfaces/otp-service.interface.js";
+import type { IOtpRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/otp.repository";
+import { AppError } from "../../../Domain/utils/customError";
+import type { IOtpModel } from "../../../Domain/Entities/Iotp";
+import { IVerifyOtpUseCase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/verifyOtp.interface";
+import { OTP_MESSAGES } from "../../../Infrastructure/constants/messages/otpMessage";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { IOtpService } from "../../interfaces/services_Interfaces/otp-service.interface";
 
 @injectable()
 export class VerifyOtpUseCase implements IVerifyOtpUseCase {

@@ -1,9 +1,9 @@
 import { inject, injectable } from "tsyringe";
-import { IUserRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
-import { AppError } from "../../../../Domain/utils/customError.js";
-import { ADDRESS_MESSAGES } from "../../../../Infrastructure/constants/messages/addressMessages.js";
-import { STATUS } from "../../../../Infrastructure/constants/statusCodes.js";
-import { IDeleteUserAddressUseCase } from "../../../interfaces/useCase_Interfaces/user/Address/IDeleteUserAddressUseCase.js";
+import { IUserRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
+import { AppError } from "../../../../Domain/utils/customError";
+import { ADDRESS_MESSAGES } from "../../../../Infrastructure/constants/messages/addressMessages";
+import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
+import { IDeleteUserAddressUseCase } from "../../../interfaces/useCase_Interfaces/user/Address/IDeleteUserAddressUseCase";
 
 @injectable()
 export class DeleteUserAddressUseCase implements IDeleteUserAddressUseCase {

@@ -1,16 +1,14 @@
 import { inject, injectable } from "tsyringe";
-import type { IOtpRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/otp.repository.js";
-import type { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
-import type { IMailService } from "../../interfaces/services_Interfaces/email-service.interface.js";
-import { EmailVo } from "../../../Domain/ValueObjects/Email.valueObject.js";
-import { AppError } from "../../../Domain/utils/customError.js";
-import { OtpVo } from "../../../Domain/ValueObjects/otp.valueObject.js";
-import type { IOtpModel } from "../../../Domain/Entities/Iotp.js";
-import type { OtpResponseDTO, ResendOtpDTO } from "../../Dto/Auth/Auth.dto.js";
-import { IResendOtpUseCase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/resendOtp.usecase.js";
-import { OTP_MESSAGES } from "../../../Infrastructure/constants/messages/otpMessage.js";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes.js";
-import { AuthMapper } from "../../Mappers/AuthMapper.js";
+import type { IOtpRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/otp.repository";
+import type { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
+import type { IMailService } from "../../interfaces/services_Interfaces/email-service.interface";
+import { AppError } from "../../../Domain/utils/customError";
+import { OtpVo } from "../../../Domain/ValueObjects/otp.valueObject";
+import type { OtpResponseDTO, ResendOtpDTO } from "../../Dto/Auth/Auth.dto";
+import { IResendOtpUseCase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/resendOtp.usecase";
+import { OTP_MESSAGES } from "../../../Infrastructure/constants/messages/otpMessage";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { AuthMapper } from "../../Mappers/AuthMapper";
 
 
 @injectable()

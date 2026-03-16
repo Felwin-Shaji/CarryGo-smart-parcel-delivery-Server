@@ -4,6 +4,7 @@ import { AgencyProfileRoute } from "./agencyRoutes/agencyProfile.route";
 import { AgencyPricingRoute } from "./agencyRoutes/agencyPricing.route";
 import { AgencyHubRoute } from "./agencyRoutes/agencyHub.route";
 import { AgencyWalletRoute } from "./agencyRoutes/agencyWallet.route";
+import { AgencyRouteGroupRoute } from "./agencyRoutes/agencyRoute.route";
 
 export class AgencyRoute extends BaseRoute {
 
@@ -14,6 +15,7 @@ export class AgencyRoute extends BaseRoute {
     this.router.use(new AgencyPricingRoute().router);
     this.router.use(new AgencyHubRoute().router);
     this.router.use(new AgencyWalletRoute().router);
+    this.router.use(new AgencyRouteGroupRoute().router);
 
   }
 }

@@ -1,11 +1,11 @@
 import type { Request, Response, NextFunction } from "express";
 import { container } from "tsyringe";
-import { TokenService } from "../../../Infrastructure/services/token.service.js";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes.js";
-import { AppError } from "../../../Domain/utils/customError.js";
-import type { Role } from "../../../Infrastructure/Types/types.js";
-import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages.js";
-import { IValidateSessionUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/IValidateSessionUseCase.js";
+import { TokenService } from "../../../Infrastructure/services/token.service";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { AppError } from "../../../Domain/utils/customError";
+import type { Role } from "../../../Infrastructure/Types/types";
+import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
+import { IValidateSessionUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/IValidateSessionUseCase";
 
 
 declare module "express" {

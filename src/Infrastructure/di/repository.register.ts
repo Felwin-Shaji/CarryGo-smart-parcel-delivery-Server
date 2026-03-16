@@ -4,7 +4,7 @@ import type { IOtpRepository } from "../../Application/interfaces/repositories_i
 import { UserRepository } from "../repositories/userRepository";
 import type { IUserRepository } from "../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
 import type { IAdminRepository } from "../../Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
-import { AdminRepository } from "../repositories/adminRepository.js";
+import { AdminRepository } from "../repositories/adminRepository";
 import type { IAgencyRepository } from "../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
 import { IAgencyKYCRepository } from "../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/AgencyKYC";
 import { AgencyKYCRepository } from "../repositories/Agency/AgencyKYCRepository";
@@ -33,6 +33,8 @@ import { IWalletRepository } from "../../Application/interfaces/repositories_int
 import { WalletRepository } from "../repositories/Wallet/wallet.repository";
 import { ITravelRequestRepository } from "../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/ITravelRequestRepository";
 import { TravelRequestRepository } from "../repositories/User/TravelRequest.repository";
+import { IAgencyRouteGroupRepository } from "../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/IAgencyRouteGroupRepository";
+import { AgencyRouteGroupRepository } from "../repositories/Agency/AgencyRouteGroup.repository";
 
 
 export class RepositoryRegistry {
@@ -94,16 +96,20 @@ export class RepositoryRegistry {
             useClass: BookingRepository
         })
 
-        container.register<IWalletRepository>("IWalletRepository",{
-            useClass:WalletRepository
+        container.register<IWalletRepository>("IWalletRepository", {
+            useClass: WalletRepository
         })
 
-        container.register<ITransactionRepository>("ITransactionRepository",{
-            useClass:TransactionRepository
+        container.register<ITransactionRepository>("ITransactionRepository", {
+            useClass: TransactionRepository
         });
 
-        container.register<ITravelRequestRepository>("ITravelRequestRepository",{
-            useClass:TravelRequestRepository
+        container.register<ITravelRequestRepository>("ITravelRequestRepository", {
+            useClass: TravelRequestRepository
+        })
+
+        container.register<IAgencyRouteGroupRepository>("IAgencyRouteGroupRepository", {
+            useClass: AgencyRouteGroupRepository
         })
 
     };

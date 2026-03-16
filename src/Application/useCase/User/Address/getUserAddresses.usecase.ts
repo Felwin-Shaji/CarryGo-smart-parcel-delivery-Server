@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
-import { IUserRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
-import { IGetUserAddressesUseCase } from "../../../interfaces/useCase_Interfaces/user/Address/IGetUserAddressesUseCase.js";
-import { AppError } from "../../../../Domain/utils/customError.js";
+import { IUserRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
+import { IGetUserAddressesUseCase } from "../../../interfaces/useCase_Interfaces/user/Address/IGetUserAddressesUseCase";
+import { AppError } from "../../../../Domain/utils/customError";
 
 @injectable()
 export class GetUserAddressesUseCase implements IGetUserAddressesUseCase {

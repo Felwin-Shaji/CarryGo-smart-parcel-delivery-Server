@@ -1,6 +1,6 @@
 import { model, Schema } from "mongoose";
-import type { User } from "../../../../Domain/Entities/User.js";
-import { AddressSchema } from "./AddressSchema.js";
+import type { User } from "../../../../Domain/Entities/User";
+import { AddressSchema } from "./AddressSchema";
 
 const userModel = new Schema<User>({
     name: { type: String, required: true },

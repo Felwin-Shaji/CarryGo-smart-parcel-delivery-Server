@@ -8,7 +8,7 @@ export class User {
     public name: string,
     public email: string,
     public mobile: string | null,
-    public password: string | null,
+    public password: string | null, 
     public role: Role,
     public googleId?: string | null,
     public authProvider?: "local" | "google",

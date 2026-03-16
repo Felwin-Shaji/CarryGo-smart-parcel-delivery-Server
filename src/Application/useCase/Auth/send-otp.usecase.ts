@@ -1,16 +1,16 @@
-import type { IOtpModel } from "../../../Domain/Entities/Iotp.js";
-import type { IOtpRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/otp.repository.js";
-import type { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository.js";
-import type { IMailService } from "../../interfaces/services_Interfaces/email-service.interface.js";
+import type { IOtpModel } from "../../../Domain/Entities/Iotp";
+import type { IOtpRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/otp.repository";
+import type { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
+import type { IMailService } from "../../interfaces/services_Interfaces/email-service.interface";
 import { inject, injectable } from "tsyringe";
-import { AppError } from "../../../Domain/utils/customError.js";
-import type { OtpResponseDTO, SendOtpDTO } from "../../Dto/Auth/Auth.dto.js";
-import { ISendOtpUseCase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/requestOtp.usecase.js";
-import { IPasswordService } from "../../interfaces/services_Interfaces/password-service.interface.js";
-import { IOtpService } from "../../interfaces/services_Interfaces/otp-service.interface.js";
-import { OTP_MESSAGES } from "../../../Infrastructure/constants/messages/otpMessage.js";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes.js";
-import { AuthMapper } from "../../Mappers/AuthMapper.js";
+import { AppError } from "../../../Domain/utils/customError";
+import type { OtpResponseDTO, SendOtpDTO } from "../../Dto/Auth/Auth.dto";
+import { ISendOtpUseCase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/requestOtp.usecase";
+import { IPasswordService } from "../../interfaces/services_Interfaces/password-service.interface";
+import { IOtpService } from "../../interfaces/services_Interfaces/otp-service.interface";
+import { OTP_MESSAGES } from "../../../Infrastructure/constants/messages/otpMessage";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { AuthMapper } from "../../Mappers/AuthMapper";
 
 @injectable()
 export class SendOtpUseCase implements ISendOtpUseCase {

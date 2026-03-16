@@ -160,6 +160,10 @@ import { IBookingPaymentFailedUseCase } from "../../Application/interfaces/useCa
 import { BookingPaymentFailedUseCase } from "../../Application/useCase/Payment/BookingPaymentFailed.usecase";
 import { ICheckTempWorkerStatusUseCase } from "../../Application/interfaces/useCase_Interfaces/Worker/ICheckTempWorkerStatusUseCase";
 import { CheckTempWorkerStatusUseCase } from "../../Application/useCase/Worker/CheckTempWorkerStatus.usecase";
+import { ICreateRouteGroupUseCase } from "../../Application/interfaces/useCase_Interfaces/Agency/RouteGroup/ICreateRouteGroupUseCase";
+import { CreateRouteGroupUseCase } from "../../Application/useCase/Agency/RouteGroup/CreateRouteGroup.usecase";
+import { IGetPaginatedRouteGroupUseCase } from "../../Application/interfaces/useCase_Interfaces/Agency/RouteGroup/IGetPaginatedRouteGroupUseCase";
+import { GetPaginatedRouteGroupUseCase } from "../../Application/useCase/Agency/RouteGroup/GetPaginatedRouteGroup.usecase";
 
 
 
@@ -495,6 +499,14 @@ export class UsecaseRegistery {
 
         container.register<IWithdrawWalletMoneyUseCase>("IWithdrawWalletMoneyUseCase",{
             useClass:WithdrawWalletMoneyUseCase
+        });
+
+        container.register<ICreateRouteGroupUseCase>("ICreateRouteGroupUseCase",{
+            useClass:CreateRouteGroupUseCase
+        })
+
+        container.register<IGetPaginatedRouteGroupUseCase>("IGetPaginatedRouteGroupUseCase",{
+            useClass:GetPaginatedRouteGroupUseCase
         })
     }
 }

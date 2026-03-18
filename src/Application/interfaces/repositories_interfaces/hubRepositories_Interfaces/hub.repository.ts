@@ -17,6 +17,7 @@ export interface IHubRepository extends IBaseRepository<HubDocument> {
   findOneHub(filter: FilterQuery<HubDocument>): Promise<Hub>
   saveHub(hub: Hub): Promise<Hub>
   getHubById(hubId: string): Promise<Hub>;
+  findByIds(hubIds: string[]): Promise<Hub[]>;
   updateKycSatus(hubId: string, dto: updateHubKycStatusDTO): Promise<void>;
   getPaginatedHubsByAgency(agencyId: string, dto: GetHubsDTO): Promise<PaginatedHubData>;
   findServiceableAgenciesWithHubs(pickupLocation: GeoLocation,

@@ -35,6 +35,8 @@ import { ITravelRequestRepository } from "../../Application/interfaces/repositor
 import { TravelRequestRepository } from "../repositories/User/TravelRequest.repository";
 import { IAgencyRouteGroupRepository } from "../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/IAgencyRouteGroupRepository";
 import { AgencyRouteGroupRepository } from "../repositories/Agency/AgencyRouteGroup.repository";
+import { IAgencyRouteSegmentRepository } from "@/Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/IAgencyRouteSegmentRepository";
+import { AgencyRouteSegmentRepository } from "../repositories/Agency/AgencyRouteSegment.repository";
 
 
 export class RepositoryRegistry {
@@ -112,5 +114,8 @@ export class RepositoryRegistry {
             useClass: AgencyRouteGroupRepository
         })
 
+        container.register<IAgencyRouteSegmentRepository>("IAgencyRouteSegmentRepository", {
+            useClass: AgencyRouteSegmentRepository
+        })
     };
 };

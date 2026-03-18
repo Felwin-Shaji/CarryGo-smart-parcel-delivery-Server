@@ -20,6 +20,12 @@ export interface HubResponseDTO {
     isBlocked: boolean;
     kycStatus: string;
     createdAt: Date;
+    address: {
+        addressLine1: string;
+        city: string;
+        state: string;
+        pincode: string;
+    }
 };
 
 export interface GetHubsResponseDTO {
@@ -53,6 +59,6 @@ export interface AddWorkerTempResponseDTO {
  * updateAgencyKycStatus Dtos
  */
 export interface updateHubKycStatusDTO {
-  status: KYCStatus,
-  reason?: string
+    status: KYCStatus,
+    reason?: string
 };

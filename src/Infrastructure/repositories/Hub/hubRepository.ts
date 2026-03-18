@@ -1,4 +1,4 @@
-import { ClientSession, FilterQuery } from "mongoose";
+import { ClientSession, FilterQuery, Types } from "mongoose";
 import { GetHubsDTO, updateHubKycStatusDTO } from "../../../Application/Dto/Hub/hub.dto";
 // import { PaginatedData } from "../../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
 import { IHubRepository, PaginatedHubData } from "../../../Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
@@ -56,6 +56,16 @@ export class HubRepository extends BaseRepository<HubDocument> implements IHubRe
         if (!hub) throw new AppError(HUB_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND)
 
         return this.toDomain(hub)
+    }
+
+    async findByIds(hubIds: string[]): Promise<Hub[]> {
+        const docs = await HubModel
+            .find({
+                _id: { $in: hubIds.map(id => new Types.ObjectId(id)) }
+            })
+            // .session(session ?? null);
+
+        return docs.map(this.toDomain);
     }
 
     async updateKycSatus(hubId: string, dto: updateHubKycStatusDTO): Promise<void> {

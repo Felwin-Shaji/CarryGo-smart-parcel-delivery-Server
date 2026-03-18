@@ -164,6 +164,10 @@ import { ICreateRouteGroupUseCase } from "../../Application/interfaces/useCase_I
 import { CreateRouteGroupUseCase } from "../../Application/useCase/Agency/RouteGroup/CreateRouteGroup.usecase";
 import { IGetPaginatedRouteGroupUseCase } from "../../Application/interfaces/useCase_Interfaces/Agency/RouteGroup/IGetPaginatedRouteGroupUseCase";
 import { GetPaginatedRouteGroupUseCase } from "../../Application/useCase/Agency/RouteGroup/GetPaginatedRouteGroup.usecase";
+import { ICreateRouteSegmentUseCase } from "@/Application/interfaces/useCase_Interfaces/Agency/RouteGroup/ICreateRouteSegmentUseCase";
+import { CreateRouteSegmentUseCase } from "@/Application/useCase/Agency/RouteGroup/CreateRouteSegment.usecase";
+import { IGetRouteGroupDetailUseCase } from "@/Application/interfaces/useCase_Interfaces/Agency/RouteGroup/IGetRouteDetailsUsecase";
+import { GetRouteGroupDetailUseCase } from "@/Application/useCase/Agency/RouteGroup/GetRouteGroupDetail.usecase";
 
 
 
@@ -507,6 +511,14 @@ export class UsecaseRegistery {
 
         container.register<IGetPaginatedRouteGroupUseCase>("IGetPaginatedRouteGroupUseCase",{
             useClass:GetPaginatedRouteGroupUseCase
+        })
+
+        container.register<ICreateRouteSegmentUseCase>("ICreateRouteSegmentUseCase",{
+            useClass:CreateRouteSegmentUseCase
+        })
+
+        container.register<IGetRouteGroupDetailUseCase>("IGetRouteGroupDetailUseCase",{
+            useClass:GetRouteGroupDetailUseCase
         })
     }
 }

@@ -22,6 +22,7 @@ import { AdminWalletController } from "../../Interface_Adapters/controllers/Admi
 import { AgencyWalletController } from "../../Interface_Adapters/controllers/Agency/AgencyWallet.controller";
 import { TravelerController } from "../../Interface_Adapters/controllers/User/traveler.controller";
 import { AgencyRouteController } from "../../Interface_Adapters/controllers/Agency/AgencyRoute.controller";
+import { AgencyRouteSegmentController } from "@/Interface_Adapters/controllers/Agency/AgencyRouteSegment.controller";
 
 
 DependancyInjection.registerAll();
@@ -43,6 +44,7 @@ export const agencyHubController = container.resolve(AgencyHubController);
 export const agencyPricingController = container.resolve(AgencyPricingController);
 export const agencyWalletController = container.resolve(AgencyWalletController);
 export const agencyRouteController = container.resolve(AgencyRouteController);
+export const agencyRouteSegmentController = container.resolve(AgencyRouteSegmentController)
 
 
 

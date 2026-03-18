@@ -3,6 +3,12 @@
     /* ==== File Paths ==== */
     "rootDir": "src",
     "outDir": "./dist",
+    "baseUrl": ".", // ← add this
+    "paths": { // ← add this
+      "@/*": [
+        "src/*"
+      ]
+    },
     /* ==== Environment ==== */
     "target": "ESNext",
     "module": "CommonJS",
@@ -15,7 +21,9 @@
     /* ==== Output ==== */
     "sourceMap": true,
     "declaration": true,
+    "inlineSources": true,
     "declarationMap": true,
+    "inlineSourceMap": false,
     /* ==== Type Checking ==== */
     "strict": true,
     "noUncheckedIndexedAccess": true,
@@ -29,6 +37,14 @@
     /* ==== tsyringe decorators ==== */
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
+  },
+  "ts-node": {
+    "transpileOnly": false,
+    "files": true,
+    "swc": false,  
+    "require": [
+      "tsconfig-paths/register"
+    ]
   },
   "include": [
     "src"

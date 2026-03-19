@@ -1,8 +1,8 @@
-import { IAgencyRouteSegmentRepository } from "@/Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/IAgencyRouteSegmentRepository";
-import { RouteSegment } from "@/Domain/Entities/Agency/RouteSegment";
+import { IAgencyRouteSegmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteSegmentRepository";
+import { RouteSegment } from "@/Domain/Entities/Logistics/RouteSegment";
 import { AppError } from "@/Domain/utils/customError";
 import { ROUTE_SEGMENT_MESSAGE } from "@/Infrastructure/constants/messages/RouteGroupMessage";
-import { RouteSegmentDocument, RouteSegmentModel } from "@/Infrastructure/database/models/AgencyModels/RouteSegmentModel";
+import { RouteSegmentDocument, RouteSegmentModel } from "@/Infrastructure/database/models/Logistics/RouteSegmentModel";
 import { ClientSession, FilterQuery, Types, UpdateQuery } from "mongoose";
 
 export class AgencyRouteSegmentRepository implements IAgencyRouteSegmentRepository {
@@ -54,6 +54,7 @@ export class AgencyRouteSegmentRepository implements IAgencyRouteSegmentReposito
         const createdDocs = await RouteSegmentModel.create(
             [
                 {
+                    agencyId:new Types.ObjectId(data.agencyId),
                     routeGroupId: new Types.ObjectId(data.routeGroupId),
                     originHubId: new Types.ObjectId(data.originHubId),
                     destinationHubId: new Types.ObjectId(data.destinationHubId),
@@ -134,6 +135,7 @@ export class AgencyRouteSegmentRepository implements IAgencyRouteSegmentReposito
     private static toDomain(doc: RouteSegmentDocument): RouteSegment {
         return new RouteSegment(
             doc._id.toString(),
+            doc.agencyId.toString(),
             doc.routeGroupId.toString(),
             doc.originHubId.toString(),
             doc.destinationHubId.toString(),

@@ -33,9 +33,9 @@ import { IWalletRepository } from "../../Application/interfaces/repositories_int
 import { WalletRepository } from "../repositories/Wallet/wallet.repository";
 import { ITravelRequestRepository } from "../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/ITravelRequestRepository";
 import { TravelRequestRepository } from "../repositories/User/TravelRequest.repository";
-import { IAgencyRouteGroupRepository } from "../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/IAgencyRouteGroupRepository";
+import { IAgencyRouteGroupRepository } from "../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteGroupRepository";
 import { AgencyRouteGroupRepository } from "../repositories/Agency/AgencyRouteGroup.repository";
-import { IAgencyRouteSegmentRepository } from "@/Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/IAgencyRouteSegmentRepository";
+import { IAgencyRouteSegmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteSegmentRepository";
 import { AgencyRouteSegmentRepository } from "../repositories/Agency/AgencyRouteSegment.repository";
 
 

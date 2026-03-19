@@ -104,6 +104,7 @@ export class Booking {
 
 
         public logistics?: {
+            parcelRouteId?: string | null; 
             routeHubs?: HubJourney[];
             currentHubId?: string | undefined;
             lastUpdatedAt?: Date | undefined;

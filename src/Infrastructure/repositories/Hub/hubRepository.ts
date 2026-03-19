@@ -63,7 +63,7 @@ export class HubRepository extends BaseRepository<HubDocument> implements IHubRe
             .find({
                 _id: { $in: hubIds.map(id => new Types.ObjectId(id)) }
             })
-            // .session(session ?? null);
+        // .session(session ?? null);
 
         return docs.map(this.toDomain);
     }
@@ -151,12 +151,10 @@ export class HubRepository extends BaseRepository<HubDocument> implements IHubRe
     async findServiceableAgenciesWithHubs(
         pickupLocation: GeoLocation,
         deliveryLocation: GeoLocation,
-        page: number,
-        limit: number
-    ): Promise<PaginationResponseDTO<ServiceableHubWithAgencyDTO>> {
+    ): Promise<ServiceableHubWithAgencyDTO[]> {
 
         const MAX_DISTANCE = 20000;
-        const skip = (page - 1) * limit;
+        // const skip = (page - 1) * limit;
 
         const result = await HubModel.aggregate([
             // 1️ Find hubs near pickup location
@@ -248,7 +246,7 @@ export class HubRepository extends BaseRepository<HubDocument> implements IHubRe
                     },
 
                     fromHub: {
-                        hubId: { $toString: "$pickupHub._id     " },
+                        hubId: { $toString: "$pickupHub._id" },
                         hubName: "$pickupHub.name",
                         address: {
                             city: "$pickupHub.address.city",
@@ -278,28 +276,22 @@ export class HubRepository extends BaseRepository<HubDocument> implements IHubRe
                 }
             },
 
-            {
-                $facet: {
-                    metadata: [{ $count: "total" }],
-                    data: [
-                        { $skip: skip },
-                        { $limit: limit }
-                    ]
-                }
-            }
+            // {
+            //     $facet: {
+            //         metadata: [{ $count: "total" }],
+            //         data: [
+            //             { $skip: skip },
+            //             { $limit: limit }
+            //         ]
+            //     }
+            // }
         ]);
 
-        const total = result[0]?.metadata[0]?.total || 0;
-        const data = result[0]?.data || [];
+        // const total = result.length;
+        // const data = result[0]?.data || [];
 
 
-        return {
-            data: data,
-            total,
-            page,
-            limit,
-            totalPages: Math.ceil(total / limit)
-        };
+        return result
 
     }
 

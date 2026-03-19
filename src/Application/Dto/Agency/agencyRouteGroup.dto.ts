@@ -1,4 +1,4 @@
-import { RouteGroup } from "../../../Domain/Entities/Agency/RouteGroup"
+import { RouteGroup } from "../../../Domain/Entities/Logistics/RouteGroup"
 
 export type CreateRouteGroupRequestDTO = {
     name: string

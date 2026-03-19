@@ -1,4 +1,4 @@
-import { FilterQuery, Types } from "mongoose";
+import { ClientSession, FilterQuery, Types } from "mongoose";
 import { BookingFilterDTO } from "../../../Application/Dto/User/Booking.dto";
 import { IBookingRepository } from "../../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
 import { Booking } from "../../../Domain/Entities/Booking/Booking";
@@ -139,7 +139,7 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
         );
     }
 
-    async  findByTravelRequestId(travelRequestId: string): Promise<Booking[]> {
+    async findByTravelRequestId(travelRequestId: string): Promise<Booking[]> {
 
         const docs = await this.model
             .find({
@@ -153,6 +153,19 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
         }
 
         return docs.map(doc => this.toDomain(doc));
+    }
+
+    async updateLogistics(bookingId: string, update: { parcelRouteId: string; lastUpdatedAt: Date; }, session?: ClientSession): Promise<void> {
+        await this.model.findByIdAndUpdate(
+            new Types.ObjectId(bookingId),
+            {
+                $set: {
+                    "logistics.parcelRouteId": new Types.ObjectId(update.parcelRouteId),
+                    "logistics.lastUpdatedAt": update.lastUpdatedAt,
+                },
+            },
+            { new: true, ...(session && { session }) }
+        )
     }
 
 

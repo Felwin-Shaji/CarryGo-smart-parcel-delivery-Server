@@ -1,5 +1,5 @@
 import { ClientSession } from "mongoose";
-import { RouteGroup } from "../../../../Domain/Entities/Agency/RouteGroup";
+import { RouteGroup } from "../../../../Domain/Entities/Logistics/RouteGroup";
 import { IBaseRepository } from "../base.repository";
 import { RouteGroupPaginationRequestDTO } from "../../../Dto/Agency/agencyRouteGroup.dto";
 

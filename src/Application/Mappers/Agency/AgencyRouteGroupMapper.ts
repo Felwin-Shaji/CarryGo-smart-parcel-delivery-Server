@@ -1,4 +1,4 @@
-import { RouteGroup } from "../../../Domain/Entities/Agency/RouteGroup";
+import { RouteGroup } from "../../../Domain/Entities/Logistics/RouteGroup";
 import { CreateRouteGroupRequestDTO } from "../../Dto/Agency/agencyRouteGroup.dto";
 
 export class AgencyRouteGroupMapper {

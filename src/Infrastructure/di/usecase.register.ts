@@ -160,13 +160,13 @@ import { IBookingPaymentFailedUseCase } from "../../Application/interfaces/useCa
 import { BookingPaymentFailedUseCase } from "../../Application/useCase/Payment/BookingPaymentFailed.usecase";
 import { ICheckTempWorkerStatusUseCase } from "../../Application/interfaces/useCase_Interfaces/Worker/ICheckTempWorkerStatusUseCase";
 import { CheckTempWorkerStatusUseCase } from "../../Application/useCase/Worker/CheckTempWorkerStatus.usecase";
-import { ICreateRouteGroupUseCase } from "../../Application/interfaces/useCase_Interfaces/Agency/RouteGroup/ICreateRouteGroupUseCase";
+import { ICreateRouteGroupUseCase } from "../../Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/ICreateRouteGroupUseCase";
 import { CreateRouteGroupUseCase } from "../../Application/useCase/Agency/RouteGroup/CreateRouteGroup.usecase";
-import { IGetPaginatedRouteGroupUseCase } from "../../Application/interfaces/useCase_Interfaces/Agency/RouteGroup/IGetPaginatedRouteGroupUseCase";
+import { IGetPaginatedRouteGroupUseCase } from "../../Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/IGetPaginatedRouteGroupUseCase";
 import { GetPaginatedRouteGroupUseCase } from "../../Application/useCase/Agency/RouteGroup/GetPaginatedRouteGroup.usecase";
-import { ICreateRouteSegmentUseCase } from "@/Application/interfaces/useCase_Interfaces/Agency/RouteGroup/ICreateRouteSegmentUseCase";
+import { ICreateRouteSegmentUseCase } from "@/Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/ICreateRouteSegmentUseCase";
 import { CreateRouteSegmentUseCase } from "@/Application/useCase/Agency/RouteGroup/CreateRouteSegment.usecase";
-import { IGetRouteGroupDetailUseCase } from "@/Application/interfaces/useCase_Interfaces/Agency/RouteGroup/IGetRouteDetailsUsecase";
+import { IGetRouteGroupDetailUseCase } from "@/Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/IGetRouteDetailsUsecase";
 import { GetRouteGroupDetailUseCase } from "@/Application/useCase/Agency/RouteGroup/GetRouteGroupDetail.usecase";
 
 

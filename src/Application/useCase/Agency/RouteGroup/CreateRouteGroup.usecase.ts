@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
-import { ICreateRouteGroupUseCase } from "../../../interfaces/useCase_Interfaces/Agency/RouteGroup/ICreateRouteGroupUseCase";
-import { IAgencyRouteGroupRepository } from "../../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/IAgencyRouteGroupRepository";
+import { ICreateRouteGroupUseCase } from "../../../interfaces/useCase_Interfaces/Logistics/RouteGroup/ICreateRouteGroupUseCase";
+import { IAgencyRouteGroupRepository } from "../../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteGroupRepository";
 import { CreateRouteGroupRequestDTO } from "../../../Dto/Agency/agencyRouteGroup.dto";
 import { AgencyRouteGroupMapper } from "../../../Mappers/Agency/AgencyRouteGroupMapper";
 import { AppError } from "../../../../Domain/utils/customError";

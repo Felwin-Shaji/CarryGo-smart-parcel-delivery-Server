@@ -22,7 +22,5 @@ export interface IHubRepository extends IBaseRepository<HubDocument> {
   getPaginatedHubsByAgency(agencyId: string, dto: GetHubsDTO): Promise<PaginatedHubData>;
   findServiceableAgenciesWithHubs(pickupLocation: GeoLocation,
     deliveryLocation: GeoLocation,
-    page: number,
-    limit: number
-  ): Promise<PaginationResponseDTO<ServiceableHubWithAgencyDTO>>
+  ): Promise<ServiceableHubWithAgencyDTO[]>
 }

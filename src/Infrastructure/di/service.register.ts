@@ -19,6 +19,8 @@ import { IPaymentGatewayService } from "../../Application/interfaces/services_In
 import { RazorpayPaymentGateway } from "../services/Payment/RazorpayPaymentGateway";
 import { IWalletService } from "../../Application/interfaces/services_Interfaces/IWalletService";
 import { WalletService } from "../services/Payment/wallet.services";
+import { IRouteComputationService } from "@/Application/interfaces/services_Interfaces/IRouteComputationService";
+import { RouteComputationService } from "../services/Logistics/RouteComputationService";
 
 export class ServiceRegistory {
     static registerServices(): void {
@@ -55,12 +57,16 @@ export class ServiceRegistory {
             useClass: DistanceService
         });
 
-        container.register<IPaymentGatewayService>("IPaymentGatewayService",{
-            useClass:RazorpayPaymentGateway
+        container.register<IPaymentGatewayService>("IPaymentGatewayService", {
+            useClass: RazorpayPaymentGateway
         })
 
-        container.register<IWalletService>("IWalletService",{
-            useClass:WalletService
+        container.register<IWalletService>("IWalletService", {
+            useClass: WalletService
         });
+
+        container.register<IRouteComputationService>("IRouteComputationService", {
+            useClass: RouteComputationService
+        })
     }
 }

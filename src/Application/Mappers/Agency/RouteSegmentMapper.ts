@@ -1,15 +1,16 @@
 import { CreateRouteSegmentDTO, RouteGroupDetailDTO, RouteSegmentDTO } from "@/Application/Dto/Agency/agencyRouteSegment.dto";
-import { RouteGroup } from "@/Domain/Entities/Agency/RouteGroup";
-import { RouteSegment } from "@/Domain/Entities/Agency/RouteSegment";
+import { RouteGroup } from "@/Domain/Entities/Logistics/RouteGroup";
+import { RouteSegment } from "@/Domain/Entities/Logistics/RouteSegment";
 import { AppError } from "@/Domain/utils/customError";
 import { HUB_MESSAGES } from "@/Infrastructure/constants/messages/hubMessage";
 import { ROUTE_SEGMENT_MESSAGE } from "@/Infrastructure/constants/messages/RouteGroupMessage";
 
 export class RouteSegmentMapper {
 
-    static toCreate(routeGroupId: string, maxOrder: number, data: CreateRouteSegmentDTO,): RouteSegment {
+    static toCreate(agencyId: string, routeGroupId: string, maxOrder: number, data: CreateRouteSegmentDTO,): RouteSegment {
         return new RouteSegment(
             null,
+            agencyId,
             routeGroupId,
             data.originHubId,
             data.destinationHubId,

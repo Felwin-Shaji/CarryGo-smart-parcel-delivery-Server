@@ -1,10 +1,10 @@
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../Domain/utils/customError";
-import { IAgencyRouteGroupRepository } from "../../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/IAgencyRouteGroupRepository";
-import { IAgencyRouteSegmentRepository } from "../../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/IAgencyRouteSegmentRepository";
+import { IAgencyRouteGroupRepository } from "../../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteGroupRepository";
+import { IAgencyRouteSegmentRepository } from "../../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteSegmentRepository";
 import { CreateRouteSegmentDTO } from "../../../Dto/Agency/agencyRouteSegment.dto";
 import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
-import { ICreateRouteSegmentUseCase } from "../../../../Application/interfaces/useCase_Interfaces/Agency/RouteGroup/ICreateRouteSegmentUseCase";
+import { ICreateRouteSegmentUseCase } from "../../../interfaces/useCase_Interfaces/Logistics/RouteGroup/ICreateRouteSegmentUseCase";
 import { ROUTE_GROUP_MESSAGE } from "../../../../Infrastructure/constants/messages/RouteGroupMessage";
 import { RouteSegmentMapper } from "../../../../Application/Mappers/Agency/RouteSegmentMapper";
 
@@ -18,7 +18,7 @@ export class CreateRouteSegmentUseCase implements ICreateRouteSegmentUseCase {
 
     async execute(routeGroupId: string, agencyId: string, data: CreateRouteSegmentDTO): Promise<void> {
 
-        const routeGroup = await this._routeGroupRepo.findById({ _id:routeGroupId });
+        const routeGroup = await this._routeGroupRepo.findById({ _id: routeGroupId });
 
         if (!routeGroup) {
             throw new AppError(ROUTE_GROUP_MESSAGE.NOTFOUND, STATUS.NOT_FOUND);
@@ -30,7 +30,7 @@ export class CreateRouteSegmentUseCase implements ICreateRouteSegmentUseCase {
 
         const maxOrder = await this._segmentRepo.getMaxOrder(routeGroupId);
 
-        const segment = RouteSegmentMapper.toCreate(routeGroupId, maxOrder, data)
+        const segment = RouteSegmentMapper.toCreate(agencyId, routeGroupId, maxOrder, data)
 
         await this._segmentRepo.save(segment);
     }

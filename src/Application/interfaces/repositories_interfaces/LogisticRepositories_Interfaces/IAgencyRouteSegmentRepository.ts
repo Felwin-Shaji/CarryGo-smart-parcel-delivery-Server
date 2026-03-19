@@ -1,4 +1,4 @@
-import { RouteSegment } from "../../../../Domain/Entities/Agency/RouteSegment";
+import { RouteSegment } from "../../../../Domain/Entities/Logistics/RouteSegment";
 import { IBaseRepository } from "../base.repository";
 import { ClientSession } from "mongoose";
 

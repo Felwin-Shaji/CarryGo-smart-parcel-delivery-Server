@@ -1,3 +1,4 @@
+import { ClientSession } from "mongoose";
 import { Booking } from "../../../../Domain/Entities/Booking/Booking";
 import { BookingStatusType, PaymentStatusType } from "../../../../Infrastructure/Types/types";
 import { BookingFilterDTO } from "../../../Dto/User/Booking.dto";
@@ -23,4 +24,12 @@ export interface IBookingRepository {
 
     findByTravelRequestId(travelRequestId: string): Promise<Booking[]>;
 
+    updateLogistics(
+        bookingId: string,
+        update: {
+            parcelRouteId: string;
+            lastUpdatedAt: Date;
+        },
+        session?: ClientSession
+    ): Promise<void>;
 }

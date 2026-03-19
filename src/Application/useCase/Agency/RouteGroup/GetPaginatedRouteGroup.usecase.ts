@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { RouteGroupPaginationRequestDTO, PaginatedRouteGroupResponseDTO } from "../../../Dto/Agency/agencyRouteGroup.dto";
-import { IGetPaginatedRouteGroupUseCase } from "../../../interfaces/useCase_Interfaces/Agency/RouteGroup/IGetPaginatedRouteGroupUseCase";
-import { IAgencyRouteGroupRepository } from "../../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/IAgencyRouteGroupRepository";
+import { IGetPaginatedRouteGroupUseCase } from "../../../interfaces/useCase_Interfaces/Logistics/RouteGroup/IGetPaginatedRouteGroupUseCase";
+import { IAgencyRouteGroupRepository } from "../../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteGroupRepository";
 
 @injectable()
 export class GetPaginatedRouteGroupUseCase implements IGetPaginatedRouteGroupUseCase {

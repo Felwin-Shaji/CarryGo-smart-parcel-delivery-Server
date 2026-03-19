@@ -1,8 +1,8 @@
 import { RouteGroupDetailDTO } from "@/Application/Dto/Agency/agencyRouteSegment.dto";
-import { IAgencyRouteGroupRepository } from "@/Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/IAgencyRouteGroupRepository";
-import { IAgencyRouteSegmentRepository } from "@/Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/IAgencyRouteSegmentRepository";
+import { IAgencyRouteGroupRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteGroupRepository";
+import { IAgencyRouteSegmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteSegmentRepository";
 import { IHubRepository } from "@/Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
-import { IGetRouteGroupDetailUseCase } from "@/Application/interfaces/useCase_Interfaces/Agency/RouteGroup/IGetRouteDetailsUsecase";
+import { IGetRouteGroupDetailUseCase } from "@/Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/IGetRouteDetailsUsecase";
 import { RouteSegmentMapper } from "@/Application/Mappers/Agency/RouteSegmentMapper";
 import { AppError } from "@/Domain/utils/customError";
 import { ROUTE_GROUP_MESSAGE } from "@/Infrastructure/constants/messages/RouteGroupMessage";

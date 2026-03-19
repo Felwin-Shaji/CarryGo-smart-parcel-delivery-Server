@@ -3,12 +3,12 @@ import { IAgencyRouteController } from "../../Interface/Controllers_Interfaces/A
 import { inject, injectable } from "tsyringe";
 import { CreateRouteGroupRequestDTO, RouteGroupFilterRequestDTO, RouteGroupPaginationRequestDTO } from "../../../Application/Dto/Agency/agencyRouteGroup.dto";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { ICreateRouteGroupUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/RouteGroup/ICreateRouteGroupUseCase";
+import { ICreateRouteGroupUseCase } from "../../../Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/ICreateRouteGroupUseCase";
 import { AppError } from "../../../Domain/utils/customError";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { ROUTE_GROUP_MESSAGE } from "../../../Infrastructure/constants/messages/RouteGroupMessage";
-import { IGetPaginatedRouteGroupUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/RouteGroup/IGetPaginatedRouteGroupUseCase";
+import { IGetPaginatedRouteGroupUseCase } from "../../../Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/IGetPaginatedRouteGroupUseCase";
 
 @injectable()
 export class AgencyRouteController implements IAgencyRouteController {

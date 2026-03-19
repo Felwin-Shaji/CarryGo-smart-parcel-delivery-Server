@@ -34,9 +34,6 @@ export class PaymentController {
             }
 
             const event = JSON.parse(rawBody.toString());
-            // const event = JSON.parse(req.body.toString());
-
-            console.log(event.payload.payment.entity, 'event event event event event event event event event event event ')
 
             const payment = event?.payload?.payment?.entity;
             if (!payment) {
@@ -61,10 +58,7 @@ export class PaymentController {
                 }
             }
 
-            console.log("Webhook event:", event.event,"🔻🔻🔻🔻🔻🔻");
-
             if (event.event === "payment.failed") {
-                console.log('✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️')
                 if (payment.notes?.type === "BOOKING_PAYMENT") {
                     await this._bookingPaymentFailedUseCase.execute(
                         payment.notes.bookingId,

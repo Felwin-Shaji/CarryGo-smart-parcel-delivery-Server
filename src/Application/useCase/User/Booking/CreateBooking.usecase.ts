@@ -95,14 +95,18 @@ export class CreateBookingUsecase implements ICreateBookingUsecase {
         const pricing = await this._calculateBookingPriceUsecase.execute(userId, payload);
 
 
+
         const booking = BookingMapper.createNew({
             userId,
             deliveryPartnerType: payload.deliveryType,
             partnerSnapshot,
+            fromHubId: payload.deliveryType === "AGENCY" ? payload.fromHubId : null,
+            toHubId: payload.deliveryType === "AGENCY" ? payload.toHubId : null,
             pickup,
             delivery,
             packageDetails: payload.packageDetails,
             pricing,
+
         });
 
         const saved = await this._bookingRepo.create(booking);

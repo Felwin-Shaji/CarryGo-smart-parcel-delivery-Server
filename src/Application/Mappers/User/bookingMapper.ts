@@ -17,6 +17,8 @@ export class BookingMapper {
         deliveryPartnerType: DeliveryPartnerType;
         partnerSnapshot: PartnerEntity | null;
         travelRequestId?: string | null;
+        fromHubId?: string | null;
+        toHubId?: string | null;
         pickup: AddressResponseDTO;
         delivery: AddressResponseDTO;
 
@@ -98,7 +100,11 @@ export class BookingMapper {
 
             isTraveler ? {} : undefined,
 
-            !isTraveler ? { routeHubs: [] } : undefined,
+            !isTraveler ? {
+                fromHubId: params.fromHubId ? params.fromHubId : null ,
+                toHubId: params.toHubId ? params.toHubId : null,
+                routeHubs: []
+            } : undefined,
 
 
         );

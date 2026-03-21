@@ -47,6 +47,8 @@ export interface BookingDocument extends Document {
     distanceKm: number;
 
     logistics: {
+        fromHubId?: Types.ObjectId;
+        toHubId?: Types.ObjectId;
         routeHubs: HubJourneyDocument[];
         currentHubId?: Types.ObjectId;
         lastUpdatedAt?: Date;
@@ -115,6 +117,8 @@ const bookingSchema = new Schema<BookingDocument>(
         },
 
         logistics: {
+            fromHubId: { type: Schema.Types.ObjectId, ref: "Hub" },
+            toHubId: { type: Schema.Types.ObjectId, ref: "Hub" },
             routeHubs: { type: [HubJourneySchema] },
             currentHubId: { type: Types.ObjectId, ref: "Hub", },
             lastUpdatedAt: Date,

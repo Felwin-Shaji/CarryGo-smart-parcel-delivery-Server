@@ -1,4 +1,5 @@
 import { NOTFOUND } from "dns";
+import { ConsoleTransportInstance } from "winston/lib/winston/transports";
 
 export const ROUTE_GROUP_MESSAGE = {
     ROUTE_GROUP_EXIST: "Route group already existe plase give another name",
@@ -22,3 +23,7 @@ export const ROUTE_SEGMENT_MESSAGE = {
     CREATED: "Segment added successfully",
     REORDERED: "Segments reordered successfully",
 } as const
+
+export const PARCEL_ROUTE_MESSAGE = {
+    NOTFOUND:"not found"
+} as const 

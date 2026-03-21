@@ -14,5 +14,8 @@ export const BOOKING_MESSAGE = {
     PRICE_CALCULATED:"order price is calculated",
 
     FOUND:"Users booking found successfully",
-    NOT_FOUND:"Booking not found"
+    NOT_FOUND:"Booking not found",
+    NO_AGENCY_ASSIGNED:"Booking has no agency assigned",
+    ROUTING_INFO_NOT_FOUND:"Booking is missing hub routing info",
+    VALID_ROUTE_NOT_FOUND:"No valid route found between the selected hubs",
 }

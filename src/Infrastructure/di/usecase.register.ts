@@ -168,6 +168,8 @@ import { ICreateRouteSegmentUseCase } from "@/Application/interfaces/useCase_Int
 import { CreateRouteSegmentUseCase } from "@/Application/useCase/Agency/RouteGroup/CreateRouteSegment.usecase";
 import { IGetRouteGroupDetailUseCase } from "@/Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/IGetRouteDetailsUsecase";
 import { GetRouteGroupDetailUseCase } from "@/Application/useCase/Agency/RouteGroup/GetRouteGroupDetail.usecase";
+import { ICreateParcelRouteUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ParcelRoute/ICreateParcelRouteUsecase";
+import { CreateParcelRouteUsecase } from "@/Application/useCase/Logistics/CreateParcelRoute.usecase";
 
 
 
@@ -519,6 +521,10 @@ export class UsecaseRegistery {
 
         container.register<IGetRouteGroupDetailUseCase>("IGetRouteGroupDetailUseCase",{
             useClass:GetRouteGroupDetailUseCase
+        })
+
+        container.register<ICreateParcelRouteUsecase>("ICreateParcelRouteUsecase",{
+            useClass:CreateParcelRouteUsecase
         })
     }
 }

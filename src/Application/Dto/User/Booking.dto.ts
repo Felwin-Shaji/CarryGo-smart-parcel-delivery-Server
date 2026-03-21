@@ -143,6 +143,8 @@ export interface CalculatePriceResponseDTO {
 type AgencyBookingDTO = {
   deliveryType: "AGENCY";
   partnerId: string;
+  fromHubId: string;
+  toHubId: string;
 
   pickupAddress: BookingAddressDTO;
   deliveryAddress: BookingAddressDTO;

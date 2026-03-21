@@ -37,6 +37,10 @@ import { IAgencyRouteGroupRepository } from "../../Application/interfaces/reposi
 import { AgencyRouteGroupRepository } from "../repositories/Agency/AgencyRouteGroup.repository";
 import { IAgencyRouteSegmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteSegmentRepository";
 import { AgencyRouteSegmentRepository } from "../repositories/Agency/AgencyRouteSegment.repository";
+import { IParcelRouteLegRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelRouteLegRepository";
+import { ParcelRouteLegRepository } from "../repositories/Logistics/ParcelRouteLeg.repository";
+import { IParcelRouteRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelRouteRepository";
+import { ParcelRouteRepository } from "../repositories/Logistics/ParcelRoute.repository";
 
 
 export class RepositoryRegistry {
@@ -116,6 +120,14 @@ export class RepositoryRegistry {
 
         container.register<IAgencyRouteSegmentRepository>("IAgencyRouteSegmentRepository", {
             useClass: AgencyRouteSegmentRepository
+        })
+
+        container.register<IParcelRouteRepository>("IParcelRouteRepository",{
+            useClass:ParcelRouteRepository
+        })
+
+        container.register<IParcelRouteLegRepository>("IParcelRouteLegRepository",{
+            useClass:ParcelRouteLegRepository
         })
     };
 };

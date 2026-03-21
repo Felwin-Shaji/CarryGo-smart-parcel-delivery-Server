@@ -10,9 +10,7 @@ export class RouteComputationService implements IRouteComputationService {
     ) { }
 
     async computeSegmentChain(fromHubId: string, toHubId: string, agencyId: string): Promise<RouteSegment[]> {
-        // console.log('1111111111111111111111111111111111111')
         if (fromHubId === toHubId) {
-        // console.log('22222222222222222222222222222222222222222222222222222')
 
             return [];
         }
@@ -20,7 +18,6 @@ export class RouteComputationService implements IRouteComputationService {
         // ── Step 1: Load all active segments for this agency ───────
         // One DB call. BFS runs entirely in memory after this.
         const allSegments = await this._routeSegmentRepository.find({ agencyId: agencyId });
-        // console.log(allSegments,'333333333333333333333333333333333lkk')
 
         if (allSegments.length === 0) return [];
 
@@ -32,8 +29,6 @@ export class RouteComputationService implements IRouteComputationService {
         //   "hub_nagpur" → [seg2 (Nagpur→Delhi)]
         //   "hub_delhi"  → [seg3 (Delhi→Chandigarh), seg4 (Delhi→Lucknow)]
         const graph = new Map<string, RouteSegment[]>();
-
-        // console.log(graph,'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq')
 
         for (let segment of allSegments) {
             if (!graph.has(segment.originHubId)) {

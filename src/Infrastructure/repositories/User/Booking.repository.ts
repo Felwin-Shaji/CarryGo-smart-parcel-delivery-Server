@@ -168,9 +168,6 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
         )
     }
 
-
-
-
     private toDomain(doc: BookingDocument): Booking {
         return new Booking(
             doc._id.toString(),
@@ -243,6 +240,14 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
             doc.travelerJourney ?? undefined,
             doc.logistics
                 ? {
+                    fromHubId: doc.logistics.fromHubId
+                        ? doc.logistics.fromHubId.toString()
+                        : null, 
+
+                    toHubId: doc.logistics.toHubId
+                        ? doc.logistics.toHubId.toString()
+                        : null,
+
                     routeHubs: doc.logistics.routeHubs?.map(hub => ({
                         hubId: hub.hubId.toString(),
                         hubName: hub.hubName,
@@ -250,7 +255,11 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
                         arrivedAt: hub.arrivedAt,
                         departedAt: hub.departedAt,
                     })) ?? [],
-                    currentHubId: doc.logistics.currentHubId?.toString(),
+
+                    currentHubId: doc.logistics.currentHubId
+                        ? doc.logistics.currentHubId.toString()
+                        : undefined,
+
                     lastUpdatedAt: doc.logistics.lastUpdatedAt,
                 }
                 : undefined,

@@ -41,6 +41,8 @@ import { IParcelRouteLegRepository } from "@/Application/interfaces/repositories
 import { ParcelRouteLegRepository } from "../repositories/Logistics/ParcelRouteLeg.repository";
 import { IParcelRouteRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelRouteRepository";
 import { ParcelRouteRepository } from "../repositories/Logistics/ParcelRoute.repository";
+import { IHubShipmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
+import { HubShipmentRepository } from "../repositories/Logistics/HubShipment.repository";
 
 
 export class RepositoryRegistry {
@@ -128,6 +130,10 @@ export class RepositoryRegistry {
 
         container.register<IParcelRouteLegRepository>("IParcelRouteLegRepository",{
             useClass:ParcelRouteLegRepository
+        })
+
+        container.register<IHubShipmentRepository>("IHubShipmentRepository",{
+            useClass:HubShipmentRepository
         })
     };
 };

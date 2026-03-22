@@ -21,6 +21,8 @@ import { IWalletService } from "../../Application/interfaces/services_Interfaces
 import { WalletService } from "../services/Payment/wallet.services";
 import { IRouteComputationService } from "@/Application/interfaces/services_Interfaces/IRouteComputationService";
 import { RouteComputationService } from "../services/Logistics/RouteComputationService";
+import { IHubShipmentAssignmentService } from "@/Application/interfaces/services_Interfaces/IHubShipmentAssignmentService";
+import { HubShipmentAssignmentService } from "../services/Logistics/HubShipmentAssignment.service";
 
 export class ServiceRegistory {
     static registerServices(): void {
@@ -67,6 +69,10 @@ export class ServiceRegistory {
 
         container.register<IRouteComputationService>("IRouteComputationService", {
             useClass: RouteComputationService
+        });
+
+        container.register<IHubShipmentAssignmentService>("IHubShipmentAssignmentService",{
+            useClass:HubShipmentAssignmentService
         })
     }
 }

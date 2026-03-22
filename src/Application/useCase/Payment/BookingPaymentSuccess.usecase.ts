@@ -5,6 +5,7 @@ import { IBookingRepository } from "../../interfaces/repositories_interfaces/use
 import { IWalletRepository } from "../../interfaces/repositories_interfaces/walletRepositories_Interfaces/IWalletRepository";
 import { ITransactionRepository } from "../../interfaces/repositories_interfaces/walletRepositories_Interfaces/ITransactionRepository";
 import { ICreateParcelRouteUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ParcelRoute/ICreateParcelRouteUsecase";
+import { ICreateHubShipmentsUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ICreateHubShipmentsUsecase";
 
 @injectable()
 export class BookingPaymentSuccessUseCase implements IBookingPaymentSuccessUseCase {
@@ -17,6 +18,8 @@ export class BookingPaymentSuccessUseCase implements IBookingPaymentSuccessUseCa
         @inject("ITransactionRepository") private readonly _transactionRepo: ITransactionRepository,
 
         @inject("ICreateParcelRouteUsecase") private readonly _createParcelRouteUsecase: ICreateParcelRouteUsecase,
+
+        @inject("ICreateHubShipmentsUsecase") private readonly _createHubShipmentsUsecase: ICreateHubShipmentsUsecase
     ) { }
 
     async execute(bookingId: string, razorpayPaymentId: string): Promise<void> {
@@ -63,7 +66,10 @@ export class BookingPaymentSuccessUseCase implements IBookingPaymentSuccessUseCa
         await this._bookingRepo.updateStatus(bookingId, "PAID_PENDING_PICKUP");
 
         if (booking.deliveryPartnerType === "AGENCY") {
-            await this._createParcelRouteUsecase.execute(bookingId)
+            
+            const result = await this._createParcelRouteUsecase.execute(bookingId)
+
+            await this._createHubShipmentsUsecase.execute(result.parcelRoute.id!)
         }
     }
 }

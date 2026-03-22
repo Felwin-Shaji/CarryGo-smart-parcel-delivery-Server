@@ -24,7 +24,7 @@ export class ParcelRouteLegRepository implements IParcelRouteLegRepository {
         return docs.map((doc) => this.toDomain(doc));
     }
 
-  
+
     async findByRouteId(parcelRouteId: string, session?: ClientSession): Promise<ParcelRouteLeg[]> {
 
         const docs = await ParcelRouteLegModel
@@ -33,6 +33,16 @@ export class ParcelRouteLegRepository implements IParcelRouteLegRepository {
             .session(session || null);
 
         return docs.map((doc) => this.toDomain(doc));
+    }
+
+    async updateShipmentId(legId: string, shipmentId: string, session?: ClientSession): Promise<void> {
+        await ParcelRouteLegModel
+            .findByIdAndUpdate(
+                legId,
+                { $set: { shipmentId: new Types.ObjectId(shipmentId) } },
+                { new: true }
+            )
+            .session(session || null);
     }
 
 

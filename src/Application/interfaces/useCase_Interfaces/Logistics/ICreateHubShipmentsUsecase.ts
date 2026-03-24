@@ -1,3 +1,3 @@
 export interface ICreateHubShipmentsUsecase {
-    execute(parcelRouteId: string): Promise<void>
+    execute(parcelRouteId: string,bookingId: string): Promise<void>
 }

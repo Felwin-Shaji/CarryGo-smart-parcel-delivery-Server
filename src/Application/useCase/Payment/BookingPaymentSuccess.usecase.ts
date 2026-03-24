@@ -69,7 +69,7 @@ export class BookingPaymentSuccessUseCase implements IBookingPaymentSuccessUseCa
             
             const result = await this._createParcelRouteUsecase.execute(bookingId)
 
-            await this._createHubShipmentsUsecase.execute(result.parcelRoute.id!)
+            await this._createHubShipmentsUsecase.execute(result.parcelRoute.id!,bookingId)
         }
     }
 }

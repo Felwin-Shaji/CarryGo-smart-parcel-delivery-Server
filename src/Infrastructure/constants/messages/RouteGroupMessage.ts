@@ -26,3 +26,7 @@ export const PARCEL_ROUTE_MESSAGE = {
     NOTFOUND:"not found",
     LEGS_NOTFOUND:"No legs found for parcel route"
 } as const 
+
+export const PARCEL_MOVEMENT_MESSAGE = {
+    CREATION_FAILED:"Failed to create ParcelMovement"
+}

@@ -8,11 +8,12 @@ const WorkerKYCVerificationSchema = new Schema<IWrokerKYCVerification>({
     idNumberEncrypted: { type: String, required: true },
     documentUrl: { type: String, required: true },
     selfieUrl: { type: String, required: true },
-
-    status: { type: String, enum: ["PENDING", "APPROVED", "REJECTED"], default: "PENDING", },
  
+    status: { type: String, enum: ["PENDING", "REGISTERED", "APPROVED", "REJECTED", "RESUBMITTED"], default: "PENDING", },
+
     createdAt: { type: Date, default: Date.now },
     reviewedAt: { type: Date, default: null },
+    rejectionReason: { type: String }
 });
 
 export const KYCVerificationModel = model<IWrokerKYCVerification>(

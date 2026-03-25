@@ -23,6 +23,7 @@ import { AgencyWalletController } from "../../Interface_Adapters/controllers/Age
 import { TravelerController } from "../../Interface_Adapters/controllers/User/traveler.controller";
 import { AgencyRouteController } from "../../Interface_Adapters/controllers/Agency/AgencyRoute.controller";
 import { AgencyRouteSegmentController } from "@/Interface_Adapters/controllers/Agency/AgencyRouteSegment.controller";
+import { AgencyHubWorkerController } from "@/Interface_Adapters/controllers/Agency/AgencyHubWorker.controller";
 
 
 DependancyInjection.registerAll();
@@ -41,6 +42,7 @@ export const travelerController = container.resolve(TravelerController);
 export const agencyController = container.resolve(AgencyController);
 export const agencyProfileController = container.resolve(AgencyProfileController);
 export const agencyHubController = container.resolve(AgencyHubController);
+export const agencyHubWorkerController = container.resolve(AgencyHubWorkerController)
 export const agencyPricingController = container.resolve(AgencyPricingController);
 export const agencyWalletController = container.resolve(AgencyWalletController);
 export const agencyRouteController = container.resolve(AgencyRouteController);

@@ -39,5 +39,9 @@ export class HubWorkerRoute extends BaseRoute {
       asyncHandler(hubWorkerController.checkTempWorkerStatus)
     )
 
+      
+    this.router.get("/workers/:id", authenticate(["hub"]), asyncHandler(hubWorkerController.getHubWorkerById))
+    this.router.get("/workers/:id/kyc",authenticate(["hub"]), asyncHandler(hubWorkerController.getWorkerKycController))
+    this.router.patch("/workers/:id/kyc/resubmit",authenticate(["hub"]), workerKYCUpload ,asyncHandler(hubWorkerController.reSubmitWorkerKycController))
   }
 }

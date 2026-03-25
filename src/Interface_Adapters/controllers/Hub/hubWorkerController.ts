@@ -13,11 +13,14 @@ import { AddWorkerTempRequestDTO } from "../../../Application/Dto/Hub/hub.dto";
 import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
 import { AppError } from "../../../Domain/utils/customError";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
-import { GetWorkersDTO } from "../../../Application/Dto/Workers/worker.dto";
+import { GetWorkersDTO, ReSubmitWorkerKycPayloadDTO } from "../../../Application/Dto/Workers/worker.dto";
 import { IGetWorkersUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkersUseCase";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
 import { ICheckTempHubStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/ICheckTempHubStatusUseCase";
 import { ICheckTempWorkerStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/ICheckTempWorkerStatusUseCase";
+import { IGetWorkerOverviewUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerOverviewUseCase";
+import { IReSubmitWorkerKycUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IReSubmitWorkerKycUseCase";
+import { IGetWorkerKycUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerKycUseCase";
 
 function parseBlockedQuery(value: unknown): boolean | null {
     if (value === "true") return true;
@@ -38,6 +41,9 @@ export class HubWorkerController implements IHubWorkerController {
 
         @inject("IAddWorkerUsecase") private _addWorkerUsecase: IAddWorkerUsecase,
         @inject("IGetWorkersUseCase") private _getWorkersUseCase: IGetWorkersUseCase,
+        @inject("IGetWorkerOverviewUseCase") private _getWorkerOverviewUseCase: IGetWorkerOverviewUseCase,
+        @inject("IGetWorkerKycUseCase") private _getWorkerKycUseCase: IGetWorkerKycUseCase,
+        @inject("IReSubmitWorkerKycUseCase") private _reSubmitWorkerKycUseCase: IReSubmitWorkerKycUseCase,
     ) { }
 
     addNewWorker = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
@@ -156,5 +162,61 @@ export class HubWorkerController implements IHubWorkerController {
             next(error)
         }
     }
+
+    getHubWorkerById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            const workerId = req.params.id;
+            if (!workerId) throw new AppError(WORKER_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
+
+            const worker = await this._getWorkerOverviewUseCase.execute(workerId);
+
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    WORKER_MESSAGES.OVERVIEW_FETCHED,
+                    worker
+                )
+            );
+        } catch (error) {
+        }
+    }
+
+    getWorkerKycController = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            const { id } = req.params;
+            if (!id) throw new AppError(WORKER_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
+
+            const data = await this._getWorkerKycUseCase.execute(id);
+
+            return res.status(200).json(
+                ApiResponse.success(
+                    WORKER_MESSAGES.KYC_FOUNDED,
+                    data
+                )
+            );
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    reSubmitWorkerKycController = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            const { id } = req.params;
+            if (!id) throw new AppError(WORKER_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
+
+            const files = req.files as WorkerKYCFileFields
+            const payload = req.body as ReSubmitWorkerKycPayloadDTO
+
+            await this._reSubmitWorkerKycUseCase.execute(id, payload,files);
+
+            return res.status(200).json(
+                ApiResponse.success(
+                    WORKER_MESSAGES.KYC_RESUBMITTED_SUCCESSFULLY
+                )
+            );
+        } catch (error) {
+            next(error);
+
+        }
+    };
 
 }

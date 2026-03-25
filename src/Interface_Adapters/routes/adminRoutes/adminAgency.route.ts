@@ -43,5 +43,7 @@ export class AdminAgencyRoute extends BaseRoute {
       asyncHandler(adminHubController.updateHubKyc)
     );
 
+    this.router.get("/agency/hub/worker/:id",authenticate(["admin"]),asyncHandler(adminHubController.getHubWorkerById))
+
   }
 }

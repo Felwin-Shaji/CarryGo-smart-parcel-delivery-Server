@@ -7,6 +7,11 @@ const hubWorkerTempModel = new Schema<HubWorkersTemp>({
     mobile: { type: String, required: true },
     otp: { type: String, required: true, select: true },
     role: { type: String, enum: ["user", "agency", "admin", "hub", "worker"], default: "user" },
+    workerRole: {
+        type: String,
+        enum: ["PICKUP", "TRANSPORT", "OUT_FOR_DELIVERY"],
+        required: true
+    },
     status: {
         type: String,
         enum: ["BASIC-Info", "OTP-Verified"],

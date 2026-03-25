@@ -1,7 +1,10 @@
+import { WorkerRole, WorkingStatus } from "@/Domain/Entities/Worker/Worker";
 import { IDType } from "../../../Domain/Entities/Worker/WorkerKyc";
 import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
+import { userKycResponseDTO } from "../User/user.dto";
 
 export interface WorkerResponseDTO {
+    id:string;
     hubId: string;
     name: string;
     email: string;
@@ -54,3 +57,40 @@ export interface GetHubWorkersResponseDTO {
 export interface HubWorkerWithKYCResponseDTO extends WorkerResponseDTO {
     kyc: WorkerKYCResponseDTO | null;
 }
+
+export interface GetWorkerOverviewResponseDTO {
+  id: string;
+  name: string;
+  email: string;
+  mobile?: string;
+
+  role: Role;
+  workerRole: WorkerRole;
+  workingStatus: WorkingStatus;
+
+  kycStatus: KYCStatus;
+  walletBalance: number;
+  isBlocked: boolean;
+
+  createdAt: Date;
+
+  kyc: userKycResponseDTO | null;
+}
+
+export interface GetWorkerKycResponseDTO {
+  idType: IDType;
+  idNumber: string;
+  documentUrl: string;
+  selfieUrl: string;
+  rejectionReason?: string | null;
+}
+
+export interface ReSubmitWorkerKycPayloadDTO {
+  idType: IDType;
+  idNumber: string;
+}
+
+export type UpdateWorkerKycStatusDTO = {
+  status: "APPROVED" | "REJECTED";
+  rejectReason?: string;
+};

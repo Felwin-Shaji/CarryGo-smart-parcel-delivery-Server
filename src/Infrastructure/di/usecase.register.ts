@@ -172,6 +172,14 @@ import { ICreateParcelRouteUsecase } from "@/Application/interfaces/useCase_Inte
 import { CreateParcelRouteUsecase } from "@/Application/useCase/Logistics/CreateParcelRoute.usecase";
 import { ICreateHubShipmentsUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ICreateHubShipmentsUsecase";
 import { CreateHubShipmentsUsecase } from "@/Application/useCase/Logistics/CreateHubShipments.usecase";
+import { IGetWorkerOverviewUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerOverviewUseCase";
+import { GetWorkerOverviewUseCase } from "@/Application/useCase/Worker/GetWorkerOverview.usecase";
+import { IReSubmitWorkerKycUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IReSubmitWorkerKycUseCase";
+import { ReSubmitWorkerKycUseCase } from "@/Application/useCase/Worker/ReSubmitWorkerKyc.usecase";
+import { IGetWorkerKycUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerKycUseCase";
+import { GetWorkerKycUseCase } from "@/Application/useCase/Worker/GetWorkerKyc.usecase";
+import { IUpdateWorkerKycStatusUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IUpdateWorkerKycStatusUseCase";
+import { UpdateWorkerKycStatusUseCase } from "@/Application/useCase/Worker/UpdateWorkerKycStatus.usecase";
 
 
 
@@ -531,6 +539,22 @@ export class UsecaseRegistery {
 
         container.register<ICreateHubShipmentsUsecase>("ICreateHubShipmentsUsecase",{
             useClass:CreateHubShipmentsUsecase
+        })
+
+        container.register<IGetWorkerOverviewUseCase>("IGetWorkerOverviewUseCase",{
+            useClass:GetWorkerOverviewUseCase
+        })
+
+        container.register<IReSubmitWorkerKycUseCase>("IReSubmitWorkerKycUseCase",{
+            useClass:ReSubmitWorkerKycUseCase
+        });
+
+        container.register<IGetWorkerKycUseCase>("IGetWorkerKycUseCase",{
+            useClass:GetWorkerKycUseCase
+        })
+
+        container.register<IUpdateWorkerKycStatusUseCase>("IUpdateWorkerKycStatusUseCase",{
+            useClass:UpdateWorkerKycStatusUseCase
         })
     }
 }

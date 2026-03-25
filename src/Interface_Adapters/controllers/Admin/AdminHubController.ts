@@ -8,13 +8,15 @@ import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMess
 import { updateHubKycStatusDTO } from "../../../Application/Dto/Hub/hub.dto";
 import { IUpdateHubKycStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IUpdateHubKycStatusUseCase";
 import { AppError } from "../../../Domain/utils/customError";
-import { STATES } from "mongoose";
+import { WORKER_MESSAGES } from "@/Infrastructure/constants/messages/workerMessage";
+import { IGetWorkerOverviewUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerOverviewUseCase";
 
 @injectable()
 export class AdminHubController implements IAdminHubController {
     constructor(
         @inject("IGetHubOverviewUseCase") private _getHubOverviewUseCase: IGetHubOverviewUseCase,
         @inject("IUpdateHubKycStatusUseCase") private _updateHubKycStatusUseCase: IUpdateHubKycStatusUseCase,
+        @inject("IGetWorkerOverviewUseCase") private _getWorkerOverviewUseCase: IGetWorkerOverviewUseCase,
     ) { };
 
     getHubById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
@@ -40,9 +42,9 @@ export class AdminHubController implements IAdminHubController {
             const hubId = req.params?.id;
             const dto = req.body as updateHubKycStatusDTO;
 
-            if(!hubId) throw new AppError(HUB_MESSAGES.NOT_FOUND,STATUS.BAD_REQUEST)
+            if (!hubId) throw new AppError(HUB_MESSAGES.NOT_FOUND, STATUS.BAD_REQUEST)
 
-            await this._updateHubKycStatusUseCase.execute(hubId,dto )
+            await this._updateHubKycStatusUseCase.execute(hubId, dto)
 
             return res.status(STATUS.OK).json(
                 ApiResponse.success(
@@ -55,4 +57,21 @@ export class AdminHubController implements IAdminHubController {
         }
     }
 
+    getHubWorkerById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            const workerId = req.params.id;
+            if (!workerId) throw new AppError(WORKER_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
+
+            const worker = await this._getWorkerOverviewUseCase.execute(workerId);
+
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    WORKER_MESSAGES.OVERVIEW_FETCHED,
+                    worker
+                )
+            );
+        } catch (error) {
+            next(error)
+        }
+    }
 }

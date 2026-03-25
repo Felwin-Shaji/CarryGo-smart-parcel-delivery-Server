@@ -7,11 +7,24 @@ export const WORKER_MESSAGES = {
   OTP_MISMATCH: "Invalid OTP",
   OTP_VERIFIED: "Worker OTP verified successfully",
   WORKER_ADDED_SUCCESSFULLY: "Worker added successfully",
+  OVERVIEW_FETCHED: "Wroker over view fetched successfully",
 
-  LIST_FETCHED:"Wrokers list fetched successfully",
+  LIST_FETCHED: "Wrokers list fetched successfully",
 
-  WORKERS_NOT_FOUND:"No workers found add new workers",
+  WORKERS_NOT_FOUND: "No workers found add new workers",
 
   SESSION_NOT_FOUND: "No session found. Please start the registration process again.",
   KYC_FILES_REQUIRED: "KYC files (document and selfie) are required.",
+  ID_MISSING: "worker id is missing",
+
+  KYC_NOT_FOUND: "KYC record not found",
+  KYC_NOT_ELIGIBLE_FOR_RESUBMIT: "Only rejected KYC can be resubmitted",
+  KYC_RESUBMITTED_SUCCESSFULLY: "KYC resubmitted successfully",
+  DOCUMENT_UPLOAD_FAILED: "Document upload failed",
+  SELFIE_UPLOAD_FAILED: "Selfie upload failed",
+  NOTHING_TO_UPDATE: "No changes provided for resubmission",
+  KYC_FOUNDED: "Worker kyc fetched",
+  ALREADY_APPROVERD:"kyc already approver",
+  ALREADY_REJECTED:"Rejection reason is required",
+  KYC_UPDATED:"worker kyc updated"
 } as const;

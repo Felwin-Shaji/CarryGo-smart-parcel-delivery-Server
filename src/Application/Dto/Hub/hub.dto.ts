@@ -1,3 +1,4 @@
+import { WorkerRole } from "@/Domain/Entities/Worker/Worker";
 import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
 
 export interface GetHubsDTO {
@@ -46,7 +47,8 @@ export interface AddWorkerTempRequestDTO {
     name: string,
     email: string,
     mobile: string,
-    role: Role
+    role: Role,
+    workerRole:WorkerRole
 }
 
 export interface AddWorkerTempResponseDTO {

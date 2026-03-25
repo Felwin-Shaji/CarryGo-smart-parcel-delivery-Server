@@ -12,5 +12,6 @@ export interface IWrokerKYCVerification {
   status: KYCStatus;             
   createdAt: Date;
   reviewedAt: Date | null;
+  rejectionReason?: string | null;
   _id?: string | null;
 }

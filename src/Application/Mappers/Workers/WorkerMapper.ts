@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
 import { HubWorker } from "../../../Domain/Entities/Worker/Worker";
-import { WorkerResponseDTO } from "../../Dto/Workers/worker.dto";
+import { GetWorkerOverviewResponseDTO, WorkerResponseDTO } from "../../Dto/Workers/worker.dto";
 import { IDType, IWrokerKYCVerification } from "../../../Domain/Entities/Worker/WorkerKyc";
 import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
 import { AddWorkerTempRequestDTO, AddWorkerTempResponseDTO } from "../../Dto/Hub/hub.dto";
@@ -12,7 +12,7 @@ export class WorkerMapper {
     static toCreateWorker(
         tempWorker: HubWorkersTemp,
         hashedPassword: string,
-        hubId:string,
+        hubId: string,
     ): HubWorker {
 
         if (!hubId) {
@@ -26,6 +26,8 @@ export class WorkerMapper {
             tempWorker.mobile,
             hashedPassword,
             "worker",
+            tempWorker.workerRole,
+            "AVAILABLE",
             "REGISTERED",
             0,
             false,
@@ -41,6 +43,7 @@ export class WorkerMapper {
             email: dto.email,
             mobile: dto.mobile,
             role: dto.role,
+            workerRole: dto.workerRole,
             otp: hashOtp,
             status: "BASIC-Info",
             expiresAt,
@@ -62,7 +65,7 @@ export class WorkerMapper {
         documentUrl: string,
         selfieUrl: string,
         idNumberEncrypted: string,
-        role?:Role
+        role?: Role
     ): IWrokerKYCVerification {
 
         return {
@@ -82,6 +85,7 @@ export class WorkerMapper {
 
     static toAddWorkerResponseDTO(worker: HubWorker): WorkerResponseDTO {
         return {
+            id:worker.id!,
             hubId: worker.hubId.toString(),
             name: worker.name,
             email: worker.email,
@@ -91,4 +95,41 @@ export class WorkerMapper {
             createdAt: worker.createdAt,
         };
     }
+
+    static toWorkerOverviewResponseDTO(
+    worker: HubWorker,
+    kyc: IWrokerKYCVerification | null
+  ): GetWorkerOverviewResponseDTO {
+    return {
+      id: worker.id!,
+      name: worker.name,
+      email: worker.email,
+  ...(worker.mobile && { mobile: worker.mobile }),
+
+      role: worker.role,
+      workerRole: worker.workerRole,
+      workingStatus: worker.workingStatus,
+
+      kycStatus: worker.kycStatus,
+      walletBalance: worker.walletBalance,
+      isBlocked: worker.isBlocked,
+
+      createdAt: worker.createdAt,
+
+      kyc: kyc
+        ? {
+            id: kyc._id!,
+            subjectId: kyc.subjectId,
+            subjectType: kyc.subjectType,
+            idType: kyc.idType,
+            idNumberEncrypted: kyc.idNumberEncrypted,
+            documentUrl: kyc.documentUrl,
+            selfieUrl: kyc.selfieUrl,
+            status: kyc.status,
+            createdAt: kyc.createdAt,
+            reviewedAt: kyc.reviewedAt,
+          }
+        : null,
+    };
+  }
 }

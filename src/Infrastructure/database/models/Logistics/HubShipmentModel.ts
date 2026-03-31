@@ -25,6 +25,7 @@ export interface HubShipmentDocument extends Document {
     | "COMPLETED"
     | "CANCELLED";
 
+    estimatedDispatchAt?: Date;
     departedAt?: Date;
     arrivedAt?: Date;
 
@@ -52,6 +53,8 @@ const hubShipmentSchema = new Schema<HubShipmentDocument>(
             enum: ["PENDING", "LOADING", "DISPATCHED", "ARRIVED", "COMPLETED", "CANCELLED"],
             default: "PENDING"
         },
+        estimatedDispatchAt: Date,
+
         departedAt: Date,
         arrivedAt: Date
     },

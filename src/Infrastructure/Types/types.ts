@@ -37,6 +37,7 @@ export type BookingStatusType =
     | "CREATED"
     | "PAYMENT_PENDING"
     | "PAID_PENDING_PICKUP"
+    | "READY_FOR_PICKUP"
     | "PICKUP_STARTED"
     | "IN_TRANSIT"
     | "DELIVERED"

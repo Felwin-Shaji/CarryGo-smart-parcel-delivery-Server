@@ -24,6 +24,7 @@ import { TravelerController } from "../../Interface_Adapters/controllers/User/tr
 import { AgencyRouteController } from "../../Interface_Adapters/controllers/Agency/AgencyRoute.controller";
 import { AgencyRouteSegmentController } from "@/Interface_Adapters/controllers/Agency/AgencyRouteSegment.controller";
 import { AgencyHubWorkerController } from "@/Interface_Adapters/controllers/Agency/AgencyHubWorker.controller";
+import { HubShipmentController } from "@/Interface_Adapters/controllers/Hub/HubShipment.controller";
 
 
 DependancyInjection.registerAll();
@@ -59,6 +60,7 @@ export const adminWalletController = container.resolve(AdminWalletController);
 
 export const hubWorkerController = container.resolve(HubWorkerController);
 export const hubWalletController = container.resolve(HubWalletController);
+export const hubShipmentController = container.resolve(HubShipmentController);
 
 
 export const workerWalletController = container.resolve(WorkerWalletController);

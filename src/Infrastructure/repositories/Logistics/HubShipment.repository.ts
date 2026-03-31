@@ -1,5 +1,6 @@
-import { IHubShipmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
-import { HubShipment } from "@/Domain/Entities/Logistics/HubShipment";
+import { GetShipmentsDTO } from "@/Application/Dto/Logistics/shipment.dto";
+import { HubShipmentPaginatedData, IHubShipmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
+import { HubShipment, ShipmentType } from "@/Domain/Entities/Logistics/HubShipment";
 import { HubShipmentDocument, HubShipmentModel } from "@/Infrastructure/database/models/Logistics/HubShipmentModel";
 import { UpdateQuery } from "mongoose";
 import { ClientSession, Types } from "mongoose";
@@ -65,7 +66,7 @@ export class HubShipmentRepository implements IHubShipmentRepository {
 
         const updateQuery: UpdateQuery<HubShipmentDocument> = { $set: value };
         if (unset) updateQuery.$unset = unset;
-  
+
         const doc = await HubShipmentModel
             .findOneAndUpdate(filter, updateQuery, { new: true })
             .session(session || null);
@@ -80,10 +81,7 @@ export class HubShipmentRepository implements IHubShipmentRepository {
         return doc ? this.toDomain(doc) : null;
     }
 
-    async findOpenShipmentForSegment(
-        segmentId: string,
-        session?: ClientSession
-    ): Promise<HubShipment | null> {
+    async findOpenShipmentForSegment(segmentId: string, session?: ClientSession): Promise<HubShipment | null> {
 
         const doc = await HubShipmentModel
             .findOne({
@@ -99,6 +97,108 @@ export class HubShipmentRepository implements IHubShipmentRepository {
         return doc ? this.toDomain(doc) : null;
     }
 
+    async findOpenShipmentByHubAndType(hubId: string, type: ShipmentType, session?: ClientSession): Promise<HubShipment | null> {
+
+        let hubFilter: any = {};
+
+        if (type === "BULK_PICKUP") {
+            hubFilter = { toHubId: new Types.ObjectId(hubId) };
+        } else if (type === "OUT_FOR_DELIVERY") {
+            hubFilter = { fromHubId: new Types.ObjectId(hubId) };
+        } else {
+            throw new Error("findOpenShipmentByHubAndType is not valid for HUB_TRANSFER");
+        }
+
+        const doc = await HubShipmentModel
+            .findOne({
+                type,
+                ...hubFilter,
+                status: { $in: ["PENDING", "LOADING"] },
+                $or: [
+                    { capacity: null },
+                    { $expr: { $lt: ["$parcelCount", "$capacity"] } },
+                ],
+            })
+            .sort({ parcelCount: 1 })
+            .session(session || null);
+
+        return doc ? this.toDomain(doc) : null;
+    }
+
+    async getPaginatedShipments(hubId: string, dto: GetShipmentsDTO): Promise<HubShipmentPaginatedData> {
+
+        const { page = 1, limit = 10, search, type, status, workerId, fromDate, toDate, } = dto;
+
+        const skip = (page - 1) * limit;
+
+        const filter: any = {};
+
+        if (type) filter.type = type;
+
+        if (hubId) {
+            if (type === "BULK_PICKUP") {
+                filter.toHubId = new Types.ObjectId(hubId);
+            } else if (type === "OUT_FOR_DELIVERY") {
+                filter.fromHubId = new Types.ObjectId(hubId);
+            } else if (type === "HUB_TRANSFER") {
+                filter.$or = [
+                    { fromHubId: new Types.ObjectId(hubId) },
+                    { toHubId: new Types.ObjectId(hubId) },
+                ];
+            }
+        }
+
+        if (status) filter.status = status;
+
+
+        if (workerId) filter.assignedWorkerId = new Types.ObjectId(workerId);
+
+
+        if (search) {
+            const searchFilter = {
+                $or: [
+                    { vehicleNumber: { $regex: search, $options: "i" } },
+                    { _id: { $regex: search, $options: "i" } },
+                ],
+            };
+
+            if (filter.$or) {
+                filter.$and = [
+                    { $or: filter.$or },
+                    searchFilter
+                ];
+                delete filter.$or;
+            } else {
+                Object.assign(filter, searchFilter);
+            }
+        }
+
+        if (fromDate || toDate) {
+            filter.createdAt = {};
+            if (fromDate) filter.createdAt.$gte = new Date(fromDate);
+            if (toDate) filter.createdAt.$lte = new Date(toDate);
+        }
+
+        const [docs, total] = await Promise.all([
+            HubShipmentModel
+                .find(filter)
+                .populate("assignedWorkerId", "name")
+                .sort({ createdAt: -1 })
+                .skip(skip)
+                .limit(limit),
+
+            HubShipmentModel.countDocuments(filter),
+        ]);
+
+        return {
+            data: docs.map(doc => this.toDomain(doc)),
+            total,
+            page,
+            limit,
+            totalPages: Math.ceil(total / limit),
+        };
+    }
+
 
     private toDomain(doc: HubShipmentDocument): HubShipment {
         return new HubShipment(
@@ -112,6 +212,7 @@ export class HubShipmentRepository implements IHubShipmentRepository {
             doc.capacity ?? null,
             doc.parcelCount,
             doc.status,
+            doc.estimatedDispatchAt ?? null,
             doc.departedAt ?? null,
             doc.arrivedAt ?? null,
             doc.createdAt,

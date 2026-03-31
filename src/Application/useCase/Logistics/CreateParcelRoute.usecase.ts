@@ -46,7 +46,7 @@ export class CreateParcelRouteUsecase implements ICreateParcelRouteUsecase {
             throw new AppError(BOOKING_MESSAGE.ROUTING_INFO_NOT_FOUND, STATUS.BAD_REQUEST);
         };
 
-        const chain = await this._routeComputationService.computeSegmentChain(fromHubId, toHubId, agencyId);
+        const chain = await this._routeComputationService.computeSegmentChain(fromHubId, toHubId, agencyId); ////////////////
 
         if (!chain.length) {
             throw new AppError(BOOKING_MESSAGE.VALID_ROUTE_NOT_FOUND, STATUS.NOT_FOUND);

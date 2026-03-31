@@ -26,4 +26,7 @@ export const HUB_MESSAGES = {
 
     VERIFICATION_IMAGE_REQUIRED: "Verification image is required",
     VERIFICATION_IMAGE_UPLOAD_FAILED: "Failed to upload verification image",
+
+    LOGIDTICS_ID_MISSING:"logistic id is missing",
+    SHIPMENT_FETCH_SUCCESS:"Shipments fetched successfully",
 } as const;

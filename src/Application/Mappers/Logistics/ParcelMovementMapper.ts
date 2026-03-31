@@ -23,4 +23,24 @@ export class ParcelMovementMapper {
             new Date(),
         );
     }
+
+    static toPickup(
+        bookingId: string,
+        shipmentId: string,
+        toHubId: string
+    ): ParcelMovement {
+        return new ParcelMovement(
+            null,
+            bookingId,
+            shipmentId,
+            null,
+            null,
+            toHubId,
+            "PENDING",
+            null,
+            null,
+            new Date(),
+            new Date(),
+        )
+    }
 }

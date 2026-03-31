@@ -180,6 +180,10 @@ import { IGetWorkerKycUseCase } from "@/Application/interfaces/useCase_Interface
 import { GetWorkerKycUseCase } from "@/Application/useCase/Worker/GetWorkerKyc.usecase";
 import { IUpdateWorkerKycStatusUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IUpdateWorkerKycStatusUseCase";
 import { UpdateWorkerKycStatusUseCase } from "@/Application/useCase/Worker/UpdateWorkerKycStatus.usecase";
+import { ICreateHubShipmentPickUpUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/ICreateHubShipmentPickUpUsecase";
+import { CreateHubShipmentPickUpUsecase } from "@/Application/useCase/Logistics/HubShipment/CreateHubShipmentPickUp.usecase";
+import { IGetShipmentsUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/IGetShipmentsUsecase";
+import { GetShipmentsUsecase } from "@/Application/useCase/Logistics/HubShipment/GetShipments.usecase";
 
 
 
@@ -555,6 +559,14 @@ export class UsecaseRegistery {
 
         container.register<IUpdateWorkerKycStatusUseCase>("IUpdateWorkerKycStatusUseCase",{
             useClass:UpdateWorkerKycStatusUseCase
+        })
+
+        container.register<ICreateHubShipmentPickUpUsecase>("ICreateHubShipmentPickUpUsecase",{
+            useClass:CreateHubShipmentPickUpUsecase
+        })
+
+        container.register<IGetShipmentsUsecase>("IGetShipmentsUsecase",{
+            useClass:GetShipmentsUsecase
         })
     }
 }

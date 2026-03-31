@@ -103,6 +103,9 @@ export class HubShipment {
         /** Current stage in the dispatch lifecycle. */
         public status: ShipmentStatus = "PENDING",
 
+        /**To set the estimate time of start jerny */
+        public estimatedDispatchAt: Date | null = null,
+
         /** When the vehicle left the origin hub. Set on DISPATCHED. */
         public departedAt: Date | null = null,
 

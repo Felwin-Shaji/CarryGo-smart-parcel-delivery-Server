@@ -8,14 +8,16 @@ import { ShipmentStatus, ShipmentType } from "@/Domain/Entities/Logistics/HubShi
 import { STATUS } from "@/Infrastructure/constants/statusCodes";
 import { ApiResponse } from "@/Interface_Adapters/presenters/ApiResponse";
 import { HUB_MESSAGES } from "@/Infrastructure/constants/messages/hubMessage";
+import { IGetShipmentDetailsUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IGetShipmentDetailsUsecase";
 
 @injectable()
 export class HubShipmentController {
     constructor(
         @inject("IGetShipmentsUsecase") private _getShipmentsUsecase: IGetShipmentsUsecase,
+        @inject("IGetShipmentDetailsUsecase") private _getShipmentDetailsUsecase: IGetShipmentDetailsUsecase
     ) { }
 
-    getShipments = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    getShipmentById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const hubId = req.user?.id;
             if (!hubId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND);
@@ -31,7 +33,7 @@ export class HubShipmentController {
                 limit: Number(req.query.limit) || 10,
             };
 
-            console.log(dto,'ddddddddddddddddddddddddddddd')
+            console.log(dto, 'ddddddddddddddddddddddddddddd')
 
             const shipments = await this._getShipmentsUsecase.execute(
                 hubId,
@@ -45,6 +47,33 @@ export class HubShipmentController {
                 )
             );
 
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    getShipmentDetails = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            const shipmentId = req.params.id;
+            if (!shipmentId) throw new AppError(HUB_MESSAGES.LOGIDTICS_ID_MISSING)
+
+            const page = Number(req.query.page) || 1;
+            const limit = Number(req.query.limit) || 10;
+
+            const shipmentParcel = await this._getShipmentDetailsUsecase.execute(
+                shipmentId,
+                page,
+                limit
+            );
+
+            console.log(shipmentParcel, 'shipmentParcelshipmentParcelshipmentParcel')
+
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    HUB_MESSAGES.SHIPMENT_PARCEL_FETCH_SUCCESS,
+                    shipmentParcel
+                )
+            );
         } catch (error) {
             next(error)
         }

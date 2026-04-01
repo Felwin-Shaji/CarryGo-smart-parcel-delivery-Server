@@ -9,6 +9,8 @@ export interface IShipmentParcelRepository {
 
     findByBookingId(bookingId: string, session?: ClientSession): Promise<ShipmentParcel[]>;
 
+    findByShipmentIdPaginated(shipmentId:string, page:number, limit:number, session?: ClientSession): Promise<{ parcels: ShipmentParcel[]; total: number }>;
+
     updateStatus(
         shipmentParcelId: string,
         status: string,

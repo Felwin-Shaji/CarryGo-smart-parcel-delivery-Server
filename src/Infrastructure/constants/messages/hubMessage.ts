@@ -29,4 +29,5 @@ export const HUB_MESSAGES = {
 
     LOGIDTICS_ID_MISSING:"logistic id is missing",
     SHIPMENT_FETCH_SUCCESS:"Shipments fetched successfully",
+    SHIPMENT_PARCEL_FETCH_SUCCESS:"Shipment parcel fetched successfully",
 } as const;

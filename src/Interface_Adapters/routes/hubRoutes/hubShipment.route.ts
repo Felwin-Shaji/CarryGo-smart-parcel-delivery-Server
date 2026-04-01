@@ -6,7 +6,7 @@ import { hubShipmentController } from "@/Infrastructure/di/resolver";
 export class HubShipmentRoute extends BaseRoute {
 
     protected initializeRoutes(): void {
-        this.router.get("/shipments", authenticate(["hub"]), asyncHandler(hubShipmentController.getShipments)
-        );
+        this.router.get("/shipments", authenticate(["hub"]), asyncHandler(hubShipmentController.getShipmentById));
+        this.router.get("/shipments/:id", authenticate(["hub"]), asyncHandler(hubShipmentController.getShipmentDetails));
     }
 }

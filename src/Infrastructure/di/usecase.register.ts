@@ -184,6 +184,8 @@ import { ICreateHubShipmentPickUpUsecase } from "@/Application/interfaces/useCas
 import { CreateHubShipmentPickUpUsecase } from "@/Application/useCase/Logistics/HubShipment/CreateHubShipmentPickUp.usecase";
 import { IGetShipmentsUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/IGetShipmentsUsecase";
 import { GetShipmentsUsecase } from "@/Application/useCase/Logistics/HubShipment/GetShipments.usecase";
+import { IGetShipmentDetailsUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IGetShipmentDetailsUsecase";
+import { GetShipmentDetailsUsecase } from "@/Application/useCase/Logistics/ShipmentParcels/GetShipmentDetails.usecase";
 
 
 
@@ -567,6 +569,10 @@ export class UsecaseRegistery {
 
         container.register<IGetShipmentsUsecase>("IGetShipmentsUsecase",{
             useClass:GetShipmentsUsecase
+        })
+
+        container.register<IGetShipmentDetailsUsecase>("IGetShipmentDetailsUsecase",{
+            useClass:GetShipmentDetailsUsecase
         })
     }
 }

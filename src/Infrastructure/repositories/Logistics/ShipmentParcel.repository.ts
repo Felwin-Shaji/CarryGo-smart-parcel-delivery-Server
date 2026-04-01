@@ -10,13 +10,13 @@ export class ShipmentParcelRepository implements IShipmentParcelRepository {
         const createdDocs = await ShipmentParcelModel.create(
             [
                 {
-                    shipmentId:  new Types.ObjectId(shipmentParcel.shipmentId),
-                    bookingId:   new Types.ObjectId(shipmentParcel.bookingId),
-                    status:      shipmentParcel.status,
-                    loadedAt:    shipmentParcel.loadedAt,
-                    unloadedAt:  shipmentParcel.unloadedAt,
-                    createdAt:   shipmentParcel.createdAt,
-                    updatedAt:   shipmentParcel.updatedAt,
+                    shipmentId: new Types.ObjectId(shipmentParcel.shipmentId),
+                    bookingId: new Types.ObjectId(shipmentParcel.bookingId),
+                    status: shipmentParcel.status,
+                    loadedAt: shipmentParcel.loadedAt,
+                    unloadedAt: shipmentParcel.unloadedAt,
+                    createdAt: shipmentParcel.createdAt,
+                    updatedAt: shipmentParcel.updatedAt,
                 },
             ],
             { session }
@@ -59,6 +59,25 @@ export class ShipmentParcelRepository implements IShipmentParcelRepository {
                 { new: true }
             )
             .session(session || null);
+    }
+
+    async findByShipmentIdPaginated(shipmentId: string, page: number, limit: number, session?: ClientSession): Promise<{ parcels: ShipmentParcel[]; total: number; }> {
+        const skip = (page - 1) * limit;
+
+        const query = { shipmentId };
+
+        const [parcelDocs, total] = await Promise.all([
+            ShipmentParcelModel.find(query)
+                .skip(skip)
+                .limit(limit)
+                .session(session || null),
+
+            ShipmentParcelModel.countDocuments(query).session(session || null),
+        ]);
+
+        const parcles = parcelDocs.map((doc) => this.toDomain(doc as ShipmentParcelDocument));
+
+        return { parcels: parcles, total };
     }
 
 

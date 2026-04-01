@@ -98,6 +98,11 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
 
     }
 
+    async findByIds(bookingIds: string[]): Promise<Booking[]> {
+        const docs = await this.model.find({ _id: { $in: bookingIds } });
+        return docs.map(doc => this.toDomain(doc));
+    }
+
     async updatePayment(
         bookingId: string,
         payment: {

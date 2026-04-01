@@ -52,3 +52,49 @@ export interface GetShipmentsResponseDTO {
     totalPages: number;
   };
 }
+
+// DTOs/ShipmentDetailsDTO.ts
+
+export interface ShipmentParcelDTO {
+  id: string;
+  bookingId: string;
+  customerName?: string;
+  address?: string;
+  status: "LOADED" | "IN_TRANSIT" | "UNLOADED";
+}
+
+export interface ShipmentDetailsDTO {
+  id: string;
+
+  type: string;
+  status: string;
+
+  fromHubName?: string;
+  toHubName?: string;
+
+  assignedWorker?: {
+    id: string;
+    name: string;
+    mobile?: string;
+  };
+
+  capacity: number | null;
+  parcelCount: number;
+
+  estimatedDispatchAt: Date | null;
+
+  parcels: ShipmentParcelDTO[];
+
+  createdAt: Date;
+}
+
+export interface ShipmentParcelsPaginatedDTO {
+  shipmentDetails: ShipmentDetailsDTO;
+
+  pagination: {
+    total: number;
+    page: number;
+    limit: number;
+    totalPages: number;
+  };
+}

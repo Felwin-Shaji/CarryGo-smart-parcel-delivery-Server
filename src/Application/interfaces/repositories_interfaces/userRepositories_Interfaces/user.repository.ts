@@ -15,6 +15,8 @@ export interface IUserRepository extends IBaseRepository<User> {
 
   getUserById(userId: string): Promise<User>;
 
+  findByIds(userIds: string[]): Promise<User[]>;
+
   addAddress(userId: string, address: Address): Promise<void>;
   getAddressById(userId: string, addressId: string): Promise<Address>
   // findAddressByPincode(userId: string, pincode: string): Promise<Address[]>

@@ -10,6 +10,8 @@ export interface IBookingRepository {
 
     getBooingsByUserId(userId: string, dto: BookingFilterDTO): Promise<{ bookings: Booking[]; totalCount: number; }>;
 
+    findByIds(bookingIds: string[]): Promise<Booking[]>;
+
     updatePayment(
         bookingId: string,
         payment: {

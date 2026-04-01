@@ -3,18 +3,20 @@ import { IGetShipmentsUsecase } from "@/Application/interfaces/useCase_Interface
 import { inject, injectable } from "tsyringe";
 import { AppError } from "@/Domain/utils/customError";
 import { AUTH_MESSAGES } from "@/Infrastructure/constants/messages/authMessages";
-import { GetShipmentsDTO } from "@/Application/Dto/Logistics/shipment.dto";
+import { GetShipmentsDTO, UpdateHubShipmentDTO } from "@/Application/Dto/Logistics/shipment.dto";
 import { ShipmentStatus, ShipmentType } from "@/Domain/Entities/Logistics/HubShipment";
 import { STATUS } from "@/Infrastructure/constants/statusCodes";
 import { ApiResponse } from "@/Interface_Adapters/presenters/ApiResponse";
 import { HUB_MESSAGES } from "@/Infrastructure/constants/messages/hubMessage";
 import { IGetShipmentDetailsUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IGetShipmentDetailsUsecase";
+import { IUpdateHubShipmentUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/IUpdateHubShipmentUsecase";
 
 @injectable()
 export class HubShipmentController {
     constructor(
         @inject("IGetShipmentsUsecase") private _getShipmentsUsecase: IGetShipmentsUsecase,
-        @inject("IGetShipmentDetailsUsecase") private _getShipmentDetailsUsecase: IGetShipmentDetailsUsecase
+        @inject("IGetShipmentDetailsUsecase") private _getShipmentDetailsUsecase: IGetShipmentDetailsUsecase,
+        @inject("IUpdateHubShipmentUsecase") private _updateHubShipmentUsecase: IUpdateHubShipmentUsecase
     ) { }
 
     getShipmentById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
@@ -39,6 +41,8 @@ export class HubShipmentController {
                 hubId,
                 dto
             );
+
+            console.log(shipments, 'shipmentsshipmentsshipments')
 
             return res.status(STATUS.OK).json(
                 ApiResponse.success(
@@ -74,6 +78,28 @@ export class HubShipmentController {
                     shipmentParcel
                 )
             );
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    updateShipmentDetails = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            console.log(req.body, 'updateShipmentDetailsupdateShipmentDetailsupdateShipmentDetails');
+
+            const shipmentId = req.params.id;
+            if (!shipmentId) throw new AppError(HUB_MESSAGES.LOGIDTICS_ID_MISSING)
+
+            const dto = req.body as UpdateHubShipmentDTO
+
+            await this._updateHubShipmentUsecase.execute(shipmentId, dto);
+
+            return res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    HUB_MESSAGES.SHIPMENT_DETAILS_UPDATED,
+                )
+            );
+
         } catch (error) {
             next(error)
         }

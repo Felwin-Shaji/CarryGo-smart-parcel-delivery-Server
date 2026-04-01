@@ -55,6 +55,11 @@ export class UserRepository extends BaseRepository<User> implements IUserReposit
         return doc as User;
     }
 
+    async findByIds(userIds: string[]): Promise<User[]> {
+        const docs = await this.model.find({ _id: { $in: userIds } });
+        return docs as User[];
+    }
+
     async addAddress(userId: string, address: Address): Promise<void> {
         const user = await this.model.findById(userId);
 

@@ -6,6 +6,23 @@ import { UpdateQuery } from "mongoose";
 import { ClientSession, Types } from "mongoose";
 import { FilterQuery } from "mongoose";
 
+type PopulatedWorker = {
+    _id: Types.ObjectId;
+    name: string;
+};
+
+function isPopulatedWorker(worker: unknown): worker is PopulatedWorker {
+    if (typeof worker !== "object" || worker === null) return false;
+
+    const w = worker as Record<string, unknown>;
+
+    return (
+        "_id" in w &&
+        "name" in w &&
+        typeof w.name === "string"
+    );
+}
+
 export class HubShipmentRepository implements IHubShipmentRepository {
 
     async find(filter: FilterQuery<HubShipment>, session?: ClientSession): Promise<HubShipment[]> {
@@ -190,8 +207,22 @@ export class HubShipmentRepository implements IHubShipmentRepository {
             HubShipmentModel.countDocuments(filter),
         ]);
 
+
+
         return {
-            data: docs.map(doc => this.toDomain(doc)),
+            data: docs.map((doc) => {
+                const shipment = this.toDomain(doc) as HubShipment & { assignedWorkerName?: string | null };
+
+                const worker = doc.assignedWorkerId;
+
+                if (isPopulatedWorker(worker)) {
+                    shipment.assignedWorkerName = worker.name;
+                } else {
+                    shipment.assignedWorkerName = null;
+                }
+
+                return shipment;
+            }),
             total,
             page,
             limit,

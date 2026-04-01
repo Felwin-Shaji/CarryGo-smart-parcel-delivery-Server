@@ -98,3 +98,10 @@ export interface ShipmentParcelsPaginatedDTO {
     totalPages: number;
   };
 }
+
+
+export interface UpdateHubShipmentDTO {
+    workerId: string;
+    capacity: number;
+    estimatedDispatchAt: string;
+}

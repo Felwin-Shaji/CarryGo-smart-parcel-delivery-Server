@@ -186,6 +186,8 @@ import { IGetShipmentsUsecase } from "@/Application/interfaces/useCase_Interface
 import { GetShipmentsUsecase } from "@/Application/useCase/Logistics/HubShipment/GetShipments.usecase";
 import { IGetShipmentDetailsUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IGetShipmentDetailsUsecase";
 import { GetShipmentDetailsUsecase } from "@/Application/useCase/Logistics/ShipmentParcels/GetShipmentDetails.usecase";
+import { IUpdateHubShipmentUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/IUpdateHubShipmentUsecase";
+import { UpdateHubShipmentUsecase } from "@/Application/useCase/Logistics/HubShipment/UpdateHubShipment.usecase";
 
 
 
@@ -573,6 +575,10 @@ export class UsecaseRegistery {
 
         container.register<IGetShipmentDetailsUsecase>("IGetShipmentDetailsUsecase",{
             useClass:GetShipmentDetailsUsecase
+        })
+
+        container.register<IUpdateHubShipmentUsecase>("IUpdateHubShipmentUsecase",{
+            useClass:UpdateHubShipmentUsecase
         })
     }
 }

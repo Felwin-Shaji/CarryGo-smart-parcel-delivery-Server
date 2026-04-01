@@ -8,5 +8,6 @@ export class HubShipmentRoute extends BaseRoute {
     protected initializeRoutes(): void {
         this.router.get("/shipments", authenticate(["hub"]), asyncHandler(hubShipmentController.getShipmentById));
         this.router.get("/shipments/:id", authenticate(["hub"]), asyncHandler(hubShipmentController.getShipmentDetails));
+        this.router.patch("/shipments/:id", authenticate(["hub"]), asyncHandler(hubShipmentController.updateShipmentDetails));
     }
 }

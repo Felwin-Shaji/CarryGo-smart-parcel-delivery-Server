@@ -17,6 +17,8 @@ export class GetShipmentsUsecase implements IGetShipmentsUsecase {
 
         const shipments = await this._hubShipmentRepo.getPaginatedShipments(hubId, dto);
 
+        console.log(shipments,'22222222222222222222222222222222')
+
         return HubShipmentMapper.toGetPaginatedHubShipmentsResponse(shipments);
     }
 }

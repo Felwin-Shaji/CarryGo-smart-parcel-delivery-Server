@@ -26,5 +26,10 @@ export const WORKER_MESSAGES = {
   KYC_FOUNDED: "Worker kyc fetched",
   ALREADY_APPROVERD:"kyc already approver",
   ALREADY_REJECTED:"Rejection reason is required",
-  KYC_UPDATED:"worker kyc updated"
+  KYC_UPDATED:"worker kyc updated",
+
+  WORKER_SHIPMENTS_FETCH_SUCCESS:"Worker shipments fetched successfully",
+  SHIPMENT_DETAILS_FETCH_SUCCESS:"Worker shipment details fetched successfully",
+  SHIPMENT_NOT_FOUND:"Shipment not found",
+  SHIPMENT_STATUS_UPDATED:"Shipment status updated successfully",
 } as const;

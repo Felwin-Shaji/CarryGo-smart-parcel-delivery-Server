@@ -188,6 +188,12 @@ import { IGetShipmentDetailsUsecase } from "@/Application/interfaces/useCase_Int
 import { GetShipmentDetailsUsecase } from "@/Application/useCase/Logistics/ShipmentParcels/GetShipmentDetails.usecase";
 import { IUpdateHubShipmentUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/IUpdateHubShipmentUsecase";
 import { UpdateHubShipmentUsecase } from "@/Application/useCase/Logistics/HubShipment/UpdateHubShipment.usecase";
+import { IGetWorkersShipmentUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/IGetWorkersShipmentUsecase";
+import { GetWorkersShipmentUsecase } from "@/Application/useCase/Logistics/HubShipment/GetWorkersShipment.usecase";
+import { IGetWorkerShipmentDetailsUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IGetWorkerShipmentDetailsUsecase";
+import { GetWorkerShipmentDetailsUsecase } from "@/Application/useCase/Logistics/ShipmentParcels/GetWorkerShipmentDetails.usecase";
+import { IUpdateShipmentStatusUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IUpdateShipmentStatusUsecase";
+import { UpdateShipmentStatusUsecase } from "@/Application/useCase/Logistics/ShipmentParcels/UpdateShipmentStatus.usecase";
 
 
 
@@ -579,6 +585,18 @@ export class UsecaseRegistery {
 
         container.register<IUpdateHubShipmentUsecase>("IUpdateHubShipmentUsecase",{
             useClass:UpdateHubShipmentUsecase
+        })
+
+        container.register<IGetWorkersShipmentUsecase>("IGetWorkersShipmentUsecase",{
+            useClass:GetWorkersShipmentUsecase
+        })
+
+        container.register<IGetWorkerShipmentDetailsUsecase>("IGetWorkerShipmentDetailsUsecase",{
+            useClass:GetWorkerShipmentDetailsUsecase
+        })
+
+        container.register<IUpdateShipmentStatusUsecase>("IUpdateShipmentStatusUsecase",{
+            useClass:UpdateShipmentStatusUsecase
         })
     }
 }

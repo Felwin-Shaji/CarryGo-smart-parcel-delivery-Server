@@ -1,6 +1,7 @@
 import { ParcelMovement } from "@/Domain/Entities/Booking/ParcelMovement";
-import { HubShipment } from "@/Domain/Entities/Logistics/HubShipment";
+import { HubShipment, ShipmentStatus } from "@/Domain/Entities/Logistics/HubShipment";
 import { RouteSegment } from "@/Domain/Entities/Logistics/RouteSegment";
+import { ShipmentParcelStatus } from "@/Domain/Entities/Logistics/ShipmentParcel";
 
 export class ParcelMovementMapper {
 
@@ -43,4 +44,19 @@ export class ParcelMovementMapper {
             new Date(),
         )
     }
+
+    static getStatusFromShipment(
+  status: ShipmentStatus
+): ShipmentParcelStatus | null {
+  const map: Record<ShipmentStatus, ShipmentParcelStatus | null> = {
+    PENDING: null,
+    LOADING: "LOADED",
+    DISPATCHED: "IN_TRANSIT",
+    ARRIVED: "UNLOADED",
+    COMPLETED: "UNLOADED",
+    CANCELLED: null,
+  };
+
+  return map[status];
+}
 }

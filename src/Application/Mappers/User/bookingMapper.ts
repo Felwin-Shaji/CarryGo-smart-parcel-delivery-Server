@@ -10,6 +10,7 @@ import {
 import { AppError } from "../../../Domain/utils/customError";
 import { BOOKING_MESSAGE } from "../../../Infrastructure/constants/messages/bookingMessages";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { ShipmentStatus } from "@/Domain/Entities/Logistics/HubShipment";
 
 export class BookingMapper {
     static createNew(params: {
@@ -101,7 +102,7 @@ export class BookingMapper {
             isTraveler ? {} : undefined,
 
             !isTraveler ? {
-                fromHubId: params.fromHubId ? params.fromHubId : null ,
+                fromHubId: params.fromHubId ? params.fromHubId : null,
                 toHubId: params.toHubId ? params.toHubId : null,
                 routeHubs: []
             } : undefined,
@@ -179,5 +180,23 @@ export class BookingMapper {
             totalPages,
             totalCount,
         };
+    };
+
+    static fromShipmentStatus(
+        status: ShipmentStatus
+    ): BookingStatusType | null {
+        const map: Record<ShipmentStatus, BookingStatusType | null> = {
+            PENDING: null,
+            LOADING: null,
+            DISPATCHED: "IN_TRANSIT",
+
+            ARRIVED: "IN_TRANSIT", // still moving in system
+
+            COMPLETED: "DELIVERED",
+
+            CANCELLED: "CANCELLED_AFTER_PICKUP",
+        };
+
+        return map[status];
     }
 }

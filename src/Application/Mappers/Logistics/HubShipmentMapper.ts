@@ -2,7 +2,7 @@
 import { GetShipmentsResponseDTO } from "@/Application/Dto/Logistics/shipment.dto";
 import { HubShipmentPaginatedData } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
 import { Booking } from "@/Domain/Entities/Booking/Booking";
-import { HubShipment } from "@/Domain/Entities/Logistics/HubShipment";
+import { HubShipment, ShipmentStatus } from "@/Domain/Entities/Logistics/HubShipment";
 import { RouteSegment } from "@/Domain/Entities/Logistics/RouteSegment";
 
 export class HubShipmentMapper {
@@ -89,5 +89,26 @@ export class HubShipmentMapper {
                 totalPages: dto.totalPages,
             }
         };
+    }
+
+    static updateStatus(
+        shipment: HubShipment,
+        status: ShipmentStatus,
+        now: Date
+    ): HubShipment {
+        console.log(status, "status in mapper")
+        shipment.status = status;
+
+        if (status === "DISPATCHED") {
+            shipment.departedAt = now;
+        }
+
+        if (status === "ARRIVED") {
+            shipment.arrivedAt = now;
+        }
+
+        shipment.updatedAt = now;
+
+        return shipment;
     }
 }

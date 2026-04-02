@@ -1,4 +1,4 @@
-import { GetShipmentsDTO } from "@/Application/Dto/Logistics/shipment.dto";
+import { GetShipmentsDTO, GetWorkerShipmentDTO } from "@/Application/Dto/Logistics/shipment.dto";
 import { HubShipmentPaginatedData, IHubShipmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
 import { HubShipment, ShipmentType } from "@/Domain/Entities/Logistics/HubShipment";
 import { HubShipmentDocument, HubShipmentModel } from "@/Infrastructure/database/models/Logistics/HubShipmentModel";
@@ -80,6 +80,11 @@ export class HubShipmentRepository implements IHubShipmentRepository {
         unset?: object,
         session?: ClientSession
     ): Promise<HubShipment | null> {
+
+        if (filter._id && typeof filter._id === "string") {
+            filter._id = new Types.ObjectId(filter._id);
+        }
+
 
         const updateQuery: UpdateQuery<HubShipmentDocument> = { $set: value };
         if (unset) updateQuery.$unset = unset;
@@ -230,6 +235,46 @@ export class HubShipmentRepository implements IHubShipmentRepository {
         };
     }
 
+    async getPaginatedShipmentsForWorker(workerId: string, dto: GetWorkerShipmentDTO): Promise<HubShipmentPaginatedData> {
+
+        const { page = 1, limit = 10, type, status, search, fromDate, toDate } = dto;
+
+        const skip = (page - 1) * limit;
+
+        const filter: any = {
+            assignedWorkerId: workerId,
+        };
+
+        if (type) filter.type = type;
+        if (status) filter.status = status;
+
+        if (search) {
+            filter._id = { $regex: search, $options: "i" };
+        }
+
+        if (fromDate || toDate) {
+            filter.createdAt = {};
+            if (fromDate) filter.createdAt.$gte = new Date(fromDate);
+            if (toDate) filter.createdAt.$lte = new Date(toDate);
+        }
+
+        const [docs, total] = await Promise.all([
+            HubShipmentModel.find(filter)
+                .sort({ createdAt: -1 })
+                .skip(skip)
+                .limit(limit),
+
+            HubShipmentModel.countDocuments(filter),
+        ]);
+
+        return {
+            data: docs.map((doc) => this.toDomain(doc)),
+            total,
+            page,
+            limit,
+            totalPages: Math.ceil(total / limit),
+        };
+    }
 
     private toDomain(doc: HubShipmentDocument): HubShipment {
         return new HubShipment(

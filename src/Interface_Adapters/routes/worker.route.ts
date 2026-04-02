@@ -4,6 +4,7 @@ import { workerKYCUpload } from "../../Infrastructure/services/storage/multer"
 import { authenticate } from "../middlewares/AuthMiddleware/authenticate.middleware"
 import { asyncHandler } from "../middlewares/ErrorHandlers/asyncHandler"
 import { BaseRoute } from "./base.route"
+import { WorkerShipmentRoute } from "./Worker/workerShipment.route"
 
 export class WrokerRoute extends BaseRoute {
     constructor() {
@@ -14,5 +15,7 @@ export class WrokerRoute extends BaseRoute {
         this.router.get('/wallet', authenticate(["worker"]), asyncHandler(workerWalletController.getWorkerWalletOverview))
         this.router.post('/wallet/create-order', authenticate(["worker"]), asyncHandler(workerWalletController.createAddMoneyOrder))
         this.router.post('/wallet/withdraw', authenticate(["worker"]), asyncHandler(workerWalletController.withdrawMoney))
+
+        this.router.use(new WorkerShipmentRoute().router);
     }
 }

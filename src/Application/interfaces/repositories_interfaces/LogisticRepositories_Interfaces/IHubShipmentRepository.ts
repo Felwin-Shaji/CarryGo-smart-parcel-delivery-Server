@@ -1,7 +1,7 @@
 import { IBaseRepository } from "@/Application/interfaces/repositories_interfaces/base.repository";
 import { HubShipment, ShipmentType } from "@/Domain/Entities/Logistics/HubShipment";
 import { ClientSession } from "mongoose";
-import { GetShipmentsDTO } from "@/Application/Dto/Logistics/shipment.dto";
+import { GetShipmentsDTO, GetWorkerShipmentDTO } from "@/Application/Dto/Logistics/shipment.dto";
 
 
 export interface HubShipmentPaginatedData {
@@ -33,5 +33,10 @@ export interface IHubShipmentRepository extends IBaseRepository<HubShipment> {
     getPaginatedShipments(
         hubId: string,
         dto: GetShipmentsDTO
+    ): Promise<HubShipmentPaginatedData>;
+
+    getPaginatedShipmentsForWorker(
+        workerId: string,
+        dto: GetWorkerShipmentDTO
     ): Promise<HubShipmentPaginatedData>;
 }

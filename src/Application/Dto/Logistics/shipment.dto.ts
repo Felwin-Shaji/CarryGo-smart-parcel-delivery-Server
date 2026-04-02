@@ -1,45 +1,49 @@
 import { ShipmentStatus, ShipmentType } from "@/Domain/Entities/Logistics/HubShipment";
+import { ShipmentParcel } from "@/Domain/Entities/Logistics/ShipmentParcel";
 
 export interface GetShipmentsDTO {
-    type?: ShipmentType;
+  type?: ShipmentType;
 
-    status?: ShipmentStatus;
+  status?: ShipmentStatus;
 
-    workerId?: string;
+  workerId?: string;
 
-    search?: string;
+  search?: string;
 
-    fromDate?: string;
-    toDate?: string;
+  fromDate?: string;
+  toDate?: string;
 
-    page?: number;
-    limit?: number;
+  page?: number;
+  limit?: number;
 }
 
+export type GetWorkerShipmentDTO = Omit<GetShipmentsDTO, "workerId">;
+
+
 export interface ShipmentListItemDTO {
-    id: string;
+  id: string;
 
-    type: ShipmentType;
-    status?: ShipmentStatus;
+  type: ShipmentType;
+  status?: ShipmentStatus;
 
-    segmentId: string | null;
+  segmentId: string | null;
 
-    fromHubId: string | null;
-    toHubId: string | null;
+  fromHubId: string | null;
+  toHubId: string | null;
 
-    assignedWorkerId: string | null;
-    assignedWorkerName: string | null;
+  assignedWorkerId: string | null;
+  assignedWorkerName: string | null;
 
-    vehicleNumber: string | null;
+  vehicleNumber: string | null;
 
-    capacity: number | null;
-    parcelCount: number;
+  capacity: number | null;
+  parcelCount: number;
 
-    estimatedDispatchAt: Date | null;
-    departedAt: Date | null;
-    arrivedAt: Date | null;
+  estimatedDispatchAt: Date | null;
+  departedAt: Date | null;
+  arrivedAt: Date | null;
 
-    createdAt: Date;
+  createdAt: Date;
 }
 
 export interface GetShipmentsResponseDTO {
@@ -101,7 +105,36 @@ export interface ShipmentParcelsPaginatedDTO {
 
 
 export interface UpdateHubShipmentDTO {
-    workerId: string;
-    capacity: number;
-    estimatedDispatchAt: string;
+  workerId: string;
+  capacity: number;
+  estimatedDispatchAt: string;
 }
+
+export type WorkerShipmentListItemDTO = Pick<
+  ShipmentListItemDTO,
+  | "id"
+  | "type"
+  | "status"
+  | "parcelCount"
+  | "capacity"
+  | "createdAt"
+  | "estimatedDispatchAt"
+  | "departedAt"
+  | "arrivedAt"
+>;
+
+export type WorkerShipmentDetails = {
+  id: string;
+  type: ShipmentType;
+  status: ShipmentStatus;
+
+  parcelCount: number;
+  capacity: number | null;
+
+  createdAt: string;
+
+  parcels: ShipmentParcel[]
+
+}
+
+

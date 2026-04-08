@@ -189,8 +189,19 @@ export class AuthController implements IAuthController {
 
             await this._logoutUsecase.execute(refreshToken, logoutData.id);
 
-            res.clearCookie(`${logoutData.role}accessTokenName`, { httpOnly: true, sameSite: "strict", secure: true });
-            res.clearCookie(`${logoutData.role}refreshTokenName`, { httpOnly: true, sameSite: "strict", secure: true });
+            res.clearCookie(`${logoutData.role}accessTokenName`, {
+                httpOnly: true,
+                sameSite: "none",
+                secure: true,
+                path: "/",
+            });
+
+            res.clearCookie(`${logoutData.role}refreshTokenName`, {
+                httpOnly: true,
+                sameSite: "none",
+                secure: true,
+                path: "/",      
+            });
             const response = AuthMapper.toSendLogoutResponse();
             return res.status(STATUS.OK).json(response)
 

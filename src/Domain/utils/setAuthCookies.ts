@@ -25,18 +25,34 @@ export const setAuthCookies = (
         7 * 24 * 60 * 60 * 1000
     );
 
+    // res.cookie(accessTokenName, accessToken, {
+    //     httpOnly: true,
+    //     sameSite: isProd ? "strict" : "lax",
+    //     secure: isProd,
+    //     maxAge: ACCESS_TOKEN_MAX_AGE,
+    //     path: "/",
+    // });
+
+    // res.cookie(refreshTokenName, refreshToken, {
+    //     httpOnly: true,
+    //     sameSite: isProd ? "strict" : "lax",
+    //     secure: isProd,
+    //     maxAge: REFRESH_TOKEN_MAX_AGE,
+    //     path: "/",
+    // });
+
     res.cookie(accessTokenName, accessToken, {
         httpOnly: true,
-        sameSite: isProd ? "strict" : "lax",
-        secure: isProd,
+        sameSite: "none",     // ✅ MUST be "none"
+        secure: true,         // ✅ MUST be true
         maxAge: ACCESS_TOKEN_MAX_AGE,
         path: "/",
     });
 
     res.cookie(refreshTokenName, refreshToken, {
         httpOnly: true,
-        sameSite: isProd ? "strict" : "lax",
-        secure: isProd,
+        sameSite: "none",     // ✅ MUST be "none"
+        secure: true,         // ✅ MUST be true
         maxAge: REFRESH_TOKEN_MAX_AGE,
         path: "/",
     });

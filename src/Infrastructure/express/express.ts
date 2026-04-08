@@ -17,19 +17,32 @@ dotenv.config();
 
 export const app = express();
 
+app.set("trust proxy", 1);
+
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://carry-go-smart-parcel-delivery-client-cafoyp5mn.vercel.app",
+    "https://carry-go-smart-parcel-delivery-clie.vercel.app",
+  ],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+}));
+
+app.options(/.*/, (req, res) => {
+  res.header("Access-Control-Allow-Origin", req.headers.origin || "*");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.sendStatus(200);
+});
+
 app.use(cookieParser());
 app.use(express.json({ limit: "100kb" }));
 app.use(express.urlencoded({ extended: true, limit: "100kb" }));
 
 app.use(loggerMiddleware);
-
-app.use(
-  cors({
-    origin: [process.env.CLIENT_URL as string], 
-    methods: ['GET', 'POST', 'PUT', 'DELETE','PATCH'],
-    credentials: true,
-  })
-);
 
 
 const authRoute = new AuthRoute();

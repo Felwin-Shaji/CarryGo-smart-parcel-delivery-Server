@@ -5,7 +5,7 @@ import type { IAuthController } from "../../Interface/Controllers_Interfaces/Aut
 import { AuthMapper } from "../../../Application/Mappers/AuthMapper";
 import { setAuthCookies } from "../../../Domain/utils/setAuthCookies";
 import { AppError } from "../../../Domain/utils/customError";
-import type { ForgotPasswordDTO, LoginDTO, SendOtpDTO, UserDTO } from "../../../Application/Dto/Auth/Auth.dto";
+import type { ForgotPasswordDTO, LoginDTO, LogoutDTO, ResetPasswordDTO, SendOtpDTO, UserDTO } from "../../../Application/Dto/Auth/Auth.dto";
 import type { ILogoutUsecase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/logout.usecase";
 import type { IRegisterUserUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/RegisterUser.useCase";
 import type { IRegisterAgencyUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/Agencyregisrtation.usecase";
@@ -20,6 +20,9 @@ import { IResetPasswordUseCase } from "../../../Application/interfaces/useCase_I
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { OTP_MESSAGES } from "../../../Infrastructure/constants/messages/otpMessage";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
+import { Role } from "@/Domain/Enums/Roles";
+import { User } from "@/Domain/Entities/User";
+import { RegisterAgencyResponseDTO } from "@/Application/Dto/Agency/agency.dto";
 
 
 
@@ -41,13 +44,15 @@ export class AuthController implements IAuthController {
 
         @inject("IVarifyEmailUseCase") private _varifyEmailUseCase: IVarifyEmailUseCase,
         @inject("IResetPasswordUseCase") private _resetPasswordUseCase: IResetPasswordUseCase,
-    ) { }
+    ) { };
+
     sendOtp = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
-            if (req.body.isResend) {
-                const dto = req.body as SendOtpDTO;
+            const dto = req.body as SendOtpDTO;
 
+            if (dto.isResend) {
                 const result = await this._resendOtpUseCase.execute(dto);
+
                 return res.status(STATUS.OK).json(
                     ApiResponse.success(
                         OTP_MESSAGES.OTP_RESENT,
@@ -55,9 +60,6 @@ export class AuthController implements IAuthController {
                     )
                 );
             }
-
-            const dto = req.body as SendOtpDTO
-            if (!dto.email) return res.status(STATUS.BAD_REQUEST).json({ success: false, message: "email required" });
 
             const result = await this._sendOtpUseCase.execute(dto);
 
@@ -67,10 +69,9 @@ export class AuthController implements IAuthController {
                     result
                 )
             );
-
         } catch (error) {
-            next(error)
-        };
+            next(error);
+        }
     };
 
     verifyOtp = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
@@ -78,7 +79,6 @@ export class AuthController implements IAuthController {
             const { email, otp, role } = req.body;
 
             const otpData = await this._verifyOtpUseCase.execute(otp, email);
-            if (!otpData) throw new AppError("Invalid or expired OTP", STATUS.UNAUTHORIZED);
 
             const userData: UserDTO = {
                 name: otpData.name,
@@ -88,11 +88,10 @@ export class AuthController implements IAuthController {
                 role: otpData.role,
             };
 
-            let registeredUser;
-            if (role === "user") registeredUser = await this._registerUserUseCase.execute(userData);
-            if (role === "agency") registeredUser = await this._registerAgencyUseCase.execute(userData);
-
-            if (!registeredUser) throw new AppError("registreation failed", STATUS.CONFLICT);
+            let registeredUser: User | RegisterAgencyResponseDTO;
+            if (role === Role.USER) registeredUser = await this._registerUserUseCase.execute(userData);
+            else if (role === Role.AGENCY) registeredUser = await this._registerAgencyUseCase.execute(userData);
+            else throw new AppError(AUTH_MESSAGES.ROLE_NOT_ALLOWED, STATUS.BAD_REQUEST);
 
 
             const tokens = await this._generateTokenUseCase.execute(
@@ -179,28 +178,33 @@ export class AuthController implements IAuthController {
         }
     }
 
-    logout = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    logout = async (
+        req: Request<{}, {}, LogoutDTO>,
+        res: Response,
+        next: NextFunction
+    ): Promise<Response | void> => {
         try {
-            const logoutData = AuthMapper.toLogoutDTO(req)
-            const refreshTokenName = `${logoutData.role}refreshTokenName`;
+
+            const { id, role } = req.body;
+            const refreshTokenName = `${role}refreshTokenName`;
             const refreshToken = req.cookies?.[refreshTokenName];
 
-            if (!refreshToken) throw new AppError("No refresh token found in cookies", 400)
+            if (!refreshToken) throw new AppError(AUTH_MESSAGES.REFRESH_TOKEN_NOT_FOUND, STATUS.BAD_REQUEST)
 
-            await this._logoutUsecase.execute(refreshToken, logoutData.id);
+            await this._logoutUsecase.execute(refreshToken, id);
 
-            res.clearCookie(`${logoutData.role}accessTokenName`, {
+            res.clearCookie(`${role}accessTokenName`, {
                 httpOnly: true,
                 sameSite: "none",
                 secure: true,
                 path: "/",
             });
 
-            res.clearCookie(`${logoutData.role}refreshTokenName`, {
+            res.clearCookie(`${role}refreshTokenName`, {
                 httpOnly: true,
                 sameSite: "none",
                 secure: true,
-                path: "/",      
+                path: "/",
             });
             const response = AuthMapper.toSendLogoutResponse();
             return res.status(STATUS.OK).json(response)
@@ -210,14 +214,14 @@ export class AuthController implements IAuthController {
         }
     }
 
-    forgotPassword = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    forgotPassword = async (
+        req: Request<{}, {}, ForgotPasswordDTO>,
+        res: Response,
+        next: NextFunction
+    ): Promise<Response | void> => {
         try {
-            const dto: ForgotPasswordDTO = {
-                email: req.body.email,
-                role: req.body.role
-            }
-
-            const result = await this._varifyEmailUseCase.execute(dto);
+            const dto = req.body
+            await this._varifyEmailUseCase.execute(dto);
 
             return res.status(STATUS.OK).json({
                 success: true,
@@ -229,7 +233,11 @@ export class AuthController implements IAuthController {
         }
     }
 
-    resetPassword = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    resetPassword = async (
+        req: Request<{ token: string }, {}, ResetPasswordDTO>,
+        res: Response,
+        next: NextFunction
+    ): Promise<Response | void> => {
         try {
             const token = req.params.token;
             const { password, role } = req.body;

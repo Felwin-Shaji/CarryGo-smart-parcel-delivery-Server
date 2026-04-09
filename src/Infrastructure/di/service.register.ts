@@ -23,6 +23,8 @@ import { IRouteComputationService } from "@/Application/interfaces/services_Inte
 import { RouteComputationService } from "../services/Logistics/RouteComputationService";
 import { IHubShipmentAssignmentService } from "@/Application/interfaces/services_Interfaces/IHubShipmentAssignmentService";
 import { HubShipmentAssignmentService } from "../services/Logistics/HubShipmentAssignment.service";
+import { IBookingIdGeneratorService } from "@/Application/interfaces/services_Interfaces/IBookingIdGeneratorService";
+import { BookingIdGeneratorService } from "../services/BookingIdGenerator.service";
 
 export class ServiceRegistory {
     static registerServices(): void {
@@ -71,8 +73,12 @@ export class ServiceRegistory {
             useClass: RouteComputationService
         });
 
-        container.register<IHubShipmentAssignmentService>("IHubShipmentAssignmentService",{
-            useClass:HubShipmentAssignmentService
+        container.register<IHubShipmentAssignmentService>("IHubShipmentAssignmentService", {
+            useClass: HubShipmentAssignmentService
+        })
+
+        container.register<IBookingIdGeneratorService>("IBookingIdGeneratorService", {
+            useClass: BookingIdGeneratorService
         })
     }
 }

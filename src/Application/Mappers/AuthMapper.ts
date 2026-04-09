@@ -25,14 +25,14 @@ export class AuthMapper {
         }
     }
 
-    static toResendOtpDTO(req: Request): ResendOtpDTO {
-        return {
-            email: req.body.email,
-            role: req.body.role
-        }
-    }
+    // static toResendOtpDTO(req: Request): ResendOtpDTO {
+    //     return {
+    //         email: req.body.email,
+    //         role: req.body.role
+    //     }
+    // }
 
-    static ToSendVerifyOtpResponse(id: string, name: string, email: string, role: Role, kycStatus: KYCStatus, accessToken: string): VerifyOtpResponseDTO {
+    static  ToSendVerifyOtpResponse(id: string, name: string, email: string, role: Role, kycStatus: KYCStatus, accessToken: string): VerifyOtpResponseDTO {
         return {
             success: true,
             message: "user registered successfully",
@@ -48,25 +48,25 @@ export class AuthMapper {
         }
     }
 
-    static ToSendLoginResponse(id: string, name: string, email: string, role: Role, kycStatus: KYCStatus, accessToken: string): SendLoginResponse {
-        return {
-            success: true,
-            message: "user logged in successfully",
-            user: {
-                id,
-                name,
-                email,
-                role,
-                kycStatus: kycStatus || null,
-                accessToken: accessToken
-            },
-        }
-    }
+    // static ToSendLoginResponse(id: string, name: string, email: string, role: Role, kycStatus: KYCStatus, accessToken: string): SendLoginResponse {
+    //     return {
+    //         success: true,
+    //         message: "user logged in successfully",
+    //         user: {
+    //             id,
+    //             name,
+    //             email,
+    //             role,
+    //             kycStatus: kycStatus || null,
+    //             accessToken: accessToken
+    //         },
+    //     }
+    // }
 
-    static toLogoutDTO(req: Request): LogoutDTO {
-        const { role, userId } = req.body;
-        return { role, id: userId }
-    }
+    // static toLogoutDTO(req: Request): LogoutDTO {
+    //     const { role, userId } = req.body;
+    //     return { role, id: userId }
+    // }
 
     static toSendLogoutResponse(): SendLogoutResponseDTO {
         return {

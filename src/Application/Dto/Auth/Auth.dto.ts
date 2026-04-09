@@ -6,6 +6,7 @@ export interface SendOtpDTO {
   mobile?: string;
   password: string;
   role: Role;
+  isResend?: boolean;
 };
 
 export interface OtpResponseDTO {
@@ -72,5 +73,9 @@ export interface ForgotPasswordDTO {
     role:Role
 }
 
+export interface ResetPasswordDTO {
+  password: string;
+  role: Role;
+}
 
 

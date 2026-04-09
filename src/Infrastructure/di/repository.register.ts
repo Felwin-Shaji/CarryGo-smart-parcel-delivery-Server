@@ -47,6 +47,8 @@ import { IShipmentParcelRepository } from "@/Application/interfaces/repositories
 import { ShipmentParcelRepository } from "../repositories/Logistics/ShipmentParcel.repository";
 import { IParcelMovementRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelMovementRepository";
 import { ParcelMovementRepository } from "../repositories/Logistics/ParcelMovement.repository";
+import { ICounterRepository } from "@/Application/interfaces/repositories_interfaces/ICounterRepository";
+import { CounterRepository } from "../repositories/Counter.repository";
 
 
 export class RepositoryRegistry {
@@ -128,24 +130,28 @@ export class RepositoryRegistry {
             useClass: AgencyRouteSegmentRepository
         })
 
-        container.register<IParcelRouteRepository>("IParcelRouteRepository",{
-            useClass:ParcelRouteRepository
+        container.register<IParcelRouteRepository>("IParcelRouteRepository", {
+            useClass: ParcelRouteRepository
         })
 
-        container.register<IParcelRouteLegRepository>("IParcelRouteLegRepository",{
-            useClass:ParcelRouteLegRepository
+        container.register<IParcelRouteLegRepository>("IParcelRouteLegRepository", {
+            useClass: ParcelRouteLegRepository
         })
 
-        container.register<IHubShipmentRepository>("IHubShipmentRepository",{
-            useClass:HubShipmentRepository
+        container.register<IHubShipmentRepository>("IHubShipmentRepository", {
+            useClass: HubShipmentRepository
         })
 
-        container.register<IShipmentParcelRepository>("IShipmentParcelRepository",{
-            useClass:ShipmentParcelRepository
+        container.register<IShipmentParcelRepository>("IShipmentParcelRepository", {
+            useClass: ShipmentParcelRepository
         })
 
-        container.register<IParcelMovementRepository>("IParcelMovementRepository",{
-            useClass:ParcelMovementRepository
+        container.register<IParcelMovementRepository>("IParcelMovementRepository", {
+            useClass: ParcelMovementRepository
+        })
+
+        container.register<ICounterRepository>("ICounterRepository", {
+            useClass: CounterRepository
         })
     };
 };

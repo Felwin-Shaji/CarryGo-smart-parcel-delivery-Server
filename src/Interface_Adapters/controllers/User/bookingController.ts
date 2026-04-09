@@ -174,7 +174,6 @@ export class UserBookingController implements IUserBookingController {
                 deliveryType: req.query.deliveryType?.toString() || '',
                 status: req.query.status?.toString() || "",
                 paymentStatus: req.query.paymentStatus?.toString() || "",
-                // size: req.query.size?.toString() || "",
             }
             if (!userId) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
 

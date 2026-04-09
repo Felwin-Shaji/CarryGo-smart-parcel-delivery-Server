@@ -17,6 +17,7 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
 
     async create(booking: Booking): Promise<Booking> {
         const doc = await this.model.create({
+            bookingId: booking.bookingId,
             userId: booking.userId,
 
             deliveryPartnerType: booking.deliveryPartnerType,
@@ -176,6 +177,7 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
     private toDomain(doc: BookingDocument): Booking {
         return new Booking(
             doc._id.toString(),
+            doc.bookingId.toString(),
 
             doc.userId.toString(),
 

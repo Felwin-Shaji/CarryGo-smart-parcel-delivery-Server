@@ -1,12 +1,6 @@
 import { Booking, PartnerEntity } from "../../../Domain/Entities/Booking/Booking";
-import { Address } from "../../../Domain/Entities/User/Address";
 import { AddressResponseDTO, BookingListResponseDTO, CalculatePriceResponseDTO, UserBookingsDTO, } from "../../Dto/User/Booking.dto";
-import {
-    BookingStatusType,
-    PaymentGatewayType,
-    PaymentStatusType,
-    DeliveryPartnerType,
-} from "../../../Infrastructure/Types/types";
+import { BookingStatusType, PaymentGatewayType, PaymentStatusType, DeliveryPartnerType } from "../../../Infrastructure/Types/types";
 import { AppError } from "../../../Domain/utils/customError";
 import { BOOKING_MESSAGE } from "../../../Infrastructure/constants/messages/bookingMessages";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
@@ -14,6 +8,7 @@ import { ShipmentStatus } from "@/Domain/Entities/Logistics/HubShipment";
 
 export class BookingMapper {
     static createNew(params: {
+        bookingId: string;
         userId: string;
         deliveryPartnerType: DeliveryPartnerType;
         partnerSnapshot: PartnerEntity | null;
@@ -39,6 +34,7 @@ export class BookingMapper {
     }): Booking {
 
         const {
+            bookingId,
             userId,
             deliveryPartnerType,
             partnerSnapshot,
@@ -53,6 +49,7 @@ export class BookingMapper {
 
         return new Booking(
             null,
+            bookingId,
             userId,
 
             deliveryPartnerType,
@@ -124,6 +121,7 @@ export class BookingMapper {
 
             return {
                 id: booking.id,
+                bookingId: booking.bookingId,
 
                 createdAt: booking.createdAt.toISOString(),
 

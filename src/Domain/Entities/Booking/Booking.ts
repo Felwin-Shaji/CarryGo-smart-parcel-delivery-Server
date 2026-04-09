@@ -54,6 +54,7 @@ export interface HubJourney {
 export class Booking {
     constructor(
         public readonly id: string | null,
+        public bookingId: string,
 
         public userId: string,
 

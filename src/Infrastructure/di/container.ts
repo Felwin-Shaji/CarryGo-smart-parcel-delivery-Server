@@ -3,7 +3,7 @@ import { ServiceRegistory } from "./service.register";
 import { UsecaseRegistery } from "./usecase.register";
 
 export class DependancyInjection {
-    static registerAll():void{
+    static registerAll(): void {
         RepositoryRegistry.registerRepositories();
         UsecaseRegistery.registerUsecase();
         ServiceRegistory.registerServices();

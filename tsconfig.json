@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     /* ==== File Paths ==== */
+    "ignoreDeprecations": "6.0",
     "rootDir": "src",
     "outDir": "./dist",
     "baseUrl": ".", // ← add this

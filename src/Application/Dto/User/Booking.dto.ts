@@ -196,7 +196,7 @@ export type CreateBookingRequestDTO =
 
 export interface UserBookingsDTO {
   id: string;
-
+  bookingId: string;
   createdAt: string;
 
   deliveryPartnerType: DeliveryPartnerType;

@@ -230,21 +230,21 @@ export class UsecaseRegistery {
         container.register<ILoginUsecase>("ILoginUsecase", {
             useClass: LoginUsecase
         })
-        
-        container.register<IValidateSessionUseCase>("IValidateSessionUseCase",{
-            useClass:ValidateSessionUseCase
+
+        container.register<IValidateSessionUseCase>("IValidateSessionUseCase", {
+            useClass: ValidateSessionUseCase
         })
 
         container.register<ILogoutUsecase>("ILogoutUsecase", {
             useClass: LogoutUsecase
         })
 
-        container.register<IVarifyEmailUseCase>("IVarifyEmailUseCase",{
-            useClass:VarifyEmailUseCase
+        container.register<IVarifyEmailUseCase>("IVarifyEmailUseCase", {
+            useClass: VarifyEmailUseCase
         })
 
-        container.register<IResetPasswordUseCase>("IResetPasswordUseCase",{
-            useClass:ResetPasswordUseCase
+        container.register<IResetPasswordUseCase>("IResetPasswordUseCase", {
+            useClass: ResetPasswordUseCase
         })
 
         container.register<IUploadAgencyKycFilesUseCase>("IUploadAgencyKycFilesUseCase", {
@@ -283,102 +283,102 @@ export class UsecaseRegistery {
             useClass: AddHubUseCase
         })
 
-        container.register<IAddNewHubVerifyOtpUseCase>("IAddNewHubVerifyOtpUseCase",{
-            useClass:AddNewHubVerifyOtpUseCase
+        container.register<IAddNewHubVerifyOtpUseCase>("IAddNewHubVerifyOtpUseCase", {
+            useClass: AddNewHubVerifyOtpUseCase
         })
 
-        container.register<IAddNewHubResendOtp>('IAddNewHubResendOtp',{
-            useClass:AddNewHubResendOtp
+        container.register<IAddNewHubResendOtp>('IAddNewHubResendOtp', {
+            useClass: AddNewHubResendOtp
         })
 
-        container.register<ICheckTempHubStatusUseCase>("ICheckTempHubStatusUseCase",{
-            useClass:CheckTempHubStatusUseCase
+        container.register<ICheckTempHubStatusUseCase>("ICheckTempHubStatusUseCase", {
+            useClass: CheckTempHubStatusUseCase
         })
 
-        container.register<IUpdateUserStatusUseCase>("IUpdateUserStatusUseCase",{
-            useClass:UpdateUserStatusUseCase
+        container.register<IUpdateUserStatusUseCase>("IUpdateUserStatusUseCase", {
+            useClass: UpdateUserStatusUseCase
         })
 
-        container.register<IUpdateAgencyStatusUseCase>("IUpdateAgencyStatusUseCase",{
-            useClass:UpdateAgencyStatusUseCase
+        container.register<IUpdateAgencyStatusUseCase>("IUpdateAgencyStatusUseCase", {
+            useClass: UpdateAgencyStatusUseCase
         })
 
-        container.register<ICheckTempWorkerStatusUseCase>("ICheckTempWorkerStatusUseCase",{
-            useClass:CheckTempWorkerStatusUseCase
+        container.register<ICheckTempWorkerStatusUseCase>("ICheckTempWorkerStatusUseCase", {
+            useClass: CheckTempWorkerStatusUseCase
         })
 
-        container.register<IAddWorkerTempUseCase>("IAddWorkerTempUseCase",{
-            useClass:AddWorkerTempUseCase
+        container.register<IAddWorkerTempUseCase>("IAddWorkerTempUseCase", {
+            useClass: AddWorkerTempUseCase
         })
 
-        container.register<IWorkerVerifyOtpUseCase>("IWorkerVerifyOtpUseCase",{
-            useClass:WorkerVerifyOtpUseCase
+        container.register<IWorkerVerifyOtpUseCase>("IWorkerVerifyOtpUseCase", {
+            useClass: WorkerVerifyOtpUseCase
         })
 
-        container.register<IRsubmitAgencyKycUseCase>("IRsubmitAgencyKycUseCase",{
-            useClass:RsubmitAgencyKycUseCase
+        container.register<IRsubmitAgencyKycUseCase>("IRsubmitAgencyKycUseCase", {
+            useClass: RsubmitAgencyKycUseCase
         })
 
-        container.register<IUploadWorkerKycFilesUsecase>("IUploadWorkerKycFilesUsecase",{
-            useClass:UploadWorkerKycFilesUsecase
+        container.register<IUploadWorkerKycFilesUsecase>("IUploadWorkerKycFilesUsecase", {
+            useClass: UploadWorkerKycFilesUsecase
         })
 
-        container.register<IAddWorkerUsecase>("IAddWorkerUsecase",{
-            useClass:AddWorkerUsecase
+        container.register<IAddWorkerUsecase>("IAddWorkerUsecase", {
+            useClass: AddWorkerUsecase
         })
 
-        container.register<IGetHubsUsecase>("IGetHubsUsecase",{
-            useClass:GetHubsUsecase
+        container.register<IGetHubsUsecase>("IGetHubsUsecase", {
+            useClass: GetHubsUsecase
         })
 
-        container.register<IGetUserProfileUseCase>("IGetUserProfileUseCase",{
-            useClass:GetUserProfileUseCase
+        container.register<IGetUserProfileUseCase>("IGetUserProfileUseCase", {
+            useClass: GetUserProfileUseCase
         })
 
-        container.register<IEditUserProfileUseCase>("IEditUserProfileUseCase",{
-            useClass:EditUserProfileUseCase
+        container.register<IEditUserProfileUseCase>("IEditUserProfileUseCase", {
+            useClass: EditUserProfileUseCase
         })
 
-        container.register<IUserReserUserPassword>("IUserReserUserPassword",{
-            useClass:UserReserUserPassword
+        container.register<IUserReserUserPassword>("IUserReserUserPassword", {
+            useClass: UserReserUserPassword
         })
 
-        container.register<IGetAgencyOverviewUseCase>("IGetAgencyOverviewUseCase",{
-            useClass:GetAgencyOverviewUseCase
+        container.register<IGetAgencyOverviewUseCase>("IGetAgencyOverviewUseCase", {
+            useClass: GetAgencyOverviewUseCase
         })
 
-        container.register<IGetPricingUseCase>("IGetPricingUseCase",{
-            useClass:GetPricingUseCase
+        container.register<IGetPricingUseCase>("IGetPricingUseCase", {
+            useClass: GetPricingUseCase
         })
 
-        container.register<IGetAgencyPricingUsecase>("IGetAgencyPricingUsecase",{
-            useClass:GetAgencyPricingUsecase
+        container.register<IGetAgencyPricingUsecase>("IGetAgencyPricingUsecase", {
+            useClass: GetAgencyPricingUsecase
         })
 
-        container.register<IUpsertAgencyPricingUseCase>("IUpsertAgencyPricingUseCase",{
-            useClass:UpsertAgencyPricingUseCase
+        container.register<IUpsertAgencyPricingUseCase>("IUpsertAgencyPricingUseCase", {
+            useClass: UpsertAgencyPricingUseCase
         })
 
-        container.register<ICreateAdminPricingPolicyUseCase>("ICreateAdminPricingPolicyUseCase",{
-            useClass:CreateAdminPricingPolicyUseCase
+        container.register<ICreateAdminPricingPolicyUseCase>("ICreateAdminPricingPolicyUseCase", {
+            useClass: CreateAdminPricingPolicyUseCase
         })
 
-        container.register<IGetAdminProfileUseCase>("IGetAdminProfileUseCase", {    
+        container.register<IGetAdminProfileUseCase>("IGetAdminProfileUseCase", {
             useClass: GetAdminProfileUseCase
         });
 
         container.register<IEditAdminProfileUseCase>("IEditAdminProfileUseCase", {
             useClass: EditAdminProfileUseCase
-        }); 
+        });
 
-        container.register<IResetAdminPasswordUsecase>("IResetAdminPasswordUsecase", {  
-            useClass: ResetAdminPasswordUseCase 
+        container.register<IResetAdminPasswordUsecase>("IResetAdminPasswordUsecase", {
+            useClass: ResetAdminPasswordUseCase
         });
 
         container.register<IGetAgencyProfileUseCase>("IGetAgencyProfileUseCase", {
             useClass: GetAgencyProfileUseCase
         });
-        
+
         container.register<IEditAgencyProfileUseCase>("IEditAgencyProfileUseCase", {
             useClass: EditAgencyProfileUseCase
         });
@@ -387,23 +387,23 @@ export class UsecaseRegistery {
             useClass: ResetAgencyPasswordUseCase
         });
 
-        container.register<ICreateAddressFromLocationUseCase>("ICreateAddressFromLocationUseCase",{
+        container.register<ICreateAddressFromLocationUseCase>("ICreateAddressFromLocationUseCase", {
             useClass: CreateAddressFromLocationUseCase
         });
 
-        container.register<IAddUserAddressUseCase>("IAddUserAddressUseCase",{
+        container.register<IAddUserAddressUseCase>("IAddUserAddressUseCase", {
             useClass: AddUserAddressUseCase
         });
 
-        container.register<IGetUserAddressesUseCase>("IGetUserAddressesUseCase",{
+        container.register<IGetUserAddressesUseCase>("IGetUserAddressesUseCase", {
             useClass: GetUserAddressesUseCase
         });
 
-        container.register<IDeleteUserAddressUseCase>("IDeleteUserAddressUseCase",{
+        container.register<IDeleteUserAddressUseCase>("IDeleteUserAddressUseCase", {
             useClass: DeleteUserAddressUseCase
         });
 
-        container.register<ISetDefaultUserAddressUseCase>("ISetDefaultUserAddressUseCase",{
+        container.register<ISetDefaultUserAddressUseCase>("ISetDefaultUserAddressUseCase", {
             useClass: SetDefaultUserAddressUseCase
         });
 
@@ -411,7 +411,7 @@ export class UsecaseRegistery {
         //     useClass:CheckServiceablePartnersUsecase
         // })
 
-        container.register<IFindServicableAgencyUsecase>("IFindServicableAgencyUsecase",{
+        container.register<IFindServicableAgencyUsecase>("IFindServicableAgencyUsecase", {
             useClass: FindServicableAgencyUsecase
         });
 
@@ -419,184 +419,184 @@ export class UsecaseRegistery {
         //     useClass:GetAddressesByPincodeUsecase
         // });
 
-        container.register<IGetWorkersUseCase>("IGetWorkersUseCase",{
-            useClass:GetWorkersUseCase
+        container.register<IGetWorkersUseCase>("IGetWorkersUseCase", {
+            useClass: GetWorkersUseCase
         });
 
-        container.register<IGetHubUseCase>("IGetHubUseCase",{
-            useClass:GetHubUseCase
+        container.register<IGetHubUseCase>("IGetHubUseCase", {
+            useClass: GetHubUseCase
         })
 
-        container.register<IGetHubOverviewUseCase>("IGetHubOverviewUseCase",{
-            useClass:GetHubOverviewUseCase
+        container.register<IGetHubOverviewUseCase>("IGetHubOverviewUseCase", {
+            useClass: GetHubOverviewUseCase
         });
 
-        container.register<IUpdateHubKycStatusUseCase>("IUpdateHubKycStatusUseCase",{
-            useClass:UpdateHubKycStatusUseCase
+        container.register<IUpdateHubKycStatusUseCase>("IUpdateHubKycStatusUseCase", {
+            useClass: UpdateHubKycStatusUseCase
         })
 
-        container.register<ICalculateBookingPriceUsecase>("ICalculateBookingPriceUsecase",{
-            useClass:CalculateBookingPriceUsecase
+        container.register<ICalculateBookingPriceUsecase>("ICalculateBookingPriceUsecase", {
+            useClass: CalculateBookingPriceUsecase
         });
 
-        container.register<ICalculatePriceUsecase>("CalculateAgencyPriceUsecase",{
-            useClass:CalculateAgencyPriceUsecase
+        container.register<ICalculatePriceUsecase>("CalculateAgencyPriceUsecase", {
+            useClass: CalculateAgencyPriceUsecase
         })
 
-        container.register<ICalculatePriceUsecase>("TravelerPricingUsecase",{
-            useClass:TravelerPricingUsecase
+        container.register<ICalculatePriceUsecase>("TravelerPricingUsecase", {
+            useClass: TravelerPricingUsecase
         })
 
-        container.register<ICreateBookingUsecase>("ICreateBookingUsecase",{
-            useClass:CreateBookingUsecase
+        container.register<ICreateBookingUsecase>("ICreateBookingUsecase", {
+            useClass: CreateBookingUsecase
         })
 
-        container.register<ICreatePaymentOrderUsecase>("ICreatePaymentOrderUsecase",{
-            useClass:CreatePaymentOrderUsecase
+        container.register<ICreatePaymentOrderUsecase>("ICreatePaymentOrderUsecase", {
+            useClass: CreatePaymentOrderUsecase
         })
 
-        container.register<IGetWalletOverviewUseCase>("IGetWalletOverviewUseCase",{
-            useClass:GetWalletOverviewUseCase
+        container.register<IGetWalletOverviewUseCase>("IGetWalletOverviewUseCase", {
+            useClass: GetWalletOverviewUseCase
         });
 
-        container.register<IGetWalletUseCase>("IGetWalletUseCase",{
-            useClass:GetWalletUseCase
+        container.register<IGetWalletUseCase>("IGetWalletUseCase", {
+            useClass: GetWalletUseCase
         });
 
-        container.register<IWalletTopupSuccessUseCase>("IWalletTopupSuccessUseCase",{
-            useClass:WalletTopupSuccessUseCase
+        container.register<IWalletTopupSuccessUseCase>("IWalletTopupSuccessUseCase", {
+            useClass: WalletTopupSuccessUseCase
         });
 
-        container.register<ICreateWalletTopupOrderUseCase>("ICreateWalletTopupOrderUseCase",{
-            useClass:CreateWalletTopupOrderUseCase
+        container.register<ICreateWalletTopupOrderUseCase>("ICreateWalletTopupOrderUseCase", {
+            useClass: CreateWalletTopupOrderUseCase
         });
 
-        container.register<IGetBookingUsecase>("IGetBookingUsecase",{
-            useClass:GetBookingUsecase
+        container.register<IGetBookingUsecase>("IGetBookingUsecase", {
+            useClass: GetBookingUsecase
         });
 
-        container.register<IBookingPaymentSuccessUseCase>("IBookingPaymentSuccessUseCase",{
-            useClass:BookingPaymentSuccessUseCase
+        container.register<IBookingPaymentSuccessUseCase>("IBookingPaymentSuccessUseCase", {
+            useClass: BookingPaymentSuccessUseCase
         })
 
-        container.register<IBookingPaymentFailedUseCase>("IBookingPaymentFailedUseCase",{
-            useClass:BookingPaymentFailedUseCase
+        container.register<IBookingPaymentFailedUseCase>("IBookingPaymentFailedUseCase", {
+            useClass: BookingPaymentFailedUseCase
         });
 
-        container.register<IUserBookingsUsecase>("IUserBookingsUsecase",{
-            useClass:UserBookingsUsecase
+        container.register<IUserBookingsUsecase>("IUserBookingsUsecase", {
+            useClass: UserBookingsUsecase
         })
 
-        container.register<ISubmitTravelerKycUseCase>("ISubmitTravelerKycUseCase",{
-            useClass:SubmitTravelerKycUseCase
+        container.register<ISubmitTravelerKycUseCase>("ISubmitTravelerKycUseCase", {
+            useClass: SubmitTravelerKycUseCase
         })
 
-        container.register<IUpdateUserKycStatusUseCase>("IUpdateUserKycStatusUseCase",{
-            useClass:UpdateUserKycStatusUseCase
+        container.register<IUpdateUserKycStatusUseCase>("IUpdateUserKycStatusUseCase", {
+            useClass: UpdateUserKycStatusUseCase
         })
 
-        container.register<IGetUserOverviewUseCase>("IGetUserOverviewUseCase",{
-            useClass:GetUserOverviewUseCase
+        container.register<IGetUserOverviewUseCase>("IGetUserOverviewUseCase", {
+            useClass: GetUserOverviewUseCase
         })
 
-        container.register<IGetTravelerKycUseCase>("IGetTravelerKycUseCase",{
-            useClass:GetTravelerKycUseCase
+        container.register<IGetTravelerKycUseCase>("IGetTravelerKycUseCase", {
+            useClass: GetTravelerKycUseCase
         })
 
-        container.register<IReSubmitTravelerKycUseCase>("IReSubmitTravelerKycUseCase",{
-            useClass:ReSubmitTravelerKycUseCase
+        container.register<IReSubmitTravelerKycUseCase>("IReSubmitTravelerKycUseCase", {
+            useClass: ReSubmitTravelerKycUseCase
         })
 
-        container.register<ICreateTravelRequestUseCase>("ICreateTravelRequestUseCase",{
-            useClass:CreateTravelRequestUseCase
+        container.register<ICreateTravelRequestUseCase>("ICreateTravelRequestUseCase", {
+            useClass: CreateTravelRequestUseCase
         })
 
-        container.register<IGetTravelRequestsUseCase>("IGetTravelRequestsUseCase",{
-            useClass:GetTravelRequestsUseCase
+        container.register<IGetTravelRequestsUseCase>("IGetTravelRequestsUseCase", {
+            useClass: GetTravelRequestsUseCase
         })
 
-        container.register<IGetTravelerTripOverviewUseCase>("IGetTravelerTripOverviewUseCase",{
-            useClass:GetTravelerTripOverviewUseCase
+        container.register<IGetTravelerTripOverviewUseCase>("IGetTravelerTripOverviewUseCase", {
+            useClass: GetTravelerTripOverviewUseCase
         })
 
-        container.register<ICreateAdminTravelerPricingUsecase>("ICreateAdminTravelerPricingUsecase",{
-            useClass:CreateAdminTravelerPricingUsecase
+        container.register<ICreateAdminTravelerPricingUsecase>("ICreateAdminTravelerPricingUsecase", {
+            useClass: CreateAdminTravelerPricingUsecase
         })
 
-        container.register<IFindServiceableTravelerUsecase>("IFindServiceableTravelerUsecase",{
-            useClass:FindServiceableTravelerUsecase
+        container.register<IFindServiceableTravelerUsecase>("IFindServiceableTravelerUsecase", {
+            useClass: FindServiceableTravelerUsecase
         })
 
-        container.register<IWithdrawWalletMoneyUseCase>("IWithdrawWalletMoneyUseCase",{
-            useClass:WithdrawWalletMoneyUseCase
+        container.register<IWithdrawWalletMoneyUseCase>("IWithdrawWalletMoneyUseCase", {
+            useClass: WithdrawWalletMoneyUseCase
         });
 
-        container.register<ICreateRouteGroupUseCase>("ICreateRouteGroupUseCase",{
-            useClass:CreateRouteGroupUseCase
+        container.register<ICreateRouteGroupUseCase>("ICreateRouteGroupUseCase", {
+            useClass: CreateRouteGroupUseCase
         })
 
-        container.register<IGetPaginatedRouteGroupUseCase>("IGetPaginatedRouteGroupUseCase",{
-            useClass:GetPaginatedRouteGroupUseCase
+        container.register<IGetPaginatedRouteGroupUseCase>("IGetPaginatedRouteGroupUseCase", {
+            useClass: GetPaginatedRouteGroupUseCase
         })
 
-        container.register<ICreateRouteSegmentUseCase>("ICreateRouteSegmentUseCase",{
-            useClass:CreateRouteSegmentUseCase
+        container.register<ICreateRouteSegmentUseCase>("ICreateRouteSegmentUseCase", {
+            useClass: CreateRouteSegmentUseCase
         })
 
-        container.register<IGetRouteGroupDetailUseCase>("IGetRouteGroupDetailUseCase",{
-            useClass:GetRouteGroupDetailUseCase
+        container.register<IGetRouteGroupDetailUseCase>("IGetRouteGroupDetailUseCase", {
+            useClass: GetRouteGroupDetailUseCase
         })
 
-        container.register<ICreateParcelRouteUsecase>("ICreateParcelRouteUsecase",{
-            useClass:CreateParcelRouteUsecase
+        container.register<ICreateParcelRouteUsecase>("ICreateParcelRouteUsecase", {
+            useClass: CreateParcelRouteUsecase
         });
 
-        container.register<ICreateHubShipmentsUsecase>("ICreateHubShipmentsUsecase",{
-            useClass:CreateHubShipmentsUsecase
+        container.register<ICreateHubShipmentsUsecase>("ICreateHubShipmentsUsecase", {
+            useClass: CreateHubShipmentsUsecase
         })
 
-        container.register<IGetWorkerOverviewUseCase>("IGetWorkerOverviewUseCase",{
-            useClass:GetWorkerOverviewUseCase
+        container.register<IGetWorkerOverviewUseCase>("IGetWorkerOverviewUseCase", {
+            useClass: GetWorkerOverviewUseCase
         })
 
-        container.register<IReSubmitWorkerKycUseCase>("IReSubmitWorkerKycUseCase",{
-            useClass:ReSubmitWorkerKycUseCase
+        container.register<IReSubmitWorkerKycUseCase>("IReSubmitWorkerKycUseCase", {
+            useClass: ReSubmitWorkerKycUseCase
         });
 
-        container.register<IGetWorkerKycUseCase>("IGetWorkerKycUseCase",{
-            useClass:GetWorkerKycUseCase
+        container.register<IGetWorkerKycUseCase>("IGetWorkerKycUseCase", {
+            useClass: GetWorkerKycUseCase
         })
 
-        container.register<IUpdateWorkerKycStatusUseCase>("IUpdateWorkerKycStatusUseCase",{
-            useClass:UpdateWorkerKycStatusUseCase
+        container.register<IUpdateWorkerKycStatusUseCase>("IUpdateWorkerKycStatusUseCase", {
+            useClass: UpdateWorkerKycStatusUseCase
         })
 
-        container.register<ICreateHubShipmentPickUpUsecase>("ICreateHubShipmentPickUpUsecase",{
-            useClass:CreateHubShipmentPickUpUsecase
+        container.register<ICreateHubShipmentPickUpUsecase>("ICreateHubShipmentPickUpUsecase", {
+            useClass: CreateHubShipmentPickUpUsecase
         })
 
-        container.register<IGetShipmentsUsecase>("IGetShipmentsUsecase",{
-            useClass:GetShipmentsUsecase
+        container.register<IGetShipmentsUsecase>("IGetShipmentsUsecase", {
+            useClass: GetShipmentsUsecase
         })
 
-        container.register<IGetShipmentDetailsUsecase>("IGetShipmentDetailsUsecase",{
-            useClass:GetShipmentDetailsUsecase
+        container.register<IGetShipmentDetailsUsecase>("IGetShipmentDetailsUsecase", {
+            useClass: GetShipmentDetailsUsecase
         })
 
-        container.register<IUpdateHubShipmentUsecase>("IUpdateHubShipmentUsecase",{
-            useClass:UpdateHubShipmentUsecase
+        container.register<IUpdateHubShipmentUsecase>("IUpdateHubShipmentUsecase", {
+            useClass: UpdateHubShipmentUsecase
         })
 
-        container.register<IGetWorkersShipmentUsecase>("IGetWorkersShipmentUsecase",{
-            useClass:GetWorkersShipmentUsecase
+        container.register<IGetWorkersShipmentUsecase>("IGetWorkersShipmentUsecase", {
+            useClass: GetWorkersShipmentUsecase
         })
 
-        container.register<IGetWorkerShipmentDetailsUsecase>("IGetWorkerShipmentDetailsUsecase",{
-            useClass:GetWorkerShipmentDetailsUsecase
+        container.register<IGetWorkerShipmentDetailsUsecase>("IGetWorkerShipmentDetailsUsecase", {
+            useClass: GetWorkerShipmentDetailsUsecase
         })
 
-        container.register<IUpdateShipmentStatusUsecase>("IUpdateShipmentStatusUsecase",{
-            useClass:UpdateShipmentStatusUsecase
+        container.register<IUpdateShipmentStatusUsecase>("IUpdateShipmentStatusUsecase", {
+            useClass: UpdateShipmentStatusUsecase
         })
     }
 }

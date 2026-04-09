@@ -13,6 +13,9 @@ import { ICalculateBookingPriceUsecase } from "../../../interfaces/useCase_Inter
 import { ITravelRequestRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/ITravelRequestRepository";
 import { AGENCY_MESSAGES } from "../../../../Infrastructure/constants/messages/agencyMessages";
 import { DeliveryPartner } from "../../../../Domain/Enums/DeliveryPartnerType";
+import { IBookingIdGeneratorService } from "@/Application/interfaces/services_Interfaces/IBookingIdGeneratorService";
+import { ICounterRepository } from "@/Application/interfaces/repositories_interfaces/ICounterRepository";
+import { buildCounterKey } from "@/Domain/utils/counterKey.util";
 
 @injectable()
 export class CreateBookingUsecase implements ICreateBookingUsecase {
@@ -22,8 +25,8 @@ export class CreateBookingUsecase implements ICreateBookingUsecase {
         @inject("IBookingRepository") private _bookingRepo: IBookingRepository,
         @inject("ICalculateBookingPriceUsecase") private _calculateBookingPriceUsecase: ICalculateBookingPriceUsecase,
         @inject("ITravelRequestRepository") private _travelRequestRepo: ITravelRequestRepository,
-
-
+        @inject("IBookingIdGeneratorService") private _bookingIdGenerator: IBookingIdGeneratorService,
+        @inject("ICounterRepository") private _counterRepo: ICounterRepository
     ) { };
 
     async execute(userId: string, payload: CreateBookingRequestDTO): Promise<{ bookingId: string }> {
@@ -94,9 +97,19 @@ export class CreateBookingUsecase implements ICreateBookingUsecase {
 
         const pricing = await this._calculateBookingPriceUsecase.execute(userId, payload);
 
+        const key = buildCounterKey(payload.deliveryType);
+        const seq = await this._counterRepo.increment(key);
 
+        const bookingId = this._bookingIdGenerator.generateBookingId({
+            seq,
+            agencyName: partnerSnapshot ? partnerSnapshot.name : "DIRECT",
+            partnerType: payload.deliveryType,
+        });
+
+        console.log("Generated Booking ID:", bookingId,"✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅");
 
         const booking = BookingMapper.createNew({
+            bookingId,
             userId,
             deliveryPartnerType: payload.deliveryType,
             partnerSnapshot,

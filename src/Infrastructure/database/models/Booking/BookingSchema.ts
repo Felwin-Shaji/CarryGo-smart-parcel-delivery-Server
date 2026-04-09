@@ -12,6 +12,7 @@ import { BookingStatus } from "../../../../Domain/Enums/BookingStatus";
 export interface BookingDocument extends Document {
     _id: Types.ObjectId;
     userId: Types.ObjectId;
+    bookingId:String;
 
     deliveryPartnerType: DeliveryPartnerType;
     travelRequestId?: Types.ObjectId | undefined;
@@ -78,6 +79,8 @@ export interface BookingDocument extends Document {
 
 const bookingSchema = new Schema<BookingDocument>(
     {
+        bookingId: { type: String, required: true, index: true },
+        
         userId: { type: Schema.Types.ObjectId, ref: "User", required: true, index: true, },
 
         deliveryPartnerType: { type: String, enum: Object.values(DeliveryPartner), required: true },

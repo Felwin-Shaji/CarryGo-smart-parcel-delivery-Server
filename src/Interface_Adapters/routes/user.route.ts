@@ -1,6 +1,7 @@
 import { BaseRoute } from "./base.route";
 import { AddressRoute } from "./userRoutes/address.route";
 import { BookingRoute } from "./userRoutes/booking.route";
+import { TrackingRoute } from "./userRoutes/tracking.route";
 import { TravelerRoute } from "./userRoutes/traveler.route";
 import { UserProfileRoute } from "./userRoutes/userProfile.route";
 import { WalletRoute } from "./userRoutes/wallet.route";
@@ -16,5 +17,6 @@ export class UserRoute extends BaseRoute {
         this.router.use(new AddressRoute().router);
         this.router.use(new WalletRoute().router);
         this.router.use(new TravelerRoute().router);
+        this.router.use(new TrackingRoute().router);
     }
 }

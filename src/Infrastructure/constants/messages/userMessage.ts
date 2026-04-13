@@ -34,7 +34,7 @@ export const USER_MESSAGES = {
   TRAVEL_REQUEST_BOOKING_FOUND:"Booking under travelr plane is found"
 } as const;
 
-export const BOOKING_MESSAGE = {
-  PINCODE_VALIED:"picode is validated",
-  NOT_SERVICEABLE_PINCODE:"One or both pincodes are not serviceable",
-}
+// export const BOOKING_MESSAGE = {
+//   PINCODE_VALIED:"picode is validated",
+//   NOT_SERVICEABLE_PINCODE:"One or both pincodes are not serviceable",
+// }

@@ -18,4 +18,6 @@ export const BOOKING_MESSAGE = {
     NO_AGENCY_ASSIGNED:"Booking has no agency assigned",
     ROUTING_INFO_NOT_FOUND:"Booking is missing hub routing info",
     VALID_ROUTE_NOT_FOUND:"No valid route found between the selected hubs",
+
+    TRACKING_INFO_FETCHED:"Tracking information fetched successfully",
 }

@@ -8,6 +8,8 @@ export interface IBookingRepository {
 
     getBookingById(bookingId: string): Promise<Booking>
 
+    getBookingByBookingId(bookingId: string): Promise<Booking>
+
     getBooingsByUserId(userId: string, dto: BookingFilterDTO): Promise<{ bookings: Booking[]; totalCount: number; }>;
 
     findByIds(bookingIds: string[]): Promise<Booking[]>;

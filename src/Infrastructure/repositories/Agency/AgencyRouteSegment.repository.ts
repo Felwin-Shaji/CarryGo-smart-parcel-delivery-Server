@@ -54,7 +54,7 @@ export class AgencyRouteSegmentRepository implements IAgencyRouteSegmentReposito
         const createdDocs = await RouteSegmentModel.create(
             [
                 {
-                    agencyId:new Types.ObjectId(data.agencyId),
+                    agencyId: new Types.ObjectId(data.agencyId),
                     routeGroupId: new Types.ObjectId(data.routeGroupId),
                     originHubId: new Types.ObjectId(data.originHubId),
                     destinationHubId: new Types.ObjectId(data.destinationHubId),
@@ -125,6 +125,17 @@ export class AgencyRouteSegmentRepository implements IAgencyRouteSegmentReposito
             .session(session ?? null);
 
         return doc?.segmentOrder ?? 0;
+    }
+
+    async findByIds(ids: string[], session?: ClientSession): Promise<RouteSegment[]> {
+        if (!ids || ids.length === 0) return [];
+        const objectIds = ids.map(id => new Types.ObjectId(id));
+
+        const docs = await RouteSegmentModel
+            .find({ _id: { $in: objectIds } })
+            .session(session ?? null);
+
+        return docs.map(AgencyRouteSegmentRepository.toDomain);
     }
 
 

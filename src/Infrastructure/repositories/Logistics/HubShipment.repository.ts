@@ -276,6 +276,14 @@ export class HubShipmentRepository implements IHubShipmentRepository {
         };
     }
 
+    async findByIds(ids: string[], session?: ClientSession): Promise<HubShipment[]> {
+        const objectIds = ids.map((id) => new Types.ObjectId(id));
+        const docs = await HubShipmentModel
+            .find({ _id: { $in: objectIds } })
+            .session(session || null);
+        return docs.map((doc) => this.toDomain(doc));
+    }
+
     private toDomain(doc: HubShipmentDocument): HubShipment {
         return new HubShipment(
             doc._id.toString(),

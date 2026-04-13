@@ -39,4 +39,6 @@ export interface IHubShipmentRepository extends IBaseRepository<HubShipment> {
         workerId: string,
         dto: GetWorkerShipmentDTO
     ): Promise<HubShipmentPaginatedData>;
+
+    findByIds(ids: string[], session?: ClientSession): Promise<HubShipment[]>;
 }

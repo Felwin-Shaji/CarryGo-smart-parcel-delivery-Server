@@ -46,17 +46,17 @@ export class ParcelMovementMapper {
     }
 
     static getStatusFromShipment(
-  status: ShipmentStatus
-): ShipmentParcelStatus | null {
-  const map: Record<ShipmentStatus, ShipmentParcelStatus | null> = {
-    PENDING: null,
-    LOADING: "LOADED",
-    DISPATCHED: "IN_TRANSIT",
-    ARRIVED: "UNLOADED",
-    COMPLETED: "UNLOADED",
-    CANCELLED: null,
-  };
+        status: ShipmentStatus
+    ): ShipmentParcelStatus | null {
+        const map: Record<ShipmentStatus, ShipmentParcelStatus | null> = {
+            PENDING: null,
+            LOADING: "LOADED",
+            DISPATCHED: "IN_TRANSIT",
+            ARRIVED: "UNLOADED",
+            COMPLETED: "UNLOADED",
+            CANCELLED: null,
+        };
 
-  return map[status];
-}
+        return map[status];
+    }
 }

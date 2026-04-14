@@ -55,6 +55,7 @@ export class HubWorkerRepository extends BaseRepository<HubWorker> implements IH
                     email: 1,
                     mobile: 1,
                     role: 1,
+                    workerRole:1,
                     kycStatus: 1,
                     createdAt: 1,
                 })

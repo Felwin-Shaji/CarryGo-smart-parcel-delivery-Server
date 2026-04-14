@@ -8,4 +8,6 @@ export interface IParcelRouteLegRepository {
     findByRouteId(parcelRouteId: string, session?: ClientSession): Promise<ParcelRouteLeg[]>;
 
     updateShipmentId(legId: string, shipmentId: string, session?: ClientSession): Promise<void>;
+
+    update(leg: ParcelRouteLeg, session?: ClientSession): Promise<void>;
 }

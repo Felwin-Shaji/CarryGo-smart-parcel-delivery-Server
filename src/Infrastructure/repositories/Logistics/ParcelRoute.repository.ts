@@ -53,6 +53,20 @@ export class ParcelRouteRepository implements IParcelRouteRepository {
         return this.toDomain(doc)
     }
 
+    async update(parcelRoute: ParcelRoute, session?: ClientSession): Promise<void> {
+        await ParcelRouteModel.findByIdAndUpdate(
+            parcelRoute.id!,
+            {
+                $set: {
+                    bookingId: new Types.ObjectId(parcelRoute.bookingId),
+                    status: parcelRoute.status,
+                    updatedAt: parcelRoute.updatedAt,
+                },
+            },
+        )
+            .session(session || null);
+    }
+
 
     private toDomain(doc: ParcelRouteDocument): ParcelRoute {
         return new ParcelRoute(

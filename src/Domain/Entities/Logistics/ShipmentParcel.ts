@@ -1,4 +1,5 @@
 export type ShipmentParcelStatus =
+    | "PENDING"
     | "LOADED"
     | "IN_TRANSIT"
     | "UNLOADED";
@@ -11,7 +12,7 @@ export class ShipmentParcel {
 
         public bookingId: string,
 
-        public status: ShipmentParcelStatus = "LOADED",
+        public status: ShipmentParcelStatus = "PENDING",
 
         public loadedAt: Date = new Date(),
         public unloadedAt: Date | null = null,

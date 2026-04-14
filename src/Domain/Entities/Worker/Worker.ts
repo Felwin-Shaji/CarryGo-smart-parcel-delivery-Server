@@ -2,7 +2,7 @@ import { Types } from "mongoose";
 import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
 import { AppError } from "../../utils/customError";
 
-export type WorkerRole = "PICKUP" | "TRANSPORT" | "OUT_FOR_DELEVERY";
+export type WorkerRole = "PICKUP" | "TRANSPORT" | "OUT_FOR_DELIVERY";
 
 export type WorkingStatus =
   | "AVAILABLE"   // ready for assignment

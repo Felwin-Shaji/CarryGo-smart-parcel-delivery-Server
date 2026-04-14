@@ -6,7 +6,7 @@ export interface ShipmentParcelDocument extends Document {
     shipmentId: Types.ObjectId;
     bookingId: Types.ObjectId;
 
-    status: "LOADED" | "IN_TRANSIT" | "UNLOADED";
+    status: "PENDING" | "LOADED" | "IN_TRANSIT" | "UNLOADED";
 
     loadedAt: Date;
     unloadedAt?: Date;
@@ -19,7 +19,7 @@ const shipmentParcelSchema = new Schema<ShipmentParcelDocument>(
     {
         shipmentId: { type: Schema.Types.ObjectId, ref: "HubShipment", required: true, index: true },
         bookingId: { type: Schema.Types.ObjectId, ref: "Booking", required: true, index: true },
-        status: { type: String, enum: ["LOADED", "IN_TRANSIT", "UNLOADED"], default: "LOADED" },
+        status: { type: String, enum: ["PENDING", "LOADED", "IN_TRANSIT", "UNLOADED"], default: "LOADED" },
         loadedAt: { type: Date, default: Date.now },
         unloadedAt: Date
     },

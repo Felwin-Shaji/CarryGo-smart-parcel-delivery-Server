@@ -92,6 +92,8 @@ export class WorkerMapper {
             mobile: worker.mobile!,
             kycStatus: worker.kycStatus!,
             role: worker.role,
+            workerRole: worker.workerRole,
+            workingStatus: worker.workingStatus,
             createdAt: worker.createdAt,
         };
     }

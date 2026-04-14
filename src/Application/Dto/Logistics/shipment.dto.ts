@@ -1,5 +1,5 @@
 import { ShipmentStatus, ShipmentType } from "@/Domain/Entities/Logistics/HubShipment";
-import { ShipmentParcel } from "@/Domain/Entities/Logistics/ShipmentParcel";
+import { ShipmentParcel, ShipmentParcelStatus } from "@/Domain/Entities/Logistics/ShipmentParcel";
 
 export interface GetShipmentsDTO {
   type?: ShipmentType;
@@ -64,7 +64,7 @@ export interface ShipmentParcelDTO {
   bookingId: string;
   customerName?: string;
   address?: string;
-  status: "LOADED" | "IN_TRANSIT" | "UNLOADED";
+  status: ShipmentParcelStatus;
 }
 
 export interface ShipmentDetailsDTO {

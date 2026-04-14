@@ -8,7 +8,7 @@ export class ShipmentParcelMapper {
             null,
             shipmentId,
             bookingId,
-            "LOADED",
+            "PENDING",
             new Date(),
             null,
             new Date(),
@@ -23,7 +23,7 @@ export class ShipmentParcelMapper {
     ): ShipmentParcel {
 
         const statusMap: Record<ShipmentStatus, ShipmentParcelStatus | null> = {
-            PENDING: null,
+            PENDING: "PENDING",
             LOADING: "LOADED",
             DISPATCHED: "IN_TRANSIT",
             ARRIVED: "UNLOADED",

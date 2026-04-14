@@ -12,6 +12,8 @@ import { STATUS } from "@/Infrastructure/constants/statusCodes";
 import { IGetBookingUsecase } from "@/Application/interfaces/useCase_Interfaces/user/Booking/IGetBookingUsecase";
 import { BOOKING_MESSAGE } from "@/Infrastructure/constants/messages/bookingMessages";
 import { IUpdateShipmentStatusUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IUpdateShipmentStatusUsecase";
+import { IBulkUpdateShipmentParcelUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IBulkUpdateShipmentParcelUsecase";
+import { ShipmentParcelStatus } from "@/Domain/Entities/Logistics/ShipmentParcel";
 
 @injectable()
 export class WorkerShipmentController {
@@ -19,14 +21,15 @@ export class WorkerShipmentController {
         @inject("IGetWorkersShipmentUsecase") private _getWorkersShipmentUsecase: IGetWorkersShipmentUsecase,
         @inject("IGetWorkerShipmentDetailsUsecase") private _getWorkerShipmentDetailsUsecase: IGetWorkerShipmentDetailsUsecase,
         @inject("IGetBookingUsecase") private _getBookingUsecase: IGetBookingUsecase,
-        @inject("IUpdateShipmentStatusUsecase") private _updateShipmentStatusUsecase:IUpdateShipmentStatusUsecase
+        @inject("IUpdateShipmentStatusUsecase") private _updateShipmentStatusUsecase: IUpdateShipmentStatusUsecase,
+        @inject("IBulkUpdateShipmentParcelUsecase") private _bulkUpdateShipmentParcelUsecase: IBulkUpdateShipmentParcelUsecase
 
-    )  { }
+    ) { }
 
     getWorkerShipments = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const workerId = req.user?.id;
-            if (!workerId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND,STATUS.NOT_FOUND);
+            if (!workerId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND);
 
             const dto: GetWorkerShipmentDTO = {
                 type: req.query.type?.toString() as ShipmentType,
@@ -54,7 +57,7 @@ export class WorkerShipmentController {
     getWorkerShipmentDetails = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const workerId = req.user?.id;
-            if (!workerId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND,STATUS.NOT_FOUND);
+            if (!workerId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND);
 
             const shipmentId = req.params.id;
             if (!shipmentId) throw new AppError(WORKER_MESSAGES.SHIPMENT_NOT_FOUND, STATUS.NOT_FOUND);
@@ -70,7 +73,6 @@ export class WorkerShipmentController {
                     shipmentDetails
                 )
             )
-            
         } catch (error) {
             next(error)
         }
@@ -87,6 +89,28 @@ export class WorkerShipmentController {
                 ApiResponse.success(
                     BOOKING_MESSAGE.FOUND,
                     booking
+                )
+            )
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    bulkUpdateParcels = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+
+            const { id: shipmentId } = req.params;
+            if (!shipmentId) throw new AppError(WORKER_MESSAGES.SHIPMENT_NOT_FOUND, STATUS.NOT_FOUND);
+
+            const { parcelIds, status } = req.body as { parcelIds: string[]; status: ShipmentParcelStatus };
+
+
+            await this._bulkUpdateShipmentParcelUsecase.execute(shipmentId, parcelIds, status);
+
+            res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    WORKER_MESSAGES.PARCELS_STATUS_UPDATED
                 )
             )
 

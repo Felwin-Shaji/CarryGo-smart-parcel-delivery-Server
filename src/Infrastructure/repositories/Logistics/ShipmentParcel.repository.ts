@@ -28,6 +28,14 @@ export class ShipmentParcelRepository implements IShipmentParcelRepository {
         return this.toDomain(created);
     }
 
+    async findByIds(ids: string[], session?: ClientSession): Promise<ShipmentParcel[]> {
+        const docs = await ShipmentParcelModel
+            .find({ _id: { $in: ids.map((id) => new Types.ObjectId(id)) } })
+            .session(session || null);
+
+        return docs.map((doc) => this.toDomain(doc));
+    }
+
     async findByShipmentId(shipmentId: string, session?: ClientSession): Promise<ShipmentParcel[]> {
 
         const docs = await ShipmentParcelModel
@@ -58,6 +66,18 @@ export class ShipmentParcelRepository implements IShipmentParcelRepository {
                 { $set: { status } },
                 { new: true }
             )
+            .session(session || null);
+    }
+
+    async bulkUpdateStatus(
+        parcelIds: string[],
+        status: string,
+        session?: ClientSession
+    ): Promise<void> {
+        await ShipmentParcelModel.updateMany(
+            { _id: { $in: parcelIds.map((id) => new Types.ObjectId(id)) } },
+            { $set: { status } }
+        )
             .session(session || null);
     }
 

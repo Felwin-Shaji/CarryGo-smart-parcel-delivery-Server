@@ -10,6 +10,8 @@ export interface WorkerResponseDTO {
     email: string;
     mobile: string;
     role: Role;
+    workerRole: WorkerRole;
+    workingStatus: WorkingStatus;
     kycStatus: KYCStatus;
     createdAt: Date;
 };

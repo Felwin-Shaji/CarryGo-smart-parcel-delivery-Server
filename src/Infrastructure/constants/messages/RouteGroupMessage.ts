@@ -24,9 +24,17 @@ export const ROUTE_SEGMENT_MESSAGE = {
 
 export const PARCEL_ROUTE_MESSAGE = {
     NOTFOUND:"not found",
-    LEGS_NOTFOUND:"No legs found for parcel route"
+    LEGS_NOTFOUND:"No legs found for parcel route",
+    CURRENT_LEG_NOTFOUND:"No current leg found for parcel route",
 } as const 
 
 export const PARCEL_MOVEMENT_MESSAGE = {
     CREATION_FAILED:"Failed to create ParcelMovement"
 }
+
+export const SHIPMENT_PARCEL_MESSAGE = {
+    NOTFOUND:"Shipment parcel not found",
+    BULK_UPDATE_FAILED:"Failed to bulk update shipment parcels",
+    INVALID_PARCELS:"One or more parcel IDs are invalid for the given shipment",
+    INVALID_FLOW:"One or more parcels cannot be updated to the requested status due to invalid status flow",
+} as const

@@ -196,6 +196,8 @@ import { IUpdateShipmentStatusUsecase } from "@/Application/interfaces/useCase_I
 import { UpdateShipmentStatusUsecase } from "@/Application/useCase/Logistics/ShipmentParcels/UpdateShipmentStatus.usecase";
 import { IGetTrackingUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/IGetTrackingUsecase";
 import { GetTrackingUsecase } from "@/Application/useCase/Logistics/GetTrackingUsecase";
+import { IBulkUpdateShipmentParcelUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IBulkUpdateShipmentParcelUsecase";
+import { BulkUpdateShipmentParcelUsecase } from "@/Application/useCase/Logistics/ShipmentParcels/BulkUpdateShipmentParcel.usecase";
 
 
 
@@ -603,6 +605,10 @@ export class UsecaseRegistery {
 
         container.register<IGetTrackingUsecase>("IGetTrackingUsecase", {
             useClass: GetTrackingUsecase
-        })
+        });
+
+        container.register<IBulkUpdateShipmentParcelUsecase>("IBulkUpdateShipmentParcelUsecase", {
+            useClass: BulkUpdateShipmentParcelUsecase
+        });
     }
 }

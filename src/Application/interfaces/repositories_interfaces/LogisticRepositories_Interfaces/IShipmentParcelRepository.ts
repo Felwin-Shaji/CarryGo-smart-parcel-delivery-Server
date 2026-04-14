@@ -1,9 +1,11 @@
 import { ClientSession } from "mongoose";
-import { ShipmentParcel } from "../../../../Domain/Entities/Logistics/ShipmentParcel";
+import { ShipmentParcel, ShipmentParcelStatus } from "../../../../Domain/Entities/Logistics/ShipmentParcel";
 
 export interface IShipmentParcelRepository {
 
     save(shipmentParcel: ShipmentParcel, session?: ClientSession): Promise<ShipmentParcel>;
+
+    findByIds(ids: string[], session?: ClientSession): Promise<ShipmentParcel[]>;
 
     findByShipmentId(shipmentId: string, session?: ClientSession): Promise<ShipmentParcel[]>;
 
@@ -13,7 +15,13 @@ export interface IShipmentParcelRepository {
 
     updateStatus(
         shipmentParcelId: string,
-        status: string,
+        status: ShipmentParcelStatus,
+        session?: ClientSession
+    ): Promise<void>;
+
+    bulkUpdateStatus(
+        parcelIds: string[],
+        status: ShipmentParcelStatus,
         session?: ClientSession
     ): Promise<void>;
 }

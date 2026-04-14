@@ -9,5 +9,6 @@ export class WorkerShipmentRoute extends BaseRoute {
         this.router.get("/shipments/:id", authenticate(["worker"]), asyncHandler(workerShipmentController.getWorkerShipmentDetails));
         this.router.get("/shipments/:id/booking-details", authenticate(["worker"]), asyncHandler(workerShipmentController.getBookingDetails));
         this.router.patch("/shipments/:id/status", authenticate(["worker"]), asyncHandler(workerShipmentController.updateShipmentStatus));
+        this.router.patch("/shipments/:id/parcels/bulk", authenticate(["worker"]), asyncHandler(workerShipmentController.bulkUpdateParcels));
     }
 }

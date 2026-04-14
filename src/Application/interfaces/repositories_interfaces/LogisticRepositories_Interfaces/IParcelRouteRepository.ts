@@ -9,4 +9,6 @@ export interface IParcelRouteRepository {
     findByBookingId(bookingId: string, session?: ClientSession): Promise<ParcelRoute | null>;
 
     findById(id: string, session?: ClientSession): Promise<ParcelRoute>;
+
+    update(parcelRoute: ParcelRoute, session?: ClientSession): Promise<void>;
 }

@@ -45,6 +45,25 @@ export class ParcelRouteLegRepository implements IParcelRouteLegRepository {
             .session(session || null);
     }
 
+    async update(leg: ParcelRouteLeg, session?: ClientSession): Promise<void> {
+        await ParcelRouteLegModel.findByIdAndUpdate(
+            leg.id!,
+            {
+                $set: {
+                    parcelRouteId: new Types.ObjectId(leg.parcelRouteId),
+                    segmentId: new Types.ObjectId(leg.segmentId),
+                    legOrder: leg.legOrder,
+                    status: leg.status,
+                    shipmentId: leg.shipmentId ? new Types.ObjectId(leg.shipmentId) : null,
+                    updatedAt: leg.updatedAt,
+                },
+            },
+            { new: true }
+        )
+            .session(session || null);
+
+    }
+
 
     private toDomain(doc: ParcelRouteLegDocument): ParcelRouteLeg {
         return new ParcelRouteLeg(

@@ -32,4 +32,5 @@ export const WORKER_MESSAGES = {
   SHIPMENT_DETAILS_FETCH_SUCCESS:"Worker shipment details fetched successfully",
   SHIPMENT_NOT_FOUND:"Shipment not found",
   SHIPMENT_STATUS_UPDATED:"Shipment status updated successfully",
+  PARCELS_STATUS_UPDATED:"Parcels status updated successfully"
 } as const;

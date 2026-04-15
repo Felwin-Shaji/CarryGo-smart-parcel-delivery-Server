@@ -198,6 +198,8 @@ import { IGetTrackingUsecase } from "@/Application/interfaces/useCase_Interfaces
 import { GetTrackingUsecase } from "@/Application/useCase/Logistics/GetTrackingUsecase";
 import { IBulkUpdateShipmentParcelUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IBulkUpdateShipmentParcelUsecase";
 import { BulkUpdateShipmentParcelUsecase } from "@/Application/useCase/Logistics/ShipmentParcels/BulkUpdateShipmentParcel.usecase";
+import { ICreateHubShipmentOutForDeliveryUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/ICreateHubShipmentOutForDeliveryUsecase";
+import { CreateHubShipmentOutForDeliveryUsecase } from "@/Application/useCase/Logistics/HubShipment/CreateHubShipmentOutForDelivery.usecase";
 
 
 
@@ -610,5 +612,9 @@ export class UsecaseRegistery {
         container.register<IBulkUpdateShipmentParcelUsecase>("IBulkUpdateShipmentParcelUsecase", {
             useClass: BulkUpdateShipmentParcelUsecase
         });
+
+        container.register<ICreateHubShipmentOutForDeliveryUsecase>("ICreateHubShipmentOutForDeliveryUsecase",{
+            useClass:CreateHubShipmentOutForDeliveryUsecase
+        })
     }
 }

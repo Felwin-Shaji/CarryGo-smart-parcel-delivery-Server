@@ -1,6 +1,6 @@
 import { ClientSession, Types } from "mongoose";
 import { IShipmentParcelRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IShipmentParcelRepository";
-import { ShipmentParcel } from "@/Domain/Entities/Logistics/ShipmentParcel";
+import { ShipmentParcel, ShipmentParcelStatus } from "@/Domain/Entities/Logistics/ShipmentParcel";
 import { ShipmentParcelDocument, ShipmentParcelModel } from "@/Infrastructure/database/models/Logistics/ShipmentParcelModel";
 
 export class ShipmentParcelRepository implements IShipmentParcelRepository {
@@ -71,14 +71,36 @@ export class ShipmentParcelRepository implements IShipmentParcelRepository {
 
     async bulkUpdateStatus(
         parcelIds: string[],
-        status: string,
+        status: ShipmentParcelStatus,
         session?: ClientSession
     ): Promise<void> {
+
+        const updateFields: Partial<{
+            status: ShipmentParcelStatus;
+            updatedAt: Date;
+            loadedAt: Date;
+            unloadedAt: Date;
+        }> = {
+            status,
+            updatedAt: new Date(),
+        };
+
+        if (status === "LOADED") {
+            updateFields.loadedAt = new Date();
+        }
+
+        if (status === "UNLOADED") {
+            updateFields.unloadedAt = new Date();
+        }
+
         await ShipmentParcelModel.updateMany(
-            { _id: { $in: parcelIds.map((id) => new Types.ObjectId(id)) } },
-            { $set: { status } }
-        )
-            .session(session || null);
+            {
+                _id: { $in: parcelIds.map(id => new Types.ObjectId(id)) }
+            },
+            {
+                $set: updateFields
+            }
+        ).session(session || null);
     }
 
     async findByShipmentIdPaginated(shipmentId: string, page: number, limit: number, session?: ClientSession): Promise<{ parcels: ShipmentParcel[]; total: number; }> {

@@ -24,7 +24,7 @@ export interface IBookingRepository {
         }
     ): Promise<void>;
 
-    updateStatus(bookingId: string, status: BookingStatusType): Promise<void>;
+    updateStatus(bookingId: string, status: BookingStatusType, session?: ClientSession): Promise<void>;
 
     findByTravelRequestId(travelRequestId: string): Promise<Booking[]>;
 

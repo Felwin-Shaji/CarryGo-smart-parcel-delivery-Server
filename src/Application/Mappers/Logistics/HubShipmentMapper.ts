@@ -53,6 +53,32 @@ export class HubShipmentMapper {
             new Date(),
             new Date()
         )
+    };
+
+    static toCreateDelivery(booking: Booking): HubShipment {
+
+        const dispatchDate = new Date();
+        dispatchDate.setDate(dispatchDate.getDate() + 1); // Add 1 days
+        dispatchDate.setHours(9, 0, 0, 0); // Set time to 9:00 AM
+
+        return new HubShipment(
+            null,
+            null,
+            "OUT_FOR_DELIVERY",
+            booking.logistics?.toHubId!,
+            null,
+            null,
+            null,
+            20,
+            1,
+            "PENDING",
+            dispatchDate,
+            null,
+            null,
+            new Date(),
+            new Date(),
+        )
+
     }
 
     static toGetPaginatedHubShipmentsResponse(dto: HubShipmentPaginatedData): GetShipmentsResponseDTO {

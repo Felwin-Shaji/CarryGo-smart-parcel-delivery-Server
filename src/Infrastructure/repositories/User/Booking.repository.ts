@@ -144,10 +144,11 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
         );
     }
 
-    async updateStatus(bookingId: string, status: BookingStatusType): Promise<void> {
+    async updateStatus(bookingId: string, status: BookingStatusType, session?: ClientSession): Promise<void> {
         await this.model.updateOne(
             { _id: bookingId },
-            { $set: { status } }
+            { $set: { status } },
+            { ...(session && { session }) }
         );
     }
 

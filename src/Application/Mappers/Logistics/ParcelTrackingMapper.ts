@@ -100,6 +100,8 @@ export class ParcelTrackingMapper {
                 throw new Error(`Segment not found: ${l.segmentId}`);
             }
 
+            console.log(l.status,"satusssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss")
+
             return {
                 legOrder: l.legOrder,
                 fromHub: this.mapHub(hubs.get(segment.originHubId)),

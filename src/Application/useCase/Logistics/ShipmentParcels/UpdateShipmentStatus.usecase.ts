@@ -66,35 +66,47 @@ export class UpdateShipmentStatusUsecase implements IUpdateShipmentStatusUsecase
             throw new AppError("No parcels in shipment");
         }
 
+        const all = (status: ShipmentParcel["status"]) =>
+            parcels.every(p => p.status === status);
+
         switch (nextStatus) {
 
+            /* ---------------- LOADING ---------------- */
             case "LOADING":
-                return;
+                // all parcels must still be PENDING at start
+                if (!all("PENDING")) {
+                    throw new AppError("All parcels must be PENDING to start loading");
+                }
+                break;
 
+            /* ---------------- DISPATCH ---------------- */
             case "DISPATCHED":
-                if (!parcels.every(p => p.status === "LOADED")) {
+                if (!all("LOADED")) {
                     throw new AppError("All parcels must be LOADED before dispatch");
                 }
                 break;
 
+            /* ---------------- ARRIVED ---------------- */
             case "ARRIVED":
-                if (!parcels.every(p => p.status === "IN_TRANSIT")) {
+                if (!all("IN_TRANSIT")) {
                     throw new AppError("All parcels must be IN_TRANSIT before arrival");
                 }
                 break;
 
+            /* ---------------- COMPLETED ---------------- */
             case "COMPLETED":
-                if (!parcels.every(p => p.status === "UNLOADED")) {
+                if (!all("UNLOADED")) {
                     throw new AppError("All parcels must be UNLOADED before completion");
                 }
                 break;
 
+            /* ---------------- CANCELLED ---------------- */
             case "CANCELLED":
+                // optional: allow cancel anytime OR restrict
                 return;
 
             default:
                 return;
         }
     }
-
 }

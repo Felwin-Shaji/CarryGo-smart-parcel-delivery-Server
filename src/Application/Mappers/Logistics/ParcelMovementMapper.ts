@@ -45,6 +45,26 @@ export class ParcelMovementMapper {
         )
     }
 
+    static toDelivery(
+        bookingId: string,
+        shipmentId: string,
+        fromHubId: string
+    ): ParcelMovement {
+        return new ParcelMovement(
+            null,
+            bookingId,
+            shipmentId,
+            null,
+            fromHubId,
+            null,
+            "PENDING",
+            null,
+            null,
+            new Date(),
+            new Date(),
+        )
+    }
+
     static getStatusFromShipment(
         status: ShipmentStatus
     ): ShipmentParcelStatus | null {

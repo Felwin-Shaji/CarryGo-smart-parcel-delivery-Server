@@ -21,7 +21,7 @@ export class UserController implements IUserController {
     getUserProfile = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const userId = req.user?.id;
-            if(!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING,STATUS.BAD_REQUEST)
+            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST)
 
             const userProfileData = await this._getUserProfileUseCase.execute(userId)
 
@@ -34,13 +34,17 @@ export class UserController implements IUserController {
         }
     }
 
-    updateUserProfile = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    updateUserProfile = async (
+        req: Request<{}, {}, BaseEditUserProfileRequestDto>,
+        res: Response,
+        next: NextFunction
+    ): Promise<Response | void> => {
         try {
-            const dto = req.body as BaseEditUserProfileRequestDto;
+            const dto = req.body;
             const userId = req.user?.id;
-            if(!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING,STATUS.BAD_REQUEST)
+            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST)
 
-            await this._editUserProfileUseCase.execute(userId,dto);
+            await this._editUserProfileUseCase.execute(userId, dto);
 
             return res.status(STATUS.OK).json(
                 ApiResponse.success(
@@ -53,20 +57,24 @@ export class UserController implements IUserController {
         }
     };
 
-    resetUserPassword = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    resetUserPassword = async (
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ): Promise<Response | void> => {
         try {
             const dto = req.body as UserResetPasswordRequestDTO;
             const userId = req.user?.id;
-            if(!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING,STATUS.BAD_REQUEST)
-            
-            await this._userReserUserPassword.execute(userId,dto);
+            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST)
+
+            await this._userReserUserPassword.execute(userId, dto);
 
             return res.status(STATUS.OK).json(
                 ApiResponse.success(
                     USER_MESSAGES.RESET_PASSWORD
                 )
             )
-            
+
         } catch (error) {
             next(error)
         }

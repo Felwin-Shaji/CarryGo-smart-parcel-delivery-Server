@@ -2,6 +2,7 @@ import { BaseRoute } from "../base.route";
 import { adminPricingPolicyController } from "../../../Infrastructure/di/resolver";
 import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
+import { Role } from "@/Domain/Enums/Roles";
 
 export class AdminPricingRoute extends BaseRoute {
 
@@ -9,25 +10,25 @@ export class AdminPricingRoute extends BaseRoute {
 
     this.router.get(
       "/admin-pricing/agency",
-      authenticate(["admin"]),
+      authenticate([Role.ADMIN]),
       asyncHandler(adminPricingPolicyController.getAdminAgencyPricing)
     );
 
     this.router.post(
       "/admin-pricing/agency",
-      authenticate(["admin"]),
+      authenticate([Role.ADMIN]),
       asyncHandler(adminPricingPolicyController.createAdminAgencyPricing)
     );
 
     this.router.get(
       "/admin-pricing/traveler",
-      authenticate(["admin"]),
+      authenticate([Role.ADMIN]),
       asyncHandler(adminPricingPolicyController.getAdminTravelerPricing)
     );
 
     this.router.post(
       "/admin-pricing/traveler",
-      authenticate(["admin"]),
+      authenticate([Role.ADMIN]),
       asyncHandler(adminPricingPolicyController.createAdminTravelerPricing)
     );
 

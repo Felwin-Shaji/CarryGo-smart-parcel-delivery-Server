@@ -3,6 +3,7 @@ import { hubWorkerController } from "../../../Infrastructure/di/resolver";
 import { workerKYCUpload } from "../../../Infrastructure/services/storage/multer";
 import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
+import { Role } from "@/Domain/Enums/Roles";
 
 export class HubWorkerRoute extends BaseRoute {
 
@@ -10,38 +11,38 @@ export class HubWorkerRoute extends BaseRoute {
 
     this.router.post(
       "/worker/temp-register",
-      authenticate(["hub"]),
+      authenticate([Role.HUB]),
       asyncHandler(hubWorkerController.addNewWorker)
     );
 
     this.router.post(
       "/worker/verify-otp",
-      authenticate(["hub"]),
+      authenticate([Role.HUB]),
       asyncHandler(hubWorkerController.verifyWorkerOtp)
     );
 
     this.router.post(
       "/worker/kyc-upload",
-      authenticate(["hub"]),
+      authenticate([Role.HUB]),
       workerKYCUpload,
       asyncHandler(hubWorkerController.uploadWorkerKYC)
     );
 
     this.router.get(
       "/workers",
-      authenticate(["hub"]),
+      authenticate([Role.HUB]),
       asyncHandler(hubWorkerController.getHubWorkers)
     );
 
     this.router.get(
       "/worker/check-status",
-      authenticate(["hub"]),
+      authenticate([Role.HUB]),
       asyncHandler(hubWorkerController.checkTempWorkerStatus)
     )
 
       
-    this.router.get("/workers/:id", authenticate(["hub"]), asyncHandler(hubWorkerController.getHubWorkerById))
-    this.router.get("/workers/:id/kyc",authenticate(["hub"]), asyncHandler(hubWorkerController.getWorkerKycController))
-    this.router.patch("/workers/:id/kyc/resubmit",authenticate(["hub"]), workerKYCUpload ,asyncHandler(hubWorkerController.reSubmitWorkerKycController))
+    this.router.get("/workers/:id", authenticate([Role.HUB]), asyncHandler(hubWorkerController.getHubWorkerById))
+    this.router.get("/workers/:id/kyc",authenticate([Role.HUB]), asyncHandler(hubWorkerController.getWorkerKycController))
+    this.router.patch("/workers/:id/kyc/resubmit",authenticate([Role.HUB]), workerKYCUpload ,asyncHandler(hubWorkerController.reSubmitWorkerKycController))
   }
 }

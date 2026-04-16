@@ -3,6 +3,7 @@ import { agencyController } from "../../../Infrastructure/di/resolver";
 import { agencyuploadKYC } from "../../../Infrastructure/services/storage/multer";
 import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
+import { Role } from "@/Domain/Enums/Roles";
 
 export class AgencyKycRoute extends BaseRoute {
 
@@ -10,20 +11,20 @@ export class AgencyKycRoute extends BaseRoute {
 
     this.router.post(
       "/kyc-varification",
-      authenticate(["agency"]),
+      authenticate([Role.AGENCY]),
       agencyuploadKYC,
       asyncHandler(agencyController.submitKYC)
     );
 
     this.router.get(
       "/dashboard/resubmit-kyc/:id",
-      authenticate(["agency"]),
+      authenticate([Role.AGENCY]),
       asyncHandler(agencyController.getReSubmitKyc)
     );
 
     this.router.put(
       "/dashboard/resubmit-kyc",
-      authenticate(["agency"]),
+      authenticate([Role.AGENCY]),
       agencyuploadKYC,
       asyncHandler(agencyController.reSubmitKyc)
     );

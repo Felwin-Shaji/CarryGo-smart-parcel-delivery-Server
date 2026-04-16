@@ -13,11 +13,7 @@ export class GetShipmentsUsecase implements IGetShipmentsUsecase {
 
     async execute(hubId: string, dto: GetShipmentsDTO): Promise<GetShipmentsResponseDTO> {
 
-        console.log(hubId,'11111111111111111111111111111111')
-
         const shipments = await this._hubShipmentRepo.getPaginatedShipments(hubId, dto);
-
-        console.log(shipments,'22222222222222222222222222222222')
 
         return HubShipmentMapper.toGetPaginatedHubShipmentsResponse(shipments);
     }

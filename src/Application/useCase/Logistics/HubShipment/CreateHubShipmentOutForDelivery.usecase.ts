@@ -41,10 +41,13 @@ export class CreateHubShipmentOutForDeliveryUsecase implements ICreateHubShipmen
         }
 
         if (!outForDeleveryShipment) {
+            console.log("hshshshshshshshhhhhhhhhhhhhhhhhhhhhhhhh")
             outForDeleveryShipment = await this._hubShipmentRepository.save(
                 HubShipmentMapper.toCreateDelivery(booking),
                 session
             )
+            console.log("00000000000000000000000000000000000000000000000000000000")
+
         } else {
             await this._hubShipmentRepository.findOneAndUpdate(
                 { _id: outForDeleveryShipment.id },
@@ -63,5 +66,9 @@ export class CreateHubShipmentOutForDeliveryUsecase implements ICreateHubShipmen
             ParcelMovementMapper.toDelivery(bookingId, outForDeleveryShipment.id!, fromHubId)
         )
 
+        console.log("11111111111111111122222222222222222222222\n3333333333333333333333333333\n44444444444444444444444444444444444",
+            outForDeleveryShipment
+        )
+
     }
-}
+}   

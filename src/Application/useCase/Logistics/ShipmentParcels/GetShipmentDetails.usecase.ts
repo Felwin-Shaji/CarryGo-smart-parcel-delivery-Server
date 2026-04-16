@@ -61,10 +61,13 @@ export class GetShipmentDetailsUsecase implements IGetShipmentDetailsUsecase {
 
             return {
                 id: p.id!,
-                bookingId: p.bookingId,
+                bookingTrackId: booking?.bookingId!,
+                bookingId: booking?.id!,
                 customerName: user?.name || "Unknown Customer",
                 address: booking?.deliveryAddress?.formattedAddress || "—",
                 status: p.status,
+                loadedAt: p.loadedAt.toISOString(),
+                unloadedAt: p.unloadedAt ? p.unloadedAt.toISOString() : null,
             };
         });
 
@@ -81,7 +84,7 @@ export class GetShipmentDetailsUsecase implements IGetShipmentDetailsUsecase {
             }
         }
 
-        // 7️⃣ Hubs
+        // 7 Hubs
         const [fromHub, toHub] = await Promise.all([
             shipment.fromHubId
                 ? this._hubRepo.findById({ _id: shipment.fromHubId })

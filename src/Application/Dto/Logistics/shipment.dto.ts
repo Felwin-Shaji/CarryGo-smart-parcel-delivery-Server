@@ -62,9 +62,12 @@ export interface GetShipmentsResponseDTO {
 export interface ShipmentParcelDTO {
   id: string;
   bookingId: string;
+  bookingTrackId: string;
   customerName?: string;
   address?: string;
   status: ShipmentParcelStatus;
+  loadedAt: string;
+  unloadedAt: string | null;
 }
 
 export interface ShipmentDetailsDTO {
@@ -133,7 +136,7 @@ export type WorkerShipmentDetails = {
 
   createdAt: string;
 
-  parcels: ShipmentParcel[]
+  parcels: ShipmentParcelDTO[]
 
 }
 

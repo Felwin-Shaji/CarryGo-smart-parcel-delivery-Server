@@ -2,6 +2,7 @@ import { BaseRoute } from "../base.route";
 import { agencyWalletController } from "../../../Infrastructure/di/resolver";
 import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
+import { Role } from "@/Domain/Enums/Roles";
 
 export class AgencyWalletRoute extends BaseRoute {
 
@@ -9,19 +10,19 @@ export class AgencyWalletRoute extends BaseRoute {
 
     this.router.get(
       "/wallet",
-      authenticate(["agency"]),
+      authenticate([Role.AGENCY]),
       asyncHandler(agencyWalletController.getAgencyWalletOverview)
     );
 
     this.router.post(
       "/wallet/create-order",
-      authenticate(["agency"]),
+      authenticate([Role.AGENCY]),
       asyncHandler(agencyWalletController.createAddMoneyOrder)
     );
 
     this.router.post(
       "/wallet/withdraw",
-      authenticate(["agency"]),
+      authenticate([Role.AGENCY]),
       asyncHandler(agencyWalletController.withdrawMoney)
     );
 

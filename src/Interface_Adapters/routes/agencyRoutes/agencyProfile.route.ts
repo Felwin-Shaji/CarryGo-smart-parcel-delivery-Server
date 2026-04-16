@@ -2,6 +2,7 @@ import { BaseRoute } from "../base.route";
 import { agencyProfileController } from "../../../Infrastructure/di/resolver";
 import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
+import { Role } from "@/Domain/Enums/Roles";
 
 export class AgencyProfileRoute extends BaseRoute {
 
@@ -9,19 +10,19 @@ export class AgencyProfileRoute extends BaseRoute {
 
     this.router.get(
       "/profile",
-      authenticate(["agency"]),
+      authenticate([Role.AGENCY]),
       asyncHandler(agencyProfileController.getAgencyProfile)
     );
 
     this.router.put(
       "/edit-profile",
-      authenticate(["agency"]),
+      authenticate([Role.AGENCY]),
       asyncHandler(agencyProfileController.editAgencyProfile)
     );
 
     this.router.put(
       "/reset-password",
-      authenticate(["agency"]),
+      authenticate([Role.AGENCY]),
       asyncHandler(agencyProfileController.resetAgencyPassword)
     );
 

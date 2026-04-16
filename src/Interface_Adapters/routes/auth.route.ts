@@ -15,7 +15,7 @@ export class AuthRoute extends BaseRoute {
 
         this.router.post("/refresh", validateRequest(refreshTokenSchema), asyncHandler(authController.refreshToken));
 
-        this.router.post("/login", validateRequest(loginSchema), asyncHandler(authController.login)); 
+        this.router.post("/login", validateRequest(loginSchema), asyncHandler(authController.login));
         this.router.post("/logout", validateRequest(logoutSchema), asyncHandler(authController.logout));
 
         this.router.post("/forgot-password", validateRequest(forgotPasswordSchema), asyncHandler(authController.forgotPassword));

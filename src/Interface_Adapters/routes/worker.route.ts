@@ -1,4 +1,5 @@
 // import { hubWalletController, hubWorkerController } from "../../Infrastructure/di/resolver"
+import { Role } from "@/Domain/Enums/Roles"
 import { workerWalletController } from "../../Infrastructure/di/resolver"
 import { workerKYCUpload } from "../../Infrastructure/services/storage/multer"
 import { authenticate } from "../middlewares/AuthMiddleware/authenticate.middleware"
@@ -12,9 +13,9 @@ export class WrokerRoute extends BaseRoute {
     }
 
     protected initializeRoutes(): void {
-        this.router.get('/wallet', authenticate(["worker"]), asyncHandler(workerWalletController.getWorkerWalletOverview))
-        this.router.post('/wallet/create-order', authenticate(["worker"]), asyncHandler(workerWalletController.createAddMoneyOrder))
-        this.router.post('/wallet/withdraw', authenticate(["worker"]), asyncHandler(workerWalletController.withdrawMoney))
+        this.router.get('/wallet', authenticate([Role.WORKER]), asyncHandler(workerWalletController.getWorkerWalletOverview))
+        this.router.post('/wallet/create-order', authenticate([Role.WORKER]), asyncHandler(workerWalletController.createAddMoneyOrder))
+        this.router.post('/wallet/withdraw', authenticate([Role.WORKER]), asyncHandler(workerWalletController.withdrawMoney))
 
         this.router.use(new WorkerShipmentRoute().router);
     }

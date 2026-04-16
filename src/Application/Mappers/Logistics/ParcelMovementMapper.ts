@@ -65,6 +65,86 @@ export class ParcelMovementMapper {
         )
     }
 
+    static toLoaded(
+        bookingId: string,
+        shipmentId: string,
+        fromHubId: string | null,
+        segmentId: string | null = null
+    ): ParcelMovement {
+        return new ParcelMovement(
+            null,
+            bookingId,
+            shipmentId,
+            segmentId,
+            fromHubId,
+            null,
+            "LOADED",
+            null,
+            new Date(),
+            new Date()
+        );
+    }
+
+    static toTransit(
+        bookingId: string,
+        shipmentId: string,
+        fromHubId: string | null,
+        toHubId: string | null,
+        segmentId: string | null = null
+    ): ParcelMovement {
+        return new ParcelMovement(
+            null,
+            bookingId,
+            shipmentId,
+            segmentId,
+            fromHubId,
+            toHubId,
+            "IN_TRANSIT",
+            // "Parcel is in transit",
+            null,
+            new Date(),
+            new Date()
+        );
+    }
+
+    static toArrived(
+        bookingId: string,
+        shipmentId: string,
+        toHubId: string | null,
+        segmentId: string | null = null
+    ): ParcelMovement {
+        return new ParcelMovement(
+            null,
+            bookingId,
+            shipmentId,
+            segmentId,
+            null,
+            toHubId,
+            "ARRIVED",
+            null,
+            new Date(),
+            new Date()
+        );
+    }
+
+    static toDelivered(
+        bookingId: string,
+        shipmentId: string,
+        toHubId: string | null
+    ): ParcelMovement {
+        return new ParcelMovement(
+            null,
+            bookingId,
+            shipmentId,
+            null,
+            null,
+            toHubId,
+            "DELIVERED",
+            null,
+            new Date(),
+            new Date()
+        );
+    }
     static getStatusFromShipment(
         status: ShipmentStatus
     ): ShipmentParcelStatus | null {

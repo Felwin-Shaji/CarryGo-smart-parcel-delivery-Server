@@ -7,7 +7,7 @@ import { IBookingRepository } from "@/Application/interfaces/repositories_interf
 import { IHubShipmentAssignmentService } from "@/Application/interfaces/services_Interfaces/IHubShipmentAssignmentService";
 import { ICreateHubShipmentOutForDeliveryUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/ICreateHubShipmentOutForDeliveryUsecase";
 import { IBulkUpdateShipmentParcelUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IBulkUpdateShipmentParcelUsecase";
-import { ParcelRouteLeg } from "@/Domain/Entities/Logistics/ParcelRouteLeg";
+import { ParcelMovementMapper } from "@/Application/Mappers/Logistics/ParcelMovementMapper";
 import { ShipmentParcelStatus } from "@/Domain/Entities/Logistics/ShipmentParcel";
 import { AppError } from "@/Domain/utils/customError";
 import { SHIPMENT_PARCEL_MESSAGE } from "@/Infrastructure/constants/messages/RouteGroupMessage";
@@ -89,6 +89,52 @@ export class BulkUpdateShipmentParcelUsecase implements IBulkUpdateShipmentParce
                         await this._bookingRepo.updateStatus(parcel.bookingId, bookingStatus, session);
                     }
 
+                    /* -------- PARCELMOVEMENT UPDATE ------- */
+
+                    let movement = null;
+
+                    if (status === "LOADED") {
+                        movement = ParcelMovementMapper.toLoaded(
+                            parcel.bookingId,
+                            shipment.id!,
+                            shipment.fromHubId
+                        );
+                    }
+
+                    if (status === "IN_TRANSIT") {
+                        movement = ParcelMovementMapper.toTransit(
+                            parcel.bookingId,
+                            shipment.id!,
+                            shipment.fromHubId,
+                            shipment.toHubId
+                        );
+                    }
+
+                    if (status === "UNLOADED") {
+
+                        if (shipment.type === "OUT_FOR_DELIVERY") {
+                            movement = ParcelMovementMapper.toDelivered(
+                                parcel.bookingId,
+                                shipment.id!,
+                                shipment.toHubId
+                            );
+                        }
+
+                        else {
+                            movement = ParcelMovementMapper.toArrived(
+                                parcel.bookingId,
+                                shipment.id!,
+                                shipment.toHubId
+                            );
+                        }
+                    }
+
+                    if (movement) {
+                        await this._parcelMovementRepository.save(movement, session);
+                    }
+
+
+
 
                     /* -------- UPDATE LEG & ROUTE -------- */
 
@@ -98,16 +144,14 @@ export class BulkUpdateShipmentParcelUsecase implements IBulkUpdateShipmentParce
                     const legs = await this._routeLegRepo.findByRouteId(route.id!, session);
                     const sortedLegs = legs.sort((a, b) => a.legOrder - b.legOrder);
 
-                    let currentLeg  =
+                    let currentLeg =
                         sortedLegs.find(l => l.status === "IN_PROGRESS") ||
                         sortedLegs.find(l => l.status === "PENDING");
-
-                    console.log("Current Leg:😗😗😗😗😗😗😗😗😗😗😗😗😗😗😗😗:", currentLeg);
 
                     if (!currentLeg) continue;
 
                     /* -------- UPDATE LEG -------- */
-                    if (status === "LOADED") {
+                    if (status === "LOADED" && shipment.type == "HUB_TRANSFER") {
                         currentLeg.status = "IN_PROGRESS";
                         currentLeg.shipmentId = shipmentId;
 
@@ -120,14 +164,11 @@ export class BulkUpdateShipmentParcelUsecase implements IBulkUpdateShipmentParce
                         /* ---------------- BULK PICKUP → START FIRST LEG ---------------- */
                         if (shipment.type === "BULK_PICKUP") {
 
-
-                            console.log("sortedLegs:😗😗😗😗😗😗😗😗😗😗😗😗😗😗😗😗:", sortedLegs);
                             const firstLeg = sortedLegs.find(l => l.legOrder === 1);
 
                             if (firstLeg && firstLeg.status === "PENDING") {
                                 await this._routeLegRepo.update(firstLeg, session);
 
-                                console.log("First Leg:😗😗😗😗😗😗😗😗😗😗😗😗😗😗😗😗:", firstLeg);
 
                                 await this._hubShipmentAssignmentService.assignLegToShipment(
                                     firstLeg,
@@ -143,13 +184,14 @@ export class BulkUpdateShipmentParcelUsecase implements IBulkUpdateShipmentParce
 
 
                             currentLeg.status = "COMPLETED";
+                            await this._routeLegRepo.update(currentLeg, session);
+
 
                             const nextLeg = sortedLegs.find(
                                 l => l.legOrder === currentLeg.legOrder + 1
                             );
 
                             if (nextLeg) {
-                                // nextLeg.status = "PENDING";
                                 nextLeg.shipmentId = shipmentId
 
                                 await this._routeLegRepo.update(nextLeg, session);
@@ -160,13 +202,7 @@ export class BulkUpdateShipmentParcelUsecase implements IBulkUpdateShipmentParce
                                     session
                                 );
                             } else if (!nextLeg) {
-                                console.log("jfjfjfjfjfjfjfjfjfjfjfjfjfj\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n:",
-                                    "No next leg, route should be completing soon");
                                 await this._createHubShipmentOutForDeliveryUsecase.execute(parcel.bookingId)
-
-                                console.log("jfjfjfjfjfjfjfjfjfjfjfjfjfj\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n:",
-                                    "No next leg, route should be completing soon");
-
                             }
                         }
                     }

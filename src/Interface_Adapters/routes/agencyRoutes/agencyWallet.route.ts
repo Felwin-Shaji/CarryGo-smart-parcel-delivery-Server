@@ -8,23 +8,11 @@ export class AgencyWalletRoute extends BaseRoute {
 
   protected initializeRoutes(): void {
 
-    this.router.get(
-      "/wallet",
-      authenticate([Role.AGENCY]),
-      asyncHandler(agencyWalletController.getAgencyWalletOverview)
-    );
+    this.router.get("/wallet", authenticate([Role.AGENCY]), asyncHandler(agencyWalletController.getAgencyWalletOverview));
 
-    this.router.post(
-      "/wallet/create-order",
-      authenticate([Role.AGENCY]),
-      asyncHandler(agencyWalletController.createAddMoneyOrder)
-    );
+    this.router.post("/wallet/create-order", authenticate([Role.AGENCY]), asyncHandler(agencyWalletController.createAddMoneyOrder));
 
-    this.router.post(
-      "/wallet/withdraw",
-      authenticate([Role.AGENCY]),
-      asyncHandler(agencyWalletController.withdrawMoney)
-    );
+    this.router.post("/wallet/withdraw", authenticate([Role.AGENCY]), asyncHandler(agencyWalletController.withdrawMoney));
 
   }
 }

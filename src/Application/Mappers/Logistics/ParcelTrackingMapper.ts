@@ -113,214 +113,89 @@ export class ParcelTrackingMapper {
     }
 
     private static buildTimeline(
-    booking: Booking,
-    legs: ParcelRouteLeg[],
-    movements: ParcelMovement[],
-    hubs: Map<string, Hub>,
-    segments: Map<string, RouteSegment>,
-    shipments: HubShipment[]
+  booking: Booking,
+  legs: ParcelRouteLeg[],
+  movements: ParcelMovement[],
+  hubs: Map<string, Hub>,
+  segments: Map<string, RouteSegment>,
+  shipments: HubShipment[]
 ) {
-    const timeline: ParcelTrackingDTO["timeline"] = [];
+  const timeline: ParcelTrackingDTO["timeline"] = [];
 
-    // ✅ Sort legs properly
-    const sortedLegs = [...legs].sort((a, b) => a.legOrder - b.legOrder);
+  const getHub = (id?: string | null) =>
+    id ? this.mapHub(hubs.get(id)) : null;
 
-    // ✅ Helper: safe hub mapping
-    const getHub = (hubId?: string | null) => {
-        if (!hubId) return null;
-        const hub = hubs.get(hubId);
-        return hub ? this.mapHub(hub) : null;
-    };
+  // 🔹 Booking created
+  timeline.push({
+    status: "CONFIRMED",
+    fromHub: null,
+    toHub: null,
+    message: "Booking created",
+    timestamp: booking.createdAt
+  });
 
-    // =====================================================
-    // 1. CONFIRMED
-    // =====================================================
-    timeline.push({
-        status: "CONFIRMED",
-        fromHub: null,
-        toHub: null,
-        message: "Booking confirmed. Pickup scheduled.",
-        timestamp: booking.createdAt,
-    });
+  // 🔹 Shipment events
+  shipments.forEach(s => {
+    const fromHub = getHub(s.fromHubId);
+    const toHub = getHub(s.toHubId);
 
-    // =====================================================
-    // 2. PICKUP (BULK_PICKUP)
-    // =====================================================
-    const pickupShipment = shipments
-        .filter(s => s.type === "BULK_PICKUP")
-        .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())[0];
-
-    timeline.push({
-        status: "PICKED_UP",
-        fromHub: null,
-        toHub: getHub(pickupShipment?.toHubId),
-        message: pickupShipment
-            ? "Parcel collected and transported to origin hub."
-            : "Waiting for pickup from sender.",
-        ...(pickupShipment?.arrivedAt && { timestamp: pickupShipment.arrivedAt }),
-    });
-
-    // =====================================================
-    // 3. LEGS (MAIN LOGIC)
-    // =====================================================
-    sortedLegs.forEach((leg, index) => {
-        const segment = segments.get(leg.segmentId);
-        if (!segment) return;
-
-        const fromHub = getHub(segment.originHubId);
-        const toHub = getHub(segment.destinationHubId);
-
-        // ✅ PRIORITY 1: SHIPMENT (REAL DATA)
-        const shipment = shipments.find(s => s.id === leg.shipmentId);
-
-        if (shipment) {
-            switch (shipment.status) {
-                case "PENDING":
-                    timeline.push({
-                        status: "PENDING",
-                        fromHub,
-                        toHub,
-                        message: `Shipment scheduled from ${fromHub?.name} to ${toHub?.name}`,
-                        ...(shipment.estimatedDispatchAt && {
-                            timestamp: shipment.estimatedDispatchAt,
-                        }),
-                    });
-                    return;
-
-                case "LOADING":
-                    timeline.push({
-                        status: "LOADING",
-                        fromHub,
-                        toHub,
-                        message: `Parcel is being loaded at ${fromHub?.name}`,
-                        ...(shipment.updatedAt && { timestamp: shipment.updatedAt }),
-                    });
-                    return;
-
-                case "DISPATCHED":
-                    timeline.push({
-                        status: "IN_TRANSIT",
-                        fromHub,
-                        toHub,
-                        message: `Parcel is in transit from ${fromHub?.name} to ${toHub?.name}`,
-                        ...(shipment.departedAt && { timestamp: shipment.departedAt }),
-                    });
-                    return;
-
-                case "ARRIVED":
-                    timeline.push({
-                        status: "ARRIVED",
-                        fromHub,
-                        toHub,
-                        message: `Parcel arrived at ${toHub?.name}`,
-                        ...(shipment.arrivedAt && { timestamp: shipment.arrivedAt }),
-                    });
-                    return;
-
-                case "COMPLETED":
-                    timeline.push({
-                        status: "COMPLETED",
-                        fromHub,
-                        toHub,
-                        message: `Parcel processed at ${toHub?.name}`,
-                        ...(shipment.arrivedAt && { timestamp: shipment.arrivedAt }),
-                    });
-                    return;
-
-                case "CANCELLED":
-                    timeline.push({
-                        status: "CANCELLED",
-                        fromHub,
-                        toHub,
-                        message: `Shipment cancelled from ${fromHub?.name}`,
-                        ...(shipment.updatedAt && { timestamp: shipment.updatedAt }),
-                    });
-                    return;
-            }
-        }
-
-        // ✅ PRIORITY 2: MOVEMENTS (ACTUAL SCANS)
-        const movement = movements.find(m => m.segmentId === leg.segmentId);
-
-        if (movement) {
-            timeline.push({
-                status: "IN_TRANSIT",
-                fromHub,
-                toHub,
-                message: `Parcel scanned during transit from ${fromHub?.name} to ${toHub?.name}`,
-                ...(movement.updatedAt && { timestamp: movement.updatedAt }),
-            });
-            return;
-        }
-
-        // ✅ PRIORITY 3: LEG (FALLBACK)
-        if (leg.status === "COMPLETED") {
-            timeline.push({
-                status: "COMPLETED",
-                fromHub,
-                toHub,
-                message: `Parcel moved from ${fromHub?.name} to ${toHub?.name}`,
-                ...(leg.updatedAt && { timestamp: leg.updatedAt }),
-            });
-        } else if (leg.status === "IN_PROGRESS") {
-            timeline.push({
-                status: "IN_TRANSIT",
-                fromHub,
-                toHub,
-                message: `Parcel is moving from ${fromHub?.name} to ${toHub?.name}`,
-                ...(leg.updatedAt && { timestamp: leg.updatedAt }),
-            });
-        } else {
-            timeline.push({
-                status: "PENDING",
-                fromHub,
-                toHub,
-                message: `Awaiting dispatch from ${fromHub?.name}`,
-            });
-        }
-    });
-
-    // =====================================================
-    // 4. LAST MILE DELIVERY
-    // =====================================================
-    const lastMile = shipments
-        .filter(s => s.type === "OUT_FOR_DELIVERY")
-        .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())[0];
-
-    if (lastMile) {
-        const hub = getHub(lastMile.fromHubId);
-
-        timeline.push({
-            status: "OUT_FOR_DELIVERY",
-            fromHub: hub,
-            toHub: null,
-            message: `Out for delivery from ${hub?.name || "delivery hub"}`,
-            ...(lastMile.departedAt && { timestamp: lastMile.departedAt }),
-        });
+    if (s.status === "LOADING") {
+      timeline.push({
+        status: "LOADING",
+        fromHub,
+        toHub,
+        message: `Loading started at ${fromHub?.name}`,
+        timestamp: s.updatedAt
+      });
     }
 
-    // =====================================================
-    // 5. STABLE SORT (IMPORTANT)
-    // =====================================================
-    timeline.forEach((item, i) => ((item as any)._order = i));
+    if (s.status === "DISPATCHED") {
+      timeline.push({
+        status: "IN_TRANSIT",
+        fromHub,
+        toHub,
+        message: `Departed from ${fromHub?.name}`,
+        timestamp: s.departedAt!
+      });
+    }
 
-    return timeline.sort((a: any, b: any) => {
-        if (a.timestamp && b.timestamp) {
-            return b.timestamp.getTime() - a.timestamp.getTime();
-        }
+    if (s.status === "ARRIVED") {
+      timeline.push({
+        status: "ARRIVED",
+        fromHub,
+        toHub,
+        message: `Arrived at ${toHub?.name}`,
+        timestamp: s.arrivedAt!
+      });
+    }
+  });
 
-        if (a.timestamp) return -1;
-        if (b.timestamp) return 1;
-
-        return a._order - b._order;
+  // 🔹 Movement logs (if available)
+  movements.forEach(m => {
+    timeline.push({
+      status: m.status,
+      fromHub: getHub(m.fromHubId),
+      toHub: getHub(m.toHubId),
+      message: this.buildMessage(m, hubs),
+      timestamp: m.createdAt
     });
+  });
+
+  // 🔹 Sort ASC (log style)
+  timeline.sort(
+    (a, b) =>
+      (a.timestamp?.getTime() || 0) -
+      (b.timestamp?.getTime() || 0)
+  );
+
+  return timeline;
 }
 
     // Shipment
     private static mapShipment(shipments: HubShipment[]) {
 
         const activeShipment = shipments.find((s) =>
-            ["LOADING", "DISPATCHED"].includes(s.status)
+            ["LOADING", "DISPATCHED","ARRIVED", "COMPLETED"].includes(s.status)
         );
         if (!activeShipment) return null;
 
@@ -357,28 +232,49 @@ export class ParcelTrackingMapper {
     }
 
     // Message Builder (UX layer)
-    private static buildMessage(
-        m: ParcelMovement,
-        hubs: Map<string, Hub>
-    ): string {
-        const from = m.fromHubId ? hubs.get(m.fromHubId)?.name : "";
-        const to = m.toHubId ? hubs.get(m.toHubId)?.name : "";
+   private static buildMessage(
+  m: ParcelMovement,
+  hubs: Map<string, Hub>
+): string {
+  const from = m.fromHubId ? hubs.get(m.fromHubId)?.name : null;
+  const to = m.toHubId ? hubs.get(m.toHubId)?.name : null;
 
-        switch (m.status) {
-            case "PENDING":
-                return "Awaiting processing";
-            case "LOADED":
-                return `Parcel loaded at ${from}`;
-            case "IN_TRANSIT":
-                return `In transit from ${from} to ${to}`;
-            case "ARRIVED":
-                return `Arrived at ${to}`;
-            case "OUT_FOR_DELIVERY":
-                return "Out for delivery";
-            case "DELIVERED":
-                return "Delivered successfully";
-            default:
-                return m.status;
-        }
-    }
+  console.log('////////////////////////////////');
+  console.log(m.status)
+  console.log('///////////////////////////////////')
+
+  switch (m.status) {
+
+    case "PENDING":
+      return "Parcel is registered and awaiting processing at the origin facility.";
+
+    case "LOADED":
+      return from
+        ? `Parcel has been loaded onto the vehicle at ${from}.`
+        : "Parcel has been loaded onto the vehicle.";
+
+    case "IN_TRANSIT":
+      if (from && to) {
+        return `Parcel is in transit from ${from} to ${to}.`;
+      }
+      if (from) {
+        return `Parcel is in transit from ${from}.`;
+      }
+      return "Parcel is currently in transit.";
+
+    case "ARRIVED":
+      return to
+        ? `Parcel has arrived at ${to} and is being processed.`
+        : "Parcel has arrived at the facility.";
+
+    case "OUT_FOR_DELIVERY":
+      return "Parcel is out for delivery and will reach the destination soon.";
+
+    case "DELIVERED":
+      return "Parcel has been successfully delivered to the recipient.";
+
+    default:
+      return `Status updated: ${m.status}`;
+  }
+}
 }

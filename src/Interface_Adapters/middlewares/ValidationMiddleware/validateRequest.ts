@@ -42,6 +42,7 @@ export const validateRequest = <T extends RequestSchema>(schema: T) => {
                 }));
 
                 logger.error("Validation error", { errors: formattedErrors });
+                 console.log("ZOD ERROR:", JSON.stringify(error, null, 2));
 
                 return next(
                     new AppError(

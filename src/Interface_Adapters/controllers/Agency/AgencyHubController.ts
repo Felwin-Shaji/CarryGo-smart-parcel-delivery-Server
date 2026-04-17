@@ -160,7 +160,7 @@ export class AgencyHubController implements IAgencyHubController {
 
     getHubById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> =>{
         try {
-            const hubId = req.params.id as string;  ``
+            const hubId = req.params.id as string;
 
             const hubOverview = await this._getHubOverviewUseCase.execute(hubId); 
 

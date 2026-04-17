@@ -119,7 +119,6 @@ export class UserBookingController implements IUserBookingController {
 
     createPaymentOrder = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
-            const key = process.env.RAZORPAY_KEY_ID
             const { bookingId } = req.params
             const userId = req.user?.id;
             if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_GATEWAY)

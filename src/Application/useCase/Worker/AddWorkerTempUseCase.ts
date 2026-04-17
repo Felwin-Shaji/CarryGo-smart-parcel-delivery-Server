@@ -1,23 +1,15 @@
 import { inject, injectable } from "tsyringe";
 import { IAddWorkerTempUseCase } from "../../interfaces/useCase_Interfaces/Worker/addWorkerTempUseCase.interface";
-import { Request } from "express";
 import { IHubWorkersTempRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/worersTemp.repository";
 import { IHubWorkerRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";
 import { IOtpService } from "../../interfaces/services_Interfaces/otp-service.interface";
 import { IMailService } from "../../interfaces/services_Interfaces/email-service.interface";
 import { AppError } from "../../../Domain/utils/customError";
-import { HubWorkersTemp } from "../../../Domain/Entities/Worker/WrokersTemp";
 import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ENV } from "../../../Infrastructure/constants/env";
 import { AddWorkerTempRequestDTO, AddWorkerTempResponseDTO } from "../../Dto/Hub/hub.dto";
 import { WorkerMapper } from "../../Mappers/Workers/WorkerMapper";
-
-
-interface AddWorkersTempResponseDTO {
-    currentStatus: string
-}
-
 
 @injectable()
 export class AddWorkerTempUseCase implements IAddWorkerTempUseCase {

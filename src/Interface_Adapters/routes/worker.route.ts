@@ -1,7 +1,6 @@
 // import { hubWalletController, hubWorkerController } from "../../Infrastructure/di/resolver"
 import { Role } from "@/Domain/Enums/Roles"
 import { workerWalletController } from "../../Infrastructure/di/resolver"
-import { workerKYCUpload } from "../../Infrastructure/services/storage/multer"
 import { authenticate } from "../middlewares/AuthMiddleware/authenticate.middleware"
 import { asyncHandler } from "../middlewares/ErrorHandlers/asyncHandler"
 import { BaseRoute } from "./base.route"

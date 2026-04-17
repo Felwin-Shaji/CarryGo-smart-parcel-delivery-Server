@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { inject, injectable } from "tsyringe";
 import { IGetAgenciesUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/GetAgenciesUseCase";
-import { IGetAgencyWithKYCUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/GetAgencyWithKYCUseCase";
 import { AppError } from "../../../Domain/utils/customError";
 import { IUpdateAgencyKycStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/UpdateAgencyKycStatusUseCase";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
@@ -11,7 +10,6 @@ import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agen
 import { GetAgenciesDTO, updateAgencyKycStatusDTO, } from "../../../Application/Dto/Agency/agency.dto";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { IGetAgencyOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/GetAgencyOverview.usecase";
-import { GetHubsDTO } from "../../../Application/Dto/Hub/hub.dto";
 
 
 function parseBlockedQuery(value: unknown): boolean | null {

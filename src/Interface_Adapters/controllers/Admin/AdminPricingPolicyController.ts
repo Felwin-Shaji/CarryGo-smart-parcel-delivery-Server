@@ -7,7 +7,6 @@ import { ApiResponse } from "../../presenters/ApiResponse";
 import { PRICING_POLICY_MESSAGE } from "../../../Infrastructure/constants/messages/pricingPolicyMessage";
 import { AdminPricingRequestDTO, AdminTravelerPricingRequestDTO } from "../../../Application/Dto/Pricing/adminPricing.dto";
 import { ICreateAdminPricingPolicyUseCase } from "../../../Application/interfaces/useCase_Interfaces/Princing/ICreateAdminPricingPolicyUseCase";
-import { AppError } from "../../../Domain/utils/customError";
 import { DeliveryPartner } from "../../../Domain/Enums/DeliveryPartnerType";
 import { ICreateAdminTravelerPricingUsecase } from "../../../Application/interfaces/useCase_Interfaces/Princing/ICreateAdminTravelerPricingUsecase";
 

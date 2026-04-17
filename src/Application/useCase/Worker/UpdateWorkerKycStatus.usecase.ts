@@ -2,7 +2,6 @@ import { UpdateWorkerKycStatusDTO } from "@/Application/Dto/Workers/worker.dto";
 import { IHubWorkerRepository } from "@/Application/interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";
 import { IHubWorkerKycRepository } from "@/Application/interfaces/repositories_interfaces/workerRepository_interfaces/wrokerKyc.repository";
 import { IUpdateWorkerKycStatusUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IUpdateWorkerKycStatusUseCase";
-import { KycStatus } from "@/Domain/Enums/KycStatus";
 import { AppError } from "@/Domain/utils/customError";
 import { WORKER_MESSAGES } from "@/Infrastructure/constants/messages/workerMessage";
 import { STATUS } from "@/Infrastructure/constants/statusCodes";

@@ -67,7 +67,7 @@ export class TransactionRepository extends BaseRepository<TransactionDocument> i
 
         const options = session ? { session } : {};
 
-        const dataa = await this.model.findOneAndUpdate(
+        await this.model.findOneAndUpdate(
             { _id: transactionId, status: "PENDING" },
             {
                 $set: {

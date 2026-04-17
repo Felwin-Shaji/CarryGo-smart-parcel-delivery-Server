@@ -1,14 +1,14 @@
-import { ClientSession, FilterQuery, Types } from "mongoose";
+import { FilterQuery, Types } from "mongoose";
 import { GetHubsDTO, updateHubKycStatusDTO } from "../../../Application/Dto/Hub/hub.dto";
-// import { PaginatedData } from "../../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
 import { IHubRepository, PaginatedHubData } from "../../../Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
 import { Hub } from "../../../Domain/Entities/Hub/Hub";
 import { HubDocument, HubModel } from "../../database/models/Hub/HubModel";
 import { BaseRepository } from "../baseRepositories";
-import { PaginationResponseDTO, ServiceableHubWithAgencyDTO } from "../../../Application/Dto/User/Booking.dto";
+import { ServiceableHubWithAgencyDTO } from "../../../Application/Dto/User/Booking.dto";
 import { AppError } from "../../../Domain/utils/customError";
 import { HUB_MESSAGES } from "../../constants/messages/hubMessage";
 import { STATUS } from "../../constants/statusCodes";
+import { SortOrder } from "mongoose";
 import { GeoLocation } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase";
 
 export class HubRepository extends BaseRepository<HubDocument> implements IHubRepository {
@@ -129,7 +129,7 @@ export class HubRepository extends BaseRepository<HubDocument> implements IHubRe
             if (endDate) filter.createdAt.$lte = new Date(endDate);
         }
 
-        const sort: any = {};
+        const sort: Record<string, SortOrder> = {};
         if (sortBy) {
             sort[sortBy] = sortOrder === "asc" ? 1 : -1;
         }

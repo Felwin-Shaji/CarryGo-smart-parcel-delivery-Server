@@ -34,7 +34,7 @@ export interface TransactionDocument {
   gatewayReferenceId?: string;
 
   balanceAfter: number;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 
   createdAt: Date;
 }

@@ -8,6 +8,6 @@ export interface AgencyProfileResponseDTO extends BaseUserResponseDTO {
     role: Role
 }
 
-export interface EditAgencyProfileRequestDto extends BaseEditUserProfileRequestDto { };
+export type EditAgencyProfileRequestDto = BaseEditUserProfileRequestDto;
 
 export type AgencyResetPasswordRequestDTO = BaseResetPasswordRequestDTO;

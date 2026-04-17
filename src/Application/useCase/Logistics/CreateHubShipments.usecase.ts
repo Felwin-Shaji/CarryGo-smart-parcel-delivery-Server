@@ -23,7 +23,7 @@ export class CreateHubShipmentsUsecase implements ICreateHubShipmentsUsecase {
         const session = await mongoose.startSession();
         try {
             await session.withTransaction(async () => {
-                for (let leg of legs) {
+                for (const leg of legs) {
                     await this._hubShipmentAssignmentService.assignLegToShipment(leg,bookingId, session);
                 }
             })

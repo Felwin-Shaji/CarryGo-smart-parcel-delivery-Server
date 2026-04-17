@@ -65,9 +65,6 @@ export class MailService implements IMailService {
   async sendCustomPassword(email: string): Promise<void> {
     await this.initTransporter();
 
-    const emailPrefix = email?.split("@")[0] || "";
-    const last4Email = emailPrefix.slice(-4) || "abcd";
-
     const html = `
     <div style="font-family:Arial,sans-serif;line-height:1.5;">
       <h3>Your Hub Account is Ready </h3>

@@ -16,7 +16,6 @@ import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMe
 import { GetWorkersDTO, ReSubmitWorkerKycPayloadDTO } from "../../../Application/Dto/Workers/worker.dto";
 import { IGetWorkersUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkersUseCase";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
-import { ICheckTempHubStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/ICheckTempHubStatusUseCase";
 import { ICheckTempWorkerStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/ICheckTempWorkerStatusUseCase";
 import { IGetWorkerOverviewUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerOverviewUseCase";
 import { IReSubmitWorkerKycUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IReSubmitWorkerKycUseCase";
@@ -177,6 +176,7 @@ export class HubWorkerController implements IHubWorkerController {
                 )
             );
         } catch (error) {
+            next(error)
         }
     }
 

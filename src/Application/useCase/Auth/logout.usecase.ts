@@ -13,11 +13,10 @@ export class LogoutUsecase implements ILogoutUsecase {
         @inject("ITokenService") private readonly _tokenService: ITokenService,
     ) { }
 
-    async execute(refreshToken: string, userId: string): Promise<void> {
+    async execute(refreshToken: string): Promise<void> {
         const decoded = this._tokenService.verifyRefreshToken(refreshToken);
 
-        if (!decoded?.userId) throw new AppError(AUTH_MESSAGES.REFRESH_TOKEN_INVALID, STATUS.UNAUTHORIZED);
-
-
+        if (!decoded?.userId)
+            throw new AppError(AUTH_MESSAGES.REFRESH_TOKEN_INVALID, STATUS.UNAUTHORIZED);
     }
 }

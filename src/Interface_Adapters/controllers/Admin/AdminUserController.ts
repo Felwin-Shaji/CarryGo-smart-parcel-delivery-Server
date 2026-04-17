@@ -7,7 +7,6 @@ import { IAdminUserController } from "../../Interface/Controllers_Interfaces/Adm
 import { GetUserDto, updateUserKycStatusDTO } from "../../../Application/Dto/User/user.dto";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
-import { KYCStatus } from "../../../Infrastructure/Types/types";
 import { AppError } from "../../../Domain/utils/customError";
 import { IUpdateUserKycStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/IUpdateuSERKycStatusUseCase";
 import { IGetUserOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/IGetUserOverviewUseCase";

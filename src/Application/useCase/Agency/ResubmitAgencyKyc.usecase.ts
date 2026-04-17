@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { AgencyKYC_DTO, AgencyResubmitKycDTO } from "../../Dto/Agency/agency.dto";
+import { AgencyResubmitKycDTO } from "../../Dto/Agency/agency.dto";
 import { IAgencyKYCRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/AgencyKYC";
 import { AgencyKYCMapper } from "../../Mappers/Agency/AgencyKYCMapper";
 import { IRsubmitAgencyKycUseCase } from "../../interfaces/useCase_Interfaces/Agency/ResubmitAgencyKycUseCase";
@@ -28,10 +28,10 @@ export class RsubmitAgencyKycUseCase implements IRsubmitAgencyKycUseCase {
         if (agency.kycStatus !== "REJECTED") throw new AppError(AGENCY_MESSAGES.CANNOT_RESUBMIT_KYC, STATUS.BAD_REQUEST);
 
         const agencyId = new Types.ObjectId(dto.agencyId)
-        const kycData = await this._kycRepo.findOne({agencyId: agencyId});
+        const kycData = await this._kycRepo.findOne({ agencyId: agencyId });
         if (!kycData) throw new AppError(AGENCY_MESSAGES.AGENCY_KYC_NOT_FOUND, STATUS.NOT_FOUND);
 
-        const updatedkyc = await this._kycRepo.findOneAndUpdate({agencyId: agencyId}, {
+        const updatedkyc = await this._kycRepo.findOneAndUpdate({ agencyId: agencyId }, {
             ...dto,
             status: "RESUBMITTED",
 
@@ -40,7 +40,7 @@ export class RsubmitAgencyKycUseCase implements IRsubmitAgencyKycUseCase {
             rejectionReason: undefined,
         });
 
-        await this._agencyRepo.findOneAndUpdate({ _id:agencyId}, {
+        await this._agencyRepo.findOneAndUpdate({ _id: agencyId }, {
             kycStatus: "RESUBMITTED",
         });
 

@@ -11,6 +11,7 @@ import { IGetUserAddressesUseCase } from "../../../Application/interfaces/useCas
 import { IDeleteUserAddressUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Address/IDeleteUserAddressUseCase";
 import { AppError } from "../../../Domain/utils/customError";
 import { ISetDefaultUserAddressUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Address/ISetDefaultUserAddressUseCase";
+import { AUTH_MESSAGES } from "@/Infrastructure/constants/messages/authMessages";
 
 @injectable()
 export class AddressController implements IAddressController {
@@ -42,7 +43,8 @@ export class AddressController implements IAddressController {
     addUserAddress = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const dto = req.body as addUserAddressRequestDTO;
-            const userId = req.user?.id!;
+            const userId = req.user?.id;
+            if (!userId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND)
 
             const result = await this._addUserAddressUseCase.execute(userId, dto);
 
@@ -57,9 +59,8 @@ export class AddressController implements IAddressController {
 
     getAddresses = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
-            const userId = req.user?.id!;
-
-            console.log(userId)
+            const userId = req.user?.id;
+            if (!userId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND)
 
             const addresses = await this.getUserAddressesUseCase.execute(userId);
 
@@ -73,9 +74,10 @@ export class AddressController implements IAddressController {
 
     deleteAddress = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
-            const { addressId } = req.params;
-            const userId = req.user?.id!;
+            const userId = req.user?.id;
+            if (!userId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND)
 
+            const { addressId } = req.params;
             if (!addressId) throw new AppError(ADDRESS_MESSAGES.ADDRESS_ID_REQUIRED, STATUS.BAD_REQUEST);
 
 
@@ -91,11 +93,11 @@ export class AddressController implements IAddressController {
 
     setDefaultAddress = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
-            const userId = req.user?.id!;
+            const userId = req.user?.id;
+            if (!userId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND)
+
             const { addressId } = req.params;
-
             if (!addressId) throw new AppError(ADDRESS_MESSAGES.ADDRESS_ID_REQUIRED, STATUS.BAD_REQUEST);
-
 
             await this.setDefaultUserAddressUseCase.execute(
                 userId,

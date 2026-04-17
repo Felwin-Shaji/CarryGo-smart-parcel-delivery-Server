@@ -30,7 +30,7 @@ export class RouteComputationService implements IRouteComputationService {
         //   "hub_delhi"  → [seg3 (Delhi→Chandigarh), seg4 (Delhi→Lucknow)]
         const graph = new Map<string, RouteSegment[]>();
 
-        for (let segment of allSegments) {
+        for (const segment of allSegments) {
             if (!graph.has(segment.originHubId)) {
                 graph.set(segment.originHubId, []);
             }

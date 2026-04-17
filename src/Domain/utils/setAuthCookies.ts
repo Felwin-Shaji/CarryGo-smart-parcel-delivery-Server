@@ -14,7 +14,6 @@ export const setAuthCookies = (
     accessTokenName: string,
     refreshTokenName: string,
 ): void => {
-    const isProd = process.env.NODE_ENV === "production";
     const ACCESS_TOKEN_MAX_AGE = getEnvNumber(
         "ACCESS_TOKEN_MAX_AGE",
         15 * 60 * 1000

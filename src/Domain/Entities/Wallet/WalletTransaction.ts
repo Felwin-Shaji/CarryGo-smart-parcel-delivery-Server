@@ -40,7 +40,7 @@ export class Transaction {
         public readonly payoutId?: string,
         public readonly gatewayReferenceId?: string,
 
-        public readonly metadata?: Record<string, any>,
+        public readonly metadata?: Record<string, unknown>,
         public readonly createdAt: Date = new Date()
     ) {
         if (amount <= 0) {

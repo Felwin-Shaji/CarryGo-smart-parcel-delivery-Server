@@ -12,15 +12,15 @@
         async execute(files:WorkerKYCFileFields): Promise<UploadedWorkerKycFiles> {
 
             const uploaded: UploadedWorkerKycFiles = {};
-            if (files.document) {
+            if (files.document?.[0]?.buffer) {
                 uploaded.document = await this._storage.upload(
-                    files.document?.[0]?.buffer!,
+                    files.document?.[0]?.buffer,
                     "worker/document"
                 );
             }
-            if (files.selfie) {
+            if (files.selfie?.[0]?.buffer) {
                 uploaded.selfie = await this._storage.upload(
-                    files.selfie?.[0]?.buffer!,
+                    files.selfie?.[0]?.buffer,
                     "worker/selfie"
                 );
             }

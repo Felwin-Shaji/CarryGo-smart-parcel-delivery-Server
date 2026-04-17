@@ -35,12 +35,12 @@ export class UserController implements IUserController {
     }
 
     updateUserProfile = async (
-        req: Request<{}, {}, BaseEditUserProfileRequestDto>,
+        req: Request,
         res: Response,
         next: NextFunction
     ): Promise<Response | void> => {
         try {
-            const dto = req.body;
+            const dto = req.body as BaseEditUserProfileRequestDto;
             const userId = req.user?.id;
             if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST)
 

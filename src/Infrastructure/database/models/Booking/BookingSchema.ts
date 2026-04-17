@@ -12,7 +12,7 @@ import { BookingStatus } from "../../../../Domain/Enums/BookingStatus";
 export interface BookingDocument extends Document {
     _id: Types.ObjectId;
     userId: Types.ObjectId;
-    bookingId:String;
+    bookingId:string;
 
     deliveryPartnerType: DeliveryPartnerType;
     travelRequestId?: Types.ObjectId | undefined;

@@ -1,11 +1,5 @@
 import { inject, injectable } from "tsyringe";
-
 import { AppError } from "../../../Domain/utils/customError";
-import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
-import { ADMIN_MESSAGES } from "../../../Infrastructure/constants/messages/adminMessages";
-import { AdminProfileMapper } from "../../Mappers/Admin/AdminProfileMapper";
-import { AdminProfileResponseDTO, EditAdminProfileRequestDto } from "../../Dto/Admin/adminProfile.dto";
-import { Agency } from "../../../Domain/Entities/Agency/Agency";
 import { AgencyProfileResponseDTO, EditAgencyProfileRequestDto } from "../../Dto/Agency/agencyProfile.dto";
 import { AgencyProfileMapper } from "../../Mappers/Agency/AgencyProfileMapper";
 import { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";

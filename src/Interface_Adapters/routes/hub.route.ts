@@ -1,7 +1,3 @@
-import { hubWalletController, hubWorkerController } from "../../Infrastructure/di/resolver"
-import { workerKYCUpload } from "../../Infrastructure/services/storage/multer"
-import { authenticate } from "../middlewares/AuthMiddleware/authenticate.middleware"
-import { asyncHandler } from "../middlewares/ErrorHandlers/asyncHandler"
 import { BaseRoute } from "./base.route"
 import { HubShipmentRoute } from "./hubRoutes/hubShipment.route"
 import { HubWalletRoute } from "./hubRoutes/hubWallet.route"

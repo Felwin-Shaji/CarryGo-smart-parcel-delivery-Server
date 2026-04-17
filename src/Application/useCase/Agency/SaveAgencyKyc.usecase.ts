@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import type { IAgencyKYCRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/AgencyKYC";
 import type { ISaveAgencyKycUseCase } from "../../interfaces/useCase_Interfaces/Agency/SaveAgencyKycUseCase";
 
-import { AgencyKYC_DTO } from "../../Dto/Agency/agency.dto";
+import { AgencyKYC_DTO, UploadedKycFiles } from "../../Dto/Agency/agency.dto";
 import { AgencyKYCMapper } from "../../Mappers/Agency/AgencyKYCMapper";
 import { AgencyKYC } from "../../../Domain/Entities/Agency/AgencyKYC";
 
@@ -12,7 +12,7 @@ export class SaveAgencyKycUseCase implements ISaveAgencyKycUseCase {
     @inject("IAgencyKYCRepository") private readonly _kycRepo: IAgencyKYCRepository
   ) {}
 
-  async execute(dto: AgencyKYC_DTO, uploadedFiles: any): Promise<AgencyKYC> {
+  async execute(dto: AgencyKYC_DTO, uploadedFiles: UploadedKycFiles): Promise<AgencyKYC> {
     
     const kycEntity = AgencyKYCMapper.toEntity(dto, uploadedFiles);
 

@@ -1,7 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IStorageService } from "../../interfaces/services_Interfaces/storage-service.interface";
 import { IUploadAddFilesUseCase } from "../../interfaces/useCase_Interfaces/Hub/IUploadAddFilesUseCase";
-import { AddHubDTO } from "../../Dto/Agency/agency.dto";
 import { AppError } from "../../../Domain/utils/customError";
 import { AgencyAddHubFields } from "../../../Infrastructure/services/storage/multer";
 import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";

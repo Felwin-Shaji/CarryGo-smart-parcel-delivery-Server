@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
 import crypto from "crypto";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
@@ -16,7 +16,7 @@ export class PaymentController {
         @inject("IBookingPaymentFailedUseCase") private readonly _bookingPaymentFailedUseCase: IBookingPaymentFailedUseCase,
     ) { }
 
-    razorpayWebhook = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    razorpayWebhook = async (req: Request, res: Response): Promise<Response | void> => {
         try {
             const razorpaySignature = req.headers["x-razorpay-signature"] as string;
 

@@ -4,9 +4,9 @@ import { Agency } from "../../../Domain/Entities/Agency/Agency";
 import { AgencyModel } from "../../database/models/AgencyModels/agencyModel";
 import { BaseRepository } from "./..//baseRepositories";
 import { GetAgenciesDTO } from "../../../Application/Dto/Agency/agency.dto";
-import { threadCpuUsage } from "process";
 import { AppError } from "../../../Domain/utils/customError";
 import { AGENCY_MESSAGES } from "../../constants/messages/agencyMessages";
+import { SortOrder } from "mongoose";
 import { STATUS } from "../../constants/statusCodes";
 
 export class AgencyRepository extends BaseRepository<Agency> implements IAgencyRepository {
@@ -53,7 +53,8 @@ export class AgencyRepository extends BaseRepository<Agency> implements IAgencyR
             if (endDate) filter.createdAt.$lte = new Date(endDate);
         }
 
-        const sort: any = {};
+
+        const sort: Record<string, SortOrder> = {};
         if (sortBy) {
             sort[sortBy] = sortOrder === "asc" ? 1 : -1;
         }

@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { SubmitTravelerKycRequestDTO } from "../../../Dto/User/traveler.dto";
 import { ISubmitTravelerKycUseCase } from "../../../interfaces/useCase_Interfaces/user/Traveler/ISubmitTravelerKycUseCase";
-import { IUploadWorkerKycFilesUsecase, UploadedWorkerKycFiles } from "../../../interfaces/useCase_Interfaces/Worker/uploadWorkerKycFilesUsecase";
+import { IUploadWorkerKycFilesUsecase } from "../../../interfaces/useCase_Interfaces/Worker/uploadWorkerKycFilesUsecase";
 import { WorkerKYCFileFields } from "../../../../Infrastructure/services/storage/multer";
 import { AppError } from "../../../../Domain/utils/customError";
 import { USER_MESSAGES } from "../../../../Infrastructure/constants/messages/userMessage";

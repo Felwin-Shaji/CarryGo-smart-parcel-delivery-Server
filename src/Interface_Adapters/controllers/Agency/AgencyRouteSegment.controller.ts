@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../Domain/utils/customError";
-import { ReorderSegmentDTO } from "@/Application/Dto/Agency/agencyRouteSegment.dto";
 import { IGetRouteGroupDetailUseCase } from "@/Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/IGetRouteDetailsUsecase";
 import { ICreateRouteSegmentUseCase } from "@/Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/ICreateRouteSegmentUseCase";
 import { AGENCY_MESSAGES } from "@/Infrastructure/constants/messages/agencyMessages";

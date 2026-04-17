@@ -12,7 +12,6 @@ import { AppError } from "@/Domain/utils/customError";
 import { BOOKING_MESSAGE } from "@/Infrastructure/constants/messages/bookingMessages";
 import { STATUS } from "@/Infrastructure/constants/statusCodes";
 import { Role } from "@/Infrastructure/Types/types";
-import { Console } from "console";
 import { inject, injectable } from "tsyringe";
 
 @injectable()
@@ -27,6 +26,8 @@ export class GetTrackingUsecase implements IGetTrackingUsecase {
         @inject("IHubShipmentRepository") private _hubShipmentRepository: IHubShipmentRepository,
     ) { }
     async execute(bookingId: string, role: Role, userId: string): Promise<ParcelTrackingDTO> {
+
+        console.log(role,userId); // need to impliment validateion
 
         const booking = await this._bookingRepository.getBookingByBookingId(bookingId);
         if (!booking) throw new AppError(BOOKING_MESSAGE.NOT_FOUND, STATUS.NOT_FOUND);

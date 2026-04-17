@@ -4,6 +4,11 @@ import { CreateOrderInput, CreateOrderOutput, CreatePayoutInput, CreatePayoutOut
 import { AppError } from "../../../Domain/utils/customError";
 import { STATUS } from "../../constants/statusCodes";
 
+function getErrorMessage(error: unknown): string {
+    if (error instanceof Error) return error.message;
+    return String(error);
+}
+
 export class RazorpayPaymentGateway implements IPaymentGatewayService {
 
     async createOrder(input: CreateOrderInput): Promise<CreateOrderOutput> {
@@ -14,10 +19,10 @@ export class RazorpayPaymentGateway implements IPaymentGatewayService {
                 currency: input.currency,
                 receipt: input.receipt,
                 payment_capture: true,
-                notes:input.notes
+                notes: input.notes
             });
 
-            if (!order) throw new AppError("razorepay gatway error",STATUS.GATEWAY_TIMEOUT)
+            if (!order) throw new AppError("razorepay gatway error", STATUS.GATEWAY_TIMEOUT)
 
             return {
                 orderId: order.id,
@@ -25,38 +30,38 @@ export class RazorpayPaymentGateway implements IPaymentGatewayService {
                 currency: order.currency,
             };
 
-        } catch (error:any) {
-            console.error("Razorpay createOrder error:", error?.error || error);
+        } catch (error: unknown) {
+            console.error("Razorpay createOrder error:", getErrorMessage(error));
             throw error;
         }
 
     }
 
     async createPayout(input: CreatePayoutInput): Promise<CreatePayoutOutput> {
-    try {
-        const payout = await razorpayClient.payouts.create({
-            account_number: process.env.RAZORPAYX_ACCOUNT_NUMBER!,
-            fund_account_id: "USER_FUND_ACCOUNT_ID",
-            amount: input.amount * 100,
-            currency: input.currency,
-            mode: "IMPS",
-            purpose: "payout",
-            queue_if_low_balance: true,
-            notes: input.notes,
-        });
+        try {
+            const payout = await razorpayClient.payouts.create({
+                account_number: process.env.RAZORPAYX_ACCOUNT_NUMBER!,
+                fund_account_id: "USER_FUND_ACCOUNT_ID",
+                amount: input.amount * 100,
+                currency: input.currency,
+                mode: "IMPS",
+                purpose: "payout",
+                queue_if_low_balance: true,
+                notes: input.notes,
+            });
 
-        return {
-            payoutId: payout.id,
-            amount: payout.amount / 100,
-            currency: payout.currency,
-            status: payout.status,
-        };
+            return {
+                payoutId: payout.id,
+                amount: payout.amount / 100,
+                currency: payout.currency,
+                status: payout.status,
+            };
 
-    } catch (error: any) {
-        console.error("Razorpay payout error:", error?.error || error);
-        throw new AppError("Payout failed", STATUS.GATEWAY_TIMEOUT);
+        } catch (error: unknown) {
+            console.error("Razorpay payout error:", getErrorMessage(error));
+            throw new AppError("Payout failed", STATUS.GATEWAY_TIMEOUT);
+        }
     }
-}
 
 
     verifyPayment(payload: { orderId: string; paymentId: string; signature: string }): boolean {

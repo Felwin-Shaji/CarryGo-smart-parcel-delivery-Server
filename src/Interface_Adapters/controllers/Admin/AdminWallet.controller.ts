@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from "express";
-import { IWalletController } from "../../Interface/Controllers_Interfaces/User_interfaces/IWalletController";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { AppError } from "../../../Domain/utils/customError";

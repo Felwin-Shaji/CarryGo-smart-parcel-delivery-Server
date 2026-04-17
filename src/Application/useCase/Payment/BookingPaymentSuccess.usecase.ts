@@ -5,9 +5,6 @@ import { IBookingRepository } from "../../interfaces/repositories_interfaces/use
 import { IWalletRepository } from "../../interfaces/repositories_interfaces/walletRepositories_Interfaces/IWalletRepository";
 import { ITransactionRepository } from "../../interfaces/repositories_interfaces/walletRepositories_Interfaces/ITransactionRepository";
 import { ICreateParcelRouteUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ParcelRoute/ICreateParcelRouteUsecase";
-import { ICreateHubShipmentsUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ICreateHubShipmentsUsecase";
-import { IHubShipmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
-import { HubShipmentMapper } from "@/Application/Mappers/Logistics/HubShipmentMapper";
 import { ICreateHubShipmentPickUpUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/ICreateHubShipmentPickUpUsecase";
 
 @injectable()
@@ -70,12 +67,9 @@ export class BookingPaymentSuccessUseCase implements IBookingPaymentSuccessUseCa
 
         if (booking.deliveryPartnerType === "AGENCY") {
 
-            const result = await this._createParcelRouteUsecase.execute(bookingId)
-
+            await this._createParcelRouteUsecase.execute(bookingId)
 
             await this._createHubShipmentPickUpUsecase.execute(bookingId);
-
-            // await this._createHubShipmentsUsecase.execute(result.parcelRoute.id!,bookingId)
         }
     }
 }

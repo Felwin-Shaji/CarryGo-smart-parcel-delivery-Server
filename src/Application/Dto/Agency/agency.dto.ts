@@ -31,15 +31,21 @@ export interface AgencyKYC_DTO {
   status: KYCStatus;
 }
 
-export interface AgencyResubmitKycDTO { 
+export type UploadedKycFiles = {
+  tradeLicenseDocument?: string;
+  PAN_photo?: string;
+  gst_certificate?: string;
+};
+
+export interface AgencyResubmitKycDTO {
   agencyId: string;
   tradeLicenseNumber: string;
-  tradeLicenseDocument?: string;   
+  tradeLicenseDocument?: string;
   PANnumber: string;
-  PAN_photo?: string;              
+  PAN_photo?: string;
   gst_number: string;
-  gst_certificate?: string;        
-  status?: KYCStatus;              
+  gst_certificate?: string;
+  status?: KYCStatus;
 }
 
 
@@ -77,11 +83,11 @@ export interface AddHubDTO extends AddNewHubBaseDto, AddNewHubAddressDto {
 }
 
 export interface agencyAddHubResponseDTO {
-    id: string;
-    name: string;
-    email: string;
-    role: string;
-    kycStatus: string;
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  kycStatus: string;
 }
 
 export interface AddNewHubVerifyOtpDTO {
@@ -162,8 +168,8 @@ export interface AgencyWithKYCResponseDTO {
  * Agency over view kyc_detail and  
  */
 export interface GetAgencyOverviewResponseDTO {
-  agency:AgencyWithKYCResponseDTO,
-  hubs:GetHubsResponseDTO
+  agency: AgencyWithKYCResponseDTO,
+  hubs: GetHubsResponseDTO
 };
 
 /**

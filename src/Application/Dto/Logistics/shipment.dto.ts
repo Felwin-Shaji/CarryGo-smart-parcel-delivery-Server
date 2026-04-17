@@ -1,5 +1,5 @@
-import { ShipmentStatus, ShipmentType } from "@/Domain/Entities/Logistics/HubShipment";
-import { ShipmentParcel, ShipmentParcelStatus } from "@/Domain/Entities/Logistics/ShipmentParcel";
+import { HubShipment, ShipmentStatus, ShipmentType } from "@/Domain/Entities/Logistics/HubShipment";
+import { ShipmentParcelStatus } from "@/Domain/Entities/Logistics/ShipmentParcel";
 
 export interface GetShipmentsDTO {
   type?: ShipmentType;
@@ -45,6 +45,10 @@ export interface ShipmentListItemDTO {
 
   createdAt: Date;
 }
+
+export type HubShipmentWithWorker = HubShipment & {
+  assignedWorkerName?: string;
+};
 
 export interface GetShipmentsResponseDTO {
   shipments: ShipmentListItemDTO[];

@@ -144,7 +144,7 @@ export class BulkUpdateShipmentParcelUsecase implements IBulkUpdateShipmentParce
                     const legs = await this._routeLegRepo.findByRouteId(route.id!, session);
                     const sortedLegs = legs.sort((a, b) => a.legOrder - b.legOrder);
 
-                    let currentLeg =
+                    const currentLeg =
                         sortedLegs.find(l => l.status === "IN_PROGRESS") ||
                         sortedLegs.find(l => l.status === "PENDING");
 

@@ -178,20 +178,16 @@ export class AuthController implements IAuthController {
         }
     }
 
-    logout = async (
-        req: Request<{}, {}, LogoutDTO>,
-        res: Response,
-        next: NextFunction
-    ): Promise<Response | void> => {
+    logout = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
 
-            const { id, role } = req.body;
+            const { role } = req.body as LogoutDTO;
             const refreshTokenName = `${role}refreshTokenName`;
             const refreshToken = req.cookies?.[refreshTokenName];
 
             if (!refreshToken) throw new AppError(AUTH_MESSAGES.REFRESH_TOKEN_NOT_FOUND, STATUS.BAD_REQUEST)
 
-            await this._logoutUsecase.execute(refreshToken, id);
+            await this._logoutUsecase.execute(refreshToken);
 
             res.clearCookie(`${role}accessTokenName`, {
                 httpOnly: true,
@@ -214,13 +210,9 @@ export class AuthController implements IAuthController {
         }
     }
 
-    forgotPassword = async (
-        req: Request<{}, {}, ForgotPasswordDTO>,
-        res: Response,
-        next: NextFunction
-    ): Promise<Response | void> => {
+    forgotPassword = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
-            const dto = req.body
+            const dto = req.body as ForgotPasswordDTO
             await this._varifyEmailUseCase.execute(dto);
 
             return res.status(STATUS.OK).json({
@@ -233,14 +225,10 @@ export class AuthController implements IAuthController {
         }
     }
 
-    resetPassword = async (
-        req: Request<{ token: string }, {}, ResetPasswordDTO>,
-        res: Response,
-        next: NextFunction
-    ): Promise<Response | void> => {
+    resetPassword = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             const token = req.params.token;
-            const { password, role } = req.body;
+            const { password, role } = req.body as ResetPasswordDTO;
 
             if (!token) {
                 return res.status(STATUS.BAD_REQUEST).json({

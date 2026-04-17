@@ -1,4 +1,4 @@
-import { inject, injectable, injectAll } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 import { IGetPricingUseCase } from "../../interfaces/useCase_Interfaces/Princing/getPricing.usecase";
 import { IPricingPolicyRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/pricingPolicy.repository";
 import { AppError } from "../../../Domain/utils/customError";

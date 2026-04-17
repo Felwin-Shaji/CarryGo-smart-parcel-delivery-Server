@@ -8,7 +8,7 @@ export interface AdminProfileResponseDTO extends BaseUserResponseDTO {
     role: Role
 }
 
-export interface EditAdminProfileRequestDto extends BaseEditUserProfileRequestDto { };
+export type  EditAdminProfileRequestDto =  BaseEditUserProfileRequestDto;
 
 export type AdminResetPasswordRequestDTO = BaseResetPasswordRequestDTO;
 

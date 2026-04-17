@@ -1,6 +1,5 @@
 import { IParcelRouteRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelRouteRepository";
 import { ParcelRoute } from "@/Domain/Entities/Logistics/ParcelRoute";
-import { ParcelRouteLeg } from "@/Domain/Entities/Logistics/ParcelRouteLeg";
 import { AppError } from "@/Domain/utils/customError";
 import { ParcelRouteDocument, ParcelRouteModel } from "@/Infrastructure/database/models/Logistics/ParcelRouteModel";
 import { ClientSession, Types } from "mongoose";

@@ -17,8 +17,8 @@ import { IDistanceService } from "../../Application/interfaces/services_Interfac
 import { DistanceService } from "../services/Distance.Service";
 import { IPaymentGatewayService } from "../../Application/interfaces/services_Interfaces/payment/IPaymentGateway";
 import { RazorpayPaymentGateway } from "../services/Payment/RazorpayPaymentGateway";
-import { IWalletService } from "../../Application/interfaces/services_Interfaces/IWalletService";
-import { WalletService } from "../services/Payment/wallet.services";
+// import { IWalletService } from "../../Application/interfaces/services_Interfaces/IWalletService";
+// import { WalletService } from "../services/Payment/wallet.services";
 import { IRouteComputationService } from "@/Application/interfaces/services_Interfaces/IRouteComputationService";
 import { RouteComputationService } from "../services/Logistics/RouteComputationService";
 import { IHubShipmentAssignmentService } from "@/Application/interfaces/services_Interfaces/IHubShipmentAssignmentService";
@@ -65,9 +65,9 @@ export class ServiceRegistory {
             useClass: RazorpayPaymentGateway
         })
 
-        container.register<IWalletService>("IWalletService", {
-            useClass: WalletService
-        });
+        // container.register<IWalletService>("IWalletService", {
+        //     useClass: WalletService
+        // });
 
         container.register<IRouteComputationService>("IRouteComputationService", {
             useClass: RouteComputationService

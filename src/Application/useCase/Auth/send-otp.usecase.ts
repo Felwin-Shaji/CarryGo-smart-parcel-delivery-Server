@@ -1,4 +1,3 @@
-import type { IOtpModel } from "../../../Domain/Entities/Iotp";
 import type { IOtpRepository } from "../../interfaces/repositories_interfaces/authRepositories_Interfaces/otp.repository";
 import type { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
 import type { IMailService } from "../../interfaces/services_Interfaces/email-service.interface";

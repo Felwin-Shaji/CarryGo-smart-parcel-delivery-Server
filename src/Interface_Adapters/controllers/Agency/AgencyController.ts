@@ -71,12 +71,8 @@ export class AgencyController implements IAgencyController {
     reSubmitKyc = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => { //////////////////////
         try {
             const dto = req.body as AgencyResubmitKycDTO
-            const files = req.files as AgencyKYCFileFields;
-            const uploaded = await this._uploadFiles.execute(files);
 
-
-
-             await this._rsubmitAgencyKycUseCase.execute(dto,uploaded);
+             await this._rsubmitAgencyKycUseCase.execute(dto);
 
             return res.status(STATUS.OK).json(
                 ApiResponse.success(AGENCY_MESSAGES.KYC_RESUBMITED)

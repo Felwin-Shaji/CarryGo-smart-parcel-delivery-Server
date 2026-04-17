@@ -1,4 +1,4 @@
-import { Document, model, Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 import type { IOtpModel } from "../../../Domain/Entities/Iotp.js";
 
 const otpSchema = new Schema<IOtpModel>({
@@ -8,7 +8,7 @@ const otpSchema = new Schema<IOtpModel>({
     password: { type: String },
     otp: { type: String, required: true },
     role: { type: String, enum: ["user", "agency", "admin", "hub", "worker"], },
-    expiresAt: { type: Date, required: true  },
+    expiresAt: { type: Date, required: true },
 },
     { timestamps: true }
 );

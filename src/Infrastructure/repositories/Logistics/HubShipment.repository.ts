@@ -121,7 +121,7 @@ export class HubShipmentRepository implements IHubShipmentRepository {
 
     async findOpenShipmentByHubAndType(hubId: string, type: ShipmentType, session?: ClientSession): Promise<HubShipment | null> {
 
-        let hubFilter: any = {};
+        let hubFilter: FilterQuery<HubShipmentDocument>;
 
         if (type === "BULK_PICKUP") {
             hubFilter = { toHubId: new Types.ObjectId(hubId) };
@@ -153,7 +153,7 @@ export class HubShipmentRepository implements IHubShipmentRepository {
 
         const skip = (page - 1) * limit;
 
-        const filter: any = {};
+        const filter: FilterQuery<HubShipmentDocument> = {};
 
         if (type) filter.type = type;
 
@@ -241,7 +241,7 @@ export class HubShipmentRepository implements IHubShipmentRepository {
 
         const skip = (page - 1) * limit;
 
-        const filter: any = {
+        const filter: FilterQuery<HubShipmentDocument> = {
             assignedWorkerId: workerId,
         };
 

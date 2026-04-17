@@ -2,7 +2,6 @@ import { inject, injectable } from "tsyringe";
 import { IPricingPolicyRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/pricingPolicy.repository";
 import { IAgencyPricingRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agencyPricing.repository";
 import { IGetAgencyPricingUsecase } from "../../interfaces/useCase_Interfaces/Princing/IGetAgencyPricingUsecase";
-import { AgencyPricing } from "../../../Domain/Entities/Agency/AgencyPricing";
 import { PRICING_POLICY_MESSAGE } from "../../../Infrastructure/constants/messages/pricingPolicyMessage";
 import { AppError } from "../../../Domain/utils/customError";
 import { AgencyPricingResponseDTO } from "../../Dto/Pricing/AgencyPricing.dto";

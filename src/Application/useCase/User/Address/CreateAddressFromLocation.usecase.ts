@@ -2,7 +2,6 @@ import { inject, injectable } from "tsyringe";
 import { ICreateAddressFromLocationUseCase } from "../../../interfaces/useCase_Interfaces/user/Address/ICreateAddressFromLocationUseCase";
 import { IGeocodingService } from "../../../interfaces/services_Interfaces/IGeocodingService";
 import { ReverseGeocodeRawDTO } from "../../../Dto/User/address.dto";
-import { IGetHubsUsecase } from "../../../interfaces/useCase_Interfaces/Hub/IGetHubsUsecase";
 
 @injectable()
 export class CreateAddressFromLocationUseCase  implements ICreateAddressFromLocationUseCase {

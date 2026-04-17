@@ -5,6 +5,7 @@ import { IBookingRepository } from "@/Application/interfaces/repositories_interf
 import { IUserRepository } from "@/Application/interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
 import { IGetWorkerShipmentDetailsUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IGetWorkerShipmentDetailsUsecase";
 import { AppError } from "@/Domain/utils/customError";
+import { SHIPMENT_PARCEL_MESSAGE } from "@/Infrastructure/constants/messages/RouteGroupMessage";
 import { WORKER_MESSAGES } from "@/Infrastructure/constants/messages/workerMessage";
 import { STATUS } from "@/Infrastructure/constants/statusCodes";
 import { inject, injectable } from "tsyringe";
@@ -51,10 +52,17 @@ export class GetWorkerShipmentDetailsUsecase implements IGetWorkerShipmentDetail
             const booking = bookingMap.get(p.bookingId);
             const user = booking?.userId ? userMap.get(booking.userId) : null;
 
+            if (!p.id || !booking?.id || !booking?.bookingId) {
+                throw new AppError(
+                    SHIPMENT_PARCEL_MESSAGE.IDs_MISSING,
+                    STATUS.NOT_FOUND
+                );
+            }
+
             return {
-                id: p.id!,
-                bookingId: booking?.id!,
-                bookingTrackId: booking?.bookingId!,
+                id: p.id,
+                bookingId: booking?.id,
+                bookingTrackId: booking?.bookingId,
                 customerName: user?.name || "Unknown Customer",
                 address: booking?.deliveryAddress?.formattedAddress || "—",
                 status: p.status,

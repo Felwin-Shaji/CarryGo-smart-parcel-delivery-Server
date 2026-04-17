@@ -4,7 +4,7 @@ import { DeliveryPartnerType } from "@/Infrastructure/Types/types";
 export class BookingIdGeneratorService implements IBookingIdGeneratorService {
 
     generateBookingId(dto: GenerateBookingIdDTO): string {
-        const { seq, agencyName, partnerType } = dto;
+        const { seq, partnerType } = dto;
 
         const partnerTypeCode = this.mapPartnerType(partnerType);
 

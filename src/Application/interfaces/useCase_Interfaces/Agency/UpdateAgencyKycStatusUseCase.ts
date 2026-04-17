@@ -1,4 +1,3 @@
-import { Agency } from "../../../../Domain/Entities/Agency/Agency.js";
 import { KYCStatus } from "../../../../Infrastructure/Types/types.js";
 import { updateAgencyKycStatusDTO } from "../../../Dto/Agency/agency.dto.js";
 

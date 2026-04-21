@@ -6,6 +6,8 @@ import { USER_MESSAGES } from "../../../../Infrastructure/constants/messages/use
 import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
 import { AppError } from "../../../../Domain/utils/customError";
 import { TravelerMapper } from "../../../Mappers/User/travelerMapper";
+import { IUserRepository } from "@/Application/interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
+import { User } from "@/Domain/Entities/User";
 
 @injectable()
 export class GetTravelerTripOverviewUseCase implements IGetTravelerTripOverviewUseCase {
@@ -13,6 +15,7 @@ export class GetTravelerTripOverviewUseCase implements IGetTravelerTripOverviewU
     @inject("ITravelRequestRepository") private readonly _travelRequestRepository: ITravelRequestRepository,
 
     @inject("IBookingRepository") private _bookingRepo: IBookingRepository,
+    @inject("IUserRepository") private _userRepo: IUserRepository,
   ) { }
 
   async execute(userId: string, travelRequestId: string) {
@@ -22,9 +25,19 @@ export class GetTravelerTripOverviewUseCase implements IGetTravelerTripOverviewU
 
     if (trip.travelerId !== userId) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.FORBIDDEN);
 
-    const bookings = await this._bookingRepo.findByTravelRequestId(travelRequestId);
+    const bookings = await this._bookingRepo.findByTravelRequestId(trip.id!);
 
-    const response = TravelerMapper.toGetTravelRequestByIdResponseDTO(trip, bookings);
+    const userIds = [...new Set(bookings.map(b => b.userId))];
+    const usersList = await this._userRepo.findByIds(userIds);
+
+    const usersMap = new Map<string, User>();
+
+    usersList.forEach(user => {
+      if (!user.id) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST)
+      usersMap.set(user.id, user);
+    });
+
+    const response = TravelerMapper.toGetTravelRequestByIdResponseDTO(trip, bookings,usersMap);
     return response
   }
 }

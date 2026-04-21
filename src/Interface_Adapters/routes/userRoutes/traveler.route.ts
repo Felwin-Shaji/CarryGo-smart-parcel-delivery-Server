@@ -5,7 +5,7 @@ import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
 import { workerKYCUpload } from "../../../Infrastructure/services/storage/multer";
 import { Role } from "@/Domain/Enums/Roles";
 import { validateRequest } from "@/Interface_Adapters/middlewares/ValidationMiddleware/validateRequest";
-import { reSubmitTravelerKycSchema, submitTravelerKycSchema,createTravelRequestSchema } from "@/Interface_Adapters/validators/UserValidator/traveler.validator";
+import { reSubmitTravelerKycSchema, submitTravelerKycSchema, createTravelRequestSchema } from "@/Interface_Adapters/validators/UserValidator/traveler.validator";
 
 export class TravelerRoute extends BaseRoute {
 
@@ -17,11 +17,15 @@ export class TravelerRoute extends BaseRoute {
 
     this.router.get("/traveler/kyc", authenticate([Role.USER]), asyncHandler(travelerController.getKyc));
 
-    this.router.post("/traveler/travel-requests", authenticate([Role.USER]),validateRequest(createTravelRequestSchema), asyncHandler(travelerController.createTravelRequest));
+    this.router.post("/traveler/travel-requests", authenticate([Role.USER]), validateRequest(createTravelRequestSchema), asyncHandler(travelerController.createTravelRequest));
 
     this.router.get("/traveler/travel-requests", authenticate([Role.USER]), asyncHandler(travelerController.getTravelRequests));
 
     this.router.get("/traveler/travel-requests/:id", authenticate([Role.USER]), asyncHandler(travelerController.getTravelRequestById));
+
+    this.router.get("/traveler/travel-requests/:bookingId", authenticate([Role.USER]), asyncHandler(travelerController.getTravelerBookingDetails))
+
+    this.router.patch("/traveler/travel-requests/order/:bookingId/status", authenticate([Role.USER]), asyncHandler(travelerController.updateBookingStatus))
 
   }
 }

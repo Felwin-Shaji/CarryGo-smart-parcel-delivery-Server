@@ -129,7 +129,7 @@ const bookingAddressSchema = z
 
         isDefault: z.boolean().optional()
     })
-    .strict();
+    .passthrough()
 
 /*
 *********************************** package details
@@ -154,7 +154,7 @@ const packageDetailsSchema = z
 
         volumetricWeightKg: z.coerce.number().optional(), 
     })
-    .strict();
+    .passthrough()
 
 /*
 *********************************** main schema
@@ -222,7 +222,7 @@ const agencyBookingSchema = z
 
     packageDetails: packageDetailsSchema,
   })
-  .strict();
+  .passthrough()
 
 /*
 *********************************** TRAVELER booking

@@ -7,8 +7,8 @@ import { AppError } from "../../../Domain/utils/customError";
 import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { BookingStatusType } from "../../../Infrastructure/Types/types";
-import { CreateTravelRequestDTO, TravelerRequestAddressDTO, TripDetailsResponseDTO } from "../../Dto/User/traveler.dto";
-import { GetTravelerKycResponseDTO } from "../../Dto/User/user.dto";
+import { CreateTravelRequestDTO, TravelerRequestAddressDTO, TripDetailsResponseDTO, TripOrderResponseDTO } from "../../Dto/User/traveler.dto";
+import { BaseUserResponseDTO, GetTravelerKycResponseDTO } from "../../Dto/User/user.dto";
 
 export class TravelerMapper {
 
@@ -69,7 +69,11 @@ export class TravelerMapper {
         };
     }
 
-    static toGetTravelRequestByIdResponseDTO(travelRequest: TravelRequest, bookings: Booking[]): TripDetailsResponseDTO {
+    static toGetTravelRequestByIdResponseDTO(
+        travelRequest: TravelRequest,
+        bookings: Booking[],
+        usersMap: Map<string, User>
+    ): TripDetailsResponseDTO {
 
         const isDeliveredStatus = (status: BookingStatusType): boolean =>
             status === "DELIVERED" || status === "SETTLED";
@@ -95,15 +99,59 @@ export class TravelerMapper {
         // -----------------------
         // Orders Mapping
         // -----------------------
-        const orders = bookings.map(b => ({
-            id: b.id!,
-            customerName: b.partnerSnapshot?.name ?? "Sender",
-            pickupCity: b.pickupAddress.city,
-            deliveryCity: b.deliveryAddress.city,
-            weightKg: b.packageDetails.weightKg,
-            amount: b.pricing.totalAmount,
-            status: b.status,
-        }));
+        const orders: TripOrderResponseDTO[] = bookings.map((b) => {
+            const user = usersMap.get(b.userId);
+
+            if (!user?.id || !user.mobile) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST)
+
+            const customerDetails: Omit<BaseUserResponseDTO, "isBlocked" | "kycStatus" | "createdAt"> = {
+                id: user?.id,
+                name: user.name,
+                email: user.email,
+                mobile: user.mobile,
+            }
+
+            return ({
+                id: b.id!,
+                customerDetails: customerDetails,
+
+                pickupAddress: {
+                    id: null,
+                    label: b.pickupAddress?.label ?? "Other",
+                    formattedAddress: b.pickupAddress?.formattedAddress ?? null,
+                    city: b.pickupAddress.city,
+                    state: b.pickupAddress.state,
+                    country: b.pickupAddress.country,
+                    pincode: b.pickupAddress.pincode,
+                    location: {
+                        lat: b.pickupAddress.location.lat,
+                        lng: b.pickupAddress.location.lng,
+                    },
+                    isDefault: false,
+                },
+
+                deliveryAddress: {
+                    id: null,
+                    label: b.deliveryAddress?.label ?? "Other",
+                    formattedAddress: b.deliveryAddress?.formattedAddress ?? null,
+                    city: b.deliveryAddress.city,
+                    state: b.deliveryAddress.state,
+                    country: b.deliveryAddress.country,
+                    pincode: b.deliveryAddress.pincode,
+                    location: {
+                        lat: b.deliveryAddress.location.lat,
+                        lng: b.deliveryAddress.location.lng,
+                    },
+                    isDefault: false,
+                },
+
+                weightKg: b.packageDetails.weightKg,
+                amount: b.pricing.totalAmount,
+                platformFee:b.pricing.platformFee,
+                status: b.status,
+            })
+        }
+        );
 
 
         // -----------------------

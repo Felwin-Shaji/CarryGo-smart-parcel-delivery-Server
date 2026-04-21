@@ -48,6 +48,13 @@ export type BookingStatusType =
     | "REFUNDED"
     | "SETTLED";
 
+export type TravelerActionStatus =
+    | "PAID_PENDING_PICKUP"
+    | "READY_FOR_PICKUP"
+    | "PICKUP_STARTED"
+    | "IN_TRANSIT"
+    | "DELIVERED";
+
 
 export type PaymentStatusType =
     | "NOT_INITIATED"

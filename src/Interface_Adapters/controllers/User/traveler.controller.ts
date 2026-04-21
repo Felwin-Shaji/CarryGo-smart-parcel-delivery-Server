@@ -13,6 +13,10 @@ import { IReSubmitTravelerKycUseCase } from "../../../Application/interfaces/use
 import { ICreateTravelRequestUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Traveler/ICreateTravelRequestUseCase";
 import { IGetTravelRequestsUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Traveler/IGetTravelRequestsUseCase";
 import { IGetTravelerTripOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Traveler/IGetTravelerTripOverviewUseCase";
+import { IGetBookingUsecase } from "@/Application/interfaces/useCase_Interfaces/user/Booking/IGetBookingUsecase";
+import { BOOKING_MESSAGE } from "@/Infrastructure/constants/messages/bookingMessages";
+import { IUpdateBookingStatusUsecase } from "@/Application/interfaces/useCase_Interfaces/user/Booking/IUpdateBookingStatusUsecase";
+import { TravelerActionStatus } from "@/Infrastructure/Types/types";
 
 
 @injectable()
@@ -24,6 +28,8 @@ export class TravelerController implements ITravelerController {
         @inject("ICreateTravelRequestUseCase") private readonly _createTravelRequestUseCase: ICreateTravelRequestUseCase,
         @inject("IGetTravelRequestsUseCase") private readonly _getTravelRequestsUseCase: IGetTravelRequestsUseCase,
         @inject("IGetTravelerTripOverviewUseCase") private readonly _getTravelerTripOverviewUseCase: IGetTravelerTripOverviewUseCase,
+        @inject("IGetBookingUsecase") private readonly _getBookingUsecase: IGetBookingUsecase,
+        @inject("IUpdateBookingStatusUsecase") private readonly _updateBookingStatusUsecase: IUpdateBookingStatusUsecase
     ) { };
 
     submitKYC = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
@@ -152,6 +158,50 @@ export class TravelerController implements ITravelerController {
             );
         } catch (error) {
             next(error);
+        }
+    }
+
+
+    getTravelerBookingDetails = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+        try {
+
+            const bookingId = req.params.bookingId;
+            if (!bookingId) throw new AppError(BOOKING_MESSAGE.NOT_FOUND, STATUS.BAD_REQUEST)
+
+            const booking = await this._getBookingUsecase.execute(bookingId);
+
+            res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    USER_MESSAGES.TRAVEL_REQUESTS_FETCHED_SUCCESS,
+                    booking
+                )
+            );
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    updateBookingStatus = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+        try {
+            const userId = req.user?.id;
+            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
+
+            const bookingId = req.params.bookingId;
+            if (!bookingId) throw new AppError(BOOKING_MESSAGE.NOT_FOUND, STATUS.BAD_REQUEST)
+
+            const status = req.body.status as TravelerActionStatus
+
+            await this._updateBookingStatusUsecase.execute(userId, bookingId, status)
+
+            res.status(STATUS.OK).json(
+                ApiResponse.success(
+                    BOOKING_MESSAGE.STATUS_UPDATED,
+                )
+            );
+
+        } catch (error) {
+            next(error)
         }
     }
 

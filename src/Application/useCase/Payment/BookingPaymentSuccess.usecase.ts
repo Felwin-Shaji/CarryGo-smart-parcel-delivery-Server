@@ -6,6 +6,7 @@ import { IWalletRepository } from "../../interfaces/repositories_interfaces/wall
 import { ITransactionRepository } from "../../interfaces/repositories_interfaces/walletRepositories_Interfaces/ITransactionRepository";
 import { ICreateParcelRouteUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ParcelRoute/ICreateParcelRouteUsecase";
 import { ICreateHubShipmentPickUpUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/ICreateHubShipmentPickUpUsecase";
+import { TransactionMapper } from "@/Application/Mappers/Wallet/transactionMapper";
 
 @injectable()
 export class BookingPaymentSuccessUseCase implements IBookingPaymentSuccessUseCase {
@@ -40,22 +41,16 @@ export class BookingPaymentSuccessUseCase implements IBookingPaymentSuccessUseCa
         adminWallet.hold(booking.pricing.totalAmount);
         await this._walletRepo.update(adminWallet);
 
-
-
-        await this._transactionRepo.create(
-            new Transaction(
-                null,
-                adminWallet.id!,
-                "HOLD",
-                "BOOKING_PAYMENT",
-                booking.pricing.totalAmount,
-                "SUCCESS",
-                adminWallet.balance,
-                booking.id!,
-                undefined,
-                razorpayPaymentId
-            )
+        const holdTx = TransactionMapper.createBookingHold(
+            adminWallet.id!,
+            booking.pricing.totalAmount,
+            adminWallet.balance,
+            booking.id!,
+            razorpayPaymentId
         );
+
+        await this._transactionRepo.create(holdTx);
+
 
         await this._bookingRepo.updatePayment(bookingId, {
             paymentRef: razorpayPaymentId,

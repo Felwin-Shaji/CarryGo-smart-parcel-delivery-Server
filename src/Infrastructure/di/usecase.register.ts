@@ -200,6 +200,8 @@ import { IBulkUpdateShipmentParcelUsecase } from "@/Application/interfaces/useCa
 import { BulkUpdateShipmentParcelUsecase } from "@/Application/useCase/Logistics/ShipmentParcels/BulkUpdateShipmentParcel.usecase";
 import { ICreateHubShipmentOutForDeliveryUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/ICreateHubShipmentOutForDeliveryUsecase";
 import { CreateHubShipmentOutForDeliveryUsecase } from "@/Application/useCase/Logistics/HubShipment/CreateHubShipmentOutForDelivery.usecase";
+import { IUpdateBookingStatusUsecase } from "@/Application/interfaces/useCase_Interfaces/user/Booking/IUpdateBookingStatusUsecase";
+import { UpdateBookingStatusUsecase } from "@/Application/useCase/User/Booking/UpdateBookingStatus.usecase";
 
 
 
@@ -613,8 +615,12 @@ export class UsecaseRegistery {
             useClass: BulkUpdateShipmentParcelUsecase
         });
 
-        container.register<ICreateHubShipmentOutForDeliveryUsecase>("ICreateHubShipmentOutForDeliveryUsecase",{
-            useClass:CreateHubShipmentOutForDeliveryUsecase
+        container.register<ICreateHubShipmentOutForDeliveryUsecase>("ICreateHubShipmentOutForDeliveryUsecase", {
+            useClass: CreateHubShipmentOutForDeliveryUsecase
+        })
+
+        container.register<IUpdateBookingStatusUsecase>("IUpdateBookingStatusUsecase", {
+            useClass: UpdateBookingStatusUsecase
         })
     }
 }

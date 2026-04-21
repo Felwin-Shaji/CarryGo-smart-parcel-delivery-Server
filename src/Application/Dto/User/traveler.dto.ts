@@ -1,6 +1,7 @@
 import { TransportMode, TravelRequest } from "../../../Domain/Entities/User/TravelRequest";
 import { IDType } from "../../../Domain/Entities/Worker/WorkerKyc";
-import { AddressResponseDTO } from "./Booking.dto";
+import { AddressResponseDTO, BookingAddressDTO } from "./Booking.dto";
+import { BaseUserResponseDTO } from "./user.dto";
 
 export interface SubmitTravelerKycRequestDTO {
   idType: IDType;
@@ -35,9 +36,9 @@ export interface CreateTravelRequestDTO {
 }
 
 export interface TravelerRequestFilterDTO {
-    page: number;
+  page: number;
   limit: number;
-  status :string;
+  status: string;
 }
 
 export interface PaginatedTravelRequestResponceDTO {
@@ -49,11 +50,12 @@ export interface PaginatedTravelRequestResponceDTO {
 
 export interface TripOrderResponseDTO {
   id: string;
-  customerName: string;
-  pickupCity: string;
-  deliveryCity: string;
+  customerDetails: Omit<BaseUserResponseDTO, "isBlocked" | "kycStatus" | "createdAt">;
+  pickupAddress: BookingAddressDTO;
+  deliveryAddress: BookingAddressDTO;
   weightKg: number;
   amount: number;
+  platformFee:number;
   status: string;
 }
 

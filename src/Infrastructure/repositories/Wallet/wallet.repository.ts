@@ -12,7 +12,7 @@ export class WalletRepository extends BaseRepository<WalletDocument> implements 
     }
 
     async findByOwner(ownerType: Role, ownerId: string): Promise<Wallet | null> {
-        const wallet = await this.model.findOne({ ownerType, ownerId }).lean();
+        const wallet = await WalletModel.findOne({ ownerType, ownerId }).lean();
         return wallet ? this.toEntity(wallet) : null;
     }
 

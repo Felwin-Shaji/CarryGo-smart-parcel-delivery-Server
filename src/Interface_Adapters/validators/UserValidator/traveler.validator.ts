@@ -25,7 +25,7 @@ const travelerAddressSchema = z
 
         isDefault: z.boolean().optional(),
     })
-    .strict();
+    .passthrough()
 
 /*
 *********************************** main schema

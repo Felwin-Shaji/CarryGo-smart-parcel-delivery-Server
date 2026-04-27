@@ -9,6 +9,7 @@ export const BOOKING_MESSAGE = {
     INVALID_AMOUNT: "Invalid booking amount",
     INVALID_DISTANCE: "Invalid delivery distance",
     SUCCESS: "booking created successfully",
+    INVALID_ID:"Invalid booking ID format",
 
     SERVICEABLE_AGENCY_FOUND: "Serviceable agency found for the given pincodes",
     PRICE_CALCULATED: "order price is calculated",
@@ -16,6 +17,7 @@ export const BOOKING_MESSAGE = {
     FOUND: "Users booking found successfully",
     NOT_FOUND: "Booking not found",
     NO_AGENCY_ASSIGNED: "Booking has no agency assigned",
+    NO_TRAVELER_ASSIGNED:"This booking is not handled by a traveler",
     ROUTING_INFO_NOT_FOUND: "Booking is missing hub routing info",
     VALID_ROUTE_NOT_FOUND: "No valid route found between the selected hubs",
 

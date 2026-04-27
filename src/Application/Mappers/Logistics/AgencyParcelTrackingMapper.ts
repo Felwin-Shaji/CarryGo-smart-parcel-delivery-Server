@@ -1,4 +1,4 @@
-import { ParcelTrackingDTO, HubDTO } from "@/Application/Dto/Logistics/ParcelTracking.dto";
+import { AgencyParcelTrackingDTO, HubDTO } from "@/Application/Dto/Logistics/ParcelTracking.dto";
 import { Booking } from "@/Domain/Entities/Booking/Booking";
 import { ParcelMovement } from "@/Domain/Entities/Booking/ParcelMovement";
 import { ParcelRouteLeg } from "@/Domain/Entities/Logistics/ParcelRouteLeg";
@@ -7,7 +7,7 @@ import { RouteSegment } from "@/Domain/Entities/Logistics/RouteSegment";
 import { Hub } from "@/Domain/Entities/Hub/Hub";
 import { AppError } from "@/Domain/utils/customError";
 
-export class ParcelTrackingMapper {
+export class AgencyParcelTrackingMapper {
 
   // 🔥 MAIN METHOD
   static toDTO(
@@ -17,7 +17,7 @@ export class ParcelTrackingMapper {
     segments: Map<string, RouteSegment>,
     hubs: Map<string, Hub>,
     shipments: HubShipment[]
-  ): ParcelTrackingDTO {
+  ): AgencyParcelTrackingDTO {
 
     const sortedMovements = [...movements].sort(
       (a, b) => a.createdAt.getTime() - b.createdAt.getTime()
@@ -120,7 +120,7 @@ export class ParcelTrackingMapper {
     segments: Map<string, RouteSegment>,
     shipments: HubShipment[]
   ) {
-    const timeline: ParcelTrackingDTO["timeline"] = [];
+    const timeline: AgencyParcelTrackingDTO["timeline"] = [];
 
     const getHub = (id?: string | null) =>
       id ? this.mapHub(hubs.get(id)) : null;

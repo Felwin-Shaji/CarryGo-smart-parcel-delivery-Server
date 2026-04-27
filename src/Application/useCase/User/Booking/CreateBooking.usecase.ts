@@ -39,6 +39,7 @@ export class CreateBookingUsecase implements ICreateBookingUsecase {
         }
 
         let partnerSnapshot: PartnerEntity | null = null;
+        let travelRequest = null;
 
         if (payload.partnerId) {
 
@@ -65,18 +66,18 @@ export class CreateBookingUsecase implements ICreateBookingUsecase {
 
                 if (!payload.travelRequestId) throw new AppError(USER_MESSAGES.TRAVEL_REQUEST_ID_MISSING, STATUS.BAD_REQUEST);
 
-                const travelRequest = await this._travelRequestRepo.getTravelRequestById(payload.travelRequestId);
+                travelRequest = await this._travelRequestRepo.getTravelRequestById(payload.travelRequestId);
                 if (!travelRequest) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
 
                 if (!travelRequest.canAcceptPackage(payload.packageDetails)) {
                     throw new AppError(USER_MESSAGES.REMAINING_CAPACITY_ERROR, STATUS.BAD_REQUEST);
                 }
-                travelRequest.reduceCapacity(payload.packageDetails);
 
                 const traveler = await this._userRepo.findById({ _id: travelRequest.travelerId })
                 if (!traveler) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND)
 
-                await this._travelRequestRepo.update(travelRequest);
+                // travelRequest.reduceCapacity(payload.packageDetails);
+                // await this._travelRequestRepo.update(travelRequest);
 
 
                 if (!travelRequest)
@@ -106,7 +107,7 @@ export class CreateBookingUsecase implements ICreateBookingUsecase {
             partnerType: payload.deliveryType,
         });
 
-        console.log("Generated Booking ID:", bookingId,"✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅");
+        console.log("Generated Booking ID:", bookingId, "✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅");
 
         const booking = BookingMapper.createNew({
             bookingId,
@@ -123,6 +124,10 @@ export class CreateBookingUsecase implements ICreateBookingUsecase {
         });
 
         const saved = await this._bookingRepo.create(booking);
+        if (payload.deliveryType === DeliveryPartner.TRAVELER && travelRequest) {
+            travelRequest.reduceCapacity(payload.packageDetails);
+            await this._travelRequestRepo.update(travelRequest);
+        }
 
         return { bookingId: saved.id! };
     }

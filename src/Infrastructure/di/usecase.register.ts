@@ -194,14 +194,18 @@ import { IGetWorkerShipmentDetailsUsecase } from "@/Application/interfaces/useCa
 import { GetWorkerShipmentDetailsUsecase } from "@/Application/useCase/Logistics/ShipmentParcels/GetWorkerShipmentDetails.usecase";
 import { IUpdateShipmentStatusUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IUpdateShipmentStatusUsecase";
 import { UpdateShipmentStatusUsecase } from "@/Application/useCase/Logistics/ShipmentParcels/UpdateShipmentStatus.usecase";
-import { IGetTrackingUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/IGetTrackingUsecase";
-import { GetTrackingUsecase } from "@/Application/useCase/Logistics/GetTrackingUsecase";
+import { IGetAgencyTrackingUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/Tracking/IGetAgencyTrackingUsecase";
+import { GetAgencyTrackingUsecase } from "@/Application/useCase/Logistics/Tracking/GetAgencyTracking.usecase";
 import { IBulkUpdateShipmentParcelUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IBulkUpdateShipmentParcelUsecase";
 import { BulkUpdateShipmentParcelUsecase } from "@/Application/useCase/Logistics/ShipmentParcels/BulkUpdateShipmentParcel.usecase";
 import { ICreateHubShipmentOutForDeliveryUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/ICreateHubShipmentOutForDeliveryUsecase";
 import { CreateHubShipmentOutForDeliveryUsecase } from "@/Application/useCase/Logistics/HubShipment/CreateHubShipmentOutForDelivery.usecase";
 import { IUpdateBookingStatusUsecase } from "@/Application/interfaces/useCase_Interfaces/user/Booking/IUpdateBookingStatusUsecase";
 import { UpdateBookingStatusUsecase } from "@/Application/useCase/User/Booking/UpdateBookingStatus.usecase";
+import { GetTravelerTrackingUsecase } from "@/Application/useCase/Logistics/Tracking/GetTravelerTracking.usecase";
+import { IGetTravelerTrackingUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/Tracking/IGetTravelerTrackingUsecase";
+import { IGetTrackingUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/Tracking/IGetTrackingUsecase";
+import { GetTrackingUsecase } from "@/Application/useCase/Logistics/Tracking/GetTracking.usecase";
 
 
 
@@ -607,9 +611,13 @@ export class UsecaseRegistery {
             useClass: UpdateShipmentStatusUsecase
         })
 
-        container.register<IGetTrackingUsecase>("IGetTrackingUsecase", {
-            useClass: GetTrackingUsecase
+        container.register<IGetAgencyTrackingUsecase>("IGetAgencyTrackingUsecase", {
+            useClass: GetAgencyTrackingUsecase
         });
+
+        container.register<IGetTravelerTrackingUsecase>("IGetTravelerTrackingUsecase", {
+            useClass: GetTravelerTrackingUsecase
+        })
 
         container.register<IBulkUpdateShipmentParcelUsecase>("IBulkUpdateShipmentParcelUsecase", {
             useClass: BulkUpdateShipmentParcelUsecase
@@ -621,6 +629,10 @@ export class UsecaseRegistery {
 
         container.register<IUpdateBookingStatusUsecase>("IUpdateBookingStatusUsecase", {
             useClass: UpdateBookingStatusUsecase
+        });
+
+        container.register<IGetTrackingUsecase>("IGetTrackingUsecase", {
+            useClass: GetTrackingUsecase
         })
     }
 }

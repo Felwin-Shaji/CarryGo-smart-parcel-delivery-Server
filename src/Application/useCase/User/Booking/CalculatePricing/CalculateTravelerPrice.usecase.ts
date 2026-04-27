@@ -24,6 +24,9 @@ export class TravelerPricingUsecase implements ICalculatePriceUsecase {
         if (!dto.travelRequestId) throw new AppError(USER_MESSAGES.TRAVEL_REQUEST_ID_MISSING, STATUS.BAD_REQUEST);
 
         const travelRequest = await this._travelRequestRepository.getTravelRequestById(dto.travelRequestId);
+        if (!travelRequest) {
+            throw new AppError(USER_MESSAGES.TRAVEL_REQUEST_NOT_FOUND, STATUS.NOT_FOUND);
+        }
 
         const weight = dto.packageDetails.weightKg;
         if (weight > travelRequest.remainingCapacityKg) throw new AppError(USER_MESSAGES.REMAINING_CAPACITY_ERROR, STATUS.BAD_REQUEST);

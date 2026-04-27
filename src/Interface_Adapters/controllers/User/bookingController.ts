@@ -78,6 +78,7 @@ export class UserBookingController implements IUserBookingController {
             const userId = req.user?.id
             const dto = req.body as CalculatePriceRequestDTO
 
+            console.log("API HIT:", Date.now());
             if (!userId) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
 
             const pricing = await this._calculateBookingPriceUsecase.execute(userId, dto)

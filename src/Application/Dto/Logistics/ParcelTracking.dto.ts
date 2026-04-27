@@ -1,6 +1,6 @@
 import { AddressEntity } from "@/Domain/Entities/Booking/Booking";
 
-export interface ParcelTrackingDTO {
+export interface AgencyParcelTrackingDTO {
     booking: {
         bookingId: string;
         status: string;
@@ -80,4 +80,101 @@ export interface HubDTO {
         lat: number;
         lng: number;
     };
+}
+
+export interface TravelerParcelTrackingDTO {
+    type: "TRAVELER";
+
+    // Booking Info
+    booking: {
+        bookingId: string;
+        status: string;
+
+        from: {
+            address: string;
+            city: string;
+            pincode: string;
+            location: {
+                lat: number;
+                lng: number;
+            };
+        };
+
+        to: {
+            address: string;
+            city: string;
+            pincode: string;
+            location: {
+                lat: number;
+                lng: number;
+            };
+        };
+
+        package: {
+            category: string;
+            weightKg: number;
+            fragile?: boolean;
+        };
+
+        price: number;
+
+        createdAt: Date;
+    };
+
+    //  Traveler Info
+    traveler: {
+        id: string;
+        name: string;
+        email: string;
+        phone: string | null;
+
+        kycStatus: string;
+    };
+
+    // Current Status (Derived)
+    currentStatus: {
+        status: string;
+
+        message: string;
+
+        location: {
+            lat: number;
+            lng: number;
+        } | null;
+
+        updatedAt: Date | null;
+    };
+
+    // Trip Info (from TravelRequest)
+    trip: {
+        fromAddress: string;
+        toAddress: string;
+
+        fromPincode: string;
+        toPincode: string;
+
+        departureAt: Date;
+        arrivalAt: Date | null;
+
+        transportMode: string;
+    };
+
+    // Map Points
+    checkpoints: {
+        type: "PICKUP" | "IN_TRANSIT" | "DELIVERY";
+
+        lat: number;
+        lng: number;
+
+        label: string;
+
+        time?: Date;
+    }[];
+
+    // Timeline (VERY IMPORTANT)
+    timeline: {
+        status: string;
+        message: string;
+        timestamp: Date;
+    }[];
 }

@@ -12,6 +12,7 @@ import { HubRoute } from "../../Interface_Adapters/routes/hub.route";
 import { UserRoute } from "../../Interface_Adapters/routes/user.route";
 import { PaymentRoute } from "../../Interface_Adapters/routes/payment.routes";
 import { WrokerRoute } from "../../Interface_Adapters/routes/worker.route";
+import { ChatRoute } from "../../Interface_Adapters/routes/ChatRoutes/chat.route";
 dotenv.config();
 
 
@@ -65,6 +66,9 @@ app.use("/api/worker",wrokerRoute.router)
 
 const paymentRoute = new PaymentRoute();
 app.use("/api/webhooks",paymentRoute.router)
+
+const chatRoute = new ChatRoute()
+app.use("/api/chat",chatRoute.router)
 
 app.use(errorHandler)
 

@@ -2,6 +2,9 @@ import { TravelerParcelTrackingDTO } from "@/Application/Dto/Logistics/ParcelTra
 import { Booking } from "@/Domain/Entities/Booking/Booking";
 import { User } from "@/Domain/Entities/User";
 import { TravelRequest } from "@/Domain/Entities/User/TravelRequest";
+import { AppError } from "@/Domain/utils/customError";
+import { BOOKING_MESSAGE } from "@/Infrastructure/constants/messages/bookingMessages";
+import { STATUS } from "@/Infrastructure/constants/statusCodes";
 
 
 export class TravelerParcelTrackingMapper {
@@ -80,11 +83,16 @@ export class TravelerParcelTrackingMapper {
             }
         ];
 
+        if (!booking.id) {
+            throw new AppError(BOOKING_MESSAGE.ID_MISSING, STATUS.NOT_FOUND)
+        }
+
         // 4️⃣ Return DTO
         return {
             type: "TRAVELER",
 
             booking: {
+                id: booking.id,
                 bookingId: booking.bookingId,
                 status: booking.status,
 

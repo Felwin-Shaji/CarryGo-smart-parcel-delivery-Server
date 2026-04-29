@@ -49,6 +49,10 @@ import { IParcelMovementRepository } from "@/Application/interfaces/repositories
 import { ParcelMovementRepository } from "../repositories/Logistics/ParcelMovement.repository";
 import { ICounterRepository } from "@/Application/interfaces/repositories_interfaces/ICounterRepository";
 import { CounterRepository } from "../repositories/Counter.repository";
+import { IMessageRepository } from "@/Application/interfaces/repositories_interfaces/ChatRepositories_Interfaces/IMessageRepository";
+import { MessageRepository } from "../repositories/Chat/Message.repository";
+import { IChatRepository } from "@/Application/interfaces/repositories_interfaces/ChatRepositories_Interfaces/IChatRepository";
+import { ChatRepository } from "../repositories/Chat/Chat.repository";
 
 
 export class RepositoryRegistry {
@@ -152,6 +156,14 @@ export class RepositoryRegistry {
 
         container.register<ICounterRepository>("ICounterRepository", {
             useClass: CounterRepository
+        })
+
+        container.register<IMessageRepository>("IMessageRepository", {
+            useClass: MessageRepository
+        })
+
+        container.register<IChatRepository>("IChatRepository", {
+            useClass: ChatRepository
         })
     };
 };

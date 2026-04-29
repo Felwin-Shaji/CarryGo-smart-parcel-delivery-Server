@@ -87,6 +87,7 @@ export interface TravelerParcelTrackingDTO {
 
     // Booking Info
     booking: {
+        id: string;
         bookingId: string;
         status: string;
 

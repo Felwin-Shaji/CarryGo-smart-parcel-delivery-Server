@@ -28,13 +28,26 @@ export const authenticate = (allowedRoles?: Role[]) => {
       const cookies = req.cookies;
       const url = req.baseUrl;
 
+      const tokenMap = {
+        user: cookies?.useraccessTokenName,
+        agency: cookies?.agencyaccessTokenName,
+        admin: cookies?.adminaccessTokenName,
+        hub: cookies?.hubaccessTokenName,
+        worker: cookies?.workeraccessTokenName,
+      };
+
       let accessToken: string | undefined;
 
-      if (url.startsWith("/api/user")) accessToken = cookies?.useraccessTokenName;
-      else if (url.startsWith("/api/agency")) accessToken = cookies?.agencyaccessTokenName;
-      else if (url.startsWith("/api/admin")) accessToken = cookies?.adminaccessTokenName;
-      else if (url.startsWith("/api/hub")) accessToken = cookies?.hubaccessTokenName;
-      else if (url.startsWith("/api/worker")) accessToken = cookies?.workeraccessTokenName;
+      if (url.startsWith("/api/user")) accessToken = tokenMap.user;
+      else if (url.startsWith("/api/agency")) accessToken = tokenMap.agency;
+      else if (url.startsWith("/api/admin")) accessToken = tokenMap.admin;
+      else if (url.startsWith("/api/hub")) accessToken = tokenMap.hub;
+      else if (url.startsWith("/api/worker")) accessToken = tokenMap.worker;
+
+      // fallback
+      if (!accessToken) {
+        accessToken = Object.values(tokenMap).find(Boolean);
+      }
 
 
 

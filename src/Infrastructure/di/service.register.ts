@@ -25,6 +25,8 @@ import { IHubShipmentAssignmentService } from "@/Application/interfaces/services
 import { HubShipmentAssignmentService } from "../services/Logistics/HubShipmentAssignment.service";
 import { IBookingIdGeneratorService } from "@/Application/interfaces/services_Interfaces/IBookingIdGeneratorService";
 import { BookingIdGeneratorService } from "../services/BookingIdGenerator.service";
+import { IMessageSocketService } from "@/Application/interfaces/services_Interfaces/Chat/IMessageSocketService";
+import { SocketService } from "../services/Chat/Socket.service";
 
 export class ServiceRegistory {
     static registerServices(): void {
@@ -79,6 +81,10 @@ export class ServiceRegistory {
 
         container.register<IBookingIdGeneratorService>("IBookingIdGeneratorService", {
             useClass: BookingIdGeneratorService
+        })
+
+        container.register<IMessageSocketService>("IMessageSocketService", {
+            useClass: SocketService
         })
     }
 }

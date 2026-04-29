@@ -8,6 +8,7 @@ import logger from "./Infrastructure/logger/logger";
 
 import { bootstrapPricingPolicies } from "./Infrastructure/bootstrap/pricingPolicy.bootstrap";
 import { PricingPolicyRepository } from "./Infrastructure/repositories/Admin/PricingPolicyRepository";
+import { initSocket } from "./Infrastructure/services/Chat/socket.config";
 
 dotenv.config();
 
@@ -23,6 +24,9 @@ async function startServer() {
         logger.info("Pricing policies bootstrap completed");
 
         const server = createServer(app);
+
+        initSocket(server);
+
         server.listen(port, () => {
             logger.info(`Server running at http://localhost:${port}`);
         });

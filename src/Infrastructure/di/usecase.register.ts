@@ -206,6 +206,12 @@ import { GetTravelerTrackingUsecase } from "@/Application/useCase/Logistics/Trac
 import { IGetTravelerTrackingUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/Tracking/IGetTravelerTrackingUsecase";
 import { IGetTrackingUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/Tracking/IGetTrackingUsecase";
 import { GetTrackingUsecase } from "@/Application/useCase/Logistics/Tracking/GetTracking.usecase";
+import { IGetOrCreateChatUseCase } from "@/Application/interfaces/useCase_Interfaces/Chat/IGetOrCreateChatUseCase";
+import { GetOrCreateChatUseCase } from "@/Application/useCase/Chat/GetOrCreateChat.usecase";
+import { IGetMessagesUsecase } from "@/Application/interfaces/useCase_Interfaces/Chat/IGetMessagesUsecase";
+import { GetMessagesUsecase } from "@/Application/useCase/Chat/GetMessages.usecase";
+import { ISendMessageUseCase } from "@/Application/interfaces/useCase_Interfaces/Chat/ISendMessageUseCase";
+import { SendMessageUseCase } from "@/Application/useCase/Chat/SendMessage.usecase";
 
 
 
@@ -634,5 +640,17 @@ export class UsecaseRegistery {
         container.register<IGetTrackingUsecase>("IGetTrackingUsecase", {
             useClass: GetTrackingUsecase
         })
+
+        container.register<IGetOrCreateChatUseCase>("IGetOrCreateChatUseCase", {
+            useClass: GetOrCreateChatUseCase
+        });
+
+        container.register<IGetMessagesUsecase>("IGetMessagesUsecase", {
+            useClass: GetMessagesUsecase
+        });
+
+        container.register<ISendMessageUseCase>("ISendMessageUseCase", {
+            useClass: SendMessageUseCase
+        });
     }
 }

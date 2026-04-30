@@ -41,4 +41,11 @@ export interface IHubShipmentRepository extends IBaseRepository<HubShipment> {
     ): Promise<HubShipmentPaginatedData>;
 
     findByIds(ids: string[], session?: ClientSession): Promise<HubShipment[]>;
+
+    findActiveByWorker(workerId: string): Promise<HubShipment | null>;
+
+    countCompleted(workerId: string): Promise<number>;
+
+    countToday(workerId: string, date: Date): Promise<number>;
+
 }

@@ -1,10 +1,10 @@
-// import { hubWalletController, hubWorkerController } from "../../Infrastructure/di/resolver"
 import { Role } from "@/Domain/Enums/Roles"
 import { workerWalletController } from "../../Infrastructure/di/resolver"
 import { authenticate } from "../middlewares/AuthMiddleware/authenticate.middleware"
 import { asyncHandler } from "../middlewares/ErrorHandlers/asyncHandler"
 import { BaseRoute } from "./base.route"
 import { WorkerShipmentRoute } from "./Worker/workerShipment.route"
+import { WrokerDashboardRoute } from "./Worker/workerDashboard.route"
 
 export class WrokerRoute extends BaseRoute {
     constructor() {
@@ -17,5 +17,6 @@ export class WrokerRoute extends BaseRoute {
         this.router.post('/wallet/withdraw', authenticate([Role.WORKER]), asyncHandler(workerWalletController.withdrawMoney))
 
         this.router.use(new WorkerShipmentRoute().router);
+        this.router.use(new WrokerDashboardRoute().router);
     }
 }

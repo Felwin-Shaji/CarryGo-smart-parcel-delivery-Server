@@ -284,6 +284,42 @@ export class HubShipmentRepository implements IHubShipmentRepository {
         return docs.map((doc) => this.toDomain(doc));
     }
 
+    async findActiveByWorker(workerId: string): Promise<HubShipment | null> {
+
+        const doc = await HubShipmentModel.findOne({
+            assignedWorkerId: workerId,
+            status: { $in: ["PENDING", "LOADING", "DISPATCHED", "ARRIVED"] }
+        });
+
+        if (!doc) return null;
+
+        return this.toDomain(doc);
+    }
+
+    async countCompleted(workerId: string): Promise<number> {
+        return await HubShipmentModel.countDocuments({
+            assignedWorkerId: workerId,
+            status: "COMPLETED",
+        });
+    };
+
+    async countToday(workerId: string, date: Date): Promise<number> {
+
+        const startOfDay = new Date(date);
+        startOfDay.setHours(0, 0, 0, 0);
+
+        const endOfDay = new Date(date);
+        endOfDay.setHours(23, 59, 59, 999);
+
+        return await HubShipmentModel.countDocuments({
+            assignedWorkerId: workerId,
+            createdAt: {
+                $gte: startOfDay,
+                $lte: endOfDay,
+            },
+        });
+    };
+
     private toDomain(doc: HubShipmentDocument): HubShipment {
         return new HubShipment(
             doc._id.toString(),

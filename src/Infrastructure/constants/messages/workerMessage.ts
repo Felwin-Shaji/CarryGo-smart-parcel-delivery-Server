@@ -24,13 +24,15 @@ export const WORKER_MESSAGES = {
   SELFIE_UPLOAD_FAILED: "Selfie upload failed",
   NOTHING_TO_UPDATE: "No changes provided for resubmission",
   KYC_FOUNDED: "Worker kyc fetched",
-  ALREADY_APPROVERD:"kyc already approver",
-  ALREADY_REJECTED:"Rejection reason is required",
-  KYC_UPDATED:"worker kyc updated",
+  ALREADY_APPROVERD: "kyc already approver",
+  ALREADY_REJECTED: "Rejection reason is required",
+  KYC_UPDATED: "worker kyc updated",
 
-  WORKER_SHIPMENTS_FETCH_SUCCESS:"Worker shipments fetched successfully",
-  SHIPMENT_DETAILS_FETCH_SUCCESS:"Worker shipment details fetched successfully",
-  SHIPMENT_NOT_FOUND:"Shipment not found",
-  SHIPMENT_STATUS_UPDATED:"Shipment status updated successfully",
-  PARCELS_STATUS_UPDATED:"Parcels status updated successfully"
+  WORKER_SHIPMENTS_FETCH_SUCCESS: "Worker shipments fetched successfully",
+  SHIPMENT_DETAILS_FETCH_SUCCESS: "Worker shipment details fetched successfully",
+  SHIPMENT_NOT_FOUND: "Shipment not found",
+  SHIPMENT_STATUS_UPDATED: "Shipment status updated successfully",
+  PARCELS_STATUS_UPDATED: "Parcels status updated successfully",
+  PARCELS_FETCHED: "workers parcels fetched",
+  DASHBOARD_FETCHED: "Worker Dashboard fetched."
 } as const;

@@ -212,6 +212,12 @@ import { IGetMessagesUsecase } from "@/Application/interfaces/useCase_Interfaces
 import { GetMessagesUsecase } from "@/Application/useCase/Chat/GetMessages.usecase";
 import { ISendMessageUseCase } from "@/Application/interfaces/useCase_Interfaces/Chat/ISendMessageUseCase";
 import { SendMessageUseCase } from "@/Application/useCase/Chat/SendMessage.usecase";
+import { IGetWorkerParcelsUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerParcelsUseCase";
+import { GetWorkerParcelsUseCase } from "@/Application/useCase/Worker/GetWorkerParcels.usecase";
+import { IGetWorkerDashboardUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerDashboardUseCase";
+import { GetWorkerDashboardUseCase } from "@/Application/useCase/Worker/GetWorkerDashboard.usecase";
+import { IGetWorkerGraphUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerGraphUseCase";
+import { GetWorkerGraphUseCase } from "@/Application/useCase/Worker/GetWorkerGraph.usecase";
 
 
 
@@ -651,6 +657,18 @@ export class UsecaseRegistery {
 
         container.register<ISendMessageUseCase>("ISendMessageUseCase", {
             useClass: SendMessageUseCase
+        });
+
+        container.register<IGetWorkerParcelsUseCase>("IGetWorkerParcelsUseCase", {
+            useClass: GetWorkerParcelsUseCase
+        });
+
+        container.register<IGetWorkerDashboardUseCase>("IGetWorkerDashboardUseCase", {
+            useClass: GetWorkerDashboardUseCase
+        });
+
+        container.register<IGetWorkerGraphUseCase>("IGetWorkerGraphUseCase", {
+            useClass: GetWorkerGraphUseCase
         });
     }
 }

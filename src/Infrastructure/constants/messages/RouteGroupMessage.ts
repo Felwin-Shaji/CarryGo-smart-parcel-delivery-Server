@@ -37,7 +37,9 @@ export const SHIPMENT_PARCEL_MESSAGE = {
     BULK_UPDATE_FAILED: "Failed to bulk update shipment parcels",
     INVALID_PARCELS: "One or more parcel IDs are invalid for the given shipment",
     INVALID_FLOW: "One or more parcels cannot be updated to the requested status due to invalid status flow",
-    IDs_MISSING:"parcel Id , booking Id, booking tracking Id missing"
+    IDs_MISSING: "parcel Id , booking Id, booking tracking Id missing",
+
+    INVALID_PAGINATION_VALUES: "Invalid pagination values"
 } as const
 
 export const HUB_SHIPMENT_MESSAGE = {

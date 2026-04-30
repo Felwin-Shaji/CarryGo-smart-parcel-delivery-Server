@@ -4,13 +4,20 @@ import { IParcelRouteLegRepository } from "@/Application/interfaces/repositories
 import { IParcelRouteRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelRouteRepository";
 import { IShipmentParcelRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IShipmentParcelRepository";
 import { IBookingRepository } from "@/Application/interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
+import { ITransactionRepository } from "@/Application/interfaces/repositories_interfaces/walletRepositories_Interfaces/ITransactionRepository";
+import { IWalletRepository } from "@/Application/interfaces/repositories_interfaces/walletRepositories_Interfaces/IWalletRepository";
 import { IHubShipmentAssignmentService } from "@/Application/interfaces/services_Interfaces/IHubShipmentAssignmentService";
 import { ICreateHubShipmentOutForDeliveryUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/ICreateHubShipmentOutForDeliveryUsecase";
 import { IBulkUpdateShipmentParcelUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IBulkUpdateShipmentParcelUsecase";
 import { ParcelMovementMapper } from "@/Application/Mappers/Logistics/ParcelMovementMapper";
+import { TransactionMapper } from "@/Application/Mappers/Wallet/transactionMapper";
+import { Booking } from "@/Domain/Entities/Booking/Booking";
 import { ShipmentParcelStatus } from "@/Domain/Entities/Logistics/ShipmentParcel";
+import { Role } from "@/Domain/Enums/Roles";
 import { AppError } from "@/Domain/utils/customError";
+import { BOOKING_MESSAGE } from "@/Infrastructure/constants/messages/bookingMessages";
 import { SHIPMENT_PARCEL_MESSAGE } from "@/Infrastructure/constants/messages/RouteGroupMessage";
+import { WALLET_MESSAGES } from "@/Infrastructure/constants/messages/walletMessages";
 import { WORKER_MESSAGES } from "@/Infrastructure/constants/messages/workerMessage";
 import { STATUS } from "@/Infrastructure/constants/statusCodes";
 import { BookingStatusType } from "@/Infrastructure/Types/types";
@@ -35,8 +42,11 @@ export class BulkUpdateShipmentParcelUsecase implements IBulkUpdateShipmentParce
         @inject("IParcelMovementRepository") private _parcelMovementRepository: IParcelMovementRepository,
 
         @inject("ICreateHubShipmentOutForDeliveryUsecase") private _createHubShipmentOutForDeliveryUsecase: ICreateHubShipmentOutForDeliveryUsecase,
+        @inject("IHubShipmentAssignmentService") private _hubShipmentAssignmentService: IHubShipmentAssignmentService,
 
-        @inject("IHubShipmentAssignmentService") private _hubShipmentAssignmentService: IHubShipmentAssignmentService
+        @inject("IWalletRepository") private readonly _walletRepo: IWalletRepository,
+        @inject("ITransactionRepository") private readonly _transactionRepo: ITransactionRepository,
+
     ) { };
 
     async execute(shipmentId: string, parcelIds: string[], status: ShipmentParcelStatus): Promise<void> {
@@ -87,6 +97,16 @@ export class BulkUpdateShipmentParcelUsecase implements IBulkUpdateShipmentParce
 
                     if (bookingStatus) {
                         await this._bookingRepo.updateStatus(parcel.bookingId, bookingStatus, session);
+                        if (shipment.type === "OUT_FOR_DELIVERY" && bookingStatus == "DELIVERED") {
+
+                            const booking = await this._bookingRepo.getBookingById(parcel.bookingId)
+
+                            if (!booking.partnerSnapshot?.partnerId) {
+                                throw new AppError(BOOKING_MESSAGE.PARTNER_ID_MISSING, STATUS.NOT_FOUND)
+                            }
+
+                            await this.handleSettlement(booking, booking.partnerSnapshot?.partnerId)
+                        }
                     }
 
                     /* -------- PARCELMOVEMENT UPDATE ------- */
@@ -228,5 +248,73 @@ export class BulkUpdateShipmentParcelUsecase implements IBulkUpdateShipmentParce
         }
 
 
+    }
+
+    private async handleSettlement(booking: Booking, userId: string) {
+        const session = await mongoose.startSession();
+
+
+        try {
+            session.startTransaction();
+
+            const agencyWallet = await this._walletRepo.findByOwner(Role.AGENCY, userId);
+            if (!agencyWallet) throw new AppError(WALLET_MESSAGES.WALLET_NOT_FOUND, STATUS.NOT_FOUND)
+
+            const adminWallet = await this._walletRepo.getAdminWallet();
+            if (!adminWallet) throw new AppError("Admin wallet not found");
+
+            const totalAmount = booking.pricing.totalAmount;
+            const commission = booking.pricing.platformFee;
+            const agencyAmount = totalAmount - commission;
+
+            // Step 1: release FULL amount from admin hold
+            if (adminWallet.lockedBalance < totalAmount) {
+                throw new AppError("Admin locked balance insufficient");
+            };
+            adminWallet.release(totalAmount);
+            const adminReleaseTx = TransactionMapper.createRelease(
+                adminWallet.id!,
+                totalAmount,
+                adminWallet.balance,
+                { bookingId: booking.id }
+            );
+
+            //  Step 2: admin keeps commission
+            adminWallet.debit(agencyAmount);
+            const adminDebitTx = TransactionMapper.createDebit(
+                adminWallet.id!,
+                agencyAmount,
+                "SETTLEMENT",
+                adminWallet.balance,
+                { bookingId: booking.id }
+            );
+
+            // Step 3: pay traveler
+            agencyWallet.credit(agencyAmount);
+            const travelerCreditTx = TransactionMapper.createCredit(
+                agencyWallet.id!,
+                agencyAmount,
+                "PAYOUT",
+                agencyWallet.balance,
+                { bookingId: booking.id }
+            );
+
+            // Save both
+            await this._walletRepo.update(agencyWallet, session);
+            await this._walletRepo.update(adminWallet, session);
+
+            await this._transactionRepo.create(adminReleaseTx, session);
+            await this._transactionRepo.create(adminDebitTx, session);
+            await this._transactionRepo.create(travelerCreditTx, session);
+
+            await session.commitTransaction();
+
+
+        } catch (err) {
+            await session.abortTransaction();
+            throw err;
+        } finally {
+            session.endSession();
+        }
     }
 }

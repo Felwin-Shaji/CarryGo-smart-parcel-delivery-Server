@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { AppError } from "../../../Domain/utils/customError";
@@ -8,7 +8,6 @@ import { IGetWalletOverviewUseCase } from "../../../Application/interfaces/useCa
 import { Role } from "../../../Domain/Enums/Roles";
 import { WALLET_MESSAGES } from "../../../Infrastructure/constants/messages/walletMessages";
 import { ICreateWalletTopupOrderUseCase } from "../../../Application/interfaces/useCase_Interfaces/Wallet/ICreateWalletTopupOrderUseCase";
-import { IWalletTopupSuccessUseCase } from "../../../Application/interfaces/useCase_Interfaces/Wallet/IWalletTopupSuccessUseCase";
 import { IAdminWalletController } from "../../Interface/Controllers_Interfaces/Admin_Interfaces/IAdminWalletController";
 import { IWithdrawWalletMoneyUseCase } from "../../../Application/interfaces/useCase_Interfaces/Wallet/IWithdrawWalletMoneyUseCase";
 
@@ -17,65 +16,52 @@ export class AdminWalletController implements IAdminWalletController {
     constructor(
         @inject("IGetWalletOverviewUseCase") private _getWalletOverviewUseCase: IGetWalletOverviewUseCase,
         @inject("ICreateWalletTopupOrderUseCase") private _createWalletTopupOrderUseCase: ICreateWalletTopupOrderUseCase,
-        @inject("IWalletTopupSuccessUseCase") private _walletTopupSuccessUseCase: IWalletTopupSuccessUseCase,
         @inject("IWithdrawWalletMoneyUseCase") private _withdrawWalletMoneyUseCase: IWithdrawWalletMoneyUseCase,
     ) { }
-    getAdminWalletOverview = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
+    getAdminWalletOverview = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const userId = req.user?.id;
-            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
+        const userId = req.user?.id;
+        if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
 
-            const response = await this._getWalletOverviewUseCase.execute({ ownerId: userId, ownerType: Role.ADMIN })
+        const response = await this._getWalletOverviewUseCase.execute({ ownerId: userId, ownerType: Role.ADMIN })
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    WALLET_MESSAGES.GET_WALLET_SUCCESS,
-                    response
-                )
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                WALLET_MESSAGES.GET_WALLET_SUCCESS,
+                response
             )
+        )
 
-        } catch (error) {
-            next(error)
-        }
     };
 
-    createAddMoneyOrder = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const userId = req.user?.id;
-            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
+    createAddMoneyOrder = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const amount = req.body.amount
-            const order = await this._createWalletTopupOrderUseCase.execute(Role.ADMIN, userId, Number(amount));
+        const userId = req.user?.id;
+        if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    WALLET_MESSAGES.ORDER_CREATED,
-                    order
-                )
+        const amount = req.body.amount
+        const order = await this._createWalletTopupOrderUseCase.execute(Role.ADMIN, userId, Number(amount));
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                WALLET_MESSAGES.ORDER_CREATED,
+                order
             )
-
-        } catch (error) {
-            next(error)
-        }
+        )
     }
 
-    withdrawMoney = async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const userId = req.user?.id;
-            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
-            const amount = Number(req.body.amount);
+    withdrawMoney = async (req: Request, res: Response) => {
 
-            const result = await this._withdrawWalletMoneyUseCase.execute(Role.ADMIN, userId, amount);
+        const userId = req.user?.id;
+        if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
+        const amount = Number(req.body.amount);
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    WALLET_MESSAGES.WITHDRAWED_SUCCESS,
-                    result)
-            );
+        const result = await this._withdrawWalletMoneyUseCase.execute(Role.ADMIN, userId, amount);
 
-        } catch (error) {
-            next(error)
-        }
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                WALLET_MESSAGES.WITHDRAWED_SUCCESS,
+                result)
+        );
     }
 }

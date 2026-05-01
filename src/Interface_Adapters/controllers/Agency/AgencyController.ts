@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { IAgencyController } from "../../Interface/Controllers_Interfaces/Agency_Interfases/agency.controller";
 import { inject, injectable } from "tsyringe";
 import { IUploadAgencyKycFilesUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/UploadAgencyKycFilesUseCase";
@@ -21,66 +21,51 @@ export class AgencyController implements IAgencyController {
         @inject("IUpdateAgencyKycStatusUseCase") private _updateStatus: IUpdateAgencyKycStatusUseCase,
 
         @inject("IGetAgencyWithKYCUseCase") private _getAgencyWithKYCUseCase: IGetAgencyWithKYCUseCase,
-
         @inject("IRsubmitAgencyKycUseCase") private _rsubmitAgencyKycUseCase: IRsubmitAgencyKycUseCase,
 
     ) { }
 
-    submitKYC = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => { //////////////////////
-        try {
+    submitKYC = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const dto = req.body as AgencyKYC_DTO
-            const files = req.files as AgencyKYCFileFields;
-            const uploaded = await this._uploadFiles.execute(files);
+        const dto = req.body as AgencyKYC_DTO
+        const files = req.files as AgencyKYCFileFields;
+        const uploaded = await this._uploadFiles.execute(files);
 
-            dto.status = "REGISTERED";
+        dto.status = "REGISTERED";
 
-            await this._saveKYC.execute(dto, uploaded);
+        await this._saveKYC.execute(dto, uploaded);
 
-            const agencyStauts = await this._updateStatus.execute(dto.id, dto);
+        const agencyStauts = await this._updateStatus.execute(dto.id, dto);
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(AGENCY_MESSAGES.KYC_SUBMITED, agencyStauts)
-            )
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(AGENCY_MESSAGES.KYC_SUBMITED, agencyStauts)
+        )
 
-        } catch (error) {
-            next(error);
-        }
     };
 
-    getReSubmitKyc = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => { //////////////////////
-        try {
-            const agencyId = req.params.id;
+    getReSubmitKyc = async (req: Request, res: Response): Promise<Response | void> => {
+        const agencyId = req.params.id;
 
-            if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
+        if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
 
-            const result = await this._getAgencyWithKYCUseCase.execute(agencyId);
+        const result = await this._getAgencyWithKYCUseCase.execute(agencyId);
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    AGENCY_MESSAGES.FETCH_AGENCY_WITH_KYC,
-                    result
-                )
-            );
-
-        } catch (error) {
-            next(error);
-        }
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                AGENCY_MESSAGES.FETCH_AGENCY_WITH_KYC,
+                result
+            )
+        );
     }
 
-    reSubmitKyc = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => { //////////////////////
-        try {
-            const dto = req.body as AgencyResubmitKycDTO
+    reSubmitKyc = async (req: Request, res: Response): Promise<Response | void> => {
 
-             await this._rsubmitAgencyKycUseCase.execute(dto);
+        const dto = req.body as AgencyResubmitKycDTO
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(AGENCY_MESSAGES.KYC_RESUBMITED)
-            )
-        
-        } catch (error) {
-            next(error);
-        }
+        await this._rsubmitAgencyKycUseCase.execute(dto);
 
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(AGENCY_MESSAGES.KYC_RESUBMITED)
+        )
     }
 }

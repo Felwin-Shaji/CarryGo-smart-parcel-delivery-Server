@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
 import { IAddressController } from "../../Interface/Controllers_Interfaces/User_interfaces/IAddressController";
 import { ICreateAddressFromLocationUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Address/ICreateAddressFromLocationUseCase";
@@ -23,92 +23,72 @@ export class AddressController implements IAddressController {
         @inject("ISetDefaultUserAddressUseCase") private setDefaultUserAddressUseCase: ISetDefaultUserAddressUseCase
     ) { };
 
-    reverseGeocode = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
+    reverseGeocode = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const lat = parseFloat(req.query.lat as string);
-            const lon = parseFloat(req.query.lon as string);
+        const lat = parseFloat(req.query.lat as string);
+        const lon = parseFloat(req.query.lon as string);
 
-            const addressData = await this._createAddressFromLocationUseCase.execute(lat, lon);
-            return res.status(STATUS.OK).json(ApiResponse.success(
-                ADDRESS_MESSAGES.ADDRESS_FETCHED,
-                addressData
-            ));
-
-        } catch (error) {
-            next(error);
-        };
+        const addressData = await this._createAddressFromLocationUseCase.execute(lat, lon);
+        return res.status(STATUS.OK).json(ApiResponse.success(
+            ADDRESS_MESSAGES.ADDRESS_FETCHED,
+            addressData
+        ));
     };
 
-    addUserAddress = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const dto = req.body as addUserAddressRequestDTO;
-            const userId = req.user?.id;
-            if (!userId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND)
+    addUserAddress = async (req: Request, res: Response): Promise<Response | void> => {
+        const dto = req.body as addUserAddressRequestDTO;
+        const userId = req.user?.id;
+        if (!userId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND)
 
-            const result = await this._addUserAddressUseCase.execute(userId, dto);
+        const result = await this._addUserAddressUseCase.execute(userId, dto);
 
-            return res.status(STATUS.OK).json(ApiResponse.success(
-                ADDRESS_MESSAGES.ADDRESS_CREATED,
-                result
-            ));
-        } catch (error) {
-            next(error);
-        };
+        return res.status(STATUS.OK).json(ApiResponse.success(
+            ADDRESS_MESSAGES.ADDRESS_CREATED,
+            result
+        ));
     };
 
-    getAddresses = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const userId = req.user?.id;
-            if (!userId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND)
+    getAddresses = async (req: Request, res: Response): Promise<Response | void> => {
+        const userId = req.user?.id;
+        if (!userId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND)
 
-            const addresses = await this.getUserAddressesUseCase.execute(userId);
+        const addresses = await this.getUserAddressesUseCase.execute(userId);
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(ADDRESS_MESSAGES.ADDRESSES_FETCHED, addresses)
-            );
-        } catch (err) {
-            next(err);
-        }
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(ADDRESS_MESSAGES.ADDRESSES_FETCHED, addresses)
+        );
     };
 
-    deleteAddress = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const userId = req.user?.id;
-            if (!userId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND)
+    deleteAddress = async (req: Request, res: Response): Promise<Response | void> => {
+        const userId = req.user?.id;
+        if (!userId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND)
 
-            const { addressId } = req.params;
-            if (!addressId) throw new AppError(ADDRESS_MESSAGES.ADDRESS_ID_REQUIRED, STATUS.BAD_REQUEST);
+        const { addressId } = req.params;
+        if (!addressId) throw new AppError(ADDRESS_MESSAGES.ADDRESS_ID_REQUIRED, STATUS.BAD_REQUEST);
 
 
-            await this.deleteUserAddressUseCase.execute(userId, addressId);
+        await this.deleteUserAddressUseCase.execute(userId, addressId);
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(ADDRESS_MESSAGES.ADDRESS_DELETED, STATUS.OK)
-            );
-        } catch (err) {
-            next(err);
-        }
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(ADDRESS_MESSAGES.ADDRESS_DELETED, STATUS.OK)
+        );
     };
 
-    setDefaultAddress = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const userId = req.user?.id;
-            if (!userId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND)
+    setDefaultAddress = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const { addressId } = req.params;
-            if (!addressId) throw new AppError(ADDRESS_MESSAGES.ADDRESS_ID_REQUIRED, STATUS.BAD_REQUEST);
+        const userId = req.user?.id;
+        if (!userId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND)
 
-            await this.setDefaultUserAddressUseCase.execute(
-                userId,
-                addressId
-            );
+        const { addressId } = req.params;
+        if (!addressId) throw new AppError(ADDRESS_MESSAGES.ADDRESS_ID_REQUIRED, STATUS.BAD_REQUEST);
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(ADDRESS_MESSAGES.DEFAULT_ADDRESS_SET, STATUS.OK)
-            );
-        } catch (error) {
-            next(error);
-        }
+        await this.setDefaultUserAddressUseCase.execute(
+            userId,
+            addressId
+        );
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(ADDRESS_MESSAGES.DEFAULT_ADDRESS_SET, STATUS.OK)
+        );
     };
 }

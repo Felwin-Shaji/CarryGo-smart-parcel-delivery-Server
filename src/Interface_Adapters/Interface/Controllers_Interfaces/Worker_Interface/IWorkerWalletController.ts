@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 
 export interface IWorkerWalletController {
-    getWorkerWalletOverview(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
-    createAddMoneyOrder(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
+    getWorkerWalletOverview(req: Request, res: Response): Promise<Response | void>;
+    createAddMoneyOrder(req: Request, res: Response): Promise<Response | void>;
 }

@@ -1,9 +1,7 @@
-import type { Response, Request,  NextFunction } from "express";
+import type { Response, Request } from "express";
 
-export interface IAgencyHubController{
-    addNewHubBasicInfo(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
-    addNewHub(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
-
-    getHubs(req: Request, res: Response, next: NextFunction): Promise<Response | void>
-
+export interface IAgencyHubController {
+    addNewHubBasicInfo(req: Request, res: Response): Promise<Response | void>;
+    addNewHub(req: Request, res: Response): Promise<Response | void>;
+    getHubs(req: Request, res: Response): Promise<Response | void>
 }

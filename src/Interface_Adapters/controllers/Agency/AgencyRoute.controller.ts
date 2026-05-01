@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { IAgencyRouteController } from "../../Interface/Controllers_Interfaces/Agency_Interfases/IAgencyRouteController";
 import { inject, injectable } from "tsyringe";
 import { CreateRouteGroupRequestDTO, RouteGroupFilterRequestDTO, RouteGroupPaginationRequestDTO } from "../../../Application/Dto/Agency/agencyRouteGroup.dto";
@@ -17,48 +17,39 @@ export class AgencyRouteController implements IAgencyRouteController {
         @inject("IGetPaginatedRouteGroupUseCase") private _getPaginatedRouteGroupUseCase: IGetPaginatedRouteGroupUseCase
     ) { }
 
-    createRouteGroup = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const dto = req.body as CreateRouteGroupRequestDTO
-            const agencyId = req.user?.id;
-            if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST)
+    createRouteGroup = async (req: Request, res: Response): Promise<Response | void> => {
+        const dto = req.body as CreateRouteGroupRequestDTO
+        const agencyId = req.user?.id;
+        if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST)
 
 
-            await this._createRouteGroupUseCase.execute(agencyId, dto);
+        await this._createRouteGroupUseCase.execute(agencyId, dto);
 
-            return res.status(STATUS.CREATED).json(
-                ApiResponse.success(
-                    ROUTE_GROUP_MESSAGE.CREATED
-                )
+        return res.status(STATUS.CREATED).json(
+            ApiResponse.success(
+                ROUTE_GROUP_MESSAGE.CREATED
             )
-
-        } catch (error) {
-            next(error)
-        }
+        )
     }
 
-    getPaginateRouteGroup = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const agencyId = req.user?.id;
-            if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
+    getPaginateRouteGroup = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const options: RouteGroupPaginationRequestDTO = {
-                page: parseInt(req.query.page as string) || 1,
-                limit: parseInt(req.query.limit as string) || 9,
-                filters: req.query.filter as RouteGroupFilterRequestDTO
-            }
+        const agencyId = req.user?.id;
+        if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
 
-            const result = await this._getPaginatedRouteGroupUseCase.execute(agencyId, options);
-
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    ROUTE_GROUP_MESSAGE.LISTED,
-                    result
-                )
-            )
-
-        } catch (error) {
-            next(error)
+        const options: RouteGroupPaginationRequestDTO = {
+            page: parseInt(req.query.page as string) || 1,
+            limit: parseInt(req.query.limit as string) || 9,
+            filters: req.query.filter as RouteGroupFilterRequestDTO
         }
+
+        const result = await this._getPaginatedRouteGroupUseCase.execute(agencyId, options);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                ROUTE_GROUP_MESSAGE.LISTED,
+                result
+            )
+        )
     }
 }

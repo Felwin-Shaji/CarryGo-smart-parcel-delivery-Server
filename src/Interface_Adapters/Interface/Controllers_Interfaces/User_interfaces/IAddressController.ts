@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 
 export interface IAddressController {
-    reverseGeocode(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
+    reverseGeocode(req: Request, res: Response): Promise<Response | void>;
 }

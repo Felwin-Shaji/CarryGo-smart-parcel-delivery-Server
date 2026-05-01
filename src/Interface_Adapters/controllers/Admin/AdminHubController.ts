@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import type { Response, Request, NextFunction } from "express";
+import type { Response, Request } from "express";
 import { IAdminHubController } from "../../Interface/Controllers_Interfaces/Admin_Interfaces/IAdminHubController";
 import { IGetHubOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IGetHubOverviewUseCase";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
@@ -19,59 +19,48 @@ export class AdminHubController implements IAdminHubController {
         @inject("IGetWorkerOverviewUseCase") private _getWorkerOverviewUseCase: IGetWorkerOverviewUseCase,
     ) { };
 
-    getHubById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const hubId = req.params.id as string;
+    getHubById = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const hubOverview = await this._getHubOverviewUseCase.execute(hubId);
+        const hubId = req.params.id as string;
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    HUB_MESSAGES.FETCH_SUCCESS,
-                    hubOverview
-                )
+        const hubOverview = await this._getHubOverviewUseCase.execute(hubId);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                HUB_MESSAGES.FETCH_SUCCESS,
+                hubOverview
             )
-        } catch (error) {
-            next(error)
-        }
+        );
     };
 
-    updateHubKyc = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
+    updateHubKyc = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const hubId = req.params?.id;
-            const dto = req.body as updateHubKycStatusDTO;
+        const hubId = req.params?.id;
+        const dto = req.body as updateHubKycStatusDTO;
 
-            if (!hubId) throw new AppError(HUB_MESSAGES.NOT_FOUND, STATUS.BAD_REQUEST)
+        if (!hubId) throw new AppError(HUB_MESSAGES.NOT_FOUND, STATUS.BAD_REQUEST)
 
-            await this._updateHubKycStatusUseCase.execute(hubId, dto)
+        await this._updateHubKycStatusUseCase.execute(hubId, dto)
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    HUB_MESSAGES.STATUS_UPDATED
-                )
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                HUB_MESSAGES.STATUS_UPDATED
             )
-
-        } catch (error) {
-            next(error)
-        }
+        );
     }
 
-    getHubWorkerById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const workerId = req.params.id;
-            if (!workerId) throw new AppError(WORKER_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
+    getHubWorkerById = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const worker = await this._getWorkerOverviewUseCase.execute(workerId);
+        const workerId = req.params.id;
+        if (!workerId) throw new AppError(WORKER_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    WORKER_MESSAGES.OVERVIEW_FETCHED,
-                    worker
-                )
-            );
-        } catch (error) {
-            next(error)
-        }
+        const worker = await this._getWorkerOverviewUseCase.execute(workerId);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                WORKER_MESSAGES.OVERVIEW_FETCHED,
+                worker
+            )
+        );
     }
 }

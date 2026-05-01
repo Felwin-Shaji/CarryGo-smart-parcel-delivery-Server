@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
 import { AgencyResetPasswordRequestDTO, EditAgencyProfileRequestDto } from "../../../Application/Dto/Agency/agencyProfile.dto";
 import { AppError } from "../../../Domain/utils/customError";
@@ -19,62 +19,50 @@ export class AgencyProfileController implements IAgencyProfileController {
         @inject("IResetAgencyPasswordUseCase") private _agencyResetAgencyPassword: IResetAgencyPasswordUseCase,
     ) { }
 
-    getAgencyProfile = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const agencyId = req.user?.id;
-            if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST)
+    getAgencyProfile = async (req: Request, res: Response): Promise<Response | void> => {
+        const agencyId = req.user?.id;
+        if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST)
 
-            const agencyProfileData = await this._getAgencyProfileUseCase.execute(agencyId)
+        const agencyProfileData = await this._getAgencyProfileUseCase.execute(agencyId)
 
-            return res.status(200).json(
-                ApiResponse.success(
-                    AGENCY_MESSAGES.PROFILE_FETCHED,
-                    agencyProfileData
-                ))
-        }
-        catch (error) {
-            next(error);
-        }
+        return res.status(200).json(
+            ApiResponse.success(
+                AGENCY_MESSAGES.PROFILE_FETCHED,
+                agencyProfileData
+            )
+        );
     }
 
-    editAgencyProfile = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const dto = req.body as EditAgencyProfileRequestDto;
+    editAgencyProfile = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const agencyId = req.user?.id;
-            if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST)
+        const dto = req.body as EditAgencyProfileRequestDto;
 
-            const updatedAgencyProfile = await this._editAgencyProfileUseCase.execute(agencyId, dto);
+        const agencyId = req.user?.id;
+        if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST)
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    AGENCY_MESSAGES.PROFILE_UPDATED,
-                    updatedAgencyProfile
-                )
+        const updatedAgencyProfile = await this._editAgencyProfileUseCase.execute(agencyId, dto);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                AGENCY_MESSAGES.PROFILE_UPDATED,
+                updatedAgencyProfile
             )
-        }
-        catch (error) {
-            next(error)
-        }
+        )
     };
 
-    resetAgencyPassword = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const dto = req.body as AgencyResetPasswordRequestDTO;
+    resetAgencyPassword = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const agencyId = req.user?.id;
-            if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
+        const dto = req.body as AgencyResetPasswordRequestDTO;
 
-            await this._agencyResetAgencyPassword.execute(agencyId, dto);
+        const agencyId = req.user?.id;
+        if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    AGENCY_MESSAGES.PASSWORD_RESET
-                )
+        await this._agencyResetAgencyPassword.execute(agencyId, dto);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                AGENCY_MESSAGES.PASSWORD_RESET
             )
-        } catch (error) {
-            next(error)
-        }
+        )
     }
-
 }

@@ -1,6 +1,6 @@
-import type { Response, Request,  NextFunction } from "express";
+import type { Response, Request } from "express";
 
 export interface IAdminController {
-    getAgencies(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
-    getUsers(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
+    getAgencies(req: Request, res: Response): Promise<Response | void>;
+    getUsers(req: Request, res: Response): Promise<Response | void>;
 }

@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
 import { IAdminPricingPolicyController } from "../../Interface/Controllers_Interfaces/Admin_Interfaces/adminPricingPolicy.controller";
 import { IGetPricingUseCase } from "../../../Application/interfaces/useCase_Interfaces/Princing/getPricing.usecase";
@@ -17,74 +17,55 @@ export class AdminPricingPolicyController implements IAdminPricingPolicyControll
         @inject("ICreateAdminPricingPolicyUseCase") private _createAdminPricingPolicyUseCase: ICreateAdminPricingPolicyUseCase,
         @inject("ICreateAdminTravelerPricingUsecase") private _createAdminTravelerPricingUsecase: ICreateAdminTravelerPricingUsecase,
     ) { }
-    getAdminAgencyPricing = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    getAdminAgencyPricing = async (req: Request, res: Response): Promise<Response | void> => {
 
-        try {
-            const pricing = await this._getPricingUseCase.execute(DeliveryPartner.AGENCY);
+        const pricing = await this._getPricingUseCase.execute(DeliveryPartner.AGENCY);
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    PRICING_POLICY_MESSAGE.FETCH_PRICING_POLICY_SUCCESS,
-                    pricing
-                )
-            );
-
-        } catch (error) {
-            next(error);
-        };
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                PRICING_POLICY_MESSAGE.FETCH_PRICING_POLICY_SUCCESS,
+                pricing
+            )
+        );
     }
 
-    createAdminAgencyPricing = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const dto = req.body as AdminPricingRequestDTO;
+    createAdminAgencyPricing = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const newPolicy = await this._createAdminPricingPolicyUseCase.execute(dto);
+        const dto = req.body as AdminPricingRequestDTO;
 
-            return res.status(STATUS.CREATED).json(
-                ApiResponse.success(
-                    PRICING_POLICY_MESSAGE.CREATE_PRICING_POLICY_SUCCESS,
-                    newPolicy
-                )
-            );
+        const newPolicy = await this._createAdminPricingPolicyUseCase.execute(dto);
 
-        } catch (error) {
-            next(error);
-        }
+        return res.status(STATUS.CREATED).json(
+            ApiResponse.success(
+                PRICING_POLICY_MESSAGE.CREATE_PRICING_POLICY_SUCCESS,
+                newPolicy
+            )
+        );
     }
 
-    getAdminTravelerPricing = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
+    getAdminTravelerPricing = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const pricing = await this._getPricingUseCase.execute(DeliveryPartner.TRAVELER);
+        const pricing = await this._getPricingUseCase.execute(DeliveryPartner.TRAVELER);
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    PRICING_POLICY_MESSAGE.FETCH_PRICING_POLICY_SUCCESS,
-                    pricing
-                )
-            );
-
-        } catch (error) {
-            next(error)
-        }
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                PRICING_POLICY_MESSAGE.FETCH_PRICING_POLICY_SUCCESS,
+                pricing
+            )
+        );
     };
 
-    createAdminTravelerPricing = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
+    createAdminTravelerPricing = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const dto = req.body as AdminTravelerPricingRequestDTO
+        const dto = req.body as AdminTravelerPricingRequestDTO
 
-            const newPolicy = await this._createAdminTravelerPricingUsecase.execute(dto);
+        const newPolicy = await this._createAdminTravelerPricingUsecase.execute(dto);
 
-            return res.status(STATUS.CREATED).json(
-                ApiResponse.success(
-                    PRICING_POLICY_MESSAGE.CREATE_PRICING_POLICY_SUCCESS,
-                    newPolicy
-                )
-            );
-
-        } catch (error) {
-            next(error)
-        }
+        return res.status(STATUS.CREATED).json(
+            ApiResponse.success(
+                PRICING_POLICY_MESSAGE.CREATE_PRICING_POLICY_SUCCESS,
+                newPolicy
+            )
+        );
     }
 };

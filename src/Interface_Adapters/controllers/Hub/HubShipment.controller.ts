@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { IGetShipmentsUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/IGetShipmentsUsecase";
 import { inject, injectable } from "tsyringe";
 import { AppError } from "@/Domain/utils/customError";
@@ -19,89 +19,71 @@ export class HubShipmentController {
         @inject("IUpdateHubShipmentUsecase") private _updateHubShipmentUsecase: IUpdateHubShipmentUsecase
     ) { }
 
-    getShipmentById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const hubId = req.user?.id;
-            if (!hubId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND);
+    getShipmentById = async (req: Request, res: Response): Promise<Response | void> => {
+        const hubId = req.user?.id;
+        if (!hubId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND);
 
-            const dto: GetShipmentsDTO = {
-                type: req.query.type?.toString() as ShipmentType,
-                status: req.query.status?.toString() as ShipmentStatus,
-                workerId: req.query.workerId?.toString() || "",
-                search: req.query.search?.toString() || "",
-                fromDate: req.query.fromDate?.toString() || "",
-                toDate: req.query.toDate?.toString() || "",
-                page: Number(req.query.page) || 1,
-                limit: Number(req.query.limit) || 10,
-            };
+        const dto: GetShipmentsDTO = {
+            type: req.query.type?.toString() as ShipmentType,
+            status: req.query.status?.toString() as ShipmentStatus,
+            workerId: req.query.workerId?.toString() || "",
+            search: req.query.search?.toString() || "",
+            fromDate: req.query.fromDate?.toString() || "",
+            toDate: req.query.toDate?.toString() || "",
+            page: Number(req.query.page) || 1,
+            limit: Number(req.query.limit) || 10,
+        };
 
-            console.log(dto, 'ddddddddddddddddddddddddddddd')
+        const shipments = await this._getShipmentsUsecase.execute(
+            hubId,
+            dto
+        );
 
-            const shipments = await this._getShipmentsUsecase.execute(
-                hubId,
-                dto
-            );
+        console.log(shipments, 'shipmentsshipmentsshipments')
 
-            console.log(shipments, 'shipmentsshipmentsshipments')
-
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    HUB_MESSAGES.SHIPMENT_FETCH_SUCCESS,
-                    shipments
-                )
-            );
-
-        } catch (error) {
-            next(error)
-        }
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                HUB_MESSAGES.SHIPMENT_FETCH_SUCCESS,
+                shipments
+            )
+        );
     }
 
-    getShipmentDetails = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const shipmentId = req.params.id;
-            if (!shipmentId) throw new AppError(HUB_MESSAGES.LOGIDTICS_ID_MISSING)
+    getShipmentDetails = async (req: Request, res: Response): Promise<Response | void> => {
+        const shipmentId = req.params.id;
+        if (!shipmentId) throw new AppError(HUB_MESSAGES.LOGIDTICS_ID_MISSING)
 
-            const page = Number(req.query.page) || 1;
-            const limit = Number(req.query.limit) || 10;
+        const page = Number(req.query.page) || 1;
+        const limit = Number(req.query.limit) || 10;
 
-            const shipmentParcel = await this._getShipmentDetailsUsecase.execute(
-                shipmentId,
-                page,
-                limit
-            );
+        const shipmentParcel = await this._getShipmentDetailsUsecase.execute(
+            shipmentId,
+            page,
+            limit
+        );
 
-            console.log(shipmentParcel, 'shipmentParcelshipmentParcelshipmentParcel')
+        console.log(shipmentParcel, 'shipmentParcelshipmentParcelshipmentParcel')
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    HUB_MESSAGES.SHIPMENT_PARCEL_FETCH_SUCCESS,
-                    shipmentParcel
-                )
-            );
-        } catch (error) {
-            next(error)
-        }
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                HUB_MESSAGES.SHIPMENT_PARCEL_FETCH_SUCCESS,
+                shipmentParcel
+            )
+        );
     }
 
-    updateShipmentDetails = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            console.log(req.body, 'updateShipmentDetailsupdateShipmentDetailsupdateShipmentDetails');
+    updateShipmentDetails = async (req: Request, res: Response): Promise<Response | void> => {
+        const shipmentId = req.params.id;
+        if (!shipmentId) throw new AppError(HUB_MESSAGES.LOGIDTICS_ID_MISSING)
 
-            const shipmentId = req.params.id;
-            if (!shipmentId) throw new AppError(HUB_MESSAGES.LOGIDTICS_ID_MISSING)
+        const dto = req.body as UpdateHubShipmentDTO
 
-            const dto = req.body as UpdateHubShipmentDTO
+        await this._updateHubShipmentUsecase.execute(shipmentId, dto);
 
-            await this._updateHubShipmentUsecase.execute(shipmentId, dto);
-
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    HUB_MESSAGES.SHIPMENT_DETAILS_UPDATED,
-                )
-            );
-
-        } catch (error) {
-            next(error)
-        }
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                HUB_MESSAGES.SHIPMENT_DETAILS_UPDATED,
+            )
+        );
     }
 }

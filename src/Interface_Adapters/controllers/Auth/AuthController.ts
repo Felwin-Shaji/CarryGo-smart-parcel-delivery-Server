@@ -1,4 +1,4 @@
-import type { NextFunction, Request, Response } from "express";
+import type { Request, Response } from "express";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { inject, injectable } from "tsyringe";
 import type { IAuthController } from "../../Interface/Controllers_Interfaces/Auth_Interfases/auth.controller";
@@ -46,207 +46,172 @@ export class AuthController implements IAuthController {
         @inject("IResetPasswordUseCase") private _resetPasswordUseCase: IResetPasswordUseCase,
     ) { };
 
-    sendOtp = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const dto = req.body as SendOtpDTO;
+    sendOtp = async (req: Request, res: Response): Promise<Response | void> => {
+        const dto = req.body as SendOtpDTO;
 
-            if (dto.isResend) {
-                const result = await this._resendOtpUseCase.execute(dto);
-
-                return res.status(STATUS.OK).json(
-                    ApiResponse.success(
-                        OTP_MESSAGES.OTP_RESENT,
-                        result
-                    )
-                );
-            }
-
-            const result = await this._sendOtpUseCase.execute(dto);
+        if (dto.isResend) {
+            const result = await this._resendOtpUseCase.execute(dto);
 
             return res.status(STATUS.OK).json(
                 ApiResponse.success(
-                    OTP_MESSAGES.OTP_SENT_SUCCESS,
+                    OTP_MESSAGES.OTP_RESENT,
                     result
                 )
             );
-        } catch (error) {
-            next(error);
         }
+
+        const result = await this._sendOtpUseCase.execute(dto);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                OTP_MESSAGES.OTP_SENT_SUCCESS,
+                result
+            )
+        );
+
     };
 
-    verifyOtp = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const { email, otp, role } = req.body;
+    verifyOtp = async (req: Request, res: Response): Promise<Response | void> => {
+        const { email, otp, role } = req.body;
 
-            const otpData = await this._verifyOtpUseCase.execute(otp, email);
+        const otpData = await this._verifyOtpUseCase.execute(otp, email);
 
-            const userData: UserDTO = {
-                name: otpData.name,
-                email: email,
-                mobile: otpData.mobile ?? null,
-                password: otpData.password ?? null,
-                role: otpData.role,
-            };
-
-            let registeredUser: User | RegisterAgencyResponseDTO;
-            if (role === Role.USER) registeredUser = await this._registerUserUseCase.execute(userData);
-            else if (role === Role.AGENCY) registeredUser = await this._registerAgencyUseCase.execute(userData);
-            else throw new AppError(AUTH_MESSAGES.ROLE_NOT_ALLOWED, STATUS.BAD_REQUEST);
-
-
-            const tokens = await this._generateTokenUseCase.execute(
-                registeredUser.id!,
-                registeredUser.email,
-                registeredUser.role,
-                registeredUser.tokenVersion
-            );
-
-            setAuthCookies(
-                res,
-                tokens.accessToken,
-                tokens.refreshToken,
-                `${role}accessTokenName`,
-                `${role}refreshTokenName`
-            )
-
-            const response = AuthMapper.ToSendVerifyOtpResponse(registeredUser.id!, registeredUser.name, email, role, registeredUser.kycStatus, tokens.accessToken);
-            return res.status(STATUS.CREATED).json(response);
-
-        } catch (error) {
-            next(error);
-        }
-    };
-
-    refreshToken = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const { role } = req.body
-            const refreshToken = req.cookies[`${role}refreshTokenName`];
-
-            if (!refreshToken) {
-                res.clearCookie(`${role}accessTokenName`, { httpOnly: true, sameSite: "strict", secure: true });
-                res.clearCookie(`${role}refreshTokenName`, { httpOnly: true, sameSite: "strict", secure: true });
-                throw new AppError(AUTH_MESSAGES.REFRESH_TOKEN_NOT_FOUND, STATUS.UNAUTHORIZED)
-            }
-
-            const tokens = await this._refreshTokenUseCase.execute(refreshToken);
-            setAuthCookies(
-                res,
-                tokens.accessToken,
-                tokens.refreshToken,
-                `${tokens.user?.role}accessTokenName`,
-                `${tokens.user?.role}refreshTokenName`,
-            );
-
-
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    AUTH_MESSAGES.REFRESH_TOKEN_FOUND,
-                    { user: tokens.user, accessToken: tokens.accessToken }
-                )
-            )
-
-        } catch (error) {
-            next(error)
+        const userData: UserDTO = {
+            name: otpData.name,
+            email: email,
+            mobile: otpData.mobile ?? null,
+            password: otpData.password ?? null,
+            role: otpData.role,
         };
+
+        let registeredUser: User | RegisterAgencyResponseDTO;
+        if (role === Role.USER) registeredUser = await this._registerUserUseCase.execute(userData);
+        else if (role === Role.AGENCY) registeredUser = await this._registerAgencyUseCase.execute(userData);
+        else throw new AppError(AUTH_MESSAGES.ROLE_NOT_ALLOWED, STATUS.BAD_REQUEST);
+
+
+        const tokens = await this._generateTokenUseCase.execute(
+            registeredUser.id!,
+            registeredUser.email,
+            registeredUser.role,
+            registeredUser.tokenVersion
+        );
+
+        setAuthCookies(
+            res,
+            tokens.accessToken,
+            tokens.refreshToken,
+            `${role}accessTokenName`,
+            `${role}refreshTokenName`
+        )
+
+        const response = AuthMapper.ToSendVerifyOtpResponse(registeredUser.id!, registeredUser.name, email, role, registeredUser.kycStatus, tokens.accessToken);
+        return res.status(STATUS.CREATED).json(response);
     };
 
-    login = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const loginData = req.body as LoginDTO
+    refreshToken = async (req: Request, res: Response): Promise<Response | void> => {
+        const { role } = req.body
+        const refreshToken = req.cookies[`${role}refreshTokenName`];
 
-            const users = await this._loginUsecase.execute(loginData);
-
-            const tokens = await this._generateTokenUseCase.execute(users.id, users.email, users.role, users.tokenVersion)
-
-            setAuthCookies(
-                res,
-                tokens.accessToken,
-                tokens.refreshToken,
-                `${loginData.role}accessTokenName`,
-                `${loginData.role}refreshTokenName`
-            );
-
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    AUTH_MESSAGES.LOGIN_SUCCESS,
-                    { users, accessToken: tokens.accessToken }
-                )
-            );
-
-        } catch (error) {
-            next(error)
+        if (!refreshToken) {
+            res.clearCookie(`${role}accessTokenName`, { httpOnly: true, sameSite: "strict", secure: true });
+            res.clearCookie(`${role}refreshTokenName`, { httpOnly: true, sameSite: "strict", secure: true });
+            throw new AppError(AUTH_MESSAGES.REFRESH_TOKEN_NOT_FOUND, STATUS.UNAUTHORIZED)
         }
+
+        const tokens = await this._refreshTokenUseCase.execute(refreshToken);
+        setAuthCookies(
+            res,
+            tokens.accessToken,
+            tokens.refreshToken,
+            `${tokens.user?.role}accessTokenName`,
+            `${tokens.user?.role}refreshTokenName`,
+        );
+
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                AUTH_MESSAGES.REFRESH_TOKEN_FOUND,
+                { user: tokens.user, accessToken: tokens.accessToken }
+            )
+        )
+    };
+
+    login = async (req: Request, res: Response): Promise<Response | void> => {
+        const loginData = req.body as LoginDTO
+
+        const users = await this._loginUsecase.execute(loginData);
+
+        const tokens = await this._generateTokenUseCase.execute(users.id, users.email, users.role, users.tokenVersion)
+
+        setAuthCookies(
+            res,
+            tokens.accessToken,
+            tokens.refreshToken,
+            `${loginData.role}accessTokenName`,
+            `${loginData.role}refreshTokenName`
+        );
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                AUTH_MESSAGES.LOGIN_SUCCESS,
+                { users, accessToken: tokens.accessToken }
+            )
+        );
     }
 
-    logout = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
+    logout = async (req: Request, res: Response): Promise<Response | void> => {
+        const { role } = req.body as LogoutDTO;
+        const refreshTokenName = `${role}refreshTokenName`;
+        const refreshToken = req.cookies?.[refreshTokenName];
 
-            const { role } = req.body as LogoutDTO;
-            const refreshTokenName = `${role}refreshTokenName`;
-            const refreshToken = req.cookies?.[refreshTokenName];
+        if (!refreshToken) throw new AppError(AUTH_MESSAGES.REFRESH_TOKEN_NOT_FOUND, STATUS.BAD_REQUEST)
 
-            if (!refreshToken) throw new AppError(AUTH_MESSAGES.REFRESH_TOKEN_NOT_FOUND, STATUS.BAD_REQUEST)
+        await this._logoutUsecase.execute(refreshToken);
 
-            await this._logoutUsecase.execute(refreshToken);
+        res.clearCookie(`${role}accessTokenName`, {
+            httpOnly: true,
+            sameSite: "none",
+            secure: true,
+            path: "/",
+        });
 
-            res.clearCookie(`${role}accessTokenName`, {
-                httpOnly: true,
-                sameSite: "none",
-                secure: true,
-                path: "/",
-            });
-
-            res.clearCookie(`${role}refreshTokenName`, {
-                httpOnly: true,
-                sameSite: "none",
-                secure: true,
-                path: "/",
-            });
-            const response = AuthMapper.toSendLogoutResponse();
-            return res.status(STATUS.OK).json(response)
-
-        } catch (error) {
-            next(error)
-        }
+        res.clearCookie(`${role}refreshTokenName`, {
+            httpOnly: true,
+            sameSite: "none",
+            secure: true,
+            path: "/",
+        });
+        const response = AuthMapper.toSendLogoutResponse();
+        return res.status(STATUS.OK).json(response)
     }
 
-    forgotPassword = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const dto = req.body as ForgotPasswordDTO
-            await this._varifyEmailUseCase.execute(dto);
+    forgotPassword = async (req: Request, res: Response): Promise<Response | void> => {
+        const dto = req.body as ForgotPasswordDTO
+        await this._varifyEmailUseCase.execute(dto);
 
-            return res.status(STATUS.OK).json({
-                success: true,
-                message: "Reset link sent to your email"
-            });
-
-        } catch (error) {
-            next(error)
-        }
+        return res.status(STATUS.OK).json({
+            success: true,
+            message: "Reset link sent to your email"
+        });
     }
 
-    resetPassword = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const token = req.params.token;
-            const { password, role } = req.body as ResetPasswordDTO;
+    resetPassword = async (req: Request, res: Response): Promise<Response | void> => {
+        const token = req.params.token;
+        const { password, role } = req.body as ResetPasswordDTO;
 
-            if (!token) {
-                return res.status(STATUS.BAD_REQUEST).json({
-                    success: false,
-                    message: "Reset token missing"
-                });
-            }
-
-            await this._resetPasswordUseCase.execute({ token, newPassword: password, role });
-
-            return res.status(STATUS.OK).json({
-                success: true,
-                message: "Reset link sent to your email"
+        if (!token) {
+            return res.status(STATUS.BAD_REQUEST).json({
+                success: false,
+                message: "Reset token missing"
             });
-
-        } catch (error) {
-            next(error)
         }
-    }
 
+        await this._resetPasswordUseCase.execute({ token, newPassword: password, role });
+
+        return res.status(STATUS.OK).json({
+            success: true,
+            message: "Reset link sent to your email"
+        });
+    }
 };

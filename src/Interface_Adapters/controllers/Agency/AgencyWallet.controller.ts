@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { AppError } from "../../../Domain/utils/customError";
@@ -18,62 +18,49 @@ export class AgencyWalletController implements IAgencyWalletController {
         @inject("ICreateWalletTopupOrderUseCase") private _createWalletTopupOrderUseCase: ICreateWalletTopupOrderUseCase,
         @inject("IWithdrawWalletMoneyUseCase") private _withdrawWalletMoneyUseCase: IWithdrawWalletMoneyUseCase,
     ) { }
-    getAgencyWalletOverview = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
+    getAgencyWalletOverview = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const userId = req.user?.id;
-            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
+        const userId = req.user?.id;
+        if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
 
-            const response = await this._getWalletOverviewUseCase.execute({ ownerId: userId, ownerType: Role.AGENCY })
+        const response = await this._getWalletOverviewUseCase.execute({ ownerId: userId, ownerType: Role.AGENCY })
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    WALLET_MESSAGES.GET_WALLET_SUCCESS,
-                    response
-                )
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                WALLET_MESSAGES.GET_WALLET_SUCCESS,
+                response
             )
-
-        } catch (error) {
-            next(error)
-        }
+        );
     };
 
-    createAddMoneyOrder = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const userId = req.user?.id;
-            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
+    createAddMoneyOrder = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const amount = req.body.amount
-            const order = await this._createWalletTopupOrderUseCase.execute(Role.AGENCY, userId, Number(amount));
+        const userId = req.user?.id;
+        if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    WALLET_MESSAGES.ORDER_CREATED,
-                    order
-                )
+        const amount = req.body.amount
+        const order = await this._createWalletTopupOrderUseCase.execute(Role.AGENCY, userId, Number(amount));
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                WALLET_MESSAGES.ORDER_CREATED,
+                order
             )
-
-        } catch (error) {
-            next(error)
-        }
+        );
     }
 
-    withdrawMoney = async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const userId = req.user?.id;
-            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
-            const amount = Number(req.body.amount);
+    withdrawMoney = async (req: Request, res: Response) => {
 
-            const result = await this._withdrawWalletMoneyUseCase.execute(Role.AGENCY, userId, amount);
+        const userId = req.user?.id;
+        if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
+        const amount = Number(req.body.amount);
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    WALLET_MESSAGES.WITHDRAWED_SUCCESS,
-                    result)
-            );
+        const result = await this._withdrawWalletMoneyUseCase.execute(Role.AGENCY, userId, amount);
 
-        } catch (error) {
-            next(error)
-        }
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                WALLET_MESSAGES.WITHDRAWED_SUCCESS,
+                result)
+        );
     }
 }

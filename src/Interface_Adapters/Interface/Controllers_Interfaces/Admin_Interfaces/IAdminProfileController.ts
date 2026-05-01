@@ -1,10 +1,10 @@
-import type { Response, Request,  NextFunction } from "express";
+import type { Response, Request } from "express";
 
 
 export interface IAdminProfileController {
-    getAdminProfile(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
+    getAdminProfile(req: Request, res: Response): Promise<Response | void>;
 
-    editAdminProfile(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
+    editAdminProfile(req: Request, res: Response): Promise<Response | void>;
 
-    resetAdminPassword(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
+    resetAdminPassword(req: Request, res: Response): Promise<Response | void>;
 }

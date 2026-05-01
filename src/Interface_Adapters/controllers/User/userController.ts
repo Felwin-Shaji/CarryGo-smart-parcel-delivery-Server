@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { IUserController } from "../../Interface/Controllers_Interfaces/User_interfaces/IUserController";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { inject, injectable } from "tsyringe";
@@ -18,65 +18,46 @@ export class UserController implements IUserController {
         @inject("IUserReserUserPassword") private _userReserUserPassword: IUserReserUserPassword,
     ) { }
 
-    getUserProfile = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const userId = req.user?.id;
-            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST)
+    getUserProfile = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const userProfileData = await this._getUserProfileUseCase.execute(userId)
+        const userId = req.user?.id;
+        if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST)
 
-            return res.status(200).json(ApiResponse.success(
-                USER_MESSAGES.PROFILE_FETCHED,
-                userProfileData
-            ))
-        } catch (error) {
-            next(error);
-        }
+        const userProfileData = await this._getUserProfileUseCase.execute(userId)
+
+        return res.status(200).json(ApiResponse.success(
+            USER_MESSAGES.PROFILE_FETCHED,
+            userProfileData
+        ))
     }
 
-    updateUserProfile = async (
-        req: Request,
-        res: Response,
-        next: NextFunction
-    ): Promise<Response | void> => {
-        try {
-            const dto = req.body as BaseEditUserProfileRequestDto;
-            const userId = req.user?.id;
-            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST)
+    updateUserProfile = async (req: Request, res: Response): Promise<Response | void> => {
 
-            await this._editUserProfileUseCase.execute(userId, dto);
+        const dto = req.body as BaseEditUserProfileRequestDto;
+        const userId = req.user?.id;
+        if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST)
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    USER_MESSAGES.PROFILE_UPDATED
-                )
+        await this._editUserProfileUseCase.execute(userId, dto);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                USER_MESSAGES.PROFILE_UPDATED
             )
-
-        } catch (error) {
-            next(error)
-        }
+        )
     };
 
-    resetUserPassword = async (
-        req: Request,
-        res: Response,
-        next: NextFunction
-    ): Promise<Response | void> => {
-        try {
-            const dto = req.body as UserResetPasswordRequestDTO;
-            const userId = req.user?.id;
-            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST)
+    resetUserPassword = async (req: Request, res: Response): Promise<Response | void> => {
 
-            await this._userReserUserPassword.execute(userId, dto);
+        const dto = req.body as UserResetPasswordRequestDTO;
+        const userId = req.user?.id;
+        if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST)
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    USER_MESSAGES.RESET_PASSWORD
-                )
+        await this._userReserUserPassword.execute(userId, dto);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                USER_MESSAGES.RESET_PASSWORD
             )
-
-        } catch (error) {
-            next(error)
-        }
+        )
     }
 };

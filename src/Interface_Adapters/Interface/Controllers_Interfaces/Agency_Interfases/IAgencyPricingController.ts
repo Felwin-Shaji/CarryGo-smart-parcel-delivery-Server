@@ -1,6 +1,6 @@
-import type { Response, Request,  NextFunction } from "express";
+import type { Response, Request } from "express";
 
-export interface IAgencyPricingController{
-    getAgencyPricing(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
-    upsertAgencyPricing(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
+export interface IAgencyPricingController {
+    getAgencyPricing(req: Request, res: Response): Promise<Response | void>;
+    upsertAgencyPricing(req: Request, res: Response): Promise<Response | void>;
 }

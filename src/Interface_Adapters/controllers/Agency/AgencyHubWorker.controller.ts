@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { IGetWorkerOverviewUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerOverviewUseCase";
 import { AppError } from "@/Domain/utils/customError";
 import { inject, injectable } from "tsyringe";
@@ -15,40 +15,33 @@ export class AgencyHubWorkerController {
         @inject("IUpdateWorkerKycStatusUseCase") private _updateWorkerKycStatusUseCase: IUpdateWorkerKycStatusUseCase,
     ) { }
 
-    getHubWorkerById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const workerId = req.params.id;
-            if (!workerId) throw new AppError(WORKER_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
+    getHubWorkerById = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const worker = await this._getWorkerOverviewUseCase.execute(workerId);
+        const workerId = req.params.id;
+        if (!workerId) throw new AppError(WORKER_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    WORKER_MESSAGES.OVERVIEW_FETCHED,
-                    worker
-                )
-            );
-        } catch (error) {
-            next(error)
-        }
+        const worker = await this._getWorkerOverviewUseCase.execute(workerId);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                WORKER_MESSAGES.OVERVIEW_FETCHED,
+                worker
+            )
+        );
     }
 
-    updateWorkerKycStatus = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const workerId = req.params.id;
-            if (!workerId) throw new AppError(WORKER_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
-            const dto = req.body as UpdateWorkerKycStatusDTO
+    updateWorkerKycStatus = async (req: Request, res: Response): Promise<Response | void> => {
 
-            await this._updateWorkerKycStatusUseCase.execute(workerId, dto);
+        const workerId = req.params.id;
+        if (!workerId) throw new AppError(WORKER_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
+        const dto = req.body as UpdateWorkerKycStatusDTO
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    WORKER_MESSAGES.KYC_UPDATED,
-                )
-            );
+        await this._updateWorkerKycStatusUseCase.execute(workerId, dto);
 
-        } catch (error) {
-            next(error)
-        }
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                WORKER_MESSAGES.KYC_UPDATED,
+            )
+        );
     }
 }

@@ -1,6 +1,6 @@
-import type { Response, Request,  NextFunction } from "express";
+import type { Response, Request } from "express";
 
-export interface IAdminUserController{
-    getUsers(req: Request, res: Response, next: NextFunction): Promise<Response | void>;
+export interface IAdminUserController {
+    getUsers(req: Request, res: Response): Promise<Response | void>;
 
 }

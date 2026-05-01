@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { IAgencyHubController } from "../../Interface/Controllers_Interfaces/Agency_Interfases/IAgencyHub.controller";
 import { inject, injectable } from "tsyringe";
 import { IUploadAddFilesUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IUploadAddFilesUseCase";
@@ -18,12 +18,7 @@ import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMess
 import { AppError } from "../../../Domain/utils/customError";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
 import { IGetHubOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IGetHubOverviewUseCase";
-
-function parseBlockedQuery(value: unknown): boolean | null {
-    if (value === "true") return true;
-    if (value === "false") return false;
-    return null;
-}
+import { parseBlockedQuery } from "@/Domain/utils/utils";
 
 
 @injectable()
@@ -41,138 +36,130 @@ export class AgencyHubController implements IAgencyHubController {
 
         @inject("ICheckTempHubStatusUseCase") private _checkTempHubStatusUseCase: ICheckTempHubStatusUseCase,
 
-        @inject("IGetHubsUsecase") private _getHubsUsecase:IGetHubsUsecase,
+        @inject("IGetHubsUsecase") private _getHubsUsecase: IGetHubsUsecase,
 
-        @inject("IGetHubOverviewUseCase") private _getHubOverviewUseCase:IGetHubOverviewUseCase,
+        @inject("IGetHubOverviewUseCase") private _getHubOverviewUseCase: IGetHubOverviewUseCase,
 
 
     ) { }
 
-    checkTempHubStatus = async (req: Request, res: Response, next: NextFunction) => { ////////////////////////
-        try {
-            const email = req.query.email as string;
+    checkTempHubStatus = async (req: Request, res: Response) => {
 
-            const result = await this._checkTempHubStatusUseCase.execute(email);
+        const email = req.query.email as string;
+        const result = await this._checkTempHubStatusUseCase.execute(email);
 
-            return res.status(STATUS.OK).json(ApiResponse.success(AGENCY_MESSAGES.STATUS_CHECHED_SUCCESS, result));
-
-        } catch (error) {
-            next(error);
-        }
-    };
-
-
-    addNewHubBasicInfo = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {///////////////
-        try {
-            const dto = req.body as AddNewHubBaseDto
-
-            const tempHub = await this._addHubTempUseCase.execute(dto);
-
-            return res.status(STATUS.CREATED).json(
-                ApiResponse.success(
-                    AGENCY_MESSAGES.OTP_SENT_SUCCESSFULLY,
-                    {
-                        tempHubId: tempHub.id,
-                        email: tempHub.email,
-                        expiresAt: tempHub.expiresAt
-                    }
-                )
-            );
-
-        } catch (error) {
-            next(error);
-        }
-    };
-
-    addNewHubVerifyOtp = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => { /////////////////
-        try {
-            const dto = req.body as AddNewHubVerifyOtpDTO;
-
-            const verified = await this._addNewHubVerifyOtpUseCase.verify(dto);
-
-            if (!verified) return res.status(STATUS.BAD_REQUEST).json(ApiResponse.failure(AGENCY_MESSAGES.INVALID_OTP));
-
-            return res.status(STATUS.OK).json(ApiResponse.success(AGENCY_MESSAGES.OTP_SENT_SUCCESSFULLY, { verified }));
-
-        } catch (error) {
-            next(error);
-        }
-    };
-
-    addNewHubResendOtp = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {////////////////
-        try {
-            const { email } = req.body;
-
-            const result = await this._addNewHubResendOtp.resend(email);
-
-            return res.status(STATUS.OK).json(ApiResponse.success(AGENCY_MESSAGES.OTP_RESENT, result));
-
-        } catch (error) {
-            next(error);
-        }
-    };
-
-    addNewHub = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => { ////////////////
-        try {
-            const { tempHubId } = req.body
-            const files = req.files as AgencyAddHubFields;
-            const imgUrl = await this._uploadAddFilesUseCase.execute(files);
-
-            const values = req.body as AddNewHubAddressDto;
-
-            console.log(imgUrl);
-            const savedHub = await this._addHubUseCase.execute(tempHubId, values, imgUrl);
-
-            return res.status(STATUS.CREATED).json(ApiResponse.success(AGENCY_MESSAGES.HUB_ADDED_SUCCESSFULLY, savedHub));///////////////
-
-        } catch (error) {
-            next(error)
-        }
-    };
-
-    getHubs = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => { 
-        try {
-            const agencyId = req.user?.id;
-            if(!agencyId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND);
-            
-            const dto:GetHubsDTO = {
-                page: Number(req.query.page) || 1,
-                limit: Number(req.query.limit) || 10,
-                search: req.query.search?.toString() || "",
-                sortBy: req.query.sortBy?.toString() || "createdAt",
-                sortOrder: req.query.sortOrder === "desc" ? "desc" : "asc",
-                blocked: parseBlockedQuery(req.query.blocked),
-                kycStatus: req.query.kycStatus?.toString() || "",
-                startDate: req.query.startDate?.toString() || "",
-                endDate: req.query.endDate?.toString() || "",
-            };
-
-            const result = await this._getHubsUsecase.execute(agencyId,dto);
-
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(HUB_MESSAGES.EMAIL_ALREADY_EXISTS,result)
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                AGENCY_MESSAGES.STATUS_CHECHED_SUCCESS,
+                result
             )
-
-        } catch (error) {
-            next(error)
-        }
+        );
     };
 
-    getHubById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> =>{
-        try {
-            const hubId = req.params.id as string;
 
-            const hubOverview = await this._getHubOverviewUseCase.execute(hubId); 
+    addNewHubBasicInfo = async (req: Request, res: Response): Promise<Response | void> => {
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    HUB_MESSAGES.FETCH_SUCCESS,
-                    hubOverview
-                )
+        const dto = req.body as AddNewHubBaseDto
+
+        const tempHub = await this._addHubTempUseCase.execute(dto);
+
+        return res.status(STATUS.CREATED).json(
+            ApiResponse.success(
+                AGENCY_MESSAGES.OTP_SENT_SUCCESSFULLY,
+                {
+                    tempHubId: tempHub.id,
+                    email: tempHub.email,
+                    expiresAt: tempHub.expiresAt
+                }
             )
-        } catch (error) {
-            next(error)
-        }
+        );
+    };
+
+    addNewHubVerifyOtp = async (req: Request, res: Response): Promise<Response | void> => { /////////////////
+        const dto = req.body as AddNewHubVerifyOtpDTO;
+
+        const verified = await this._addNewHubVerifyOtpUseCase.verify(dto);
+
+        if (!verified) return res.status(STATUS.BAD_REQUEST).json(ApiResponse.failure(AGENCY_MESSAGES.INVALID_OTP));
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                AGENCY_MESSAGES.OTP_SENT_SUCCESSFULLY,
+                { verified }
+            )
+        );
+    };
+
+    addNewHubResendOtp = async (req: Request, res: Response): Promise<Response | void> => {
+
+        const { email } = req.body;
+        const result = await this._addNewHubResendOtp.resend(email);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                AGENCY_MESSAGES.OTP_RESENT,
+                result
+            )
+        );
+    };
+
+    addNewHub = async (req: Request, res: Response): Promise<Response | void> => {
+
+        const { tempHubId } = req.body
+        const files = req.files as AgencyAddHubFields;
+        const imgUrl = await this._uploadAddFilesUseCase.execute(files);
+
+        const values = req.body as AddNewHubAddressDto;
+
+        console.log(imgUrl);
+        const savedHub = await this._addHubUseCase.execute(tempHubId, values, imgUrl);
+
+        return res.status(STATUS.CREATED).json(
+            ApiResponse.success(
+                AGENCY_MESSAGES.HUB_ADDED_SUCCESSFULLY,
+                savedHub
+            )
+        );
+    };
+
+    getHubs = async (req: Request, res: Response): Promise<Response | void> => {
+
+        const agencyId = req.user?.id;
+        if (!agencyId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND);
+
+        const dto: GetHubsDTO = {
+            page: Number(req.query.page) || 1,
+            limit: Number(req.query.limit) || 10,
+            search: req.query.search?.toString() || "",
+            sortBy: req.query.sortBy?.toString() || "createdAt",
+            sortOrder: req.query.sortOrder === "desc" ? "desc" : "asc",
+            blocked: parseBlockedQuery(req.query.blocked),
+            kycStatus: req.query.kycStatus?.toString() || "",
+            startDate: req.query.startDate?.toString() || "",
+            endDate: req.query.endDate?.toString() || "",
+        };
+
+        const result = await this._getHubsUsecase.execute(agencyId, dto);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                HUB_MESSAGES.EMAIL_ALREADY_EXISTS,
+                result
+            )
+        )
+    };
+
+    getHubById = async (req: Request, res: Response): Promise<Response | void> => {
+
+        const hubId = req.params.id as string;
+        const hubOverview = await this._getHubOverviewUseCase.execute(hubId);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                HUB_MESSAGES.FETCH_SUCCESS,
+                hubOverview
+            )
+        );
     }
 }
 

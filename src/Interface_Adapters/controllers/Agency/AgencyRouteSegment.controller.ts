@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../Domain/utils/customError";
 import { IGetRouteGroupDetailUseCase } from "@/Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/IGetRouteDetailsUsecase";
@@ -16,44 +16,39 @@ export class AgencyRouteSegmentController {
     ) { }
 
 
-    getRouteGroupDetail = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const agencyId = req.user?.id;
-            const { routeGroupId } = req.params;
+    getRouteGroupDetail = async (req: Request, res: Response): Promise<Response | void> => {
 
-            if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
-            if (!routeGroupId) throw new AppError(ROUTE_GROUP_MESSAGE.ID_MISSING, STATUS.BAD_REQUEST);
+        const agencyId = req.user?.id;
+        const { routeGroupId } = req.params;
 
-            const result = await this._getRouteGroupDetail.execute(routeGroupId, agencyId);
+        if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
+        if (!routeGroupId) throw new AppError(ROUTE_GROUP_MESSAGE.ID_MISSING, STATUS.BAD_REQUEST);
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    ROUTE_GROUP_MESSAGE.DETAIL_FETCHED,
-                    result
-                )
-            );
-        } catch (error) {
-            next(error);
-        }
+        const result = await this._getRouteGroupDetail.execute(routeGroupId, agencyId);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                ROUTE_GROUP_MESSAGE.DETAIL_FETCHED,
+                result
+            )
+        );
+
     };
 
-    createSegment = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const agencyId = req.user?.id;
-            const { routeGroupId } = req.params;
+    createSegment = async (req: Request, res: Response): Promise<Response | void> => {
 
-            if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
-            if (!routeGroupId) throw new AppError(ROUTE_GROUP_MESSAGE.ID_MISSING, STATUS.BAD_REQUEST);
+        const agencyId = req.user?.id;
+        const { routeGroupId } = req.params;
 
-            await this._createSegment.execute(routeGroupId, agencyId, req.body);
+        if (!agencyId) throw new AppError(AGENCY_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
+        if (!routeGroupId) throw new AppError(ROUTE_GROUP_MESSAGE.ID_MISSING, STATUS.BAD_REQUEST);
 
-            return res.status(STATUS.CREATED).json(
-                ApiResponse.success(
-                    ROUTE_SEGMENT_MESSAGE.CREATED
-                )
-            );
-        } catch (error) {
-            next(error);
-        }
+        await this._createSegment.execute(routeGroupId, agencyId, req.body);
+
+        return res.status(STATUS.CREATED).json(
+            ApiResponse.success(
+                ROUTE_SEGMENT_MESSAGE.CREATED
+            )
+        );
     };
 }

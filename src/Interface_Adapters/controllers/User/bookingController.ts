@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { IUserBookingController } from "../../Interface/Controllers_Interfaces/User_interfaces/Booking/IUserBookingController";
@@ -32,181 +32,143 @@ export class UserBookingController implements IUserBookingController {
 
     ) { };
 
-    checkServiceableAgency = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const dto = req.body as CheckServiceableAgencyDTO;
+    checkServiceableAgency = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const servicableAgency = await this._findServicableAgencyUsecase.execute(dto);
+        const dto = req.body as CheckServiceableAgencyDTO;
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    BOOKING_MESSAGE.PINCODE_VALIED,
-                    servicableAgency
-                )
+        const servicableAgency = await this._findServicableAgencyUsecase.execute(dto);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                BOOKING_MESSAGE.PINCODE_VALIED,
+                servicableAgency
             )
+        )
 
-        } catch (error) {
-            next(error);
-        };
     };
 
-    checkServiceableTravelers = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const dto = req.body as CheckServiceableTravelerDTO;
-            const userId = req.user?.id
-            if (!userId) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
+    checkServiceableTravelers = async (req: Request, res: Response): Promise<Response | void> => {
+
+        const dto = req.body as CheckServiceableTravelerDTO;
+        const userId = req.user?.id
+        if (!userId) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
 
 
-            const servicableTravelers = await this._findServiceableTravelerUsecase.execute(userId,dto)
+        const servicableTravelers = await this._findServiceableTravelerUsecase.execute(userId, dto)
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    BOOKING_MESSAGE.PINCODE_VALIED,
-                    servicableTravelers
-                )
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                BOOKING_MESSAGE.PINCODE_VALIED,
+                servicableTravelers
             )
-
-        } catch (error) {
-            next(error)
-        }
+        )
     }
 
 
-    calculatePrice = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
+    calculatePrice = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const userId = req.user?.id
-            const dto = req.body as CalculatePriceRequestDTO
+        const userId = req.user?.id
+        const dto = req.body as CalculatePriceRequestDTO
 
-            console.log("API HIT:", Date.now());
-            if (!userId) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
+        console.log("API HIT:", Date.now());
+        if (!userId) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
 
-            const pricing = await this._calculateBookingPriceUsecase.execute(userId, dto)
+        const pricing = await this._calculateBookingPriceUsecase.execute(userId, dto)
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    BOOKING_MESSAGE.PRICE_CALCULATED,
-                    pricing
-                )
-            );
-
-        } catch (error) {
-            next(error)
-        }
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                BOOKING_MESSAGE.PRICE_CALCULATED,
+                pricing
+            )
+        );
     }
 
 
-    createBooking = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            console.log(req.body);
+    createBooking = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const userId = req.user?.id;
-            const dto = req.body as CreateBookingRequestDTO;
+        const userId = req.user?.id;
+        const dto = req.body as CreateBookingRequestDTO;
 
-            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_GATEWAY)
+        if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_GATEWAY)
 
-            const bookingId = await this._createBookingUsecase.execute(userId, dto)
+        const bookingId = await this._createBookingUsecase.execute(userId, dto)
 
-            return res.status(200).json(
-                ApiResponse.success(
-                    BOOKING_MESSAGE.SUCCESS,
-                    bookingId
-                )
+        return res.status(200).json(
+            ApiResponse.success(
+                BOOKING_MESSAGE.SUCCESS,
+                bookingId
             )
-        } catch (error) {
-            next(error)
-        }
+        )
     }
 
-    createPaymentOrder = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const { bookingId } = req.params
-            const userId = req.user?.id;
-            if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_GATEWAY)
+    createPaymentOrder = async (req: Request, res: Response): Promise<Response | void> => {
 
-            if (!bookingId) throw new AppError(BOOKING_MESSAGE.NOT_FOUND, STATUS.NOT_FOUND);
+        const { bookingId } = req.params
+        const userId = req.user?.id;
+        if (!userId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_GATEWAY)
 
-            const order = await this._createPaymentOrderUsecase.execute(userId, bookingId)
+        if (!bookingId) throw new AppError(BOOKING_MESSAGE.NOT_FOUND, STATUS.NOT_FOUND);
 
-            return res.status(STATUS.ACCEPTED).json(
-                ApiResponse.success(BOOKING_MESSAGE.INVALID_AMOUNT, order)
-            )
-        } catch (error) {
-            next(error)
-        }
+        const order = await this._createPaymentOrderUsecase.execute(userId, bookingId)
+
+        return res.status(STATUS.ACCEPTED).json(
+            ApiResponse.success(BOOKING_MESSAGE.INVALID_AMOUNT, order)
+        )
     };
 
 
-    verifyPayment = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
+    verifyPayment = async (req: Request, res: Response): Promise<Response | void> => {
 
-            return res.status(STATUS.ACCEPTED).json(
-                ApiResponse.success(BOOKING_MESSAGE.INVALID_AMOUNT, STATUS.OK)
-            )
+        return res.status(STATUS.ACCEPTED).json(
+            ApiResponse.success(BOOKING_MESSAGE.INVALID_AMOUNT, STATUS.OK)
+        )
 
-        } catch (error) {
-            next(error)
-        }
     }
 
-    paymentfailure = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const { bookingId } = req.body;
-            if (!bookingId) throw new AppError(BOOKING_MESSAGE.NOT_FOUND, STATUS.NOT_FOUND);
+    paymentfailure = async (req: Request, res: Response): Promise<Response | void> => {
 
-            await this._bookingPaymentFailedUseCase.execute(bookingId)
-            return res.status(STATUS.ACCEPTED).json(
-                ApiResponse.success(BOOKING_MESSAGE.INVALID_AMOUNT, STATUS.OK)
-            )
+        const { bookingId } = req.body;
+        if (!bookingId) throw new AppError(BOOKING_MESSAGE.NOT_FOUND, STATUS.NOT_FOUND);
 
-        } catch (error) {
-            next(error)
-        }
+        await this._bookingPaymentFailedUseCase.execute(bookingId)
+        return res.status(STATUS.ACCEPTED).json(
+            ApiResponse.success(BOOKING_MESSAGE.INVALID_AMOUNT, STATUS.OK)
+        )
     };
 
-    userBookings = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
+    userBookings = async (req: Request, res: Response): Promise<Response | void> => {
 
-            const userId = req.user?.id
-            const dto: BookingFilterDTO = {
-                page: Number(req.query.page) || 1,
-                limit: Number(req.query.limit) || 10,
-                deliveryType: req.query.deliveryType?.toString() || '',
-                status: req.query.status?.toString() || "",
-                paymentStatus: req.query.paymentStatus?.toString() || "",
-            }
-            if (!userId) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
-
-            const respose = await this._userBookingsUsecase.execute(userId, dto);
-
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    BOOKING_MESSAGE.FOUND,
-                    respose
-                )
-            )
-
-        } catch (error) {
-            next(error)
+        const userId = req.user?.id
+        const dto: BookingFilterDTO = {
+            page: Number(req.query.page) || 1,
+            limit: Number(req.query.limit) || 10,
+            deliveryType: req.query.deliveryType?.toString() || '',
+            status: req.query.status?.toString() || "",
+            paymentStatus: req.query.paymentStatus?.toString() || "",
         }
+        if (!userId) throw new AppError(USER_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
+
+        const respose = await this._userBookingsUsecase.execute(userId, dto);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                BOOKING_MESSAGE.FOUND,
+                respose
+            )
+        )
     }
 
-    getBookingById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-        try {
-            const { bookingId } = req.params
-            if (!bookingId) throw new AppError(BOOKING_MESSAGE.NOT_FOUND, STATUS.NOT_FOUND);
+    getBookingById = async (req: Request, res: Response): Promise<Response | void> => {
+        const { bookingId } = req.params
+        if (!bookingId) throw new AppError(BOOKING_MESSAGE.NOT_FOUND, STATUS.NOT_FOUND);
 
-            const bookingResponse = await this._getBookingUsecase.execute(bookingId);
+        const bookingResponse = await this._getBookingUsecase.execute(bookingId);
 
-            return res.status(STATUS.OK).json(
-                ApiResponse.success(
-                    BOOKING_MESSAGE.FOUND,
-                    bookingResponse
-                )
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                BOOKING_MESSAGE.FOUND,
+                bookingResponse
             )
-
-        } catch (error) {
-            next(error)
-        }
+        )
     }
 }; 

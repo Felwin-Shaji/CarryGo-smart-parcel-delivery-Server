@@ -32,7 +32,6 @@ export class WorkerDashboardController {
             toDate: req.query.toDate?.toString(),
         } as GetWorkerParcelsDTO;
 
-
         const response = await this._getWorkerParcelsUseCase.execute(workerId, dto);
 
         return res.status(200).json(
@@ -41,7 +40,6 @@ export class WorkerDashboardController {
                 response
             )
         );
-
     };
 
     getWorkerDashboard = async (req: Request, res: Response): Promise<Response | void> => {
@@ -79,6 +77,64 @@ export class WorkerDashboardController {
                 response
             )
         );
+    };
 
-    }
+    getWorkerParcelsByWorkerId = async (req: Request, res: Response): Promise<Response | void> => {
+
+        const workerId = req.params.workerId as string;
+        if (!workerId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
+
+        const dto = {
+            page: Number(req.query.page) || 1,
+            limit: Number(req.query.limit) || 10,
+            status: req.query.status?.toString() || "",
+            fromDate: req.query.fromDate?.toString(),
+            toDate: req.query.toDate?.toString(),
+        } as GetWorkerParcelsDTO;
+
+        const response = await this._getWorkerParcelsUseCase.execute(workerId, dto);
+
+        return res.status(200).json(
+            ApiResponse.success(
+                WORKER_MESSAGES.PARCELS_FETCHED,
+                response
+            )
+        );
+    };
+
+    getWorkerDashboardByWorkerId = async (req: Request, res: Response): Promise<Response | void> => {
+
+        const workerId = req.params.workerId as string;
+        if (!workerId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
+
+        const response = await this._getWorkerDashboardUseCase.execute(workerId);
+
+        return res.status(200).json(
+            ApiResponse.success(
+                WORKER_MESSAGES.DASHBOARD_FETCHED,
+                response
+            )
+        );
+    };
+
+    getWorkerGraphByWorkerId = async (req: Request, res: Response): Promise<Response | void> => {
+
+        const workerId = req.params.workerId as string;
+        if (!workerId) throw new AppError(USER_MESSAGES.USER_ID_MISSING, STATUS.BAD_REQUEST);
+
+        const dto = {
+            status: req.query.status?.toString() || "",
+            fromDate: req.query.fromDate?.toString(),
+            toDate: req.query.toDate?.toString(),
+        } as GetWorkerGraphRequestDTO;
+
+        const response = await this._getWorkerGraphUseCase.execute(workerId, dto);
+
+        return res.status(200).json(
+            ApiResponse.success(
+                WORKER_MESSAGES.DASHBOARD_FETCHED,
+                response
+            )
+        );
+    };
 }

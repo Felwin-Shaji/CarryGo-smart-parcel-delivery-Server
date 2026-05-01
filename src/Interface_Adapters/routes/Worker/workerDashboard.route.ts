@@ -9,5 +9,9 @@ export class WrokerDashboardRoute extends BaseRoute {
         this.router.get("/parcels", authenticate([Role.WORKER]), asyncHandler(workerDashboardController.workerParcels));
         this.router.get("/dashboard", authenticate([Role.WORKER]), asyncHandler(workerDashboardController.getWorkerDashboard));
         this.router.get("/analytics/graph", authenticate([Role.WORKER]), asyncHandler(workerDashboardController.getWorkerGraph));
+
+        this.router.get("/parcels/:workerId", authenticate([Role.WORKER, Role.HUB, Role.AGENCY, Role.ADMIN]), asyncHandler(workerDashboardController.getWorkerParcelsByWorkerId));
+        this.router.get("/dashboard/:workerId", authenticate([Role.WORKER, Role.HUB, Role.AGENCY, Role.ADMIN]), asyncHandler(workerDashboardController.getWorkerDashboardByWorkerId));
+        this.router.get("/analytics/graph/:workerId", authenticate([Role.WORKER, Role.HUB, Role.AGENCY, Role.ADMIN]), asyncHandler(workerDashboardController.getWorkerGraphByWorkerId));
     }
 }

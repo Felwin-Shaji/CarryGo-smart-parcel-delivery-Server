@@ -18,5 +18,6 @@ export class WrokerRoute extends BaseRoute {
 
         this.router.use(new WorkerShipmentRoute().router);
         this.router.use(new WrokerDashboardRoute().router);
+        
     }
 }

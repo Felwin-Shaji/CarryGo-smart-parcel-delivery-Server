@@ -218,6 +218,12 @@ import { IGetWorkerDashboardUseCase } from "@/Application/interfaces/useCase_Int
 import { GetWorkerDashboardUseCase } from "@/Application/useCase/Worker/GetWorkerDashboard.usecase";
 import { IGetWorkerGraphUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerGraphUseCase";
 import { GetWorkerGraphUseCase } from "@/Application/useCase/Worker/GetWorkerGraph.usecase";
+import { IGetHubProfileUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IGetHubProfileUseCase";
+import { GetHubProfileUseCase } from "@/Application/useCase/Hub/GetHubProfile.usecase";
+import { IEditHubProfileUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IEditHubProfileUseCase";
+import { EditHubProfileUseCase } from "@/Application/useCase/Hub/EditHubProfile.usecase";
+import { IResetHubPasswordUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IResetHubPasswordUseCase";
+import { ResetHubPasswordUseCase } from "@/Application/useCase/Hub/ResetHubPassword.usecase";
 
 
 
@@ -670,5 +676,17 @@ export class UsecaseRegistery {
         container.register<IGetWorkerGraphUseCase>("IGetWorkerGraphUseCase", {
             useClass: GetWorkerGraphUseCase
         });
+
+        container.register<IGetHubProfileUseCase>("IGetHubProfileUseCase", {
+            useClass: GetHubProfileUseCase
+        });
+
+        container.register<IEditHubProfileUseCase>("IEditHubProfileUseCase", {
+            useClass: EditHubProfileUseCase
+        });
+
+        container.register<IResetHubPasswordUseCase>("IResetHubPasswordUseCase", {
+            useClass: ResetHubPasswordUseCase
+        })
     }
 }

@@ -29,6 +29,7 @@ import { WorkerShipmentController } from "@/Interface_Adapters/controllers/Worke
 import { UserTrackingController } from "@/Interface_Adapters/controllers/User/UserTracking.controller";
 import { WorkerDashboardController } from "@/Interface_Adapters/controllers/Worker/WorkerDashboard.controller";
 import { HubProfileController } from "@/Interface_Adapters/controllers/Hub/HubProfile.controller";
+import { HubDashboardController } from "@/Interface_Adapters/controllers/Hub/HubDashboard.controller";
 
 
 DependancyInjection.registerAll();
@@ -66,6 +67,7 @@ export const adminWalletController = container.resolve(AdminWalletController);
 export const hubWorkerController = container.resolve(HubWorkerController);
 export const hubWalletController = container.resolve(HubWalletController);
 export const hubShipmentController = container.resolve(HubShipmentController);
+export const hubDashboardController = container.resolve(HubDashboardController);
 
 
 export const hubProfileController = container.resolve(HubProfileController)

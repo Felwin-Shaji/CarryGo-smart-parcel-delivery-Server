@@ -36,5 +36,10 @@ export const HUB_MESSAGES = {
     LOGIDTICS_ID_MISSING: "logistic id is missing",
     SHIPMENT_FETCH_SUCCESS: "Shipments fetched successfully",
     SHIPMENT_PARCEL_FETCH_SUCCESS: "Shipment parcel fetched successfully",
-    SHIPMENT_DETAILS_UPDATED: "Shipment details updated successfully"
+    SHIPMENT_DETAILS_UPDATED: "Shipment details updated successfully",
+
+    DAHSBOARD_SUMMERY_FETCHED: "hub dashboard summer is fetched succesfully ",
+    DAHSBOARD_TREND_FETCHED: "hub dashboar trend fetched successfully. ",
+    DAHSBOARD_TYPE_FETCHED: "hub dashboar type fetched successfully. ",
+    DAHSBOARD_SHIPMENT_FETCHED: "hub dashboar shipement fetched successfully. ",
 } as const;

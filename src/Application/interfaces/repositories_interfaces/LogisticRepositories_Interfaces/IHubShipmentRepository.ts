@@ -48,4 +48,38 @@ export interface IHubShipmentRepository extends IBaseRepository<HubShipment> {
 
     countToday(workerId: string, date: Date): Promise<number>;
 
+    getShipmentSummary(
+        hubId: string,
+    ): Promise<{
+        total: number;
+        pending: number;
+        active: number;
+        arrived: number;
+        completed: number;
+        cancelled: number;
+    }>;
+
+    getShipmentTrend(
+        hubId: string,
+        from?: string,
+        to?: string
+    ): Promise<{ date: string; count: number }[]>;
+
+    getShipmentTypes(
+        hubId: string
+    ): Promise<{
+        hubTransfer: number;
+        outForDelivery: number;
+        bulkPickup: number;
+    }>;
+
+    findRecentShipmentsByHub(
+        hubId: string,
+        limit: number
+    ): Promise<HubShipment[]>;
+
+    findUnassignedShipmentsByHub(
+        hubId: string,
+        limit: number
+    ): Promise<HubShipment[]>;
 }

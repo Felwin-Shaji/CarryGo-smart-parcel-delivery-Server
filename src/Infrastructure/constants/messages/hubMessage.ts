@@ -2,19 +2,25 @@ export const HUB_MESSAGES = {
     SESSION_INVALID: "Invalid or expired hub registration session",
     OTP_NOT_VERIFIED: "OTP verification not completed",
     HUB_CREATED: "Hub created successfully",
-    HUBID_MISSING:"Please login agein",
+    HUBID_MISSING: "Please login agein",
     FETCH_SUCCESS: "Hub fetched successfully",
-    NOT_FOUND:"Hub not found",
-    STATUS_UPDATED:"Hub Status updated",
-    REASON_NOT_FOUND:"Reject reason is required",
-    LOCATTION_NOT_FOUND:"location not found",
+    NOT_FOUND: "Hub not found",
+    STATUS_UPDATED: "Hub Status updated",
+    REASON_NOT_FOUND: "Reject reason is required",
+    LOCATTION_NOT_FOUND: "location not found",
+    ID_MISSING: "id is missing",
+
+    PROFILE_UPDATE_FAILURE: "Failed to update Profile",
+    PROFILE_FETCHED: "Profile Fetched successfuly",
+    PROFILE_UPDATED: "Profile updated successfully",
+    PASSWORD_RESET: "Hub Password reset successfully",
 
     EMAIL_ALREADY_EXISTS: "Hub with this email already exists",
     NAME_ALREADY_EXISTS: "Hub name already exists under this agency",
     OTP_ALREADY_SENT: "OTP already sent. Please verify the OTP.",
 
 
-    OTP_SEND_SICCESS:"OTP sent successfully",
+    OTP_SEND_SICCESS: "OTP sent successfully",
     OTP_SESSION_NOT_FOUND: "No OTP process found for this email",
     OTP_RESENT: "Hub OTP resent successfully",
     OTP_NOT_SENT_YET: "OTP has not been sent yet for this temp hub",
@@ -27,8 +33,13 @@ export const HUB_MESSAGES = {
     VERIFICATION_IMAGE_REQUIRED: "Verification image is required",
     VERIFICATION_IMAGE_UPLOAD_FAILED: "Failed to upload verification image",
 
-    LOGIDTICS_ID_MISSING:"logistic id is missing",
-    SHIPMENT_FETCH_SUCCESS:"Shipments fetched successfully",
-    SHIPMENT_PARCEL_FETCH_SUCCESS:"Shipment parcel fetched successfully",
-    SHIPMENT_DETAILS_UPDATED:"Shipment details updated successfully"
+    LOGIDTICS_ID_MISSING: "logistic id is missing",
+    SHIPMENT_FETCH_SUCCESS: "Shipments fetched successfully",
+    SHIPMENT_PARCEL_FETCH_SUCCESS: "Shipment parcel fetched successfully",
+    SHIPMENT_DETAILS_UPDATED: "Shipment details updated successfully",
+
+    DAHSBOARD_SUMMERY_FETCHED: "hub dashboard summer is fetched succesfully ",
+    DAHSBOARD_TREND_FETCHED: "hub dashboar trend fetched successfully. ",
+    DAHSBOARD_TYPE_FETCHED: "hub dashboar type fetched successfully. ",
+    DAHSBOARD_SHIPMENT_FETCHED: "hub dashboar shipement fetched successfully. ",
 } as const;

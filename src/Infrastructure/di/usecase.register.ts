@@ -218,6 +218,20 @@ import { IGetWorkerDashboardUseCase } from "@/Application/interfaces/useCase_Int
 import { GetWorkerDashboardUseCase } from "@/Application/useCase/Worker/GetWorkerDashboard.usecase";
 import { IGetWorkerGraphUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerGraphUseCase";
 import { GetWorkerGraphUseCase } from "@/Application/useCase/Worker/GetWorkerGraph.usecase";
+import { IGetHubProfileUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IGetHubProfileUseCase";
+import { GetHubProfileUseCase } from "@/Application/useCase/Hub/GetHubProfile.usecase";
+import { IEditHubProfileUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IEditHubProfileUseCase";
+import { EditHubProfileUseCase } from "@/Application/useCase/Hub/EditHubProfile.usecase";
+import { IResetHubPasswordUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IResetHubPasswordUseCase";
+import { ResetHubPasswordUseCase } from "@/Application/useCase/Hub/ResetHubPassword.usecase";
+import { IGetHubDashboardSummaryUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IGetHubDashboardSummaryUseCase";
+import { GetHubDashboardSummaryUseCase } from "@/Application/useCase/Hub/GetHubDashboardSummary.usecase";
+import { GetHubDashboardTrendUseCase } from "@/Application/useCase/Hub/GetHubDashboardTrend.usecase";
+import { IGetHubDashboardTrendUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IGetHubDashboardTrendUseCase";
+import { GetHubDashboardTypesUseCase } from "@/Application/useCase/Hub/GetHubDashboardTypes.usecase";
+import { IGetHubDashboardTypesUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IGetHubDashboardTypesUseCase";
+import { IGetHubDashboardShipmentsPreviewUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IGetHubDashboardShipmentsPreviewUseCase";
+import { GetHubDashboardShipmentsPreviewUseCase } from "@/Application/useCase/Hub/GetHubDashboardShipmentsPreview.usecase";
 
 
 
@@ -669,6 +683,34 @@ export class UsecaseRegistery {
 
         container.register<IGetWorkerGraphUseCase>("IGetWorkerGraphUseCase", {
             useClass: GetWorkerGraphUseCase
+        });
+
+        container.register<IGetHubProfileUseCase>("IGetHubProfileUseCase", {
+            useClass: GetHubProfileUseCase
+        });
+
+        container.register<IEditHubProfileUseCase>("IEditHubProfileUseCase", {
+            useClass: EditHubProfileUseCase
+        });
+
+        container.register<IResetHubPasswordUseCase>("IResetHubPasswordUseCase", {
+            useClass: ResetHubPasswordUseCase
+        });
+
+        container.register<IGetHubDashboardSummaryUseCase>("IGetHubDashboardSummaryUseCase", {
+            useClass: GetHubDashboardSummaryUseCase
+        });
+
+        container.register<IGetHubDashboardTrendUseCase>("IGetHubDashboardTrendUseCase", {
+            useClass: GetHubDashboardTrendUseCase
+        });
+
+        container.register<IGetHubDashboardTypesUseCase>("IGetHubDashboardTypesUseCase", {
+            useClass: GetHubDashboardTypesUseCase
+        });
+
+        container.register<IGetHubDashboardShipmentsPreviewUseCase>("IGetHubDashboardShipmentsPreviewUseCase", {
+            useClass: GetHubDashboardShipmentsPreviewUseCase
         });
     }
 }

@@ -5,4 +5,10 @@ import { IBaseRepository } from "../base.repository";
 
 export interface IHubWorkerRepository extends IBaseRepository<HubWorker> {
     getPaginatedWorkersByHubs(hubId: string, dto: GetWorkersDTO): Promise<GetHubWorkersResponseDTO>;
+
+    countByFilter(filters: {
+        hubId: string;
+        blocked?: boolean;
+        kycStatus?: "PENDING" | "APPROVED" | "REJECTED";
+    }): Promise<number>;
 }

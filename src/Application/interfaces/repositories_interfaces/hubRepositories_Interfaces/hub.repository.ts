@@ -1,4 +1,4 @@
-import { FilterQuery } from "mongoose";
+import { ClientSession, FilterQuery } from "mongoose";
 import { Hub } from "../../../../Domain/Entities/Hub/Hub";
 import { HubDocument } from "../../../../Infrastructure/database/models/Hub/HubModel";
 import { GetHubsDTO, updateHubKycStatusDTO } from "../../../Dto/Hub/hub.dto";
@@ -14,8 +14,10 @@ export interface PaginatedHubData {
   totalPages: number;
 }
 
-export interface IHubRepository extends IBaseRepository<HubDocument> {
-  findOneHub(filter: FilterQuery<HubDocument>): Promise<Hub>
+export interface IHubRepository {
+  findById(filter: FilterQuery<HubDocument>): Promise<Hub>
+  findOne(filter: FilterQuery<HubDocument>): Promise<Hub>
+  findOneAndUpdate(filter: FilterQuery<HubDocument>, value: object, unsetData?: object, session?: ClientSession): Promise<Hub | null>
   saveHub(hub: Hub): Promise<Hub>
   getHubById(hubId: string): Promise<Hub>;
   findByIds(hubIds: string[]): Promise<Hub[]>;

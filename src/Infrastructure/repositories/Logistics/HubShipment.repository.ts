@@ -1,3 +1,4 @@
+import { ShipmentSummaryGroup } from "@/Application/Dto/Hub/hubDashboar.dto";
 import { GetShipmentsDTO, GetWorkerShipmentDTO } from "@/Application/Dto/Logistics/shipment.dto";
 import { HubShipmentPaginatedData, IHubShipmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
 import { HubShipment, ShipmentType } from "@/Domain/Entities/Logistics/HubShipment";
@@ -319,6 +320,217 @@ export class HubShipmentRepository implements IHubShipmentRepository {
             },
         });
     };
+
+    async getShipmentSummary(
+        hubId: string,
+    ): Promise<{
+        total: number;
+        pending: number;
+        active: number;
+        arrived: number;
+        completed: number;
+        cancelled: number;
+    }> {
+
+        const hubObjectId = new Types.ObjectId(hubId);
+
+        const match: FilterQuery<HubShipmentDocument> = {
+            $or: [
+                { fromHubId: hubObjectId },
+                { toHubId: hubObjectId },
+            ],
+        };
+
+
+        const result = await HubShipmentModel.aggregate<ShipmentSummaryGroup>([
+            { $match: match },
+            {
+                $group: {
+                    _id: "$status",
+                    count: { $sum: 1 },
+                },
+            },
+        ]);
+
+        const summary = {
+            total: 0,
+            pending: 0,
+            active: 0,
+            arrived: 0,
+            completed: 0,
+            cancelled: 0,
+        };
+        for (const item of result) {
+            summary.total += item.count;
+
+            switch (item._id) {
+                case "PENDING":
+                    summary.pending = item.count;
+                    break;
+
+                case "LOADING":
+                case "DISPATCHED":
+                    summary.active += item.count;
+                    break;
+
+                case "ARRIVED":
+                    summary.arrived = item.count;
+                    break;
+
+                case "COMPLETED":
+                    summary.completed = item.count;
+                    break;
+
+                case "CANCELLED":
+                    summary.cancelled = item.count;
+                    break;
+            }
+        }
+
+        return summary;
+    };
+
+    async getShipmentTrend(
+        hubId: string,
+        from?: string,
+        to?: string
+    ): Promise<{ date: string; count: number }[]> {
+
+        const hubObjectId = new Types.ObjectId(hubId);
+
+        const match: FilterQuery<HubShipmentDocument> = {
+            $or: [
+                { fromHubId: hubObjectId },
+                { toHubId: hubObjectId },
+            ],
+        };
+
+        if (from || to) {
+            match.createdAt = {
+                ...(from && { $gte: new Date(from) }),
+                ...(to && { $lte: new Date(to) }),
+            };
+        }
+
+        const result = await HubShipmentModel.aggregate<{
+            _id: string;
+            count: number;
+        }>([
+            { $match: match },
+            {
+                $group: {
+                    _id: {
+                        $dateToString: {
+                            format: "%Y-%m-%d",
+                            date: "$createdAt",
+                        },
+                    },
+                    count: { $sum: 1 },
+                },
+            },
+            { $sort: { _id: 1 } },
+        ]);
+
+        return result.map((item) => ({
+            date: item._id,
+            count: item.count,
+        }));
+    };
+
+    async getShipmentTypes(
+        hubId: string
+    ): Promise<{
+        hubTransfer: number;
+        outForDelivery: number;
+        bulkPickup: number;
+    }> {
+
+        const hubObjectId = new Types.ObjectId(hubId);
+
+        const result = await HubShipmentModel.aggregate<{
+            _id: "HUB_TRANSFER" | "OUT_FOR_DELIVERY" | "BULK_PICKUP";
+            count: number;
+        }>([
+            {
+                $match: {
+                    $or: [
+                        { fromHubId: hubObjectId },
+                        { toHubId: hubObjectId },
+                    ],
+                },
+            },
+            {
+                $group: {
+                    _id: "$type",
+                    count: { $sum: 1 },
+                },
+            },
+        ]);
+
+        const types = {
+            hubTransfer: 0,
+            outForDelivery: 0,
+            bulkPickup: 0,
+        };
+
+        for (const item of result) {
+            switch (item._id) {
+                case "HUB_TRANSFER":
+                    types.hubTransfer = item.count;
+                    break;
+                case "OUT_FOR_DELIVERY":
+                    types.outForDelivery = item.count;
+                    break;
+                case "BULK_PICKUP":
+                    types.bulkPickup = item.count;
+                    break;
+            }
+        }
+
+        return types;
+    };
+
+
+    async findRecentShipmentsByHub(
+        hubId: string,
+        limit: number
+    ): Promise<HubShipment[]> {
+        const hubObjectId = new Types.ObjectId(hubId);
+
+        const query: FilterQuery<HubShipmentDocument> = {
+            $or: [
+                { fromHubId: hubObjectId },
+                { toHubId: hubObjectId },
+            ],
+        };
+
+        const docs = await HubShipmentModel.find(query)
+            .sort({ createdAt: -1 })
+            .limit(limit);
+
+        return docs.map((doc) => this.toDomain(doc));
+    };
+
+    async findUnassignedShipmentsByHub(
+        hubId: string,
+        limit: number
+    ): Promise<HubShipment[]> {
+        const hubObjectId = new Types.ObjectId(hubId);
+
+        const query: FilterQuery<HubShipmentDocument> = {
+            $or: [
+                { fromHubId: hubObjectId },
+                { toHubId: hubObjectId },
+            ],
+            assignedWorkerId: null,
+        };
+
+        const docs = await HubShipmentModel.find(query)
+            .sort({ createdAt: -1 })
+            .limit(limit);
+
+        return docs.map((doc) => this.toDomain(doc));
+    }
 
     private toDomain(doc: HubShipmentDocument): HubShipment {
         return new HubShipment(

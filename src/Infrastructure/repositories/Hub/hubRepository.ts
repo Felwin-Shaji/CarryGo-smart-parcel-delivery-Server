@@ -1,4 +1,4 @@
-import { FilterQuery, Types } from "mongoose";
+import { ClientSession, FilterQuery, Types } from "mongoose";
 import { GetHubsDTO, updateHubKycStatusDTO } from "../../../Application/Dto/Hub/hub.dto";
 import { IHubRepository, PaginatedHubData } from "../../../Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
 import { Hub } from "../../../Domain/Entities/Hub/Hub";
@@ -11,20 +11,51 @@ import { STATUS } from "../../constants/statusCodes";
 import { SortOrder } from "mongoose";
 import { GeoLocation } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase";
 
-export class HubRepository extends BaseRepository<HubDocument> implements IHubRepository {
-    constructor() {
-        super(HubModel)
-    };
-
-    async findOneHub(filter: FilterQuery<HubDocument>): Promise<Hub> {
-        const docs = await this.model.findOne(filter);
+export class HubRepository implements IHubRepository {
+    async findById(filter: FilterQuery<HubDocument>): Promise<Hub> {
+        const docs = await HubModel.findById(filter);
         if (!docs) throw new AppError(HUB_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
         return this.toDomain(docs);
     }
 
+    // async 
+
+    async findOne(filter: FilterQuery<HubDocument>): Promise<Hub> {
+        const docs = await HubModel.findOne(filter);
+        if (!docs) throw new AppError(HUB_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
+        return this.toDomain(docs);
+    }
+
+    async findOneAndUpdate(filter: FilterQuery<HubDocument>, value: object, unsetData?: object, session?: ClientSession): Promise<Hub | null> {
+        const options: {
+            new: boolean;
+            session?: ClientSession;
+        } = { new: true };
+
+        const update: {
+            $set: object;
+            $unset?: object;
+        } = { $set: value };
+
+        if (unsetData) {
+            const cleanedUnset: Record<string, string> = {};
+            for (const key in unsetData) {
+                cleanedUnset[key] = "";
+            }
+            update.$unset = cleanedUnset;
+        }
+
+        if (session) options.session = session;
+
+        const docs = await HubModel.findOneAndUpdate(filter, update, options);
+        if (!docs) throw new AppError(HUB_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
+
+        return this.toDomain(docs)
+    }
+
     async saveHub(hub: Hub): Promise<Hub> {
 
-        const doc = await this.model.create({
+        const doc = await HubModel.create({
             agencyId: hub.agencyId,
             name: hub.name,
             email: hub.email,
@@ -51,7 +82,7 @@ export class HubRepository extends BaseRepository<HubDocument> implements IHubRe
     }
 
     async getHubById(hubId: string): Promise<Hub> {
-        const hub = await this.findById({ _id: hubId });
+        const hub = await HubModel.findById({ _id: hubId });
 
         if (!hub) throw new AppError(HUB_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND)
 
@@ -87,7 +118,7 @@ export class HubRepository extends BaseRepository<HubDocument> implements IHubRe
             updateData.rejectReason = null;
         }
 
-        const updatedHub = await this.findOneAndUpdate(
+        const updatedHub = await HubModel.findOneAndUpdate(
             { _id: hubId },
             updateData,
             { new: true }
@@ -135,8 +166,8 @@ export class HubRepository extends BaseRepository<HubDocument> implements IHubRe
         }
 
         const [data, total] = await Promise.all([
-            this.model.find(filter).sort(sort).skip(skip).limit(limit),
-            this.model.countDocuments(filter),
+            HubModel.find(filter).sort(sort).skip(skip).limit(limit),
+            HubModel.countDocuments(filter),
         ]);
 
         return {

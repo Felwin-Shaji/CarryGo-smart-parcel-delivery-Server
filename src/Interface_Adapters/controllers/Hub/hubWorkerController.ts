@@ -21,6 +21,7 @@ import { IGetWorkerOverviewUseCase } from "@/Application/interfaces/useCase_Inte
 import { IReSubmitWorkerKycUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IReSubmitWorkerKycUseCase";
 import { IGetWorkerKycUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerKycUseCase";
 import { parseBlockedQuery } from "@/Domain/utils/utils";
+import { Role } from "@/Domain/Enums/Roles";
 
 @injectable()
 export class HubWorkerController implements IHubWorkerController {
@@ -111,7 +112,10 @@ export class HubWorkerController implements IHubWorkerController {
 
     getHubWorkers = async (req: Request, res: Response): Promise<Response | void> => {
 
-        const hubId = req.user?.id;
+        let hubId: string | undefined;
+        if (req.user?.role === Role.HUB) hubId = req.user.id;
+        else hubId = req.params.hubId as string;
+
         if (!hubId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND);
 
         const dto: GetWorkersDTO = {

@@ -85,7 +85,7 @@ export class WorkerMapper {
 
     static toAddWorkerResponseDTO(worker: HubWorker): WorkerResponseDTO {
         return {
-            id:worker.id!,
+            id: worker.id!,
             hubId: worker.hubId.toString(),
             name: worker.name,
             email: worker.email,
@@ -99,39 +99,41 @@ export class WorkerMapper {
     }
 
     static toWorkerOverviewResponseDTO(
-    worker: HubWorker,
-    kyc: IWrokerKYCVerification | null
-  ): GetWorkerOverviewResponseDTO {
-    return {
-      id: worker.id!,
-      name: worker.name,
-      email: worker.email,
-  ...(worker.mobile && { mobile: worker.mobile }),
+        worker: HubWorker,
+        kyc: IWrokerKYCVerification | null
+    ): GetWorkerOverviewResponseDTO {
+        return {
+            id: worker.id!,
+            name: worker.name,
+            email: worker.email,
+            ...(worker.mobile && { mobile: worker.mobile }),
 
-      role: worker.role,
-      workerRole: worker.workerRole,
-      workingStatus: worker.workingStatus,
+            hubId: worker.hubId.toString(),
 
-      kycStatus: worker.kycStatus,
-      walletBalance: worker.walletBalance,
-      isBlocked: worker.isBlocked,
+            role: worker.role,
+            workerRole: worker.workerRole,
+            workingStatus: worker.workingStatus,
 
-      createdAt: worker.createdAt,
+            kycStatus: worker.kycStatus,
+            walletBalance: worker.walletBalance,
+            isBlocked: worker.isBlocked,
 
-      kyc: kyc
-        ? {
-            id: kyc._id!,
-            subjectId: kyc.subjectId,
-            subjectType: kyc.subjectType,
-            idType: kyc.idType,
-            idNumberEncrypted: kyc.idNumberEncrypted,
-            documentUrl: kyc.documentUrl,
-            selfieUrl: kyc.selfieUrl,
-            status: kyc.status,
-            createdAt: kyc.createdAt,
-            reviewedAt: kyc.reviewedAt,
-          }
-        : null,
-    };
-  }
+            createdAt: worker.createdAt,
+
+            kyc: kyc
+                ? {
+                    id: kyc._id!,
+                    subjectId: kyc.subjectId,
+                    subjectType: kyc.subjectType,
+                    idType: kyc.idType,
+                    idNumberEncrypted: kyc.idNumberEncrypted,
+                    documentUrl: kyc.documentUrl,
+                    selfieUrl: kyc.selfieUrl,
+                    status: kyc.status,
+                    createdAt: kyc.createdAt,
+                    reviewedAt: kyc.reviewedAt,
+                }
+                : null,
+        };
+    }
 }

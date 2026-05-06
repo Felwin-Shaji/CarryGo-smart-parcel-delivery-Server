@@ -2,6 +2,7 @@ import { IGetHubDashboardShipmentsPreviewUseCase } from "@/Application/interface
 import { IGetHubDashboardSummaryUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IGetHubDashboardSummaryUseCase";
 import { IGetHubDashboardTrendUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IGetHubDashboardTrendUseCase";
 import { IGetHubDashboardTypesUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IGetHubDashboardTypesUseCase";
+import { Role } from "@/Domain/Enums/Roles";
 import { AppError } from "@/Domain/utils/customError";
 import { HUB_MESSAGES } from "@/Infrastructure/constants/messages/hubMessage";
 import { STATUS } from "@/Infrastructure/constants/statusCodes";
@@ -19,7 +20,11 @@ export class HubDashboardController {
     ) { };
 
     getSummary = async (req: Request, res: Response): Promise<Response | void> => {
-        const hubId = req.user?.id;
+
+        let hubId: string | undefined;
+        if (req.user?.role === Role.HUB) hubId = req.user.id;
+        else hubId = req.params.hubId as string;
+
         if (!hubId) throw new AppError(HUB_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
 
         const summery = await this._getHubDashboardSummaryUseCase.execute(hubId);
@@ -33,7 +38,11 @@ export class HubDashboardController {
     };
 
     getTrend = async (req: Request, res: Response) => {
-        const hubId = req.user?.id;
+
+        let hubId: string | undefined;
+        if (req.user?.role === Role.HUB) hubId = req.user.id;
+        else hubId = req.params.hubId as string;
+
         if (!hubId) throw new AppError(HUB_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
 
         const { from, to } = req.query;
@@ -52,7 +61,11 @@ export class HubDashboardController {
     };
 
     getTypes = async (req: Request, res: Response) => {
-        const hubId = req.user?.id;
+
+        let hubId: string | undefined;
+        if (req.user?.role === Role.HUB) hubId = req.user.id;
+        else hubId = req.params.hubId as string;
+
         if (!hubId) throw new AppError(HUB_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
 
         const data = await this._getHubDashboardTypesUseCase.execute(hubId);
@@ -67,7 +80,10 @@ export class HubDashboardController {
 
     getShipmentsPreview = async (req: Request, res: Response): Promise<Response | void> => {
 
-        const hubId = req.user?.id;
+        let hubId: string | undefined;
+        if (req.user?.role === Role.HUB) hubId = req.user.id;
+        else hubId = req.params.hubId as string;
+        
         if (!hubId) throw new AppError(HUB_MESSAGES.ID_MISSING, STATUS.BAD_REQUEST);
 
         const data = await this._getHubDashboardShipmentsPreviewUseCase.execute(hubId);

@@ -294,7 +294,7 @@ export class BulkUpdateShipmentParcelUsecase implements IBulkUpdateShipmentParce
             const travelerCreditTx = TransactionMapper.createCredit(
                 agencyWallet.id!,
                 agencyAmount,
-                "PAYOUT",
+                "SETTLEMENT",
                 agencyWallet.balance,
                 { bookingId: booking.id }
             );

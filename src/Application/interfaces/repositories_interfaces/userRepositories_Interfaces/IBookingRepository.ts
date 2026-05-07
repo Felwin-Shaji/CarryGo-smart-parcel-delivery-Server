@@ -2,6 +2,7 @@ import { ClientSession } from "mongoose";
 import { Booking } from "../../../../Domain/Entities/Booking/Booking";
 import { BookingStatusType, PaymentStatusType } from "../../../../Infrastructure/Types/types";
 import { BookingFilterDTO } from "../../../Dto/User/Booking.dto";
+import { DeliveriesChartRequestDTO, DeliveriesChartResponseDTO } from "@/Application/Dto/Agency/agencyDashboard.dto";
 
 export interface IBookingRepository {
     create(booking: Booking): Promise<Booking>
@@ -36,4 +37,8 @@ export interface IBookingRepository {
         },
         session?: ClientSession
     ): Promise<void>;
+
+    countDeliveredByAgency(agencyId: string): Promise<number>;
+
+    groupDeliveredByDate(agencyId: string, range: DeliveriesChartRequestDTO): Promise<DeliveriesChartResponseDTO>;
 }

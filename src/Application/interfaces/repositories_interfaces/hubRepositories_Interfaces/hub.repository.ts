@@ -25,5 +25,7 @@ export interface IHubRepository {
   getPaginatedHubsByAgency(agencyId: string, dto: GetHubsDTO): Promise<PaginatedHubData>;
   findServiceableAgenciesWithHubs(pickupLocation: GeoLocation,
     deliveryLocation: GeoLocation,
-  ): Promise<ServiceableHubWithAgencyDTO[]>
+  ): Promise<ServiceableHubWithAgencyDTO[]>;
+  countByAgency(agencyId: string): Promise<number>;
+  countWorkersByAgency(agencyId: string): Promise<number>;
 }

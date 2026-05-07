@@ -10,6 +10,7 @@ import { HUB_MESSAGES } from "../../constants/messages/hubMessage";
 import { STATUS } from "../../constants/statusCodes";
 import { SortOrder } from "mongoose";
 import { GeoLocation } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase";
+import { HubWorkerModel } from "@/Infrastructure/database/models/Worker/workerModel";
 
 export class HubRepository implements IHubRepository {
     async findById(filter: FilterQuery<HubDocument>): Promise<Hub> {
@@ -18,7 +19,6 @@ export class HubRepository implements IHubRepository {
         return this.toDomain(docs);
     }
 
-    // async 
 
     async findOne(filter: FilterQuery<HubDocument>): Promise<Hub> {
         const docs = await HubModel.findOne(filter);
@@ -94,7 +94,6 @@ export class HubRepository implements IHubRepository {
             .find({
                 _id: { $in: hubIds.map(id => new Types.ObjectId(id)) }
             })
-        // .session(session ?? null);
 
         return docs.map(this.toDomain);
     }
@@ -102,8 +101,6 @@ export class HubRepository implements IHubRepository {
     async updateKycSatus(hubId: string, dto: updateHubKycStatusDTO): Promise<void> {
 
         const { status, reason } = dto;
-
-        console.log(dto)
 
         const updateData: Partial<Hub> = {
             kycStatus: status,
@@ -325,6 +322,28 @@ export class HubRepository implements IHubRepository {
         return result
 
     }
+
+    async countByAgency(agencyId: string): Promise<number> {
+        return await HubModel.countDocuments({
+            agencyId: new Types.ObjectId(agencyId),
+        });
+    };
+
+    async countWorkersByAgency(agencyId: string): Promise<number> {
+        const hubs = await HubModel
+            .find({ agencyId: new Types.ObjectId(agencyId) })
+            .select("_id");
+
+        if (!hubs.length) return 0;
+
+        const hubIds = hubs.map(h => h._id);
+
+        //  Step 2: count workers using hubIds
+        return await HubWorkerModel.countDocuments({
+            hubId: { $in: hubIds }
+        });
+    }
+
 
     private toDomain(doc: HubDocument): Hub {
         return new Hub(

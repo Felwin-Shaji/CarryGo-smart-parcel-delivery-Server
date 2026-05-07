@@ -17,8 +17,6 @@ import { IDistanceService } from "../../Application/interfaces/services_Interfac
 import { DistanceService } from "../services/Distance.Service";
 import { IPaymentGatewayService } from "../../Application/interfaces/services_Interfaces/payment/IPaymentGateway";
 import { RazorpayPaymentGateway } from "../services/Payment/RazorpayPaymentGateway";
-// import { IWalletService } from "../../Application/interfaces/services_Interfaces/IWalletService";
-// import { WalletService } from "../services/Payment/wallet.services";
 import { IRouteComputationService } from "@/Application/interfaces/services_Interfaces/IRouteComputationService";
 import { RouteComputationService } from "../services/Logistics/RouteComputationService";
 import { IHubShipmentAssignmentService } from "@/Application/interfaces/services_Interfaces/IHubShipmentAssignmentService";
@@ -27,6 +25,14 @@ import { IBookingIdGeneratorService } from "@/Application/interfaces/services_In
 import { BookingIdGeneratorService } from "../services/BookingIdGenerator.service";
 import { IMessageSocketService } from "@/Application/interfaces/services_Interfaces/Chat/IMessageSocketService";
 import { SocketService } from "../services/Chat/Socket.service";
+import { IReportGenerator } from "@/Application/interfaces/services_Interfaces/Report/IReportService";
+import { ExcelReportGeneratorService } from "../services/Report/ExcelReportGenerator.service";
+import { PdfReportGeneratorService } from "../services/Report/PdfReportGenerator.service";
+
+type ReportGenerators = {
+    excel: IReportGenerator;
+    pdf: IReportGenerator;
+};
 
 export class ServiceRegistory {
     static registerServices(): void {
@@ -67,10 +73,6 @@ export class ServiceRegistory {
             useClass: RazorpayPaymentGateway
         })
 
-        // container.register<IWalletService>("IWalletService", {
-        //     useClass: WalletService
-        // });
-
         container.register<IRouteComputationService>("IRouteComputationService", {
             useClass: RouteComputationService
         });
@@ -85,6 +87,21 @@ export class ServiceRegistory {
 
         container.register<IMessageSocketService>("IMessageSocketService", {
             useClass: SocketService
-        })
+        });
+
+        container.register<IReportGenerator>("ExcelReportGeneratorService", {
+            useClass: ExcelReportGeneratorService,
+        });
+
+        container.register<IReportGenerator>("PdfReportGeneratorService", {
+            useClass: PdfReportGeneratorService,
+        });
+
+        container.register<ReportGenerators>("ReportGenerators", {
+            useFactory: (c) => ({
+                excel: c.resolve<IReportGenerator>("ExcelReportGeneratorService"),
+                pdf: c.resolve<IReportGenerator>("PdfReportGeneratorService"),
+            }),
+        });
     }
 }

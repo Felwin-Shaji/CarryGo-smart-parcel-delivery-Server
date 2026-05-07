@@ -232,6 +232,16 @@ import { GetHubDashboardTypesUseCase } from "@/Application/useCase/Hub/GetHubDas
 import { IGetHubDashboardTypesUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IGetHubDashboardTypesUseCase";
 import { IGetHubDashboardShipmentsPreviewUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IGetHubDashboardShipmentsPreviewUseCase";
 import { GetHubDashboardShipmentsPreviewUseCase } from "@/Application/useCase/Hub/GetHubDashboardShipmentsPreview.usecase";
+import { IAgencyGetDashboardUsecase } from "@/Application/interfaces/useCase_Interfaces/Agency/IAgencyGetDashboardUseCase";
+import { AgencyGetDashboardUsecase } from "@/Application/useCase/Agency/AgencyGetDashboard.usecase";
+import { IAgencyGetSalesReportUseCase } from "@/Application/interfaces/useCase_Interfaces/Agency/IAgencyGetSalesReportUseCase";
+import { AgencyGetSalesReportUseCase } from "@/Application/useCase/Agency/AgencyGetSalesReport.usecase";
+import { IAgencyGetSalesChartUseCase } from "@/Application/interfaces/useCase_Interfaces/Agency/IAgencyGetSalesChartUseCase";
+import { AgencyGetSalesChartUseCase } from "@/Application/useCase/Agency/AgencyGetSalesChart.usecase";
+import { IAgencyGetDeliveriesChartUseCase } from "@/Application/interfaces/useCase_Interfaces/Agency/IAgencyGetDeliveriesChartUseCase";
+import { AgencyGetDeliveriesChartUseCase } from "@/Application/useCase/Agency/AgencyGetDeliveriesChart.usecase";
+import { IAgencyExportSalesReportUseCase } from "@/Application/interfaces/useCase_Interfaces/Agency/IAgencyExportSalesReportUsecase";
+import { AgencyExportSalesReportUseCase } from "@/Application/useCase/Agency/AgencyExportSalesReport.usecase";
 
 
 
@@ -711,6 +721,26 @@ export class UsecaseRegistery {
 
         container.register<IGetHubDashboardShipmentsPreviewUseCase>("IGetHubDashboardShipmentsPreviewUseCase", {
             useClass: GetHubDashboardShipmentsPreviewUseCase
+        });
+
+        container.register<IAgencyGetDashboardUsecase>("IAgencyGetDashboardUsecase", {
+            useClass: AgencyGetDashboardUsecase
+        });
+
+        container.register<IAgencyGetSalesReportUseCase>("IAgencyGetSalesReportUseCase", {
+            useClass: AgencyGetSalesReportUseCase
+        });
+
+        container.register<IAgencyGetSalesChartUseCase>("IAgencyGetSalesChartUseCase", {
+            useClass: AgencyGetSalesChartUseCase
+        });
+
+        container.register<IAgencyGetDeliveriesChartUseCase>("IAgencyGetDeliveriesChartUseCase", {
+            useClass: AgencyGetDeliveriesChartUseCase
+        });
+
+        container.register<IAgencyExportSalesReportUseCase>("IAgencyExportSalesReportUseCase", {
+            useClass: AgencyExportSalesReportUseCase
         });
     }
 }

@@ -9,6 +9,7 @@ import { STATUS } from "../../constants/statusCodes";
 import { BookingDocument, BookingModel } from "../../database/models/Booking/BookingSchema";
 import { BookingStatusType, PaymentStatusType } from "../../Types/types";
 import { BaseRepository } from "../baseRepositories";
+import { DeliveriesChartRequestDTO, DeliveriesChartResponseDTO } from "@/Application/Dto/Agency/agencyDashboard.dto";
 
 export class BookingRepository extends BaseRepository<BookingDocument> implements IBookingRepository {
     constructor() {
@@ -179,6 +180,76 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
             },
             { new: true, ...(session && { session }) }
         )
+    };
+
+    async countDeliveredByAgency(agencyId: string): Promise<number> {
+
+        return await this.model.countDocuments({
+            "partnerSnapshot.partnerId": new Types.ObjectId(agencyId),
+            status: "DELIVERED",
+        });
+    };
+
+    async groupDeliveredByDate(agencyId: string, range: DeliveriesChartRequestDTO): Promise<DeliveriesChartResponseDTO> {
+
+        const { fromDate, toDate } = range;
+
+        type DateFilter = {
+            $gte?: Date;
+            $lte?: Date;
+        };
+
+        type MatchType = {
+            status: "DELIVERED";
+            "partnerSnapshot.partnerId": Types.ObjectId;
+            createdAt?: DateFilter;
+        };
+
+        const match: MatchType = {
+            status: "DELIVERED",
+            "partnerSnapshot.partnerId": new Types.ObjectId(agencyId),
+        };
+
+        // Date filter
+        if (fromDate || toDate) {
+            const dateFilter: DateFilter = {};
+
+            if (fromDate) dateFilter.$gte = new Date(fromDate);
+            if (toDate) dateFilter.$lte = new Date(toDate);
+
+            match.createdAt = dateFilter;
+        }
+
+        const result = await this.model.aggregate<{
+            date: string;
+            count: number;
+        }>([
+            { $match: match },
+
+            {
+                $group: {
+                    _id: {
+                        $dateToString: {
+                            format: "%Y-%m-%d",
+                            date: "$createdAt",
+                        },
+                    },
+                    count: { $sum: 1 },
+                },
+            },
+
+            {
+                $project: {
+                    _id: 0,
+                    date: "$_id",
+                    count: 1,
+                },
+            },
+
+            { $sort: { date: 1 } },
+        ]);
+
+        return { data: result };
     }
 
     private toDomain(doc: BookingDocument): Booking {
@@ -256,7 +327,7 @@ export class BookingRepository extends BaseRepository<BookingDocument> implement
                 ? {
                     fromHubId: doc.logistics.fromHubId
                         ? doc.logistics.fromHubId.toString()
-                        : null, 
+                        : null,
 
                     toHubId: doc.logistics.toHubId
                         ? doc.logistics.toHubId.toString()

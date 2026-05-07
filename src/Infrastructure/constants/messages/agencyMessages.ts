@@ -7,9 +7,9 @@ export const AGENCY_MESSAGES = {
     LIST_FETCH_SUCCESS: "Agencies fetched successfully.",
     STATUS_UPDATED: "Agency status updated successfully.",
     KYC_STATUS_UPDATED: "Agency KYC status updated successfully.",
-    KYC_SUBMITED:"Agency kyc submitted successfully",
-    FETCH_AGENCY_WITH_KYC:"Agency with kyc fetched successfully",
-    STATUS_CHECHED_SUCCESS:`Temporary hub status checked successfully`,
+    KYC_SUBMITED: "Agency kyc submitted successfully",
+    FETCH_AGENCY_WITH_KYC: "Agency with kyc fetched successfully",
+    STATUS_CHECHED_SUCCESS: `Temporary hub status checked successfully`,
     OTP_SENT_SUCCESSFULLY: "OTP sent successfully. Proceed to verification.",
     HUB_ADDED_SUCCESSFULLY: "Hub added successfully.",
     AGENCY_KYC_NOT_FOUND: "Agency KYC record not found.",
@@ -20,11 +20,16 @@ export const AGENCY_MESSAGES = {
     INVALID_OTP: "Invalid OTP. Please try again.",
     OTP_RESENT: "OTP resent successfully.",
 
-    PRICING_NOT_FOUND:"Agency pricong is not found",
-    PRICING_NOT_UPDATED:"Agency pricing policy version is not updated",
+    PRICING_NOT_FOUND: "Agency pricong is not found",
+    PRICING_NOT_UPDATED: "Agency pricing policy version is not updated",
 
     PROFILE_FETCHED: "Agency profile fetched successfully.",
     PROFILE_UPDATED: "Agency profile updated successfully.",
     PASSWORD_RESET: "Agency password reset successfully.",
     PROFILE_UPDATE_FAILURE: "Failed to update agency profile.",
+
+    DASHBOARD_FETCH_SUCCESS: "Agency dashboard data fetched successfully.",
+    SALES_REPORT_FETCH_SUCCESS: "Agency sales report fetched successfully.",
+    SALES_CHART_FETCH_SUCCESS: "Agency sales chart fetched successfully.",
+    DELIVERIES_CHART_FETCH_SUCCESS: "Agency deliveries chart fetched successfully.",
 } as const;

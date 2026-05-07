@@ -30,6 +30,7 @@ import { UserTrackingController } from "@/Interface_Adapters/controllers/User/Us
 import { WorkerDashboardController } from "@/Interface_Adapters/controllers/Worker/WorkerDashboard.controller";
 import { HubProfileController } from "@/Interface_Adapters/controllers/Hub/HubProfile.controller";
 import { HubDashboardController } from "@/Interface_Adapters/controllers/Hub/HubDashboard.controller";
+import { AgencyDashboardController } from "@/Interface_Adapters/controllers/Agency/AgencyDashboard.controller";
 
 
 DependancyInjection.registerAll();
@@ -54,6 +55,7 @@ export const agencyPricingController = container.resolve(AgencyPricingController
 export const agencyWalletController = container.resolve(AgencyWalletController);
 export const agencyRouteController = container.resolve(AgencyRouteController);
 export const agencyRouteSegmentController = container.resolve(AgencyRouteSegmentController)
+export const agencyDashboardController = container.resolve(AgencyDashboardController);
 
 
 

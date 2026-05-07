@@ -1,5 +1,6 @@
 import { ClientSession } from "mongoose";
 import { Transaction } from "../../../../Domain/Entities/Wallet/WalletTransaction";
+import { GetSettlementReportQuery, SalesChartRequestDTO, SalesChartResponseDTO, SalesReportResponseDTO } from "@/Application/Dto/Agency/agencyDashboard.dto";
 
 export interface ITransactionRepository {
     create(transation: Transaction, session?: ClientSession): Promise<void>
@@ -22,4 +23,10 @@ export interface ITransactionRepository {
         transactionId: string,
         session?: ClientSession
     ): Promise<void>;
+
+    sumSettlementByAgency(agencyId: string): Promise<number>;
+
+    getSettlementReport(walletId: string, query: GetSettlementReportQuery): Promise<SalesReportResponseDTO>;
+
+    groupSettlementByDate(walletId: string, query: SalesChartRequestDTO): Promise<SalesChartResponseDTO>;
 }

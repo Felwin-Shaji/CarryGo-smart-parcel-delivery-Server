@@ -242,6 +242,16 @@ import { IAgencyGetDeliveriesChartUseCase } from "@/Application/interfaces/useCa
 import { AgencyGetDeliveriesChartUseCase } from "@/Application/useCase/Agency/AgencyGetDeliveriesChart.usecase";
 import { IAgencyExportSalesReportUseCase } from "@/Application/interfaces/useCase_Interfaces/Agency/IAgencyExportSalesReportUsecase";
 import { AgencyExportSalesReportUseCase } from "@/Application/useCase/Agency/AgencyExportSalesReport.usecase";
+import { INotificationRepository } from "@/Application/interfaces/repositories_interfaces/NotificationRepository_interfaces/INotificationRepository";
+import { NotificationRepository } from "../repositories/Notification/Notification.repository";
+import { IGetNotificationsUseCase } from "@/Application/interfaces/useCase_Interfaces/Notification/IGetNotificationsUseCase";
+import { GetNotificationsUseCase } from "@/Application/useCase/Notification/GetNotifications.usecase";
+import { IMarkAsReadUseCase } from "@/Application/interfaces/useCase_Interfaces/Notification/IMarkAsReadUseCase";
+import { MarkAsReadUseCase } from "@/Application/useCase/Notification/MarkAsRead.usecase";
+import { IMarkAllAsReadUseCase } from "@/Application/interfaces/useCase_Interfaces/Notification/IMarkAllAsReadUseCase";
+import { MarkAllAsReadUseCase } from "@/Application/useCase/Notification/MarkAllAsRead.usecase";
+import { GetUnreadCountUseCase } from "@/Application/useCase/Notification/GetUnreadCount.usecase";
+import { IGetUnreadCountUseCase } from "@/Application/interfaces/useCase_Interfaces/Notification/IGetUnreadCountUseCase";
 
 
 
@@ -741,6 +751,26 @@ export class UsecaseRegistery {
 
         container.register<IAgencyExportSalesReportUseCase>("IAgencyExportSalesReportUseCase", {
             useClass: AgencyExportSalesReportUseCase
+        });
+
+        container.register<INotificationRepository>("INotificationRepository", {
+            useClass: NotificationRepository,
+        });
+
+        container.register<IGetNotificationsUseCase>("IGetNotificationsUseCase", {
+            useClass: GetNotificationsUseCase,
+        });
+
+        container.register<IMarkAsReadUseCase>("IMarkAsReadUseCase", {
+            useClass: MarkAsReadUseCase,
+        });
+
+        container.register<IMarkAllAsReadUseCase>("IMarkAllAsReadUseCase", {
+            useClass: MarkAllAsReadUseCase,
+        });
+
+        container.register<IGetUnreadCountUseCase>("IGetUnreadCountUseCase", {
+            useClass: GetUnreadCountUseCase,
         });
     }
 }

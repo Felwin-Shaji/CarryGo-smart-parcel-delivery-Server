@@ -53,6 +53,8 @@ import { IMessageRepository } from "@/Application/interfaces/repositories_interf
 import { MessageRepository } from "../repositories/Chat/Message.repository";
 import { IChatRepository } from "@/Application/interfaces/repositories_interfaces/ChatRepositories_Interfaces/IChatRepository";
 import { ChatRepository } from "../repositories/Chat/Chat.repository";
+import { INotificationRepository } from "@/Application/interfaces/repositories_interfaces/NotificationRepository_interfaces/INotificationRepository";
+import { NotificationRepository } from "../repositories/Notification/Notification.repository";
 
 
 export class RepositoryRegistry {
@@ -164,6 +166,10 @@ export class RepositoryRegistry {
 
         container.register<IChatRepository>("IChatRepository", {
             useClass: ChatRepository
-        })
+        });
+
+        container.register<INotificationRepository>("INotificationRepository", {
+            useClass: NotificationRepository
+        });
     };
 };

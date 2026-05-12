@@ -28,6 +28,10 @@ import { SocketService } from "../services/Chat/Socket.service";
 import { IReportGenerator } from "@/Application/interfaces/services_Interfaces/Report/IReportService";
 import { ExcelReportGeneratorService } from "../services/Report/ExcelReportGenerator.service";
 import { PdfReportGeneratorService } from "../services/Report/PdfReportGenerator.service";
+import { INotificationService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationService";
+import { NotificationService } from "../services/Notification/Notification.service";
+import { INotificationSocketService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationSocketService";
+import { NotificationSocketService } from "../services/Notification/NotificationSocket.service";
 
 type ReportGenerators = {
     excel: IReportGenerator;
@@ -103,5 +107,13 @@ export class ServiceRegistory {
                 pdf: c.resolve<IReportGenerator>("PdfReportGeneratorService"),
             }),
         });
+
+        container.register<INotificationService>("INotificationService", {
+            useClass: NotificationService
+        });
+
+        container.register<INotificationSocketService>("INotificationSocketService", {
+            useClass: NotificationSocketService
+        })
     }
 }

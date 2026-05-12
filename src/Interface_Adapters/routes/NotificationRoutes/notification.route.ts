@@ -9,32 +9,32 @@ export class NotificationRoute extends BaseRoute {
     protected initializeRoutes(): void {
 
         this.router.get(
-            "/",
-            authenticate([Role.USER]),
+            "/notifications",
+            authenticate([Role.USER, Role.ADMIN, Role.AGENCY, Role.HUB, Role.WORKER]),
             asyncHandler((req, res) =>
                 container.resolve(NotificationController).getNotifications(req, res)
             )
         );
 
         this.router.get(
-            "/unread-count",
-            authenticate([Role.USER]),
+            "/notifications/unread-count",
+            authenticate([Role.USER, Role.ADMIN, Role.AGENCY, Role.HUB, Role.WORKER]),
             asyncHandler((req, res) =>
                 container.resolve(NotificationController).getUnreadCount(req, res)
             )
         );
 
         this.router.patch(
-            "/read/:id",
-            authenticate([Role.USER]),
+            "/notifications/read/:id",
+            authenticate([Role.USER, Role.ADMIN, Role.AGENCY, Role.HUB, Role.WORKER]),
             asyncHandler((req, res) =>
                 container.resolve(NotificationController).markAsRead(req, res)
             )
         );
 
         this.router.patch(
-            "/read-all",
-            authenticate([Role.USER]),
+            "/notifications/read-all",
+            authenticate([Role.USER, Role.ADMIN, Role.AGENCY, Role.HUB, Role.WORKER]),
             asyncHandler((req, res) =>
                 container.resolve(NotificationController).markAllAsRead(req, res)
             )

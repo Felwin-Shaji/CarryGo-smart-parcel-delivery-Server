@@ -5,6 +5,7 @@ import { asyncHandler } from "../middlewares/ErrorHandlers/asyncHandler"
 import { BaseRoute } from "./base.route"
 import { WorkerShipmentRoute } from "./Worker/workerShipment.route"
 import { WrokerDashboardRoute } from "./Worker/workerDashboard.route"
+import { NotificationRoute } from "./NotificationRoutes/notification.route"
 
 export class WrokerRoute extends BaseRoute {
     constructor() {
@@ -18,6 +19,6 @@ export class WrokerRoute extends BaseRoute {
 
         this.router.use(new WorkerShipmentRoute().router);
         this.router.use(new WrokerDashboardRoute().router);
-        
+        this.router.use(new NotificationRoute().router);
     }
 }

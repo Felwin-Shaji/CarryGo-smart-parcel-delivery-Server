@@ -8,16 +8,22 @@ import { WorkerKYCFileFields } from "@/Infrastructure/services/storage/multer";
 import { WORKER_MESSAGES } from "@/Infrastructure/constants/messages/workerMessage";
 import { STATUS } from "@/Infrastructure/constants/statusCodes";
 import { IHubWorkerRepository } from "@/Application/interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";
+import { INotificationSocketService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationSocketService";
+import { INotificationService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationService";
+import { IAgencyRepository } from "@/Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
+import { IHubRepository } from "@/Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
 
 @injectable()
 export class ReSubmitWorkerKycUseCase implements IReSubmitWorkerKycUseCase {
     constructor(
         @inject("IHubWorkerKycRepository") private _kycRepo: IHubWorkerKycRepository,
         @inject("IHubWorkerRepository") private _hubWorkerRepository: IHubWorkerRepository,
-
-
         @inject("IUploadWorkerKycFilesUsecase") private _uploadWorkerKycFilesUsecase: IUploadWorkerKycFilesUsecase,
 
+        @inject("IHubRepository") private _hubRepo: IHubRepository,
+        @inject("IAgencyRepository") private _agencyRepo: IAgencyRepository,
+        @inject("INotificationService") private _notificationService: INotificationService,
+        @inject("INotificationSocketService") private _notificationSocketService: INotificationSocketService,
     ) { }
 
     async execute(workerId: string, payload: ReSubmitWorkerKycPayloadDTO, files: WorkerKYCFileFields): Promise<void> {
@@ -62,8 +68,43 @@ export class ReSubmitWorkerKycUseCase implements IReSubmitWorkerKycUseCase {
         await this._kycRepo.save(existing);
         await this._hubWorkerRepository.findOneAndUpdate(
             { _id: workerId },
-            { kycStatus: "RESUBMITTED" }
-        )
+            { kycStatus: "RESUBMITTED" });
 
+        await this._notifyAgency(workerId);
+
+    };
+
+    private async _notifyAgency(workerId: string): Promise<void> {
+
+        const worker =
+            await this._hubWorkerRepository.findById({
+                _id: workerId
+            });
+
+        if (!worker?.hubId) return;
+
+        const hub = await this._hubRepo.findById({
+            _id: worker.hubId.toString()
+        });
+
+        if (!hub?.agencyId) return;
+
+        const agency = await this._agencyRepo.findById({
+            _id: hub.agencyId.toString()
+        });
+
+        if (!agency?.id) return;
+
+        const notification =
+            await this._notificationService.createNotification(
+                agency.id.toString(),
+                "Worker KYC Resubmitted",
+                `Worker "${worker.name}" has resubmitted KYC documents for review.`
+            );
+
+        this._notificationSocketService.emitNotification(
+            agency.id.toString(),
+            notification
+        );
     }
 }

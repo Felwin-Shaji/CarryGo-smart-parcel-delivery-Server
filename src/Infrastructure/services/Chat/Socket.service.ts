@@ -1,14 +1,12 @@
 import { IMessageSocketService } from "@/Application/interfaces/services_Interfaces/Chat/IMessageSocketService";
 import { Message } from "@/Domain/Entities/Chat/Message";
 import { Server, Socket } from "socket.io";
-import { inject, injectable } from "tsyringe";
+import { container, inject, injectable } from "tsyringe";
 
 @injectable()
 export class SocketService implements IMessageSocketService {
 
-    constructor(
-        @inject("SocketIOServer") private io: Server
-    ) { }
+    constructor() { }
 
 
     connect(): void {
@@ -46,5 +44,9 @@ export class SocketService implements IMessageSocketService {
     emitMessage(chatId: string, message: Message & { tempId: string }) {
         const rooms = this.io.sockets.adapter.rooms.get(chatId);
         this.io.to(chatId).emit("receive_message", message);
+    };
+
+    private get io(): Server {
+        return container.resolve<Server>("SocketIOServer");
     }
 }

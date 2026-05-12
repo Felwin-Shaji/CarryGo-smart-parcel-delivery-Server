@@ -7,12 +7,15 @@ import { AppError } from "../../../Domain/utils/customError";
 import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { WorkerMapper } from "../../Mappers/Workers/WorkerMapper";
-import { ENV } from "../../../Infrastructure/constants/env";
 import { WorkerResponseDTO } from "../../Dto/Workers/worker.dto";
 import { IAddWorkerUsecase } from "../../interfaces/useCase_Interfaces/Worker/AddWorkerUsecase";
 import { IHubWorkerKycRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/wrokerKyc.repository";
 import { IDType } from "../../../Domain/Entities/Worker/WorkerKyc";
 import { UploadedWorkerKycFiles } from "../../interfaces/useCase_Interfaces/Worker/uploadWorkerKycFilesUsecase";
+import { INotificationSocketService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationSocketService";
+import { INotificationService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationService";
+import { IAgencyRepository } from "@/Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
+import { IHubRepository } from "@/Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
 
 @injectable()
 export class AddWorkerUsecase implements IAddWorkerUsecase {
@@ -21,9 +24,14 @@ export class AddWorkerUsecase implements IAddWorkerUsecase {
         @inject("IHubWorkerKycRepository") private _hubWorkerKycRepo: IHubWorkerKycRepository,
         @inject("IHubWorkerRepository") private _hubWorkerRepo: IHubWorkerRepository,
         @inject("IPasswordService") private _passwordService: IPasswordService,
-        @inject("IMailService") private _mailer: IMailService
+        @inject("IMailService") private _mailer: IMailService,
+
+        @inject("IHubRepository") private _hubRepo: IHubRepository,
+        @inject("IAgencyRepository") private _agencyRepo: IAgencyRepository,
+        @inject("INotificationService") private _notificationService: INotificationService,
+        @inject("INotificationSocketService") private _notificationSocketService: INotificationSocketService,
     ) { }
-    async execute(email: string, idType: IDType,idNumber: string,hubId:string, files: UploadedWorkerKycFiles): Promise<WorkerResponseDTO> {
+    async execute(email: string, idType: IDType, idNumber: string, hubId: string, files: UploadedWorkerKycFiles): Promise<WorkerResponseDTO> {
 
         const tempWorker = await this._hubWorkersTempRepo.findOne({ email });
         if (!tempWorker || tempWorker.status !== "OTP-Verified") throw new AppError(WORKER_MESSAGES.SESSION_NOT_FOUND, STATUS.NOT_FOUND);
@@ -55,12 +63,38 @@ export class AddWorkerUsecase implements IAddWorkerUsecase {
         );
 
         await this._hubWorkerKycRepo.save(kycEntity);
+        await this._notifyAgency(hubId, savedWorker.name);
+        console.log("DEV Worker Password:", rawPassword);
 
-        if (ENV.IS_PROD) {
-            await this._mailer.sendCustomPassword(tempWorker.email);
-        }
+        await this._mailer.sendCustomPassword(tempWorker.email);
 
         return WorkerMapper.toAddWorkerResponseDTO(savedWorker);
+    };
 
+    private async _notifyAgency(hubId: string, workerName: string): Promise<void> {
+
+        const hub = await this._hubRepo.findById({
+            _id: hubId
+        });
+
+        if (!hub?.agencyId) return;
+
+        const agency = await this._agencyRepo.findById({
+            _id: hub.agencyId.toString()
+        });
+
+        if (!agency?.id) return;
+
+        const notification =
+            await this._notificationService.createNotification(
+                agency.id.toString(),
+                "New Worker Added",
+                `A new worker "${workerName}" was added to hub "${hub.name}" and is awaiting management review.`
+            );
+
+        this._notificationSocketService.emitNotification(
+            agency.id.toString(),
+            notification
+        );
     }
 }

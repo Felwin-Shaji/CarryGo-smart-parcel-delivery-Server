@@ -51,7 +51,7 @@ export const resubmitKycBodySchema = z
       .regex(/^\d{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[A-Z0-9]{3}$/, "Invalid GST")
       .optional(),
   })
-  .strict()
+  .passthrough()
   .refine(
     (data) =>
       data.tradeLicenseNumber ||

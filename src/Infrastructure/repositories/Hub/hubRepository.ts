@@ -20,9 +20,9 @@ export class HubRepository implements IHubRepository {
     }
 
 
-    async findOne(filter: FilterQuery<HubDocument>): Promise<Hub> {
+    async findOne(filter: FilterQuery<HubDocument>): Promise<Hub | null> {
         const docs = await HubModel.findOne(filter);
-        if (!docs) throw new AppError(HUB_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
+        if (!docs) return null;
         return this.toDomain(docs);
     }
 

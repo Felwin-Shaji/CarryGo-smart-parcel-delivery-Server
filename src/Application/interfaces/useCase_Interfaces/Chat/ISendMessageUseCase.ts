@@ -15,5 +15,5 @@ export interface UIMessage extends Partial<Message> {
 }
 
 export interface ISendMessageUseCase {
-    execute(userId: string, dto: SendMessageDTO): Promise<UIMessage>;
+    execute(userId: string, role: string, dto: SendMessageDTO): Promise<UIMessage>;
 }

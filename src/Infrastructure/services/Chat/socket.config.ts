@@ -2,6 +2,7 @@ import { Server } from "socket.io";
 import { Server as HttpServer } from "http";
 import { SocketService } from "./Socket.service";
 import { container } from "tsyringe";
+import { NotificationSocketService } from "../Notification/NotificationSocket.service";
 
 export const initSocket = (server: HttpServer) => {
 
@@ -18,8 +19,10 @@ export const initSocket = (server: HttpServer) => {
 
     container.registerInstance("SocketIOServer", io);
     const socketService = container.resolve(SocketService);
+    const notificationSocketService = container.resolve(NotificationSocketService);
 
     socketService.connect();
+    notificationSocketService.connect();
 
     return io;
 };

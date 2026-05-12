@@ -6,20 +6,17 @@ import { inject, injectable } from "tsyringe";
 @injectable()
 export class NotificationService implements INotificationService {
     constructor(
-        @inject("INotificationRepository") private repo: INotificationRepository
+        @inject("INotificationRepository") private _repo: INotificationRepository
     ) { }
 
     async createNotification(userId: string, title: string, message: string): Promise<Notification> {
-        const notification = await this.repo.create({
+        const notification = await this._repo.create({
             userId,
             title,
             message,
             isRead: false,
             createdAt: new Date(),
         });
-
-        //  Future: emit socket here (no rewrite needed)
-        // socket.emit("notification", notification);
 
         return notification;
     }

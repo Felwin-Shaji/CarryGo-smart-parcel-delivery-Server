@@ -8,6 +8,7 @@ import { AgencyRouteGroupRoute } from "./agencyRoutes/agencyRoute.route";
 import { AgencyRouteSegmentRoute } from "./agencyRoutes/agencyRouteSegment.route";
 import { AgencyHubWorkerRoute } from "./agencyRoutes/agencyHubWorker.route";
 import { AgencyDashboardRoute } from "./agencyRoutes/agencyDashboard.route";
+import { NotificationRoute } from "./NotificationRoutes/notification.route";
 
 export class AgencyRoute extends BaseRoute {
 
@@ -22,5 +23,6 @@ export class AgencyRoute extends BaseRoute {
     this.router.use(new AgencyRouteSegmentRoute().router);
     this.router.use(new AgencyHubWorkerRoute().router);
     this.router.use(new AgencyDashboardRoute().router);
+    this.router.use(new NotificationRoute().router);
   }
 }

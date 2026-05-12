@@ -8,21 +8,24 @@ import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agen
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
 import { Types } from "mongoose";
+import { INotificationService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationService";
+import { IAdminRepository } from "@/Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
+import { INotificationSocketService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationSocketService";
 
 
 @injectable()
 export class RsubmitAgencyKycUseCase implements IRsubmitAgencyKycUseCase {
     constructor(
-        @inject("IAgencyKYCRepository")
-        private readonly _kycRepo: IAgencyKYCRepository,
+        @inject("IAgencyKYCRepository") private readonly _kycRepo: IAgencyKYCRepository,
+        @inject("IAgencyRepository") private readonly _agencyRepo: IAgencyRepository,
 
-        @inject("IAgencyRepository")
-        private readonly _agencyRepo: IAgencyRepository
+        @inject("IAdminRepository") private readonly _adminRepo: IAdminRepository,
+        @inject("INotificationService") private readonly _notificationService: INotificationService,
+        @inject("INotificationSocketService") private readonly _notificationSocketService: INotificationSocketService,
+
     ) { }
     async execute(dto: AgencyResubmitKycDTO): Promise<AgencyResubmitKycDTO> {
         const agency = await this._agencyRepo.findById({ _id: dto.agencyId });
-
-        console.log("Agency fetched:", agency);
 
         if (!agency) throw new AppError(AGENCY_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
         if (agency.kycStatus !== "REJECTED") throw new AppError(AGENCY_MESSAGES.CANNOT_RESUBMIT_KYC, STATUS.BAD_REQUEST);
@@ -46,6 +49,18 @@ export class RsubmitAgencyKycUseCase implements IRsubmitAgencyKycUseCase {
 
         if (!updatedkyc) throw new AppError(AGENCY_MESSAGES.NOT_FOUND, STATUS.NOT_FOUND);
 
+        const admin = await this._adminRepo.findOne({});
+        if (admin && admin.id) await this._notifyAdmin(agency.name, admin.id.toString());
+
         return AgencyKYCMapper.toResubmitDTO(updatedkyc);
     }
-}                   
+
+    private async _notifyAdmin(agencyName: string, adminId: string): Promise<void> {
+        const savedNotification = await this._notificationService.createNotification(
+            adminId,
+            "KYC Resubmitted",
+            `Agency ${agencyName || ""} has resubmitted KYC documents.`,
+        );
+        this._notificationSocketService.emitNotification(adminId, savedNotification);
+    }
+};

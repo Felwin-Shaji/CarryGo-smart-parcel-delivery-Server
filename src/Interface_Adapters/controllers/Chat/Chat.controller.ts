@@ -34,9 +34,10 @@ export class ChatController {
         const dto = req.body as SendMessageDTO
 
         const userId = req.user?.id;
-        if (!userId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND)
+        const role = req.user?.role;
+        if (!userId || !role) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND)
 
-        const message = await this._sendMessageUseCase.execute(userId, dto);
+        const message = await this._sendMessageUseCase.execute(userId, role, dto);
 
         return res.status(STATUS.OK).json(
             ApiResponse.success(

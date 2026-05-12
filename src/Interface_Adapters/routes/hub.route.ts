@@ -4,6 +4,7 @@ import { HubProfileRoute } from "./hubRoutes/hubProfile.route"
 import { HubShipmentRoute } from "./hubRoutes/hubShipment.route"
 import { HubWalletRoute } from "./hubRoutes/hubWallet.route"
 import { HubWorkerRoute } from "./hubRoutes/hubWorker.route"
+import { NotificationRoute } from "./NotificationRoutes/notification.route"
 
 export class HubRoute extends BaseRoute {
     constructor() {
@@ -16,5 +17,6 @@ export class HubRoute extends BaseRoute {
         this.router.use(new HubShipmentRoute().router);
         this.router.use(new HubProfileRoute().router);
         this.router.use(new HubDashboardRoute().router);
+        this.router.use(new NotificationRoute().router);
     }
 }

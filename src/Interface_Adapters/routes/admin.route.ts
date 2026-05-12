@@ -5,6 +5,7 @@ import { AdminAgencyRoute } from "./adminRoutes/adminAgency.route";
 import { AdminUserRoute } from "./adminRoutes/adminUser.route";
 import { AdminPricingRoute } from "./adminRoutes/adminPricing.route";
 import { AdminWalletRoute } from "./adminRoutes/adminWallet.route";
+import { NotificationRoute } from "./NotificationRoutes/notification.route";
 
 export class AdminRoute extends BaseRoute {
 
@@ -15,7 +16,6 @@ export class AdminRoute extends BaseRoute {
     this.router.use(new AdminUserRoute().router);
     this.router.use(new AdminPricingRoute().router);
     this.router.use(new AdminWalletRoute().router);
-
+    this.router.use(new NotificationRoute().router);
   }
-
 }

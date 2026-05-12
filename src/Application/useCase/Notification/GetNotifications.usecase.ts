@@ -5,8 +5,7 @@ import { inject, injectable } from "tsyringe";
 @injectable()
 export class GetNotificationsUseCase implements IGetNotificationsUseCase {
     constructor(
-        @inject("INotificationRepository")
-        private repo: INotificationRepository
+        @inject("INotificationRepository") private _repo: INotificationRepository
     ) { }
 
     async execute(
@@ -15,6 +14,7 @@ export class GetNotificationsUseCase implements IGetNotificationsUseCase {
         limit: number,
         filter: NotificationFilter
     ) {
-        return this.repo.findByUserId(userId, page, limit, filter);
+        const notifications = await this._repo.findByUserId(userId, page, limit, filter);
+        return notifications;
     }
 }

@@ -10,6 +10,9 @@ import { AddNewHubAddressDto } from "../../Dto/Agency/agency.dto";
 import { ENV } from "../../../Infrastructure/constants/env";
 import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { INotificationSocketService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationSocketService";
+import { INotificationService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationService";
+import { IAdminRepository } from "@/Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
 
 @injectable()
 export class AddHubUseCase implements IAddHubUseCase {
@@ -18,7 +21,11 @@ export class AddHubUseCase implements IAddHubUseCase {
         @inject("IHubTempRepository") private _hubTempRepo: IHubTempRepository,
         @inject("IHubRepository") private _hubRepo: IHubRepository,
         @inject("IPasswordService") private _passwordService: IPasswordService,
-        @inject("IMailService") private _mailService: IMailService
+        @inject("IMailService") private _mailService: IMailService,
+
+        @inject("IAdminRepository") private _adminRepo: IAdminRepository,
+        @inject("INotificationService") private _notificationService: INotificationService,
+        @inject("INotificationSocketService") private _notificationSocketService: INotificationSocketService,
     ) { }
 
     async execute(
@@ -47,8 +54,17 @@ export class AddHubUseCase implements IAddHubUseCase {
 
         const hubEntity = HubMapper.toCreateHub(tempHub, hashedPassword, imageUrl);
 
+        const admin = await this._adminRepo.findOne({});
 
         const savedHub = await this._hubRepo.saveHub(hubEntity);
+
+        if (admin?.id) {
+            await this._notifyAdmin(
+                admin.id.toString(),
+                savedHub.name,
+                savedHub.name
+            );
+        };
 
         await this._hubTempRepo.delete({ _id: tempHubId });
         if (ENV.IS_PROD) await this._mailService.sendCustomPassword(tempHub.email);
@@ -56,5 +72,22 @@ export class AddHubUseCase implements IAddHubUseCase {
         const responseDTO = HubMapper.toAgencyAddHubResponseDTO(savedHub);
 
         return responseDTO;
+    };
+
+    private async _notifyAdmin(adminId: string, hubName: string, agencyName?: string): Promise<void> {
+
+        const notification =
+            await this._notificationService.createNotification(
+                adminId,
+                "New Hub Approval Request",
+                `A new hub "${hubName}" was added by agency "${agencyName || "Unknown Agency"}" and is waiting for approval.`
+            );
+
+        this._notificationSocketService.emitNotification(
+            adminId,
+            notification
+        );
     }
+
+
 }

@@ -16,7 +16,7 @@ export interface PaginatedHubData {
 
 export interface IHubRepository {
   findById(filter: FilterQuery<HubDocument>): Promise<Hub>
-  findOne(filter: FilterQuery<HubDocument>): Promise<Hub>
+  findOne(filter: FilterQuery<HubDocument>): Promise<Hub | null>
   findOneAndUpdate(filter: FilterQuery<HubDocument>, value: object, unsetData?: object, session?: ClientSession): Promise<Hub | null>
   saveHub(hub: Hub): Promise<Hub>
   getHubById(hubId: string): Promise<Hub>;

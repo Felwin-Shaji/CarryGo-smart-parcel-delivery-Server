@@ -1,6 +1,9 @@
 import { UpdateWorkerKycStatusDTO } from "@/Application/Dto/Workers/worker.dto";
+import { IHubRepository } from "@/Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
 import { IHubWorkerRepository } from "@/Application/interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";
 import { IHubWorkerKycRepository } from "@/Application/interfaces/repositories_interfaces/workerRepository_interfaces/wrokerKyc.repository";
+import { INotificationService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationService";
+import { INotificationSocketService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationSocketService";
 import { IUpdateWorkerKycStatusUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IUpdateWorkerKycStatusUseCase";
 import { AppError } from "@/Domain/utils/customError";
 import { WORKER_MESSAGES } from "@/Infrastructure/constants/messages/workerMessage";
@@ -12,6 +15,9 @@ export class UpdateWorkerKycStatusUseCase implements IUpdateWorkerKycStatusUseCa
     constructor(
         @inject("IHubWorkerRepository") private _hubWorkerRepository: IHubWorkerRepository,
         @inject("IHubWorkerKycRepository") private _hubWorkerKycRepository: IHubWorkerKycRepository,
+        @inject("INotificationService") private _notificationService: INotificationService,
+        @inject("INotificationSocketService") private _notificationSocketService: INotificationSocketService,
+        @inject("IHubRepository") private _hubRepository: IHubRepository,
 
     ) { }
 
@@ -20,7 +26,7 @@ export class UpdateWorkerKycStatusUseCase implements IUpdateWorkerKycStatusUseCa
 
         const worker = await this._hubWorkerRepository.findById({ _id: workerId });
 
-        if (!worker) throw new AppError(WORKER_MESSAGES.WORKERS_NOT_FOUND, STATUS.NOT_FOUND);
+        if (!worker || !worker.id) throw new AppError(WORKER_MESSAGES.WORKERS_NOT_FOUND, STATUS.NOT_FOUND);
         if (worker.kycStatus === "APPROVED") throw new AppError(WORKER_MESSAGES.ALREADY_APPROVERD, STATUS.BAD_REQUEST);
         if (status === "REJECTED" && !rejectReason) throw new AppError(WORKER_MESSAGES.ALREADY_REJECTED, STATUS.BAD_REQUEST);
 
@@ -30,8 +36,79 @@ export class UpdateWorkerKycStatusUseCase implements IUpdateWorkerKycStatusUseCa
         await this._hubWorkerRepository.findOneAndUpdate({ _id: workerId }, { kycStatus: status });
         await this._hubWorkerKycRepository.findOneAndUpdate(
             { subjectId: workerId, subjectType: "worker" },
-            {status,rejectReason}
-        )
+            { status, rejectReason }
+        );
 
+        await this._notifyWorker(
+            worker.id.toString(),
+            status,
+            rejectReason
+        );
+
+        if (worker.hubId) {
+
+            await this._notifyHub(
+                worker.hubId.toString(),
+                worker.name,
+                status,
+                rejectReason
+            );
+        };
+
+    };
+
+    private async _notifyWorker(
+        workerId: string,
+        status: string,
+        rejectReason?: string
+    ): Promise<void> {
+
+        const message =
+            status === "APPROVED"
+                ? "Your KYC verification has been approved."
+                : `Your KYC verification was rejected.${rejectReason
+                    ? ` Reason: ${rejectReason}`
+                    : ""
+                }`;
+
+        const notification =
+            await this._notificationService.createNotification(
+                workerId,
+                "Worker KYC Status Updated",
+                message
+            );
+
+        this._notificationSocketService.emitNotification(
+            workerId,
+            notification
+        );
+    };
+
+    private async _notifyHub(
+        hubId: string,
+        workerName: string,
+        status: string,
+        rejectReason?: string
+    ): Promise<void> {
+
+        const message =
+            status === "APPROVED"
+                ? `Worker "${workerName}" KYC has been approved.`
+                : `Worker "${workerName}" KYC was rejected.${rejectReason
+                    ? ` Reason: ${rejectReason}`
+                    : ""
+                } Please assist with resubmission.`;
+
+        const notification =
+            await this._notificationService.createNotification(
+                hubId,
+                "Worker KYC Status Updated",
+                message
+            );
+
+        this._notificationSocketService.emitNotification(
+            hubId,
+            notification
+        );
     }
 }

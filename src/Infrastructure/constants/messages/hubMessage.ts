@@ -42,4 +42,6 @@ export const HUB_MESSAGES = {
     DAHSBOARD_TREND_FETCHED: "hub dashboar trend fetched successfully. ",
     DAHSBOARD_TYPE_FETCHED: "hub dashboar type fetched successfully. ",
     DAHSBOARD_SHIPMENT_FETCHED: "hub dashboar shipement fetched successfully. ",
+
+    OTP_RESEND_SUCCESS: "OTP resent successfully",
 } as const;

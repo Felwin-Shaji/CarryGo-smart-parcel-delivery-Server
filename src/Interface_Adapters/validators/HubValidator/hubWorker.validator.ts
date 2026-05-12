@@ -13,7 +13,7 @@ export const reSubmitWorkerKycBodySchema = z
       .min(5, "ID number too short")
       .max(20, "ID number too long"),
   })
-  .strict()
+  .passthrough()
   .superRefine((data, ctx) => {
     const { idType, idNumber } = data;
 
@@ -92,7 +92,7 @@ export const verifyWorkerOtpBodySchema = z
       .trim()
       .regex(/^\d{4}$/, "OTP must be 4 digits"), // or 6 if you upgrade
   })
-  .strict();
+  .passthrough();
 
 export const verifyWorkerOtpSchema = z.object({
   body: verifyWorkerOtpBodySchema,
@@ -106,7 +106,7 @@ export const workerKycUploadBodySchema = z
 
     idNumber: z.string().trim().min(5).max(20),
   })
-  .strict()
+  .passthrough()
   .superRefine((data, ctx) => {
     const { idType, idNumber } = data;
 

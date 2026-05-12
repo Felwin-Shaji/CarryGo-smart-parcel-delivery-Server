@@ -22,6 +22,7 @@ import { IReSubmitWorkerKycUseCase } from "@/Application/interfaces/useCase_Inte
 import { IGetWorkerKycUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerKycUseCase";
 import { parseBlockedQuery } from "@/Domain/utils/utils";
 import { Role } from "@/Domain/Enums/Roles";
+import { IWorkerResendOtpUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IWorkerResendOtpUseCase";
 
 @injectable()
 export class HubWorkerController implements IHubWorkerController {
@@ -29,6 +30,7 @@ export class HubWorkerController implements IHubWorkerController {
     constructor(
         @inject("IAddWorkerTempUseCase") private _addWorkerTempUseCase: IAddWorkerTempUseCase,
         @inject("IWorkerVerifyOtpUseCase") private _workerVerifyOtpUseCase: IWorkerVerifyOtpUseCase,
+        @inject("IWorkerResendOtpUseCase") private _workerResendOtpUseCase: IWorkerResendOtpUseCase,
 
         @inject("IUploadWorkerKycFilesUsecase") private _uploadWorkerKycFilesUsecase: IUploadWorkerKycFilesUsecase,
         @inject("ICheckTempWorkerStatusUseCase") private _checkTempWorkerStatusUseCase: ICheckTempWorkerStatusUseCase,
@@ -86,6 +88,18 @@ export class HubWorkerController implements IHubWorkerController {
         )
     };
 
+    resendWorkerOtp = async (req: Request, res: Response): Promise<Response | void> => {
+        const { email } = req.body;
+
+        const expiresAt = await this._workerResendOtpUseCase.resendOtp(email);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                HUB_MESSAGES.OTP_RESEND_SUCCESS,
+                { expiresAt }
+            )
+        )
+    };
 
     uploadWorkerKYC = async (req: Request, res: Response): Promise<Response | void> => {
 

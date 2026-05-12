@@ -252,6 +252,8 @@ import { IMarkAllAsReadUseCase } from "@/Application/interfaces/useCase_Interfac
 import { MarkAllAsReadUseCase } from "@/Application/useCase/Notification/MarkAllAsRead.usecase";
 import { GetUnreadCountUseCase } from "@/Application/useCase/Notification/GetUnreadCount.usecase";
 import { IGetUnreadCountUseCase } from "@/Application/interfaces/useCase_Interfaces/Notification/IGetUnreadCountUseCase";
+import { IWorkerResendOtpUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IWorkerResendOtpUseCase";
+import { WorkerResendOtpUseCase } from "@/Application/useCase/Worker/WorkerResendOtp.usecase";
 
 
 
@@ -771,6 +773,10 @@ export class UsecaseRegistery {
 
         container.register<IGetUnreadCountUseCase>("IGetUnreadCountUseCase", {
             useClass: GetUnreadCountUseCase,
+        });
+
+        container.register<IWorkerResendOtpUseCase>("IWorkerResendOtpUseCase", {
+            useClass: WorkerResendOtpUseCase
         });
     }
 }

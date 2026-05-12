@@ -13,6 +13,7 @@ export class HubWorkerRoute extends BaseRoute {
 
     this.router.post("/worker/temp-register", authenticate([Role.HUB]), validateRequest(addWorkerTempSchema), asyncHandler(hubWorkerController.addNewWorker));
     this.router.post("/worker/verify-otp", authenticate([Role.HUB]), validateRequest(verifyWorkerOtpSchema), asyncHandler(hubWorkerController.verifyWorkerOtp));
+    this.router.post("/worker/resend-otp", authenticate([Role.HUB]), asyncHandler(hubWorkerController.resendWorkerOtp));
     this.router.post("/worker/kyc-upload", authenticate([Role.HUB]), workerKYCUpload, validateRequest(workerKycUploadSchema), asyncHandler(hubWorkerController.uploadWorkerKYC));
 
     this.router.get("/workers", authenticate([Role.HUB]), asyncHandler(hubWorkerController.getHubWorkers));

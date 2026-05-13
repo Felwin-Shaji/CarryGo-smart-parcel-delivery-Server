@@ -4,7 +4,7 @@ import { AuthController } from "../../Interface_Adapters/controllers/Auth/AuthCo
 import { AgencyController } from "../../Interface_Adapters/controllers/Agency/AgencyController";
 import { AdminAgencyController } from "../../Interface_Adapters/controllers/Admin/AdminAgencyController";
 import { AdminUserController } from "../../Interface_Adapters/controllers/Admin/AdminUserController";
-import { AgencyHubController } from "../../Interface_Adapters/controllers/Agency/AgencyHubController";
+import { AgencyHubController } from "../../Interface_Adapters/controllers/Agency/AgencyHub.controller";
 import { HubWorkerController } from "../../Interface_Adapters/controllers/Hub/hubWorkerController";
 import { UserController } from "../../Interface_Adapters/controllers/User/userController";
 import { UserBookingController } from "../../Interface_Adapters/controllers/User/bookingController";

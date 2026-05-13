@@ -111,7 +111,6 @@ export class AgencyHubController implements IAgencyHubController {
 
         const values = req.body as AddNewHubAddressDto;
 
-        console.log(imgUrl);
         const savedHub = await this._addHubUseCase.execute(tempHubId, values, imgUrl);
 
         return res.status(STATUS.CREATED).json(
@@ -125,6 +124,33 @@ export class AgencyHubController implements IAgencyHubController {
     getHubs = async (req: Request, res: Response): Promise<Response | void> => {
 
         const agencyId = req.user?.id;
+        if (!agencyId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND);
+
+        const dto: GetHubsDTO = {
+            page: Number(req.query.page) || 1,
+            limit: Number(req.query.limit) || 10,
+            search: req.query.search?.toString() || "",
+            sortBy: req.query.sortBy?.toString() || "createdAt",
+            sortOrder: req.query.sortOrder === "desc" ? "desc" : "asc",
+            blocked: parseBlockedQuery(req.query.blocked),
+            kycStatus: req.query.kycStatus?.toString() || "",
+            startDate: req.query.startDate?.toString() || "",
+            endDate: req.query.endDate?.toString() || "",
+        };
+
+        const result = await this._getHubsUsecase.execute(agencyId, dto);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                HUB_MESSAGES.EMAIL_ALREADY_EXISTS,
+                result
+            )
+        )
+    };
+
+    getHubsByAgencyId = async (req: Request, res: Response): Promise<Response | void> => {
+
+        const agencyId = req.params.agencyId;
         if (!agencyId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND);
 
         const dto: GetHubsDTO = {

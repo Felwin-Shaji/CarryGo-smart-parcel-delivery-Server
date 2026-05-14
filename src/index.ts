@@ -1,3 +1,4 @@
+import "module-alias/register";
 import "reflect-metadata";
 import { createServer } from "http";
 import dotenv from "dotenv";

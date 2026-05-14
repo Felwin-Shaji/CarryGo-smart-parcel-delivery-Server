@@ -1,13 +1,11 @@
 {
   "compilerOptions": {
     /* ==== File Paths ==== */
-    "ignoreDeprecations": "6.0",
     "rootDir": "src",
     "outDir": "./dist",
-    "baseUrl": ".", // ← add this
-    "paths": { // ← add this
+    "paths": {
       "@/*": [
-        "src/*"
+        "./src/*"
       ]
     },
     /* ==== Environment ==== */
@@ -42,7 +40,7 @@
   "ts-node": {
     "transpileOnly": false,
     "files": true,
-    "swc": false,  
+    "swc": false,
     "require": [
       "tsconfig-paths/register"
     ]

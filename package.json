@@ -2,6 +2,9 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
+  "_moduleAliases": {
+    "@": "dist"
+  },
   "license": "ISC",
   "author": "",
   "main": "index.js",
@@ -48,6 +51,7 @@
     "express": "^5.1.0",
     "googleapis": "^164.1.0",
     "jsonwebtoken": "^9.0.2",
+    "module-alias": "^2.3.4",
     "mongoose": "^8.19.1",
     "multer": "^2.0.2",
     "nodemailer": "^8.0.5",

@@ -2,7 +2,7 @@ import { BaseRoute } from "../base.route";
 import { agencyProfileController } from "../../../Infrastructure/di/resolver";
 import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
-import { Role } from "@/Domain/Enums/Roles";
+import { Role } from "../../../Domain/Enums/Roles";
 
 export class AgencyProfileRoute extends BaseRoute {
 

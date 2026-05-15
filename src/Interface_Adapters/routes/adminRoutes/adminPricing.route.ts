@@ -2,9 +2,9 @@ import { BaseRoute } from "../base.route";
 import { adminPricingPolicyController } from "../../../Infrastructure/di/resolver";
 import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
-import { Role } from "@/Domain/Enums/Roles";
-import { validateRequest } from "@/Interface_Adapters/middlewares/ValidationMiddleware/validateRequest";
-import { adminAgencyPricingSchema, adminTravelerPricingSchema } from "@/Interface_Adapters/validators/AdminValidator/adminPricing.validator";
+import { Role } from "../../../Domain/Enums/Roles";
+import { validateRequest } from "../../middlewares/ValidationMiddleware/validateRequest";
+import { adminAgencyPricingSchema, adminTravelerPricingSchema } from "../../validators/AdminValidator/adminPricing.validator";
 
 export class AdminPricingRoute extends BaseRoute {
 

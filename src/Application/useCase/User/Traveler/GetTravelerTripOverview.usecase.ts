@@ -6,8 +6,8 @@ import { USER_MESSAGES } from "../../../../Infrastructure/constants/messages/use
 import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
 import { AppError } from "../../../../Domain/utils/customError";
 import { TravelerMapper } from "../../../Mappers/User/travelerMapper";
-import { IUserRepository } from "@/Application/interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
-import { User } from "@/Domain/Entities/User";
+import { IUserRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
+import { User } from "../../../../Domain/Entities/User";
 
 @injectable()
 export class GetTravelerTripOverviewUseCase implements IGetTravelerTripOverviewUseCase {

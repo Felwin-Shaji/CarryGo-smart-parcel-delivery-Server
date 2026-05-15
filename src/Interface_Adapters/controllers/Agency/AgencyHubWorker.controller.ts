@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
-import { IGetWorkerOverviewUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerOverviewUseCase";
-import { AppError } from "@/Domain/utils/customError";
+import { IGetWorkerOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkerOverviewUseCase";
 import { inject, injectable } from "tsyringe";
-import { WORKER_MESSAGES } from "@/Infrastructure/constants/messages/workerMessage";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
-import { ApiResponse } from "@/Interface_Adapters/presenters/ApiResponse";
-import { IUpdateWorkerKycStatusUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IUpdateWorkerKycStatusUseCase";
-import { UpdateWorkerKycStatusDTO } from "@/Application/Dto/Workers/worker.dto";
+import { IUpdateWorkerKycStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IUpdateWorkerKycStatusUseCase";
+import { UpdateWorkerKycStatusDTO } from "../../../Application/Dto/Workers/worker.dto";
+import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { ApiResponse } from "../../presenters/ApiResponse";
+import { AppError } from "../../../Domain/utils/customError";
+
 
 @injectable()
 export class AgencyHubWorkerController {

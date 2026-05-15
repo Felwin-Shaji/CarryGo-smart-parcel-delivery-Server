@@ -1,4 +1,4 @@
-import { HubShipment, ShipmentStatus, ShipmentType } from "@/Domain/Entities/Logistics/HubShipment";
+import { HubShipment, ShipmentStatus } from "../../../Domain/Entities/Logistics/HubShipment";
 
 /**
  * GET /hub/dashboard/summary

@@ -10,9 +10,9 @@ import { AddNewHubAddressDto } from "../../Dto/Agency/agency.dto";
 import { ENV } from "../../../Infrastructure/constants/env";
 import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { INotificationSocketService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationSocketService";
-import { INotificationService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationService";
-import { IAdminRepository } from "@/Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
+import { INotificationSocketService } from "../../interfaces/services_Interfaces/Notification/INotificationSocketService";
+import { INotificationService } from "../../interfaces/services_Interfaces/Notification/INotificationService";
+import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
 
 @injectable()
 export class AddHubUseCase implements IAddHubUseCase {

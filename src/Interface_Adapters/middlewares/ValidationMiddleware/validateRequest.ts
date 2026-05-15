@@ -2,7 +2,7 @@ import type { Request, Response, NextFunction } from "express";
 import { z } from "zod";
 import { AppError } from "../../../Domain/utils/customError";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import logger from "@/Infrastructure/logger/logger";
+import logger from "../../../Infrastructure/logger/logger";
 
 type RequestSchema = z.ZodObject<{
     body?: z.ZodTypeAny;

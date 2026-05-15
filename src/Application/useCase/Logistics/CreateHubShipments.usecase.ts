@@ -1,9 +1,9 @@
-import { IParcelRouteLegRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelRouteLegRepository";
-import { IHubShipmentAssignmentService } from "@/Application/interfaces/services_Interfaces/IHubShipmentAssignmentService";
-import { ICreateHubShipmentsUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ICreateHubShipmentsUsecase";
-import { AppError } from "@/Domain/utils/customError";
-import { PARCEL_ROUTE_MESSAGE } from "@/Infrastructure/constants/messages/RouteGroupMessage";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
+import { IParcelRouteLegRepository } from "../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelRouteLegRepository";
+import { IHubShipmentAssignmentService } from "../../interfaces/services_Interfaces/IHubShipmentAssignmentService";
+import { ICreateHubShipmentsUsecase } from "../../interfaces/useCase_Interfaces/Logistics/ICreateHubShipmentsUsecase";
+import { AppError } from "../../../Domain/utils/customError";
+import { PARCEL_ROUTE_MESSAGE } from "../../../Infrastructure/constants/messages/RouteGroupMessage";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import mongoose from "mongoose";
 import { inject, injectable } from "tsyringe";
 
@@ -15,7 +15,7 @@ export class CreateHubShipmentsUsecase implements ICreateHubShipmentsUsecase {
         @inject("IHubShipmentAssignmentService") private _hubShipmentAssignmentService: IHubShipmentAssignmentService,
     ) { }
 
-    async execute(parcelRouteId: string,bookingId: string): Promise<void> {
+    async execute(parcelRouteId: string, bookingId: string): Promise<void> {
 
         const legs = await this._parcelRouteLegRepository.findByRouteId(parcelRouteId);
         if (!legs.length) throw new AppError(PARCEL_ROUTE_MESSAGE.LEGS_NOTFOUND, STATUS.NOT_FOUND);
@@ -24,7 +24,7 @@ export class CreateHubShipmentsUsecase implements ICreateHubShipmentsUsecase {
         try {
             await session.withTransaction(async () => {
                 for (const leg of legs) {
-                    await this._hubShipmentAssignmentService.assignLegToShipment(leg,bookingId, session);
+                    await this._hubShipmentAssignmentService.assignLegToShipment(leg, bookingId, session);
                 }
             })
 

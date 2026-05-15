@@ -1,7 +1,7 @@
-import { IParcelRouteLegRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelRouteLegRepository";
-import { ParcelRouteLeg } from "@/Domain/Entities/Logistics/ParcelRouteLeg";
-import { ParcelRouteLegDocument, ParcelRouteLegModel } from "@/Infrastructure/database/models/Logistics/ParcelRouteLegModel";
+import { IParcelRouteLegRepository } from "../../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelRouteLegRepository";
+import { ParcelRouteLeg } from "../../../Domain/Entities/Logistics/ParcelRouteLeg";
 import { ClientSession, Types } from "mongoose";
+import { ParcelRouteLegDocument, ParcelRouteLegModel } from "../../database/models/Logistics/ParcelRouteLegModel";
 
 export class ParcelRouteLegRepository implements IParcelRouteLegRepository {
 

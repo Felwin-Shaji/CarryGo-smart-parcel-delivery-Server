@@ -35,25 +35,25 @@ import { ITravelRequestRepository } from "../../Application/interfaces/repositor
 import { TravelRequestRepository } from "../repositories/User/TravelRequest.repository";
 import { IAgencyRouteGroupRepository } from "../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteGroupRepository";
 import { AgencyRouteGroupRepository } from "../repositories/Agency/AgencyRouteGroup.repository";
-import { IAgencyRouteSegmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteSegmentRepository";
+import { IAgencyRouteSegmentRepository } from "../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteSegmentRepository";
 import { AgencyRouteSegmentRepository } from "../repositories/Agency/AgencyRouteSegment.repository";
-import { IParcelRouteLegRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelRouteLegRepository";
+import { IParcelRouteLegRepository } from "../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelRouteLegRepository";
 import { ParcelRouteLegRepository } from "../repositories/Logistics/ParcelRouteLeg.repository";
-import { IParcelRouteRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelRouteRepository";
+import { IParcelRouteRepository } from "../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelRouteRepository";
 import { ParcelRouteRepository } from "../repositories/Logistics/ParcelRoute.repository";
-import { IHubShipmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
+import { IHubShipmentRepository } from "../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
 import { HubShipmentRepository } from "../repositories/Logistics/HubShipment.repository";
-import { IShipmentParcelRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IShipmentParcelRepository";
+import { IShipmentParcelRepository } from "../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IShipmentParcelRepository";
 import { ShipmentParcelRepository } from "../repositories/Logistics/ShipmentParcel.repository";
-import { IParcelMovementRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelMovementRepository";
+import { IParcelMovementRepository } from "../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelMovementRepository";
 import { ParcelMovementRepository } from "../repositories/Logistics/ParcelMovement.repository";
-import { ICounterRepository } from "@/Application/interfaces/repositories_interfaces/ICounterRepository";
+import { ICounterRepository } from "../../Application/interfaces/repositories_interfaces/ICounterRepository";
 import { CounterRepository } from "../repositories/Counter.repository";
-import { IMessageRepository } from "@/Application/interfaces/repositories_interfaces/ChatRepositories_Interfaces/IMessageRepository";
+import { IMessageRepository } from "../../Application/interfaces/repositories_interfaces/ChatRepositories_Interfaces/IMessageRepository";
 import { MessageRepository } from "../repositories/Chat/Message.repository";
-import { IChatRepository } from "@/Application/interfaces/repositories_interfaces/ChatRepositories_Interfaces/IChatRepository";
+import { IChatRepository } from "../../Application/interfaces/repositories_interfaces/ChatRepositories_Interfaces/IChatRepository";
 import { ChatRepository } from "../repositories/Chat/Chat.repository";
-import { INotificationRepository } from "@/Application/interfaces/repositories_interfaces/NotificationRepository_interfaces/INotificationRepository";
+import { INotificationRepository } from "../../Application/interfaces/repositories_interfaces/NotificationRepository_interfaces/INotificationRepository";
 import { NotificationRepository } from "../repositories/Notification/Notification.repository";
 
 

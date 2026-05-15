@@ -4,9 +4,9 @@ import { IHubWorkerKycRepository } from "../../interfaces/repositories_interface
 import { AppError } from "../../../Domain/utils/customError";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
-import { IGetWorkerOverviewUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerOverviewUseCase";
-import { GetWorkerOverviewResponseDTO } from "@/Application/Dto/Workers/worker.dto";
-import { WorkerMapper } from "@/Application/Mappers/Workers/WorkerMapper";
+import { IGetWorkerOverviewUseCase } from "../../interfaces/useCase_Interfaces/Worker/IGetWorkerOverviewUseCase";
+import { GetWorkerOverviewResponseDTO } from "../../Dto/Workers/worker.dto";
+import { WorkerMapper } from "../../Mappers/Workers/WorkerMapper";
 
 @injectable()
 export class GetWorkerOverviewUseCase implements IGetWorkerOverviewUseCase {

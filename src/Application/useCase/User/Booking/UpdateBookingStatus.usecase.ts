@@ -1,14 +1,14 @@
-import { IBookingRepository } from "@/Application/interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
-import { ITravelRequestRepository } from "@/Application/interfaces/repositories_interfaces/userRepositories_Interfaces/ITravelRequestRepository";
-import { ITransactionRepository } from "@/Application/interfaces/repositories_interfaces/walletRepositories_Interfaces/ITransactionRepository";
-import { IWalletRepository } from "@/Application/interfaces/repositories_interfaces/walletRepositories_Interfaces/IWalletRepository";
-import { IUpdateBookingStatusUsecase } from "@/Application/interfaces/useCase_Interfaces/user/Booking/IUpdateBookingStatusUsecase";
-import { TransactionMapper } from "@/Application/Mappers/Wallet/transactionMapper";
-import { Booking } from "@/Domain/Entities/Booking/Booking";
-import { AppError } from "@/Domain/utils/customError";
-import { BOOKING_MESSAGE } from "@/Infrastructure/constants/messages/bookingMessages";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
-import { BookingStatusType } from "@/Infrastructure/Types/types";
+import { Booking } from "../../../../Domain/Entities/Booking/Booking";
+import { AppError } from "../../../../Domain/utils/customError";
+import { BOOKING_MESSAGE } from "../../../../Infrastructure/constants/messages/bookingMessages";
+import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
+import { BookingStatusType } from "../../../../Infrastructure/Types/types";
+import { IBookingRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
+import { ITravelRequestRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/ITravelRequestRepository";
+import { ITransactionRepository } from "../../../interfaces/repositories_interfaces/walletRepositories_Interfaces/ITransactionRepository";
+import { IWalletRepository } from "../../../interfaces/repositories_interfaces/walletRepositories_Interfaces/IWalletRepository";
+import { IUpdateBookingStatusUsecase } from "../../../interfaces/useCase_Interfaces/user/Booking/IUpdateBookingStatusUsecase";
+import { TransactionMapper } from "../../../Mappers/Wallet/transactionMapper";
 import mongoose from "mongoose";
 import { inject, injectable } from "tsyringe";
 
@@ -84,7 +84,6 @@ export class UpdateBookingStatusUsecase implements IUpdateBookingStatusUsecase {
 
             const totalAmount = booking.pricing.totalAmount;
 
-            // Example: 10% commission
             const commission = booking.pricing.platformFee;
             const travelerAmount = totalAmount - commission;
 

@@ -1,7 +1,7 @@
-import { container, inject, injectable } from "tsyringe";
+import { container, injectable } from "tsyringe";
 import { Server, Socket } from "socket.io";
-import { INotificationSocketService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationSocketService";
-import { Notification } from "@/Domain/Entities/Notification/Notification";
+import { INotificationSocketService } from "../../../Application/interfaces/services_Interfaces/Notification/INotificationSocketService";
+import { Notification } from "../../../Domain/Entities/Notification/Notification";
 
 
 @injectable()

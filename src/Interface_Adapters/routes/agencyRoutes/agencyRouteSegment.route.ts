@@ -1,7 +1,7 @@
 import { BaseRoute } from "../base.route";
 import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
 import { agencyRouteSegmentController } from "../../../Infrastructure/di/resolver"
-import { Role } from "@/Domain/Enums/Roles";
+import { Role } from "../../../Domain/Enums/Roles";
 
 
 

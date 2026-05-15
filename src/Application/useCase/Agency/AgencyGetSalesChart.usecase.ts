@@ -1,8 +1,8 @@
-import { GetSettlementReportQuery, SalesChartRequestDTO, SalesChartResponseDTO } from "@/Application/Dto/Agency/agencyDashboard.dto";
-import { ITransactionRepository } from "@/Application/interfaces/repositories_interfaces/walletRepositories_Interfaces/ITransactionRepository";
-import { IWalletRepository } from "@/Application/interfaces/repositories_interfaces/walletRepositories_Interfaces/IWalletRepository";
-import { IAgencyGetSalesChartUseCase } from "@/Application/interfaces/useCase_Interfaces/Agency/IAgencyGetSalesChartUseCase";
-import { Role } from "@/Domain/Enums/Roles";
+import { Role } from "../../../Domain/Enums/Roles";
+import { SalesChartRequestDTO, SalesChartResponseDTO } from "../../Dto/Agency/agencyDashboard.dto";
+import { ITransactionRepository } from "../../interfaces/repositories_interfaces/walletRepositories_Interfaces/ITransactionRepository";
+import { IWalletRepository } from "../../interfaces/repositories_interfaces/walletRepositories_Interfaces/IWalletRepository";
+import { IAgencyGetSalesChartUseCase } from "../../interfaces/useCase_Interfaces/Agency/IAgencyGetSalesChartUseCase";
 import { inject, injectable } from "tsyringe";
 
 @injectable()

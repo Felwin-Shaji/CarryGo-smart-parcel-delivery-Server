@@ -1,7 +1,7 @@
-import { INotificationRepository } from "@/Application/interfaces/repositories_interfaces/NotificationRepository_interfaces/INotificationRepository";
-import { Notification } from "@/Domain/Entities/Notification/Notification";
-import { NotificationDocument, NotificationModel } from "@/Infrastructure/database/models/Notification/NotificationModel";
 import { FilterQuery, Types } from "mongoose";
+import { INotificationRepository } from "../../../Application/interfaces/repositories_interfaces/NotificationRepository_interfaces/INotificationRepository";
+import { Notification } from "../../../Domain/Entities/Notification/Notification";
+import { NotificationDocument, NotificationModel } from "../../database/models/Notification/NotificationModel";
 
 export class NotificationRepository implements INotificationRepository {
 

@@ -22,9 +22,7 @@ export class CreateAdminPricingPolicyUseCase implements ICreateAdminPricingPolic
 
         await this.pricingPolicyRepo.deactivateActivePolicy(DeliveryPartner.AGENCY);
 
-        console.log(newPolicy,"ppppppppppppppp");
         const createdPolicy = await this.pricingPolicyRepo.createPricingPolicy(newPolicy);
-
 
         return createdPolicy;
     }

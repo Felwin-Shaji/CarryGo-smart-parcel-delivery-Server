@@ -1,4 +1,4 @@
-import { Message } from "@/Domain/Entities/Chat/Message";
+import { Message } from "../../../../Domain/Entities/Chat/Message";
 
 export interface IMessageSocketService {
     connect(): void

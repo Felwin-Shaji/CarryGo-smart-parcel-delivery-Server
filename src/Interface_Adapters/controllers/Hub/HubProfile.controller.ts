@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
-import { IEditHubProfileUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IEditHubProfileUseCase";
-import { IGetHubProfileUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IGetHubProfileUseCase";
-import { IResetHubPasswordUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IResetHubPasswordUseCase";
-import { AppError } from "@/Domain/utils/customError";
-import { HUB_MESSAGES } from "@/Infrastructure/constants/messages/hubMessage";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
-import { ApiResponse } from "@/Interface_Adapters/presenters/ApiResponse";
 import { inject, injectable } from "tsyringe";
-import { EditHubProfileRequestDto, HubResetPasswordRequestDTO } from "@/Application/Dto/Hub/hubProfile.dto";
+import { EditHubProfileRequestDto, HubResetPasswordRequestDTO } from "../../../Application/Dto/Hub/hubProfile.dto";
+import { IGetHubProfileUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IGetHubProfileUseCase";
+import { IEditHubProfileUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IEditHubProfileUseCase";
+import { IResetHubPasswordUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IResetHubPasswordUseCase";
+import { AppError } from "../../../Domain/utils/customError";
+import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { ApiResponse } from "../../presenters/ApiResponse";
 
 @injectable()
 export class HubProfileController {

@@ -1,4 +1,4 @@
-import { AddressEntity } from "@/Domain/Entities/Booking/Booking";
+import { AddressEntity } from "../../../Domain/Entities/Booking/Booking";
 
 export interface AgencyParcelTrackingDTO {
     booking: {

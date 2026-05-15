@@ -1,9 +1,10 @@
-import { CreateRouteSegmentDTO, RouteGroupDetailDTO, RouteSegmentDTO } from "@/Application/Dto/Agency/agencyRouteSegment.dto";
-import { RouteGroup } from "@/Domain/Entities/Logistics/RouteGroup";
-import { RouteSegment } from "@/Domain/Entities/Logistics/RouteSegment";
-import { AppError } from "@/Domain/utils/customError";
-import { HUB_MESSAGES } from "@/Infrastructure/constants/messages/hubMessage";
-import { ROUTE_SEGMENT_MESSAGE } from "@/Infrastructure/constants/messages/RouteGroupMessage";
+import { RouteGroup } from "../../../Domain/Entities/Logistics/RouteGroup";
+import { RouteSegment } from "../../../Domain/Entities/Logistics/RouteSegment";
+import { AppError } from "../../../Domain/utils/customError";
+import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
+import { ROUTE_SEGMENT_MESSAGE } from "../../../Infrastructure/constants/messages/RouteGroupMessage";
+import { CreateRouteSegmentDTO, RouteGroupDetailDTO, RouteSegmentDTO } from "../../Dto/Agency/agencyRouteSegment.dto";
+
 
 export class RouteSegmentMapper {
 

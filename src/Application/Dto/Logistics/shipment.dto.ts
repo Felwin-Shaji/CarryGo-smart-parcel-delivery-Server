@@ -1,5 +1,6 @@
-import { HubShipment, ShipmentStatus, ShipmentType } from "@/Domain/Entities/Logistics/HubShipment";
-import { ShipmentParcelStatus } from "@/Domain/Entities/Logistics/ShipmentParcel";
+import { HubShipment, ShipmentStatus, ShipmentType } from "../../../Domain/Entities/Logistics/HubShipment";
+import { ShipmentParcelStatus } from "../../../Domain/Entities/Logistics/ShipmentParcel";
+
 
 export interface GetShipmentsDTO {
   type?: ShipmentType;

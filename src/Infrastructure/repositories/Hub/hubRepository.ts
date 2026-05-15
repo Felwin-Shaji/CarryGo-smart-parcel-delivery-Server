@@ -3,14 +3,13 @@ import { GetHubsDTO, updateHubKycStatusDTO } from "../../../Application/Dto/Hub/
 import { IHubRepository, PaginatedHubData } from "../../../Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
 import { Hub } from "../../../Domain/Entities/Hub/Hub";
 import { HubDocument, HubModel } from "../../database/models/Hub/HubModel";
-import { BaseRepository } from "../baseRepositories";
 import { ServiceableHubWithAgencyDTO } from "../../../Application/Dto/User/Booking.dto";
 import { AppError } from "../../../Domain/utils/customError";
 import { HUB_MESSAGES } from "../../constants/messages/hubMessage";
 import { STATUS } from "../../constants/statusCodes";
 import { SortOrder } from "mongoose";
 import { GeoLocation } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase";
-import { HubWorkerModel } from "@/Infrastructure/database/models/Worker/workerModel";
+import { HubWorkerModel } from "../../database/models/Worker/workerModel";
 
 export class HubRepository implements IHubRepository {
     async findById(filter: FilterQuery<HubDocument>): Promise<Hub> {

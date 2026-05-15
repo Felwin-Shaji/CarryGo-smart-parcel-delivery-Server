@@ -2,9 +2,9 @@ import { BaseRoute } from "../base.route";
 import { addressController } from "../../../Infrastructure/di/resolver";
 import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
-import { Role } from "@/Domain/Enums/Roles";
-import { addUserAddressSchema } from "@/Interface_Adapters/validators/UserValidator/address.validator";
-import { validateRequest } from "@/Interface_Adapters/middlewares/ValidationMiddleware/validateRequest";
+import { Role } from "../../../Domain/Enums/Roles";
+import { addUserAddressSchema } from "../../validators/UserValidator/address.validator";
+import { validateRequest } from "../../middlewares/ValidationMiddleware/validateRequest";
 
 export class AddressRoute extends BaseRoute {
 

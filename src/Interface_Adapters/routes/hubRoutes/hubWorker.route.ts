@@ -3,9 +3,9 @@ import { hubWorkerController } from "../../../Infrastructure/di/resolver";
 import { workerKYCUpload } from "../../../Infrastructure/services/storage/multer";
 import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
-import { Role } from "@/Domain/Enums/Roles";
-import { validateRequest } from "@/Interface_Adapters/middlewares/ValidationMiddleware/validateRequest";
-import { addWorkerTempSchema, reSubmitWorkerKycSchema, verifyWorkerOtpSchema, workerKycUploadSchema } from "@/Interface_Adapters/validators/HubValidator/hubWorker.validator";
+import { Role } from "../../../Domain/Enums/Roles";
+import { validateRequest } from "../../middlewares/ValidationMiddleware/validateRequest";
+import { addWorkerTempSchema, reSubmitWorkerKycSchema, verifyWorkerOtpSchema, workerKycUploadSchema } from "../../validators/HubValidator/hubWorker.validator";
 
 export class HubWorkerRoute extends BaseRoute {
 

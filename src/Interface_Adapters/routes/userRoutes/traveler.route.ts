@@ -3,9 +3,9 @@ import { travelerController } from "../../../Infrastructure/di/resolver";
 import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
 import { workerKYCUpload } from "../../../Infrastructure/services/storage/multer";
-import { Role } from "@/Domain/Enums/Roles";
-import { validateRequest } from "@/Interface_Adapters/middlewares/ValidationMiddleware/validateRequest";
-import { reSubmitTravelerKycSchema, submitTravelerKycSchema, createTravelRequestSchema } from "@/Interface_Adapters/validators/UserValidator/traveler.validator";
+import { Role } from "../../../Domain/Enums/Roles";
+import { validateRequest } from "../../middlewares/ValidationMiddleware/validateRequest";
+import { createTravelRequestSchema, reSubmitTravelerKycSchema, submitTravelerKycSchema } from "../../validators/UserValidator/traveler.validator";
 
 export class TravelerRoute extends BaseRoute {
 

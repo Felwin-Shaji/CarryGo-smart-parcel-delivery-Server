@@ -1,7 +1,7 @@
-import { GetShipmentsDTO, GetShipmentsResponseDTO } from "@/Application/Dto/Logistics/shipment.dto";
-import { IHubShipmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
-import { IGetShipmentsUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/IGetShipmentsUsecase";
-import { HubShipmentMapper } from "@/Application/Mappers/Logistics/HubShipmentMapper";
+import { GetShipmentsDTO, GetShipmentsResponseDTO } from "../../../Dto/Logistics/shipment.dto";
+import { IHubShipmentRepository } from "../../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
+import { IGetShipmentsUsecase } from "../../../interfaces/useCase_Interfaces/Logistics/HubShipment/IGetShipmentsUsecase";
+import { HubShipmentMapper } from "../../../Mappers/Logistics/HubShipmentMapper";
 import { inject, injectable } from "tsyringe";
 
 @injectable()

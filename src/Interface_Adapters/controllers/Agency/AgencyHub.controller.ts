@@ -18,7 +18,7 @@ import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMess
 import { AppError } from "../../../Domain/utils/customError";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
 import { IGetHubOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IGetHubOverviewUseCase";
-import { parseBlockedQuery } from "@/Domain/utils/utils";
+import { parseBlockedQuery } from "../../../Domain/utils/utils";
 
 
 @injectable()

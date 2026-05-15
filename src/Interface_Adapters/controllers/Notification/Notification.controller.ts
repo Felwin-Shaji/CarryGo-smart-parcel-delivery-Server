@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
-import { ApiResponse } from "@/Interface_Adapters/presenters/ApiResponse";
-import { AppError } from "@/Domain/utils/customError";
-import { AUTH_MESSAGES } from "@/Infrastructure/constants/messages/authMessages";
-import { IGetNotificationsUseCase } from "@/Application/interfaces/useCase_Interfaces/Notification/IGetNotificationsUseCase";
-import { IMarkAsReadUseCase } from "@/Application/interfaces/useCase_Interfaces/Notification/IMarkAsReadUseCase";
-import { IMarkAllAsReadUseCase } from "@/Application/interfaces/useCase_Interfaces/Notification/IMarkAllAsReadUseCase";
-import { IGetUnreadCountUseCase } from "@/Application/interfaces/useCase_Interfaces/Notification/IGetUnreadCountUseCase";
-import { NOTIFICATION_MESSAGES } from "@/Infrastructure/constants/messages/NotificationMessage";
-import { NotificationFilter } from "@/Application/interfaces/repositories_interfaces/NotificationRepository_interfaces/INotificationRepository";
+import { IGetNotificationsUseCase } from "../../../Application/interfaces/useCase_Interfaces/Notification/IGetNotificationsUseCase";
+import { IMarkAsReadUseCase } from "../../../Application/interfaces/useCase_Interfaces/Notification/IMarkAsReadUseCase";
+import { IMarkAllAsReadUseCase } from "../../../Application/interfaces/useCase_Interfaces/Notification/IMarkAllAsReadUseCase";
+import { IGetUnreadCountUseCase } from "../../../Application/interfaces/useCase_Interfaces/Notification/IGetUnreadCountUseCase";
+import { AppError } from "../../../Domain/utils/customError";
+import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { NotificationFilter } from "../../../Application/interfaces/repositories_interfaces/NotificationRepository_interfaces/INotificationRepository";
+import { ApiResponse } from "../../presenters/ApiResponse";
+import { NOTIFICATION_MESSAGES } from "../../../Infrastructure/constants/messages/NotificationMessage";
 
 @injectable()
 export class NotificationController {

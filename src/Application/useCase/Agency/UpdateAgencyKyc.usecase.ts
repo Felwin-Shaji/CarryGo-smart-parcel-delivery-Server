@@ -6,9 +6,9 @@ import { updateAgencyKycStatusDTO } from "../../Dto/Agency/agency.dto";
 import { AppError } from "../../../Domain/utils/customError";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { INotificationService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationService";
-import { KycStatus } from "@/Domain/Enums/KycStatus";
-import { INotificationSocketService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationSocketService";
+import { INotificationService } from "../../interfaces/services_Interfaces/Notification/INotificationService";
+import { INotificationSocketService } from "../../interfaces/services_Interfaces/Notification/INotificationSocketService";
+import { KycStatus } from "../../../Domain/Enums/KycStatus";
 
 @injectable()
 export class UpdateAgencyKycStatusUseCase implements IUpdateAgencyKycStatusUseCase {
@@ -26,9 +26,9 @@ export class UpdateAgencyKycStatusUseCase implements IUpdateAgencyKycStatusUseCa
             { kycStatus: dto.status, rejectReason: dto.rejectReason }
         );
 
-        if (!result) throw new AppError(AGENCY_MESSAGES.KYC_STATUS_UPDATION_FAILED, STATUS.NOT_FOUND);
+        if (!result || !result.id) throw new AppError(AGENCY_MESSAGES.KYC_STATUS_UPDATION_FAILED, STATUS.NOT_FOUND);
 
-        await this._sendKycNotification(result.id?.toString()!, dto, result.name);
+        await this._sendKycNotification(result.id?.toString(), dto, result.name);
 
         return result.kycStatus;
     };

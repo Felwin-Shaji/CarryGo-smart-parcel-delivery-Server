@@ -17,12 +17,12 @@ import { GetWorkersDTO, ReSubmitWorkerKycPayloadDTO } from "../../../Application
 import { IGetWorkersUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkersUseCase";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
 import { ICheckTempWorkerStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/ICheckTempWorkerStatusUseCase";
-import { IGetWorkerOverviewUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerOverviewUseCase";
-import { IReSubmitWorkerKycUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IReSubmitWorkerKycUseCase";
-import { IGetWorkerKycUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerKycUseCase";
-import { parseBlockedQuery } from "@/Domain/utils/utils";
-import { Role } from "@/Domain/Enums/Roles";
-import { IWorkerResendOtpUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IWorkerResendOtpUseCase";
+import { IWorkerResendOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IWorkerResendOtpUseCase";
+import { IGetWorkerOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkerOverviewUseCase";
+import { IGetWorkerKycUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkerKycUseCase";
+import { IReSubmitWorkerKycUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IReSubmitWorkerKycUseCase";
+import { Role } from "../../../Domain/Enums/Roles";
+import { parseBlockedQuery } from "../../../Domain/utils/utils";
 
 @injectable()
 export class HubWorkerController implements IHubWorkerController {

@@ -1,4 +1,4 @@
-import { Notification } from "@/Domain/Entities/Notification/Notification";
+import { Notification } from "../../../../Domain/Entities/Notification/Notification";
 import { NotificationFilter } from "../../repositories_interfaces/NotificationRepository_interfaces/INotificationRepository";
 
 export interface IGetNotificationsUseCase {

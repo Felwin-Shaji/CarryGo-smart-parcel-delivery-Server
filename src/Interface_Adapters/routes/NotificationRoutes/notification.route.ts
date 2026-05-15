@@ -1,9 +1,9 @@
 import { BaseRoute } from "../base.route";
-import { asyncHandler } from "@/Interface_Adapters/middlewares/ErrorHandlers/asyncHandler";
-import { Role } from "@/Domain/Enums/Roles";
-import { authenticate } from "@/Interface_Adapters/middlewares/AuthMiddleware/authenticate.middleware";
+import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
+import { Role } from "../../../Domain/Enums/Roles";
+import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
 import { container } from "tsyringe";
-import { NotificationController } from "@/Interface_Adapters/controllers/Notification/Notification.controller";
+import { NotificationController } from "../../controllers/Notification/Notification.controller";
 
 export class NotificationRoute extends BaseRoute {
     protected initializeRoutes(): void {

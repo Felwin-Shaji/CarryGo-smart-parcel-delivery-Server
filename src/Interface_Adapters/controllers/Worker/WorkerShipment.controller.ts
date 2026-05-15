@@ -1,19 +1,19 @@
 import { Request, Response } from "express";
-import { IGetWorkersShipmentUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/IGetWorkersShipmentUsecase";
+import { IGetWorkersShipmentUsecase } from "../../../Application/interfaces/useCase_Interfaces/Logistics/HubShipment/IGetWorkersShipmentUsecase";
 import { injectable, inject } from "tsyringe";
-import { AppError } from "@/Domain/utils/customError";
-import { AUTH_MESSAGES } from "@/Infrastructure/constants/messages/authMessages";
-import { GetWorkerShipmentDTO } from "@/Application/Dto/Logistics/shipment.dto";
-import { ApiResponse } from "@/Interface_Adapters/presenters/ApiResponse";
-import { WORKER_MESSAGES } from "@/Infrastructure/constants/messages/workerMessage";
-import { ShipmentStatus, ShipmentType } from "@/Domain/Entities/Logistics/HubShipment";
-import { IGetWorkerShipmentDetailsUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IGetWorkerShipmentDetailsUsecase";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
-import { IGetBookingUsecase } from "@/Application/interfaces/useCase_Interfaces/user/Booking/IGetBookingUsecase";
-import { BOOKING_MESSAGE } from "@/Infrastructure/constants/messages/bookingMessages";
-import { IUpdateShipmentStatusUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IUpdateShipmentStatusUsecase";
-import { IBulkUpdateShipmentParcelUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IBulkUpdateShipmentParcelUsecase";
-import { ShipmentParcelStatus } from "@/Domain/Entities/Logistics/ShipmentParcel";
+import { AppError } from "../../../Domain/utils/customError";
+import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
+import { GetWorkerShipmentDTO } from "../../../Application/Dto/Logistics/shipment.dto";
+import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
+import { IGetWorkerShipmentDetailsUsecase } from "../../../Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IGetWorkerShipmentDetailsUsecase";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { IGetBookingUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IGetBookingUsecase";
+import { BOOKING_MESSAGE } from "../../../Infrastructure/constants/messages/bookingMessages";
+import { IUpdateShipmentStatusUsecase } from "../../../Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IUpdateShipmentStatusUsecase";
+import { IBulkUpdateShipmentParcelUsecase } from "../../../Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IBulkUpdateShipmentParcelUsecase";
+import { ShipmentStatus, ShipmentType } from "../../../Domain/Entities/Logistics/HubShipment";
+import { ApiResponse } from "../../presenters/ApiResponse";
+import { ShipmentParcelStatus } from "../../../Domain/Entities/Logistics/ShipmentParcel";
 
 @injectable()
 export class WorkerShipmentController {

@@ -1,8 +1,9 @@
-import { authenticate } from "@/Interface_Adapters/middlewares/AuthMiddleware/authenticate.middleware";
-import { BaseRoute } from "../base.route";
-import { asyncHandler } from "@/Interface_Adapters/middlewares/ErrorHandlers/asyncHandler";
-import { agencyHubWorkerController } from "@/Infrastructure/di/resolver";
-import { Role } from "@/Domain/Enums/Roles";
+import { agencyHubWorkerController } from "../../../Infrastructure/di/resolver"
+import { BaseRoute } from "../base.route"
+import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler"
+import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware"
+import { Role } from "../../../Domain/Enums/Roles"
+
 
 export class AgencyHubWorkerRoute extends BaseRoute {
     protected initializeRoutes(): void {

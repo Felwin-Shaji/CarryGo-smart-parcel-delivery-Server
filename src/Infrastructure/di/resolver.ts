@@ -22,15 +22,15 @@ import { AdminWalletController } from "../../Interface_Adapters/controllers/Admi
 import { AgencyWalletController } from "../../Interface_Adapters/controllers/Agency/AgencyWallet.controller";
 import { TravelerController } from "../../Interface_Adapters/controllers/User/traveler.controller";
 import { AgencyRouteController } from "../../Interface_Adapters/controllers/Agency/AgencyRoute.controller";
-import { AgencyRouteSegmentController } from "@/Interface_Adapters/controllers/Agency/AgencyRouteSegment.controller";
-import { AgencyHubWorkerController } from "@/Interface_Adapters/controllers/Agency/AgencyHubWorker.controller";
-import { HubShipmentController } from "@/Interface_Adapters/controllers/Hub/HubShipment.controller";
-import { WorkerShipmentController } from "@/Interface_Adapters/controllers/Worker/WorkerShipment.controller";
-import { UserTrackingController } from "@/Interface_Adapters/controllers/User/UserTracking.controller";
-import { WorkerDashboardController } from "@/Interface_Adapters/controllers/Worker/WorkerDashboard.controller";
-import { HubProfileController } from "@/Interface_Adapters/controllers/Hub/HubProfile.controller";
-import { HubDashboardController } from "@/Interface_Adapters/controllers/Hub/HubDashboard.controller";
-import { AgencyDashboardController } from "@/Interface_Adapters/controllers/Agency/AgencyDashboard.controller";
+import { UserTrackingController } from "../../Interface_Adapters/controllers/User/UserTracking.controller";
+import { AgencyHubWorkerController } from "../../Interface_Adapters/controllers/Agency/AgencyHubWorker.controller";
+import { AgencyRouteSegmentController } from "../../Interface_Adapters/controllers/Agency/AgencyRouteSegment.controller";
+import { AgencyDashboardController } from "../../Interface_Adapters/controllers/Agency/AgencyDashboard.controller";
+import { HubShipmentController } from "../../Interface_Adapters/controllers/Hub/HubShipment.controller";
+import { HubDashboardController } from "../../Interface_Adapters/controllers/Hub/HubDashboard.controller";
+import { HubProfileController } from "../../Interface_Adapters/controllers/Hub/HubProfile.controller";
+import { WorkerShipmentController } from "../../Interface_Adapters/controllers/Worker/WorkerShipment.controller";
+import { WorkerDashboardController } from "../../Interface_Adapters/controllers/Worker/WorkerDashboard.controller";
 
 
 DependancyInjection.registerAll();

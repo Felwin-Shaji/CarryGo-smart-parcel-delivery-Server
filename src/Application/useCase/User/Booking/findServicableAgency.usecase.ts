@@ -2,7 +2,7 @@ import { inject, injectable } from 'tsyringe';
 import { IHubRepository } from '../../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository';
 import { CheckServiceableAgencyDTO, ServiceableHubWithAgencyDTO } from '../../../Dto/User/Booking.dto';
 import { IFindServicableAgencyUsecase } from '../../../interfaces/useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase';
-import { IRouteComputationService } from '@/Application/interfaces/services_Interfaces/IRouteComputationService';
+import { IRouteComputationService } from '../../../interfaces/services_Interfaces/IRouteComputationService';
 
 @injectable()
 export class FindServicableAgencyUsecase implements IFindServicableAgencyUsecase {

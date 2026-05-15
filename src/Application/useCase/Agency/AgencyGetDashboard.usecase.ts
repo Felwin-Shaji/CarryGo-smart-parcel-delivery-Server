@@ -1,17 +1,15 @@
 import { inject, injectable } from "tsyringe";
-import { AgencyDashboardResponseDTO } from "@/Application/Dto/Agency/agencyDashboard.dto";
-
+import { AgencyDashboardResponseDTO } from "../../Dto/Agency/agencyDashboard.dto";
 import { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
 import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
-
-import { AppError } from "@/Domain/utils/customError";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
-import { AGENCY_MESSAGES } from "@/Infrastructure/constants/messages/agencyMessages";
-import { IAgencyGetDashboardUsecase } from "@/Application/interfaces/useCase_Interfaces/Agency/IAgencyGetDashboardUseCase";
-import { ITransactionRepository } from "@/Application/interfaces/repositories_interfaces/walletRepositories_Interfaces/ITransactionRepository";
-import { IBookingRepository } from "@/Application/interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
-import { IAgencyPricingRepository } from "@/Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agencyPricing.repository";
-import { IPricingPolicyRepository } from "@/Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/pricingPolicy.repository";
+import { IAgencyGetDashboardUsecase } from "../../interfaces/useCase_Interfaces/Agency/IAgencyGetDashboardUseCase";
+import { ITransactionRepository } from "../../interfaces/repositories_interfaces/walletRepositories_Interfaces/ITransactionRepository";
+import { IBookingRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
+import { IAgencyPricingRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agencyPricing.repository";
+import { IPricingPolicyRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/pricingPolicy.repository";
+import { AppError } from "../../../Domain/utils/customError";
+import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 
 @injectable()
 export class AgencyGetDashboardUsecase implements IAgencyGetDashboardUsecase {

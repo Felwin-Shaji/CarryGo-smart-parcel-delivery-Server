@@ -1,8 +1,8 @@
-import { WorkerRole, WorkingStatus } from "@/Domain/Entities/Worker/Worker";
 import { IDType } from "../../../Domain/Entities/Worker/WorkerKyc";
 import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
 import { userKycResponseDTO } from "../User/user.dto";
-import { ShipmentParcel, ShipmentParcelStatus } from "@/Domain/Entities/Logistics/ShipmentParcel";
+import { ShipmentParcelStatus } from "../../../Domain/Entities/Logistics/ShipmentParcel";
+import { WorkerRole, WorkingStatus } from "../../../Domain/Entities/Worker/Worker";
 
 export interface WorkerResponseDTO {
   id: string;

@@ -1,7 +1,7 @@
-import { INotificationRepository } from "@/Application/interfaces/repositories_interfaces/NotificationRepository_interfaces/INotificationRepository";
-import { INotificationService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationService";
-import { Notification } from "@/Domain/Entities/Notification/Notification";
 import { inject, injectable } from "tsyringe";
+import { INotificationService } from "../../../Application/interfaces/services_Interfaces/Notification/INotificationService";
+import { INotificationRepository } from "../../../Application/interfaces/repositories_interfaces/NotificationRepository_interfaces/INotificationRepository";
+import { Notification } from "../../../Domain/Entities/Notification/Notification";
 
 @injectable()
 export class NotificationService implements INotificationService {

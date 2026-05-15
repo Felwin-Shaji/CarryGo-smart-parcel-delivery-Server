@@ -1,6 +1,6 @@
-import { UpdateHubShipmentDTO } from "@/Application/Dto/Logistics/shipment.dto";
-import { IHubShipmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
-import { IUpdateHubShipmentUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/IUpdateHubShipmentUsecase";
+import { UpdateHubShipmentDTO } from "../../../Dto/Logistics/shipment.dto";
+import { IHubShipmentRepository } from "../../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
+import { IUpdateHubShipmentUsecase } from "../../../interfaces/useCase_Interfaces/Logistics/HubShipment/IUpdateHubShipmentUsecase";
 import { inject, injectable } from "tsyringe";
 
 @injectable()

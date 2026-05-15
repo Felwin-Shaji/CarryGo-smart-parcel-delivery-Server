@@ -1,8 +1,8 @@
-import { authenticate } from "@/Interface_Adapters/middlewares/AuthMiddleware/authenticate.middleware";
+import { Role } from "../../../Domain/Enums/Roles";
+import { hubShipmentController } from "../../../Infrastructure/di/resolver";
+import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
+import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
 import { BaseRoute } from "../base.route";
-import { asyncHandler } from "@/Interface_Adapters/middlewares/ErrorHandlers/asyncHandler";
-import { hubShipmentController } from "@/Infrastructure/di/resolver";
-import { Role } from "@/Domain/Enums/Roles";
 
 export class HubShipmentRoute extends BaseRoute {
 

@@ -1,6 +1,6 @@
-import { IChatRepository } from "@/Application/interfaces/repositories_interfaces/ChatRepositories_Interfaces/IChatRepository";
-import { IGetOrCreateChatUseCase } from "@/Application/interfaces/useCase_Interfaces/Chat/IGetOrCreateChatUseCase";
-import { Chat } from "@/Domain/Entities/Chat/Chat";
+import { Chat } from "../../../Domain/Entities/Chat/Chat";
+import { IChatRepository } from "../../interfaces/repositories_interfaces/ChatRepositories_Interfaces/IChatRepository";
+import { IGetOrCreateChatUseCase } from "../../interfaces/useCase_Interfaces/Chat/IGetOrCreateChatUseCase";
 import { inject, injectable } from "tsyringe";
 
 @injectable()

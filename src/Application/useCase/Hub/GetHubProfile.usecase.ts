@@ -1,11 +1,11 @@
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../Domain/utils/customError";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { IHubRepository } from "@/Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
-import { IGetHubProfileUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IGetHubProfileUseCase";
-import { HubProfileMapper } from "@/Application/Mappers/Hub/HubProfileMapper";
-import { HubProfileResponseDTO } from "@/Application/Dto/Hub/hubProfile.dto";
-import { HUB_MESSAGES } from "@/Infrastructure/constants/messages/hubMessage";
+import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
+import { IGetHubProfileUseCase } from "../../interfaces/useCase_Interfaces/Hub/IGetHubProfileUseCase";
+import { HubProfileMapper } from "../../Mappers/Hub/HubProfileMapper";
+import { HubProfileResponseDTO } from "../../Dto/Hub/hubProfile.dto";
+import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
 
 @injectable()
 export class GetHubProfileUseCase implements IGetHubProfileUseCase {

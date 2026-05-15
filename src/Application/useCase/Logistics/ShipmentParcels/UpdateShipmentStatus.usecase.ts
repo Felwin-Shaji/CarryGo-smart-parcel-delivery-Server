@@ -1,10 +1,10 @@
-import { IHubShipmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
-import { IShipmentParcelRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IShipmentParcelRepository";
-import { IUpdateShipmentStatusUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IUpdateShipmentStatusUsecase";
-import { HubShipmentMapper } from "@/Application/Mappers/Logistics/HubShipmentMapper";
-import { ShipmentStatus } from "@/Domain/Entities/Logistics/HubShipment";
-import { ShipmentParcel } from "@/Domain/Entities/Logistics/ShipmentParcel";
-import { AppError } from "@/Domain/utils/customError";
+import { IHubShipmentRepository } from "../../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
+import { IShipmentParcelRepository } from "../../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IShipmentParcelRepository";
+import { IUpdateShipmentStatusUsecase } from "../../../interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IUpdateShipmentStatusUsecase";
+import { HubShipmentMapper } from "../../../Mappers/Logistics/HubShipmentMapper";
+import { ShipmentStatus } from "../../../../Domain/Entities/Logistics/HubShipment";
+import { ShipmentParcel } from "../../../../Domain/Entities/Logistics/ShipmentParcel";
+import { AppError } from "../../../../Domain/utils/customError";
 import { Types } from "mongoose";
 import { inject, injectable } from "tsyringe";
 

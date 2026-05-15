@@ -1,10 +1,11 @@
-import { IParcelMovementRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelMovementRepository";
-import { ParcelMovement } from "@/Domain/Entities/Booking/ParcelMovement";
-import { AppError } from "@/Domain/utils/customError";
-import { PARCEL_MOVEMENT_MESSAGE } from "@/Infrastructure/constants/messages/RouteGroupMessage";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
-import { ParcelMovementDocument, ParcelMovementModel } from "@/Infrastructure/database/models/Logistics/ParcelMovementModel";
+
 import { ClientSession, Types } from "mongoose";
+import { IParcelMovementRepository } from "../../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelMovementRepository";
+import { ParcelMovement } from "../../../Domain/Entities/Booking/ParcelMovement";
+import { ParcelMovementDocument, ParcelMovementModel } from "../../database/models/Logistics/ParcelMovementModel";
+import { AppError } from "../../../Domain/utils/customError";
+import { PARCEL_MOVEMENT_MESSAGE } from "../../constants/messages/RouteGroupMessage";
+import { STATUS } from "../../constants/statusCodes";
 
 export class ParcelMovementRepository implements IParcelMovementRepository {
     constructor() { };

@@ -1,7 +1,7 @@
-import { IMessageSocketService } from "@/Application/interfaces/services_Interfaces/Chat/IMessageSocketService";
-import { Message } from "@/Domain/Entities/Chat/Message";
 import { Server, Socket } from "socket.io";
-import { container, inject, injectable } from "tsyringe";
+import { container, injectable } from "tsyringe";
+import { IMessageSocketService } from "../../../Application/interfaces/services_Interfaces/Chat/IMessageSocketService";
+import { Message } from "../../../Domain/Entities/Chat/Message";
 
 @injectable()
 export class SocketService implements IMessageSocketService {

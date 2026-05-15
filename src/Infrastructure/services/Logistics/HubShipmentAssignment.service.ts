@@ -1,18 +1,18 @@
-import { IAgencyRouteSegmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteSegmentRepository";
-import { IHubShipmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
-import { IParcelMovementRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelMovementRepository";
-import { IParcelRouteLegRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelRouteLegRepository";
-import { IShipmentParcelRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IShipmentParcelRepository";
-import { IHubShipmentAssignmentService } from "@/Application/interfaces/services_Interfaces/IHubShipmentAssignmentService";
-import { HubShipmentMapper } from "@/Application/Mappers/Logistics/HubShipmentMapper";
-import { ParcelMovementMapper } from "@/Application/Mappers/Logistics/ParcelMovementMapper";
-import { ShipmentParcelMapper } from "@/Application/Mappers/Logistics/ShipmentParcelMapper";
-import { ParcelRouteLeg } from "@/Domain/Entities/Logistics/ParcelRouteLeg";
-import { AppError } from "@/Domain/utils/customError";
-import { ROUTE_SEGMENT_MESSAGE } from "@/Infrastructure/constants/messages/RouteGroupMessage";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
+import { IHubShipmentRepository } from "../../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
+import { IParcelMovementRepository } from "../../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelMovementRepository";
+import { IParcelRouteLegRepository } from "../../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelRouteLegRepository";
+import { IShipmentParcelRepository } from "../../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IShipmentParcelRepository";
+import { IHubShipmentAssignmentService } from "../../../Application/interfaces/services_Interfaces/IHubShipmentAssignmentService";
+import { HubShipmentMapper } from "../../../Application/Mappers/Logistics/HubShipmentMapper";
+import { ParcelMovementMapper } from "../../../Application/Mappers/Logistics/ParcelMovementMapper";
+import { ShipmentParcelMapper } from "../../../Application/Mappers/Logistics/ShipmentParcelMapper";
+import { AppError } from "../../../Domain/utils/customError";
 import { ClientSession } from "mongoose";
 import { inject, injectable } from "tsyringe";
+import { IAgencyRouteSegmentRepository } from "../../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteSegmentRepository";
+import { ParcelRouteLeg } from "../../../Domain/Entities/Logistics/ParcelRouteLeg";
+import { STATUS } from "../../constants/statusCodes";
+import { ROUTE_SEGMENT_MESSAGE } from "../../constants/messages/RouteGroupMessage";
 
 @injectable()
 export class HubShipmentAssignmentService implements IHubShipmentAssignmentService {

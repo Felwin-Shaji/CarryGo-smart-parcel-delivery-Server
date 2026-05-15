@@ -13,9 +13,9 @@ import { ICalculateBookingPriceUsecase } from "../../../interfaces/useCase_Inter
 import { ITravelRequestRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/ITravelRequestRepository";
 import { AGENCY_MESSAGES } from "../../../../Infrastructure/constants/messages/agencyMessages";
 import { DeliveryPartner } from "../../../../Domain/Enums/DeliveryPartnerType";
-import { IBookingIdGeneratorService } from "@/Application/interfaces/services_Interfaces/IBookingIdGeneratorService";
-import { ICounterRepository } from "@/Application/interfaces/repositories_interfaces/ICounterRepository";
-import { buildCounterKey } from "@/Domain/utils/counterKey.util";
+import { IBookingIdGeneratorService } from "../../../interfaces/services_Interfaces/IBookingIdGeneratorService";
+import { ICounterRepository } from "../../../interfaces/repositories_interfaces/ICounterRepository";
+import { buildCounterKey } from "../../../../Domain/utils/counterKey.util";
 
 @injectable()
 export class CreateBookingUsecase implements ICreateBookingUsecase {

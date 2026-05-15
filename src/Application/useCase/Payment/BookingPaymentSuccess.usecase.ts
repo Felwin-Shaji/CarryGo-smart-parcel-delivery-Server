@@ -1,12 +1,11 @@
 import { inject, injectable } from "tsyringe";
 import { IBookingPaymentSuccessUseCase } from "../../interfaces/useCase_Interfaces/Payment/IBookingPaymentSuccessUseCase";
-import { Transaction } from "../../../Domain/Entities/Wallet/WalletTransaction";
 import { IBookingRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
 import { IWalletRepository } from "../../interfaces/repositories_interfaces/walletRepositories_Interfaces/IWalletRepository";
 import { ITransactionRepository } from "../../interfaces/repositories_interfaces/walletRepositories_Interfaces/ITransactionRepository";
-import { ICreateParcelRouteUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ParcelRoute/ICreateParcelRouteUsecase";
-import { ICreateHubShipmentPickUpUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/ICreateHubShipmentPickUpUsecase";
-import { TransactionMapper } from "@/Application/Mappers/Wallet/transactionMapper";
+import { ICreateParcelRouteUsecase } from "../../interfaces/useCase_Interfaces/Logistics/ParcelRoute/ICreateParcelRouteUsecase";
+import { ICreateHubShipmentPickUpUsecase } from "../../interfaces/useCase_Interfaces/Logistics/HubShipment/ICreateHubShipmentPickUpUsecase";
+import { TransactionMapper } from "../../Mappers/Wallet/transactionMapper";
 
 @injectable()
 export class BookingPaymentSuccessUseCase implements IBookingPaymentSuccessUseCase {

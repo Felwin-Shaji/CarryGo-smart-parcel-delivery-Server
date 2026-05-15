@@ -4,7 +4,7 @@ import { BookingStatusType, PaymentGatewayType, PaymentStatusType, DeliveryPartn
 import { AppError } from "../../../Domain/utils/customError";
 import { BOOKING_MESSAGE } from "../../../Infrastructure/constants/messages/bookingMessages";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { ShipmentStatus } from "@/Domain/Entities/Logistics/HubShipment";
+import { ShipmentStatus } from "../../../Domain/Entities/Logistics/HubShipment";
 
 export class BookingMapper {
     static createNew(params: {

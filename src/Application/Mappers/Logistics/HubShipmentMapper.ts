@@ -1,11 +1,11 @@
-import { GetShipmentsResponseDTO, HubShipmentWithWorker } from "@/Application/Dto/Logistics/shipment.dto";
-import { HubShipmentPaginatedData } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
-import { Booking } from "@/Domain/Entities/Booking/Booking";
-import { HubShipment, ShipmentStatus } from "@/Domain/Entities/Logistics/HubShipment";
-import { RouteSegment } from "@/Domain/Entities/Logistics/RouteSegment";
-import { AppError } from "@/Domain/utils/customError";
-import { HUB_SHIPMENT_MESSAGE } from "@/Infrastructure/constants/messages/RouteGroupMessage";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
+import { Booking } from "../../../Domain/Entities/Booking/Booking";
+import { HubShipment, ShipmentStatus } from "../../../Domain/Entities/Logistics/HubShipment";
+import { RouteSegment } from "../../../Domain/Entities/Logistics/RouteSegment";
+import { AppError } from "../../../Domain/utils/customError";
+import { HUB_SHIPMENT_MESSAGE } from "../../../Infrastructure/constants/messages/RouteGroupMessage";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { GetShipmentsResponseDTO, HubShipmentWithWorker } from "../../Dto/Logistics/shipment.dto";
+import { HubShipmentPaginatedData } from "../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
 
 export class HubShipmentMapper {
 

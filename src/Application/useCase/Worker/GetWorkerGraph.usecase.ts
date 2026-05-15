@@ -1,6 +1,6 @@
-import { GetWorkerGraphRequestDTO, GetWorkerGraphResponseDTO } from "@/Application/Dto/Workers/worker.dto";
-import { IShipmentParcelRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IShipmentParcelRepository";
-import { IGetWorkerGraphUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerGraphUseCase";
+import { GetWorkerGraphRequestDTO, GetWorkerGraphResponseDTO } from "../../Dto/Workers/worker.dto";
+import { IShipmentParcelRepository } from "../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IShipmentParcelRepository";
+import { IGetWorkerGraphUseCase } from "../../interfaces/useCase_Interfaces/Worker/IGetWorkerGraphUseCase";
 import { inject, injectable } from "tsyringe";
 
 @injectable()

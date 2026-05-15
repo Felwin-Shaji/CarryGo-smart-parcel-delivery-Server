@@ -1,8 +1,8 @@
-import { asyncHandler } from "@/Interface_Adapters/middlewares/ErrorHandlers/asyncHandler";
+import { Role } from "../../../Domain/Enums/Roles";
+import { agencyDashboardController } from "../../../Infrastructure/di/resolver";
+import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
+import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
 import { BaseRoute } from "../base.route";
-import { Role } from "@/Domain/Enums/Roles";
-import { authenticate } from "@/Interface_Adapters/middlewares/AuthMiddleware/authenticate.middleware";
-import { agencyDashboardController } from "@/Infrastructure/di/resolver";
 
 
 export class AgencyDashboardRoute extends BaseRoute {

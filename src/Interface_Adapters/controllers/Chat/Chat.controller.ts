@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
-import { IGetOrCreateChatUseCase } from "@/Application/interfaces/useCase_Interfaces/Chat/IGetOrCreateChatUseCase";
 import { inject, injectable } from "tsyringe";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
-import { ApiResponse } from "@/Interface_Adapters/presenters/ApiResponse";
-import { CHAT_MESSAGE } from "@/Infrastructure/constants/messages/chatMessage";
-import { ISendMessageUseCase, SendMessageDTO } from "@/Application/interfaces/useCase_Interfaces/Chat/ISendMessageUseCase";
-import { AppError } from "@/Domain/utils/customError";
-import { AUTH_MESSAGES } from "@/Infrastructure/constants/messages/authMessages";
-import { IGetMessagesUsecase } from "@/Application/interfaces/useCase_Interfaces/Chat/IGetMessagesUsecase";
+import { IGetOrCreateChatUseCase } from "../../../Application/interfaces/useCase_Interfaces/Chat/IGetOrCreateChatUseCase";
+import { ISendMessageUseCase, SendMessageDTO } from "../../../Application/interfaces/useCase_Interfaces/Chat/ISendMessageUseCase";
+import { IGetMessagesUsecase } from "../../../Application/interfaces/useCase_Interfaces/Chat/IGetMessagesUsecase";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { ApiResponse } from "../../presenters/ApiResponse";
+import { CHAT_MESSAGE } from "../../../Infrastructure/constants/messages/chatMessage";
+import { AppError } from "../../../Domain/utils/customError";
+import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
+
 
 @injectable()
 export class ChatController {

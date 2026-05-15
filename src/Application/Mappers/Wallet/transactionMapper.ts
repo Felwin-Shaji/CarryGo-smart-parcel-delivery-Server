@@ -1,4 +1,4 @@
-import { Transaction, TransactionReason } from "@/Domain/Entities/Wallet/WalletTransaction";
+import { Transaction, TransactionReason } from "../../../Domain/Entities/Wallet/WalletTransaction";
 
 export class TransactionMapper {
 

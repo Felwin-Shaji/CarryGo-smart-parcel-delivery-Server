@@ -1,6 +1,6 @@
-import { GetHubDashboardShipmentsPreviewResponseDTO } from "@/Application/Dto/Hub/hubDashboar.dto";
-import { IHubShipmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
-import { IGetHubDashboardShipmentsPreviewUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IGetHubDashboardShipmentsPreviewUseCase";
+import { GetHubDashboardShipmentsPreviewResponseDTO } from "../../Dto/Hub/hubDashboar.dto";
+import { IHubShipmentRepository } from "../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
+import { IGetHubDashboardShipmentsPreviewUseCase } from "../../interfaces/useCase_Interfaces/Hub/IGetHubDashboardShipmentsPreviewUseCase";
 import { inject, injectable } from "tsyringe";
 
 @injectable()

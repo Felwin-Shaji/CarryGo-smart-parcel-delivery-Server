@@ -11,7 +11,7 @@ import { IGetUserAddressesUseCase } from "../../../Application/interfaces/useCas
 import { IDeleteUserAddressUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Address/IDeleteUserAddressUseCase";
 import { AppError } from "../../../Domain/utils/customError";
 import { ISetDefaultUserAddressUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Address/ISetDefaultUserAddressUseCase";
-import { AUTH_MESSAGES } from "@/Infrastructure/constants/messages/authMessages";
+import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
 
 @injectable()
 export class AddressController implements IAddressController {

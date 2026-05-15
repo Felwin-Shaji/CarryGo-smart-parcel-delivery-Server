@@ -2,9 +2,9 @@ import { inject, injectable } from "tsyringe";
 import { IUpdateHubKycStatusUseCase } from "../../interfaces/useCase_Interfaces/Hub/IUpdateHubKycStatusUseCase";
 import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
 import { updateHubKycStatusDTO } from "../../Dto/Hub/hub.dto";
-import { IAgencyRepository } from "@/Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
-import { INotificationService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationService";
-import { INotificationSocketService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationSocketService";
+import { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
+import { INotificationService } from "../../interfaces/services_Interfaces/Notification/INotificationService";
+import { INotificationSocketService } from "../../interfaces/services_Interfaces/Notification/INotificationSocketService";
 
 @injectable()
 export class UpdateHubKycStatusUseCase implements IUpdateHubKycStatusUseCase {

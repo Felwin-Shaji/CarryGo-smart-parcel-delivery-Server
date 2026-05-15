@@ -1,4 +1,4 @@
-import { Role } from "@/Domain/Enums/Roles"
+import { Role } from "../../Domain/Enums/Roles"
 import { workerWalletController } from "../../Infrastructure/di/resolver"
 import { authenticate } from "../middlewares/AuthMiddleware/authenticate.middleware"
 import { asyncHandler } from "../middlewares/ErrorHandlers/asyncHandler"

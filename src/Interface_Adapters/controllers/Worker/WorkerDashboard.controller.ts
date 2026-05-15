@@ -1,14 +1,15 @@
 import { inject, injectable } from "tsyringe";
 import { Request, Response } from "express";
-import { ApiResponse } from "@/Interface_Adapters/presenters/ApiResponse";
-import { IGetWorkerParcelsUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerParcelsUseCase";
-import { USER_MESSAGES } from "@/Infrastructure/constants/messages/userMessage";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
-import { AppError } from "@/Domain/utils/customError";
-import { GetWorkerGraphRequestDTO, GetWorkerParcelsDTO } from "@/Application/Dto/Workers/worker.dto";
-import { WORKER_MESSAGES } from "@/Infrastructure/constants/messages/workerMessage";
-import { IGetWorkerDashboardUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerDashboardUseCase";
-import { IGetWorkerGraphUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerGraphUseCase";
+import { IGetWorkerParcelsUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkerParcelsUseCase";
+import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
+import { IGetWorkerDashboardUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkerDashboardUseCase";
+import { IGetWorkerGraphUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkerGraphUseCase";
+import { ApiResponse } from "../../presenters/ApiResponse";
+import { AppError } from "../../../Domain/utils/customError";
+import { GetWorkerGraphRequestDTO, GetWorkerParcelsDTO } from "../../../Application/Dto/Workers/worker.dto";
+
 
 
 @injectable()

@@ -1,7 +1,7 @@
-import { ParcelMovement } from "@/Domain/Entities/Booking/ParcelMovement";
-import { HubShipment, ShipmentStatus } from "@/Domain/Entities/Logistics/HubShipment";
-import { RouteSegment } from "@/Domain/Entities/Logistics/RouteSegment";
-import { ShipmentParcelStatus } from "@/Domain/Entities/Logistics/ShipmentParcel";
+import { ParcelMovement } from "../../../Domain/Entities/Booking/ParcelMovement";
+import { HubShipment, ShipmentStatus } from "../../../Domain/Entities/Logistics/HubShipment";
+import { RouteSegment } from "../../../Domain/Entities/Logistics/RouteSegment";
+import { ShipmentParcelStatus } from "../../../Domain/Entities/Logistics/ShipmentParcel";
 
 export class ParcelMovementMapper {
 

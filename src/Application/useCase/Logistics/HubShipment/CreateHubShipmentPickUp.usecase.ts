@@ -1,14 +1,14 @@
-import { IHubShipmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
-import { IParcelMovementRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelMovementRepository";
-import { IShipmentParcelRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IShipmentParcelRepository";
-import { IBookingRepository } from "@/Application/interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
-import { ICreateHubShipmentPickUpUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/ICreateHubShipmentPickUpUsecase";
-import { HubShipmentMapper } from "@/Application/Mappers/Logistics/HubShipmentMapper";
-import { ParcelMovementMapper } from "@/Application/Mappers/Logistics/ParcelMovementMapper";
-import { ShipmentParcelMapper } from "@/Application/Mappers/Logistics/ShipmentParcelMapper";
-import { AppError } from "@/Domain/utils/customError";
-import { HUB_MESSAGES } from "@/Infrastructure/constants/messages/hubMessage";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
+import { IHubShipmentRepository } from "../../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
+import { IParcelMovementRepository } from "../../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelMovementRepository";
+import { IShipmentParcelRepository } from "../../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IShipmentParcelRepository";
+import { IBookingRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
+import { ICreateHubShipmentPickUpUsecase } from "../../../interfaces/useCase_Interfaces/Logistics/HubShipment/ICreateHubShipmentPickUpUsecase";
+import { HubShipmentMapper } from "../../../Mappers/Logistics/HubShipmentMapper";
+import { ParcelMovementMapper } from "../../../Mappers/Logistics/ParcelMovementMapper";
+import { ShipmentParcelMapper } from "../../../Mappers/Logistics/ShipmentParcelMapper";
+import { AppError } from "../../../../Domain/utils/customError";
+import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
+import { HUB_MESSAGES } from "../../../../Infrastructure/constants/messages/hubMessage";
 import mongoose from "mongoose";
 import { inject, injectable } from "tsyringe";
 

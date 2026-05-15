@@ -1,13 +1,13 @@
-import { UpdateWorkerKycStatusDTO } from "@/Application/Dto/Workers/worker.dto";
-import { IHubRepository } from "@/Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
-import { IHubWorkerRepository } from "@/Application/interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";
-import { IHubWorkerKycRepository } from "@/Application/interfaces/repositories_interfaces/workerRepository_interfaces/wrokerKyc.repository";
-import { INotificationService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationService";
-import { INotificationSocketService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationSocketService";
-import { IUpdateWorkerKycStatusUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IUpdateWorkerKycStatusUseCase";
-import { AppError } from "@/Domain/utils/customError";
-import { WORKER_MESSAGES } from "@/Infrastructure/constants/messages/workerMessage";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
+import { AppError } from "../../../Domain/utils/customError";
+import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { UpdateWorkerKycStatusDTO } from "../../Dto/Workers/worker.dto";
+import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
+import { IHubWorkerRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";
+import { IHubWorkerKycRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/wrokerKyc.repository";
+import { INotificationService } from "../../interfaces/services_Interfaces/Notification/INotificationService";
+import { INotificationSocketService } from "../../interfaces/services_Interfaces/Notification/INotificationSocketService";
+import { IUpdateWorkerKycStatusUseCase } from "../../interfaces/useCase_Interfaces/Worker/IUpdateWorkerKycStatusUseCase";
 import { inject, injectable } from "tsyringe";
 
 @injectable()

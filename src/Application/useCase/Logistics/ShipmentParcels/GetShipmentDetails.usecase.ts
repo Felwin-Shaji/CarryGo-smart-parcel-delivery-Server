@@ -1,14 +1,14 @@
-import { ShipmentParcelsPaginatedDTO } from "@/Application/Dto/Logistics/shipment.dto";
-import { IHubRepository } from "@/Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
-import { IHubShipmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
-import { IShipmentParcelRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IShipmentParcelRepository";
-import { IBookingRepository } from "@/Application/interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
-import { IUserRepository } from "@/Application/interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
-import { IHubWorkerRepository } from "@/Application/interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";
-import { IGetShipmentDetailsUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IGetShipmentDetailsUsecase";
-import { AppError } from "@/Domain/utils/customError";
-import { SHIPMENT_PARCEL_MESSAGE } from "@/Infrastructure/constants/messages/RouteGroupMessage";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
+import { AppError } from "../../../../Domain/utils/customError";
+import { SHIPMENT_PARCEL_MESSAGE } from "../../../../Infrastructure/constants/messages/RouteGroupMessage";
+import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
+import { ShipmentParcelsPaginatedDTO } from "../../../Dto/Logistics/shipment.dto";
+import { IHubRepository } from "../../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
+import { IHubShipmentRepository } from "../../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
+import { IShipmentParcelRepository } from "../../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IShipmentParcelRepository";
+import { IBookingRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
+import { IUserRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
+import { IHubWorkerRepository } from "../../../interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";
+import { IGetShipmentDetailsUsecase } from "../../../interfaces/useCase_Interfaces/Logistics/ShipmentParcel/IGetShipmentDetailsUsecase";
 import { inject, injectable } from "tsyringe";
 
 @injectable()

@@ -1,4 +1,4 @@
-import { ICounterRepository } from "@/Application/interfaces/repositories_interfaces/ICounterRepository";
+import { ICounterRepository } from "../../Application/interfaces/repositories_interfaces/ICounterRepository";
 import { Counter } from "../database/counterSchema";
 
 export class CounterRepository implements ICounterRepository {

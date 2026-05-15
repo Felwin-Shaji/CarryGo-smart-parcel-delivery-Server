@@ -2,9 +2,9 @@ import { BaseRoute } from "../base.route";
 import { adminProfileController } from "../../../Infrastructure/di/resolver";
 import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
-import { Role } from "@/Domain/Enums/Roles";
-import { resetAdminPasswordSchema, editAdminProfileSchema } from "@/Interface_Adapters/validators/AdminValidator/adminProfile.validator";
-import { validateRequest } from "@/Interface_Adapters/middlewares/ValidationMiddleware/validateRequest";
+import { Role } from "../../../Domain/Enums/Roles";
+import { validateRequest } from "../../middlewares/ValidationMiddleware/validateRequest";
+import { editAdminProfileSchema, resetAdminPasswordSchema } from "../../validators/AdminValidator/adminProfile.validator";
 
 export class AdminProfileRoute extends BaseRoute {
 

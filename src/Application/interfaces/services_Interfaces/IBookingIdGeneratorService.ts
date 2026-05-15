@@ -1,4 +1,4 @@
-import { DeliveryPartnerType } from "@/Infrastructure/Types/types";
+import { DeliveryPartnerType } from "../../../Infrastructure/Types/types";
 
 export interface GenerateBookingIdDTO {
     seq: number;

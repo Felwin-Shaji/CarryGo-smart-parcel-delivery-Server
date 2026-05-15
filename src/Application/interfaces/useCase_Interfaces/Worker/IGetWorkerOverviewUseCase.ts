@@ -1,4 +1,4 @@
-import { GetWorkerOverviewResponseDTO } from "@/Application/Dto/Workers/worker.dto";
+import { GetWorkerOverviewResponseDTO } from "../../../Dto/Workers/worker.dto";
 
 export interface IGetWorkerOverviewUseCase {
   execute(workerId: string): Promise<GetWorkerOverviewResponseDTO>;

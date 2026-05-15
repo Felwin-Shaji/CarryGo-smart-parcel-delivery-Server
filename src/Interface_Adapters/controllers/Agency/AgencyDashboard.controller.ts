@@ -1,15 +1,15 @@
-import { SalesReportRequestDTO } from "@/Application/Dto/Agency/agencyDashboard.dto";
-import { IAgencyExportSalesReportUseCase } from "@/Application/interfaces/useCase_Interfaces/Agency/IAgencyExportSalesReportUsecase";
-import { IAgencyGetDashboardUsecase } from "@/Application/interfaces/useCase_Interfaces/Agency/IAgencyGetDashboardUseCase";
-import { IAgencyGetDeliveriesChartUseCase } from "@/Application/interfaces/useCase_Interfaces/Agency/IAgencyGetDeliveriesChartUseCase";
-import { IAgencyGetSalesChartUseCase } from "@/Application/interfaces/useCase_Interfaces/Agency/IAgencyGetSalesChartUseCase";
-import { IAgencyGetSalesReportUseCase } from "@/Application/interfaces/useCase_Interfaces/Agency/IAgencyGetSalesReportUseCase";
-import { AppError } from "@/Domain/utils/customError";
-import { AGENCY_MESSAGES } from "@/Infrastructure/constants/messages/agencyMessages";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
-import { ApiResponse } from "@/Interface_Adapters/presenters/ApiResponse";
+import { IAgencyExportSalesReportUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/IAgencyExportSalesReportUsecase";
+import { IAgencyGetDeliveriesChartUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/IAgencyGetDeliveriesChartUseCase";
+import { IAgencyGetSalesChartUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/IAgencyGetSalesChartUseCase";
+import { IAgencyGetSalesReportUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/IAgencyGetSalesReportUseCase";
+import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
+import { IAgencyGetDashboardUsecase } from "../../../Application/interfaces/useCase_Interfaces/Agency/IAgencyGetDashboardUseCase";
+import { SalesReportRequestDTO } from "../../../Application/Dto/Agency/agencyDashboard.dto";
+import { ApiResponse } from "../../presenters/ApiResponse";
+import { AppError } from "../../../Domain/utils/customError";
 
 @injectable()
 export class AgencyDashboardController {

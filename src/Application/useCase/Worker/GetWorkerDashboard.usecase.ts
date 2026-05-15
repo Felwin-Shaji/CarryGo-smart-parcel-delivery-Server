@@ -1,12 +1,12 @@
-import { GetWorkerDashboardResponseDTO } from "@/Application/Dto/Workers/worker.dto";
-import { IHubShipmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
-import { IShipmentParcelRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IShipmentParcelRepository";
-import { IHubWorkerRepository } from "@/Application/interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";
-import { IGetWorkerDashboardUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerDashboardUseCase";
-import { WorkerDashboardMapper } from "@/Application/Mappers/Workers/WorkerDashboardMapper";
-import { AppError } from "@/Domain/utils/customError";
-import { WORKER_MESSAGES } from "@/Infrastructure/constants/messages/workerMessage";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
+import { GetWorkerDashboardResponseDTO } from "../../Dto/Workers/worker.dto";
+import { IHubShipmentRepository } from "../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
+import { IShipmentParcelRepository } from "../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IShipmentParcelRepository";
+import { IHubWorkerRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";
+import { IGetWorkerDashboardUseCase } from "../../interfaces/useCase_Interfaces/Worker/IGetWorkerDashboardUseCase";
+import { WorkerDashboardMapper } from "../../Mappers/Workers/WorkerDashboardMapper";
+import { AppError } from "../../../Domain/utils/customError";
+import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { inject, injectable } from "tsyringe";
 
 @injectable()

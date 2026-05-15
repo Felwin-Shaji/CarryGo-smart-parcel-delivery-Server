@@ -1,5 +1,5 @@
-import { ParcelMovement } from "@/Domain/Entities/Booking/ParcelMovement";
 import { ClientSession } from "mongoose";
+import { ParcelMovement } from "../../../../Domain/Entities/Booking/ParcelMovement";
 
 export interface IParcelMovementRepository {
 

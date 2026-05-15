@@ -1,11 +1,11 @@
-import { ShipmentSummaryGroup } from "@/Application/Dto/Hub/hubDashboar.dto";
-import { GetShipmentsDTO, GetWorkerShipmentDTO } from "@/Application/Dto/Logistics/shipment.dto";
-import { HubShipmentPaginatedData, IHubShipmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
-import { HubShipment, ShipmentType } from "@/Domain/Entities/Logistics/HubShipment";
-import { HubShipmentDocument, HubShipmentModel } from "@/Infrastructure/database/models/Logistics/HubShipmentModel";
 import { UpdateQuery } from "mongoose";
 import { ClientSession, Types } from "mongoose";
 import { FilterQuery } from "mongoose";
+import { HubShipmentPaginatedData, IHubShipmentRepository } from "../../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
+import { HubShipment, ShipmentType } from "../../../Domain/Entities/Logistics/HubShipment";
+import { HubShipmentDocument, HubShipmentModel } from "../../database/models/Logistics/HubShipmentModel";
+import { GetShipmentsDTO, GetWorkerShipmentDTO } from "../../../Application/Dto/Logistics/shipment.dto";
+import { ShipmentSummaryGroup } from "../../../Application/Dto/Hub/hubDashboar.dto";
 
 type PopulatedWorker = {
     _id: Types.ObjectId;

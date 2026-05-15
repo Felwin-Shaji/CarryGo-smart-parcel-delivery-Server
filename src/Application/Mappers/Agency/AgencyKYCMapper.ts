@@ -1,9 +1,9 @@
-import { AppError } from "@/Domain/utils/customError";
+import { AppError } from "../../../Domain/utils/customError";
 import { AgencyKYC } from "../../../Domain/Entities/Agency/AgencyKYC";
 import { AgencyKYC_DTO, AgencyResubmitKycDTO, UploadedKycFiles } from "../../Dto/Agency/agency.dto";
 import { Types } from "mongoose";
-import { AGENCY_MESSAGES } from "@/Infrastructure/constants/messages/agencyMessages";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
 
 export class AgencyKYCMapper {
 

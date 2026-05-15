@@ -1,4 +1,4 @@
-import { GetWorkerKycResponseDTO } from "@/Application/Dto/Workers/worker.dto";
+import { GetWorkerKycResponseDTO } from "../../../Dto/Workers/worker.dto";
 
 export interface IGetWorkerKycUseCase {
   execute(workerId: string): Promise<GetWorkerKycResponseDTO | null>;

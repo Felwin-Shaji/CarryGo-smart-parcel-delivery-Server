@@ -3,9 +3,9 @@ import { agencyHubController } from "../../../Infrastructure/di/resolver";
 import { agencyAddHub } from "../../../Infrastructure/services/storage/multer";
 import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
-import { Role } from "@/Domain/Enums/Roles";
-import { validateRequest } from "@/Interface_Adapters/middlewares/ValidationMiddleware/validateRequest";
-import { addNewHubBasicInfoSchema, addNewHubSchema, addNewHubVerifyOtpSchema, resendHubOtpSchema } from "@/Interface_Adapters/validators/AgencyValidator/AgencyHub.validator";
+import { Role } from "../../../Domain/Enums/Roles";
+import { validateRequest } from "../../middlewares/ValidationMiddleware/validateRequest";
+import { addNewHubBasicInfoSchema, addNewHubSchema, addNewHubVerifyOtpSchema, resendHubOtpSchema } from "../../validators/AgencyValidator/AgencyHub.validator";
 
 export class AgencyHubRoute extends BaseRoute {
 

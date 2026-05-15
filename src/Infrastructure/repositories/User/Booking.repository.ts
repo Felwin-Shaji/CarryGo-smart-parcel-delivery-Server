@@ -9,7 +9,7 @@ import { STATUS } from "../../constants/statusCodes";
 import { BookingDocument, BookingModel } from "../../database/models/Booking/BookingSchema";
 import { BookingStatusType, PaymentStatusType } from "../../Types/types";
 import { BaseRepository } from "../baseRepositories";
-import { DeliveriesChartRequestDTO, DeliveriesChartResponseDTO } from "@/Application/Dto/Agency/agencyDashboard.dto";
+import { DeliveriesChartRequestDTO, DeliveriesChartResponseDTO } from "../../../Application/Dto/Agency/agencyDashboard.dto";
 
 export class BookingRepository extends BaseRepository<BookingDocument> implements IBookingRepository {
     constructor() {

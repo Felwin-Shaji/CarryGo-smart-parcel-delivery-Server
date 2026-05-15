@@ -1,8 +1,8 @@
-import { ExportSalesReportDTO, ExportSalesReportResponseDTO, SalesReportRequestDTO } from "@/Application/Dto/Agency/agencyDashboard.dto";
-import { IReportGenerator } from "@/Application/interfaces/services_Interfaces/Report/IReportService";
-import { IAgencyExportSalesReportUseCase } from "@/Application/interfaces/useCase_Interfaces/Agency/IAgencyExportSalesReportUsecase";
-import { IAgencyGetSalesReportUseCase } from "@/Application/interfaces/useCase_Interfaces/Agency/IAgencyGetSalesReportUseCase";
-import { AppError } from "@/Domain/utils/customError";
+import { AppError } from "../../../Domain/utils/customError";
+import { ExportSalesReportDTO, ExportSalesReportResponseDTO, SalesReportRequestDTO } from "../../Dto/Agency/agencyDashboard.dto";
+import { IReportGenerator } from "../../interfaces/services_Interfaces/Report/IReportService";
+import { IAgencyExportSalesReportUseCase } from "../../interfaces/useCase_Interfaces/Agency/IAgencyExportSalesReportUsecase";
+import { IAgencyGetSalesReportUseCase } from "../../interfaces/useCase_Interfaces/Agency/IAgencyGetSalesReportUseCase";
 import { inject, injectable } from "tsyringe";
 
 type ExportType = "excel" | "pdf";

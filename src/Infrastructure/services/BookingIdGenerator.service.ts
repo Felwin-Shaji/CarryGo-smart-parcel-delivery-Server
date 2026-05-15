@@ -1,5 +1,6 @@
-import { IBookingIdGeneratorService, GenerateBookingIdDTO } from "@/Application/interfaces/services_Interfaces/IBookingIdGeneratorService";
-import { DeliveryPartnerType } from "@/Infrastructure/Types/types";
+import { GenerateBookingIdDTO, IBookingIdGeneratorService } from "../../Application/interfaces/services_Interfaces/IBookingIdGeneratorService";
+import { DeliveryPartnerType } from "../Types/types";
+
 
 export class BookingIdGeneratorService implements IBookingIdGeneratorService {
 

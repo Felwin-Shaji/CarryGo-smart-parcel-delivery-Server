@@ -1,4 +1,4 @@
-import { Notification } from "@/Domain/Entities/Notification/Notification";
+import { Notification } from "../../../../Domain/Entities/Notification/Notification";
 
 export interface INotificationSocketService {
 

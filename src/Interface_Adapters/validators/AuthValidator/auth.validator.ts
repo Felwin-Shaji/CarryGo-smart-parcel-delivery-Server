@@ -1,4 +1,4 @@
-import { Role } from "@/Domain/Enums/Roles";
+import { Role } from "../../../Domain/Enums/Roles";
 import { z } from "zod";
 
 export const sendOtpBodySchema = z

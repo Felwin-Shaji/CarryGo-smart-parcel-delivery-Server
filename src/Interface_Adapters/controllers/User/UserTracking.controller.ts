@@ -1,10 +1,10 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { injectable, inject } from "tsyringe";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
-import { ApiResponse } from "@/Interface_Adapters/presenters/ApiResponse";
-import { BOOKING_MESSAGE } from "@/Infrastructure/constants/messages/bookingMessages";
-import { Role } from "@/Infrastructure/Types/types";
-import { IGetTrackingUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/Tracking/IGetTrackingUsecase";
+import { IGetTrackingUsecase } from "../../../Application/interfaces/useCase_Interfaces/Logistics/Tracking/IGetTrackingUsecase";
+import { Role } from "../../../Infrastructure/Types/types";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { ApiResponse } from "../../presenters/ApiResponse";
+import { BOOKING_MESSAGE } from "../../../Infrastructure/constants/messages/bookingMessages";
 
 @injectable()
 export class UserTrackingController {

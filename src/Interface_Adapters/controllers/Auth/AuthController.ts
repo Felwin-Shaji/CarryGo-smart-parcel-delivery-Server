@@ -20,9 +20,9 @@ import { IResetPasswordUseCase } from "../../../Application/interfaces/useCase_I
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { OTP_MESSAGES } from "../../../Infrastructure/constants/messages/otpMessage";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
-import { Role } from "@/Domain/Enums/Roles";
-import { User } from "@/Domain/Entities/User";
-import { RegisterAgencyResponseDTO } from "@/Application/Dto/Agency/agency.dto";
+import { User } from "../../../Domain/Entities/User";
+import { RegisterAgencyResponseDTO } from "../../../Application/Dto/Agency/agency.dto";
+import { Role } from "../../../Domain/Enums/Roles";
 
 
 

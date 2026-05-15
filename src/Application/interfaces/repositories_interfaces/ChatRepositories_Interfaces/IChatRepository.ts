@@ -1,4 +1,4 @@
-import { Chat } from "@/Domain/Entities/Chat/Chat";
+import { Chat } from "../../../../Domain/Entities/Chat/Chat";
 
 export interface IChatRepository {
     create(chat: Partial<Chat>): Promise<Chat>;

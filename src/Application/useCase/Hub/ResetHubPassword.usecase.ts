@@ -3,9 +3,9 @@ import { AppError } from "../../../Domain/utils/customError";
 import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { IPasswordService } from "../../interfaces/services_Interfaces/password-service.interface";
-import { IResetHubPasswordUseCase } from "@/Application/interfaces/useCase_Interfaces/Hub/IResetHubPasswordUseCase";
-import { IHubRepository } from "@/Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
-import { HubResetPasswordRequestDTO } from "@/Application/Dto/Hub/hubProfile.dto";
+import { IResetHubPasswordUseCase } from "../../interfaces/useCase_Interfaces/Hub/IResetHubPasswordUseCase";
+import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
+import { HubResetPasswordRequestDTO } from "../../Dto/Hub/hubProfile.dto";
 
 @injectable()
 export class ResetHubPasswordUseCase implements IResetHubPasswordUseCase {

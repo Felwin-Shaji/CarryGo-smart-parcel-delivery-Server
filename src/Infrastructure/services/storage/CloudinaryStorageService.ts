@@ -1,9 +1,7 @@
 import type { IStorageService } from "../../../Application/interfaces/services_Interfaces/storage-service.interface";
 import { v2 as cloudinary, UploadApiErrorResponse, UploadApiResponse } from "cloudinary";
-import dotenv from "dotenv";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
-import { AppError } from "@/Domain/utils/customError";
-dotenv.config();
+import { AppError } from "../../../Domain/utils/customError";
+import { STATUS } from "../../constants/statusCodes";
 
 
 export class StorageService implements IStorageService {

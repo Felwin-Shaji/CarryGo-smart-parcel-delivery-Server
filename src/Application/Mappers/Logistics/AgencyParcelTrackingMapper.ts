@@ -1,15 +1,15 @@
-import { AgencyParcelTrackingDTO, HubDTO } from "@/Application/Dto/Logistics/ParcelTracking.dto";
-import { Booking } from "@/Domain/Entities/Booking/Booking";
-import { ParcelMovement } from "@/Domain/Entities/Booking/ParcelMovement";
-import { ParcelRouteLeg } from "@/Domain/Entities/Logistics/ParcelRouteLeg";
-import { HubShipment } from "@/Domain/Entities/Logistics/HubShipment";
-import { RouteSegment } from "@/Domain/Entities/Logistics/RouteSegment";
-import { Hub } from "@/Domain/Entities/Hub/Hub";
-import { AppError } from "@/Domain/utils/customError";
+import { Booking } from "../../../Domain/Entities/Booking/Booking";
+import { ParcelMovement } from "../../../Domain/Entities/Booking/ParcelMovement";
+import { ParcelRouteLeg } from "../../../Domain/Entities/Logistics/ParcelRouteLeg";
+import { HubShipment } from "../../../Domain/Entities/Logistics/HubShipment";
+import { Hub } from "../../../Domain/Entities/Hub/Hub";
+import { RouteSegment } from "../../../Domain/Entities/Logistics/RouteSegment";
+import { AppError } from "../../../Domain/utils/customError";
+import { AgencyParcelTrackingDTO, HubDTO } from "../../Dto/Logistics/ParcelTracking.dto";
 
 export class AgencyParcelTrackingMapper {
 
-  // 🔥 MAIN METHOD
+  // MAIN METHOD
   static toDTO(
     booking: Booking,
     legs: ParcelRouteLeg[],

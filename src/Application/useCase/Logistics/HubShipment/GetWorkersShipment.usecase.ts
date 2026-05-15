@@ -1,6 +1,6 @@
-import { GetWorkerShipmentDTO } from "@/Application/Dto/Logistics/shipment.dto";
-import {   HubShipmentPaginatedData, IHubShipmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
-import { IGetWorkersShipmentUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/IGetWorkersShipmentUsecase";
+import { GetWorkerShipmentDTO } from "../../../Dto/Logistics/shipment.dto";
+import {   HubShipmentPaginatedData, IHubShipmentRepository } from "../../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IHubShipmentRepository";
+import { IGetWorkersShipmentUsecase } from "../../../interfaces/useCase_Interfaces/Logistics/HubShipment/IGetWorkersShipmentUsecase";
 import { inject, injectable } from "tsyringe";
 
 @injectable()

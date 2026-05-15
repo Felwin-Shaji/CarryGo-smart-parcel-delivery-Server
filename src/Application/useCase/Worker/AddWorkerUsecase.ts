@@ -12,10 +12,10 @@ import { IAddWorkerUsecase } from "../../interfaces/useCase_Interfaces/Worker/Ad
 import { IHubWorkerKycRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/wrokerKyc.repository";
 import { IDType } from "../../../Domain/Entities/Worker/WorkerKyc";
 import { UploadedWorkerKycFiles } from "../../interfaces/useCase_Interfaces/Worker/uploadWorkerKycFilesUsecase";
-import { INotificationSocketService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationSocketService";
-import { INotificationService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationService";
-import { IAgencyRepository } from "@/Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
-import { IHubRepository } from "@/Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
+import { INotificationSocketService } from "../../interfaces/services_Interfaces/Notification/INotificationSocketService";
+import { INotificationService } from "../../interfaces/services_Interfaces/Notification/INotificationService";
+import { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
+import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
 
 @injectable()
 export class AddWorkerUsecase implements IAddWorkerUsecase {

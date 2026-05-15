@@ -2,9 +2,9 @@ import { BaseRoute } from "../base.route";
 import { userController } from "../../../Infrastructure/di/resolver";
 import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
-import { Role } from "@/Domain/Enums/Roles";
-import { validateRequest } from "@/Interface_Adapters/middlewares/ValidationMiddleware/validateRequest";
-import { editUserProfileSchema, resetUserPasswordSchema } from "@/Interface_Adapters/validators/UserValidator/user.validator";
+import { Role } from "../../../Domain/Enums/Roles";
+import { validateRequest } from "../../middlewares/ValidationMiddleware/validateRequest";
+import { editUserProfileSchema, resetUserPasswordSchema } from "../../validators/UserValidator/user.validator";
 
 export class UserProfileRoute extends BaseRoute {
 

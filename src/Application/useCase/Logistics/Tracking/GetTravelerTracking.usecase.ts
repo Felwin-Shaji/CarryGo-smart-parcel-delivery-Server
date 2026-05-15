@@ -1,16 +1,15 @@
-import { TravelerParcelTrackingDTO } from "@/Application/Dto/Logistics/ParcelTracking.dto";
-import { IBookingRepository } from "@/Application/interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
-import { ITravelRequestRepository } from "@/Application/interfaces/repositories_interfaces/userRepositories_Interfaces/ITravelRequestRepository";
-import { IUserRepository } from "@/Application/interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
-import { IGetTravelerTrackingUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/Tracking/IGetTravelerTrackingUsecase";
-import { TravelerParcelTrackingMapper } from "@/Application/Mappers/Logistics/TravelerParcelTrackingMapper";
-import { AppError } from "@/Domain/utils/customError";
-import { BOOKING_MESSAGE } from "@/Infrastructure/constants/messages/bookingMessages";
-import { USER_MESSAGES } from "@/Infrastructure/constants/messages/userMessage";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
-import { Role } from "@/Infrastructure/Types/types";
+import { IBookingRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
+import { ITravelRequestRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/ITravelRequestRepository";
+import { IUserRepository } from "../../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
+import { IGetTravelerTrackingUsecase } from "../../../interfaces/useCase_Interfaces/Logistics/Tracking/IGetTravelerTrackingUsecase";
+import { TravelerParcelTrackingMapper } from "../../../Mappers/Logistics/TravelerParcelTrackingMapper";
+import { USER_MESSAGES } from "../../../..//Infrastructure/constants/messages/userMessage";
 import { inject, injectable } from "tsyringe";
-
+import { Role } from "../../../../Infrastructure/Types/types";
+import { BOOKING_MESSAGE } from "../../../../Infrastructure/constants/messages/bookingMessages";
+import { AppError } from "../../../../Domain/utils/customError";
+import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
+import { TravelerParcelTrackingDTO } from "../../../Dto/Logistics/ParcelTracking.dto";
 @injectable()
 export class GetTravelerTrackingUsecase implements IGetTravelerTrackingUsecase {
 

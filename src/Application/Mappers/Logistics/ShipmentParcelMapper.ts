@@ -1,5 +1,5 @@
-import { ShipmentStatus } from "@/Domain/Entities/Logistics/HubShipment";
-import { ShipmentParcel, ShipmentParcelStatus } from "@/Domain/Entities/Logistics/ShipmentParcel";
+import { ShipmentStatus } from "../../../Domain/Entities/Logistics/HubShipment";
+import { ShipmentParcel, ShipmentParcelStatus } from "../../../Domain/Entities/Logistics/ShipmentParcel";
 
 export class ShipmentParcelMapper {
 

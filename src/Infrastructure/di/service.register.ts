@@ -17,20 +17,20 @@ import { IDistanceService } from "../../Application/interfaces/services_Interfac
 import { DistanceService } from "../services/Distance.Service";
 import { IPaymentGatewayService } from "../../Application/interfaces/services_Interfaces/payment/IPaymentGateway";
 import { RazorpayPaymentGateway } from "../services/Payment/RazorpayPaymentGateway";
-import { IRouteComputationService } from "@/Application/interfaces/services_Interfaces/IRouteComputationService";
+import { IRouteComputationService } from "../../Application/interfaces/services_Interfaces/IRouteComputationService";
 import { RouteComputationService } from "../services/Logistics/RouteComputationService";
-import { IHubShipmentAssignmentService } from "@/Application/interfaces/services_Interfaces/IHubShipmentAssignmentService";
+import { IHubShipmentAssignmentService } from "../../Application/interfaces/services_Interfaces/IHubShipmentAssignmentService";
 import { HubShipmentAssignmentService } from "../services/Logistics/HubShipmentAssignment.service";
-import { IBookingIdGeneratorService } from "@/Application/interfaces/services_Interfaces/IBookingIdGeneratorService";
+import { IBookingIdGeneratorService } from "../../Application/interfaces/services_Interfaces/IBookingIdGeneratorService";
 import { BookingIdGeneratorService } from "../services/BookingIdGenerator.service";
-import { IMessageSocketService } from "@/Application/interfaces/services_Interfaces/Chat/IMessageSocketService";
+import { IMessageSocketService } from "../../Application/interfaces/services_Interfaces/Chat/IMessageSocketService";
 import { SocketService } from "../services/Chat/Socket.service";
-import { IReportGenerator } from "@/Application/interfaces/services_Interfaces/Report/IReportService";
+import { IReportGenerator } from "../../Application/interfaces/services_Interfaces/Report/IReportService";
 import { ExcelReportGeneratorService } from "../services/Report/ExcelReportGenerator.service";
 import { PdfReportGeneratorService } from "../services/Report/PdfReportGenerator.service";
-import { INotificationService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationService";
+import { INotificationService } from "../../Application/interfaces/services_Interfaces/Notification/INotificationService";
 import { NotificationService } from "../services/Notification/Notification.service";
-import { INotificationSocketService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationSocketService";
+import { INotificationSocketService } from "../../Application/interfaces/services_Interfaces/Notification/INotificationSocketService";
 import { NotificationSocketService } from "../services/Notification/NotificationSocket.service";
 
 type ReportGenerators = {

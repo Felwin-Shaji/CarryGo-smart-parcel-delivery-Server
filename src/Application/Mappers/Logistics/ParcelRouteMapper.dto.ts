@@ -1,4 +1,4 @@
-import { ParcelRoute } from "@/Domain/Entities/Logistics/ParcelRoute";
+import { ParcelRoute } from "../../../Domain/Entities/Logistics/ParcelRoute";
 
 export class ParcelRouteMapper {
     static toCreate(bookingId: string): ParcelRoute {

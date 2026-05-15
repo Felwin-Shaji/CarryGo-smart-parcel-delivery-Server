@@ -1,7 +1,8 @@
-import { IBaseRepository } from "@/Application/interfaces/repositories_interfaces/base.repository";
-import { HubShipment, ShipmentType } from "@/Domain/Entities/Logistics/HubShipment";
 import { ClientSession } from "mongoose";
-import { GetShipmentsDTO, GetWorkerShipmentDTO } from "@/Application/Dto/Logistics/shipment.dto";
+import { GetShipmentsDTO, GetWorkerShipmentDTO } from "../../../Dto/Logistics/shipment.dto";
+import { IBaseRepository } from "../base.repository";
+import { HubShipment, ShipmentType } from "../../../../Domain/Entities/Logistics/HubShipment";
+
 
 
 export interface HubShipmentPaginatedData {

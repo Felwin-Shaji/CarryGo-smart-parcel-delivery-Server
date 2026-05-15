@@ -1,5 +1,5 @@
-import { INotificationRepository } from "@/Application/interfaces/repositories_interfaces/NotificationRepository_interfaces/INotificationRepository";
-import { IMarkAsReadUseCase } from "@/Application/interfaces/useCase_Interfaces/Notification/IMarkAsReadUseCase";
+import { INotificationRepository } from "../../interfaces/repositories_interfaces/NotificationRepository_interfaces/INotificationRepository";
+import { IMarkAsReadUseCase } from "../../interfaces/useCase_Interfaces/Notification/IMarkAsReadUseCase";
 import { inject, injectable } from "tsyringe";
 
 @injectable()

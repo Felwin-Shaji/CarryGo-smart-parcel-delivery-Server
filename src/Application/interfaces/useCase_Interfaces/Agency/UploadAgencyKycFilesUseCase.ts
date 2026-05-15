@@ -1,5 +1,5 @@
-import { UploadedKycFiles } from "@/Application/Dto/Agency/agency.dto.js";
 import { AgencyKYCFileFields } from "../../../../Infrastructure/services/storage/multer.js";
+import { UploadedKycFiles } from "../../../Dto/Agency/agency.dto.js";
 
 
 export interface IUploadAgencyKycFilesUseCase  {

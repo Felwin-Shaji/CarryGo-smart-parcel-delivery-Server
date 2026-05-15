@@ -1,13 +1,13 @@
-import { RouteGroupDetailDTO } from "@/Application/Dto/Agency/agencyRouteSegment.dto";
-import { IAgencyRouteGroupRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteGroupRepository";
-import { IAgencyRouteSegmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteSegmentRepository";
-import { IHubRepository } from "@/Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
-import { IGetRouteGroupDetailUseCase } from "@/Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/IGetRouteDetailsUsecase";
-import { RouteSegmentMapper } from "@/Application/Mappers/Agency/RouteSegmentMapper";
-import { AppError } from "@/Domain/utils/customError";
-import { ROUTE_GROUP_MESSAGE } from "@/Infrastructure/constants/messages/RouteGroupMessage";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
+import { RouteGroupDetailDTO } from "../../../Dto/Agency/agencyRouteSegment.dto";
+import { IAgencyRouteGroupRepository } from "../../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteGroupRepository";
+import { IAgencyRouteSegmentRepository } from "../../../interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteSegmentRepository";
+import { IHubRepository } from "../../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
+import { IGetRouteGroupDetailUseCase } from "../../../interfaces/useCase_Interfaces/Logistics/RouteGroup/IGetRouteDetailsUsecase";
+import { RouteSegmentMapper } from "../../../Mappers/Agency/RouteSegmentMapper";
 import { injectable, inject } from "tsyringe";
+import { AppError } from "../../../../Domain/utils/customError";
+import { ROUTE_GROUP_MESSAGE } from "../../../../Infrastructure/constants/messages/RouteGroupMessage";
+import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
 
 @injectable()
 export class GetRouteGroupDetailUseCase implements IGetRouteGroupDetailUseCase {
@@ -20,7 +20,6 @@ export class GetRouteGroupDetailUseCase implements IGetRouteGroupDetailUseCase {
     async execute(routeGroupId: string, agencyId: string): Promise<RouteGroupDetailDTO> {
         console.log(routeGroupId)
         const routeGroup = await this._routeGroupRepo.findById({ _id: routeGroupId });
-        console.log(routeGroup, 'lllllllllllll')
 
         if (!routeGroup) {
             throw new AppError(ROUTE_GROUP_MESSAGE.NOTFOUND, STATUS.NOT_FOUND);

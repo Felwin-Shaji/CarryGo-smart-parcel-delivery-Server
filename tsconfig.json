@@ -3,11 +3,7 @@
     /* ==== File Paths ==== */
     "rootDir": "src",
     "outDir": "./dist",
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    },
+    
     /* ==== Environment ==== */
     "target": "ESNext",
     "module": "CommonJS",

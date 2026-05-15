@@ -3,9 +3,9 @@ import { agencyController } from "../../../Infrastructure/di/resolver";
 import { agencyuploadKYC } from "../../../Infrastructure/services/storage/multer";
 import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
-import { Role } from "@/Domain/Enums/Roles";
-import { validateRequest } from "@/Interface_Adapters/middlewares/ValidationMiddleware/validateRequest";
-import { agencyKycSchema, resubmitKycSchema } from "@/Interface_Adapters/validators/AgencyValidator/agency.validator";
+import { Role } from "../../../Domain/Enums/Roles";
+import { validateRequest } from "../../middlewares/ValidationMiddleware/validateRequest";
+import { agencyKycSchema, resubmitKycSchema } from "../../validators/AgencyValidator/agency.validator";
 
 export class AgencyKycRoute extends BaseRoute {
 

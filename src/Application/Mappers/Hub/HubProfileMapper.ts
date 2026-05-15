@@ -1,5 +1,5 @@
-import { HubProfileResponseDTO } from "@/Application/Dto/Hub/hubProfile.dto";
-import { Hub } from "@/Domain/Entities/Hub/Hub";
+import { HubProfileResponseDTO } from "../../Dto/Hub/hubProfile.dto";
+import { Hub } from "../../../Domain/Entities/Hub/Hub";
 
 
 export class HubProfileMapper {

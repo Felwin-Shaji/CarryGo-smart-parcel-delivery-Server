@@ -1,8 +1,8 @@
 
-import { IMessageRepository } from "@/Application/interfaces/repositories_interfaces/ChatRepositories_Interfaces/IMessageRepository";
-import { Message } from "@/Domain/Entities/Chat/Message";
-import { MessageDocument, MessageModel } from "@/Infrastructure/database/models/Chat/messageModel";
+import { IMessageRepository } from "../../../Application/interfaces/repositories_interfaces/ChatRepositories_Interfaces/IMessageRepository";
+import { Message } from "../../../Domain/Entities/Chat/Message";
 import { Types } from "mongoose";
+import { MessageDocument, MessageModel } from "../../database/models/Chat/messageModel";
 
 export class MessageRepository implements IMessageRepository {
 

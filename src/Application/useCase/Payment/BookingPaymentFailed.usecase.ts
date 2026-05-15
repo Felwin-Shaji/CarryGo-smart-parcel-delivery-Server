@@ -11,16 +11,15 @@ export class BookingPaymentFailedUseCase implements IBookingPaymentFailedUseCase
 
     async execute(bookingId: string, error_description?: string): Promise<void> {
         if (!bookingId) return
-        
+
         const booking = await this._bookingRepo.getBookingById(bookingId);
 
-
-        console.error(error_description,'sssssssssssssssssssssssssssss')
+        console.error(error_description)
 
         if (!booking) return;
         if (booking.payment.paymentStatus === "PAID") return;
 
-        await this._bookingRepo.updatePayment(bookingId,{paymentStatus:"FAILED"})
+        await this._bookingRepo.updatePayment(bookingId, { paymentStatus: "FAILED" })
 
     }
 }

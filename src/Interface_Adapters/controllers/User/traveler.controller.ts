@@ -13,10 +13,10 @@ import { IReSubmitTravelerKycUseCase } from "../../../Application/interfaces/use
 import { ICreateTravelRequestUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Traveler/ICreateTravelRequestUseCase";
 import { IGetTravelRequestsUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Traveler/IGetTravelRequestsUseCase";
 import { IGetTravelerTripOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Traveler/IGetTravelerTripOverviewUseCase";
-import { IGetBookingUsecase } from "@/Application/interfaces/useCase_Interfaces/user/Booking/IGetBookingUsecase";
-import { BOOKING_MESSAGE } from "@/Infrastructure/constants/messages/bookingMessages";
-import { IUpdateBookingStatusUsecase } from "@/Application/interfaces/useCase_Interfaces/user/Booking/IUpdateBookingStatusUsecase";
-import { TravelerActionStatus } from "@/Infrastructure/Types/types";
+import { IGetBookingUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IGetBookingUsecase";
+import { IUpdateBookingStatusUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IUpdateBookingStatusUsecase";
+import { TravelerActionStatus } from "../../../Infrastructure/Types/types";
+import { BOOKING_MESSAGE } from "../../../Infrastructure/constants/messages/bookingMessages";
 
 
 @injectable()

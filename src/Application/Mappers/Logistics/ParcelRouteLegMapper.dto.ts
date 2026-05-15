@@ -1,5 +1,5 @@
-import { ParcelRouteLeg } from "@/Domain/Entities/Logistics/ParcelRouteLeg";
-import { RouteSegment } from "@/Domain/Entities/Logistics/RouteSegment";
+import { ParcelRouteLeg } from "../../../Domain/Entities/Logistics/ParcelRouteLeg";
+import { RouteSegment } from "../../../Domain/Entities/Logistics/RouteSegment";
 
 export class ParcelRouteLegMapper {
     static toCreateNewLegs(parcelRouteId: string, chain: RouteSegment[]): ParcelRouteLeg[] {

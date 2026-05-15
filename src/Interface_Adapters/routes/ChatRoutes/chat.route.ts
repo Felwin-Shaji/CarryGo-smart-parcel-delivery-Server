@@ -1,9 +1,10 @@
 import { BaseRoute } from "../base.route";
-import { asyncHandler } from "@/Interface_Adapters/middlewares/ErrorHandlers/asyncHandler";
-import { Role } from "@/Domain/Enums/Roles";
-import { authenticate } from "@/Interface_Adapters/middlewares/AuthMiddleware/authenticate.middleware";
+import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
+import { Role } from "../../../Domain/Enums/Roles";
+import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
 import { container } from "tsyringe";
-import { ChatController } from "@/Interface_Adapters/controllers/Chat/Chat.controller";
+import { ChatController } from "../../controllers/Chat/Chat.controller";
+
 
 export class ChatRoute extends BaseRoute {
 

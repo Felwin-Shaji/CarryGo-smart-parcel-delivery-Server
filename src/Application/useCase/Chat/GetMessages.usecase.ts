@@ -1,6 +1,6 @@
-import { IMessageRepository } from "@/Application/interfaces/repositories_interfaces/ChatRepositories_Interfaces/IMessageRepository";
-import { IGetMessagesUsecase } from "@/Application/interfaces/useCase_Interfaces/Chat/IGetMessagesUsecase";
-import { Message } from "@/Domain/Entities/Chat/Message";
+import { Message } from "../../../Domain/Entities/Chat/Message";
+import { IMessageRepository } from "../../interfaces/repositories_interfaces/ChatRepositories_Interfaces/IMessageRepository";
+import { IGetMessagesUsecase } from "../../interfaces/useCase_Interfaces/Chat/IGetMessagesUsecase";
 import { inject, injectable } from "tsyringe";
 
 @injectable()

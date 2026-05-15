@@ -8,8 +8,8 @@ import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMess
 import { updateHubKycStatusDTO } from "../../../Application/Dto/Hub/hub.dto";
 import { IUpdateHubKycStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IUpdateHubKycStatusUseCase";
 import { AppError } from "../../../Domain/utils/customError";
-import { WORKER_MESSAGES } from "@/Infrastructure/constants/messages/workerMessage";
-import { IGetWorkerOverviewUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IGetWorkerOverviewUseCase";
+import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
+import { IGetWorkerOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkerOverviewUseCase";
 
 @injectable()
 export class AdminHubController implements IAdminHubController {

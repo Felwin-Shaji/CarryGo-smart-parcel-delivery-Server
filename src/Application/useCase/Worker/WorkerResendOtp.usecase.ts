@@ -1,10 +1,10 @@
-import { IHubWorkersTempRepository } from "@/Application/interfaces/repositories_interfaces/workerRepository_interfaces/worersTemp.repository";
-import { IMailService } from "@/Application/interfaces/services_Interfaces/email-service.interface";
-import { IOtpService } from "@/Application/interfaces/services_Interfaces/otp-service.interface";
-import { IWorkerResendOtpUseCase } from "@/Application/interfaces/useCase_Interfaces/Worker/IWorkerResendOtpUseCase";
-import { AppError } from "@/Domain/utils/customError";
-import { WORKER_MESSAGES } from "@/Infrastructure/constants/messages/workerMessage";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
+import { IHubWorkersTempRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/worersTemp.repository";
+import { IMailService } from "../../interfaces/services_Interfaces/email-service.interface";
+import { IOtpService } from "../../interfaces/services_Interfaces/otp-service.interface";
+import { IWorkerResendOtpUseCase } from "../../interfaces/useCase_Interfaces/Worker/IWorkerResendOtpUseCase";
+import { AppError } from "../../../Domain/utils/customError";
+import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { inject, injectable } from "tsyringe";
 
 @injectable()

@@ -1,9 +1,9 @@
-import { IAgencyRouteSegmentRepository } from "@/Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteSegmentRepository";
-import { RouteSegment } from "@/Domain/Entities/Logistics/RouteSegment";
-import { AppError } from "@/Domain/utils/customError";
-import { ROUTE_SEGMENT_MESSAGE } from "@/Infrastructure/constants/messages/RouteGroupMessage";
-import { RouteSegmentDocument, RouteSegmentModel } from "@/Infrastructure/database/models/Logistics/RouteSegmentModel";
+import { IAgencyRouteSegmentRepository } from "../../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteSegmentRepository";
+import { RouteSegment } from "../../../Domain/Entities/Logistics/RouteSegment";
+import { AppError } from "../../../Domain/utils/customError";
 import { ClientSession, FilterQuery, Types, UpdateQuery } from "mongoose";
+import { RouteSegmentDocument, RouteSegmentModel } from "../../database/models/Logistics/RouteSegmentModel";
+import { ROUTE_SEGMENT_MESSAGE } from "../../constants/messages/RouteGroupMessage";
 
 export class AgencyRouteSegmentRepository implements IAgencyRouteSegmentRepository {
 

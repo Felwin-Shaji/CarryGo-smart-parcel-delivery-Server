@@ -1,20 +1,20 @@
-import { IMessageRepository } from "@/Application/interfaces/repositories_interfaces/ChatRepositories_Interfaces/IMessageRepository";
-import { IChatRepository } from "@/Application/interfaces/repositories_interfaces/ChatRepositories_Interfaces/IChatRepository";
-import { ISendMessageUseCase, SendMessageDTO, UIMessage } from "@/Application/interfaces/useCase_Interfaces/Chat/ISendMessageUseCase";
+import { IMessageRepository } from "../../interfaces/repositories_interfaces/ChatRepositories_Interfaces/IMessageRepository";
+import { IChatRepository } from "../../interfaces/repositories_interfaces/ChatRepositories_Interfaces/IChatRepository";
+import { ISendMessageUseCase, SendMessageDTO, UIMessage } from "../../interfaces/useCase_Interfaces/Chat/ISendMessageUseCase";
 import { inject, injectable } from "tsyringe";
-import { IGetOrCreateChatUseCase } from "@/Application/interfaces/useCase_Interfaces/Chat/IGetOrCreateChatUseCase";
-import { AppError } from "@/Domain/utils/customError";
-import { CHAT_MESSAGE } from "@/Infrastructure/constants/messages/chatMessage";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
-import { IMessageSocketService } from "@/Application/interfaces/services_Interfaces/Chat/IMessageSocketService";
-import { INotificationService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationService";
-import { IUserRepository } from "@/Application/interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
-import { IAdminRepository } from "@/Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
-import { IAgencyRepository } from "@/Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
-import { IHubRepository } from "@/Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
-import { IHubWorkerRepository } from "@/Application/interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";
-import { INotificationSocketService } from "@/Application/interfaces/services_Interfaces/Notification/INotificationSocketService";
-import { Notification } from "@/Domain/Entities/Notification/Notification";
+import { IGetOrCreateChatUseCase } from "../../interfaces/useCase_Interfaces/Chat/IGetOrCreateChatUseCase";
+import { IMessageSocketService } from "../../interfaces/services_Interfaces/Chat/IMessageSocketService";
+import { INotificationService } from "../../interfaces/services_Interfaces/Notification/INotificationService";
+import { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
+import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
+import { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
+import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
+import { IHubWorkerRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";
+import { INotificationSocketService } from "../../interfaces/services_Interfaces/Notification/INotificationSocketService";
+import { AppError } from "../../../Domain/utils/customError";
+import { CHAT_MESSAGE } from "../../../Infrastructure/constants/messages/chatMessage";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { Notification } from "../../../Domain/Entities/Notification/Notification";
 
 @injectable()
 export class SendMessageUseCase implements ISendMessageUseCase {

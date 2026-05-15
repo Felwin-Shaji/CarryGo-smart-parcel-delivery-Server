@@ -3,8 +3,8 @@ import { ITransactionRepository } from "../../../Application/interfaces/reposito
 import { Transaction } from "../../../Domain/Entities/Wallet/WalletTransaction";
 import { TransactionDocument, TransactionModel } from "../../database/models/Wallet/transaction.schema";
 import { BaseRepository } from "../baseRepositories";
-import { WalletModel } from "@/Infrastructure/database/models/Wallet/wallet.schema";
-import { DateRangeFilter, GetSettlementReportQuery, SalesChartRequestDTO, SalesChartResponseDTO, SalesReportResponseDTO, SalesReportRowDTO, SettlementMatch } from "@/Application/Dto/Agency/agencyDashboard.dto";
+import { WalletModel } from "../../database/models/Wallet/wallet.schema";
+import { DateRangeFilter, GetSettlementReportQuery, SalesChartRequestDTO, SalesChartResponseDTO, SalesReportResponseDTO, SalesReportRowDTO, SettlementMatch } from "../../../Application/Dto/Agency/agencyDashboard.dto";
 
 export class TransactionRepository extends BaseRepository<TransactionDocument> implements ITransactionRepository {
 

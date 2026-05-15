@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../Domain/utils/customError";
-import { IGetRouteGroupDetailUseCase } from "@/Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/IGetRouteDetailsUsecase";
-import { ICreateRouteSegmentUseCase } from "@/Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/ICreateRouteSegmentUseCase";
-import { AGENCY_MESSAGES } from "@/Infrastructure/constants/messages/agencyMessages";
-import { STATUS } from "@/Infrastructure/constants/statusCodes";
-import { ROUTE_GROUP_MESSAGE, ROUTE_SEGMENT_MESSAGE } from "@/Infrastructure/constants/messages/RouteGroupMessage";
-import { ApiResponse } from "@/Interface_Adapters/presenters/ApiResponse";
+import { IGetRouteGroupDetailUseCase } from "../../../Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/IGetRouteDetailsUsecase";
+import { ICreateRouteSegmentUseCase } from "../../../Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/ICreateRouteSegmentUseCase";
+import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { ROUTE_GROUP_MESSAGE, ROUTE_SEGMENT_MESSAGE } from "../../../Infrastructure/constants/messages/RouteGroupMessage";
+import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
+import { ApiResponse } from "../../presenters/ApiResponse";
 
 @injectable()
 export class AgencyRouteSegmentController {

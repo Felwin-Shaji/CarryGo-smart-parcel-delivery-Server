@@ -1,4 +1,4 @@
-import { DeliveryPartnerType } from "@/Infrastructure/Types/types";
+import { DeliveryPartnerType } from "../../Infrastructure/Types/types";
 
 const partnerTypeMap: Record<DeliveryPartnerType, string> = {
     AGENCY: "AG",

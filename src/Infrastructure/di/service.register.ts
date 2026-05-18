@@ -32,6 +32,8 @@ import { INotificationService } from "../../Application/interfaces/services_Inte
 import { NotificationService } from "../services/Notification/Notification.service";
 import { INotificationSocketService } from "../../Application/interfaces/services_Interfaces/Notification/INotificationSocketService";
 import { NotificationSocketService } from "../services/Notification/NotificationSocket.service";
+import { IGoogleAuthService } from "../../Application/interfaces/services_Interfaces/GoogleAuth/IGoogleAuthService";
+import { GoogleAuthService } from "../services/GoogleAuth/GoogleAuth.service";
 
 type ReportGenerators = {
     excel: IReportGenerator;
@@ -114,6 +116,10 @@ export class ServiceRegistory {
 
         container.register<INotificationSocketService>("INotificationSocketService", {
             useClass: NotificationSocketService
+        });
+
+        container.register<IGoogleAuthService>("IGoogleAuthService", {
+            useClass: GoogleAuthService
         })
     }
 }

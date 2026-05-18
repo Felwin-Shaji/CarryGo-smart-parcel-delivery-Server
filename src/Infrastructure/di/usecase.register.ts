@@ -254,6 +254,8 @@ import { GetUnreadCountUseCase } from "../../Application/useCase/Notification/Ge
 import { IGetUnreadCountUseCase } from "../../Application/interfaces/useCase_Interfaces/Notification/IGetUnreadCountUseCase";
 import { IWorkerResendOtpUseCase } from "../../Application/interfaces/useCase_Interfaces/Worker/IWorkerResendOtpUseCase";
 import { WorkerResendOtpUseCase } from "../../Application/useCase/Worker/WorkerResendOtp.usecase";
+import { IGoogleAuthUseCase } from "../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/IGoogleAuthUseCase";
+import { GoogleAuthUseCase } from "../../Application/useCase/Auth/GoogleAuthUseCase";
 
 
 
@@ -778,5 +780,9 @@ export class UsecaseRegistery {
         container.register<IWorkerResendOtpUseCase>("IWorkerResendOtpUseCase", {
             useClass: WorkerResendOtpUseCase
         });
+
+        container.register<IGoogleAuthUseCase>("IGoogleAuthUseCase", {
+            useClass: GoogleAuthUseCase
+        })
     }
 }

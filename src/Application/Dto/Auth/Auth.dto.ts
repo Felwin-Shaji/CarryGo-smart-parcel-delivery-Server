@@ -78,4 +78,16 @@ export interface ResetPasswordDTO {
   role: Role;
 }
 
+export interface GoogleUserDTO {
+
+    googleId: string;
+
+    name: string;
+
+    email: string;
+
+    authProvider: "google";
+
+    emailVerified: boolean;
+}
 

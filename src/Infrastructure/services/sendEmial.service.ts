@@ -1,36 +1,20 @@
-import { google } from "googleapis";
 import type { IMailService } from "../../Application/interfaces/services_Interfaces/email-service.interface";
-import dotenv from "dotenv";
 import nodemailer, { type Transporter } from "nodemailer";
 import { ENV } from "../constants/env";
 
 const isDev = ENV.IS_DEV;
 
-dotenv.config();
-
-const oAuth2Client = new google.auth.OAuth2(
-  process.env.CLIENT_ID,
-  process.env.CLIENT_SECRET,
-  process.env.REDIRECT_URI
-);
-
-oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN as string });
 
 export class MailService implements IMailService {
   private _transporter?: Transporter;
 
   private async initTransporter() {
-    const accessToken = (await oAuth2Client.getAccessToken()).token;
 
     this._transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        type: "OAuth2",
-        user: process.env.EMAIL_USER!,
-        clientId: process.env.CLIENT_ID!,
-        clientSecret: process.env.CLIENT_SECRET!,
-        refreshToken: process.env.REFRESH_TOKEN!,
-        accessToken: accessToken!,
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
   }
@@ -49,7 +33,7 @@ export class MailService implements IMailService {
       </div>
     `;
 
-    if(isDev) return 
+    if (isDev) return
 
     await this._transporter?.sendMail({
       from: `"CarryGo" <${process.env.EMAIL_USER}>`,
@@ -103,7 +87,7 @@ export class MailService implements IMailService {
       <p>— CarryGo Team</p>
     </div>
   `;
-if(isDev) return 
+    if (isDev) return
     await this._transporter?.sendMail({
       from: `"CarryGo" <${process.env.EMAIL_USER}>`,
       to: email,

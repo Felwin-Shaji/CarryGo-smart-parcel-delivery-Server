@@ -3,11 +3,9 @@ import { z } from "zod";
 
 export const sendOtpBodySchema = z
     .object({
-        name: z.string().min(2, "Name must be at least 2 characters"),
+        name: z.string().min(2).optional(),
 
-        email: z
-            .string()
-            .email("Invalid email format"),
+        email: z.string().email("Invalid email format"),
 
         mobile: z
             .string()
@@ -16,25 +14,62 @@ export const sendOtpBodySchema = z
 
         password: z
             .string()
-            .min(6, "Password must be at least 6 characters"),
+            .min(6, "Password must be at least 6 characters")
+            .optional(),
 
         confirmPassword: z
             .string()
-            .min(6, "Confirm password is required"),
+            .min(6, "Confirm password is required")
+            .optional(),
 
-        role: z.enum(
-            [Role.ADMIN, Role.AGENCY, Role.USER, Role.HUB, Role.WORKER],
-            "Role must be one of: admin, agency, user, hub, worker"
-        ),
+        role: z.enum([
+            Role.ADMIN,
+            Role.AGENCY,
+            Role.USER,
+            Role.HUB,
+            Role.WORKER,
+        ]),
 
         isResend: z.boolean().optional(),
     })
-    .strict()
-    .refine((data) => data.password === data.confirmPassword, {
-        message: "Passwords do not match",
-        path: ["confirmPassword"],
-    });
+    .superRefine((data, ctx) => {
 
+        // Only validate signup fields if NOT resend
+        if (!data.isResend) {
+
+            if (!data.name) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    path: ["name"],
+                    message: "Name is required",
+                });
+            }
+
+            if (!data.password) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    path: ["password"],
+                    message: "Password is required",
+                });
+            }
+
+            if (!data.confirmPassword) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    path: ["confirmPassword"],
+                    message: "Confirm password is required",
+                });
+            }
+
+            if (data.password !== data.confirmPassword) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    path: ["confirmPassword"],
+                    message: "Passwords do not match",
+                });
+            }
+        }
+    });
 export const sendOtpSchema = z.object({
     body: sendOtpBodySchema,
 });
@@ -70,7 +105,7 @@ export const refreshTokenBodySchema = z
             "Role must be one of: admin, agency, user, hub, worker"
         ),
     })
-    .strict();
+    .passthrough();
 
 export const refreshTokenSchema = z.object({
     body: refreshTokenBodySchema,

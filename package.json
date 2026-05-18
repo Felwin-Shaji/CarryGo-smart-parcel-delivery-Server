@@ -49,6 +49,7 @@
     "dotenv": "^17.2.3",
     "exceljs": "^4.4.0",
     "express": "^5.1.0",
+    "google-auth-library": "^10.6.2",
     "googleapis": "^164.1.0",
     "jsonwebtoken": "^9.0.2",
     "module-alias": "^2.3.4",

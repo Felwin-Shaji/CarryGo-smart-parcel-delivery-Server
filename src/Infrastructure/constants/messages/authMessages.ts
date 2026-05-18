@@ -10,10 +10,17 @@ export const AUTH_MESSAGES = {
     REFRESH_TOKEN_MISSING: "No refresh token found",
     REFRESH_TOKEN_INVALID: "Invalid refresh token",
     REFRESH_TOKEN_NOT_FOUND: "Refresh token not found",
-    REFRESH_TOKEN_FOUND:"Refreshing completed successfully",
+    REFRESH_TOKEN_FOUND: "Refreshing completed successfully",
 
-    LOGIN_SUCCESS:"login completed successfully",
+    LOGIN_SUCCESS: "login completed successfully",
     LOGOUT_FAILED: "Failed to log out user",
     LOGOUT_SUCCESS: "User logged out successfully",
-    
+
+    GOOGLE_CREDENTIAL_REQUIRED: "Google credential is required",
+    GOOGLE_CLIENT_ID_MISSING: "Google client ID is missing",
+    GOOGLE_TOKEN_INVALID: "Invalid Google token",
+    GOOGLE_EMAIL_NOT_FOUND: "Google email not found",
+    GOOGLE_EMAIL_NOT_VERIFIED: "Google email not verified",
+    GOOGLE_AUTH_FAILED: "Google authentication failed",
+    GOOGLE_LOGIN_SUCCESS: "Google login completed successfully",
 } as const;

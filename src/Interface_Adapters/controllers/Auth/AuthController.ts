@@ -23,6 +23,7 @@ import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMe
 import { User } from "../../../Domain/Entities/User";
 import { RegisterAgencyResponseDTO } from "../../../Application/Dto/Agency/agency.dto";
 import { Role } from "../../../Domain/Enums/Roles";
+import { IGoogleAuthUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/IGoogleAuthUseCase";
 
 
 
@@ -44,6 +45,8 @@ export class AuthController implements IAuthController {
 
         @inject("IVarifyEmailUseCase") private _varifyEmailUseCase: IVarifyEmailUseCase,
         @inject("IResetPasswordUseCase") private _resetPasswordUseCase: IResetPasswordUseCase,
+
+        @inject("IGoogleAuthUseCase") private _googleAuthUseCase: IGoogleAuthUseCase,
     ) { };
 
     sendOtp = async (req: Request, res: Response): Promise<Response | void> => {
@@ -214,4 +217,35 @@ export class AuthController implements IAuthController {
             message: "Reset link sent to your email"
         });
     }
+
+    googleAuth = async (req: Request, res: Response): Promise<Response | void> => {
+
+        const { credential } = req.body;
+
+        if (!credential) throw new AppError(AUTH_MESSAGES.GOOGLE_CREDENTIAL_REQUIRED, STATUS.BAD_REQUEST);
+
+
+        const result = await this._googleAuthUseCase.execute(credential);
+
+        setAuthCookies(
+            res,
+            result.accessToken,
+            result.refreshToken,
+            "useraccessTokenName",
+            "userrefreshTokenName"
+        );
+
+
+        const response = AuthMapper.toGoogleAuthResponse(result.users as User, result.accessToken);
+
+        console.log(response);
+
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                AUTH_MESSAGES.GOOGLE_LOGIN_SUCCESS,
+                response.data
+            )
+        );
+    };
 };

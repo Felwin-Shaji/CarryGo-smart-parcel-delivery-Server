@@ -31,7 +31,13 @@ export class RefreshTokenUseCase implements IRefreshTokenUseCase {
     async execute(refreshToken: string): Promise<TokenObj> {
         if (!refreshToken) throw new AppError(AUTH_MESSAGES.REFRESH_TOKEN_INVALID, STATUS.UNAUTHORIZED);
 
-        const decoded = this._tokenService.verifyRefreshToken(refreshToken);
+        let decoded;
+        try {
+            decoded = this._tokenService.verifyRefreshToken(refreshToken);
+        } catch (error) {
+            throw new AppError(AUTH_MESSAGES.REFRESH_TOKEN_INVALID, STATUS.UNAUTHORIZED);
+        }
+
         if (!decoded) throw new AppError(AUTH_MESSAGES.REFRESH_TOKEN_NOT_FOUND, STATUS.UNAUTHORIZED);
 
         const { userId, email, role, tokenVersion } = decoded;

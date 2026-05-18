@@ -1,6 +1,7 @@
-import type { IOtpModel } from "../../Domain/Entities/Iotp.js";
-import type { OtpResponseDTO, SendLogoutResponseDTO, SendOtpDTO, VerifyOtpResponseDTO } from "../Dto/Auth/Auth.dto.js";
-import type { KYCStatus, Role } from "../../Infrastructure/Types/types.js";
+import { User } from "../../Domain/Entities/User"
+import type { IOtpModel } from "../../Domain/Entities/Iotp";
+import type { GoogleUserDTO, OtpResponseDTO, SendLogoutResponseDTO, SendOtpDTO, VerifyOtpResponseDTO } from "../Dto/Auth/Auth.dto";
+import type { KYCStatus, Role } from "../../Infrastructure/Types/types";
 
 export class AuthMapper {
 
@@ -22,14 +23,7 @@ export class AuthMapper {
             role: result.role,
             expiresAt: result.expiresAt.getTime(),
         }
-    }
-
-    // static toResendOtpDTO(req: Request): ResendOtpDTO {
-    //     return {
-    //         email: req.body.email,
-    //         role: req.body.role
-    //     }
-    // }
+    };
 
     static ToSendVerifyOtpResponse(id: string, name: string, email: string, role: Role, kycStatus: KYCStatus, accessToken: string): VerifyOtpResponseDTO {
         return {
@@ -45,27 +39,42 @@ export class AuthMapper {
                 accessToken: accessToken
             },
         }
+    };
+
+    static toCreateGoogleUser(googleUser: GoogleUserDTO): User {
+        return new User(
+            null,
+            googleUser.name,
+            googleUser.email,
+            null,
+            null,
+            "user",
+            googleUser.googleId,
+            "google",
+        );
     }
 
-    // static ToSendLoginResponse(id: string, name: string, email: string, role: Role, kycStatus: KYCStatus, accessToken: string): SendLoginResponse {
-    //     return {
-    //         success: true,
-    //         message: "user logged in successfully",
-    //         user: {
-    //             id,
-    //             name,
-    //             email,
-    //             role,
-    //             kycStatus: kycStatus || null,
-    //             accessToken: accessToken
-    //         },
-    //     }
-    // }
+    static toGoogleAuthResponse(
+        user: User,
+        accessToken: string
+    ) {
 
-    // static toLogoutDTO(req: Request): LogoutDTO {
-    //     const { role, userId } = req.body;
-    //     return { role, id: userId }
-    // }
+        return {
+            success: true,
+
+            data: {
+                users: {
+                    id: user.id,
+                    name: user.name,
+                    email: user.email,
+                    role: user.role,
+                    kycStatus: user.kycStatus || null,
+                },
+
+                accessToken,
+            },
+        };
+    }
 
     static toSendLogoutResponse(): SendLogoutResponseDTO {
         return {

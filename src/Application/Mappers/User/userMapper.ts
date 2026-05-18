@@ -1,6 +1,8 @@
 import { User } from "../../../Domain/Entities/User";
 import { IWrokerKYCVerification } from "../../../Domain/Entities/Worker/WorkerKyc";
+import { Role } from "../../../Domain/Enums/Roles";
 import { GetUserOverviewResponseDTO, GetUserResponseDto, GetUsersDBResult } from "../../Dto/User/user.dto";
+import { GoogleAuthResponseDTO } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/IGoogleAuthUseCase";
 
 
 export class UserMapper {
@@ -24,6 +26,29 @@ export class UserMapper {
             totalPages: 1,
         };
     }
+
+    // static toCreateGoogleUser(
+    //     googleUser: GoogleAuthResponseDTO["users"]
+    // ): User {
+
+    //     return new User(
+    //         null,
+
+    //         googleUser?.name,
+
+    //         googleUser.email,
+
+    //         null,
+
+    //         null,
+
+    //         Role.USER,
+
+    //         null,
+
+    //         "google",
+    //     );
+    // }
 
     static toUserOverviewResponseDTO(user: User, kyc: IWrokerKYCVerification): GetUserOverviewResponseDTO {
         return {

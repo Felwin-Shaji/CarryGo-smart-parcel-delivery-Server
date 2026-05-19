@@ -9,6 +9,9 @@ export const ROUTE_GROUP_MESSAGE = {
 
     DETAIL_FETCHED: "Route group details fetched successfully.",
 
+    ALREADY_ACTIVE: "ALREADY_ACTIVE",
+    ALREADY_INACTIVE: "ALREADY_INACTIVE",
+    STATUS_UPDATED: "STATUS_UPDATED"
 } as const;
 
 export const ROUTE_SEGMENT_MESSAGE = {
@@ -20,6 +23,10 @@ export const ROUTE_SEGMENT_MESSAGE = {
 
     CREATED: "Segment added successfully",
     REORDERED: "Segments reordered successfully",
+
+    INVALID_HUB_CHAIN: "INVALID_HUB_CHAIN",
+    INVALID_CHAIN: "INVALID_CHAIN",
+    SEGMENT_ALREADY_EXISTS: "SEGMENT_ALREADY_EXISTS"
 } as const
 
 export const PARCEL_ROUTE_MESSAGE = {

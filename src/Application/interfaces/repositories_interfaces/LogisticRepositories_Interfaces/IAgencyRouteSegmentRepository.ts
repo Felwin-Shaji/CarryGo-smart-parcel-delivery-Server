@@ -11,4 +11,8 @@ export interface IAgencyRouteSegmentRepository extends IBaseRepository<RouteSegm
     getMaxOrder(routeGroupId: string, session?: ClientSession): Promise<number>;
 
     findByIds(ids: string[], session?: ClientSession): Promise<RouteSegment[]>;
+
+    findLastSegment(routeGroupId: string, session?: ClientSession): Promise<RouteSegment | null>;
+
+    existsSegment(routeGroupId: string, originHubId: string, destinationHubId: string, session?: ClientSession): Promise<boolean>;
 }

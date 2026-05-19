@@ -5,7 +5,7 @@ import { IAgencyRouteSegmentRepository } from "../../../interfaces/repositories_
 import { CreateRouteSegmentDTO } from "../../../Dto/Agency/agencyRouteSegment.dto";
 import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
 import { ICreateRouteSegmentUseCase } from "../../../interfaces/useCase_Interfaces/Logistics/RouteGroup/ICreateRouteSegmentUseCase";
-import { ROUTE_GROUP_MESSAGE } from "../../../../Infrastructure/constants/messages/RouteGroupMessage";
+import { ROUTE_GROUP_MESSAGE, ROUTE_SEGMENT_MESSAGE } from "../../../../Infrastructure/constants/messages/RouteGroupMessage";
 import { RouteSegmentMapper } from "../../../../Application/Mappers/Agency/RouteSegmentMapper";
 
 @injectable()
@@ -28,8 +28,26 @@ export class CreateRouteSegmentUseCase implements ICreateRouteSegmentUseCase {
             throw new AppError(ROUTE_GROUP_MESSAGE.ACCESS_DENIED, STATUS.FORBIDDEN);
         }
 
-        const maxOrder = await this._segmentRepo.getMaxOrder(routeGroupId);
+        if (data.originHubId === data.destinationHubId) {
+            throw new AppError(ROUTE_SEGMENT_MESSAGE.INVALID_HUB_CHAIN, STATUS.BAD_REQUEST);
+        };
 
+        const alreadyExists = await this._segmentRepo.existsSegment(routeGroupId, data.originHubId, data.destinationHubId);
+
+        if (alreadyExists) {
+            throw new AppError(ROUTE_SEGMENT_MESSAGE.SEGMENT_ALREADY_EXISTS, STATUS.CONFLICT);
+        }
+
+        const lastSegment = await this._segmentRepo.findLastSegment(routeGroupId);
+
+        if (lastSegment && lastSegment.destinationHubId !== data.originHubId) {
+            throw new AppError(
+                ROUTE_SEGMENT_MESSAGE.INVALID_CHAIN,
+                STATUS.BAD_REQUEST
+            );
+        }
+
+        const maxOrder = await this._segmentRepo.getMaxOrder(routeGroupId);
         const segment = RouteSegmentMapper.toCreate(agencyId, routeGroupId, maxOrder, data)
 
         await this._segmentRepo.save(segment);

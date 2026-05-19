@@ -138,6 +138,38 @@ export class AgencyRouteSegmentRepository implements IAgencyRouteSegmentReposito
         return docs.map(AgencyRouteSegmentRepository.toDomain);
     }
 
+    async findLastSegment(routeGroupId: string, session?: ClientSession): Promise<RouteSegment | null> {
+
+        const doc = await RouteSegmentModel
+            .findOne({
+                routeGroupId,
+                isActive: true
+            })
+            .sort({ segmentOrder: -1 })
+            .session(session || null);
+
+        if (!doc) return null;
+
+        return AgencyRouteSegmentRepository.toDomain(doc);
+    };
+
+    async existsSegment(routeGroupId: string, originHubId: string, destinationHubId: string, session?: ClientSession): Promise<boolean> {
+
+        const query = RouteSegmentModel.exists({
+            routeGroupId,
+            originHubId,
+            destinationHubId,
+            isActive: true
+        });
+
+        if (session) {
+            query.session(session);
+        }
+
+        const exists = await query;
+
+        return !!exists;
+    };
 
     /**
      * Map a Mongoose document to the pure domain entity.

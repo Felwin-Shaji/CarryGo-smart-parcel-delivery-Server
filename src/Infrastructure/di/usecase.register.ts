@@ -256,6 +256,8 @@ import { IWorkerResendOtpUseCase } from "../../Application/interfaces/useCase_In
 import { WorkerResendOtpUseCase } from "../../Application/useCase/Worker/WorkerResendOtp.usecase";
 import { IGoogleAuthUseCase } from "../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/IGoogleAuthUseCase";
 import { GoogleAuthUseCase } from "../../Application/useCase/Auth/GoogleAuthUseCase";
+import { IUpdateRouteGroupStatusUseCase } from "../../Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/IUpdateRouteGroupStatusUseCase";
+import { UpdateRouteGroupStatusUseCase } from "../../Application/useCase/Agency/RouteGroup/UpdateRouteGroupStatus.usecase";
 
 
 
@@ -783,6 +785,10 @@ export class UsecaseRegistery {
 
         container.register<IGoogleAuthUseCase>("IGoogleAuthUseCase", {
             useClass: GoogleAuthUseCase
-        })
+        });
+
+        container.register<IUpdateRouteGroupStatusUseCase>("IUpdateRouteGroupStatusUseCase", {
+            useClass: UpdateRouteGroupStatusUseCase
+        });
     }
 }

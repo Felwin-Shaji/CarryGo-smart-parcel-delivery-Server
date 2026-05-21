@@ -4,7 +4,7 @@ import type { AuthUserDTO } from "../../../Infrastructure/Types/types";
 import { AppError } from "../../../Domain/utils/customError";
 import type { LoginDTO } from "../../Dto/Auth/Auth.dto";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import type { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
+import type { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/IAdminRepository";
 import type { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
 import { ILoginUsecase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/login.usecase";
 import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
@@ -21,8 +21,7 @@ export class LoginUsecase implements ILoginUsecase {
         @inject("IHubRepository") private _hubRepo: IHubRepository,
         @inject("IHubWorkerRepository") private _workerRepo: IHubWorkerRepository,
 
-        @inject("IPasswordService") private _passwordService:IPasswordService
-
+        @inject("IPasswordService") private _passwordService: IPasswordService
     ) { }
 
     async execute(loginData: LoginDTO): Promise<AuthUserDTO> {
@@ -35,9 +34,9 @@ export class LoginUsecase implements ILoginUsecase {
 
         if (!user) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND);
         if (user.isBlocked) throw new AppError(AUTH_MESSAGES.USER_BLOCKED, STATUS.UNAUTHORIZED);
-        if(!user.password) throw new AppError(AUTH_MESSAGES.WRONG_PASSWORD,STATUS.BAD_REQUEST)
+        if (!user.password) throw new AppError(AUTH_MESSAGES.WRONG_PASSWORD, STATUS.BAD_REQUEST)
 
-        const isMatchPassword = await this._passwordService.comparePassword(loginData.password,user.password)
+        const isMatchPassword = await this._passwordService.comparePassword(loginData.password, user.password)
         if (!isMatchPassword) throw new AppError(AUTH_MESSAGES.WRONG_PASSWORD, STATUS.UNAUTHORIZED);
 
         return user as AuthUserDTO

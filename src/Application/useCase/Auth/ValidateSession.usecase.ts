@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IValidateSessionUseCase, ValidateSessionDTO } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/IValidateSessionUseCase";
 import { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
-import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
+import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/IAdminRepository";
 import { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
 import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
 import { IHubWorkerRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";

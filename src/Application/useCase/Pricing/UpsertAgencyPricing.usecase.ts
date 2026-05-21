@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IUpsertAgencyPricingUseCase } from "../../interfaces/useCase_Interfaces/Princing/IUpsertAgencyPricingUseCase";
 import { AgencyPricingResponseDTO, UpdateAgencyPricingDTO } from "../../Dto/Pricing/AgencyPricing.dto";
-import { IPricingPolicyRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/pricingPolicy.repository";
+import { IPricingPolicyRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/IPricingPolicyRepository";
 import { IAgencyPricingRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agencyPricing.repository";
 import { AppError } from "../../../Domain/utils/customError";
 import { PRICING_POLICY_MESSAGE } from "../../../Infrastructure/constants/messages/pricingPolicyMessage";
@@ -18,7 +18,7 @@ export class UpsertAgencyPricingUseCase implements IUpsertAgencyPricingUseCase {
 
     @inject("IAgencyPricingRepository")
     private readonly agencyPricingRepo: IAgencyPricingRepository
-  ) {}
+  ) { }
 
   async execute(
     agencyId: string,

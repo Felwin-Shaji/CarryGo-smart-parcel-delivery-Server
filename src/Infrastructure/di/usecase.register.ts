@@ -258,6 +258,16 @@ import { IGoogleAuthUseCase } from "../../Application/interfaces/useCase_Interfa
 import { GoogleAuthUseCase } from "../../Application/useCase/Auth/GoogleAuthUseCase";
 import { IUpdateRouteGroupStatusUseCase } from "../../Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/IUpdateRouteGroupStatusUseCase";
 import { UpdateRouteGroupStatusUseCase } from "../../Application/useCase/Agency/RouteGroup/UpdateRouteGroupStatus.usecase";
+import { IGetAdminDashboardOverviewUseCase } from "../../Application/interfaces/useCase_Interfaces/Admin/IGetAdminDashboardOverviewUseCase";
+import { GetAdminDashboardOverviewUseCase } from "../../Application/useCase/Admin/GetAdminDashboardOverview.usecase";
+import { IGetAdminRevenueChartUseCase } from "../../Application/interfaces/useCase_Interfaces/Admin/IGetAdminRevenueChartUseCase";
+import { GetAdminRevenueChartUseCase } from "../../Application/useCase/Admin/GetAdminRevenueChart.usecase";
+import { IGetAdminBookingsChartUseCase } from "../../Application/interfaces/useCase_Interfaces/Admin/IGetAdminBookingsChartUseCase";
+import { GetAdminBookingsChartUseCase } from "../../Application/useCase/Admin/GetAdminBookingsChart.usecase";
+import { IGetAdminBookingsReportUseCase } from "../../Application/interfaces/useCase_Interfaces/Admin/IGetAdminBookingsReportUseCase";
+import { GetAdminBookingsReportUseCase } from "../../Application/useCase/Admin/GetAdminBookingsReport.usecase";
+import { IExportAdminBookingsReportUseCase } from "../../Application/interfaces/useCase_Interfaces/Admin/IExportAdminBookingsReportUseCase";
+import { ExportAdminBookingsReportUseCase } from "../../Application/useCase/Admin/ExportAdminBookingsReport.usecase";
 
 
 
@@ -790,5 +800,25 @@ export class UsecaseRegistery {
         container.register<IUpdateRouteGroupStatusUseCase>("IUpdateRouteGroupStatusUseCase", {
             useClass: UpdateRouteGroupStatusUseCase
         });
+
+        container.register<IGetAdminDashboardOverviewUseCase>("IGetAdminDashboardOverviewUseCase", {
+            useClass: GetAdminDashboardOverviewUseCase
+        });
+
+        container.register<IGetAdminRevenueChartUseCase>("IGetAdminRevenueChartUseCase", {
+            useClass: GetAdminRevenueChartUseCase
+        });
+
+        container.register<IGetAdminBookingsChartUseCase>("IGetAdminBookingsChartUseCase", {
+            useClass: GetAdminBookingsChartUseCase
+        });
+
+        container.register<IGetAdminBookingsReportUseCase>("IGetAdminBookingsReportUseCase", {
+            useClass: GetAdminBookingsReportUseCase
+        });
+
+        container.register<IExportAdminBookingsReportUseCase>("IExportAdminBookingsReportUseCase", {
+            useClass: ExportAdminBookingsReportUseCase
+        })
     }
 }

@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IResetPasswordUseCase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/resetPassword.usecase";
 import { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
-import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
+import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/IAdminRepository";
 import { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
 import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
 import { ITokenService } from "../../interfaces/services_Interfaces/token-service.interface";
@@ -21,7 +21,6 @@ export class ResetPasswordUseCase implements IResetPasswordUseCase {
         @inject("IAgencyRepository") private _agencyRepo: IAgencyRepository,
         @inject("IHubRepository") private _hubRepo: IHubRepository,
         @inject("IHubWorkerRepository") private _workerRepo: IHubWorkerRepository,
-
 
         @inject("IResetPasswordTokenRepository") private _resetPasswordTokenRepo: IResetPasswordTokenRepository,
 

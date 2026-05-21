@@ -4,7 +4,7 @@ import type { ISaveAgencyKycUseCase } from "../../interfaces/useCase_Interfaces/
 import { AgencyKYC_DTO, UploadedKycFiles } from "../../Dto/Agency/agency.dto";
 import { AgencyKYCMapper } from "../../Mappers/Agency/AgencyKYCMapper";
 import { AgencyKYC } from "../../../Domain/Entities/Agency/AgencyKYC";
-import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
+import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/IAdminRepository";
 import { INotificationService } from "../../interfaces/services_Interfaces/Notification/INotificationService";
 import { INotificationSocketService } from "../../interfaces/services_Interfaces/Notification/INotificationSocketService";
 

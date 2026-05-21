@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { AdminPricingRequestDTO } from "../../Dto/Pricing/adminPricing.dto";
 import { ICreateAdminPricingPolicyUseCase } from "../../interfaces/useCase_Interfaces/Princing/ICreateAdminPricingPolicyUseCase";
-import { IPricingPolicyRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/pricingPolicy.repository";
+import { IPricingPolicyRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/IPricingPolicyRepository";
 import { AdminPricingPolicyMapper } from "../../Mappers/Pricing/AdminPricingPolicyMapper";
 import { BasePricingPolicy } from "../../../Domain/Entities/Admin/BasePricingPolicy";
 import { DeliveryPartner } from "../../../Domain/Enums/DeliveryPartnerType";
@@ -14,7 +14,7 @@ export class CreateAdminPricingPolicyUseCase implements ICreateAdminPricingPolic
 
     async execute(dto: AdminPricingRequestDTO): Promise<BasePricingPolicy> {
 
-        const latestVersion =await this.pricingPolicyRepo.getLatestPolicyVersion(DeliveryPartner.AGENCY);
+        const latestVersion = await this.pricingPolicyRepo.getLatestPolicyVersion(DeliveryPartner.AGENCY);
 
         const newPolicy = AdminPricingPolicyMapper.toAgencyPricingPolicyDTO(dto, latestVersion);
 

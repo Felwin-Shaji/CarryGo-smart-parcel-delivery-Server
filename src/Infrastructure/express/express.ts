@@ -7,7 +7,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { errorHandler } from '../../Interface_Adapters/middlewares/ErrorHandlers/errorHandler';
 import { AgencyRoute } from '../../Interface_Adapters/routes/agency.route';
-import { AdminRoute } from '../../Interface_Adapters/routes/admin.route';
+import { AdminRoute } from '../../Interface_Adapters/routes/adminRoutes/admin.route';
 import { HubRoute } from "../../Interface_Adapters/routes/hub.route";
 import { UserRoute } from "../../Interface_Adapters/routes/user.route";
 import { PaymentRoute } from "../../Interface_Adapters/routes/payment.routes";
@@ -47,28 +47,28 @@ app.use(loggerMiddleware);
 
 
 const authRoute = new AuthRoute();
-app.use('/api/auth',authRoute.router);
+app.use('/api/auth', authRoute.router);
 
 const userRoute = new UserRoute();
-app.use('/api/user',userRoute.router)
+app.use('/api/user', userRoute.router)
 
 const agencyRoute = new AgencyRoute()
-app.use('/api/agency',agencyRoute.router)
+app.use('/api/agency', agencyRoute.router)
 
 const adminRoute = new AdminRoute();
-app.use('/api/admin',adminRoute.router)
+app.use('/api/admin', adminRoute.router)
 
 const hubRoute = new HubRoute();
-app.use("/api/hub",hubRoute.router);
+app.use("/api/hub", hubRoute.router);
 
 const wrokerRoute = new WrokerRoute();
-app.use("/api/worker",wrokerRoute.router)
+app.use("/api/worker", wrokerRoute.router)
 
 const paymentRoute = new PaymentRoute();
-app.use("/api/webhooks",paymentRoute.router)
+app.use("/api/webhooks", paymentRoute.router)
 
 const chatRoute = new ChatRoute()
-app.use("/api/chat",chatRoute.router)
+app.use("/api/chat", chatRoute.router)
 
 app.use(errorHandler)
 

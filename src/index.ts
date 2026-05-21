@@ -7,7 +7,7 @@ import { app } from "./Infrastructure/express/express";
 import logger from "./Infrastructure/logger/logger";
 
 import { bootstrapPricingPolicies } from "./Infrastructure/bootstrap/pricingPolicy.bootstrap";
-import { PricingPolicyRepository } from "./Infrastructure/repositories/Admin/PricingPolicyRepository";
+import { PricingPolicyRepository } from "./Infrastructure/repositories/Admin/PricingPolicy.repository";
 import { initSocket } from "./Infrastructure/services/Chat/socket.config";
 
 dotenv.config();

@@ -9,7 +9,7 @@ import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
 import { Types } from "mongoose";
 import { INotificationService } from "../../interfaces/services_Interfaces/Notification/INotificationService";
-import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
+import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/IAdminRepository";
 import { INotificationSocketService } from "../../interfaces/services_Interfaces/Notification/INotificationSocketService";
 
 

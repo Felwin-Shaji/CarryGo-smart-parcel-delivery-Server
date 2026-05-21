@@ -3,8 +3,8 @@ import { OtpRepository } from "../repositories/otpRepository";
 import type { IOtpRepository } from "../../Application/interfaces/repositories_interfaces/authRepositories_Interfaces/otp.repository";
 import { UserRepository } from "../repositories/userRepository";
 import type { IUserRepository } from "../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
-import type { IAdminRepository } from "../../Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
-import { AdminRepository } from "../repositories/adminRepository";
+import type { IAdminRepository } from "../../Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/IAdminRepository";
+import { AdminRepository } from "../repositories/Admin/Admin.repository";
 import type { IAgencyRepository } from "../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
 import { IAgencyKYCRepository } from "../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/AgencyKYC";
 import { AgencyKYCRepository } from "../repositories/Agency/AgencyKYCRepository";
@@ -21,8 +21,8 @@ import { IHubWorkersTempRepository } from "../../Application/interfaces/reposito
 import { HubWorkersTempRepository } from "../repositories/Worker/hubWorkersTempRepository";
 import { IHubWorkerRepository } from "../../Application/interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";
 import { HubWorkerRepository } from "../repositories/Worker/hubWorkerRepository";
-import { IPricingPolicyRepository } from "../../Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/pricingPolicy.repository";
-import { PricingPolicyRepository } from "../repositories/Admin/PricingPolicyRepository";
+import { IPricingPolicyRepository } from "../../Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/IPricingPolicyRepository";
+import { PricingPolicyRepository } from "../repositories/Admin/PricingPolicy.repository";
 import { IAgencyPricingRepository } from "../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agencyPricing.repository";
 import { AgencyPricingRepository } from "../repositories/Agency/AgencyPricingRepository";
 import { IBookingRepository } from "../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
@@ -55,6 +55,8 @@ import { IChatRepository } from "../../Application/interfaces/repositories_inter
 import { ChatRepository } from "../repositories/Chat/Chat.repository";
 import { INotificationRepository } from "../../Application/interfaces/repositories_interfaces/NotificationRepository_interfaces/INotificationRepository";
 import { NotificationRepository } from "../repositories/Notification/Notification.repository";
+import { IAdminDashboardRepository } from "../../Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/IAdminDashboardRepository";
+import { AdminDashboardRepository } from "../repositories/Admin/AdminDashboard.repository";
 
 
 export class RepositoryRegistry {
@@ -171,5 +173,9 @@ export class RepositoryRegistry {
         container.register<INotificationRepository>("INotificationRepository", {
             useClass: NotificationRepository
         });
+
+        container.register<IAdminDashboardRepository>("IAdminDashboardRepository", {
+            useClass: AdminDashboardRepository
+        })
     };
 };

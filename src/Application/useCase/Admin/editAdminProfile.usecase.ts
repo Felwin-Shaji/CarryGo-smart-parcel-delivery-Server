@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
 import { AppError } from "../../../Domain/utils/customError";
-import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
+import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/IAdminRepository";
 import { ADMIN_MESSAGES } from "../../../Infrastructure/constants/messages/adminMessages";
 import { AdminProfileMapper } from "../../Mappers/Admin/AdminProfileMapper";
 import { AdminProfileResponseDTO, EditAdminProfileRequestDto } from "../../Dto/Admin/adminProfile.dto";

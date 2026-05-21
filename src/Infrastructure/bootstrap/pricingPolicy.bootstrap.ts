@@ -1,5 +1,5 @@
 import { AgencyPricingPolicy } from "../../Domain/Entities/Admin/AgencyPricingPolicy";
-import { IPricingPolicyRepository } from "../../Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/pricingPolicy.repository";
+import { IPricingPolicyRepository } from "../../Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/IPricingPolicyRepository";
 import { DeliveryPartner } from "../../Domain/Enums/DeliveryPartnerType";
 import { TravelerPricingPolicy } from "../../Domain/Entities/Admin/TravelerPricingPolicy";
 

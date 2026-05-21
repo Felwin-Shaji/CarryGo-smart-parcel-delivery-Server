@@ -12,7 +12,7 @@ import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMess
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { INotificationSocketService } from "../../interfaces/services_Interfaces/Notification/INotificationSocketService";
 import { INotificationService } from "../../interfaces/services_Interfaces/Notification/INotificationService";
-import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
+import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/IAdminRepository";
 
 @injectable()
 export class AddHubUseCase implements IAddHubUseCase {

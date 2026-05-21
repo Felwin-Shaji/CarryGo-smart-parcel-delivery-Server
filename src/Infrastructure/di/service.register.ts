@@ -26,18 +26,27 @@ import { BookingIdGeneratorService } from "../services/BookingIdGenerator.servic
 import { IMessageSocketService } from "../../Application/interfaces/services_Interfaces/Chat/IMessageSocketService";
 import { SocketService } from "../services/Chat/Socket.service";
 import { IReportGenerator } from "../../Application/interfaces/services_Interfaces/Report/IReportService";
-import { ExcelReportGeneratorService } from "../services/Report/ExcelReportGenerator.service";
-import { PdfReportGeneratorService } from "../services/Report/PdfReportGenerator.service";
+import { ExcelReportGeneratorService } from "../services/Report/Agency/ExcelReportGenerator.service";
+import { PdfReportGeneratorService } from "../services/Report/Agency/PdfReportGenerator.service";
 import { INotificationService } from "../../Application/interfaces/services_Interfaces/Notification/INotificationService";
 import { NotificationService } from "../services/Notification/Notification.service";
 import { INotificationSocketService } from "../../Application/interfaces/services_Interfaces/Notification/INotificationSocketService";
 import { NotificationSocketService } from "../services/Notification/NotificationSocket.service";
 import { IGoogleAuthService } from "../../Application/interfaces/services_Interfaces/GoogleAuth/IGoogleAuthService";
 import { GoogleAuthService } from "../services/GoogleAuth/GoogleAuth.service";
+import { SalesReportResponseDTO } from "../../Application/Dto/Agency/agencyDashboard.dto";
+import { AdminBookingsReportResponseDTO } from "../../Application/Dto/Admin/adminDashboard.dto";
+import { AdminExcelBookingsReportGenerator } from "../services/Report/Admin/AdminExcelBookingsReportGenerator";
+import { AdminPdfBookingsReportGenerator } from "../services/Report/Admin/AdminPdfBookingsReportGenerator";
 
 type ReportGenerators = {
-    excel: IReportGenerator;
-    pdf: IReportGenerator;
+    excel: IReportGenerator<SalesReportResponseDTO>;
+    pdf: IReportGenerator<SalesReportResponseDTO>;
+};
+
+type AdminReportGenerators = {
+    excel: IReportGenerator<AdminBookingsReportResponseDTO>;
+    pdf: IReportGenerator<AdminBookingsReportResponseDTO>;
 };
 
 export class ServiceRegistory {
@@ -95,18 +104,33 @@ export class ServiceRegistory {
             useClass: SocketService
         });
 
-        container.register<IReportGenerator>("ExcelReportGeneratorService", {
+        container.register<IReportGenerator<SalesReportResponseDTO>>("ExcelReportGeneratorService", {
             useClass: ExcelReportGeneratorService,
         });
 
-        container.register<IReportGenerator>("PdfReportGeneratorService", {
+        container.register<IReportGenerator<SalesReportResponseDTO>>("PdfReportGeneratorService", {
             useClass: PdfReportGeneratorService,
+        });
+
+        container.register<IReportGenerator<AdminBookingsReportResponseDTO>>("AdminExcelBookingsReportGenerator", {
+            useClass: AdminExcelBookingsReportGenerator,
+        });
+
+        container.register<IReportGenerator<AdminBookingsReportResponseDTO>>("AdminPdfBookingsReportGenerator", {
+            useClass: AdminPdfBookingsReportGenerator,
         });
 
         container.register<ReportGenerators>("ReportGenerators", {
             useFactory: (c) => ({
-                excel: c.resolve<IReportGenerator>("ExcelReportGeneratorService"),
-                pdf: c.resolve<IReportGenerator>("PdfReportGeneratorService"),
+                excel: c.resolve<IReportGenerator<SalesReportResponseDTO>>("ExcelReportGeneratorService"),
+                pdf: c.resolve<IReportGenerator<SalesReportResponseDTO>>("PdfReportGeneratorService"),
+            }),
+        });
+
+        container.register<AdminReportGenerators>("AdminReportGenerators", {
+            useFactory: (c) => ({
+                excel: c.resolve<IReportGenerator<AdminBookingsReportResponseDTO>>("AdminExcelBookingsReportGenerator"),
+                pdf: c.resolve<IReportGenerator<AdminBookingsReportResponseDTO>>("AdminPdfBookingsReportGenerator"),
             }),
         });
 

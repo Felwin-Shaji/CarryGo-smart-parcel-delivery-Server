@@ -4,7 +4,7 @@ import { AppError } from "../../../Domain/utils/customError";
 import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { IPasswordService } from "../../interfaces/services_Interfaces/password-service.interface";
-import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
+import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/IAdminRepository";
 import { AdminResetPasswordRequestDTO } from "../../Dto/Admin/adminProfile.dto";
 import { IResetAdminPasswordUsecase } from "../../interfaces/useCase_Interfaces/Admin/IResetAdminPasswordUscase";
 
@@ -14,7 +14,7 @@ export class ResetAdminPasswordUseCase implements IResetAdminPasswordUsecase {
         @inject("IAdminRepository") private _adminRepo: IAdminRepository,
         @inject("IPasswordService") private __passwordService: IPasswordService
 
-    ) {};
+    ) { };
 
     async execute(adminId: string, dto: AdminResetPasswordRequestDTO): Promise<void> {
         const adminData = await this._adminRepo.findById({ _id: adminId });

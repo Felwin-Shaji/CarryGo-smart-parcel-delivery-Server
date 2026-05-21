@@ -1,5 +1,3 @@
-import { SalesReportResponseDTO } from "../../../Dto/Agency/agencyDashboard.dto";
-
-export interface IReportGenerator {
-    generate(report: SalesReportResponseDTO): Promise<Buffer>;
+export interface IReportGenerator<T> {
+    generate(report: T): Promise<Buffer>;
 }

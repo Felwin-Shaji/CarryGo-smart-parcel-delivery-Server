@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { IPricingPolicyRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/pricingPolicy.repository";
+import { IPricingPolicyRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/IPricingPolicyRepository";
 import { IAgencyPricingRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agencyPricing.repository";
 import { IGetAgencyPricingUsecase } from "../../interfaces/useCase_Interfaces/Princing/IGetAgencyPricingUsecase";
 import { PRICING_POLICY_MESSAGE } from "../../../Infrastructure/constants/messages/pricingPolicyMessage";

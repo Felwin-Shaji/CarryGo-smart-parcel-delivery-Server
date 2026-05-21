@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { ICalculateBookingPriceUsecase } from "../../../../interfaces/useCase_Interfaces/user/Booking/ICalculateBookingPriceUsecase";
 import { IDistanceService } from "../../../../interfaces/services_Interfaces/IDistanceService";
-import { IPricingPolicyRepository } from "../../../../interfaces/repositories_interfaces/adminRepositories_Interfaces/pricingPolicy.repository";
+import { IPricingPolicyRepository } from "../../../../interfaces/repositories_interfaces/adminRepositories_Interfaces/IPricingPolicyRepository";
 import { IUserRepository } from "../../../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
 import { CalculatePriceRequestDTO, CalculatePriceResponseDTO } from "../../../../Dto/User/Booking.dto";
 import { AppError } from "../../../../../Domain/utils/customError";
@@ -25,8 +25,6 @@ export class CalculateBookingPriceUsecase implements ICalculateBookingPriceUseca
 
         const { deliveryType, pickupAddress, deliveryAddress } = dto;
 
-        // const pickupAddresss = await this._userRepo.getAddressById(userId, pickupAddressId);
-        // const deliveryAddress = await this._userRepo.getAddressById(userId, deliveryAddressId);
 
         if (!pickupAddress || !deliveryAddress) {
             throw new AppError(USER_MESSAGES.INVALID_ADDRESS, STATUS.BAD_REQUEST);

@@ -1,4 +1,4 @@
-import { IPricingPolicyRepository } from "../../../Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/pricingPolicy.repository";
+import { IPricingPolicyRepository } from "../../../Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/IPricingPolicyRepository";
 import { AgencyPricingPolicy } from "../../../Domain/Entities/Admin/AgencyPricingPolicy";
 import { BasePricingPolicy } from "../../../Domain/Entities/Admin/BasePricingPolicy";
 import { TravelerPricingPolicy } from "../../../Domain/Entities/Admin/TravelerPricingPolicy";
@@ -93,25 +93,25 @@ export class PricingPolicyRepository
         }
 
         if (doc.deliveryModel === "TRAVELER") {
-    const travelerDoc = doc as TravelerPricingPolicySchemaType;
+            const travelerDoc = doc as TravelerPricingPolicySchemaType;
 
-    return new TravelerPricingPolicy(
-        travelerDoc._id.toString(),
+            return new TravelerPricingPolicy(
+                travelerDoc._id.toString(),
 
-        travelerDoc.basePrice,
-        travelerDoc.pricePerKm,
+                travelerDoc.basePrice,
+                travelerDoc.pricePerKm,
 
-        travelerDoc.basePricePerKg,
+                travelerDoc.basePricePerKg,
 
-        travelerDoc.transportMultipliers as Record<string, number>,
+                travelerDoc.transportMultipliers as Record<string, number>,
 
-        travelerDoc.platformFeePercent,
-        travelerDoc.isActive,
-        travelerDoc.policyVersion,
-        travelerDoc.createdAt,
-        travelerDoc.updatedAt
-    );
-}
+                travelerDoc.platformFeePercent,
+                travelerDoc.isActive,
+                travelerDoc.policyVersion,
+                travelerDoc.createdAt,
+                travelerDoc.updatedAt
+            );
+        }
 
         throw new Error("Unsupported delivery model");
     }

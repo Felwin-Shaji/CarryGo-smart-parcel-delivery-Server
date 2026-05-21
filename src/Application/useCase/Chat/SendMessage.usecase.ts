@@ -6,7 +6,7 @@ import { IGetOrCreateChatUseCase } from "../../interfaces/useCase_Interfaces/Cha
 import { IMessageSocketService } from "../../interfaces/services_Interfaces/Chat/IMessageSocketService";
 import { INotificationService } from "../../interfaces/services_Interfaces/Notification/INotificationService";
 import { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
-import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
+import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/IAdminRepository";
 import { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
 import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
 import { IHubWorkerRepository } from "../../interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";

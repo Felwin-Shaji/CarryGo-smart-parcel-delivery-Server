@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IGetPricingUseCase } from "../../interfaces/useCase_Interfaces/Princing/getPricing.usecase";
-import { IPricingPolicyRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/pricingPolicy.repository";
+import { IPricingPolicyRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/IPricingPolicyRepository";
 import { AppError } from "../../../Domain/utils/customError";
 import { PRICING_POLICY_MESSAGE } from "../../../Infrastructure/constants/messages/pricingPolicyMessage";
 import { BasePricingPolicy } from "../../../Domain/Entities/Admin/BasePricingPolicy";

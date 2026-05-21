@@ -8,7 +8,7 @@ import { STATUS } from "../../../../../Infrastructure/constants/statusCodes";
 import { CalculatePriceRequestDTO, CalculatePriceResponseDTO } from "../../../../Dto/User/Booking.dto";
 import { ICalculatePriceUsecase } from "../../../../interfaces/useCase_Interfaces/user/Booking/CalculatePricing/ICalculatePrice";
 import { IAgencyPricingRepository } from "../../../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agencyPricing.repository";
-import { IPricingPolicyRepository } from "../../../../interfaces/repositories_interfaces/adminRepositories_Interfaces/pricingPolicy.repository";
+import { IPricingPolicyRepository } from "../../../../interfaces/repositories_interfaces/adminRepositories_Interfaces/IPricingPolicyRepository";
 import { DeliveryPartner } from "../../../../../Domain/Enums/DeliveryPartnerType";
 
 @injectable()

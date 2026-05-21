@@ -31,6 +31,7 @@ import { HubDashboardController } from "../../Interface_Adapters/controllers/Hub
 import { HubProfileController } from "../../Interface_Adapters/controllers/Hub/HubProfile.controller";
 import { WorkerShipmentController } from "../../Interface_Adapters/controllers/Worker/WorkerShipment.controller";
 import { WorkerDashboardController } from "../../Interface_Adapters/controllers/Worker/WorkerDashboard.controller";
+import { AdminDashboardController } from "../../Interface_Adapters/controllers/Admin/AdminDashboard.controller";
 
 
 DependancyInjection.registerAll();
@@ -58,7 +59,7 @@ export const agencyRouteSegmentController = container.resolve(AgencyRouteSegment
 export const agencyDashboardController = container.resolve(AgencyDashboardController);
 
 
-
+export const adminDashboardController = container.resolve(AdminDashboardController)
 export const adminAgencyController = container.resolve(AdminAgencyController);
 export const adminHubController = container.resolve(AdminHubController);
 export const adminUserController = container.resolve(AdminUserController);

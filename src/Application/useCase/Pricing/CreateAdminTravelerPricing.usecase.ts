@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { ICreateAdminTravelerPricingUsecase } from "../../interfaces/useCase_Interfaces/Princing/ICreateAdminTravelerPricingUsecase";
-import { IPricingPolicyRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/pricingPolicy.repository";
+import { IPricingPolicyRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/IPricingPolicyRepository";
 import { BasePricingPolicy } from "../../../Domain/Entities/Admin/BasePricingPolicy";
 import { AdminTravelerPricingRequestDTO } from "../../Dto/Pricing/adminPricing.dto";
 import { DeliveryPartner } from "../../../Domain/Enums/DeliveryPartnerType";

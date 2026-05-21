@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IVarifyEmailUseCase } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/varifyEmail.usecase";
 import { IUserRepository } from "../../interfaces/repositories_interfaces/userRepositories_Interfaces/user.repository";
-import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/admin.repository";
+import { IAdminRepository } from "../../interfaces/repositories_interfaces/adminRepositories_Interfaces/IAdminRepository";
 import { IAgencyRepository } from "../../interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
 import { IHubRepository } from "../../interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
 import { Role } from "../../../Infrastructure/Types/types";
@@ -22,8 +22,7 @@ export class VarifyEmailUseCase implements IVarifyEmailUseCase {
         @inject("IAdminRepository") private _adminRepo: IAdminRepository,
         @inject("IAgencyRepository") private _agencyRepo: IAgencyRepository,
         @inject("IHubRepository") private _hubRepo: IHubRepository,
-                @inject("IHubWorkerRepository") private _workerRepo: IHubWorkerRepository,
-
+        @inject("IHubWorkerRepository") private _workerRepo: IHubWorkerRepository,
 
         @inject("IResetPasswordTokenRepository") private _resetPasswordTokenRepo: IResetPasswordTokenRepository,
 
@@ -61,8 +60,8 @@ export class VarifyEmailUseCase implements IVarifyEmailUseCase {
         await this._resetPasswordTokenRepo.save(data)
 
         const encodedToken = encodeURIComponent(resetToken);
-        
-        let resetUrl:string;
+
+        let resetUrl: string;
         if (dto.role === 'user') resetUrl = `${process.env.CLIENT_URL}/reset-password/${encodedToken}?role=${dto.role}`;
         else resetUrl = `${process.env.CLIENT_URL}/${dto.role}/reset-password/${encodedToken}?role=${dto.role}`;
 

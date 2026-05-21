@@ -1,10 +1,10 @@
 import PDFDocument from "pdfkit";
 import { injectable } from "tsyringe";
-import { SalesReportResponseDTO } from "../../../Application/Dto/Agency/agencyDashboard.dto";
-import { IReportGenerator } from "../../../Application/interfaces/services_Interfaces/Report/IReportService";
+import { SalesReportResponseDTO } from "../../../../Application/Dto/Agency/agencyDashboard.dto";
+import { IReportGenerator } from "../../../../Application/interfaces/services_Interfaces/Report/IReportService";
 
 @injectable()
-export class PdfReportGeneratorService implements IReportGenerator {
+export class PdfReportGeneratorService implements IReportGenerator<SalesReportResponseDTO> {
     async generate(report: SalesReportResponseDTO): Promise<Buffer> {
 
         const doc = new PDFDocument({ margin: 40 });
@@ -12,8 +12,8 @@ export class PdfReportGeneratorService implements IReportGenerator {
 
         doc.on("data", buffers.push.bind(buffers));
 
-        const pageWidth = doc.page.width; // 612pt (letter)
-        const usableWidth = pageWidth - 80; // 532pt (40pt margin each side)
+        const pageWidth = doc.page.width;
+        const usableWidth = pageWidth - 80;
 
         // ─── RUPEE FORMATTER (avoids broken ₹ glyph in Helvetica) ───────────
         const formatCurrency = (val: number): string => {
@@ -42,8 +42,6 @@ export class PdfReportGeneratorService implements IReportGenerator {
             });
 
         // ─── COLUMN LAYOUT ───────────────────────────────────────────────────
-        // Total usable: 532pt  (left=40, right=572)
-        // Date:60 | BookingID:155 | Gross:75 | Commission:85 | Net:75 | Status:62 | padding
         const COL = {
             date: { x: 40, w: 60 },
             booking: { x: 105, w: 160 },

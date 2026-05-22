@@ -27,7 +27,8 @@ app.use(cors({
     "https://carry-go-smart-parcel-delivery-clie.vercel.app",
 
     //CLOUDFRONT_URL
-    "https://d3sd8vqja88xcy.cloudfront.net/login"
+    "https://d3sd8vqja88xcy.cloudfront.net",
+    "https://www.carrygo.co.in"
   ],
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],

@@ -12,6 +12,9 @@ export const initSocket = (server: HttpServer) => {
                 "http://localhost:5173",
                 "https://carry-go-smart-parcel-delivery-client-cafoyp5mn.vercel.app",
                 "https://carry-go-smart-parcel-delivery-clie.vercel.app",
+
+                //CLOUDFRONT_URL
+                "https://d3sd8vqja88xcy.cloudfront.net/login"
             ],
             credentials: true,
         },

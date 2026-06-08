@@ -34,5 +34,10 @@ export const WORKER_MESSAGES = {
   SHIPMENT_STATUS_UPDATED: "Shipment status updated successfully",
   PARCELS_STATUS_UPDATED: "Parcels status updated successfully",
   PARCELS_FETCHED: "workers parcels fetched",
-  DASHBOARD_FETCHED: "Worker Dashboard fetched."
+  DASHBOARD_FETCHED: "Worker Dashboard fetched.",
+
+  PROFILE_FETCHED: "Worker profile fetched successfully.",
+  PROFILE_UPDATED: "Worker profile updated successfully.",
+  PASSWORD_RESET: "Worker password reset successfully.",
+  PROFILE_UPDATE_FAILURE: "Failed to update worker profile.",
 } as const;

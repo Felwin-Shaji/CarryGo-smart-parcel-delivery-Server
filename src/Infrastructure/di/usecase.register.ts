@@ -268,6 +268,12 @@ import { IGetAdminBookingsReportUseCase } from "../../Application/interfaces/use
 import { GetAdminBookingsReportUseCase } from "../../Application/useCase/Admin/GetAdminBookingsReport.usecase";
 import { IExportAdminBookingsReportUseCase } from "../../Application/interfaces/useCase_Interfaces/Admin/IExportAdminBookingsReportUseCase";
 import { ExportAdminBookingsReportUseCase } from "../../Application/useCase/Admin/ExportAdminBookingsReport.usecase";
+import { IGetWorkerProfileUseCase } from "../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkerProfileUseCase";
+import { GetWorkerProfileUseCase } from "../../Application/useCase/Worker/GetWorkerProfileUseCase";
+import { IEditWorkerProfileUseCase } from "../../Application/interfaces/useCase_Interfaces/Worker/IEditWorkerProfileUseCase";
+import { EditWorkerProfileUseCase } from "../../Application/useCase/Worker/EditWorkerProfile.usecase";
+import { IResetWorkerPasswordUseCase } from "../../Application/interfaces/useCase_Interfaces/Worker/IResetWorkerPasswordUseCase";
+import { ResetWorkerPasswordUseCase } from "../../Application/useCase/Worker/ResetWorkerPassword.usecase";
 
 
 
@@ -819,6 +825,18 @@ export class UsecaseRegistery {
 
         container.register<IExportAdminBookingsReportUseCase>("IExportAdminBookingsReportUseCase", {
             useClass: ExportAdminBookingsReportUseCase
-        })
+        });
+
+        container.register<IGetWorkerProfileUseCase>("IGetWorkerProfileUseCase", {
+            useClass: GetWorkerProfileUseCase
+        });
+
+        container.register<IEditWorkerProfileUseCase>("IEditWorkerProfileUseCase", {
+            useClass: EditWorkerProfileUseCase
+        });
+
+        container.register<IResetWorkerPasswordUseCase>("IResetWorkerPasswordUseCase", {
+            useClass: ResetWorkerPasswordUseCase
+        });
     }
 }

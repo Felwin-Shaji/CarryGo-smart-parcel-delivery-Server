@@ -77,7 +77,7 @@ const hubSchema = new Schema<HubDocument>(
 
     kycStatus: {
       type: String,
-      enum: ["PENDING", "REGISTERED", "APPROVED", "REJECTED"],
+      enum: ["PENDING", "REGISTERED", "APPROVED", "REJECTED", "RESUBMITTED"],
       default: "PENDING",
       required: true
     },

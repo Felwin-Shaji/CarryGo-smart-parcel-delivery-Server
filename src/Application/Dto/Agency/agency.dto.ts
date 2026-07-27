@@ -82,6 +82,10 @@ export interface AddNewHubAddressDto {
 export interface AddHubDTO extends AddNewHubBaseDto, AddNewHubAddressDto {
 }
 
+export interface ResubmitHubDTO extends AddNewHubBaseDto, AddNewHubAddressDto {
+  hubId: string;
+}
+
 export interface agencyAddHubResponseDTO {
   id: string;
   name: string;

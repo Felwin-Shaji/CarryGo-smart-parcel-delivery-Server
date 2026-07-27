@@ -4,7 +4,7 @@ import { inject, injectable } from "tsyringe";
 import { IUploadAddFilesUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IUploadAddFilesUseCase";
 import { IAddHubUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IAddHubUseCase";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { AddNewHubAddressDto, AddNewHubBaseDto, AddNewHubVerifyOtpDTO } from "../../../Application/Dto/Agency/agency.dto";
+import { AddNewHubAddressDto, AddNewHubBaseDto, AddNewHubVerifyOtpDTO, ResubmitHubDTO } from "../../../Application/Dto/Agency/agency.dto";
 import { IAddHubTempUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IAddHubTempUseCase";
 import { IAddNewHubResendOtp } from "../../../Application/interfaces/useCase_Interfaces/Hub/IAddNewHubResendOtp";
 import { IAddNewHubVerifyOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IAddNewHubVerifyOtpUseCase";
@@ -19,6 +19,7 @@ import { AppError } from "../../../Domain/utils/customError";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
 import { IGetHubOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IGetHubOverviewUseCase";
 import { parseBlockedQuery } from "../../../Domain/utils/utils";
+import { IResubmitHubUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IResubmitHubUseCase";
 
 
 @injectable()
@@ -31,6 +32,8 @@ export class AgencyHubController implements IAgencyHubController {
         @inject("IAddNewHubResendOtp") private _addNewHubResendOtp: IAddNewHubResendOtp,
 
         @inject("IAddHubUseCase") private _addHubUseCase: IAddHubUseCase,
+
+        @inject("IResubmitHubUseCase") private _resubmitHubUseCase: IResubmitHubUseCase,
 
         @inject("IAddNewHubVerifyOtpUseCase") private _addNewHubVerifyOtpUseCase: IAddNewHubVerifyOtpUseCase,
 
@@ -184,6 +187,23 @@ export class AgencyHubController implements IAgencyHubController {
             ApiResponse.success(
                 HUB_MESSAGES.FETCH_SUCCESS,
                 hubOverview
+            )
+        );
+    }
+
+    resubmitHub = async (req: Request, res: Response): Promise<Response | void> => {
+
+        const hubId = req.params.id as string;
+        const files = req.files as AgencyAddHubFields;
+
+        const data = req.body as ResubmitHubDTO;
+
+        const updatedHubId = await this._resubmitHubUseCase.execute(hubId, data, files);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                HUB_MESSAGES.RESUBMIT_SUCCESS,
+                { updatedHubId }
             )
         );
     }

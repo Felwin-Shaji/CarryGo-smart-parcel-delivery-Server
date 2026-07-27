@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
 import { Hub } from "../../../Domain/Entities/Hub/Hub";
 import { HubTemp } from "../../../Domain/Entities/Hub/HubTemp";
-import { AddNewHubBaseDto, agencyAddHubResponseDTO } from "../../Dto/Agency/agency.dto";
+import { AddNewHubBaseDto, agencyAddHubResponseDTO, ResubmitHubDTO } from "../../Dto/Agency/agency.dto";
 import { HubOverviewResponseDTO } from "../../Dto/Hub/hubOverview.dto";
 
 export class HubTempMapper {
@@ -76,6 +76,50 @@ export class HubMapper {
             role: hub.role,
             kycStatus: hub.kycStatus,
         };
+    }
+
+    static toResubmitHub(
+        hub: Hub,
+        data: ResubmitHubDTO,
+        verificationImage: string
+    ): Hub {
+
+        return new Hub(
+            hub.id,
+            hub.agencyId,
+
+            hub.name,
+            hub.email,
+            hub.mobile,
+            hub.password,
+
+            hub.role,
+
+            {
+                addressLine1: data.addressLine1 ?? hub.address.addressLine1,
+                city: data.city ?? hub.address.city,
+                state: data.state ?? hub.address.state,
+                pincode: data.pincode ?? hub.address.pincode,
+            },
+
+            {
+                lat: data.location_lat ?? hub.location.lat,
+                lng: data.location_lng ?? hub.location.lng,
+            },
+
+            verificationImage,
+
+            "RESUBMITTED",
+
+            null,
+
+            hub.walletBalance,
+            hub.isBlocked,
+            hub.tokenVersion,
+
+            hub.createdAt,
+            new Date()
+        );
     }
 
     static toHubOverviewResponseDTO(hub: Hub): HubOverviewResponseDTO {

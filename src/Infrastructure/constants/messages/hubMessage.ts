@@ -44,4 +44,8 @@ export const HUB_MESSAGES = {
     DAHSBOARD_SHIPMENT_FETCHED: "hub dashboar shipement fetched successfully. ",
 
     OTP_RESEND_SUCCESS: "OTP resent successfully",
+
+    NOT_UPDATED: "Hub not updated successfully",
+    RESUBMIT_SUCCESS: "Hub resubmitted successfully",
+    UPDATE_FAILED: "Failed to update and re-submit hub records."
 } as const;

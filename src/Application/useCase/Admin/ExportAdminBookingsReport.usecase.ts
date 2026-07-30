@@ -3,27 +3,21 @@ import { AppError } from "../../../Domain/utils/customError";
 import {
     ExportAdminBookingsReportDTO,
     ExportAdminBookingsReportResponseDTO,
-    AdminBookingsReportResponseDTO,
     AdminBookingsReportDTO,
 } from "../../Dto/Admin/adminDashboard.dto";
-import { IReportGenerator } from "../../interfaces/services_Interfaces/Report/IReportService";
 import { IGetAdminBookingsReportUseCase } from "../../interfaces/useCase_Interfaces/Admin/IGetAdminBookingsReportUseCase";
 import { IExportAdminBookingsReportUseCase } from "../../interfaces/useCase_Interfaces/Admin/IExportAdminBookingsReportUseCase";
 import { ADMIN_MESSAGES } from "../../../Infrastructure/constants/messages/adminMessages";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { AdminReportGenerators, ExportType, } from "../../../Infrastructure/Types/reportGenerator.types";
 
-type ExportType = "excel" | "pdf";
 
-type ReportGenerators = {
-    excel: IReportGenerator<AdminBookingsReportResponseDTO>;
-    pdf: IReportGenerator<AdminBookingsReportResponseDTO>;
-};
 
 @injectable()
 export class ExportAdminBookingsReportUseCase implements IExportAdminBookingsReportUseCase {
     constructor(
         @inject("IGetAdminBookingsReportUseCase") private readonly _getAdminBookingsReportUseCase: IGetAdminBookingsReportUseCase,
-        @inject("AdminReportGenerators") private readonly _generators: ReportGenerators
+        @inject("AdminReportGenerators") private readonly _generators: AdminReportGenerators
     ) { };
 
     async execute(dto: ExportAdminBookingsReportDTO): Promise<ExportAdminBookingsReportResponseDTO> {

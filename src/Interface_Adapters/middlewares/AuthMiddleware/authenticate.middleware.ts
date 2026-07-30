@@ -38,46 +38,33 @@ export const authenticate = (allowedRoles?: Role[]) => {
         worker: cookies.workeraccessTokenName,
       };
 
-      let decoded: AppJwtPayload | null = null;
+      const url = req.originalUrl;
 
-      if (allowedRoles && allowedRoles.length > 0) {
-        for (const role of allowedRoles) {
-          const token = tokenMap[role];
+      let accessToken: string | undefined;
 
-          if (!token) continue;
-          try {
-            const verified =
-              tokenService.verifyAccessToken(token) as AppJwtPayload;
-
-            if (verified.role === role) {
-              decoded = verified;
-              break;
-            }
-          } catch {
-            continue;
-          }
-        }
+      if (url.startsWith("/api/user")) {
+        accessToken = tokenMap.user;
+      } else if (url.startsWith("/api/admin")) {
+        accessToken = tokenMap.admin;
+      } else if (url.startsWith("/api/agency")) {
+        accessToken = tokenMap.agency;
+      } else if (url.startsWith("/api/hub")) {
+        accessToken = tokenMap.hub;
+      } else if (url.startsWith("/api/worker")) {
+        accessToken = tokenMap.worker;
       } else {
-        for (const token of Object.values(tokenMap)) {
-          if (!token) continue;
+        // Fallback for routes that aren't role-specific
+        accessToken = Object.values(tokenMap).find(Boolean);
+      }
 
-          try {
-            decoded =
-              tokenService.verifyAccessToken(token) as AppJwtPayload;
-
-            if (decoded) break;
-          } catch {
-            continue;
-          }
-        }
-      };
-
-      if (!decoded) {
+      if (!accessToken) {
         throw new AppError(
-          AUTH_MESSAGES.TOKEN_INVALID,
+          AUTH_MESSAGES.TOKEN_MISSING,
           STATUS.UNAUTHORIZED
         );
       }
+
+      const decoded = tokenService.verifyAccessToken(accessToken) as AppJwtPayload;
 
       if (allowedRoles && !allowedRoles.includes(decoded.role)) {
         throw new AppError(
@@ -98,52 +85,6 @@ export const authenticate = (allowedRoles?: Role[]) => {
         role: decoded.role,
         tokenVersion: decoded.tokenVersion,
       };
-      // const tokenMap = {
-      //   user: cookies?.useraccessTokenName,
-      //   agency: cookies?.agencyaccessTokenName,
-      //   admin: cookies?.adminaccessTokenName,
-      //   hub: cookies?.hubaccessTokenName,
-      //   worker: cookies?.workeraccessTokenName,
-      // };
-
-      // let accessToken: string | undefined;
-
-      // if (url.startsWith("/api/user")) accessToken = tokenMap.user;
-      // else if (url.startsWith("/api/agency")) accessToken = tokenMap.agency;
-      // else if (url.startsWith("/api/admin")) accessToken = tokenMap.admin;
-      // else if (url.startsWith("/api/hub")) accessToken = tokenMap.hub;
-      // else if (url.startsWith("/api/worker")) accessToken = tokenMap.worker;
-
-
-      // // fallback
-      // if (!accessToken) {
-      //   accessToken = Object.values(tokenMap).find(Boolean);
-      // }
-
-
-
-      // if (!accessToken) throw new AppError(AUTH_MESSAGES.TOKEN_MISSING, STATUS.UNAUTHORIZED);
-
-      // const decoded = tokenService.verifyAccessToken(accessToken);
-      // if (!decoded) throw new AppError(AUTH_MESSAGES.TOKEN_INVALID, STATUS.UNAUTHORIZED);
-
-      // if (allowedRoles && !allowedRoles.includes(decoded.role)) {
-      //   console.log(decoded)
-      //   throw new AppError(AUTH_MESSAGES.ROLE_NOT_ALLOWED, STATUS.FORBIDDEN);
-      // }
-
-      // await validateSession.execute({
-      //   userId: decoded.userId,
-      //   role: decoded.role,
-      //   tokenVersion: decoded.tokenVersion,
-      // })
-
-      // req.user = {
-      //   id: decoded.userId,
-      //   email: decoded.email,
-      //   role: decoded.role,
-      //   tokenVersion: decoded.tokenVersion
-      // };
 
       next();
     } catch (error) {

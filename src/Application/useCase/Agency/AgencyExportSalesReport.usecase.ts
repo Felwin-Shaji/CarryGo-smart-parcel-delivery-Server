@@ -1,17 +1,9 @@
 import { AppError } from "../../../Domain/utils/customError";
-import { ExportSalesReportDTO, ExportSalesReportResponseDTO, SalesReportRequestDTO, SalesReportResponseDTO } from "../../Dto/Agency/agencyDashboard.dto";
-import { IReportGenerator } from "../../interfaces/services_Interfaces/Report/IReportService";
+import { ExportType, ReportGenerators } from "../../../Infrastructure/Types/reportGenerator.types";
+import { ExportSalesReportDTO, ExportSalesReportResponseDTO, SalesReportRequestDTO } from "../../Dto/Agency/agencyDashboard.dto";
 import { IAgencyExportSalesReportUseCase } from "../../interfaces/useCase_Interfaces/Agency/IAgencyExportSalesReportUsecase";
 import { IAgencyGetSalesReportUseCase } from "../../interfaces/useCase_Interfaces/Agency/IAgencyGetSalesReportUseCase";
 import { inject, injectable } from "tsyringe";
-
-type ExportType = "excel" | "pdf";
-
-type ReportGenerators = {
-    excel: IReportGenerator<SalesReportResponseDTO>;
-    pdf: IReportGenerator<SalesReportResponseDTO>;
-};
-
 
 @injectable()
 export class AgencyExportSalesReportUseCase implements IAgencyExportSalesReportUseCase {

@@ -10,13 +10,20 @@ import { USER_MESSAGES } from "../../../../Infrastructure/constants/messages/use
 import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
 import { Role } from "../../../../Domain/Enums/Roles";
 import { KycStatus } from "../../../../Domain/Enums/KycStatus";
+import { IAdminRepository } from "../../../interfaces/repositories_interfaces/adminRepositories_Interfaces/IAdminRepository";
+import { INotificationService } from "../../../interfaces/services_Interfaces/Notification/INotificationService";
+import { INotificationSocketService } from "../../../interfaces/services_Interfaces/Notification/INotificationSocketService";
 
 @injectable()
 export class ReSubmitTravelerKycUseCase implements IReSubmitTravelerKycUseCase {
     constructor(
         @inject("IUploadWorkerKycFilesUsecase") private _uploadWorkerKycFilesUsecase: IUploadWorkerKycFilesUsecase,
         @inject("IHubWorkerKycRepository") private _hubWorkerKycRepo: IHubWorkerKycRepository,
-        @inject("IUserRepository") private _userRepo: IUserRepository
+        @inject("IUserRepository") private _userRepo: IUserRepository,
+
+        @inject("IAdminRepository") private readonly _adminRepo: IAdminRepository,
+        @inject("INotificationService") private readonly _notificationService: INotificationService,
+        @inject("INotificationSocketService") private readonly _notificationSocketService: INotificationSocketService,
     ) { }
 
     async execute(userId: string, kycData: SubmitTravelerKycRequestDTO, files: WorkerKYCFileFields): Promise<void> {
@@ -53,5 +60,17 @@ export class ReSubmitTravelerKycUseCase implements IReSubmitTravelerKycUseCase {
         user.kycStatus = KycStatus.RESUBMITTED;
         user.rejectReason = null;
         await this._userRepo.findOneAndUpdate({ _id: user.id }, user);
-    }
+
+        const admin = await this._adminRepo.findOne({});
+        if (admin && admin.id) await this._notifyAdmin(user.name, admin.id.toString());
+    };
+
+    private async _notifyAdmin(name: string, adminId: string): Promise<void> {
+        const savedNotification = await this._notificationService.createNotification(
+            adminId,
+            "KYC Application Resubmitted",
+            `User ${name || ""} has resubmitted KYC documents and is awaiting review.`,
+        );
+        this._notificationSocketService.emitNotification(adminId, savedNotification);
+    };
 }

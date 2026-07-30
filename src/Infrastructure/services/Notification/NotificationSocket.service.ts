@@ -2,6 +2,8 @@ import { container, injectable } from "tsyringe";
 import { Server, Socket } from "socket.io";
 import { INotificationSocketService } from "../../../Application/interfaces/services_Interfaces/Notification/INotificationSocketService";
 import { Notification } from "../../../Domain/Entities/Notification/Notification";
+import { TokenService } from "../token.service";
+import { AppJwtPayload } from "../../Types/types";
 
 
 @injectable()
@@ -12,16 +14,24 @@ export class NotificationSocketService implements INotificationSocketService {
     ) { }
 
     connect(): void {
-
         this.io.on("connection", (socket: Socket) => {
+            const { token } = socket.handshake.auth;
 
-            const { userId } = socket.handshake.auth;
+            if (!token) {
+                socket.disconnect(true);
+                return;
+            }
 
-            if (userId) {
+            try {
+                const tokenService = container.resolve(TokenService);
+                const payload = tokenService.verifyAccessToken(token) as AppJwtPayload;
 
-                socket.join(`user:${userId}`);
+                socket.join(`user:${payload.userId}`);
 
-                console.log(`User joined room: user:${userId}`);
+            } catch (error) {
+                console.error("Socket authentication failed:", error);
+                socket.disconnect(true);
+                return;
             }
 
             socket.on("disconnect", () => {

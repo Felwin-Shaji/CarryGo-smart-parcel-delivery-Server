@@ -38,16 +38,8 @@ import { SalesReportResponseDTO } from "../../Application/Dto/Agency/agencyDashb
 import { AdminBookingsReportResponseDTO } from "../../Application/Dto/Admin/adminDashboard.dto";
 import { AdminExcelBookingsReportGenerator } from "../services/Report/Admin/AdminExcelBookingsReportGenerator";
 import { AdminPdfBookingsReportGenerator } from "../services/Report/Admin/AdminPdfBookingsReportGenerator";
+import { AdminReportGenerators, ReportGenerators } from "../Types/reportGenerator.types";
 
-type ReportGenerators = {
-    excel: IReportGenerator<SalesReportResponseDTO>;
-    pdf: IReportGenerator<SalesReportResponseDTO>;
-};
-
-type AdminReportGenerators = {
-    excel: IReportGenerator<AdminBookingsReportResponseDTO>;
-    pdf: IReportGenerator<AdminBookingsReportResponseDTO>;
-};
 
 export class ServiceRegistory {
     static registerServices(): void {

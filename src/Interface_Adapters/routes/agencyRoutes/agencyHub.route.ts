@@ -1,5 +1,5 @@
 import { BaseRoute } from "../base.route";
-import { agencyHubController } from "../../../Infrastructure/di/resolver";
+import { agencyHubController, hubDashboardController, hubWorkerController } from "../../../Infrastructure/di/resolver";
 import { agencyAddHub } from "../../../Infrastructure/services/storage/multer";
 import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
@@ -24,9 +24,13 @@ export class AgencyHubRoute extends BaseRoute {
     this.router.put("/hubs/:id/resubmit", authenticate([Role.AGENCY]), agencyAddHub, asyncHandler(agencyHubController.resubmitHub));
 
     this.router.get("/hubs", authenticate([Role.AGENCY]), asyncHandler(agencyHubController.getHubs));
-    this.router.get("/:agencyId/hubs", authenticate([Role.ADMIN]), asyncHandler(agencyHubController.getHubsByAgencyId));
 
     this.router.get("/hubs/:id", authenticate([Role.AGENCY]), asyncHandler(agencyHubController.getHubById));
 
+    this.router.get("/hub/:hubId/workers", authenticate([Role.AGENCY]), asyncHandler(hubWorkerController.getHubWorkers))
+    this.router.get("/hub/dashboard/summary/:hubId", authenticate([Role.AGENCY]), asyncHandler(hubDashboardController.getSummary));
+    this.router.get("/hub/dashboard/trend/:hubId", authenticate([Role.AGENCY]), asyncHandler(hubDashboardController.getTrend));
+    this.router.get("/hub/dashboard/types/:hubId", authenticate([Role.AGENCY]), asyncHandler(hubDashboardController.getTypes));
+    this.router.get("/hub/dashboard/shipments-preview/:hubId", authenticate([Role.AGENCY]), asyncHandler(hubDashboardController.getShipmentsPreview));
   }
 }

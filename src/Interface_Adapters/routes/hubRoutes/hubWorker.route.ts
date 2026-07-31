@@ -1,5 +1,5 @@
 import { BaseRoute } from "../base.route";
-import { hubWorkerController } from "../../../Infrastructure/di/resolver";
+import { hubWorkerController, workerDashboardController } from "../../../Infrastructure/di/resolver";
 import { workerKYCUpload } from "../../../Infrastructure/services/storage/multer";
 import { authenticate } from "../../middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../middlewares/ErrorHandlers/asyncHandler";
@@ -17,12 +17,15 @@ export class HubWorkerRoute extends BaseRoute {
     this.router.post("/worker/kyc-upload", authenticate([Role.HUB]), workerKYCUpload, validateRequest(workerKycUploadSchema), asyncHandler(hubWorkerController.uploadWorkerKYC));
 
     this.router.get("/workers", authenticate([Role.HUB]), asyncHandler(hubWorkerController.getHubWorkers));
-    this.router.get("/:hubId/workers", authenticate([Role.HUB, Role.AGENCY, Role.ADMIN]), asyncHandler(hubWorkerController.getHubWorkers))
     this.router.get("/worker/check-status", authenticate([Role.HUB]), asyncHandler(hubWorkerController.checkTempWorkerStatus))
 
 
     this.router.get("/workers/:id", authenticate([Role.HUB]), asyncHandler(hubWorkerController.getHubWorkerById))
     this.router.get("/workers/:id/kyc", authenticate([Role.HUB]), asyncHandler(hubWorkerController.getWorkerKycController))
     this.router.patch("/workers/:id/kyc/resubmit", authenticate([Role.HUB]), workerKYCUpload, validateRequest(reSubmitWorkerKycSchema), asyncHandler(hubWorkerController.reSubmitWorkerKycController))
+
+    this.router.get("/worker/parcels/:workerId", authenticate([Role.HUB]), asyncHandler(workerDashboardController.getWorkerParcelsByWorkerId));
+    this.router.get("/worker/dashboard/:workerId", authenticate([Role.HUB]), asyncHandler(workerDashboardController.getWorkerDashboardByWorkerId));
+    this.router.get("/worker/analytics/graph/:workerId", authenticate([Role.HUB]), asyncHandler(workerDashboardController.getWorkerGraphByWorkerId));
   }
 }

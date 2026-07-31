@@ -1,29 +1,26 @@
 import type { Request, Response, NextFunction } from "express";
 import logger from "../../../Infrastructure/logger/logger";
 
-export const loggerMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  const start = Date.now();
+export const loggerMiddleware = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const start = process.hrtime.bigint();
 
   res.on("finish", () => {
-    const duration = Date.now() - start;
-    const log = {
-      time: new Date().toISOString(),
+    const duration =
+      Number(process.hrtime.bigint() - start) / 1_000_000;
+
+    logger.info({
       method: req.method,
       url: req.originalUrl,
       statusCode: res.statusCode,
-      duration: `${duration}ms`,
+      duration: `${duration.toFixed(2)}ms`,
       ip: req.ip,
-      body: req.body
-    };
-
-    const safeBody =
-      typeof log.body === "object"
-        ? JSON.stringify(log.body)
-        : String(log.body);
-
-    logger.info(
-      `[${log.time}] ${log.method} ${log.url} ${log.statusCode} - ${log.duration} - IP: ${log.ip}-------${safeBody}`
-    );
+      userAgent: req.get("user-agent"),
+      contentLength: res.getHeader("content-length"),
+    });
   });
 
   next();

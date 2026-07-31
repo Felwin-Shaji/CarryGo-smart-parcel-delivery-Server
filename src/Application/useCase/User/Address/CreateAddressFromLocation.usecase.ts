@@ -7,15 +7,12 @@ import { ReverseGeocodeRawDTO } from "../../../Dto/User/address.dto";
 export class CreateAddressFromLocationUseCase  implements ICreateAddressFromLocationUseCase {
     constructor(
         @inject("IGeocodingService") private geocodingService: IGeocodingService,
-        // @inject("IGetHubsUsecase") private getHubsUseCase: IGetHubsUsecase
+
     ){ };
 
     async execute(lat: number, lon: number): Promise<ReverseGeocodeRawDTO> {
 
         const reverseGeocodeAddress = await this.geocodingService.reverseGeocode(lat, lon);
-        console.log(reverseGeocodeAddress,'☆*: .｡. o(≧▽≦)o .｡.:*☆☆*: .｡. o(≧▽≦)o .｡.:*☆☆*: .｡. o(≧▽≦)o .｡.:*☆☆*: .｡. o(≧▽≦)o .｡.:*☆☆*: .｡. o(≧▽≦)o .｡.:*☆☆*: .｡. o(≧▽≦)o .｡.:*☆')
-
-        // const hubs = await this.getHubsUseCase.execute();
 
         return reverseGeocodeAddress;
     }

@@ -26,7 +26,9 @@ export const addUserAddressBodySchema = z
 
     pincode: z
       .string()
-      .regex(/^\d{6}$/, "Pincode must be 6 digits"),
+      .min(0)
+      .max(6)
+      .optional(),
 
     formattedAddress: z.string().min(5),
 

@@ -83,4 +83,11 @@ export interface IHubShipmentRepository extends IBaseRepository<HubShipment> {
         hubId: string,
         limit: number
     ): Promise<HubShipment[]>;
+
+    findOrCreateOpenShipment(
+        hubId: string,
+        type: ShipmentType,
+        createData: HubShipment,
+        session?: ClientSession
+    ): Promise<HubShipment>;
 }

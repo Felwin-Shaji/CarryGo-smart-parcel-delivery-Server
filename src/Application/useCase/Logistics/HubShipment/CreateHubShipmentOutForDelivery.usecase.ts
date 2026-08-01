@@ -12,6 +12,8 @@ import { BOOKING_MESSAGE } from "../../../../Infrastructure/constants/messages/b
 import { AppError } from "../../../../Domain/utils/customError";
 import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
 import { HUB_MESSAGES } from "../../../../Infrastructure/constants/messages/hubMessage";
+import { INotificationService } from "../../../interfaces/services_Interfaces/Notification/INotificationService";
+import { INotificationSocketService } from "../../../interfaces/services_Interfaces/Notification/INotificationSocketService";
 
 @injectable()
 export class CreateHubShipmentOutForDeliveryUsecase implements ICreateHubShipmentOutForDeliveryUsecase {
@@ -23,6 +25,10 @@ export class CreateHubShipmentOutForDeliveryUsecase implements ICreateHubShipmen
         @inject("IShipmentParcelRepository") private _shipmentParcelRepository: IShipmentParcelRepository,
 
         @inject("IParcelMovementRepository") private _parcelMovementRepository: IParcelMovementRepository,
+
+        @inject("INotificationService") private readonly _notificationService: INotificationService,
+
+        @inject("INotificationSocketService") private readonly _notificationSocketService: INotificationSocketService,
     ) { }
     async execute(bookingId: string, session?: ClientSession): Promise<void> {
         const booking = await this._bookingRepo.getBookingById(bookingId);
@@ -31,44 +37,93 @@ export class CreateHubShipmentOutForDeliveryUsecase implements ICreateHubShipmen
         const fromHubId = booking.logistics?.fromHubId;
         if (!fromHubId) throw new AppError(HUB_MESSAGES.LOGIDTICS_ID_MISSING, STATUS.BAD_REQUEST);
 
-        let outForDeleveryShipment = await this._hubShipmentRepository
-            .findOpenShipmentByHubAndType(fromHubId, "OUT_FOR_DELIVERY", session);
+        const outForDeliveryShipment =
+            await this._hubShipmentRepository.findOpenShipmentByHubAndType(
+                fromHubId,
+                "OUT_FOR_DELIVERY",
+                session
+            );
 
-        if (outForDeleveryShipment && outForDeleveryShipment.capacity !== null) {
-            if (outForDeleveryShipment.parcelCount >= outForDeleveryShipment.capacity) {
-                outForDeleveryShipment = null;
-            }
-        }
+        let shipment = outForDeliveryShipment;
 
-        if (!outForDeleveryShipment) {
-            console.log("hshshshshshshshhhhhhhhhhhhhhhhhhhhhhhhh")
-            outForDeleveryShipment = await this._hubShipmentRepository.save(
+        if (!shipment) {
+
+            shipment = await this._hubShipmentRepository.save(
                 HubShipmentMapper.toCreateDelivery(booking),
                 session
-            )
-            console.log("00000000000000000000000000000000000000000000000000000000")
+            );
+
+            await this._notifyHubDeliveryShipmentCreated(
+                fromHubId.toString(),
+                booking.bookingId
+            );
 
         } else {
+
             await this._hubShipmentRepository.findOneAndUpdate(
-                { _id: outForDeleveryShipment.id },
-                { parcelCount: outForDeleveryShipment.parcelCount + 1 },
+                { _id: shipment.id },
+                { parcelCount: shipment.parcelCount + 1 },
                 undefined,
                 session
-            )
+            );
+
+            await this._notifyHubDeliveryShipmentUpdated(
+                fromHubId.toString(),
+                booking.bookingId
+            );
         }
 
         await this._shipmentParcelRepository.save(
-            ShipmentParcelMapper.toCreate(outForDeleveryShipment.id!, bookingId),
+            ShipmentParcelMapper.toCreate(shipment.id!, bookingId),
             session
-        )
+        );
 
         await this._parcelMovementRepository.save(
-            ParcelMovementMapper.toDelivery(bookingId, outForDeleveryShipment.id!, fromHubId)
-        )
+            ParcelMovementMapper.toDelivery(
+                bookingId,
+                shipment.id!,
+                fromHubId
+            ),
+            session
+        );
 
-        console.log("11111111111111111122222222222222222222222\n3333333333333333333333333333\n44444444444444444444444444444444444",
-            outForDeleveryShipment
-        )
+        await this._notifyCustomerOutForDeliveryReady(
+            booking.userId.toString(),
+            booking.bookingId
+        );
 
+    };
+
+    private async _notifyHubDeliveryShipmentCreated(hubId: string, bookingId: string): Promise<void> {
+
+        const notification = await this._notificationService.createNotification(
+            hubId,
+            "New Delivery Shipment Created",
+            `A new out-for-delivery shipment has been created. Parcel ${bookingId} is waiting for worker assignment.`
+        );
+
+        this._notificationSocketService.emitNotification(hubId, notification);
+    };
+
+    private async _notifyHubDeliveryShipmentUpdated(hubId: string, bookingId: string): Promise<void> {
+
+        const notification = await this._notificationService.createNotification(
+            hubId,
+            "Delivery Shipment Updated",
+            `Parcel ${bookingId} has been added to an existing out-for-delivery shipment.`
+        );
+
+        this._notificationSocketService.emitNotification(hubId, notification);
+    };
+
+    private async _notifyCustomerOutForDeliveryReady(userId: string, bookingId: string): Promise<void> {
+
+        const notification = await this._notificationService.createNotification(
+            userId,
+            "Parcel Out for Delivery",
+            `Your parcel (${bookingId}) has been assigned for final delivery and will arrive soon.`
+        );
+
+        this._notificationSocketService.emitNotification(userId, notification);
     }
 }   

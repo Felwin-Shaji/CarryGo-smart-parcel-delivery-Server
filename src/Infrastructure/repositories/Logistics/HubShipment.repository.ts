@@ -530,6 +530,41 @@ export class HubShipmentRepository implements IHubShipmentRepository {
             .limit(limit);
 
         return docs.map((doc) => this.toDomain(doc));
+    };
+
+    async findOrCreateOpenShipment(
+        hubId: string,
+        type: ShipmentType,
+        createData: HubShipment,
+        session?: ClientSession
+    ): Promise<HubShipment> {
+
+        const shipment = await this.findOpenShipmentByHubAndType(
+            hubId,
+            type,
+            session
+        );
+
+        if (shipment) {
+            const updated = await HubShipmentModel.findByIdAndUpdate(
+                shipment.id,
+                {
+                    $inc: { parcelCount: 1 },
+                },
+                {
+                    new: true,
+                    session: session ?? null,
+                }
+            );
+
+            if (!updated) {
+                throw new Error("Failed to update shipment.");
+            }
+
+            return this.toDomain(updated);
+        }
+
+        return await this.save(createData, session);
     }
 
     private toDomain(doc: HubShipmentDocument): HubShipment {

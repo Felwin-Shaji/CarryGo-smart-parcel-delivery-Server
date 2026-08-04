@@ -13,8 +13,8 @@ import { IReSubmitTravelerKycUseCase } from "../../../Application/Interfaces/Use
 import { ICreateTravelRequestUseCase } from "../../../Application/Interfaces/UseCases/User/Traveler/ICreateTravelRequestUseCase";
 import { IGetTravelRequestsUseCase } from "../../../Application/Interfaces/UseCases/User/Traveler/IGetTravelRequestsUseCase";
 import { IGetTravelerTripOverviewUseCase } from "../../../Application/Interfaces/UseCases/User/Traveler/IGetTravelerTripOverviewUseCase";
-import { IGetBookingUsecase } from "../../../Application/Interfaces/UseCases/User/Booking/IGetBookingUsecase";
-import { IUpdateBookingStatusUsecase } from "../../../Application/Interfaces/UseCases/User/Booking/IUpdateBookingStatusUsecase";
+import { IGetBookingUsecase } from "../../../Application/Interfaces/UseCases/User/Booking/IGetBookingUseCase";
+import { IUpdateBookingStatusUsecase } from "../../../Application/Interfaces/UseCases/User/Booking/IUpdateBookingStatusUseCase";
 import { TravelerActionStatus } from "../../../Infrastructure/Types/types";
 import { BOOKING_MESSAGE } from "../../../Infrastructure/Constants/Messages/bookingMessages";
 

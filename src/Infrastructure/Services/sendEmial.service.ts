@@ -1,4 +1,4 @@
-import type { IMailService } from "../../Application/Interfaces/Services/email-service.interface";
+import type { IMailService } from "../../Application/Interfaces/Services/IEmailService";
 import nodemailer, { type Transporter } from "nodemailer";
 import { ENV } from "../Constants/env";
 

@@ -1,5 +1,5 @@
 import { FilterQuery } from "mongoose";
-import { IHubWorkerRepository } from "../../../Application/Interfaces/Repositories/Worker/worker.repository";
+import { IHubWorkerRepository } from "../../../Application/Interfaces/Repositories/Worker/IHubWorkerRepository";
 import { HubWorker } from "../../../Domain/Entities/Worker/Worker";
 import { HubWorkerModel } from "../../Database/Models/Worker/workerModel";
 import { BaseRepository } from "../baseRepositories";

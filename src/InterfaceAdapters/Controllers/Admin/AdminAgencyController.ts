@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
-import { IGetAgenciesUseCase } from "../../../Application/Interfaces/UseCases/Agency/GetAgenciesUseCase";
+import { IGetAgenciesUseCase } from "../../../Application/Interfaces/UseCases/Agency/IGetAgenciesUseCase";
 import { AppError } from "../../../Domain/Utils/customError";
-import { IUpdateAgencyKycStatusUseCase } from "../../../Application/Interfaces/UseCases/Agency/UpdateAgencyKycStatusUseCase";
+import { IUpdateAgencyKycStatusUseCase } from "../../../Application/Interfaces/UseCases/Agency/IUpdateAgencyKycStatusUseCase";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IAdminAgencyController } from "../../Interfaces/Controllers/Admin/adminAgency.controller";
-import { IUpdateAgencyStatusUseCase } from "../../../Application/Interfaces/UseCases/Agency/UpdateAgencyStatusUseCase";
+import { IUpdateAgencyStatusUseCase } from "../../../Application/Interfaces/UseCases/Agency/IUpdateAgencyStatusUseCase";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
 import { GetAgenciesDTO, updateAgencyKycStatusDTO, } from "../../../Application/DTOs/Agency/AgencyDTO";
 import { ApiResponse } from "../../Presenters/ApiResponse";
-import { IGetAgencyOverviewUseCase } from "../../../Application/Interfaces/UseCases/Agency/GetAgencyOverview.usecase";
+import { IGetAgencyOverviewUseCase } from "../../../Application/Interfaces/UseCases/Agency/IGetAgencyOverviewUseCase";
 import { parseBlockedQuery } from "../../../Domain/Utils/parseBlockedQuery";
 
 

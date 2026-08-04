@@ -1,7 +1,7 @@
 import { Agency } from "../../../Domain/Entities/Agency/Agency";
 import { AgencyKYC } from "../../../Domain/Entities/Agency/AgencyKYC";
 import { AgencyResponseDTO, AgencyWithKYCResponseDTO, KycResponseDTO, } from "../../DTOs/Agency/AgencyDTO";
-import { AgencyWithKYC_DB_Result } from "../../Interfaces/Repositories/Agency/agency.repository";
+import { AgencyWithKYC_DB_Result } from "../../Interfaces/Repositories/Agency/IAgencyRepository";
 
 export class AgencyMapper {
 

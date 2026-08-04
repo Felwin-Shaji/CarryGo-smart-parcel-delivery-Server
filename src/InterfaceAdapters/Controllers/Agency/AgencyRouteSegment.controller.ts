@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../Domain/Utils/customError";
-import { IGetRouteGroupDetailUseCase } from "../../../Application/Interfaces/UseCases/Logistics/RouteGroup/IGetRouteDetailsUsecase";
+import { IGetRouteGroupDetailUseCase } from "../../../Application/Interfaces/UseCases/Logistics/RouteGroup/IGetRouteDetailsUseCase";
 import { ICreateRouteSegmentUseCase } from "../../../Application/Interfaces/UseCases/Logistics/RouteGroup/ICreateRouteSegmentUseCase";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ROUTE_GROUP_MESSAGE, ROUTE_SEGMENT_MESSAGE } from "../../../Infrastructure/Constants/Messages/RouteGroupMessage";

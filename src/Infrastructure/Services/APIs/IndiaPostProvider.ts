@@ -1,5 +1,5 @@
 import { injectable } from "tsyringe";
-import { IPincodeLookupService } from "../../../Application/Interfaces/Services/pincodeLookupService.interface";
+import { IPincodeLookupService } from "../../../Application/Interfaces/Services/IPincodeLookupService";
 import { PincodeDetails } from "../../Types/types";
 import axios from "axios";
 import { AppError } from "../../../Domain/Utils/customError";

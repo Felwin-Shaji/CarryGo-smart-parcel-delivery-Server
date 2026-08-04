@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken"
-import type { ITokenService } from "../../Application/Interfaces/Services/token-service.interface";
+import type { ITokenService } from "../../Application/Interfaces/Services/ITokenService";
 import type { AppJwtPayload } from "../Types/types";
 dotenv.config()
 

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { injectable, inject } from "tsyringe";
-import { IGetTrackingUsecase } from "../../../Application/Interfaces/UseCases/Logistics/Tracking/IGetTrackingUsecase";
+import { IGetTrackingUsecase } from "../../../Application/Interfaces/UseCases/Logistics/Tracking/IGetTrackingUseCase";
 import { Role } from "../../../Infrastructure/Types/types";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ApiResponse } from "../../Presenters/ApiResponse";

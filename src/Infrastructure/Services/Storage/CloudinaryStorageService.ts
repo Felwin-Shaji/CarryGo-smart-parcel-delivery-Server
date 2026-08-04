@@ -1,4 +1,4 @@
-import type { IStorageService } from "../../../Application/Interfaces/Services/storage-service.interface";
+import type { IStorageService } from "../../../Application/Interfaces/Services/IStorageService";
 import { v2 as cloudinary, UploadApiErrorResponse, UploadApiResponse } from "cloudinary";
 import { AppError } from "../../../Domain/Utils/customError";
 import { STATUS } from "../../Constants/statusCodes";

@@ -1,7 +1,7 @@
 import { TravelRequest } from "../../../../Domain/Entities/User/TravelRequest";
 import { PaginationResponseDTO, ServiceableTravelerDTO } from "../../../DTOs/User/BookingDTO";
 import { PaginatedTravelRequestResponceDTO, TravelerRequestFilterDTO } from "../../../DTOs/User/TravelerDTO";
-import { GeoLocation } from "../../UseCases/User/Booking/IFindServicableAgencyUsecase";
+import { GeoLocation } from "../../UseCases/User/Booking/IFindServicableAgencyUseCase";
 
 export interface ITravelRequestRepository {
   create(travelRequest: TravelRequest): Promise<void>;

@@ -1,8 +1,8 @@
 import { inject, injectable } from "tsyringe";
-import { IHubTempRepository } from "../../Interfaces/Repositories/Hub/hubTemp.repository";
-import { IHubRepository } from "../../Interfaces/Repositories/Hub/hub.repository";
-import { IPasswordService } from "../../Interfaces/Services/password-service.interface";
-import { IMailService } from "../../Interfaces/Services/email-service.interface";
+import { IHubTempRepository } from "../../Interfaces/Repositories/Hub/IHubTempRepository";
+import { IHubRepository } from "../../Interfaces/Repositories/Hub/IHubRepository";
+import { IPasswordService } from "../../Interfaces/Services/IPasswordService";
+import { IMailService } from "../../Interfaces/Services/IEmailService";
 import { AppError } from "../../../Domain/Utils/customError";
 import { HubMapper } from "../../Mappers/Hub/HubMapper";
 import { IAddHubUseCase } from "../../Interfaces/UseCases/Hub/IAddHubUseCase";

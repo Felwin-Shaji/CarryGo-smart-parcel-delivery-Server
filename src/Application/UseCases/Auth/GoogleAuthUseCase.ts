@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IGoogleAuthService } from "../../Interfaces/Services/GoogleAuth/IGoogleAuthService";
-import { IUserRepository } from "../../Interfaces/Repositories/User/user.repository";
-import { IGenerateTokenUseCase } from "../../Interfaces/UseCases/Auth/GenerateToken.usecase";
+import { IUserRepository } from "../../Interfaces/Repositories/User/IUserRepository";
+import { IGenerateTokenUseCase } from "../../Interfaces/UseCases/Auth/IGenerateTokenUseCase";
 import { IGoogleAuthUseCase } from "../../Interfaces/UseCases/Auth/IGoogleAuthUseCase";
 import { Role } from "../../../Domain/Enums/Role";
 import { AppError } from "../../../Domain/Utils/customError";

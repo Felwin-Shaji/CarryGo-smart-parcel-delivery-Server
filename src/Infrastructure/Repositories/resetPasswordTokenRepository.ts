@@ -1,4 +1,4 @@
-import { IResetPasswordTokenRepository } from "../../Application/Interfaces/Repositories/Auth/resetPasswordToken.repository";
+import { IResetPasswordTokenRepository } from "../../Application/Interfaces/Repositories/Auth/IResetPasswordTokenRepository";
 import { IResetPasswordTokenModel } from "../../Domain/Entities/IResetPasswordTokenModel";
 import { ResetPasswordTokenModel } from "../Database/Models/resetPasswordToken";
 import { BaseRepository } from "./baseRepositories";

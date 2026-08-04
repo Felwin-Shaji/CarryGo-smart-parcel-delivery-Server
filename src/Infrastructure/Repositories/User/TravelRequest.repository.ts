@@ -1,7 +1,7 @@
 import { FilterQuery, Types } from "mongoose";
 import { PaginationResponseDTO, ServiceableTravelerDTO } from "../../../Application/DTOs/User/BookingDTO";
 import { ITravelRequestRepository } from "../../../Application/Interfaces/Repositories/User/ITravelRequestRepository";
-import { GeoLocation } from "../../../Application/Interfaces/UseCases/User/Booking/IFindServicableAgencyUsecase";
+import { GeoLocation } from "../../../Application/Interfaces/UseCases/User/Booking/IFindServicableAgencyUseCase";
 import { TravelRequest } from "../../../Domain/Entities/User/TravelRequest";
 import { AppError } from "../../../Domain/Utils/customError";
 import { USER_MESSAGES } from "../../Constants/Messages/userMessage";

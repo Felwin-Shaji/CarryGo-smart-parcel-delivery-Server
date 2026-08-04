@@ -6,14 +6,14 @@ import { IAddHubUseCase } from "../../../Application/Interfaces/UseCases/Hub/IAd
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { AddNewHubAddressDto, AddNewHubBaseDto, AddNewHubVerifyOtpDTO, ResubmitHubDTO } from "../../../Application/DTOs/Agency/AgencyDTO";
 import { IAddHubTempUseCase } from "../../../Application/Interfaces/UseCases/Hub/IAddHubTempUseCase";
-import { IAddNewHubResendOtp } from "../../../Application/Interfaces/UseCases/Hub/IAddNewHubResendOtp";
+import { IAddNewHubResendOtp } from "../../../Application/Interfaces/UseCases/Hub/IAddNewHubResendOtpUseCase";
 import { IAddNewHubVerifyOtpUseCase } from "../../../Application/Interfaces/UseCases/Hub/IAddNewHubVerifyOtpUseCase";
 import { AgencyAddHubFields } from "../../../Infrastructure/Services/Storage/multer";
 import { ICheckTempHubStatusUseCase } from "../../../Application/Interfaces/UseCases/Hub/ICheckTempHubStatusUseCase";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
 import { GetHubsDTO } from "../../../Application/DTOs/Hub/HubDTO";
-import { IGetHubsUsecase } from "../../../Application/Interfaces/UseCases/Hub/IGetHubsUsecase";
+import { IGetHubsUsecase } from "../../../Application/Interfaces/UseCases/Hub/IGetHubsUseCase";
 import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
 import { AppError } from "../../../Domain/Utils/customError";
 import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";

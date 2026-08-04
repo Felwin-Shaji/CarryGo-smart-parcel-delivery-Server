@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import type { IPasswordService } from "../../Application/Interfaces/Services/password-service.interface";
+import type { IPasswordService } from "../../Application/Interfaces/Services/IPasswordService";
 
 export class PasswordService implements IPasswordService {
     private readonly _saltRounds = 10;

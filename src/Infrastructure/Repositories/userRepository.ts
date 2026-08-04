@@ -1,6 +1,6 @@
 import { BaseRepository } from "./baseRepositories";
 import type { User } from "../../Domain/Entities/User";
-import type { IUserRepository } from "../../Application/Interfaces/Repositories/User/user.repository";
+import type { IUserRepository } from "../../Application/Interfaces/Repositories/User/IUserRepository";
 import { UserModel } from "../Database/Models/User/userModel";
 import { Address } from "../../Domain/Entities/User/Address";
 import { AppError } from "../../Domain/Utils/customError";

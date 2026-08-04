@@ -1,6 +1,6 @@
 import { AddressEntity, HubJourney, PackageDetails, PartnerEntity } from "../../../Domain/Entities/Booking/Booking";
 import { BookingStatusType, DeliveryPartnerType, PaymentGatewayType, PaymentMethodType, PaymentStatusType } from "../../../Infrastructure/Types/types";
-import { GeoLocation } from "../../Interfaces/UseCases/User/Booking/IFindServicableAgencyUsecase";
+import { GeoLocation } from "../../Interfaces/UseCases/User/Booking/IFindServicableAgencyUseCase";
 
 /**
  * Represents the response structure for user booking validate picode

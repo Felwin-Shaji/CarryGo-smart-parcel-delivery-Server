@@ -1,11 +1,11 @@
 import { inject, injectable } from "tsyringe";
-import type { IOtpRepository } from "../../Interfaces/Repositories/Auth/otp.repository";
+import type { IOtpRepository } from "../../Interfaces/Repositories/Auth/IOTPRepository";
 import { AppError } from "../../../Domain/Utils/customError";
 import type { IOtpModel } from "../../../Domain/Entities/IOtpModel";
-import { IVerifyOtpUseCase } from "../../Interfaces/UseCases/Auth/verifyOtp.interface";
+import { IVerifyOtpUseCase } from "../../Interfaces/UseCases/Auth/IVerifyOtpUseCase";
 import { OTP_MESSAGES } from "../../../Infrastructure/Constants/Messages/otpMessage";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import { IOtpService } from "../../Interfaces/Services/otp-service.interface";
+import { IOtpService } from "../../Interfaces/Services/IOTPService";
 
 @injectable()
 export class VerifyOtpUseCase implements IVerifyOtpUseCase {

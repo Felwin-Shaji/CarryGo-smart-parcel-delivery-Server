@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
-import { IHubTempRepository } from "../../Interfaces/Repositories/Hub/hubTemp.repository";
-import { IOtpService } from "../../Interfaces/Services/otp-service.interface";
+import { IHubTempRepository } from "../../Interfaces/Repositories/Hub/IHubTempRepository";
+import { IOtpService } from "../../Interfaces/Services/IOTPService";
 import { AppError } from "../../../Domain/Utils/customError";
 import { IAddNewHubVerifyOtpUseCase } from "../../Interfaces/UseCases/Hub/IAddNewHubVerifyOtpUseCase";
 import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";

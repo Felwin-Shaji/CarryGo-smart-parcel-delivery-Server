@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
-import { IGetUsersUseCase } from "../../../Application/Interfaces/UseCases/User/GetUsers.usecase";
-import { IUpdateUserStatusUseCase } from "../../../Application/Interfaces/UseCases/User/UpdateUserStatus.usecase";
+import { IGetUsersUseCase } from "../../../Application/Interfaces/UseCases/User/IGetUsersUseCase";
+import { IUpdateUserStatusUseCase } from "../../../Application/Interfaces/UseCases/User/IUpdateUserStatusUseCase";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IAdminUserController } from "../../Interfaces/Controllers/Admin/adminUser.controller";
 import { GetUserDto, updateUserKycStatusDTO } from "../../../Application/DTOs/User/UserDTO";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
 import { AppError } from "../../../Domain/Utils/customError";
-import { IUpdateUserKycStatusUseCase } from "../../../Application/Interfaces/UseCases/User/IUpdateuSERKycStatusUseCase";
+import { IUpdateUserKycStatusUseCase } from "../../../Application/Interfaces/UseCases/User/IUpdateUserKycStatusUseCase";
 import { IGetUserOverviewUseCase } from "../../../Application/Interfaces/UseCases/User/IGetUserOverviewUseCase";
 
 

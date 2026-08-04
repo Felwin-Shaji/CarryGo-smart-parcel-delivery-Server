@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
 import { IGetOrCreateChatUseCase } from "../../../Application/Interfaces/UseCases/Chat/IGetOrCreateChatUseCase";
 import { ISendMessageUseCase, SendMessageDTO } from "../../../Application/Interfaces/UseCases/Chat/ISendMessageUseCase";
-import { IGetMessagesUsecase } from "../../../Application/Interfaces/UseCases/Chat/IGetMessagesUsecase";
+import { IGetMessagesUsecase } from "../../../Application/Interfaces/UseCases/Chat/IGetMessagesUseCase";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 import { CHAT_MESSAGE } from "../../../Infrastructure/Constants/Messages/chatMessage";

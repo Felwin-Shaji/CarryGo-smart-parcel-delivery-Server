@@ -1,5 +1,5 @@
 import { BaseRepository } from "./baseRepositories";
-import type { IOtpRepository } from "../../Application/Interfaces/Repositories/Auth/otp.repository";
+import type { IOtpRepository } from "../../Application/Interfaces/Repositories/Auth/IOTPRepository";
 import { injectable } from "tsyringe";
 import type { IOtpModel } from "../../Domain/Entities/IOtpModel";
 import { OtpModel } from "../Database/Models/OtpModel";

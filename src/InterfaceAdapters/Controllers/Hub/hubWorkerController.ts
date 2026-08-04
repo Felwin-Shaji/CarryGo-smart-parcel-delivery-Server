@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 import { IHubWorkerController } from "../../Interfaces/Controllers/Hub/HubWorkerController";
 import { inject, injectable } from "tsyringe";
-import { IAddWorkerTempUseCase } from "../../../Application/Interfaces/UseCases/Worker/addWorkerTempUseCase.interface";
-import { IWorkerVerifyOtpUseCase } from "../../../Application/Interfaces/UseCases/Worker/addWorkerVerifyOtpUseCase";
+import { IAddWorkerTempUseCase } from "../../../Application/Interfaces/UseCases/Worker/IAddWorkerTempUseCase";
+import { IWorkerVerifyOtpUseCase } from "../../../Application/Interfaces/UseCases/Worker/IWorkerVerifyOtpUseCase";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { WorkerKYCFileFields } from "../../../Infrastructure/Services/Storage/multer";
-import { IUploadWorkerKycFilesUsecase } from "../../../Application/Interfaces/UseCases/Worker/uploadWorkerKycFilesUsecase";
-import { IAddWorkerUsecase } from "../../../Application/Interfaces/UseCases/Worker/AddWorkerUsecase";
+import { IUploadWorkerKycFilesUsecase } from "../../../Application/Interfaces/UseCases/Worker/IUploadWorkerKycFilesUseCase";
+import { IAddWorkerUsecase } from "../../../Application/Interfaces/UseCases/Worker/IAddWorkerUseCase";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
 import { AddWorkerTempRequestDTO } from "../../../Application/DTOs/Hub/HubDTO";

@@ -8,7 +8,7 @@ import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 import { AdminResetPasswordRequestDTO, EditAdminProfileRequestDto } from "../../../Application/DTOs/Admin/AdminProfileDTO";
 import { IEditAdminProfileUseCase } from "../../../Application/Interfaces/UseCases/Admin/IEditAdminProfileUseCase";
-import { IResetAdminPasswordUsecase } from "../../../Application/Interfaces/UseCases/Admin/IResetAdminPasswordUscase";
+import { IResetAdminPasswordUsecase } from "../../../Application/Interfaces/UseCases/Admin/IResetAdminPasswordUseCase";
 
 @injectable()
 export class AdminProfileController implements IAdminProfileController {

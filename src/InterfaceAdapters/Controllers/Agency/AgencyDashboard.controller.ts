@@ -1,4 +1,4 @@
-import { IAgencyExportSalesReportUseCase } from "../../../Application/Interfaces/UseCases/Agency/IAgencyExportSalesReportUsecase";
+import { IAgencyExportSalesReportUseCase } from "../../../Application/Interfaces/UseCases/Agency/IAgencyExportSalesReportUseCase";
 import { IAgencyGetDeliveriesChartUseCase } from "../../../Application/Interfaces/UseCases/Agency/IAgencyGetDeliveriesChartUseCase";
 import { IAgencyGetSalesChartUseCase } from "../../../Application/Interfaces/UseCases/Agency/IAgencyGetSalesChartUseCase";
 import { IAgencyGetSalesReportUseCase } from "../../../Application/Interfaces/UseCases/Agency/IAgencyGetSalesReportUseCase";

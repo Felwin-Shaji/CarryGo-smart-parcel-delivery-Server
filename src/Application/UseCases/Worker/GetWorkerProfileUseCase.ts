@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../Domain/Utils/customError";
 import { IGetWorkerProfileUseCase } from "../../Interfaces/UseCases/Worker/IGetWorkerProfileUseCase";
-import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";
+import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/IHubWorkerRepository";
 import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { WorkerProfileResponseDTO } from "../../DTOs/Worker/WorkerProfileDTO";

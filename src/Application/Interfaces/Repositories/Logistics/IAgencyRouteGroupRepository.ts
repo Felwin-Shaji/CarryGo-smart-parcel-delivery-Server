@@ -1,6 +1,6 @@
 import { ClientSession } from "mongoose";
 import { RouteGroup } from "../../../../Domain/Entities/Logistics/RouteGroup";
-import { IBaseRepository } from "../base.repository";
+import { IBaseRepository } from "../IBaseRepository";
 import { RouteGroupPaginationRequestDTO } from "../../../DTOs/Agency/AgencyRouteGroupDTO";
 
 export interface IAgencyRouteGroupRepository extends IBaseRepository<RouteGroup> {

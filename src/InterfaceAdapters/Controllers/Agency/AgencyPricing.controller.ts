@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IAgencyPricingController } from "../../Interfaces/Controllers/Agency/IAgencyPricingController";
-import { IGetAgencyPricingUsecase } from "../../../Application/Interfaces/UseCases/Pricing/IGetAgencyPricingUsecase";
+import { IGetAgencyPricingUsecase } from "../../../Application/Interfaces/UseCases/Pricing/IGetAgencyPricingUseCase";
 import { Request, Response } from "express";
 import { AppError } from "../../../Domain/Utils/customError";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";

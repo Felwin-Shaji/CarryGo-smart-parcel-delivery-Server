@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import type { ClientSession, FilterQuery, Model } from "mongoose";
-import type { IBaseRepository } from "../../Application/Interfaces/Repositories/base.repository";
+import type { IBaseRepository } from "../../Application/Interfaces/Repositories/IBaseRepository";
 
 export class BaseRepository<T> implements IBaseRepository<T> {
     

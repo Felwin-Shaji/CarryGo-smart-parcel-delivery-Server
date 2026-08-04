@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 // import { IGetShipmentsUsecase } from "@/Application/interfaces/useCase_Interfaces/Logistics/HubShipment/IGetShipmentsUsecase";
 import { inject, injectable } from "tsyringe";
-import { IGetShipmentsUsecase } from "../../../Application/Interfaces/UseCases/Logistics/HubShipment/IGetShipmentsUsecase";
-import { IGetShipmentDetailsUsecase } from "../../../Application/Interfaces/UseCases/Logistics/ShipmentParcel/IGetShipmentDetailsUsecase";
-import { IUpdateHubShipmentUsecase } from "../../../Application/Interfaces/UseCases/Logistics/HubShipment/IUpdateHubShipmentUsecase";
+import { IGetShipmentsUsecase } from "../../../Application/Interfaces/UseCases/Logistics/HubShipment/IGetShipmentsUseCase";
+import { IGetShipmentDetailsUsecase } from "../../../Application/Interfaces/UseCases/Logistics/ShipmentParcel/IGetShipmentDetailsUseCase";
+import { IUpdateHubShipmentUsecase } from "../../../Application/Interfaces/UseCases/Logistics/HubShipment/IUpdateHubShipmentUseCase";
 import { GetShipmentsDTO, UpdateHubShipmentDTO } from "../../../Application/DTOs/Logistics/ShipmentDTO";
 import { ShipmentStatus, ShipmentType } from "../../../Domain/Entities/Logistics/HubShipment";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";

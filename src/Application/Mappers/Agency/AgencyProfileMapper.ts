@@ -1,5 +1,5 @@
 import { Agency } from "../../../Domain/Entities/Agency/Agency";
-import { AgencyProfileResponseDTO } from "../../DTOs/Agency/agencyProfile.dto";
+import { AgencyProfileResponseDTO } from "../../DTOs/Agency/AgencyProfileDTO";
 
 
 export class AgencyProfileMapper {

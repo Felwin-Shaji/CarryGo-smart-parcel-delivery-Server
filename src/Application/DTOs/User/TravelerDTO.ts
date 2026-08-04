@@ -1,7 +1,7 @@
 import { TransportMode, TravelRequest } from "../../../Domain/Entities/User/TravelRequest";
 import { IDType } from "../../../Domain/Entities/Worker/WorkerKYC";
-import { AddressResponseDTO, BookingAddressDTO } from "./Booking.dto";
-import { BaseUserResponseDTO } from "./user.dto";
+import { AddressResponseDTO, BookingAddressDTO } from "./BookingDTO";
+import { BaseUserResponseDTO } from "./UserDTO";
 
 export interface SubmitTravelerKycRequestDTO {
   idType: IDType;

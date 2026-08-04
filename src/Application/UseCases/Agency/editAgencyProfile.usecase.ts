@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../Domain/Utils/customError";
-import { AgencyProfileResponseDTO, EditAgencyProfileRequestDto } from "../../DTOs/Agency/agencyProfile.dto";
+import { AgencyProfileResponseDTO, EditAgencyProfileRequestDto } from "../../DTOs/Agency/AgencyProfileDTO";
 import { AgencyProfileMapper } from "../../Mappers/Agency/AgencyProfileMapper";
 import { IAgencyRepository } from "../../Interfaces/Repositories/Agency/agency.repository";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";

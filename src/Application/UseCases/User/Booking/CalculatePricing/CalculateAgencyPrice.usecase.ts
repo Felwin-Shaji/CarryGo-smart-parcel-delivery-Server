@@ -5,7 +5,7 @@ import { AppError } from "../../../../../Domain/Utils/customError";
 import { AGENCY_MESSAGES } from "../../../../../Infrastructure/Constants/Messages/agencyMessages";
 import { PRICING_POLICY_MESSAGE } from "../../../../../Infrastructure/Constants/Messages/pricingPolicyMessage";
 import { STATUS } from "../../../../../Infrastructure/Constants/statusCodes";
-import { CalculatePriceRequestDTO, CalculatePriceResponseDTO } from "../../../../DTOs/User/Booking.dto";
+import { CalculatePriceRequestDTO, CalculatePriceResponseDTO } from "../../../../DTOs/User/BookingDTO";
 import { ICalculatePriceUsecase } from "../../../../Interfaces/UseCases/User/Booking/CalculatePricing/ICalculatePrice";
 import { IAgencyPricingRepository } from "../../../../Interfaces/Repositories/Agency/agencyPricing.repository";
 import { IPricingPolicyRepository } from "../../../../Interfaces/Repositories/Admin/IPricingPolicyRepository";

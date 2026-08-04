@@ -5,7 +5,7 @@ import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IPasswordService } from "../../Interfaces/Services/password-service.interface";
 import { IResetHubPasswordUseCase } from "../../Interfaces/UseCases/Hub/IResetHubPasswordUseCase";
 import { IHubRepository } from "../../Interfaces/Repositories/Hub/hub.repository";
-import { HubResetPasswordRequestDTO } from "../../DTOs/Hub/hubProfile.dto";
+import { HubResetPasswordRequestDTO } from "../../DTOs/Hub/HubProfileDTO";
 
 @injectable()
 export class ResetHubPasswordUseCase implements IResetHubPasswordUseCase {

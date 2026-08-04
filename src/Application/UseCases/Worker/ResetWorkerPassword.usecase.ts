@@ -5,7 +5,7 @@ import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IPasswordService } from "../../Interfaces/Services/password-service.interface";
 import { IResetWorkerPasswordUseCase } from "../../Interfaces/UseCases/Worker/IResetWorkerPasswordUseCase";
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";
-import { WorkerResetPasswordRequestDTO } from "../../DTOs/Worker/workerProfile.dto";
+import { WorkerResetPasswordRequestDTO } from "../../DTOs/Worker/WorkerProfileDTO";
 
 @injectable()
 export class ResetWorkerPasswordUseCase implements IResetWorkerPasswordUseCase {

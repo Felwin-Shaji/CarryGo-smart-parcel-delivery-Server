@@ -1,5 +1,5 @@
 import { Role } from "../../../Domain/Enums/Role";
-import { SalesChartRequestDTO, SalesChartResponseDTO } from "../../DTOs/Agency/agencyDashboard.dto";
+import { SalesChartRequestDTO, SalesChartResponseDTO } from "../../DTOs/Agency/AgencyDashboardDTO";
 import { ITransactionRepository } from "../../Interfaces/Repositories/Wallet/ITransactionRepository";
 import { IWalletRepository } from "../../Interfaces/Repositories/Wallet/IWalletRepository";
 import { IAgencyGetSalesChartUseCase } from "../../Interfaces/UseCases/Agency/IAgencyGetSalesChartUseCase";

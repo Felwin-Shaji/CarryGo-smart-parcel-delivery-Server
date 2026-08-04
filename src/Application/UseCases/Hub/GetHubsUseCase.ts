@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { GetHubsDTO, GetHubsResponseDTO } from "../../DTOs/Hub/hub.dto";
+import { GetHubsDTO, GetHubsResponseDTO } from "../../DTOs/Hub/HubDTO";
 import { IGetHubsUsecase } from "../../Interfaces/UseCases/Hub/IGetHubsUsecase";
 import { IHubRepository } from "../../Interfaces/Repositories/Hub/hub.repository";
 

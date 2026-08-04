@@ -1,4 +1,4 @@
-import { CheckServiceableAgencyDTO, ServiceableHubWithAgencyDTO } from "../../../../DTOs/User/Booking.dto";
+import { CheckServiceableAgencyDTO, ServiceableHubWithAgencyDTO } from "../../../../DTOs/User/BookingDTO";
 
 export interface GeoLocation {
   lat: number;

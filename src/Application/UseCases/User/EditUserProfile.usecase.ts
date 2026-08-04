@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IEditUserProfileUseCase } from "../../Interfaces/UseCases/User/EditUserProfile.usecase";
 import { IUserRepository } from "../../Interfaces/Repositories/User/user.repository";
-import { EditUserProfileRequestDto } from "../../DTOs/User/user.dto";
+import { EditUserProfileRequestDto } from "../../DTOs/User/UserDTO";
 import { AppError } from "../../../Domain/Utils/customError";
 import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
 

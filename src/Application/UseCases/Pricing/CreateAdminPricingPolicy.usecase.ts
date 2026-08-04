@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { AdminPricingRequestDTO } from "../../DTOs/Pricing/adminPricing.dto";
+import { AdminPricingRequestDTO } from "../../DTOs/Pricing/AdminPricingDTO";
 import { ICreateAdminPricingPolicyUseCase } from "../../Interfaces/UseCases/Pricing/ICreateAdminPricingPolicyUseCase";
 import { IPricingPolicyRepository } from "../../Interfaces/Repositories/Admin/IPricingPolicyRepository";
 import { AdminPricingPolicyMapper } from "../../Mappers/Pricing/AdminPricingPolicyMapper";

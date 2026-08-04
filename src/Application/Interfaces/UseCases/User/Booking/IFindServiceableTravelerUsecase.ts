@@ -1,4 +1,4 @@
-import { CheckServiceableTravelerDTO, PaginationResponseDTO, ServiceableTravelerDTO } from "../../../../DTOs/User/Booking.dto";
+import { CheckServiceableTravelerDTO, PaginationResponseDTO, ServiceableTravelerDTO } from "../../../../DTOs/User/BookingDTO";
 
 export interface IFindServiceableTravelerUsecase {
   execute(

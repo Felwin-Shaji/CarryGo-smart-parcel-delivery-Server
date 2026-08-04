@@ -13,7 +13,7 @@ import { IGetAgencyTrackingUsecase } from "../../../Interfaces/UseCases/Logistic
 // import { STATUS } from "@/Infrastructure/constants/statusCodes";
 // import { Role } from "@/Infrastructure/Types/types";
 import { inject, injectable } from "tsyringe";
-import { AgencyParcelTrackingDTO } from "../../../DTOs/Logistics/ParcelTracking.dto";
+import { AgencyParcelTrackingDTO } from "../../../DTOs/Logistics/ParcelTrackingDTO";
 import { IBookingRepository } from "../../../Interfaces/Repositories/User/IBookingRepository";
 import { AgencyParcelTrackingMapper } from "../../../Mappers/Logistics/AgencyParcelTrackingMapper";
 import { Role } from "../../../../Infrastructure/Types/types";

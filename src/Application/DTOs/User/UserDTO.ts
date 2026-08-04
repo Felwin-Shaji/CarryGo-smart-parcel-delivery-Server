@@ -1,6 +1,6 @@
 import { User } from "../../../Domain/Entities/User";
 import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
-import { AgencyResponseDTO } from "../Agency/agency.dto";
+import { AgencyResponseDTO } from "../Agency/AgencyDTO";
 
 
 export interface GetUsersDBResult {

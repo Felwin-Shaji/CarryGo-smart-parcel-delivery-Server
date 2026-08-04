@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { AgencyDashboardResponseDTO } from "../../DTOs/Agency/agencyDashboard.dto";
+import { AgencyDashboardResponseDTO } from "../../DTOs/Agency/AgencyDashboardDTO";
 import { IAgencyRepository } from "../../Interfaces/Repositories/Agency/agency.repository";
 import { IHubRepository } from "../../Interfaces/Repositories/Hub/hub.repository";
 import { IAgencyGetDashboardUsecase } from "../../Interfaces/UseCases/Agency/IAgencyGetDashboardUseCase";

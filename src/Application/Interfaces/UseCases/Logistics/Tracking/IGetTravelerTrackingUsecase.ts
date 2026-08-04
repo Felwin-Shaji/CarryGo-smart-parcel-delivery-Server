@@ -1,5 +1,5 @@
 import { Role } from "../../../../../Infrastructure/Types/types";
-import { TravelerParcelTrackingDTO } from "../../../../DTOs/Logistics/ParcelTracking.dto";
+import { TravelerParcelTrackingDTO } from "../../../../DTOs/Logistics/ParcelTrackingDTO";
 
 
 export interface IGetTravelerTrackingUsecase {

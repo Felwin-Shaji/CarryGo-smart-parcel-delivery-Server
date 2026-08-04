@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { User } from "../../../Domain/Entities/User";
 import type { IUserRepository } from "../../Interfaces/Repositories/User/user.repository";
-import type { UserDTO } from "../../DTOs/Auth/Auth.dto";
+import type { UserDTO } from "../../DTOs/Auth/AuthDTO";
 import type { IRegisterUserUseCase } from "../../Interfaces/UseCases/User/RegisterUser.useCase";
 
 

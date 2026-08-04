@@ -1,4 +1,4 @@
-import { OtpResponseDTO, ResendOtpDTO } from "../../../DTOs/Auth/Auth.dto";
+import { OtpResponseDTO, ResendOtpDTO } from "../../../DTOs/Auth/AuthDTO";
 
 
 export interface IResendOtpUseCase {

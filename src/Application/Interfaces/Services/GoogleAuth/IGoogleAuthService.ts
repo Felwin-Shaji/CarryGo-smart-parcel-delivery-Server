@@ -1,4 +1,4 @@
-import { GoogleUserDTO } from "../../../DTOs/Auth/Auth.dto";
+import { GoogleUserDTO } from "../../../DTOs/Auth/AuthDTO";
 
 export interface IGoogleAuthService {
     verifyGoogleToken(credential: string): Promise<GoogleUserDTO>;

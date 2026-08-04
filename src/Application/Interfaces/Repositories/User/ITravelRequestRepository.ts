@@ -1,6 +1,6 @@
 import { TravelRequest } from "../../../../Domain/Entities/User/TravelRequest";
-import { PaginationResponseDTO, ServiceableTravelerDTO } from "../../../DTOs/User/Booking.dto";
-import { PaginatedTravelRequestResponceDTO, TravelerRequestFilterDTO } from "../../../DTOs/User/traveler.dto";
+import { PaginationResponseDTO, ServiceableTravelerDTO } from "../../../DTOs/User/BookingDTO";
+import { PaginatedTravelRequestResponceDTO, TravelerRequestFilterDTO } from "../../../DTOs/User/TravelerDTO";
 import { GeoLocation } from "../../UseCases/User/Booking/IFindServicableAgencyUsecase";
 
 export interface ITravelRequestRepository {

@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { GetWorkersDTO, GetHubWorkersResponseDTO } from "../../DTOs/Worker/worker.dto";
+import { GetWorkersDTO, GetHubWorkersResponseDTO } from "../../DTOs/Worker/WorkerDTO";
 import { IGetWorkersUseCase } from "../../Interfaces/UseCases/Worker/IGetWorkersUseCase";
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";
 import { AppError } from "../../../Domain/Utils/customError";

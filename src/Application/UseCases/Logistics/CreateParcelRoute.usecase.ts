@@ -1,4 +1,4 @@
-import { CreateParcelRouteResponseDTO } from "../../DTOs/Agency/agencyParcelRoute.dto";
+import { CreateParcelRouteResponseDTO } from "../../DTOs/Agency/AgencyParcelRouteDTO";
 import { IParcelRouteLegRepository } from "../../Interfaces/Repositories/Logistics/IParcelRouteLegRepository";
 import { IParcelRouteRepository } from "../../Interfaces/Repositories/Logistics/IParcelRouteRepository";
 import { IBookingRepository } from "../../Interfaces/Repositories/User/IBookingRepository";

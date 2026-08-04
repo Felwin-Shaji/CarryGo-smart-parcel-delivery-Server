@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { SubmitTravelerKycRequestDTO } from "../../../DTOs/User/traveler.dto";
+import { SubmitTravelerKycRequestDTO } from "../../../DTOs/User/TravelerDTO";
 import { ISubmitTravelerKycUseCase } from "../../../Interfaces/UseCases/User/Traveler/ISubmitTravelerKycUseCase";
 import { IUploadWorkerKycFilesUsecase } from "../../../Interfaces/UseCases/Worker/uploadWorkerKycFilesUsecase";
 import { WorkerKYCFileFields } from "../../../../Infrastructure/Services/Storage/multer";

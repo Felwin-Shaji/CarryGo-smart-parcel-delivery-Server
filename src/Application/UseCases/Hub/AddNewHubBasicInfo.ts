@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { HubTemp } from "../../../Domain/Entities/Hub/HubTemp";
-import { AddNewHubBaseDto } from "../../DTOs/Agency/agency.dto";
+import { AddNewHubBaseDto } from "../../DTOs/Agency/AgencyDTO";
 import { IAddHubTempUseCase } from "../../Interfaces/UseCases/Hub/IAddHubTempUseCase";
 import { IHubTempRepository } from "../../Interfaces/Repositories/Hub/hubTemp.repository";
 import { IHubRepository } from "../../Interfaces/Repositories/Hub/hub.repository";

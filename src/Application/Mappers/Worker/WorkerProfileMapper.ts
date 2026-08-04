@@ -1,5 +1,5 @@
 import { HubWorker } from "../../../Domain/Entities/Worker/Worker";
-import { WorkerProfileResponseDTO } from "../../DTOs/Worker/workerProfile.dto";
+import { WorkerProfileResponseDTO } from "../../DTOs/Worker/WorkerProfileDTO";
 
 export class WorkerProfileMapper {
     static toGetWorkerProfileResponseDTO(

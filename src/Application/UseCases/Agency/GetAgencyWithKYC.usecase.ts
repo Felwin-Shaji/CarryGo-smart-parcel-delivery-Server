@@ -6,7 +6,7 @@ import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
 import logger from "../../../Infrastructure/Logger/logger";
 import { AgencyMapper } from "../../Mappers/Agency/AgencyMapper";
-import { AgencyWithKYCResponseDTO } from "../../DTOs/Agency/agency.dto";
+import { AgencyWithKYCResponseDTO } from "../../DTOs/Agency/AgencyDTO";
 
 
 @injectable()

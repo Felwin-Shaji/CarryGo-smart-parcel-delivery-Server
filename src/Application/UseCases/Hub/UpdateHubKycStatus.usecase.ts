@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IUpdateHubKycStatusUseCase } from "../../Interfaces/UseCases/Hub/IUpdateHubKycStatusUseCase";
 import { IHubRepository } from "../../Interfaces/Repositories/Hub/hub.repository";
-import { updateHubKycStatusDTO } from "../../DTOs/Hub/hub.dto";
+import { updateHubKycStatusDTO } from "../../DTOs/Hub/HubDTO";
 import { IAgencyRepository } from "../../Interfaces/Repositories/Agency/agency.repository";
 import { INotificationService } from "../../Interfaces/Services/Notification/INotificationService";
 import { INotificationSocketService } from "../../Interfaces/Services/Notification/INotificationSocketService";

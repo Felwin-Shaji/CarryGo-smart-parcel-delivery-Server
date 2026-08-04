@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../Domain/Utils/customError";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import { AgencyProfileResponseDTO } from "../../DTOs/Agency/agencyProfile.dto";
+import { AgencyProfileResponseDTO } from "../../DTOs/Agency/AgencyProfileDTO";
 import { IAgencyRepository } from "../../Interfaces/Repositories/Agency/agency.repository";
 import { IGetAgencyProfileUseCase } from "../../Interfaces/UseCases/Agency/IGetAgencyProfileUseCase";
 import { AgencyProfileMapper } from "../../Mappers/Agency/AgencyProfileMapper";

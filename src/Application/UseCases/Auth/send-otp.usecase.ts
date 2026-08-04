@@ -3,7 +3,7 @@ import type { IUserRepository } from "../../Interfaces/Repositories/User/user.re
 import type { IMailService } from "../../Interfaces/Services/email-service.interface";
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../Domain/Utils/customError";
-import type { OtpResponseDTO, SendOtpDTO } from "../../DTOs/Auth/Auth.dto";
+import type { OtpResponseDTO, SendOtpDTO } from "../../DTOs/Auth/AuthDTO";
 import { ISendOtpUseCase } from "../../Interfaces/UseCases/Auth/requestOtp.usecase";
 import { IPasswordService } from "../../Interfaces/Services/password-service.interface";
 import { IOtpService } from "../../Interfaces/Services/otp-service.interface";

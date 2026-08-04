@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { GetTravelerKycResponseDTO } from "../../../DTOs/User/user.dto";
+import { GetTravelerKycResponseDTO } from "../../../DTOs/User/UserDTO";
 import { IGetTravelerKycUseCase } from "../../../Interfaces/UseCases/User/Traveler/IGetTravelerKycUseCase";
 import { IHubWorkerKycRepository } from "../../../Interfaces/Repositories/Worker/wrokerKyc.repository";
 import { IUserRepository } from "../../../Interfaces/Repositories/User/user.repository";

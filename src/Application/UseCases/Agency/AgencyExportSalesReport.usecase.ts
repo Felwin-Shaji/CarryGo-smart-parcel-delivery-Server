@@ -1,6 +1,6 @@
 import { AppError } from "../../../Domain/Utils/customError";
 import { ExportType, ReportGenerators } from "../../../Infrastructure/Types/reportGenerator.types";
-import { ExportSalesReportDTO, ExportSalesReportResponseDTO, SalesReportRequestDTO } from "../../DTOs/Agency/agencyDashboard.dto";
+import { ExportSalesReportDTO, ExportSalesReportResponseDTO, SalesReportRequestDTO } from "../../DTOs/Agency/AgencyDashboardDTO";
 import { IAgencyExportSalesReportUseCase } from "../../Interfaces/UseCases/Agency/IAgencyExportSalesReportUsecase";
 import { IAgencyGetSalesReportUseCase } from "../../Interfaces/UseCases/Agency/IAgencyGetSalesReportUseCase";
 import { inject, injectable } from "tsyringe";

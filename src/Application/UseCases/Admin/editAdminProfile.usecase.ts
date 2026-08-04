@@ -4,7 +4,7 @@ import { AppError } from "../../../Domain/Utils/customError";
 import { IAdminRepository } from "../../Interfaces/Repositories/Admin/IAdminRepository";
 import { ADMIN_MESSAGES } from "../../../Infrastructure/Constants/Messages/adminMessages";
 import { AdminProfileMapper } from "../../Mappers/Admin/AdminProfileMapper";
-import { AdminProfileResponseDTO, EditAdminProfileRequestDto } from "../../DTOs/Admin/adminProfile.dto";
+import { AdminProfileResponseDTO, EditAdminProfileRequestDto } from "../../DTOs/Admin/AdminProfileDTO";
 import { IEditAdminProfileUseCase } from "../../Interfaces/UseCases/Admin/IEditAdminProfileUseCase";
 
 @injectable()

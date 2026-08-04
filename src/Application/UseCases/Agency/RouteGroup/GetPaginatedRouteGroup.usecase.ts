@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { RouteGroupPaginationRequestDTO, PaginatedRouteGroupResponseDTO } from "../../../DTOs/Agency/agencyRouteGroup.dto";
+import { RouteGroupPaginationRequestDTO, PaginatedRouteGroupResponseDTO } from "../../../DTOs/Agency/AgencyRouteGroupDTO";
 import { IGetPaginatedRouteGroupUseCase } from "../../../Interfaces/UseCases/Logistics/RouteGroup/IGetPaginatedRouteGroupUseCase";
 import { IAgencyRouteGroupRepository } from "../../../Interfaces/Repositories/Logistics/IAgencyRouteGroupRepository";
 

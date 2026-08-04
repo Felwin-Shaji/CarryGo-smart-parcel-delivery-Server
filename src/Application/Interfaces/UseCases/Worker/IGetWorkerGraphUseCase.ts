@@ -1,4 +1,4 @@
-import { GetWorkerGraphRequestDTO, GetWorkerGraphResponseDTO } from "../../../DTOs/Worker/worker.dto";
+import { GetWorkerGraphRequestDTO, GetWorkerGraphResponseDTO } from "../../../DTOs/Worker/WorkerDTO";
 
 export interface IGetWorkerGraphUseCase {
     execute(

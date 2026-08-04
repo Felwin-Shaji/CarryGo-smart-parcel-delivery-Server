@@ -4,7 +4,7 @@ import type { IUserRepository } from "../../Interfaces/Repositories/User/user.re
 import type { IMailService } from "../../Interfaces/Services/email-service.interface";
 import { AppError } from "../../../Domain/Utils/customError";
 import { OtpVo } from "../../../Domain/ValueObjects/OtpValueObject";
-import type { OtpResponseDTO, ResendOtpDTO } from "../../DTOs/Auth/Auth.dto";
+import type { OtpResponseDTO, ResendOtpDTO } from "../../DTOs/Auth/AuthDTO";
 import { IResendOtpUseCase } from "../../Interfaces/UseCases/Auth/resendOtp.usecase";
 import { OTP_MESSAGES } from "../../../Infrastructure/Constants/Messages/otpMessage";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";

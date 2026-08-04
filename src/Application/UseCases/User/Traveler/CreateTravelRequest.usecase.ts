@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../Domain/Utils/customError";
 import { ICreateTravelRequestUseCase } from "../../../Interfaces/UseCases/User/Traveler/ICreateTravelRequestUseCase";
 import { ITravelRequestRepository } from "../../../Interfaces/Repositories/User/ITravelRequestRepository";
-import { CreateTravelRequestDTO, TravelerRequestAddressDTO } from "../../../DTOs/User/traveler.dto";
+import { CreateTravelRequestDTO, TravelerRequestAddressDTO } from "../../../DTOs/User/TravelerDTO";
 import { TravelerMapper } from "../../../Mappers/User/travelerMapper";
 import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessage";
 import { IUserRepository } from "../../../Interfaces/Repositories/User/user.repository";

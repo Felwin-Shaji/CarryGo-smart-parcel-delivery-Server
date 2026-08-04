@@ -6,7 +6,7 @@ import { BOOKING_MESSAGE } from "../../../../Infrastructure/Constants/Messages/b
 import { AppError } from "../../../../Domain/Utils/customError";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 import { inject, injectable } from "tsyringe";
-import { AgencyParcelTrackingDTO, TravelerParcelTrackingDTO } from "../../../DTOs/Logistics/ParcelTracking.dto";
+import { AgencyParcelTrackingDTO, TravelerParcelTrackingDTO } from "../../../DTOs/Logistics/ParcelTrackingDTO";
 
 @injectable()
 export class GetTrackingUsecase implements IGetTrackingUsecase {

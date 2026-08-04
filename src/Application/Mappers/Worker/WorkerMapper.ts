@@ -1,9 +1,9 @@
 import { Types } from "mongoose";
 import { HubWorker } from "../../../Domain/Entities/Worker/Worker";
-import { GetWorkerOverviewResponseDTO, WorkerResponseDTO } from "../../DTOs/Worker/worker.dto";
+import { GetWorkerOverviewResponseDTO, WorkerResponseDTO } from "../../DTOs/Worker/WorkerDTO";
 import { IDType, IWrokerKYCVerification } from "../../../Domain/Entities/Worker/WorkerKYC";
 import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
-import { AddWorkerTempRequestDTO, AddWorkerTempResponseDTO } from "../../DTOs/Hub/hub.dto";
+import { AddWorkerTempRequestDTO, AddWorkerTempResponseDTO } from "../../DTOs/Hub/HubDTO";
 import { HubWorkersTemp } from "../../../Domain/Entities/Worker/HubWorkersTemp";
 import { AppError } from "../../../Domain/Utils/customError";
 

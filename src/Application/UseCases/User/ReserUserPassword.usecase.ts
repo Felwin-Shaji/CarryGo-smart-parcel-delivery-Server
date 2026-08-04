@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IUserReserUserPassword } from "../../Interfaces/UseCases/User/ReserUserPassword.usecase";
-import { UserResetPasswordRequestDTO } from "../../DTOs/User/user.dto";
+import { UserResetPasswordRequestDTO } from "../../DTOs/User/UserDTO";
 import { IUserRepository } from "../../Interfaces/Repositories/User/user.repository";
 import { AppError } from "../../../Domain/Utils/customError";
 import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";

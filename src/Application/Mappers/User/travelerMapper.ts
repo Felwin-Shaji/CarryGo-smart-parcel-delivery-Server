@@ -7,8 +7,8 @@ import { AppError } from "../../../Domain/Utils/customError";
 import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { BookingStatusType } from "../../../Infrastructure/Types/types";
-import { CreateTravelRequestDTO, TravelerRequestAddressDTO, TripDetailsResponseDTO, TripOrderResponseDTO } from "../../DTOs/User/traveler.dto";
-import { BaseUserResponseDTO, GetTravelerKycResponseDTO } from "../../DTOs/User/user.dto";
+import { CreateTravelRequestDTO, TravelerRequestAddressDTO, TripDetailsResponseDTO, TripOrderResponseDTO } from "../../DTOs/User/TravelerDTO";
+import { BaseUserResponseDTO, GetTravelerKycResponseDTO } from "../../DTOs/User/UserDTO";
 
 export class TravelerMapper {
 

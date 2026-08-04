@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import type { IUserRepository } from "../../Interfaces/Repositories/User/user.repository";
 import type { AuthUserDTO } from "../../../Infrastructure/Types/types";
 import { AppError } from "../../../Domain/Utils/customError";
-import type { LoginDTO } from "../../DTOs/Auth/Auth.dto";
+import type { LoginDTO } from "../../DTOs/Auth/AuthDTO";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import type { IAdminRepository } from "../../Interfaces/Repositories/Admin/IAdminRepository";
 import type { IAgencyRepository } from "../../Interfaces/Repositories/Agency/agency.repository";

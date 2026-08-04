@@ -6,7 +6,7 @@ import { IMailService } from "../../Interfaces/Services/email-service.interface"
 import { AppError } from "../../../Domain/Utils/customError";
 import { HubMapper } from "../../Mappers/Hub/HubMapper";
 import { IAddHubUseCase } from "../../Interfaces/UseCases/Hub/IAddHubUseCase";
-import { AddNewHubAddressDto } from "../../DTOs/Agency/agency.dto";
+import { AddNewHubAddressDto } from "../../DTOs/Agency/AgencyDTO";
 import { ENV } from "../../../Infrastructure/Constants/env";
 import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";

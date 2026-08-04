@@ -1,7 +1,7 @@
 import { autoInjectable, inject } from "tsyringe";
 import { IHubRepository } from "../../Interfaces/Repositories/Hub/hub.repository";
 import { IGetHubUseCase } from "../../Interfaces/UseCases/Hub/IGetHubUseCase";
-import { HubOverviewResponseDTO } from "../../DTOs/Hub/hubOverview.dto";
+import { HubOverviewResponseDTO } from "../../DTOs/Hub/HubOverviewDTO";
 import { AppError } from "../../../Domain/Utils/customError";
 import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";

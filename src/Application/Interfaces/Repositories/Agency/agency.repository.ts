@@ -1,6 +1,6 @@
 import { Agency } from "../../../../Domain/Entities/Agency/Agency";
 import { AgencyKYC } from "../../../../Domain/Entities/Agency/AgencyKYC";
-import { GetAgenciesDTO } from "../../../DTOs/Agency/agency.dto";
+import { GetAgenciesDTO } from "../../../DTOs/Agency/AgencyDTO";
 import type { IBaseRepository } from "../base.repository";
 
 export interface PaginatedData {

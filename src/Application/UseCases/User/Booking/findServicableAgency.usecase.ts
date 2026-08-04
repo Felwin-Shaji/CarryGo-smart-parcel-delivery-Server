@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { IHubRepository } from '../../../Interfaces/Repositories/Hub/hub.repository';
-import { CheckServiceableAgencyDTO, ServiceableHubWithAgencyDTO } from '../../../DTOs/User/Booking.dto';
+import { CheckServiceableAgencyDTO, ServiceableHubWithAgencyDTO } from '../../../DTOs/User/BookingDTO';
 import { IFindServicableAgencyUsecase } from '../../../Interfaces/UseCases/User/Booking/IFindServicableAgencyUsecase';
 import { IRouteComputationService } from '../../../Interfaces/Services/IRouteComputationService';
 

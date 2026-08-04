@@ -1,6 +1,6 @@
 import { ClientSession } from "mongoose";
 import { Transaction } from "../../../../Domain/Entities/Wallet/WalletTransaction";
-import { GetSettlementReportQuery, SalesChartRequestDTO, SalesChartResponseDTO, SalesReportResponseDTO } from "../../../DTOs/Agency/agencyDashboard.dto";
+import { GetSettlementReportQuery, SalesChartRequestDTO, SalesChartResponseDTO, SalesReportResponseDTO } from "../../../DTOs/Agency/AgencyDashboardDTO";
 
 export interface ITransactionRepository {
     create(transation: Transaction, session?: ClientSession): Promise<void>

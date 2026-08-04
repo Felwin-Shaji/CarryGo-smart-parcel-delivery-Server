@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { GetAdminDashboardDTO, AdminRevenueChartResponseDTO } from "../../DTOs/Admin/adminDashboard.dto";
+import { GetAdminDashboardDTO, AdminRevenueChartResponseDTO } from "../../DTOs/Admin/AdminDashboardDTO";
 import { IGetAdminRevenueChartUseCase } from "../../Interfaces/UseCases/Admin/IGetAdminRevenueChartUseCase";
 import { IAdminDashboardRepository } from "../../Interfaces/Repositories/Admin/IAdminDashboardRepository";
 

@@ -1,4 +1,4 @@
-import { GetWorkerGraphRequestDTO, GetWorkerGraphResponseDTO } from "../../DTOs/Worker/worker.dto";
+import { GetWorkerGraphRequestDTO, GetWorkerGraphResponseDTO } from "../../DTOs/Worker/WorkerDTO";
 import { IShipmentParcelRepository } from "../../Interfaces/Repositories/Logistics/IShipmentParcelRepository";
 import { IGetWorkerGraphUseCase } from "../../Interfaces/UseCases/Worker/IGetWorkerGraphUseCase";
 import { inject, injectable } from "tsyringe";

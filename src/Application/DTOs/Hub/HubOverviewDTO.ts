@@ -1,5 +1,5 @@
 import { KYCStatus } from "../../../Infrastructure/Types/types";
-import { GetHubWorkersResponseDTO  } from "../Worker/worker.dto";
+import { GetHubWorkersResponseDTO  } from "../Worker/WorkerDTO";
 
 export interface HubOverviewResponseDTO {
     id: string;

@@ -9,7 +9,7 @@ import { Role } from "../../../../Infrastructure/Types/types";
 import { BOOKING_MESSAGE } from "../../../../Infrastructure/Constants/Messages/bookingMessages";
 import { AppError } from "../../../../Domain/Utils/customError";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
-import { TravelerParcelTrackingDTO } from "../../../DTOs/Logistics/ParcelTracking.dto";
+import { TravelerParcelTrackingDTO } from "../../../DTOs/Logistics/ParcelTrackingDTO";
 @injectable()
 export class GetTravelerTrackingUsecase implements IGetTravelerTrackingUsecase {
 

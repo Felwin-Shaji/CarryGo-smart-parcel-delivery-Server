@@ -1,7 +1,7 @@
 import { AppError } from "../../../Domain/Utils/customError";
 import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import { UpdateWorkerKycStatusDTO } from "../../DTOs/Worker/worker.dto";
+import { UpdateWorkerKycStatusDTO } from "../../DTOs/Worker/WorkerDTO";
 import { IHubRepository } from "../../Interfaces/Repositories/Hub/hub.repository";
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";
 import { IHubWorkerKycRepository } from "../../Interfaces/Repositories/Worker/wrokerKyc.repository";

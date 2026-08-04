@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IAgencyGetDeliveriesChartUseCase } from "../../Interfaces/UseCases/Agency/IAgencyGetDeliveriesChartUseCase";
 import { IBookingRepository } from "../../Interfaces/Repositories/User/IBookingRepository";
-import { DeliveriesChartRequestDTO, DeliveriesChartResponseDTO } from "../../DTOs/Agency/agencyDashboard.dto";
+import { DeliveriesChartRequestDTO, DeliveriesChartResponseDTO } from "../../DTOs/Agency/AgencyDashboardDTO";
 
 @injectable()
 export class AgencyGetDeliveriesChartUseCase implements IAgencyGetDeliveriesChartUseCase {

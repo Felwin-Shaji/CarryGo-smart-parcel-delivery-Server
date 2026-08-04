@@ -5,7 +5,7 @@ import { AppError } from "../../../Domain/Utils/customError";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
 import { IGetWorkerOverviewUseCase } from "../../Interfaces/UseCases/Worker/IGetWorkerOverviewUseCase";
-import { GetWorkerOverviewResponseDTO } from "../../DTOs/Worker/worker.dto";
+import { GetWorkerOverviewResponseDTO } from "../../DTOs/Worker/WorkerDTO";
 import { WorkerMapper } from "../../Mappers/Worker/WorkerMapper";
 
 @injectable()

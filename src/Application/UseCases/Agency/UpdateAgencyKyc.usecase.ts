@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { KYCStatus } from "../../../Infrastructure/Types/types";
 import { IAgencyRepository } from "../../Interfaces/Repositories/Agency/agency.repository";
 import { IUpdateAgencyKycStatusUseCase } from "../../Interfaces/UseCases/Agency/UpdateAgencyKycStatusUseCase";
-import { updateAgencyKycStatusDTO } from "../../DTOs/Agency/agency.dto";
+import { updateAgencyKycStatusDTO } from "../../DTOs/Agency/AgencyDTO";
 import { AppError } from "../../../Domain/Utils/customError";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";

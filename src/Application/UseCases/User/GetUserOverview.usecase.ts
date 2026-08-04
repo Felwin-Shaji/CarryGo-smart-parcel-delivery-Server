@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IGetUserOverviewUseCase } from "../../Interfaces/UseCases/User/IGetUserOverviewUseCase";
 import { IUserRepository } from "../../Interfaces/Repositories/User/user.repository";
-import { GetUserOverviewResponseDTO } from "../../DTOs/User/user.dto";
+import { GetUserOverviewResponseDTO } from "../../DTOs/User/UserDTO";
 import { AppError } from "../../../Domain/Utils/customError";
 import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";

@@ -1,5 +1,5 @@
 import { HubWorker } from "../../../../Domain/Entities/Worker/Worker";
-import { GetHubWorkersResponseDTO, GetWorkersDTO } from "../../../DTOs/Worker/worker.dto";
+import { GetHubWorkersResponseDTO, GetWorkersDTO } from "../../../DTOs/Worker/WorkerDTO";
 import { IBaseRepository } from "../base.repository";
 
 

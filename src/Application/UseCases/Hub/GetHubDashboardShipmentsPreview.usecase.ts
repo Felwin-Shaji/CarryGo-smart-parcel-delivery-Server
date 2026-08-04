@@ -1,4 +1,4 @@
-import { GetHubDashboardShipmentsPreviewResponseDTO } from "../../DTOs/Hub/hubDashboar.dto";
+import { GetHubDashboardShipmentsPreviewResponseDTO } from "../../DTOs/Hub/HubDashboardDTO";
 import { IHubShipmentRepository } from "../../Interfaces/Repositories/Logistics/IHubShipmentRepository";
 import { IGetHubDashboardShipmentsPreviewUseCase } from "../../Interfaces/UseCases/Hub/IGetHubDashboardShipmentsPreviewUseCase";
 import { inject, injectable } from "tsyringe";

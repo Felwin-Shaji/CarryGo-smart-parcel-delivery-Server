@@ -1,7 +1,7 @@
 import { IGetTravelRequestsUseCase } from "../../../Interfaces/UseCases/User/Traveler/IGetTravelRequestsUseCase";
 import { ITravelRequestRepository } from "../../../Interfaces/Repositories/User/ITravelRequestRepository";
 import { inject, injectable } from "tsyringe";
-import { TravelerRequestFilterDTO } from "../../../DTOs/User/traveler.dto";
+import { TravelerRequestFilterDTO } from "../../../DTOs/User/TravelerDTO";
 
 @injectable()
 export class GetTravelRequestsUseCase implements IGetTravelRequestsUseCase {

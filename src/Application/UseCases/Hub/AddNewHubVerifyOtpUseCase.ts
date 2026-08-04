@@ -5,7 +5,7 @@ import { AppError } from "../../../Domain/Utils/customError";
 import { IAddNewHubVerifyOtpUseCase } from "../../Interfaces/UseCases/Hub/IAddNewHubVerifyOtpUseCase";
 import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import { AddNewHubVerifyOtpDTO } from "../../DTOs/Agency/agency.dto";
+import { AddNewHubVerifyOtpDTO } from "../../DTOs/Agency/AgencyDTO";
 
 @injectable()
 export class AddNewHubVerifyOtpUseCase implements IAddNewHubVerifyOtpUseCase {

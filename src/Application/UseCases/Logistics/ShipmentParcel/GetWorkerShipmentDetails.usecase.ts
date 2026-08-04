@@ -1,4 +1,4 @@
-import { WorkerShipmentDetails } from "../../../DTOs/Logistics/shipment.dto";
+import { WorkerShipmentDetails } from "../../../DTOs/Logistics/ShipmentDTO";
 import { IHubShipmentRepository } from "../../../Interfaces/Repositories/Logistics/IHubShipmentRepository";
 import { IShipmentParcelRepository } from "../../../Interfaces/Repositories/Logistics/IShipmentParcelRepository";
 import { IBookingRepository } from "../../../Interfaces/Repositories/User/IBookingRepository";

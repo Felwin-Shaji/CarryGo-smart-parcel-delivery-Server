@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../Domain/Utils/customError";
 import { IGetWorkerParcelsUseCase } from "../../Interfaces/UseCases/Worker/IGetWorkerParcelsUseCase";
 import { IShipmentParcelRepository } from "../../Interfaces/Repositories/Logistics/IShipmentParcelRepository";
-import { GetWorkerParcelsDTO, GetWorkerParcelsResponseDTO } from "../../DTOs/Worker/worker.dto";
+import { GetWorkerParcelsDTO, GetWorkerParcelsResponseDTO } from "../../DTOs/Worker/WorkerDTO";
 import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { SHIPMENT_PARCEL_MESSAGE } from "../../../Infrastructure/Constants/Messages/RouteGroupMessage";

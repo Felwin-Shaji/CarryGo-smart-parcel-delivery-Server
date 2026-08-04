@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IHubWorkerKycRepository } from "../../Interfaces/Repositories/Worker/wrokerKyc.repository";
 import { IGetWorkerKycUseCase } from "../../Interfaces/UseCases/Worker/IGetWorkerKycUseCase";
-import { GetWorkerKycResponseDTO } from "../../DTOs/Worker/worker.dto";
+import { GetWorkerKycResponseDTO } from "../../DTOs/Worker/WorkerDTO";
 
 @injectable()
 export class GetWorkerKycUseCase implements IGetWorkerKycUseCase {

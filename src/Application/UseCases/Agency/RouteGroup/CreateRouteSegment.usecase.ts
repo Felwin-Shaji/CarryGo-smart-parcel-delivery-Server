@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../Domain/Utils/customError";
 import { IAgencyRouteGroupRepository } from "../../../Interfaces/Repositories/Logistics/IAgencyRouteGroupRepository";
 import { IAgencyRouteSegmentRepository } from "../../../Interfaces/Repositories/Logistics/IAgencyRouteSegmentRepository";
-import { CreateRouteSegmentDTO } from "../../../DTOs/Agency/agencyRouteSegment.dto";
+import { CreateRouteSegmentDTO } from "../../../DTOs/Agency/AgencyRouteSegmentDTO";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 import { ICreateRouteSegmentUseCase } from "../../../Interfaces/UseCases/Logistics/RouteGroup/ICreateRouteSegmentUseCase";
 import { ROUTE_GROUP_MESSAGE, ROUTE_SEGMENT_MESSAGE } from "../../../../Infrastructure/Constants/Messages/RouteGroupMessage";

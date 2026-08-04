@@ -5,7 +5,7 @@ import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMe
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IPasswordService } from "../../Interfaces/Services/password-service.interface";
 import { IAdminRepository } from "../../Interfaces/Repositories/Admin/IAdminRepository";
-import { AdminResetPasswordRequestDTO } from "../../DTOs/Admin/adminProfile.dto";
+import { AdminResetPasswordRequestDTO } from "../../DTOs/Admin/AdminProfileDTO";
 import { IResetAdminPasswordUsecase } from "../../Interfaces/UseCases/Admin/IResetAdminPasswordUscase";
 
 @injectable()

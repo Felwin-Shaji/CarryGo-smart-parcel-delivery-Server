@@ -1,5 +1,5 @@
 import { Role } from "../../../Infrastructure/Types/types";
-import { BaseEditUserProfileRequestDto, BaseResetPasswordRequestDTO, BaseUserResponseDTO } from "../User/user.dto";
+import { BaseEditUserProfileRequestDto, BaseResetPasswordRequestDTO, BaseUserResponseDTO } from "../User/UserDTO";
 
 export interface HubProfileResponseDTO extends BaseUserResponseDTO {
     role:Role

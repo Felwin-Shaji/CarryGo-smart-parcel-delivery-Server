@@ -1,5 +1,5 @@
 import { Role } from "../../../Domain/Enums/Role";
-import { GetSettlementReportQuery, SalesReportRequestDTO, SalesReportResponseDTO } from "../../DTOs/Agency/agencyDashboard.dto";
+import { GetSettlementReportQuery, SalesReportRequestDTO, SalesReportResponseDTO } from "../../DTOs/Agency/AgencyDashboardDTO";
 import { ITransactionRepository } from "../../Interfaces/Repositories/Wallet/ITransactionRepository";
 import { IWalletRepository } from "../../Interfaces/Repositories/Wallet/IWalletRepository";
 import { IAgencyGetSalesReportUseCase } from "../../Interfaces/UseCases/Agency/IAgencyGetSalesReportUseCase";

@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { ICreateAdminTravelerPricingUsecase } from "../../Interfaces/UseCases/Pricing/ICreateAdminTravelerPricingUsecase";
 import { IPricingPolicyRepository } from "../../Interfaces/Repositories/Admin/IPricingPolicyRepository";
 import { BasePricingPolicy } from "../../../Domain/Entities/Admin/BasePricingPolicy";
-import { AdminTravelerPricingRequestDTO } from "../../DTOs/Pricing/adminPricing.dto";
+import { AdminTravelerPricingRequestDTO } from "../../DTOs/Pricing/AdminPricingDTO";
 import { DeliveryPartner } from "../../../Domain/Enums/DeliveryPartnerType";
 import { AdminPricingPolicyMapper } from "../../Mappers/Pricing/AdminPricingPolicyMapper";
 

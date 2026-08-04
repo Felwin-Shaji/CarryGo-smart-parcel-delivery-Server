@@ -1,4 +1,4 @@
-import { UpdateHubShipmentDTO } from "../../../../DTOs/Logistics/shipment.dto";
+import { UpdateHubShipmentDTO } from "../../../../DTOs/Logistics/ShipmentDTO";
 
 export interface IUpdateHubShipmentUsecase {
     execute(shipmentId: string, dto: UpdateHubShipmentDTO): Promise<void>;

@@ -1,4 +1,4 @@
-import { UpdateWorkerKycStatusDTO } from "../../../DTOs/Worker/worker.dto";
+import { UpdateWorkerKycStatusDTO } from "../../../DTOs/Worker/WorkerDTO";
 
 export interface IUpdateWorkerKycStatusUseCase {
     execute(workerId: string, dto: UpdateWorkerKycStatusDTO): Promise<void>;

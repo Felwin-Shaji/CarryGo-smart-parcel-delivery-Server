@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import type { IRegisterAgencyUseCase } from "../../Interfaces/UseCases/Agency/Agencyregisrtation.usecase";
 import type { IAgencyRepository } from "../../Interfaces/Repositories/Agency/agency.repository";
 import { Agency } from "../../../Domain/Entities/Agency/Agency";
-import { RegisterAgencyDTO, RegisterAgencyResponseDTO } from "../../DTOs/Agency/agency.dto";
+import { RegisterAgencyDTO, RegisterAgencyResponseDTO } from "../../DTOs/Agency/AgencyDTO";
 
 
 

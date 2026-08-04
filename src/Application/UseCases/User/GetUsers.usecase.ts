@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IUserRepository } from "../../Interfaces/Repositories/User/user.repository";
 import { IGetUsersUseCase } from "../../Interfaces/UseCases/User/GetUsers.usecase";
-import { GetUserDto, GetUserResponseDto } from "../../DTOs/User/user.dto";
+import { GetUserDto, GetUserResponseDto } from "../../DTOs/User/UserDTO";
 import { UserMapper } from "../../Mappers/User/userMapper";
 
 

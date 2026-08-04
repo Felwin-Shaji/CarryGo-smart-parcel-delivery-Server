@@ -1,5 +1,5 @@
 import { ClientSession } from "mongoose";
-import { GetShipmentsDTO, GetWorkerShipmentDTO } from "../../../DTOs/Logistics/shipment.dto";
+import { GetShipmentsDTO, GetWorkerShipmentDTO } from "../../../DTOs/Logistics/ShipmentDTO";
 import { IBaseRepository } from "../base.repository";
 import { HubShipment, ShipmentType } from "../../../../Domain/Entities/Logistics/HubShipment";
 

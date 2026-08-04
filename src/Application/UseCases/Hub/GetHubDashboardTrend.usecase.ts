@@ -1,4 +1,4 @@
-import { GetHubDashboardTrendRequestDTO, GetHubDashboardTrendResponseDTO } from "../../DTOs/Hub/hubDashboar.dto";
+import { GetHubDashboardTrendRequestDTO, GetHubDashboardTrendResponseDTO } from "../../DTOs/Hub/HubDashboardDTO";
 import { IHubShipmentRepository } from "../../Interfaces/Repositories/Logistics/IHubShipmentRepository";
 import { IGetHubDashboardTrendUseCase } from "../../Interfaces/UseCases/Hub/IGetHubDashboardTrendUseCase";
 import { inject, injectable } from "tsyringe";

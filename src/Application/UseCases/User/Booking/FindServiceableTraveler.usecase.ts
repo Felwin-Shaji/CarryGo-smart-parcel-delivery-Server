@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IFindServiceableTravelerUsecase } from "../../../Interfaces/UseCases/User/Booking/IFindServiceableTravelerUsecase";
 import { ITravelRequestRepository } from "../../../Interfaces/Repositories/User/ITravelRequestRepository";
-import { CheckServiceableTravelerDTO, PaginationResponseDTO, ServiceableTravelerDTO } from "../../../DTOs/User/Booking.dto";
+import { CheckServiceableTravelerDTO, PaginationResponseDTO, ServiceableTravelerDTO } from "../../../DTOs/User/BookingDTO";
 
 @injectable()
 export class FindServiceableTravelerUsecase implements IFindServiceableTravelerUsecase {

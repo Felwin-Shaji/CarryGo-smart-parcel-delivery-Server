@@ -5,7 +5,7 @@ import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IPasswordService } from "../../Interfaces/Services/password-service.interface";
 import { IResetAgencyPasswordUseCase } from "../../Interfaces/UseCases/Agency/IResetAgencyPasswordUseCase";
 import { IAgencyRepository } from "../../Interfaces/Repositories/Agency/agency.repository";
-import { AgencyResetPasswordRequestDTO } from "../../DTOs/Agency/agencyProfile.dto";
+import { AgencyResetPasswordRequestDTO } from "../../DTOs/Agency/AgencyProfileDTO";
 
 @injectable()
 export class ResetAgencyPasswordUseCase implements IResetAgencyPasswordUseCase {

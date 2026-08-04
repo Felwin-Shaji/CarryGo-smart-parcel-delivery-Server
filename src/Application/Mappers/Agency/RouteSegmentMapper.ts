@@ -3,7 +3,7 @@ import { RouteSegment } from "../../../Domain/Entities/Logistics/RouteSegment";
 import { AppError } from "../../../Domain/Utils/customError";
 import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
 import { ROUTE_SEGMENT_MESSAGE } from "../../../Infrastructure/Constants/Messages/RouteGroupMessage";
-import { CreateRouteSegmentDTO, RouteGroupDetailDTO, RouteSegmentDTO } from "../../DTOs/Agency/agencyRouteSegment.dto";
+import { CreateRouteSegmentDTO, RouteGroupDetailDTO, RouteSegmentDTO } from "../../DTOs/Agency/AgencyRouteSegmentDTO";
 
 
 export class RouteSegmentMapper {

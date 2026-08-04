@@ -1,4 +1,4 @@
-import { GetHubDashboardSummaryResponseDTO } from "../../DTOs/Hub/hubDashboar.dto";
+import { GetHubDashboardSummaryResponseDTO } from "../../DTOs/Hub/HubDashboardDTO";
 import { IHubShipmentRepository } from "../../Interfaces/Repositories/Logistics/IHubShipmentRepository";
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";
 import { IGetHubDashboardSummaryUseCase } from "../../Interfaces/UseCases/Hub/IGetHubDashboardSummaryUseCase";

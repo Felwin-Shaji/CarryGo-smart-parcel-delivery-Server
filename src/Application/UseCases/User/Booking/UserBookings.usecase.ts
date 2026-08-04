@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { BookingFilterDTO, BookingListResponseDTO } from "../../../DTOs/User/Booking.dto";
+import { BookingFilterDTO, BookingListResponseDTO } from "../../../DTOs/User/BookingDTO";
 import { IUserBookingsUsecase } from "../../../Interfaces/UseCases/User/Booking/IUserBookingsUsecase";
 import { IBookingRepository } from "../../../Interfaces/Repositories/User/IBookingRepository";
 import { BOOKING_MESSAGE } from "../../../../Infrastructure/Constants/Messages/bookingMessages";

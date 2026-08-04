@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../Domain/Utils/customError";
 import { IEditHubProfileUseCase } from "../../Interfaces/UseCases/Hub/IEditHubProfileUseCase";
 import { IHubRepository } from "../../Interfaces/Repositories/Hub/hub.repository";
-import { EditHubProfileRequestDto, HubProfileResponseDTO } from "../../DTOs/Hub/hubProfile.dto";
+import { EditHubProfileRequestDto, HubProfileResponseDTO } from "../../DTOs/Hub/HubProfileDTO";
 import { HubProfileMapper } from "../../Mappers/Hub/HubProfileMapper";
 import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
 

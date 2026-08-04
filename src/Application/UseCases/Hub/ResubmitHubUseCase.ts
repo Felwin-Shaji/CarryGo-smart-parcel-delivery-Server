@@ -10,7 +10,7 @@ import { AppError } from "../../../Domain/Utils/customError";
 import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { HubMapper } from "../../Mappers/Hub/HubMapper";
-import { ResubmitHubDTO } from "../../DTOs/Agency/agency.dto";
+import { ResubmitHubDTO } from "../../DTOs/Agency/AgencyDTO";
 
 @injectable()
 export class ResubmitHubUseCase implements IResubmitHubUseCase {

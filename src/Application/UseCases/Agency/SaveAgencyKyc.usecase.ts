@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import type { IAgencyKYCRepository } from "../../Interfaces/Repositories/Agency/AgencyKYC";
 import type { ISaveAgencyKycUseCase } from "../../Interfaces/UseCases/Agency/SaveAgencyKycUseCase";
-import { AgencyKYC_DTO, UploadedKycFiles } from "../../DTOs/Agency/agency.dto";
+import { AgencyKYC_DTO, UploadedKycFiles } from "../../DTOs/Agency/AgencyDTO";
 import { AgencyKYCMapper } from "../../Mappers/Agency/AgencyKYCMapper";
 import { AgencyKYC } from "../../../Domain/Entities/Agency/AgencyKYC";
 import { IAdminRepository } from "../../Interfaces/Repositories/Admin/IAdminRepository";

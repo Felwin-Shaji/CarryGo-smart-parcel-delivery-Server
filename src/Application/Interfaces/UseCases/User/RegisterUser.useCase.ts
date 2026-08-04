@@ -1,5 +1,5 @@
 import type { User } from "../../../../Domain/Entities/User.js";
-import type { UserDTO } from "../../../DTOs/Auth/Auth.dto.js";
+import type { UserDTO } from "../../../DTOs/Auth/AuthDTO.js";
 
 
 

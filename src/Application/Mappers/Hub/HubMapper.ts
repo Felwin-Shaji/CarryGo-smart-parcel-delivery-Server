@@ -1,8 +1,8 @@
 import { Types } from "mongoose";
 import { Hub } from "../../../Domain/Entities/Hub/Hub";
 import { HubTemp } from "../../../Domain/Entities/Hub/HubTemp";
-import { AddNewHubBaseDto, agencyAddHubResponseDTO, ResubmitHubDTO } from "../../DTOs/Agency/agency.dto";
-import { HubOverviewResponseDTO } from "../../DTOs/Hub/hubOverview.dto";
+import { AddNewHubBaseDto, agencyAddHubResponseDTO, ResubmitHubDTO } from "../../DTOs/Agency/AgencyDTO";
+import { HubOverviewResponseDTO } from "../../DTOs/Hub/HubOverviewDTO";
 
 export class HubTempMapper {
     static toHubTemp(dto: AddNewHubBaseDto, hashOtp: string): HubTemp {

@@ -4,7 +4,7 @@ import {
     ExportAdminBookingsReportDTO,
     ExportAdminBookingsReportResponseDTO,
     AdminBookingsReportDTO,
-} from "../../DTOs/Admin/adminDashboard.dto";
+} from "../../DTOs/Admin/AdminDashboardDTO";
 import { IGetAdminBookingsReportUseCase } from "../../Interfaces/UseCases/Admin/IGetAdminBookingsReportUseCase";
 import { IExportAdminBookingsReportUseCase } from "../../Interfaces/UseCases/Admin/IExportAdminBookingsReportUseCase";
 import { ADMIN_MESSAGES } from "../../../Infrastructure/Constants/Messages/adminMessages";

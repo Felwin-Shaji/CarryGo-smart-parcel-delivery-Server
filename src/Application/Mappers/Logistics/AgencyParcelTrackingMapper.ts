@@ -5,7 +5,7 @@ import { HubShipment } from "../../../Domain/Entities/Logistics/HubShipment";
 import { Hub } from "../../../Domain/Entities/Hub/Hub";
 import { RouteSegment } from "../../../Domain/Entities/Logistics/RouteSegment";
 import { AppError } from "../../../Domain/Utils/customError";
-import { AgencyParcelTrackingDTO, HubDTO } from "../../DTOs/Logistics/ParcelTracking.dto";
+import { AgencyParcelTrackingDTO, HubDTO } from "../../DTOs/Logistics/ParcelTrackingDTO";
 
 export class AgencyParcelTrackingMapper {
 

@@ -8,7 +8,7 @@ import { AppError } from "../../../Domain/Utils/customError";
 import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ENV } from "../../../Infrastructure/Constants/env";
-import { AddWorkerTempRequestDTO, AddWorkerTempResponseDTO } from "../../DTOs/Hub/hub.dto";
+import { AddWorkerTempRequestDTO, AddWorkerTempResponseDTO } from "../../DTOs/Hub/HubDTO";
 import { WorkerMapper } from "../../Mappers/Worker/WorkerMapper";
 
 @injectable()

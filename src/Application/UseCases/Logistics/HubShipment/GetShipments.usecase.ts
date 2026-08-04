@@ -1,4 +1,4 @@
-import { GetShipmentsDTO, GetShipmentsResponseDTO } from "../../../DTOs/Logistics/shipment.dto";
+import { GetShipmentsDTO, GetShipmentsResponseDTO } from "../../../DTOs/Logistics/ShipmentDTO";
 import { IHubShipmentRepository } from "../../../Interfaces/Repositories/Logistics/IHubShipmentRepository";
 import { IGetShipmentsUsecase } from "../../../Interfaces/UseCases/Logistics/HubShipment/IGetShipmentsUsecase";
 import { HubShipmentMapper } from "../../../Mappers/Logistics/HubShipmentMapper";

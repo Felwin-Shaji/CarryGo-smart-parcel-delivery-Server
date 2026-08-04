@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { getWalletOverviewRequestDTO, GetWalletOverviewResponseDTO } from "../../DTOs/Wallet/Wallet.dto";
+import { getWalletOverviewRequestDTO, GetWalletOverviewResponseDTO } from "../../DTOs/Wallet/WalletDTO";
 import { IGetWalletOverviewUseCase } from "../../Interfaces/UseCases/Wallet/IGetWalletOverviewUseCase";
 import { IWalletRepository } from "../../Interfaces/Repositories/Wallet/IWalletRepository";
 import { ITransactionRepository } from "../../Interfaces/Repositories/Wallet/ITransactionRepository";

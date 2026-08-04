@@ -3,7 +3,7 @@ import { IGetAdminProfileUseCase } from "../../Interfaces/UseCases/Admin/IGetAdm
 import { IAdminRepository } from "../../Interfaces/Repositories/Admin/IAdminRepository";
 import { AppError } from "../../../Domain/Utils/customError";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import { AdminProfileResponseDTO } from "../../DTOs/Admin/adminProfile.dto";
+import { AdminProfileResponseDTO } from "../../DTOs/Admin/AdminProfileDTO";
 import { AdminProfileMapper } from "../../Mappers/Admin/AdminProfileMapper";
 import { ADMIN_MESSAGES } from "../../../Infrastructure/Constants/Messages/adminMessages";
 

@@ -1,5 +1,5 @@
 import { Role } from "../../../Infrastructure/Types/types";
-import { BaseEditUserProfileRequestDto, BaseResetPasswordRequestDTO, BaseUserResponseDTO } from "../User/user.dto";
+import { BaseEditUserProfileRequestDto, BaseResetPasswordRequestDTO, BaseUserResponseDTO } from "../User/UserDTO";
 
 /**
  * Represents the response structure for a admin Profile.

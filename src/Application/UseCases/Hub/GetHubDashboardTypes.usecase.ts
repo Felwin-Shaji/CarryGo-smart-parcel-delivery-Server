@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { GetHubDashboardTypesResponseDTO } from "../../DTOs/Hub/hubDashboar.dto";
+import { GetHubDashboardTypesResponseDTO } from "../../DTOs/Hub/HubDashboardDTO";
 import { IHubShipmentRepository } from "../../Interfaces/Repositories/Logistics/IHubShipmentRepository";
 import { IGetHubDashboardTypesUseCase } from "../../Interfaces/UseCases/Hub/IGetHubDashboardTypesUseCase";
 

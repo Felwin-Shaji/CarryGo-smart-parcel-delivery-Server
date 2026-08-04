@@ -1,6 +1,6 @@
 import { User } from "../../../../Domain/Entities/User";
 import { Address } from "../../../../Domain/Entities/User/Address";
-import { GetUsersDBResult } from "../../../DTOs/User/user.dto";
+import { GetUsersDBResult } from "../../../DTOs/User/UserDTO";
 import type { IBaseRepository } from "../base.repository";
 
 

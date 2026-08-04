@@ -1,9 +1,9 @@
 import { inject, injectable } from "tsyringe";
-import { GetAgencyOverviewResponseDTO } from "../../DTOs/Agency/agency.dto";
+import { GetAgencyOverviewResponseDTO } from "../../DTOs/Agency/AgencyDTO";
 import { IGetAgencyOverviewUseCase } from "../../Interfaces/UseCases/Agency/GetAgencyOverview.usecase";
 import { IGetAgencyWithKYCUseCase } from "../../Interfaces/UseCases/Agency/GetAgencyWithKYCUseCase";
 import { IGetHubsUsecase } from "../../Interfaces/UseCases/Hub/IGetHubsUsecase";
-import { GetHubsDTO } from "../../DTOs/Hub/hub.dto";
+import { GetHubsDTO } from "../../DTOs/Hub/HubDTO";
 import { AppError } from "../../../Domain/Utils/customError";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
 

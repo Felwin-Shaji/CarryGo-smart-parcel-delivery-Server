@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../Domain/Utils/customError";
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";
 import { IEditWorkerProfileUseCase } from "../../Interfaces/UseCases/Worker/IEditWorkerProfileUseCase";
-import { EditWorkerProfileRequestDto, WorkerProfileResponseDTO } from "../../DTOs/Worker/workerProfile.dto";
+import { EditWorkerProfileRequestDto, WorkerProfileResponseDTO } from "../../DTOs/Worker/WorkerProfileDTO";
 import { WorkerProfileMapper } from "../../Mappers/Worker/WorkerProfileMapper";
 import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
 

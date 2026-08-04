@@ -1,4 +1,4 @@
-import {  AddNewHubAddressDto, agencyAddHubResponseDTO } from "../../../DTOs/Agency/agency.dto";
+import {  AddNewHubAddressDto, agencyAddHubResponseDTO } from "../../../DTOs/Agency/AgencyDTO";
 
 export interface IAddHubUseCase {
     execute(

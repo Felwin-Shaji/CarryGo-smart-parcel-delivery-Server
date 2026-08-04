@@ -5,7 +5,7 @@ import { UserProfileMapper } from "../../Mappers/User/userProfileMapper";
 import { AppError } from "../../../Domain/Utils/customError";
 import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import { UserProfileResponseDTO } from "../../DTOs/User/user.dto";
+import { UserProfileResponseDTO } from "../../DTOs/User/UserDTO";
 
 @injectable()
 export class GetUserProfileUseCase implements IGetUserProfileUseCase {

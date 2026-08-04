@@ -1,4 +1,4 @@
-import { GetAgenciesDTO, GetAgenciesResponseDTO } from "../../../DTOs/Agency/agency.dto";
+import { GetAgenciesDTO, GetAgenciesResponseDTO } from "../../../DTOs/Agency/AgencyDTO";
 
 
 export interface IGetAgenciesUseCase {

@@ -1,6 +1,6 @@
 // Application/interfaces/useCase_Interfaces/Agency/RouteGroup/IGetPaginatedRouteGroupUseCase.ts
 
-import { PaginatedRouteGroupResponseDTO, RouteGroupPaginationRequestDTO } from "../../../../DTOs/Agency/agencyRouteGroup.dto";
+import { PaginatedRouteGroupResponseDTO, RouteGroupPaginationRequestDTO } from "../../../../DTOs/Agency/AgencyRouteGroupDTO";
 
 export interface IGetPaginatedRouteGroupUseCase {
     execute(

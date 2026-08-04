@@ -1,4 +1,4 @@
-import { UpdateHubShipmentDTO } from "../../../DTOs/Logistics/shipment.dto";
+import { UpdateHubShipmentDTO } from "../../../DTOs/Logistics/ShipmentDTO";
 import { IHubShipmentRepository } from "../../../Interfaces/Repositories/Logistics/IHubShipmentRepository";
 import { IUpdateHubShipmentUsecase } from "../../../Interfaces/UseCases/Logistics/HubShipment/IUpdateHubShipmentUsecase";
 import { inject, injectable } from "tsyringe";

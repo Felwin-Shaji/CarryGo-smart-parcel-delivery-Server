@@ -1,4 +1,4 @@
-import { RouteGroupDetailDTO } from "../../../DTOs/Agency/agencyRouteSegment.dto";
+import { RouteGroupDetailDTO } from "../../../DTOs/Agency/AgencyRouteSegmentDTO";
 import { IAgencyRouteGroupRepository } from "../../../Interfaces/Repositories/Logistics/IAgencyRouteGroupRepository";
 import { IAgencyRouteSegmentRepository } from "../../../Interfaces/Repositories/Logistics/IAgencyRouteSegmentRepository";
 import { IHubRepository } from "../../../Interfaces/Repositories/Hub/hub.repository";

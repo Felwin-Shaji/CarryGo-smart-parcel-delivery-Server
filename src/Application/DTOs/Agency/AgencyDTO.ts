@@ -1,6 +1,6 @@
 import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
-import { UserDTO } from "../Auth/Auth.dto";
-import { GetHubsResponseDTO } from "../Hub/hub.dto";
+import { UserDTO } from "../Auth/AuthDTO";
+import { GetHubsResponseDTO } from "../Hub/HubDTO";
 
 
 /**

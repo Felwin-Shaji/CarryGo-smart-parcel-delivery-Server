@@ -1,5 +1,5 @@
 import { Admin } from "../../../Domain/Entities/Admin";
-import { AdminProfileResponseDTO } from "../../DTOs/Admin/adminProfile.dto";
+import { AdminProfileResponseDTO } from "../../DTOs/Admin/AdminProfileDTO";
 
 
 export class AdminProfileMapper {

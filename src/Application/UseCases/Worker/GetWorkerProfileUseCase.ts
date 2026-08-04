@@ -4,7 +4,7 @@ import { IGetWorkerProfileUseCase } from "../../Interfaces/UseCases/Worker/IGetW
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";
 import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import { WorkerProfileResponseDTO } from "../../DTOs/Worker/workerProfile.dto";
+import { WorkerProfileResponseDTO } from "../../DTOs/Worker/WorkerProfileDTO";
 import { WorkerProfileMapper } from "../../Mappers/Worker/WorkerProfileMapper";
 
 @injectable()

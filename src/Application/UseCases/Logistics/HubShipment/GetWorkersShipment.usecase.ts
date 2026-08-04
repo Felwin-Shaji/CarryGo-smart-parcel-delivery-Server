@@ -1,4 +1,4 @@
-import { GetWorkerShipmentDTO } from "../../../DTOs/Logistics/shipment.dto";
+import { GetWorkerShipmentDTO } from "../../../DTOs/Logistics/ShipmentDTO";
 import {   HubShipmentPaginatedData, IHubShipmentRepository } from "../../../Interfaces/Repositories/Logistics/IHubShipmentRepository";
 import { IGetWorkersShipmentUsecase } from "../../../Interfaces/UseCases/Logistics/HubShipment/IGetWorkersShipmentUsecase";
 import { inject, injectable } from "tsyringe";

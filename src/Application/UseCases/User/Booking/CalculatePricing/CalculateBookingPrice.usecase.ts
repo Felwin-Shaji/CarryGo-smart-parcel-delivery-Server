@@ -3,7 +3,7 @@ import { ICalculateBookingPriceUsecase } from "../../../../Interfaces/UseCases/U
 import { IDistanceService } from "../../../../Interfaces/Services/IDistanceService";
 import { IPricingPolicyRepository } from "../../../../Interfaces/Repositories/Admin/IPricingPolicyRepository";
 import { IUserRepository } from "../../../../Interfaces/Repositories/User/user.repository";
-import { CalculatePriceRequestDTO, CalculatePriceResponseDTO } from "../../../../DTOs/User/Booking.dto";
+import { CalculatePriceRequestDTO, CalculatePriceResponseDTO } from "../../../../DTOs/User/BookingDTO";
 import { AppError } from "../../../../../Domain/Utils/customError";
 import { USER_MESSAGES } from "../../../../../Infrastructure/Constants/Messages/userMessage";
 import { STATUS } from "../../../../../Infrastructure/Constants/statusCodes";

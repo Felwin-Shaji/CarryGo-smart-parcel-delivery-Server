@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IAddUserAddressUseCase } from "../../../Interfaces/UseCases/User/Address/IAddUserAddressUseCase";
 import { IUserRepository } from "../../../Interfaces/Repositories/User/user.repository";
-import { addUserAddressRequestDTO } from "../../../DTOs/User/address.dto";
+import { addUserAddressRequestDTO } from "../../../DTOs/User/AddressDTO";
 import { AddressMapper } from "../../../Mappers/User/addressMapper";
 
 @injectable()

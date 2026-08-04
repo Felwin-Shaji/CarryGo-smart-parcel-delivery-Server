@@ -1,4 +1,4 @@
-import { GetWorkerDashboardResponseDTO } from "../../DTOs/Worker/worker.dto";
+import { GetWorkerDashboardResponseDTO } from "../../DTOs/Worker/WorkerDTO";
 import { IHubShipmentRepository } from "../../Interfaces/Repositories/Logistics/IHubShipmentRepository";
 import { IShipmentParcelRepository } from "../../Interfaces/Repositories/Logistics/IShipmentParcelRepository";
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";

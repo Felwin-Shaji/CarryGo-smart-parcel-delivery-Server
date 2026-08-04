@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IUpsertAgencyPricingUseCase } from "../../Interfaces/UseCases/Pricing/IUpsertAgencyPricingUseCase";
-import { AgencyPricingResponseDTO, UpdateAgencyPricingDTO } from "../../DTOs/Pricing/AgencyPricing.dto";
+import { AgencyPricingResponseDTO, UpdateAgencyPricingDTO } from "../../DTOs/Pricing/AgencyPricingDTO";
 import { IPricingPolicyRepository } from "../../Interfaces/Repositories/Admin/IPricingPolicyRepository";
 import { IAgencyPricingRepository } from "../../Interfaces/Repositories/Agency/agencyPricing.repository";
 import { AppError } from "../../../Domain/Utils/customError";

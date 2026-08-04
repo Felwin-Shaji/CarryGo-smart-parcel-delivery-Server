@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { AgencyResubmitKycDTO } from "../../DTOs/Agency/agency.dto";
+import { AgencyResubmitKycDTO } from "../../DTOs/Agency/AgencyDTO";
 import { IAgencyKYCRepository } from "../../Interfaces/Repositories/Agency/AgencyKYC";
 import { AgencyKYCMapper } from "../../Mappers/Agency/AgencyKYCMapper";
 import { IRsubmitAgencyKycUseCase } from "../../Interfaces/UseCases/Agency/ResubmitAgencyKycUseCase";

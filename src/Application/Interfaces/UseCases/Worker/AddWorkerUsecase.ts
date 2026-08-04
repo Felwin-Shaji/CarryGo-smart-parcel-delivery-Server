@@ -1,5 +1,5 @@
 import { IDType } from "../../../../Domain/Entities/Worker/WorkerKYC";
-import { WorkerResponseDTO } from "../../../DTOs/Worker/worker.dto";
+import { WorkerResponseDTO } from "../../../DTOs/Worker/WorkerDTO";
 import { UploadedWorkerKycFiles } from "./uploadWorkerKycFilesUsecase";
 
 export interface IAddWorkerUsecase {

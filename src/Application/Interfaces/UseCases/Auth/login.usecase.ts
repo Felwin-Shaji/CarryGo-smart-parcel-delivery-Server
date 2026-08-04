@@ -1,5 +1,5 @@
 import { AuthUserDTO } from "../../../../Infrastructure/Types/types";
-import { LoginDTO } from "../../../DTOs/Auth/Auth.dto";
+import { LoginDTO } from "../../../DTOs/Auth/AuthDTO";
 
 export interface ILoginUsecase {
   execute(loginData:LoginDTO): Promise<AuthUserDTO>;

@@ -3,7 +3,7 @@ import { IHubWorkerKycRepository } from "../../Interfaces/Repositories/Worker/wr
 import { AppError } from "../../../Domain/Utils/customError";
 import { IUploadWorkerKycFilesUsecase } from "../../Interfaces/UseCases/Worker/uploadWorkerKycFilesUsecase";
 import { IReSubmitWorkerKycUseCase } from "../../Interfaces/UseCases/Worker/IReSubmitWorkerKycUseCase";
-import { ReSubmitWorkerKycPayloadDTO } from "../../DTOs/Worker/worker.dto";
+import { ReSubmitWorkerKycPayloadDTO } from "../../DTOs/Worker/WorkerDTO";
 import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";

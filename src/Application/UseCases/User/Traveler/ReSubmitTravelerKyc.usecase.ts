@@ -3,7 +3,7 @@ import { IReSubmitTravelerKycUseCase } from "../../../Interfaces/UseCases/User/T
 import { IUploadWorkerKycFilesUsecase } from "../../../Interfaces/UseCases/Worker/uploadWorkerKycFilesUsecase";
 import { IHubWorkerKycRepository } from "../../../Interfaces/Repositories/Worker/wrokerKyc.repository";
 import { IUserRepository } from "../../../Interfaces/Repositories/User/user.repository";
-import { SubmitTravelerKycRequestDTO } from "../../../DTOs/User/traveler.dto";
+import { SubmitTravelerKycRequestDTO } from "../../../DTOs/User/TravelerDTO";
 import { WorkerKYCFileFields } from "../../../../Infrastructure/Services/Storage/multer";
 import { AppError } from "../../../../Domain/Utils/customError";
 import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessage";

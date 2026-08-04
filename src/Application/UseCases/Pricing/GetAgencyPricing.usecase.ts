@@ -4,7 +4,7 @@ import { IAgencyPricingRepository } from "../../Interfaces/Repositories/Agency/a
 import { IGetAgencyPricingUsecase } from "../../Interfaces/UseCases/Pricing/IGetAgencyPricingUsecase";
 import { PRICING_POLICY_MESSAGE } from "../../../Infrastructure/Constants/Messages/pricingPolicyMessage";
 import { AppError } from "../../../Domain/Utils/customError";
-import { AgencyPricingResponseDTO } from "../../DTOs/Pricing/AgencyPricing.dto";
+import { AgencyPricingResponseDTO } from "../../DTOs/Pricing/AgencyPricingDTO";
 import { AgencyPricingMapper } from "../../Mappers/Pricing/AgencyPricingMapper";
 import { DeliveryPartner } from "../../../Domain/Enums/DeliveryPartnerType";
 import { AgencyPricingPolicy } from "../../../Domain/Entities/Admin/AgencyPricingPolicy";

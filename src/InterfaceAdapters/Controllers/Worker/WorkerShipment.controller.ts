@@ -1,0 +1,118 @@
+import { Request, Response } from "express";
+import { IGetWorkersShipmentUsecase } from "../../../Application/Interfaces/UseCases/Logistics/HubShipment/IGetWorkersShipmentUsecase";
+import { injectable, inject } from "tsyringe";
+import { AppError } from "../../../Domain/Utils/customError";
+import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
+import { GetWorkerShipmentDTO } from "../../../Application/DTOs/Logistics/shipment.dto";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { IGetWorkerShipmentDetailsUsecase } from "../../../Application/Interfaces/UseCases/Logistics/ShipmentParcel/IGetWorkerShipmentDetailsUsecase";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
+import { IGetBookingUsecase } from "../../../Application/Interfaces/UseCases/User/Booking/IGetBookingUsecase";
+import { BOOKING_MESSAGE } from "../../../Infrastructure/Constants/Messages/bookingMessages";
+import { IUpdateShipmentStatusUsecase } from "../../../Application/Interfaces/UseCases/Logistics/ShipmentParcel/IUpdateShipmentStatusUsecase";
+import { IBulkUpdateShipmentParcelUsecase } from "../../../Application/Interfaces/UseCases/Logistics/ShipmentParcel/IBulkUpdateShipmentParcelUsecase";
+import { ShipmentStatus, ShipmentType } from "../../../Domain/Entities/Logistics/HubShipment";
+import { ApiResponse } from "../../Presenters/ApiResponse";
+import { ShipmentParcelStatus } from "../../../Domain/Entities/Logistics/ShipmentParcel";
+
+@injectable()
+export class WorkerShipmentController {
+    constructor(
+        @inject("IGetWorkersShipmentUsecase") private _getWorkersShipmentUsecase: IGetWorkersShipmentUsecase,
+        @inject("IGetWorkerShipmentDetailsUsecase") private _getWorkerShipmentDetailsUsecase: IGetWorkerShipmentDetailsUsecase,
+        @inject("IGetBookingUsecase") private _getBookingUsecase: IGetBookingUsecase,
+        @inject("IUpdateShipmentStatusUsecase") private _updateShipmentStatusUsecase: IUpdateShipmentStatusUsecase,
+        @inject("IBulkUpdateShipmentParcelUsecase") private _bulkUpdateShipmentParcelUsecase: IBulkUpdateShipmentParcelUsecase
+
+    ) { }
+
+    getWorkerShipments = async (req: Request, res: Response): Promise<Response | void> => {
+        const workerId = req.user?.id;
+        if (!workerId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND);
+
+        const dto: GetWorkerShipmentDTO = {
+            type: req.query.type?.toString() as ShipmentType,
+            status: req.query.status?.toString() as ShipmentStatus,
+            search: req.query.search?.toString() || "",
+            fromDate: req.query.fromDate?.toString() || "",
+            toDate: req.query.toDate?.toString() || "",
+            page: Number(req.query.page) || 1,
+            limit: Number(req.query.limit) || 10,
+        }
+
+        const shipments = await this._getWorkersShipmentUsecase.execute(workerId, dto);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                WORKER_MESSAGES.WORKER_SHIPMENTS_FETCH_SUCCESS,
+                shipments
+            )
+        )
+    }
+
+    getWorkerShipmentDetails = async (req: Request, res: Response): Promise<Response | void> => {
+        const workerId = req.user?.id;
+        if (!workerId) throw new AppError(AUTH_MESSAGES.USER_NOT_FOUND, STATUS.NOT_FOUND);
+
+        const shipmentId = req.params.id;
+        if (!shipmentId) throw new AppError(WORKER_MESSAGES.SHIPMENT_NOT_FOUND, STATUS.NOT_FOUND);
+
+        const page = Number(req.query.page) || 1;
+        const limit = Number(req.query.limit) || 10;
+
+        const shipmentDetails = await this._getWorkerShipmentDetailsUsecase.execute(shipmentId, page, limit);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                WORKER_MESSAGES.SHIPMENT_DETAILS_FETCH_SUCCESS,
+                shipmentDetails
+            )
+        )
+    }
+
+    getBookingDetails = async (req: Request, res: Response): Promise<Response | void> => {
+        const bookingId = req.params.id;
+        if (!bookingId) throw new AppError(BOOKING_MESSAGE.NOT_FOUND, STATUS.BAD_REQUEST);
+
+        const booking = await this._getBookingUsecase.execute(bookingId);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                BOOKING_MESSAGE.FOUND,
+                booking
+            )
+        )
+    }
+
+    bulkUpdateParcels = async (req: Request, res: Response): Promise<Response | void> => {
+
+        const { id: shipmentId } = req.params;
+        if (!shipmentId) throw new AppError(WORKER_MESSAGES.SHIPMENT_NOT_FOUND, STATUS.NOT_FOUND);
+
+        const { parcelIds, status } = req.body as { parcelIds: string[]; status: ShipmentParcelStatus };
+
+
+        await this._bulkUpdateShipmentParcelUsecase.execute(shipmentId, parcelIds, status);
+
+        res.status(STATUS.OK).json(
+            ApiResponse.success(
+                WORKER_MESSAGES.PARCELS_STATUS_UPDATED
+            )
+        )
+    }
+
+    updateShipmentStatus = async (req: Request, res: Response): Promise<Response | void> => {
+        const shipmentId = req.params.id;
+        if (!shipmentId) throw new AppError(WORKER_MESSAGES.SHIPMENT_NOT_FOUND, STATUS.NOT_FOUND);
+
+        const { status } = req.body as { status: ShipmentStatus };
+
+        await this._updateShipmentStatusUsecase.execute(shipmentId, status);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                WORKER_MESSAGES.SHIPMENT_STATUS_UPDATED,
+            )
+        )
+    }
+}

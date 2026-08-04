@@ -1,10 +1,10 @@
-import { TravelerParcelTrackingDTO } from "../../Dto/Logistics/ParcelTracking.dto";
+import { TravelerParcelTrackingDTO } from "../../DTOs/Logistics/ParcelTracking.dto";
 import { Booking } from "../../../Domain/Entities/Booking/Booking";
 import { User } from "../../../Domain/Entities/User";
 import { TravelRequest } from "../../../Domain/Entities/User/TravelRequest";
-import { AppError } from "../../../Domain/utils/customError";
-import { BOOKING_MESSAGE } from "../../../Infrastructure/constants/messages/bookingMessages";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { AppError } from "../../../Domain/Utils/customError";
+import { BOOKING_MESSAGE } from "../../../Infrastructure/Constants/Messages/bookingMessages";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 
 
 export class TravelerParcelTrackingMapper {

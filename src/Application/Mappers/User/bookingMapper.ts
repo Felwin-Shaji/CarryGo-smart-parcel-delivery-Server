@@ -1,9 +1,9 @@
 import { Booking, PartnerEntity } from "../../../Domain/Entities/Booking/Booking";
-import { AddressResponseDTO, BookingListResponseDTO, CalculatePriceResponseDTO, UserBookingsDTO, } from "../../Dto/User/Booking.dto";
+import { AddressResponseDTO, BookingListResponseDTO, CalculatePriceResponseDTO, UserBookingsDTO, } from "../../DTOs/User/Booking.dto";
 import { BookingStatusType, PaymentGatewayType, PaymentStatusType, DeliveryPartnerType } from "../../../Infrastructure/Types/types";
-import { AppError } from "../../../Domain/utils/customError";
-import { BOOKING_MESSAGE } from "../../../Infrastructure/constants/messages/bookingMessages";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { AppError } from "../../../Domain/Utils/customError";
+import { BOOKING_MESSAGE } from "../../../Infrastructure/Constants/Messages/bookingMessages";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ShipmentStatus } from "../../../Domain/Entities/Logistics/HubShipment";
 
 export class BookingMapper {

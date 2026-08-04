@@ -1,4 +1,4 @@
-import { AppError } from "../../utils/customError";
+import { AppError } from "../../Utils/customError";
 
 export type ServiceType = "STANDARD" | "EXPRESS";
 

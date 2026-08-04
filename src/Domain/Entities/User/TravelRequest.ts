@@ -1,5 +1,5 @@
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { AppError } from "../../utils/customError";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
+import { AppError } from "../../Utils/customError";
 import { PackageDetails } from "../Booking/Booking";
 
 export type TravelRequestStatus =

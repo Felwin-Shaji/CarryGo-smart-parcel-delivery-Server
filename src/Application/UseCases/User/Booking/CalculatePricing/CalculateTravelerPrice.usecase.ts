@@ -1,0 +1,63 @@
+import { inject, injectable } from "tsyringe";
+import { BasePricingPolicy } from "../../../../../Domain/Entities/Admin/BasePricingPolicy";
+import { TravelerPricingPolicy } from "../../../../../Domain/Entities/Admin/TravelerPricingPolicy";
+import { AppError } from "../../../../../Domain/Utils/customError";
+import { PRICING_POLICY_MESSAGE } from "../../../../../Infrastructure/Constants/Messages/pricingPolicyMessage";
+import { CalculatePriceRequestDTO, CalculatePriceResponseDTO } from "../../../../DTOs/User/Booking.dto";
+import { ICalculatePriceUsecase } from "../../../../Interfaces/UseCases/User/Booking/CalculatePricing/ICalculatePrice";
+import { ITravelRequestRepository } from "../../../../Interfaces/Repositories/User/ITravelRequestRepository";
+import { USER_MESSAGES } from "../../../../../Infrastructure/Constants/Messages/userMessage";
+import { STATUS } from "../../../../../Infrastructure/Constants/statusCodes";
+
+@injectable()
+export class TravelerPricingUsecase implements ICalculatePriceUsecase {
+    constructor(
+        @inject("ITravelRequestRepository") private readonly _travelRequestRepository: ITravelRequestRepository,
+
+    ) { };
+
+    async execute(policy: BasePricingPolicy, dto: CalculatePriceRequestDTO, distanceKm: number): Promise<CalculatePriceResponseDTO> {
+
+        console.log(dto, '❤️❤️❤️❤️')
+
+        if (!(policy instanceof TravelerPricingPolicy)) throw new AppError(PRICING_POLICY_MESSAGE.INVALID_POLICY);
+        if (!dto.travelRequestId) throw new AppError(USER_MESSAGES.TRAVEL_REQUEST_ID_MISSING, STATUS.BAD_REQUEST);
+
+        const travelRequest = await this._travelRequestRepository.getTravelRequestById(dto.travelRequestId);
+        if (!travelRequest) {
+            throw new AppError(USER_MESSAGES.TRAVEL_REQUEST_NOT_FOUND, STATUS.NOT_FOUND);
+        }
+
+        const weight = dto.packageDetails.weightKg;
+        if (weight > travelRequest.remainingCapacityKg) throw new AppError(USER_MESSAGES.REMAINING_CAPACITY_ERROR, STATUS.BAD_REQUEST);
+
+        const effectivePricePerKg = travelRequest.pricePerKg ?? policy.basePricePerKg;
+        const transportMultiplier = policy.getMultiplier(travelRequest.modeOfTransport);
+        const weightCost = effectivePricePerKg * weight * transportMultiplier;
+        const distanceCost = distanceKm * 2;/////adgest later
+        const subTotal = weightCost + distanceCost;
+        const platformFee = (subTotal * policy.platformFeePercent) / 100;
+
+
+        const totalPrice = Math.round(subTotal + platformFee);
+
+        console.log(dto.partnerId, "👆👆👆👆🔻🔻🔻")
+
+
+
+
+
+        return {
+            distanceKm: this.round(distanceKm),
+            basePrice: this.round(weightCost),
+            distanceCharge: 0,
+            volumetricCharge: 0,
+            platformFee: this.round(platformFee),
+            totalPrice,
+            currency: "INR",
+        };
+    }
+
+    private round(n: number) { return Math.round(n * 100) / 100; }
+
+}

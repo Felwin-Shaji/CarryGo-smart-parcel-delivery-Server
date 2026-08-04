@@ -1,5 +1,5 @@
 import { DeliveryPartner } from "../../Enums/DeliveryPartnerType";
-import { AppError } from "../../utils/customError";
+import { AppError } from "../../Utils/customError";
 import { BasePricingPolicy } from "./BasePricingPolicy";
 
 export type DeliveryModel = "AGENCY" | "TRAVELER";

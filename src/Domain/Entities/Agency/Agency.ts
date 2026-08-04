@@ -1,5 +1,5 @@
 import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
-import { AppError } from "../../utils/customError";
+import { AppError } from "../../Utils/customError";
 
 
 export class Agency {

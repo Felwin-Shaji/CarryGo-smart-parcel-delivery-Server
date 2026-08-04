@@ -1,5 +1,5 @@
 import { User } from "../../../Domain/Entities/User";
-import { UserProfileResponseDTO } from "../../Dto/User/user.dto";
+import { UserProfileResponseDTO } from "../../DTOs/User/user.dto";
 
 export class UserProfileMapper {
     static toGetUserProfileResponseDTO(user: User): UserProfileResponseDTO {

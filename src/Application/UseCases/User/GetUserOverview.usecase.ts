@@ -3,8 +3,8 @@ import { IGetUserOverviewUseCase } from "../../Interfaces/UseCases/User/IGetUser
 import { IUserRepository } from "../../Interfaces/Repositories/User/user.repository";
 import { GetUserOverviewResponseDTO } from "../../DTOs/User/user.dto";
 import { AppError } from "../../../Domain/Utils/customError";
-import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IHubWorkerKycRepository } from "../../Interfaces/Repositories/Worker/wrokerKyc.repository";
 import { UserMapper } from "../../Mappers/User/userMapper";
 

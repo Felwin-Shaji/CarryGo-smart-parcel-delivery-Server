@@ -9,7 +9,7 @@ import { TransactionMapper } from "../../Mappers/Wallet/transactionMapper";
 import { INotificationService } from "../../Interfaces/Services/Notification/INotificationService";
 import { INotificationSocketService } from "../../Interfaces/Services/Notification/INotificationSocketService";
 import { IUserRepository } from "../../Interfaces/Repositories/User/user.repository";
-import logger from "../../../Infrastructure/logger/logger";
+import logger from "../../../Infrastructure/Logger/logger";
 
 @injectable()
 export class BookingPaymentSuccessUseCase implements IBookingPaymentSuccessUseCase {

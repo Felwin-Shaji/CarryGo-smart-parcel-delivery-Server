@@ -3,9 +3,9 @@ import { AppError } from "../../../../Domain/Utils/customError";
 import { IAgencyRouteGroupRepository } from "../../../Interfaces/Repositories/Logistics/IAgencyRouteGroupRepository";
 import { IAgencyRouteSegmentRepository } from "../../../Interfaces/Repositories/Logistics/IAgencyRouteSegmentRepository";
 import { CreateRouteSegmentDTO } from "../../../DTOs/Agency/agencyRouteSegment.dto";
-import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
+import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 import { ICreateRouteSegmentUseCase } from "../../../Interfaces/UseCases/Logistics/RouteGroup/ICreateRouteSegmentUseCase";
-import { ROUTE_GROUP_MESSAGE, ROUTE_SEGMENT_MESSAGE } from "../../../../Infrastructure/constants/messages/RouteGroupMessage";
+import { ROUTE_GROUP_MESSAGE, ROUTE_SEGMENT_MESSAGE } from "../../../../Infrastructure/Constants/Messages/RouteGroupMessage";
 import { RouteSegmentMapper } from "../../../Mappers/Agency/RouteSegmentMapper";
 
 @injectable()

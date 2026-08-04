@@ -2,14 +2,14 @@ import { ClientSession, FilterQuery, Types } from "mongoose";
 import { GetHubsDTO, updateHubKycStatusDTO } from "../../../Application/DTOs/Hub/hub.dto";
 import { IHubRepository, PaginatedHubData } from "../../../Application/Interfaces/Repositories/Hub/hub.repository";
 import { Hub } from "../../../Domain/Entities/Hub/Hub";
-import { HubDocument, HubModel } from "../../database/models/Hub/HubModel";
+import { HubDocument, HubModel } from "../../Database/Models/Hub/HubModel";
 import { ServiceableHubWithAgencyDTO } from "../../../Application/DTOs/User/Booking.dto";
 import { AppError } from "../../../Domain/Utils/customError";
-import { HUB_MESSAGES } from "../../constants/messages/hubMessage";
-import { STATUS } from "../../constants/statusCodes";
+import { HUB_MESSAGES } from "../../Constants/Messages/hubMessage";
+import { STATUS } from "../../Constants/statusCodes";
 import { SortOrder } from "mongoose";
 import { GeoLocation } from "../../../Application/Interfaces/UseCases/User/Booking/IFindServicableAgencyUsecase";
-import { HubWorkerModel } from "../../database/models/Worker/workerModel";
+import { HubWorkerModel } from "../../Database/Models/Worker/workerModel";
 
 export class HubRepository implements IHubRepository {
     async findById(filter: FilterQuery<HubDocument>): Promise<Hub> {

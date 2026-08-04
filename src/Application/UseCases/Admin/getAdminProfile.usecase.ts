@@ -2,10 +2,10 @@ import { inject, injectable } from "tsyringe";
 import { IGetAdminProfileUseCase } from "../../Interfaces/UseCases/Admin/IGetAdminProfileUseCase";
 import { IAdminRepository } from "../../Interfaces/Repositories/Admin/IAdminRepository";
 import { AppError } from "../../../Domain/Utils/customError";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { AdminProfileResponseDTO } from "../../DTOs/Admin/adminProfile.dto";
 import { AdminProfileMapper } from "../../Mappers/Admin/AdminProfileMapper";
-import { ADMIN_MESSAGES } from "../../../Infrastructure/constants/messages/adminMessages";
+import { ADMIN_MESSAGES } from "../../../Infrastructure/Constants/Messages/adminMessages";
 
 @injectable()
 export class GetAdminProfileUseCase implements IGetAdminProfileUseCase {

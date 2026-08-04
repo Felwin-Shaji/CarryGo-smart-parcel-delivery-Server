@@ -5,9 +5,9 @@ import { IPricingPolicyRepository } from "../../../../Interfaces/Repositories/Ad
 import { IUserRepository } from "../../../../Interfaces/Repositories/User/user.repository";
 import { CalculatePriceRequestDTO, CalculatePriceResponseDTO } from "../../../../DTOs/User/Booking.dto";
 import { AppError } from "../../../../../Domain/Utils/customError";
-import { USER_MESSAGES } from "../../../../../Infrastructure/constants/messages/userMessage";
-import { STATUS } from "../../../../../Infrastructure/constants/statusCodes";
-import { PRICING_POLICY_MESSAGE } from "../../../../../Infrastructure/constants/messages/pricingPolicyMessage";
+import { USER_MESSAGES } from "../../../../../Infrastructure/Constants/Messages/userMessage";
+import { STATUS } from "../../../../../Infrastructure/Constants/statusCodes";
+import { PRICING_POLICY_MESSAGE } from "../../../../../Infrastructure/Constants/Messages/pricingPolicyMessage";
 import { ICalculatePriceUsecase } from "../../../../Interfaces/UseCases/User/Booking/CalculatePricing/ICalculatePrice";
 
 @injectable()

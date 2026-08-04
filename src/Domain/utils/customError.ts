@@ -1,4 +1,4 @@
-import { STATUS, StatusCode } from "../../Infrastructure/constants/statusCodes";
+import { STATUS, StatusCode } from "../../Infrastructure/Constants/statusCodes";
 
 export class AppError extends Error {
   public readonly _statusCode: StatusCode;

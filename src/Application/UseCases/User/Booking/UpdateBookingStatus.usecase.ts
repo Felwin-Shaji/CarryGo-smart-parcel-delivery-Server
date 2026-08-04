@@ -1,7 +1,7 @@
 import { Booking } from "../../../../Domain/Entities/Booking/Booking";
 import { AppError } from "../../../../Domain/Utils/customError";
-import { BOOKING_MESSAGE } from "../../../../Infrastructure/constants/messages/bookingMessages";
-import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
+import { BOOKING_MESSAGE } from "../../../../Infrastructure/Constants/Messages/bookingMessages";
+import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 import { BookingStatusType } from "../../../../Infrastructure/Types/types";
 import { IBookingRepository } from "../../../Interfaces/Repositories/User/IBookingRepository";
 import { ITravelRequestRepository } from "../../../Interfaces/Repositories/User/ITravelRequestRepository";

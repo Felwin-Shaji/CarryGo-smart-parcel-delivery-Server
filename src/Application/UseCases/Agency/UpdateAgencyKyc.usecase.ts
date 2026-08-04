@@ -4,8 +4,8 @@ import { IAgencyRepository } from "../../Interfaces/Repositories/Agency/agency.r
 import { IUpdateAgencyKycStatusUseCase } from "../../Interfaces/UseCases/Agency/UpdateAgencyKycStatusUseCase";
 import { updateAgencyKycStatusDTO } from "../../DTOs/Agency/agency.dto";
 import { AppError } from "../../../Domain/Utils/customError";
-import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { INotificationService } from "../../Interfaces/Services/Notification/INotificationService";
 import { INotificationSocketService } from "../../Interfaces/Services/Notification/INotificationSocketService";
 import { KycStatus } from "../../../Domain/Enums/KycStatus";

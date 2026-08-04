@@ -14,14 +14,14 @@ import { inject, injectable } from "tsyringe";
 import { ParcelMovementMapper } from "../../../Mappers/Logistics/ParcelMovementMapper";
 import { ShipmentParcelStatus } from "../../../../Domain/Entities/Logistics/ShipmentParcel";
 import { AppError } from "../../../../Domain/Utils/customError";
-import { WORKER_MESSAGES } from "../../../../Infrastructure/constants/messages/workerMessage";
-import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
-import { SHIPMENT_PARCEL_MESSAGE } from "../../../../Infrastructure/constants/messages/RouteGroupMessage";
+import { WORKER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/workerMessage";
+import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
+import { SHIPMENT_PARCEL_MESSAGE } from "../../../../Infrastructure/Constants/Messages/RouteGroupMessage";
 import { BookingStatusType } from "../../../../Infrastructure/Types/types";
-import { BOOKING_MESSAGE } from "../../../../Infrastructure/constants/messages/bookingMessages";
+import { BOOKING_MESSAGE } from "../../../../Infrastructure/Constants/Messages/bookingMessages";
 import { Booking } from "../../../../Domain/Entities/Booking/Booking";
 import { Role } from "../../../../Domain/Enums/Roles";
-import { WALLET_MESSAGES } from "../../../../Infrastructure/constants/messages/walletMessages";
+import { WALLET_MESSAGES } from "../../../../Infrastructure/Constants/Messages/walletMessages";
 import { TransactionMapper } from "../../../Mappers/Wallet/transactionMapper";
 
 const PARCEL_FLOW: Record<ShipmentParcelStatus, ShipmentParcelStatus> = {

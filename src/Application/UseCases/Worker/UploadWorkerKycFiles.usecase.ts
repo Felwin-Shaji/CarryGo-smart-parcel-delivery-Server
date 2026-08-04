@@ -1,5 +1,5 @@
     import { inject, injectable } from "tsyringe";
-    import { WorkerKYCFileFields } from "../../../Infrastructure/services/storage/multer";
+    import { WorkerKYCFileFields } from "../../../Infrastructure/Services/Storage/multer";
     import { IStorageService } from "../../Interfaces/Services/storage-service.interface";
     import { IUploadWorkerKycFilesUsecase, UploadedWorkerKycFiles } from "../../Interfaces/UseCases/Worker/uploadWorkerKycFilesUsecase";
 

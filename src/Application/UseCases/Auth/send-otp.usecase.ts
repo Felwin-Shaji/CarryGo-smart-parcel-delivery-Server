@@ -7,8 +7,8 @@ import type { OtpResponseDTO, SendOtpDTO } from "../../DTOs/Auth/Auth.dto";
 import { ISendOtpUseCase } from "../../Interfaces/UseCases/Auth/requestOtp.usecase";
 import { IPasswordService } from "../../Interfaces/Services/password-service.interface";
 import { IOtpService } from "../../Interfaces/Services/otp-service.interface";
-import { OTP_MESSAGES } from "../../../Infrastructure/constants/messages/otpMessage";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { OTP_MESSAGES } from "../../../Infrastructure/Constants/Messages/otpMessage";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { AuthMapper } from "../../Mappers/AuthMapper";
 
 @injectable()

@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../Domain/Utils/customError";
-import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IPasswordService } from "../../Interfaces/Services/password-service.interface";
 import { IResetAgencyPasswordUseCase } from "../../Interfaces/UseCases/Agency/IResetAgencyPasswordUseCase";
 import { IAgencyRepository } from "../../Interfaces/Repositories/Agency/agency.repository";

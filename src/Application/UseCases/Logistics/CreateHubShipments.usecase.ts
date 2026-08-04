@@ -2,8 +2,8 @@ import { IParcelRouteLegRepository } from "../../Interfaces/Repositories/Logisti
 import { IHubShipmentAssignmentService } from "../../Interfaces/Services/IHubShipmentAssignmentService";
 import { ICreateHubShipmentsUsecase } from "../../Interfaces/UseCases/Logistics/ICreateHubShipmentsUsecase";
 import { AppError } from "../../../Domain/Utils/customError";
-import { PARCEL_ROUTE_MESSAGE } from "../../../Infrastructure/constants/messages/RouteGroupMessage";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { PARCEL_ROUTE_MESSAGE } from "../../../Infrastructure/Constants/Messages/RouteGroupMessage";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import mongoose from "mongoose";
 import { inject, injectable } from "tsyringe";
 

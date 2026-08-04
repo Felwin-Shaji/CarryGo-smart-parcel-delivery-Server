@@ -11,8 +11,8 @@ import { ClientSession } from "mongoose";
 import { inject, injectable } from "tsyringe";
 import { IAgencyRouteSegmentRepository } from "../../../Application/Interfaces/Repositories/Logistics/IAgencyRouteSegmentRepository";
 import { ParcelRouteLeg } from "../../../Domain/Entities/Logistics/ParcelRouteLeg";
-import { STATUS } from "../../constants/statusCodes";
-import { ROUTE_SEGMENT_MESSAGE } from "../../constants/messages/RouteGroupMessage";
+import { STATUS } from "../../Constants/statusCodes";
+import { ROUTE_SEGMENT_MESSAGE } from "../../Constants/Messages/RouteGroupMessage";
 
 @injectable()
 export class HubShipmentAssignmentService implements IHubShipmentAssignmentService {

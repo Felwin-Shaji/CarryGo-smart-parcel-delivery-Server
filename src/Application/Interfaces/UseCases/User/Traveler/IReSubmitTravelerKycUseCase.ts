@@ -1,4 +1,4 @@
-import { WorkerKYCFileFields } from "../../../../../Infrastructure/services/storage/multer";
+import { WorkerKYCFileFields } from "../../../../../Infrastructure/Services/Storage/multer";
 import { SubmitTravelerKycRequestDTO } from "../../../../DTOs/User/traveler.dto";
 
 export interface IReSubmitTravelerKycUseCase {

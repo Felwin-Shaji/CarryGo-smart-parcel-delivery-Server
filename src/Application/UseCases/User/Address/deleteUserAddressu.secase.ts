@@ -1,8 +1,8 @@
 import { inject, injectable } from "tsyringe";
 import { IUserRepository } from "../../../Interfaces/Repositories/User/user.repository";
 import { AppError } from "../../../../Domain/Utils/customError";
-import { ADDRESS_MESSAGES } from "../../../../Infrastructure/constants/messages/addressMessages";
-import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
+import { ADDRESS_MESSAGES } from "../../../../Infrastructure/Constants/Messages/addressMessages";
+import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 import { IDeleteUserAddressUseCase } from "../../../Interfaces/UseCases/User/Address/IDeleteUserAddressUseCase";
 
 @injectable()

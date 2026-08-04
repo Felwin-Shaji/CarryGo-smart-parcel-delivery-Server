@@ -1,4 +1,4 @@
-import { AgencyAddHubFields } from "../../../../Infrastructure/services/storage/multer";
+import { AgencyAddHubFields } from "../../../../Infrastructure/Services/Storage/multer";
 import { ResubmitHubDTO } from "../../../DTOs/Agency/agency.dto";
 
 export interface IResubmitHubUseCase {

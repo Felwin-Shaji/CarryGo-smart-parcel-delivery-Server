@@ -3,8 +3,8 @@ import { GetWorkersDTO, GetHubWorkersResponseDTO } from "../../DTOs/Worker/worke
 import { IGetWorkersUseCase } from "../../Interfaces/UseCases/Worker/IGetWorkersUseCase";
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";
 import { AppError } from "../../../Domain/Utils/customError";
-import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 
 @injectable()
 export class GetWorkersUseCase implements IGetWorkersUseCase{

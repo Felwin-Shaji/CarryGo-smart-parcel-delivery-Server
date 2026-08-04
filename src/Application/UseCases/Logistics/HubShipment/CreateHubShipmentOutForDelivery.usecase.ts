@@ -8,10 +8,10 @@ import { ParcelMovementMapper } from "../../../Mappers/Logistics/ParcelMovementM
 import { ShipmentParcelMapper } from "../../../Mappers/Logistics/ShipmentParcelMapper";
 import { ClientSession } from "mongoose";
 import { inject, injectable } from "tsyringe";
-import { BOOKING_MESSAGE } from "../../../../Infrastructure/constants/messages/bookingMessages";
+import { BOOKING_MESSAGE } from "../../../../Infrastructure/Constants/Messages/bookingMessages";
 import { AppError } from "../../../../Domain/Utils/customError";
-import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
-import { HUB_MESSAGES } from "../../../../Infrastructure/constants/messages/hubMessage";
+import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
+import { HUB_MESSAGES } from "../../../../Infrastructure/Constants/Messages/hubMessage";
 import { INotificationService } from "../../../Interfaces/Services/Notification/INotificationService";
 import { INotificationSocketService } from "../../../Interfaces/Services/Notification/INotificationSocketService";
 

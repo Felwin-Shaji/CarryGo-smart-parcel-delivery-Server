@@ -1,6 +1,6 @@
 import type { IMailService } from "../../Application/Interfaces/Services/email-service.interface";
 import nodemailer, { type Transporter } from "nodemailer";
-import { ENV } from "../constants/env";
+import { ENV } from "../Constants/env";
 
 const isDev = ENV.IS_DEV;
 

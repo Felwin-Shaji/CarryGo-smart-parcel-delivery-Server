@@ -2,9 +2,9 @@ import { inject, injectable } from "tsyringe";
 import { IGetPricingUseCase } from "../../Interfaces/UseCases/Pricing/getPricing.usecase";
 import { IPricingPolicyRepository } from "../../Interfaces/Repositories/Admin/IPricingPolicyRepository";
 import { AppError } from "../../../Domain/Utils/customError";
-import { PRICING_POLICY_MESSAGE } from "../../../Infrastructure/constants/messages/pricingPolicyMessage";
+import { PRICING_POLICY_MESSAGE } from "../../../Infrastructure/Constants/Messages/pricingPolicyMessage";
 import { BasePricingPolicy } from "../../../Domain/Entities/Admin/BasePricingPolicy";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 
 @injectable()
 export class GetPricingUseCase implements IGetPricingUseCase {

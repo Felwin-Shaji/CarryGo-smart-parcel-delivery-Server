@@ -8,9 +8,9 @@ import { Role } from "../../../Infrastructure/Types/types";
 import { IMailService } from "../../Interfaces/Services/email-service.interface";
 import { ITokenService } from "../../Interfaces/Services/token-service.interface";
 import { AppError } from "../../../Domain/Utils/customError";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IResetPasswordTokenRepository } from "../../Interfaces/Repositories/Auth/resetPasswordToken.repository";
-import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
+import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";
 import { IResetPasswordTokenModel } from "../../../Domain/Entities/token";
 

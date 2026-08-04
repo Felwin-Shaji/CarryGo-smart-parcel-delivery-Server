@@ -3,8 +3,8 @@ import { IMailService } from "../../Interfaces/Services/email-service.interface"
 import { IOtpService } from "../../Interfaces/Services/otp-service.interface";
 import { IWorkerResendOtpUseCase } from "../../Interfaces/UseCases/Worker/IWorkerResendOtpUseCase";
 import { AppError } from "../../../Domain/Utils/customError";
-import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { inject, injectable } from "tsyringe";
 
 @injectable()

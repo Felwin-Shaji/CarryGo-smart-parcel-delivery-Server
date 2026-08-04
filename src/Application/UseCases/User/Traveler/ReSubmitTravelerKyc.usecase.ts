@@ -4,10 +4,10 @@ import { IUploadWorkerKycFilesUsecase } from "../../../Interfaces/UseCases/Worke
 import { IHubWorkerKycRepository } from "../../../Interfaces/Repositories/Worker/wrokerKyc.repository";
 import { IUserRepository } from "../../../Interfaces/Repositories/User/user.repository";
 import { SubmitTravelerKycRequestDTO } from "../../../DTOs/User/traveler.dto";
-import { WorkerKYCFileFields } from "../../../../Infrastructure/services/storage/multer";
+import { WorkerKYCFileFields } from "../../../../Infrastructure/Services/Storage/multer";
 import { AppError } from "../../../../Domain/Utils/customError";
-import { USER_MESSAGES } from "../../../../Infrastructure/constants/messages/userMessage";
-import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
+import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessage";
+import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 import { Role } from "../../../../Domain/Enums/Roles";
 import { KycStatus } from "../../../../Domain/Enums/KycStatus";
 import { IAdminRepository } from "../../../Interfaces/Repositories/Admin/IAdminRepository";

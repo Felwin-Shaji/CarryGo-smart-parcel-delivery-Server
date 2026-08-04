@@ -5,8 +5,8 @@ import { IGenerateTokenUseCase } from "../../Interfaces/UseCases/Auth/GenerateTo
 import { IGoogleAuthUseCase } from "../../Interfaces/UseCases/Auth/IGoogleAuthUseCase";
 import { Role } from "../../../Domain/Enums/Roles";
 import { AppError } from "../../../Domain/Utils/customError";
-import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { AuthMapper } from "../../Mappers/AuthMapper";
 
 

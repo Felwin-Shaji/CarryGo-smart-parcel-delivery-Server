@@ -17,9 +17,9 @@ import { AgencyParcelTrackingDTO } from "../../../DTOs/Logistics/ParcelTracking.
 import { IBookingRepository } from "../../../Interfaces/Repositories/User/IBookingRepository";
 import { AgencyParcelTrackingMapper } from "../../../Mappers/Logistics/AgencyParcelTrackingMapper";
 import { Role } from "../../../../Infrastructure/Types/types";
-import { BOOKING_MESSAGE } from "../../../../Infrastructure/constants/messages/bookingMessages";
+import { BOOKING_MESSAGE } from "../../../../Infrastructure/Constants/Messages/bookingMessages";
 import { AppError } from "../../../../Domain/Utils/customError";
-import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
+import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 
 @injectable()
 export class GetAgencyTrackingUsecase implements IGetAgencyTrackingUsecase {

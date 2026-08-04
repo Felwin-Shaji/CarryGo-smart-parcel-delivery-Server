@@ -3,7 +3,7 @@ import { AppError } from "../../../Domain/Utils/customError";
 import { AgencyProfileResponseDTO, EditAgencyProfileRequestDto } from "../../DTOs/Agency/agencyProfile.dto";
 import { AgencyProfileMapper } from "../../Mappers/Agency/AgencyProfileMapper";
 import { IAgencyRepository } from "../../Interfaces/Repositories/Agency/agency.repository";
-import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
+import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
 import { IEditAgencyProfileUseCase } from "../../Interfaces/UseCases/Agency/IEditAgencyProfileUseCase";
 
 @injectable()

@@ -1,12 +1,12 @@
 import { BaseRepository } from "./baseRepositories";
 import type { User } from "../../Domain/Entities/User";
 import type { IUserRepository } from "../../Application/Interfaces/Repositories/User/user.repository";
-import { UserModel } from "../database/models/UserModels/userModel";
+import { UserModel } from "../Database/Models/User/userModel";
 import { Address } from "../../Domain/Entities/User/Address";
 import { AppError } from "../../Domain/Utils/customError";
-import { USER_MESSAGES } from "../constants/messages/userMessage";
-import { STATUS } from "../constants/statusCodes";
-import { AddressDBResult } from "../database/models/UserModels/AddressSchema";
+import { USER_MESSAGES } from "../Constants/Messages/userMessage";
+import { STATUS } from "../Constants/statusCodes";
+import { AddressDBResult } from "../Database/Models/User/AddressSchema";
 
 export class UserRepository extends BaseRepository<User> implements IUserRepository {
     constructor() {

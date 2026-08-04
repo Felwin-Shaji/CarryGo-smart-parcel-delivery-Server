@@ -1,4 +1,4 @@
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { AppError } from "../../Utils/customError";
 import { PackageDetails } from "../Booking/Booking";
 

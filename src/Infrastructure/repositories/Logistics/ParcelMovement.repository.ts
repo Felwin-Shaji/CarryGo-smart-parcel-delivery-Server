@@ -2,10 +2,10 @@
 import { ClientSession, Types } from "mongoose";
 import { IParcelMovementRepository } from "../../../Application/Interfaces/Repositories/Logistics/IParcelMovementRepository";
 import { ParcelMovement } from "../../../Domain/Entities/Booking/ParcelMovement";
-import { ParcelMovementDocument, ParcelMovementModel } from "../../database/models/Logistics/ParcelMovementModel";
+import { ParcelMovementDocument, ParcelMovementModel } from "../../Database/Models/Logistics/ParcelMovementModel";
 import { AppError } from "../../../Domain/Utils/customError";
-import { PARCEL_MOVEMENT_MESSAGE } from "../../constants/messages/RouteGroupMessage";
-import { STATUS } from "../../constants/statusCodes";
+import { PARCEL_MOVEMENT_MESSAGE } from "../../Constants/Messages/RouteGroupMessage";
+import { STATUS } from "../../Constants/statusCodes";
 
 export class ParcelMovementRepository implements IParcelMovementRepository {
     constructor() { };

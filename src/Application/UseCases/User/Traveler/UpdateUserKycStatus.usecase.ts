@@ -4,8 +4,8 @@ import { IUserRepository } from "../../../Interfaces/Repositories/User/user.repo
 import { KYCStatus } from "../../../../Infrastructure/Types/types";
 import { updateUserKycStatusDTO } from "../../../DTOs/User/user.dto";
 import { AppError } from "../../../../Domain/Utils/customError";
-import { USER_MESSAGES } from "../../../../Infrastructure/constants/messages/userMessage";
-import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
+import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessage";
+import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 import { IAdminRepository } from "../../../Interfaces/Repositories/Admin/IAdminRepository";
 import { INotificationService } from "../../../Interfaces/Services/Notification/INotificationService";
 import { INotificationSocketService } from "../../../Interfaces/Services/Notification/INotificationSocketService";

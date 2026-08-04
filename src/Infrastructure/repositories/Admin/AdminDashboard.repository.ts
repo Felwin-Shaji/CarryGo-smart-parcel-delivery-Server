@@ -1,11 +1,11 @@
 import { AdminBookingChartResponseDTO, AdminBookingsReportDTO, AdminBookingsReportResponseDTO, AdminDashboardResponseDTO, AdminRevenueChartResponseDTO, GetAdminDashboardDTO } from "../../../Application/DTOs/Admin/adminDashboard.dto";
 import { IAdminDashboardRepository } from "../../../Application/Interfaces/Repositories/Admin/IAdminDashboardRepository";
 import { PaymentStatus } from "../../../Domain/Enums/PaymentStatus";
-import { AgencyModel } from "../../database/models/AgencyModels/agencyModel";
-import { BookingModel } from "../../database/models/Booking/BookingSchema";
-import { HubModel } from "../../database/models/Hub/HubModel";
-import { UserModel } from "../../database/models/UserModels/userModel";
-import { HubWorkerModel } from "../../database/models/Worker/workerModel";
+import { AgencyModel } from "../../Database/Models/Agency/agencyModel";
+import { BookingModel } from "../../Database/Models/Booking/BookingSchema";
+import { HubModel } from "../../Database/Models/Hub/HubModel";
+import { UserModel } from "../../Database/Models/User/userModel";
+import { HubWorkerModel } from "../../Database/Models/Worker/workerModel";
 
 
 

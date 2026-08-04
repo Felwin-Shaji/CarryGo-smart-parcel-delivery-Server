@@ -5,8 +5,8 @@ import { ITransactionRepository } from "../../Interfaces/Repositories/Wallet/ITr
 import { IPaymentGatewayService } from "../../Interfaces/Services/Payment/IPaymentGateway";
 import { Role } from "../../../Infrastructure/Types/types";
 import { AppError } from "../../../Domain/Utils/customError";
-import { WALLET_MESSAGES } from "../../../Infrastructure/constants/messages/walletMessages";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { WALLET_MESSAGES } from "../../../Infrastructure/Constants/Messages/walletMessages";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import mongoose from "mongoose";
 import { Transaction } from "../../../Domain/Entities/Wallet/WalletTransaction";
 

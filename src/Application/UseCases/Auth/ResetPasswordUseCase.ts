@@ -9,8 +9,8 @@ import { Role } from "../../../Infrastructure/Types/types";
 import { IPasswordService } from "../../Interfaces/Services/password-service.interface";
 import { IResetPasswordTokenRepository } from "../../Interfaces/Repositories/Auth/resetPasswordToken.repository";
 import { AppError } from "../../../Domain/Utils/customError";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { PASSWORD_RESET_MESSAGES } from "../../../Infrastructure/constants/messages/passwordResetMessage";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
+import { PASSWORD_RESET_MESSAGES } from "../../../Infrastructure/Constants/Messages/passwordResetMessage";
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";
 
 @injectable()

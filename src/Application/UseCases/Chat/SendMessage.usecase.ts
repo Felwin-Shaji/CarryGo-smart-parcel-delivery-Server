@@ -12,8 +12,8 @@ import { IHubRepository } from "../../Interfaces/Repositories/Hub/hub.repository
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";
 import { INotificationSocketService } from "../../Interfaces/Services/Notification/INotificationSocketService";
 import { AppError } from "../../../Domain/Utils/customError";
-import { CHAT_MESSAGE } from "../../../Infrastructure/constants/messages/chatMessage";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { CHAT_MESSAGE } from "../../../Infrastructure/Constants/Messages/chatMessage";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { Notification } from "../../../Domain/Entities/Notification/Notification";
 
 @injectable()

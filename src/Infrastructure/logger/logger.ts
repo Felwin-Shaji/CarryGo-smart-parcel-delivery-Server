@@ -1,6 +1,6 @@
 import { createLogger, transports, format, addColors } from 'winston';
 import 'winston-daily-rotate-file';
-import { ENV } from '../constants/env';
+import { ENV } from '../Constants/env';
 
 addColors({
   error: "bold red",

@@ -3,8 +3,8 @@ import { IHubTempRepository } from "../../Interfaces/Repositories/Hub/hubTemp.re
 import { IOtpService } from "../../Interfaces/Services/otp-service.interface";
 import { AppError } from "../../../Domain/Utils/customError";
 import { IAddNewHubVerifyOtpUseCase } from "../../Interfaces/UseCases/Hub/IAddNewHubVerifyOtpUseCase";
-import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { AddNewHubVerifyOtpDTO } from "../../DTOs/Agency/agency.dto";
 
 @injectable()

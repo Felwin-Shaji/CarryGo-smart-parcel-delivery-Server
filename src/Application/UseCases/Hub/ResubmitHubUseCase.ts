@@ -5,10 +5,10 @@ import { IAdminRepository } from "../../Interfaces/Repositories/Admin/IAdminRepo
 import { IUploadAddFilesUseCase } from "../../Interfaces/UseCases/Hub/IUploadAddFilesUseCase";
 import { INotificationService } from "../../Interfaces/Services/Notification/INotificationService";
 import { INotificationSocketService } from "../../Interfaces/Services/Notification/INotificationSocketService";
-import { AgencyAddHubFields } from "../../../Infrastructure/services/storage/multer";
+import { AgencyAddHubFields } from "../../../Infrastructure/Services/Storage/multer";
 import { AppError } from "../../../Domain/Utils/customError";
-import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { HubMapper } from "../../Mappers/Hub/HubMapper";
 import { ResubmitHubDTO } from "../../DTOs/Agency/agency.dto";
 

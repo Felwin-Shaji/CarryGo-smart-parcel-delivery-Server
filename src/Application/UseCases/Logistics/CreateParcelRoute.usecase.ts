@@ -9,9 +9,9 @@ import { ParcelRouteMapper } from "../../Mappers/Logistics/ParcelRouteMapper.dto
 import { ParcelRoute } from "../../../Domain/Entities/Logistics/ParcelRoute";
 import { ParcelRouteLeg } from "../../../Domain/Entities/Logistics/ParcelRouteLeg";
 import { AppError } from "../../../Domain/Utils/customError";
-import { BOOKING_MESSAGE } from "../../../Infrastructure/constants/messages/bookingMessages";
-import { PARCEL_ROUTE_MESSAGE } from "../../../Infrastructure/constants/messages/RouteGroupMessage";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { BOOKING_MESSAGE } from "../../../Infrastructure/Constants/Messages/bookingMessages";
+import { PARCEL_ROUTE_MESSAGE } from "../../../Infrastructure/Constants/Messages/RouteGroupMessage";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import mongoose from "mongoose";
 import { inject, injectable } from "tsyringe";
 

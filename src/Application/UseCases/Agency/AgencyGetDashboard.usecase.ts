@@ -8,8 +8,8 @@ import { IBookingRepository } from "../../Interfaces/Repositories/User/IBookingR
 import { IAgencyPricingRepository } from "../../Interfaces/Repositories/Agency/agencyPricing.repository";
 import { IPricingPolicyRepository } from "../../Interfaces/Repositories/Admin/IPricingPolicyRepository";
 import { AppError } from "../../../Domain/Utils/customError";
-import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 
 @injectable()
 export class AgencyGetDashboardUsecase implements IAgencyGetDashboardUsecase {

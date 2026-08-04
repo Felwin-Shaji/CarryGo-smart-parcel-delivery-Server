@@ -1,8 +1,8 @@
 import { HubShipment } from "../../../Domain/Entities/Logistics/HubShipment";
 import { HubWorker } from "../../../Domain/Entities/Worker/Worker";
 import { AppError } from "../../../Domain/Utils/customError";
-import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { GetWorkerDashboardResponseDTO } from "../../DTOs/Worker/worker.dto";
 
 export class WorkerDashboardMapper {

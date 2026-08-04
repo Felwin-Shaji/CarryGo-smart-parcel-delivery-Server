@@ -4,9 +4,9 @@ import { ICreateTravelRequestUseCase } from "../../../Interfaces/UseCases/User/T
 import { ITravelRequestRepository } from "../../../Interfaces/Repositories/User/ITravelRequestRepository";
 import { CreateTravelRequestDTO, TravelerRequestAddressDTO } from "../../../DTOs/User/traveler.dto";
 import { TravelerMapper } from "../../../Mappers/User/travelerMapper";
-import { USER_MESSAGES } from "../../../../Infrastructure/constants/messages/userMessage";
+import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessage";
 import { IUserRepository } from "../../../Interfaces/Repositories/User/user.repository";
-import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
+import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 
 @injectable()
 export class CreateTravelRequestUseCase implements ICreateTravelRequestUseCase {

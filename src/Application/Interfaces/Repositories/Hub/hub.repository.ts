@@ -1,6 +1,6 @@
 import { ClientSession, FilterQuery } from "mongoose";
 import { Hub } from "../../../../Domain/Entities/Hub/Hub";
-import { HubDocument } from "../../../../Infrastructure/database/models/Hub/HubModel";
+import { HubDocument } from "../../../../Infrastructure/Database/Models/Hub/HubModel";
 import { GetHubsDTO, updateHubKycStatusDTO } from "../../../DTOs/Hub/hub.dto";
 import { ServiceableHubWithAgencyDTO } from "../../../DTOs/User/Booking.dto";
 import { GeoLocation } from "../../UseCases/User/Booking/IFindServicableAgencyUsecase";

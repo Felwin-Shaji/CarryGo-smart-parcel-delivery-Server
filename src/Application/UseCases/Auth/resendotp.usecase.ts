@@ -6,8 +6,8 @@ import { AppError } from "../../../Domain/Utils/customError";
 import { OtpVo } from "../../../Domain/ValueObjects/otp.valueObject";
 import type { OtpResponseDTO, ResendOtpDTO } from "../../DTOs/Auth/Auth.dto";
 import { IResendOtpUseCase } from "../../Interfaces/UseCases/Auth/resendOtp.usecase";
-import { OTP_MESSAGES } from "../../../Infrastructure/constants/messages/otpMessage";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { OTP_MESSAGES } from "../../../Infrastructure/Constants/Messages/otpMessage";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { AuthMapper } from "../../Mappers/AuthMapper";
 
 

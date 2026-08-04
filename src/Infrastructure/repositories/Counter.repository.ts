@@ -1,5 +1,5 @@
 import { ICounterRepository } from "../../Application/Interfaces/Repositories/ICounterRepository";
-import { Counter } from "../database/counterSchema";
+import { Counter } from "../Database/counterSchema";
 
 export class CounterRepository implements ICounterRepository {
 

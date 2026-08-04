@@ -3,7 +3,7 @@ import { ClientSession, Types } from "mongoose";
 import { FilterQuery } from "mongoose";
 import { HubShipmentPaginatedData, IHubShipmentRepository } from "../../../Application/Interfaces/Repositories/Logistics/IHubShipmentRepository";
 import { HubShipment, ShipmentType } from "../../../Domain/Entities/Logistics/HubShipment";
-import { HubShipmentDocument, HubShipmentModel } from "../../database/models/Logistics/HubShipmentModel";
+import { HubShipmentDocument, HubShipmentModel } from "../../Database/Models/Logistics/HubShipmentModel";
 import { GetShipmentsDTO, GetWorkerShipmentDTO } from "../../../Application/DTOs/Logistics/shipment.dto";
 import { ShipmentSummaryGroup } from "../../../Application/DTOs/Hub/hubDashboar.dto";
 

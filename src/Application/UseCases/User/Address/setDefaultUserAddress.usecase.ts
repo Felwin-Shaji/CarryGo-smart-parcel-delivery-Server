@@ -2,9 +2,9 @@ import { inject, injectable } from "tsyringe";
 import { IUserRepository } from "../../../Interfaces/Repositories/User/user.repository";
 import { AppError } from "../../../../Domain/Utils/customError";
 import { ISetDefaultUserAddressUseCase } from "../../../Interfaces/UseCases/User/Address/ISetDefaultUserAddressUseCase";
-import { USER_MESSAGES } from "../../../../Infrastructure/constants/messages/userMessage";
-import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
-import { ADDRESS_MESSAGES } from "../../../../Infrastructure/constants/messages/addressMessages";
+import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessage";
+import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
+import { ADDRESS_MESSAGES } from "../../../../Infrastructure/Constants/Messages/addressMessages";
 
 @injectable()
 export class SetDefaultUserAddressUseCase implements ISetDefaultUserAddressUseCase {

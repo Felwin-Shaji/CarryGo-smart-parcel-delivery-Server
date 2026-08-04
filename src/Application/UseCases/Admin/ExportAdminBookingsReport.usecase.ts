@@ -7,8 +7,8 @@ import {
 } from "../../DTOs/Admin/adminDashboard.dto";
 import { IGetAdminBookingsReportUseCase } from "../../Interfaces/UseCases/Admin/IGetAdminBookingsReportUseCase";
 import { IExportAdminBookingsReportUseCase } from "../../Interfaces/UseCases/Admin/IExportAdminBookingsReportUseCase";
-import { ADMIN_MESSAGES } from "../../../Infrastructure/constants/messages/adminMessages";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { ADMIN_MESSAGES } from "../../../Infrastructure/Constants/Messages/adminMessages";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { AdminReportGenerators, ExportType, } from "../../../Infrastructure/Types/reportGenerator.types";
 
 

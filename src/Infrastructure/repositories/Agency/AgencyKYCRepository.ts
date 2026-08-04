@@ -2,7 +2,7 @@ import { injectable } from "tsyringe";
 import { IAgencyKYCRepository } from "../../../Application/Interfaces/Repositories/Agency/AgencyKYC";
 import { BaseRepository } from "../baseRepositories";
 import { AgencyKYC } from "../../../Domain/Entities/Agency/AgencyKYC";
-import { AgencyKYCModel } from "../../database/models/AgencyModels/AgencyKYCModel";
+import { AgencyKYCModel } from "../../Database/Models/Agency/AgencyKYCModel";
 
 
 @injectable()

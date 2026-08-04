@@ -3,8 +3,8 @@ import { IPincodeLookupService } from "../../../Application/Interfaces/Services/
 import { PincodeDetails } from "../../Types/types";
 import axios from "axios";
 import { AppError } from "../../../Domain/Utils/customError";
-import { SERVICE_MESSAGES } from "../../constants/messages/servicesMessaeg";
-import { STATUS } from "../../constants/statusCodes";
+import { SERVICE_MESSAGES } from "../../Constants/Messages/servicesMessaeg";
+import { STATUS } from "../../Constants/statusCodes";
 
 @injectable()
 export class PincodeLookupService implements IPincodeLookupService {

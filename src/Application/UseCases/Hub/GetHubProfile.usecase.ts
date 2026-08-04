@@ -1,11 +1,11 @@
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../Domain/Utils/customError";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IHubRepository } from "../../Interfaces/Repositories/Hub/hub.repository";
 import { IGetHubProfileUseCase } from "../../Interfaces/UseCases/Hub/IGetHubProfileUseCase";
 import { HubProfileMapper } from "../../Mappers/Hub/HubProfileMapper";
 import { HubProfileResponseDTO } from "../../DTOs/Hub/hubProfile.dto";
-import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
 
 @injectable()
 export class GetHubProfileUseCase implements IGetHubProfileUseCase {

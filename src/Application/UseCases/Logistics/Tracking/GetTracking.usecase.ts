@@ -2,9 +2,9 @@ import { IGetAgencyTrackingUsecase } from "../../../Interfaces/UseCases/Logistic
 import { IGetTrackingUsecase } from "../../../Interfaces/UseCases/Logistics/Tracking/IGetTrackingUsecase";
 import { IGetTravelerTrackingUsecase } from "../../../Interfaces/UseCases/Logistics/Tracking/IGetTravelerTrackingUsecase";
 import { Role } from "../../../../Infrastructure/Types/types";
-import { BOOKING_MESSAGE } from "../../../../Infrastructure/constants/messages/bookingMessages";
+import { BOOKING_MESSAGE } from "../../../../Infrastructure/Constants/Messages/bookingMessages";
 import { AppError } from "../../../../Domain/Utils/customError";
-import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
+import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 import { inject, injectable } from "tsyringe";
 import { AgencyParcelTrackingDTO, TravelerParcelTrackingDTO } from "../../../DTOs/Logistics/ParcelTracking.dto";
 

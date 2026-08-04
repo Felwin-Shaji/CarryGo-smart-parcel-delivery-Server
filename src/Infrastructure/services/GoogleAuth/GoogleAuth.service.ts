@@ -1,8 +1,8 @@
 import { OAuth2Client } from "google-auth-library";
 import { IGoogleAuthService } from "../../../Application/Interfaces/Services/GoogleAuth/IGoogleAuthService";
 import { AppError } from "../../../Domain/Utils/customError";
-import { STATUS } from "../../constants/statusCodes";
-import { AUTH_MESSAGES } from "../../constants/messages/authMessages";
+import { STATUS } from "../../Constants/statusCodes";
+import { AUTH_MESSAGES } from "../../Constants/Messages/authMessages";
 import { injectable } from "tsyringe";
 
 const GOOGLE_CLIENT_ID = process.env.CLIENT_ID;

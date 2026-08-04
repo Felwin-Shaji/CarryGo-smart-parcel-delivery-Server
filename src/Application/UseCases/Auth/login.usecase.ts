@@ -3,13 +3,13 @@ import type { IUserRepository } from "../../Interfaces/Repositories/User/user.re
 import type { AuthUserDTO } from "../../../Infrastructure/Types/types";
 import { AppError } from "../../../Domain/Utils/customError";
 import type { LoginDTO } from "../../DTOs/Auth/Auth.dto";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import type { IAdminRepository } from "../../Interfaces/Repositories/Admin/IAdminRepository";
 import type { IAgencyRepository } from "../../Interfaces/Repositories/Agency/agency.repository";
 import { ILoginUsecase } from "../../Interfaces/UseCases/Auth/login.usecase";
 import { IHubRepository } from "../../Interfaces/Repositories/Hub/hub.repository";
 import { IPasswordService } from "../../Interfaces/Services/password-service.interface";
-import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
+import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";
 
 @injectable()

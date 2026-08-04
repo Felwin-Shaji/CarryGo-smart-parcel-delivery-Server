@@ -3,8 +3,8 @@ import { IUserReserUserPassword } from "../../Interfaces/UseCases/User/ReserUser
 import { UserResetPasswordRequestDTO } from "../../DTOs/User/user.dto";
 import { IUserRepository } from "../../Interfaces/Repositories/User/user.repository";
 import { AppError } from "../../../Domain/Utils/customError";
-import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IPasswordService } from "../../Interfaces/Services/password-service.interface";
 
 @injectable()

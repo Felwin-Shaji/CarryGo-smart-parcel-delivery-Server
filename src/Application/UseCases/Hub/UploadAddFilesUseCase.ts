@@ -2,9 +2,9 @@ import { inject, injectable } from "tsyringe";
 import { IStorageService } from "../../Interfaces/Services/storage-service.interface";
 import { IUploadAddFilesUseCase } from "../../Interfaces/UseCases/Hub/IUploadAddFilesUseCase";
 import { AppError } from "../../../Domain/Utils/customError";
-import { AgencyAddHubFields } from "../../../Infrastructure/services/storage/multer";
-import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { AgencyAddHubFields } from "../../../Infrastructure/Services/Storage/multer";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 
 
 @injectable()

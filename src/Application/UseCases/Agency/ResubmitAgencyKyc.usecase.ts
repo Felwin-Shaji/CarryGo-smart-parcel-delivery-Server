@@ -4,8 +4,8 @@ import { IAgencyKYCRepository } from "../../Interfaces/Repositories/Agency/Agenc
 import { AgencyKYCMapper } from "../../Mappers/Agency/AgencyKYCMapper";
 import { IRsubmitAgencyKycUseCase } from "../../Interfaces/UseCases/Agency/ResubmitAgencyKycUseCase";
 import { AppError } from "../../../Domain/Utils/customError";
-import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IAgencyRepository } from "../../Interfaces/Repositories/Agency/agency.repository";
 import { Types } from "mongoose";
 import { INotificationService } from "../../Interfaces/Services/Notification/INotificationService";

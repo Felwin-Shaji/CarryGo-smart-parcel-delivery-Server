@@ -1,6 +1,6 @@
 import { IHubWorkerKycRepository } from "../../../Application/Interfaces/Repositories/Worker/wrokerKyc.repository";
 import { IWrokerKYCVerification } from "../../../Domain/Entities/Worker/WorkerKyc";
-import { KYCVerificationModel } from "../../database/models/Worker/workerKycVarificationModel";
+import { KYCVerificationModel } from "../../Database/Models/Worker/workerKycVarificationModel";
 import { BaseRepository } from "../baseRepositories";
 
 

@@ -4,8 +4,8 @@ import { IHubTempRepository } from "../../Interfaces/Repositories/Hub/hubTemp.re
 import { IOtpService } from "../../Interfaces/Services/otp-service.interface";
 import { IMailService } from "../../Interfaces/Services/email-service.interface";
 import { AppError } from "../../../Domain/Utils/customError";
-import { ENV } from "../../../Infrastructure/constants/env";
-import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
+import { ENV } from "../../../Infrastructure/Constants/env";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
 
 @injectable()
 export class AddNewHubResendOtp implements IAddNewHubResendOtp {

@@ -2,8 +2,8 @@ import { inject, injectable } from "tsyringe";
 import { BookingFilterDTO, BookingListResponseDTO } from "../../../DTOs/User/Booking.dto";
 import { IUserBookingsUsecase } from "../../../Interfaces/UseCases/User/Booking/IUserBookingsUsecase";
 import { IBookingRepository } from "../../../Interfaces/Repositories/User/IBookingRepository";
-import { BOOKING_MESSAGE } from "../../../../Infrastructure/constants/messages/bookingMessages";
-import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
+import { BOOKING_MESSAGE } from "../../../../Infrastructure/Constants/Messages/bookingMessages";
+import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 import { AppError } from "../../../../Domain/Utils/customError";
 import { BookingMapper } from "../../../Mappers/User/bookingMapper";
 

@@ -3,9 +3,9 @@ import { IHubWorkersTempRepository } from "../../Interfaces/Repositories/Worker/
 import { IOtpService } from "../../Interfaces/Services/otp-service.interface";
 import { AppError } from "../../../Domain/Utils/customError";
 import { IWorkerVerifyOtpUseCase } from "../../Interfaces/UseCases/Worker/addWorkerVerifyOtpUseCase";
-import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
 
 @injectable()
 export class WorkerVerifyOtpUseCase implements IWorkerVerifyOtpUseCase {

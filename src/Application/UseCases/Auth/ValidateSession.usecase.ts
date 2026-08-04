@@ -6,8 +6,8 @@ import { IAgencyRepository } from "../../Interfaces/Repositories/Agency/agency.r
 import { IHubRepository } from "../../Interfaces/Repositories/Hub/hub.repository";
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";
 import { AppError } from "../../../Domain/Utils/customError";
-import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 
 @injectable()
 export class ValidateSessionUseCase implements IValidateSessionUseCase {

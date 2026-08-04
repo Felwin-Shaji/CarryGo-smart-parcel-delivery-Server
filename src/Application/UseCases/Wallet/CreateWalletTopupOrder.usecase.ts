@@ -5,8 +5,8 @@ import { IWalletRepository } from "../../Interfaces/Repositories/Wallet/IWalletR
 import { ITransactionRepository } from "../../Interfaces/Repositories/Wallet/ITransactionRepository";
 import { Transaction } from "../../../Domain/Entities/Wallet/WalletTransaction";
 import { AppError } from "../../../Domain/Utils/customError";
-import { WALLET_MESSAGES } from "../../../Infrastructure/constants/messages/walletMessages";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { WALLET_MESSAGES } from "../../../Infrastructure/Constants/Messages/walletMessages";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { Role } from "../../../Infrastructure/Types/types";
 
 

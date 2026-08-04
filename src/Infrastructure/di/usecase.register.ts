@@ -243,7 +243,7 @@ import { AgencyGetDeliveriesChartUseCase } from "../../Application/UseCases/Agen
 import { IAgencyExportSalesReportUseCase } from "../../Application/Interfaces/UseCases/Agency/IAgencyExportSalesReportUsecase";
 import { AgencyExportSalesReportUseCase } from "../../Application/UseCases/Agency/AgencyExportSalesReport.usecase";
 import { INotificationRepository } from "../../Application/Interfaces/Repositories/Notification/INotificationRepository";
-import { NotificationRepository } from "../repositories/Notification/Notification.repository";
+import { NotificationRepository } from "../Repositories/Notification/Notification.repository";
 import { IGetNotificationsUseCase } from "../../Application/Interfaces/UseCases/Notification/IGetNotificationsUseCase";
 import { GetNotificationsUseCase } from "../../Application/UseCases/Notification/GetNotifications.usecase";
 import { IMarkAsReadUseCase } from "../../Application/Interfaces/UseCases/Notification/IMarkAsReadUseCase";

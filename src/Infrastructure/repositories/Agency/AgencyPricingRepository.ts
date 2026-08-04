@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
 import { IAgencyPricingRepository } from "../../../Application/Interfaces/Repositories/Agency/agencyPricing.repository";
 import { AgencyPricing } from "../../../Domain/Entities/Agency/AgencyPricing";
-import { AgencyPricingModel, AgencyPricingSchemaType } from "../../database/models/AgencyModels/agencyPricing.model";
+import { AgencyPricingModel, AgencyPricingSchemaType } from "../../Database/Models/Agency/agencyPricing.model";
 import { BaseRepository } from "../baseRepositories";
 
 export class AgencyPricingRepository

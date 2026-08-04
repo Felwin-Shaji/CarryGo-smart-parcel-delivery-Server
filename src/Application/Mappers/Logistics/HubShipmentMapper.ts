@@ -2,8 +2,8 @@ import { Booking } from "../../../Domain/Entities/Booking/Booking";
 import { HubShipment, ShipmentStatus } from "../../../Domain/Entities/Logistics/HubShipment";
 import { RouteSegment } from "../../../Domain/Entities/Logistics/RouteSegment";
 import { AppError } from "../../../Domain/Utils/customError";
-import { HUB_SHIPMENT_MESSAGE } from "../../../Infrastructure/constants/messages/RouteGroupMessage";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { HUB_SHIPMENT_MESSAGE } from "../../../Infrastructure/Constants/Messages/RouteGroupMessage";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { GetShipmentsResponseDTO, HubShipmentWithWorker } from "../../DTOs/Logistics/shipment.dto";
 import { HubShipmentPaginatedData } from "../../Interfaces/Repositories/Logistics/IHubShipmentRepository";
 

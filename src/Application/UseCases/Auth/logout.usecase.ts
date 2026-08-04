@@ -3,8 +3,8 @@ import { ILogoutUsecase } from "../../Interfaces/UseCases/Auth/logout.usecase";
 import { ITokenService } from "../../Interfaces/Services/token-service.interface";
 import { AppError } from "../../../Domain/Utils/customError";
 
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
+import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
 
 
 @injectable()

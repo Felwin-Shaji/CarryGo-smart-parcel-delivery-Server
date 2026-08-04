@@ -5,7 +5,7 @@ import { IGetAgencyWithKYCUseCase } from "../../Interfaces/UseCases/Agency/GetAg
 import { IGetHubsUsecase } from "../../Interfaces/UseCases/Hub/IGetHubsUsecase";
 import { GetHubsDTO } from "../../DTOs/Hub/hub.dto";
 import { AppError } from "../../../Domain/Utils/customError";
-import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
+import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
 
 @injectable()
 export class GetAgencyOverviewUseCase implements IGetAgencyOverviewUseCase {

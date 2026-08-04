@@ -1,9 +1,9 @@
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../Domain/Utils/customError";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IAgencyRepository } from "../../Interfaces/Repositories/Agency/agency.repository";
 import { IUpdateAgencyStatusUseCase } from "../../Interfaces/UseCases/Agency/UpdateAgencyStatusUseCase";
-import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
+import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
 
 
 @injectable()

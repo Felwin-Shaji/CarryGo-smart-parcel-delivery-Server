@@ -3,8 +3,8 @@ import { IWalletTopupSuccessUseCase } from "../../Interfaces/UseCases/Wallet/IWa
 import { ITransactionRepository } from "../../Interfaces/Repositories/Wallet/ITransactionRepository";
 import { IWalletRepository } from "../../Interfaces/Repositories/Wallet/IWalletRepository";
 import { AppError } from "../../../Domain/Utils/customError";
-import { WALLET_MESSAGES } from "../../../Infrastructure/constants/messages/walletMessages";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { WALLET_MESSAGES } from "../../../Infrastructure/Constants/Messages/walletMessages";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 
 @injectable()
 export class WalletTopupSuccessUseCase implements IWalletTopupSuccessUseCase {

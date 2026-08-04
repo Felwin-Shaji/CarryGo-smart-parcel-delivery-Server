@@ -4,14 +4,14 @@ import { AppError } from "../../../Domain/Utils/customError";
 import { IUploadWorkerKycFilesUsecase } from "../../Interfaces/UseCases/Worker/uploadWorkerKycFilesUsecase";
 import { IReSubmitWorkerKycUseCase } from "../../Interfaces/UseCases/Worker/IReSubmitWorkerKycUseCase";
 import { ReSubmitWorkerKycPayloadDTO } from "../../DTOs/Worker/worker.dto";
-import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";
 import { INotificationSocketService } from "../../Interfaces/Services/Notification/INotificationSocketService";
 import { INotificationService } from "../../Interfaces/Services/Notification/INotificationService";
 import { IAgencyRepository } from "../../Interfaces/Repositories/Agency/agency.repository";
 import { IHubRepository } from "../../Interfaces/Repositories/Hub/hub.repository";
-import { WorkerKYCFileFields } from "../../../Infrastructure/services/storage/multer";
+import { WorkerKYCFileFields } from "../../../Infrastructure/Services/Storage/multer";
 
 @injectable()
 export class ReSubmitWorkerKycUseCase implements IReSubmitWorkerKycUseCase {

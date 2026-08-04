@@ -3,12 +3,12 @@ import { ITravelRequestRepository } from "../../../Interfaces/Repositories/User/
 import { IUserRepository } from "../../../Interfaces/Repositories/User/user.repository";
 import { IGetTravelerTrackingUsecase } from "../../../Interfaces/UseCases/Logistics/Tracking/IGetTravelerTrackingUsecase";
 import { TravelerParcelTrackingMapper } from "../../../Mappers/Logistics/TravelerParcelTrackingMapper";
-import { USER_MESSAGES } from "../../../../Infrastructure/constants/messages/userMessage";
+import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessage";
 import { inject, injectable } from "tsyringe";
 import { Role } from "../../../../Infrastructure/Types/types";
-import { BOOKING_MESSAGE } from "../../../../Infrastructure/constants/messages/bookingMessages";
+import { BOOKING_MESSAGE } from "../../../../Infrastructure/Constants/Messages/bookingMessages";
 import { AppError } from "../../../../Domain/Utils/customError";
-import { STATUS } from "../../../../Infrastructure/constants/statusCodes";
+import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 import { TravelerParcelTrackingDTO } from "../../../DTOs/Logistics/ParcelTracking.dto";
 @injectable()
 export class GetTravelerTrackingUsecase implements IGetTravelerTrackingUsecase {

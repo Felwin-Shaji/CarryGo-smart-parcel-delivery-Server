@@ -2,8 +2,8 @@ import { inject, injectable } from "tsyringe";
 import { IUpdateUserStatusUseCase } from "../../Interfaces/UseCases/User/UpdateUserStatus.usecase";
 import { IUserRepository } from "../../Interfaces/Repositories/User/user.repository";
 import { AppError } from "../../../Domain/Utils/customError";
-import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
+import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
+import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
 
 @injectable()
 export class UpdateUserStatusUseCase implements IUpdateUserStatusUseCase {

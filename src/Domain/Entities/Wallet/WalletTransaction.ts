@@ -1,4 +1,4 @@
-import { WALLET_MESSAGES } from "../../../Infrastructure/constants/messages/walletMessages";
+import { WALLET_MESSAGES } from "../../../Infrastructure/Constants/Messages/walletMessages";
 import { AppError } from "../../Utils/customError";
 
 export type TransactionType =

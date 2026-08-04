@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import type { IOtpRepository } from "../../Interfaces/Repositories/Auth/otp.repository";
 import { AppError } from "../../../Domain/Utils/customError";
-import type { IOtpModel } from "../../../Domain/Entities/OTP";
+import type { IOtpModel } from "../../../Domain/Entities/IOtpModel";
 import { IVerifyOtpUseCase } from "../../Interfaces/UseCases/Auth/verifyOtp.interface";
 import { OTP_MESSAGES } from "../../../Infrastructure/Constants/Messages/otpMessage";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";

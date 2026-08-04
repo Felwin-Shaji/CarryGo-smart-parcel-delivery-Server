@@ -8,7 +8,7 @@ import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 import { PRICING_POLICY_MESSAGE } from "../../../Infrastructure/Constants/Messages/pricingPolicyMessage";
 import { IUpsertAgencyPricingUseCase } from "../../../Application/Interfaces/UseCases/Pricing/IUpsertAgencyPricingUseCase";
-import { UpdateAgencyPricingDTO } from "../../../Application/DTOs/Pricing/AgencyPricing.dto";
+import { UpdateAgencyPricingDTO } from "../../../Application/DTOs/Pricing/AgencyPricingDTO";
 
 @injectable()
 export class AgencyPricingController implements IAgencyPricingController {

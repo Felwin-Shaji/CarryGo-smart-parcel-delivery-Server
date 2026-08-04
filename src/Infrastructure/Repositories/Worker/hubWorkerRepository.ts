@@ -3,7 +3,7 @@ import { IHubWorkerRepository } from "../../../Application/Interfaces/Repositori
 import { HubWorker } from "../../../Domain/Entities/Worker/Worker";
 import { HubWorkerModel } from "../../Database/Models/Worker/workerModel";
 import { BaseRepository } from "../baseRepositories";
-import { GetHubWorkersResponseDTO, GetWorkersDTO, WorkerResponseDTO } from "../../../Application/DTOs/Worker/worker.dto";
+import { GetHubWorkersResponseDTO, GetWorkersDTO, WorkerResponseDTO } from "../../../Application/DTOs/Worker/WorkerDTO";
 
 export class HubWorkerRepository extends BaseRepository<HubWorker> implements IHubWorkerRepository {
     constructor() {

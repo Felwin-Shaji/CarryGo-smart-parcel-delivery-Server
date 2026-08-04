@@ -9,11 +9,11 @@ import { IUploadWorkerKycFilesUsecase } from "../../../Application/Interfaces/Us
 import { IAddWorkerUsecase } from "../../../Application/Interfaces/UseCases/Worker/AddWorkerUsecase";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
-import { AddWorkerTempRequestDTO } from "../../../Application/DTOs/Hub/hub.dto";
+import { AddWorkerTempRequestDTO } from "../../../Application/DTOs/Hub/HubDTO";
 import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
 import { AppError } from "../../../Domain/Utils/customError";
 import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
-import { GetWorkersDTO, ReSubmitWorkerKycPayloadDTO } from "../../../Application/DTOs/Worker/worker.dto";
+import { GetWorkersDTO, ReSubmitWorkerKycPayloadDTO } from "../../../Application/DTOs/Worker/WorkerDTO";
 import { IGetWorkersUseCase } from "../../../Application/Interfaces/UseCases/Worker/IGetWorkersUseCase";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
 import { ICheckTempWorkerStatusUseCase } from "../../../Application/Interfaces/UseCases/Worker/ICheckTempWorkerStatusUseCase";

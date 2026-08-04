@@ -2,7 +2,7 @@ import { ClientSession, Types, PipelineStage } from "mongoose";
 import { IShipmentParcelRepository } from "../../../Application/Interfaces/Repositories/Logistics/IShipmentParcelRepository";
 import { ShipmentParcel, ShipmentParcelStatus } from "../../../Domain/Entities/Logistics/ShipmentParcel";
 import { ShipmentParcelDocument, ShipmentParcelModel } from "../../Database/Models/Logistics/ShipmentParcelModel";
-import { GetWorkerGraphRequestDTO, GetWorkerGraphResponseDTO, GetWorkerParcelsDTO, GetWorkerParcelsResponseDTO, WorkerGraphPointDTO, WorkerParcelItemDTO } from "../../../Application/DTOs/Worker/worker.dto";
+import { GetWorkerGraphRequestDTO, GetWorkerGraphResponseDTO, GetWorkerParcelsDTO, GetWorkerParcelsResponseDTO, WorkerGraphPointDTO, WorkerParcelItemDTO } from "../../../Application/DTOs/Worker/WorkerDTO";
 import { ShipmentType } from "../../../Domain/Entities/Logistics/HubShipment";
 import { AppError } from "../../../Domain/Utils/customError";
 import { STATUS } from "../../Constants/statusCodes";

@@ -6,7 +6,7 @@ import { AppError } from "../../../Domain/Utils/customError";
 import { ADMIN_MESSAGES } from "../../../Infrastructure/Constants/Messages/adminMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ApiResponse } from "../../Presenters/ApiResponse";
-import { AdminResetPasswordRequestDTO, EditAdminProfileRequestDto } from "../../../Application/DTOs/Admin/adminProfile.dto";
+import { AdminResetPasswordRequestDTO, EditAdminProfileRequestDto } from "../../../Application/DTOs/Admin/AdminProfileDTO";
 import { IEditAdminProfileUseCase } from "../../../Application/Interfaces/UseCases/Admin/IEditAdminProfileUseCase";
 import { IResetAdminPasswordUsecase } from "../../../Application/Interfaces/UseCases/Admin/IResetAdminPasswordUscase";
 

@@ -1,5 +1,5 @@
 import { ClientSession, FilterQuery, Types } from "mongoose";
-import { BookingFilterDTO } from "../../../Application/DTOs/User/Booking.dto";
+import { BookingFilterDTO } from "../../../Application/DTOs/User/BookingDTO";
 import { IBookingRepository } from "../../../Application/Interfaces/Repositories/User/IBookingRepository";
 import { Booking } from "../../../Domain/Entities/Booking/Booking";
 import { DeliveryPartner } from "../../../Domain/Enums/DeliveryPartnerType";
@@ -9,7 +9,7 @@ import { STATUS } from "../../Constants/statusCodes";
 import { BookingDocument, BookingModel } from "../../Database/Models/Booking/BookingSchema";
 import { BookingStatusType, PaymentStatusType } from "../../Types/types";
 import { BaseRepository } from "../baseRepositories";
-import { DeliveriesChartRequestDTO, DeliveriesChartResponseDTO } from "../../../Application/DTOs/Agency/agencyDashboard.dto";
+import { DeliveriesChartRequestDTO, DeliveriesChartResponseDTO } from "../../../Application/DTOs/Agency/AgencyDashboardDTO";
 
 export class BookingRepository extends BaseRepository<BookingDocument> implements IBookingRepository {
     constructor() {

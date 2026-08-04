@@ -4,7 +4,7 @@ import { inject, injectable } from "tsyringe";
 import { IUploadAddFilesUseCase } from "../../../Application/Interfaces/UseCases/Hub/IUploadAddFilesUseCase";
 import { IAddHubUseCase } from "../../../Application/Interfaces/UseCases/Hub/IAddHubUseCase";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import { AddNewHubAddressDto, AddNewHubBaseDto, AddNewHubVerifyOtpDTO, ResubmitHubDTO } from "../../../Application/DTOs/Agency/agency.dto";
+import { AddNewHubAddressDto, AddNewHubBaseDto, AddNewHubVerifyOtpDTO, ResubmitHubDTO } from "../../../Application/DTOs/Agency/AgencyDTO";
 import { IAddHubTempUseCase } from "../../../Application/Interfaces/UseCases/Hub/IAddHubTempUseCase";
 import { IAddNewHubResendOtp } from "../../../Application/Interfaces/UseCases/Hub/IAddNewHubResendOtp";
 import { IAddNewHubVerifyOtpUseCase } from "../../../Application/Interfaces/UseCases/Hub/IAddNewHubVerifyOtpUseCase";
@@ -12,7 +12,7 @@ import { AgencyAddHubFields } from "../../../Infrastructure/Services/Storage/mul
 import { ICheckTempHubStatusUseCase } from "../../../Application/Interfaces/UseCases/Hub/ICheckTempHubStatusUseCase";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
-import { GetHubsDTO } from "../../../Application/DTOs/Hub/hub.dto";
+import { GetHubsDTO } from "../../../Application/DTOs/Hub/HubDTO";
 import { IGetHubsUsecase } from "../../../Application/Interfaces/UseCases/Hub/IGetHubsUsecase";
 import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
 import { AppError } from "../../../Domain/Utils/customError";

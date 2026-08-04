@@ -1,4 +1,4 @@
-import { AdminBookingChartResponseDTO, AdminBookingsReportDTO, AdminBookingsReportResponseDTO, AdminDashboardResponseDTO, AdminRevenueChartResponseDTO, GetAdminDashboardDTO } from "../../../Application/DTOs/Admin/adminDashboard.dto";
+import { AdminBookingChartResponseDTO, AdminBookingsReportDTO, AdminBookingsReportResponseDTO, AdminDashboardResponseDTO, AdminRevenueChartResponseDTO, GetAdminDashboardDTO } from "../../../Application/DTOs/Admin/AdminDashboardDTO";
 import { IAdminDashboardRepository } from "../../../Application/Interfaces/Repositories/Admin/IAdminDashboardRepository";
 import { PaymentStatus } from "../../../Domain/Enums/PaymentStatus";
 import { AgencyModel } from "../../Database/Models/Agency/agencyModel";

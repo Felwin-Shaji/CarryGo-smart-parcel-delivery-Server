@@ -4,7 +4,7 @@ import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 import { ADMIN_MESSAGES } from "../../../Infrastructure/Constants/Messages/adminMessages";
 import { IGetAdminDashboardOverviewUseCase } from "../../../Application/Interfaces/UseCases/Admin/IGetAdminDashboardOverviewUseCase";
-import { GetAdminDashboardDTO } from "../../../Application/DTOs/Admin/adminDashboard.dto";
+import { GetAdminDashboardDTO } from "../../../Application/DTOs/Admin/AdminDashboardDTO";
 import { IGetAdminRevenueChartUseCase } from "../../../Application/Interfaces/UseCases/Admin/IGetAdminRevenueChartUseCase";
 import { IGetAdminBookingsChartUseCase } from "../../../Application/Interfaces/UseCases/Admin/IGetAdminBookingsChartUseCase";
 import { IGetAdminBookingsReportUseCase } from "../../../Application/Interfaces/UseCases/Admin/IGetAdminBookingsReportUseCase";

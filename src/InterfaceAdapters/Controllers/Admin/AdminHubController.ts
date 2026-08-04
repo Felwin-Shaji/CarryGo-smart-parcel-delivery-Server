@@ -5,7 +5,7 @@ import { IGetHubOverviewUseCase } from "../../../Application/Interfaces/UseCases
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
-import { updateHubKycStatusDTO } from "../../../Application/DTOs/Hub/hub.dto";
+import { updateHubKycStatusDTO } from "../../../Application/DTOs/Hub/HubDTO";
 import { IUpdateHubKycStatusUseCase } from "../../../Application/Interfaces/UseCases/Hub/IUpdateHubKycStatusUseCase";
 import { AppError } from "../../../Domain/Utils/customError";
 import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";

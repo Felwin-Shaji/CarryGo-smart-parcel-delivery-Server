@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { IGetWorkerOverviewUseCase } from "../../../Application/Interfaces/UseCases/Worker/IGetWorkerOverviewUseCase";
 import { inject, injectable } from "tsyringe";
 import { IUpdateWorkerKycStatusUseCase } from "../../../Application/Interfaces/UseCases/Worker/IUpdateWorkerKycStatusUseCase";
-import { UpdateWorkerKycStatusDTO } from "../../../Application/DTOs/Worker/worker.dto";
+import { UpdateWorkerKycStatusDTO } from "../../../Application/DTOs/Worker/WorkerDTO";
 import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ApiResponse } from "../../Presenters/ApiResponse";

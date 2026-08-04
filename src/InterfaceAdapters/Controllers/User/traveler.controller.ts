@@ -5,7 +5,7 @@ import { ITravelerController } from "../../Interfaces/Controllers/User/ITraveler
 import { WorkerKYCFileFields } from "../../../Infrastructure/Services/Storage/multer";
 import { inject, injectable } from "tsyringe";
 import { ISubmitTravelerKycUseCase } from "../../../Application/Interfaces/UseCases/User/Traveler/ISubmitTravelerKycUseCase";
-import { CreateTravelRequestDTO, SubmitTravelerKycRequestDTO, TravelerRequestFilterDTO } from "../../../Application/DTOs/User/traveler.dto";
+import { CreateTravelRequestDTO, SubmitTravelerKycRequestDTO, TravelerRequestFilterDTO } from "../../../Application/DTOs/User/TravelerDTO";
 import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
 import { AppError } from "../../../Domain/Utils/customError";
 import { IGetTravelerKycUseCase } from "../../../Application/Interfaces/UseCases/User/Traveler/IGetTravelerKycUseCase";

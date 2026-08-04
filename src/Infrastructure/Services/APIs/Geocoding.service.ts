@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ReverseGeocodeRawDTO } from "../../../Application/DTOs/User/address.dto";
+import { ReverseGeocodeRawDTO } from "../../../Application/DTOs/User/AddressDTO";
 import { IGeocodingService } from "../../../Application/Interfaces/Services/IGeocodingService";
 
 export class GeocodingService implements IGeocodingService {

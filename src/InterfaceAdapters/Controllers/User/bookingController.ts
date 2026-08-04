@@ -7,7 +7,7 @@ import { BOOKING_MESSAGE } from "../../../Infrastructure/Constants/Messages/book
 import { AppError } from "../../../Domain/Utils/customError";
 import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
 import { ICalculateBookingPriceUsecase } from "../../../Application/Interfaces/UseCases/User/Booking/ICalculateBookingPriceUsecase";
-import { BookingFilterDTO, CalculatePriceRequestDTO, CheckServiceableAgencyDTO, CheckServiceableTravelerDTO, CreateBookingRequestDTO } from "../../../Application/DTOs/User/Booking.dto";
+import { BookingFilterDTO, CalculatePriceRequestDTO, CheckServiceableAgencyDTO, CheckServiceableTravelerDTO, CreateBookingRequestDTO } from "../../../Application/DTOs/User/BookingDTO";
 import { ICreateBookingUsecase } from "../../../Application/Interfaces/UseCases/User/Booking/ICreateBookingUsecase";
 import { ICreatePaymentOrderUsecase } from "../../../Application/Interfaces/UseCases/Payment/ICreatePaymentOrderUsecase";
 import { IUserBookingsUsecase } from "../../../Application/Interfaces/UseCases/User/Booking/IUserBookingsUsecase";

@@ -4,7 +4,7 @@ import { IAddressController } from "../../Interfaces/Controllers/User/IAddressCo
 import { ICreateAddressFromLocationUseCase } from "../../../Application/Interfaces/UseCases/User/Address/ICreateAddressFromLocationUseCase";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ApiResponse } from "../../Presenters/ApiResponse";
-import { addUserAddressRequestDTO } from "../../../Application/DTOs/User/address.dto";
+import { addUserAddressRequestDTO } from "../../../Application/DTOs/User/AddressDTO";
 import { ADDRESS_MESSAGES } from "../../../Infrastructure/Constants/Messages/addressMessages";
 import { IAddUserAddressUseCase } from "../../../Application/Interfaces/UseCases/User/Address/IAddUserAddressUseCase";
 import { IGetUserAddressesUseCase } from "../../../Application/Interfaces/UseCases/User/Address/IGetUserAddressesUseCase";

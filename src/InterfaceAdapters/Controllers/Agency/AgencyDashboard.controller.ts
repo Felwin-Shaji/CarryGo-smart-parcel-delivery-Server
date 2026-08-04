@@ -7,7 +7,7 @@ import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
 import { IAgencyGetDashboardUsecase } from "../../../Application/Interfaces/UseCases/Agency/IAgencyGetDashboardUseCase";
-import { SalesReportRequestDTO } from "../../../Application/DTOs/Agency/agencyDashboard.dto";
+import { SalesReportRequestDTO } from "../../../Application/DTOs/Agency/AgencyDashboardDTO";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 import { AppError } from "../../../Domain/Utils/customError";
 

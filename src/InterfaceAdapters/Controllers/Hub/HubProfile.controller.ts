@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
-import { EditHubProfileRequestDto, HubResetPasswordRequestDTO } from "../../../Application/DTOs/Hub/hubProfile.dto";
+import { EditHubProfileRequestDto, HubResetPasswordRequestDTO } from "../../../Application/DTOs/Hub/HubProfileDTO";
 import { IGetHubProfileUseCase } from "../../../Application/Interfaces/UseCases/Hub/IGetHubProfileUseCase";
 import { IEditHubProfileUseCase } from "../../../Application/Interfaces/UseCases/Hub/IEditHubProfileUseCase";
 import { IResetHubPasswordUseCase } from "../../../Application/Interfaces/UseCases/Hub/IResetHubPasswordUseCase";

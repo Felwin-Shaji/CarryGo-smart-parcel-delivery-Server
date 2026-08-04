@@ -1,6 +1,6 @@
 import PDFDocument from "pdfkit";
 import { injectable } from "tsyringe";
-import { SalesReportResponseDTO } from "../../../../Application/DTOs/Agency/agencyDashboard.dto";
+import { SalesReportResponseDTO } from "../../../../Application/DTOs/Agency/AgencyDashboardDTO";
 import { IReportGenerator } from "../../../../Application/Interfaces/Services/Report/IReportService";
 
 @injectable()

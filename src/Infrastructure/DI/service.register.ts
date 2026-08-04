@@ -34,8 +34,8 @@ import { INotificationSocketService } from "../../Application/Interfaces/Service
 import { NotificationSocketService } from "../Services/Notification/NotificationSocket.service";
 import { IGoogleAuthService } from "../../Application/Interfaces/Services/GoogleAuth/IGoogleAuthService";
 import { GoogleAuthService } from "../Services/GoogleAuth/GoogleAuth.service";
-import { SalesReportResponseDTO } from "../../Application/DTOs/Agency/agencyDashboard.dto";
-import { AdminBookingsReportResponseDTO } from "../../Application/DTOs/Admin/adminDashboard.dto";
+import { SalesReportResponseDTO } from "../../Application/DTOs/Agency/AgencyDashboardDTO";
+import { AdminBookingsReportResponseDTO } from "../../Application/DTOs/Admin/AdminDashboardDTO";
 import { AdminExcelBookingsReportGenerator } from "../Services/Report/Admin/AdminExcelBookingsReportGenerator";
 import { AdminPdfBookingsReportGenerator } from "../Services/Report/Admin/AdminPdfBookingsReportGenerator";
 import { AdminReportGenerators, ReportGenerators } from "../Types/reportGenerator.types";

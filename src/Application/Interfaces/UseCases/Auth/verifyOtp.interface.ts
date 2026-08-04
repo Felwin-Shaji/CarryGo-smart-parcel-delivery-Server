@@ -1,4 +1,4 @@
-import { IOtpModel } from "../../../../Domain/Entities/OTP.js";
+import { IOtpModel } from "../../../../Domain/Entities/IOtpModel.js";
 
 
 export interface IVerifyOtpUseCase{

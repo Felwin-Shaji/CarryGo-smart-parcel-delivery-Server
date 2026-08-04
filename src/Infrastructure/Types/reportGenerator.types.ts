@@ -1,5 +1,5 @@
-import { AdminBookingsReportResponseDTO } from "../../Application/DTOs/Admin/adminDashboard.dto";
-import { SalesReportResponseDTO } from "../../Application/DTOs/Agency/agencyDashboard.dto";
+import { AdminBookingsReportResponseDTO } from "../../Application/DTOs/Admin/AdminDashboardDTO";
+import { SalesReportResponseDTO } from "../../Application/DTOs/Agency/AgencyDashboardDTO";
 import { IReportGenerator } from "../../Application/Interfaces/Services/Report/IReportService";
 
 export type ExportType = "excel" | "pdf";

@@ -3,7 +3,7 @@ import type { AgencyWithKYC_DB_Result, IAgencyRepository, PaginatedData } from "
 import { Agency } from "../../../Domain/Entities/Agency/Agency";
 import { AgencyModel } from "../../Database/Models/Agency/agencyModel";
 import { BaseRepository } from "../baseRepositories";
-import { GetAgenciesDTO } from "../../../Application/DTOs/Agency/agency.dto";
+import { GetAgenciesDTO } from "../../../Application/DTOs/Agency/AgencyDTO";
 import { AppError } from "../../../Domain/Utils/customError";
 import { AGENCY_MESSAGES } from "../../Constants/Messages/agencyMessages";
 import { SortOrder } from "mongoose";

@@ -1,9 +1,9 @@
 import { ClientSession, FilterQuery, Types } from "mongoose";
-import { GetHubsDTO, updateHubKycStatusDTO } from "../../../Application/DTOs/Hub/hub.dto";
+import { GetHubsDTO, updateHubKycStatusDTO } from "../../../Application/DTOs/Hub/HubDTO";
 import { IHubRepository, PaginatedHubData } from "../../../Application/Interfaces/Repositories/Hub/hub.repository";
 import { Hub } from "../../../Domain/Entities/Hub/Hub";
 import { HubDocument, HubModel } from "../../Database/Models/Hub/HubModel";
-import { ServiceableHubWithAgencyDTO } from "../../../Application/DTOs/User/Booking.dto";
+import { ServiceableHubWithAgencyDTO } from "../../../Application/DTOs/User/BookingDTO";
 import { AppError } from "../../../Domain/Utils/customError";
 import { HUB_MESSAGES } from "../../Constants/Messages/hubMessage";
 import { STATUS } from "../../Constants/statusCodes";

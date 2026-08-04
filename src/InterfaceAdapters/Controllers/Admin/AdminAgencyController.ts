@@ -7,7 +7,7 @@ import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IAdminAgencyController } from "../../Interfaces/Controllers/Admin/adminAgency.controller";
 import { IUpdateAgencyStatusUseCase } from "../../../Application/Interfaces/UseCases/Agency/UpdateAgencyStatusUseCase";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
-import { GetAgenciesDTO, updateAgencyKycStatusDTO, } from "../../../Application/DTOs/Agency/agency.dto";
+import { GetAgenciesDTO, updateAgencyKycStatusDTO, } from "../../../Application/DTOs/Agency/AgencyDTO";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 import { IGetAgencyOverviewUseCase } from "../../../Application/Interfaces/UseCases/Agency/GetAgencyOverview.usecase";
 import { parseBlockedQuery } from "../../../Domain/Utils/parseBlockedQuery";

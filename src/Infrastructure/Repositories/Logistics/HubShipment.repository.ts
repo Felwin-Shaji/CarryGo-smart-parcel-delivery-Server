@@ -4,8 +4,8 @@ import { FilterQuery } from "mongoose";
 import { HubShipmentPaginatedData, IHubShipmentRepository } from "../../../Application/Interfaces/Repositories/Logistics/IHubShipmentRepository";
 import { HubShipment, ShipmentType } from "../../../Domain/Entities/Logistics/HubShipment";
 import { HubShipmentDocument, HubShipmentModel } from "../../Database/Models/Logistics/HubShipmentModel";
-import { GetShipmentsDTO, GetWorkerShipmentDTO } from "../../../Application/DTOs/Logistics/shipment.dto";
-import { ShipmentSummaryGroup } from "../../../Application/DTOs/Hub/hubDashboar.dto";
+import { GetShipmentsDTO, GetWorkerShipmentDTO } from "../../../Application/DTOs/Logistics/ShipmentDTO";
+import { ShipmentSummaryGroup } from "../../../Application/DTOs/Hub/HubDashboardDTO";
 
 type PopulatedWorker = {
     _id: Types.ObjectId;

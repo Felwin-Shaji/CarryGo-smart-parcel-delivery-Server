@@ -4,7 +4,7 @@ import { inject, injectable } from "tsyringe";
 import { IGetShipmentsUsecase } from "../../../Application/Interfaces/UseCases/Logistics/HubShipment/IGetShipmentsUsecase";
 import { IGetShipmentDetailsUsecase } from "../../../Application/Interfaces/UseCases/Logistics/ShipmentParcel/IGetShipmentDetailsUsecase";
 import { IUpdateHubShipmentUsecase } from "../../../Application/Interfaces/UseCases/Logistics/HubShipment/IUpdateHubShipmentUsecase";
-import { GetShipmentsDTO, UpdateHubShipmentDTO } from "../../../Application/DTOs/Logistics/shipment.dto";
+import { GetShipmentsDTO, UpdateHubShipmentDTO } from "../../../Application/DTOs/Logistics/ShipmentDTO";
 import { ShipmentStatus, ShipmentType } from "../../../Domain/Entities/Logistics/HubShipment";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ApiResponse } from "../../Presenters/ApiResponse";

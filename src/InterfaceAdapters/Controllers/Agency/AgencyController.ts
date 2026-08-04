@@ -6,7 +6,7 @@ import { ISaveAgencyKycUseCase } from "../../../Application/Interfaces/UseCases/
 import { IUpdateAgencyKycStatusUseCase } from "../../../Application/Interfaces/UseCases/Agency/UpdateAgencyKycStatusUseCase";
 import { AppError } from "../../../Domain/Utils/customError";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import { AgencyKYC_DTO, AgencyResubmitKycDTO } from "../../../Application/DTOs/Agency/agency.dto";
+import { AgencyKYC_DTO, AgencyResubmitKycDTO } from "../../../Application/DTOs/Agency/AgencyDTO";
 import { AgencyKYCFileFields } from "../../../Infrastructure/Services/Storage/multer";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";

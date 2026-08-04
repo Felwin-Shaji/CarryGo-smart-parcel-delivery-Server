@@ -1,5 +1,5 @@
 import { FilterQuery, Types } from "mongoose";
-import { PaginationResponseDTO, ServiceableTravelerDTO } from "../../../Application/DTOs/User/Booking.dto";
+import { PaginationResponseDTO, ServiceableTravelerDTO } from "../../../Application/DTOs/User/BookingDTO";
 import { ITravelRequestRepository } from "../../../Application/Interfaces/Repositories/User/ITravelRequestRepository";
 import { GeoLocation } from "../../../Application/Interfaces/UseCases/User/Booking/IFindServicableAgencyUsecase";
 import { TravelRequest } from "../../../Domain/Entities/User/TravelRequest";
@@ -8,7 +8,7 @@ import { USER_MESSAGES } from "../../Constants/Messages/userMessage";
 import { STATUS } from "../../Constants/statusCodes";
 import { TravelRequestDocument, TravelRequestModel } from "../../Database/Models/User/travelRequestSchema";
 import { BaseRepository } from "../baseRepositories";
-import { PaginatedTravelRequestResponceDTO, TravelerRequestFilterDTO } from "../../../Application/DTOs/User/traveler.dto";
+import { PaginatedTravelRequestResponceDTO, TravelerRequestFilterDTO } from "../../../Application/DTOs/User/TravelerDTO";
 
 
 export class TravelRequestRepository extends BaseRepository<TravelRequestDocument> implements ITravelRequestRepository {

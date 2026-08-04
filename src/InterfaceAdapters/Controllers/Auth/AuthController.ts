@@ -5,7 +5,7 @@ import type { IAuthController } from "../../Interfaces/Controllers/Auth/auth.con
 import { AuthMapper } from "../../../Application/Mappers/AuthMapper";
 import { setAuthCookies } from "../../../Domain/Utils/setAuthCookies";
 import { AppError } from "../../../Domain/Utils/customError";
-import type { ForgotPasswordDTO, LoginDTO, LogoutDTO, ResetPasswordDTO, SendOtpDTO, UserDTO } from "../../../Application/DTOs/Auth/Auth.dto";
+import type { ForgotPasswordDTO, LoginDTO, LogoutDTO, ResetPasswordDTO, SendOtpDTO, UserDTO } from "../../../Application/DTOs/Auth/AuthDTO";
 import type { ILogoutUsecase } from "../../../Application/Interfaces/UseCases/Auth/logout.usecase";
 import type { IRegisterUserUseCase } from "../../../Application/Interfaces/UseCases/User/RegisterUser.useCase";
 import type { IRegisterAgencyUseCase } from "../../../Application/Interfaces/UseCases/Agency/Agencyregisrtation.usecase";
@@ -21,7 +21,7 @@ import { ApiResponse } from "../../Presenters/ApiResponse";
 import { OTP_MESSAGES } from "../../../Infrastructure/Constants/Messages/otpMessage";
 import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
 import { User } from "../../../Domain/Entities/User";
-import { RegisterAgencyResponseDTO } from "../../../Application/DTOs/Agency/agency.dto";
+import { RegisterAgencyResponseDTO } from "../../../Application/DTOs/Agency/AgencyDTO";
 import { Role } from "../../../Domain/Enums/Role";
 import { IGoogleAuthUseCase } from "../../../Application/Interfaces/UseCases/Auth/IGoogleAuthUseCase";
 

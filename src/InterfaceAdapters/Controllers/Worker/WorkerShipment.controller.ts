@@ -3,7 +3,7 @@ import { IGetWorkersShipmentUsecase } from "../../../Application/Interfaces/UseC
 import { injectable, inject } from "tsyringe";
 import { AppError } from "../../../Domain/Utils/customError";
 import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
-import { GetWorkerShipmentDTO } from "../../../Application/DTOs/Logistics/shipment.dto";
+import { GetWorkerShipmentDTO } from "../../../Application/DTOs/Logistics/ShipmentDTO";
 import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
 import { IGetWorkerShipmentDetailsUsecase } from "../../../Application/Interfaces/UseCases/Logistics/ShipmentParcel/IGetWorkerShipmentDetailsUsecase";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";

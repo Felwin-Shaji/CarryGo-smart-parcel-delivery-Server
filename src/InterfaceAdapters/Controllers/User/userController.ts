@@ -4,7 +4,7 @@ import { ApiResponse } from "../../Presenters/ApiResponse";
 import { inject, injectable } from "tsyringe";
 import { IGetUserProfileUseCase } from "../../../Application/Interfaces/UseCases/User/GetUserProfile.useCase";
 import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
-import { BaseEditUserProfileRequestDto, UserResetPasswordRequestDTO } from "../../../Application/DTOs/User/user.dto";
+import { BaseEditUserProfileRequestDto, UserResetPasswordRequestDTO } from "../../../Application/DTOs/User/UserDTO";
 import { IEditUserProfileUseCase } from "../../../Application/Interfaces/UseCases/User/EditUserProfile.usecase";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IUserReserUserPassword } from "../../../Application/Interfaces/UseCases/User/ReserUserPassword.usecase";

@@ -8,7 +8,7 @@ import { IGetWorkerDashboardUseCase } from "../../../Application/Interfaces/UseC
 import { IGetWorkerGraphUseCase } from "../../../Application/Interfaces/UseCases/Worker/IGetWorkerGraphUseCase";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 import { AppError } from "../../../Domain/Utils/customError";
-import { GetWorkerGraphRequestDTO, GetWorkerParcelsDTO } from "../../../Application/DTOs/Worker/worker.dto";
+import { GetWorkerGraphRequestDTO, GetWorkerParcelsDTO } from "../../../Application/DTOs/Worker/WorkerDTO";
 
 
 

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
-import { EditWorkerProfileRequestDto, WorkerResetPasswordRequestDTO } from "../../../Application/DTOs/Worker/workerProfile.dto";
+import { EditWorkerProfileRequestDto, WorkerResetPasswordRequestDTO } from "../../../Application/DTOs/Worker/WorkerProfileDTO";
 import { AppError } from "../../../Domain/Utils/customError";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";

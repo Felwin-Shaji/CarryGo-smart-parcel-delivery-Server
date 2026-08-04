@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { IAgencyRouteController } from "../../Interfaces/Controllers/Agency/IAgencyRouteController";
 import { inject, injectable } from "tsyringe";
-import { CreateRouteGroupRequestDTO, RouteGroupFilterRequestDTO, RouteGroupPaginationRequestDTO } from "../../../Application/DTOs/Agency/agencyRouteGroup.dto";
+import { CreateRouteGroupRequestDTO, RouteGroupFilterRequestDTO, RouteGroupPaginationRequestDTO } from "../../../Application/DTOs/Agency/AgencyRouteGroupDTO";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ICreateRouteGroupUseCase } from "../../../Application/Interfaces/UseCases/Logistics/RouteGroup/ICreateRouteGroupUseCase";
 import { AppError } from "../../../Domain/Utils/customError";

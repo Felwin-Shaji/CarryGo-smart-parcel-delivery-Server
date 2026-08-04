@@ -1,8 +1,8 @@
 import PDFDocument from "pdfkit";
 import { injectable } from "tsyringe";
 
-import { IReportGenerator } from "../../../../Application/interfaces/services_Interfaces/Report/IReportService";
-import { AdminBookingsReportResponseDTO } from "../../../../Application/Dto/Admin/adminDashboard.dto";
+import { IReportGenerator } from "../../../../Application/Interfaces/Services/Report/IReportService";
+import { AdminBookingsReportResponseDTO } from "../../../../Application/DTOs/Admin/adminDashboard.dto";
 
 @injectable()
 export class AdminPdfBookingsReportGenerator implements IReportGenerator<AdminBookingsReportResponseDTO> {

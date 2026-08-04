@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
-import { AgencyResetPasswordRequestDTO, EditAgencyProfileRequestDto } from "../../../Application/Dto/Agency/agencyProfile.dto";
-import { AppError } from "../../../Domain/utils/customError";
+import { AgencyResetPasswordRequestDTO, EditAgencyProfileRequestDto } from "../../../Application/DTOs/Agency/agencyProfile.dto";
+import { AppError } from "../../../Domain/Utils/customError";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { IAgencyProfileController } from "../../Interface/Controllers_Interfaces/Agency_Interfases/IAgencyProfileController";
-import { IGetAgencyProfileUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/IGetAgencyProfileUseCase";
-import { IEditAgencyProfileUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/IEditAgencyProfileUseCase";
-import { IResetAgencyPasswordUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/IResetAgencyPasswordUseCase";
+import { IGetAgencyProfileUseCase } from "../../../Application/Interfaces/UseCases/Agency/IGetAgencyProfileUseCase";
+import { IEditAgencyProfileUseCase } from "../../../Application/Interfaces/UseCases/Agency/IEditAgencyProfileUseCase";
+import { IResetAgencyPasswordUseCase } from "../../../Application/Interfaces/UseCases/Agency/IResetAgencyPasswordUseCase";
 
 
 @injectable()

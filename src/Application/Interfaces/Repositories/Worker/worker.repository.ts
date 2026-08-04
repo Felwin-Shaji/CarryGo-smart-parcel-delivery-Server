@@ -1,0 +1,14 @@
+import { HubWorker } from "../../../../Domain/Entities/Worker/Worker";
+import { GetHubWorkersResponseDTO, GetWorkersDTO } from "../../../DTOs/Worker/worker.dto";
+import { IBaseRepository } from "../base.repository";
+
+
+export interface IHubWorkerRepository extends IBaseRepository<HubWorker> {
+    getPaginatedWorkersByHubs(hubId: string, dto: GetWorkersDTO): Promise<GetHubWorkersResponseDTO>;
+
+    countByFilter(filters: {
+        hubId: string;
+        blocked?: boolean;
+        kycStatus?: "PENDING" | "APPROVED" | "REJECTED";
+    }): Promise<number>;
+}

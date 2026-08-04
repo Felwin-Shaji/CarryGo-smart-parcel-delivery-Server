@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
 import { IAdminPricingPolicyController } from "../../Interface/Controllers_Interfaces/Admin_Interfaces/adminPricingPolicy.controller";
-import { IGetPricingUseCase } from "../../../Application/interfaces/useCase_Interfaces/Princing/getPricing.usecase";
+import { IGetPricingUseCase } from "../../../Application/Interfaces/UseCases/Pricing/getPricing.usecase";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { PRICING_POLICY_MESSAGE } from "../../../Infrastructure/constants/messages/pricingPolicyMessage";
-import { AdminPricingRequestDTO, AdminTravelerPricingRequestDTO } from "../../../Application/Dto/Pricing/adminPricing.dto";
-import { ICreateAdminPricingPolicyUseCase } from "../../../Application/interfaces/useCase_Interfaces/Princing/ICreateAdminPricingPolicyUseCase";
+import { AdminPricingRequestDTO, AdminTravelerPricingRequestDTO } from "../../../Application/DTOs/Pricing/adminPricing.dto";
+import { ICreateAdminPricingPolicyUseCase } from "../../../Application/Interfaces/UseCases/Pricing/ICreateAdminPricingPolicyUseCase";
 import { DeliveryPartner } from "../../../Domain/Enums/DeliveryPartnerType";
-import { ICreateAdminTravelerPricingUsecase } from "../../../Application/interfaces/useCase_Interfaces/Princing/ICreateAdminTravelerPricingUsecase";
+import { ICreateAdminTravelerPricingUsecase } from "../../../Application/Interfaces/UseCases/Pricing/ICreateAdminTravelerPricingUsecase";
 
 @injectable()
 export class AdminPricingPolicyController implements IAdminPricingPolicyController {

@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
 import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
-import { AppError } from "../../utils/customError";
+import { AppError } from "../../Utils/customError";
 
 export type WorkerRole = "PICKUP" | "TRANSPORT" | "OUT_FOR_DELIVERY";
 

@@ -1,15 +1,15 @@
 import { inject, injectable } from "tsyringe";
 import type { Response, Request } from "express";
 import { IAdminHubController } from "../../Interface/Controllers_Interfaces/Admin_Interfaces/IAdminHubController";
-import { IGetHubOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IGetHubOverviewUseCase";
+import { IGetHubOverviewUseCase } from "../../../Application/Interfaces/UseCases/Hub/IGetHubOverviewUseCase";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
-import { updateHubKycStatusDTO } from "../../../Application/Dto/Hub/hub.dto";
-import { IUpdateHubKycStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IUpdateHubKycStatusUseCase";
-import { AppError } from "../../../Domain/utils/customError";
+import { updateHubKycStatusDTO } from "../../../Application/DTOs/Hub/hub.dto";
+import { IUpdateHubKycStatusUseCase } from "../../../Application/Interfaces/UseCases/Hub/IUpdateHubKycStatusUseCase";
+import { AppError } from "../../../Domain/Utils/customError";
 import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
-import { IGetWorkerOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkerOverviewUseCase";
+import { IGetWorkerOverviewUseCase } from "../../../Application/Interfaces/UseCases/Worker/IGetWorkerOverviewUseCase";
 
 @injectable()
 export class AdminHubController implements IAdminHubController {

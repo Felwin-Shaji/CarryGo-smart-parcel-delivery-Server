@@ -1,14 +1,14 @@
 import { FilterQuery, Types } from "mongoose";
-import { PaginationResponseDTO, ServiceableTravelerDTO } from "../../../Application/Dto/User/Booking.dto";
-import { ITravelRequestRepository } from "../../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/ITravelRequestRepository";
-import { GeoLocation } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase";
+import { PaginationResponseDTO, ServiceableTravelerDTO } from "../../../Application/DTOs/User/Booking.dto";
+import { ITravelRequestRepository } from "../../../Application/Interfaces/Repositories/User/ITravelRequestRepository";
+import { GeoLocation } from "../../../Application/Interfaces/UseCases/User/Booking/IFindServicableAgencyUsecase";
 import { TravelRequest } from "../../../Domain/Entities/User/TravelRequest";
-import { AppError } from "../../../Domain/utils/customError";
+import { AppError } from "../../../Domain/Utils/customError";
 import { USER_MESSAGES } from "../../constants/messages/userMessage";
 import { STATUS } from "../../constants/statusCodes";
 import { TravelRequestDocument, TravelRequestModel } from "../../database/models/UserModels/travelRequestSchema";
 import { BaseRepository } from "../baseRepositories";
-import { PaginatedTravelRequestResponceDTO, TravelerRequestFilterDTO } from "../../../Application/Dto/User/traveler.dto";
+import { PaginatedTravelRequestResponceDTO, TravelerRequestFilterDTO } from "../../../Application/DTOs/User/traveler.dto";
 
 
 export class TravelRequestRepository extends BaseRepository<TravelRequestDocument> implements ITravelRequestRepository {

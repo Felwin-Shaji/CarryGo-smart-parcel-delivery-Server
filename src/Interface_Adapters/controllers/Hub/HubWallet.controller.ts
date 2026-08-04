@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";
-import { AppError } from "../../../Domain/utils/customError";
+import { AppError } from "../../../Domain/Utils/customError";
 import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
 import { inject, injectable } from "tsyringe";
-import { IGetWalletOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/Wallet/IGetWalletOverviewUseCase";
+import { IGetWalletOverviewUseCase } from "../../../Application/Interfaces/UseCases/Wallet/IGetWalletOverviewUseCase";
 import { Role } from "../../../Domain/Enums/Roles";
 import { WALLET_MESSAGES } from "../../../Infrastructure/constants/messages/walletMessages";
-import { ICreateWalletTopupOrderUseCase } from "../../../Application/interfaces/useCase_Interfaces/Wallet/ICreateWalletTopupOrderUseCase";
+import { ICreateWalletTopupOrderUseCase } from "../../../Application/Interfaces/UseCases/Wallet/ICreateWalletTopupOrderUseCase";
 import { IHubWalletController } from "../../Interface/Controllers_Interfaces/Hub_interface/IHubWalletController";
-import { IWithdrawWalletMoneyUseCase } from "../../../Application/interfaces/useCase_Interfaces/Wallet/IWithdrawWalletMoneyUseCase";
+import { IWithdrawWalletMoneyUseCase } from "../../../Application/Interfaces/UseCases/Wallet/IWithdrawWalletMoneyUseCase";
 
 @injectable()
 export class HubWalletController implements IHubWalletController {

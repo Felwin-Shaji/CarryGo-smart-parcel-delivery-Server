@@ -1,28 +1,28 @@
 import { Request, Response } from "express";
 import { IHubWorkerController } from "../../Interface/Controllers_Interfaces/Hub_interface/HubWorkerController";
 import { inject, injectable } from "tsyringe";
-import { IAddWorkerTempUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/addWorkerTempUseCase.interface";
-import { IWorkerVerifyOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/addWorkerVerifyOtpUseCase";
+import { IAddWorkerTempUseCase } from "../../../Application/Interfaces/UseCases/Worker/addWorkerTempUseCase.interface";
+import { IWorkerVerifyOtpUseCase } from "../../../Application/Interfaces/UseCases/Worker/addWorkerVerifyOtpUseCase";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { WorkerKYCFileFields } from "../../../Infrastructure/services/storage/multer";
-import { IUploadWorkerKycFilesUsecase } from "../../../Application/interfaces/useCase_Interfaces/Worker/uploadWorkerKycFilesUsecase";
-import { IAddWorkerUsecase } from "../../../Application/interfaces/useCase_Interfaces/Worker/AddWorkerUsecase";
+import { IUploadWorkerKycFilesUsecase } from "../../../Application/Interfaces/UseCases/Worker/uploadWorkerKycFilesUsecase";
+import { IAddWorkerUsecase } from "../../../Application/Interfaces/UseCases/Worker/AddWorkerUsecase";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
-import { AddWorkerTempRequestDTO } from "../../../Application/Dto/Hub/hub.dto";
+import { AddWorkerTempRequestDTO } from "../../../Application/DTOs/Hub/hub.dto";
 import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
-import { AppError } from "../../../Domain/utils/customError";
+import { AppError } from "../../../Domain/Utils/customError";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
-import { GetWorkersDTO, ReSubmitWorkerKycPayloadDTO } from "../../../Application/Dto/Workers/worker.dto";
-import { IGetWorkersUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkersUseCase";
+import { GetWorkersDTO, ReSubmitWorkerKycPayloadDTO } from "../../../Application/DTOs/Worker/worker.dto";
+import { IGetWorkersUseCase } from "../../../Application/Interfaces/UseCases/Worker/IGetWorkersUseCase";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
-import { ICheckTempWorkerStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/ICheckTempWorkerStatusUseCase";
-import { IWorkerResendOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IWorkerResendOtpUseCase";
-import { IGetWorkerOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkerOverviewUseCase";
-import { IGetWorkerKycUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkerKycUseCase";
-import { IReSubmitWorkerKycUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IReSubmitWorkerKycUseCase";
+import { ICheckTempWorkerStatusUseCase } from "../../../Application/Interfaces/UseCases/Worker/ICheckTempWorkerStatusUseCase";
+import { IWorkerResendOtpUseCase } from "../../../Application/Interfaces/UseCases/Worker/IWorkerResendOtpUseCase";
+import { IGetWorkerOverviewUseCase } from "../../../Application/Interfaces/UseCases/Worker/IGetWorkerOverviewUseCase";
+import { IGetWorkerKycUseCase } from "../../../Application/Interfaces/UseCases/Worker/IGetWorkerKycUseCase";
+import { IReSubmitWorkerKycUseCase } from "../../../Application/Interfaces/UseCases/Worker/IReSubmitWorkerKycUseCase";
 import { Role } from "../../../Domain/Enums/Roles";
-import { parseBlockedQuery } from "../../../Domain/utils/utils";
+import { parseBlockedQuery } from "../../../Domain/Utils/utils";
 
 @injectable()
 export class HubWorkerController implements IHubWorkerController {

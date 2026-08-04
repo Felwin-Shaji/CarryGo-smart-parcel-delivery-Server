@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { IOtpService } from "../../Application/interfaces/services_Interfaces/otp-service.interface";
+import { IOtpService } from "../../Application/Interfaces/Services/otp-service.interface";
 import dotenv from "dotenv";
 dotenv.config()
 export class OtpService implements IOtpService {

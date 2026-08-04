@@ -1,5 +1,5 @@
-import { IAgencyRouteSegmentRepository } from "../../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteSegmentRepository";
-import { IRouteComputationService } from "../../../Application/interfaces/services_Interfaces/IRouteComputationService";
+import { IAgencyRouteSegmentRepository } from "../../../Application/Interfaces/Repositories/Logistics/IAgencyRouteSegmentRepository";
+import { IRouteComputationService } from "../../../Application/Interfaces/Services/IRouteComputationService";
 import { RouteSegment } from "../../../Domain/Entities/Logistics/RouteSegment";
 import { inject, injectable } from "tsyringe";
 

@@ -6,7 +6,7 @@ import { connectDB } from "./Infrastructure/database/monogdb";
 import { app } from "./Infrastructure/express/express";
 import logger from "./Infrastructure/logger/logger";
 
-import { bootstrapPricingPolicies } from "./Infrastructure/bootstrap/pricingPolicy.bootstrap";
+import { bootstrapPricingPolicies } from "./Infrastructure/Bootstrap/pricingPolicy.bootstrap";
 import { PricingPolicyRepository } from "./Infrastructure/repositories/Admin/PricingPolicy.repository";
 import { initSocket } from "./Infrastructure/services/Chat/socket.config";
 

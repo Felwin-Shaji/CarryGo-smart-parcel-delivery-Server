@@ -1,7 +1,7 @@
 import { injectable } from "tsyringe";
 import ExcelJS from "exceljs";
-import { AdminBookingsReportResponseDTO } from "../../../../Application/Dto/Admin/adminDashboard.dto";
-import { IReportGenerator } from "../../../../Application/interfaces/services_Interfaces/Report/IReportService";
+import { AdminBookingsReportResponseDTO } from "../../../../Application/DTOs/Admin/adminDashboard.dto";
+import { IReportGenerator } from "../../../../Application/Interfaces/Services/Report/IReportService";
 
 @injectable()
 export class AdminExcelBookingsReportGenerator implements IReportGenerator<AdminBookingsReportResponseDTO> {

@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
-import { IGetNotificationsUseCase } from "../../../Application/interfaces/useCase_Interfaces/Notification/IGetNotificationsUseCase";
-import { IMarkAsReadUseCase } from "../../../Application/interfaces/useCase_Interfaces/Notification/IMarkAsReadUseCase";
-import { IMarkAllAsReadUseCase } from "../../../Application/interfaces/useCase_Interfaces/Notification/IMarkAllAsReadUseCase";
-import { IGetUnreadCountUseCase } from "../../../Application/interfaces/useCase_Interfaces/Notification/IGetUnreadCountUseCase";
-import { AppError } from "../../../Domain/utils/customError";
+import { IGetNotificationsUseCase } from "../../../Application/Interfaces/UseCases/Notification/IGetNotificationsUseCase";
+import { IMarkAsReadUseCase } from "../../../Application/Interfaces/UseCases/Notification/IMarkAsReadUseCase";
+import { IMarkAllAsReadUseCase } from "../../../Application/Interfaces/UseCases/Notification/IMarkAllAsReadUseCase";
+import { IGetUnreadCountUseCase } from "../../../Application/Interfaces/UseCases/Notification/IGetUnreadCountUseCase";
+import { AppError } from "../../../Domain/Utils/customError";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { NotificationFilter } from "../../../Application/interfaces/repositories_interfaces/NotificationRepository_interfaces/INotificationRepository";
+import { NotificationFilter } from "../../../Application/Interfaces/Repositories/Notification/INotificationRepository";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { NOTIFICATION_MESSAGES } from "../../../Infrastructure/constants/messages/NotificationMessage";
 

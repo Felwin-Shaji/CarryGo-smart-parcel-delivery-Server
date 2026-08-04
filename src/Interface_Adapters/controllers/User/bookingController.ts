@@ -4,17 +4,17 @@ import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { IUserBookingController } from "../../Interface/Controllers_Interfaces/User_interfaces/Booking/IUserBookingController";
 import { BOOKING_MESSAGE } from "../../../Infrastructure/constants/messages/bookingMessages";
-import { AppError } from "../../../Domain/utils/customError";
+import { AppError } from "../../../Domain/Utils/customError";
 import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
-import { ICalculateBookingPriceUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/ICalculateBookingPriceUsecase";
-import { BookingFilterDTO, CalculatePriceRequestDTO, CheckServiceableAgencyDTO, CheckServiceableTravelerDTO, CreateBookingRequestDTO } from "../../../Application/Dto/User/Booking.dto";
-import { ICreateBookingUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/ICreateBookingUsecase";
-import { ICreatePaymentOrderUsecase } from "../../../Application/interfaces/useCase_Interfaces/Payment/ICreatePaymentOrderUsecase";
-import { IUserBookingsUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IUserBookingsUsecase";
-import { IGetBookingUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IGetBookingUsecase";
-import { IFindServicableAgencyUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase";
-import { IFindServiceableTravelerUsecase } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServiceableTravelerUsecase";
-import { IBookingPaymentFailedUseCase } from "../../../Application/interfaces/useCase_Interfaces/Payment/IBookingPaymentFailedUseCase";
+import { ICalculateBookingPriceUsecase } from "../../../Application/Interfaces/UseCases/User/Booking/ICalculateBookingPriceUsecase";
+import { BookingFilterDTO, CalculatePriceRequestDTO, CheckServiceableAgencyDTO, CheckServiceableTravelerDTO, CreateBookingRequestDTO } from "../../../Application/DTOs/User/Booking.dto";
+import { ICreateBookingUsecase } from "../../../Application/Interfaces/UseCases/User/Booking/ICreateBookingUsecase";
+import { ICreatePaymentOrderUsecase } from "../../../Application/Interfaces/UseCases/Payment/ICreatePaymentOrderUsecase";
+import { IUserBookingsUsecase } from "../../../Application/Interfaces/UseCases/User/Booking/IUserBookingsUsecase";
+import { IGetBookingUsecase } from "../../../Application/Interfaces/UseCases/User/Booking/IGetBookingUsecase";
+import { IFindServicableAgencyUsecase } from "../../../Application/Interfaces/UseCases/User/Booking/IFindServicableAgencyUsecase";
+import { IFindServiceableTravelerUsecase } from "../../../Application/Interfaces/UseCases/User/Booking/IFindServiceableTravelerUsecase";
+import { IBookingPaymentFailedUseCase } from "../../../Application/Interfaces/UseCases/Payment/IBookingPaymentFailedUseCase";
 
 
 @injectable()

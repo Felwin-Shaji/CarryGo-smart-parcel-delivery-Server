@@ -1,8 +1,8 @@
 import { FilterQuery, ClientSession, Types, UpdateQuery } from "mongoose";
-import { IAgencyRouteGroupRepository } from "../../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IAgencyRouteGroupRepository";
+import { IAgencyRouteGroupRepository } from "../../../Application/Interfaces/Repositories/Logistics/IAgencyRouteGroupRepository";
 import { RouteGroup } from "../../../Domain/Entities/Logistics/RouteGroup";
 import { RouteGroupModel, RouteGroupDocument } from "../../database/models/Logistics/RouteGroupModel";
-import { RouteGroupPaginationRequestDTO } from "../../../Application/Dto/Agency/agencyRouteGroup.dto";
+import { RouteGroupPaginationRequestDTO } from "../../../Application/DTOs/Agency/agencyRouteGroup.dto";
 
 export class AgencyRouteGroupRepository implements IAgencyRouteGroupRepository {
 

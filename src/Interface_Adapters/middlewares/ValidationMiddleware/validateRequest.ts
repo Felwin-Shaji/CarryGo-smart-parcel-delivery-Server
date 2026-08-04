@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 import { z } from "zod";
-import { AppError } from "../../../Domain/utils/customError";
+import { AppError } from "../../../Domain/Utils/customError";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import logger from "../../../Infrastructure/logger/logger";
 

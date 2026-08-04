@@ -1,7 +1,7 @@
 import type { ClientSession } from "mongoose";
 import { Wallet } from "../../../Domain/Entities/Wallet/Wallet";
 import { WalletDocument, WalletModel } from "../../database/models/Wallet/wallet.schema";
-import { IWalletRepository } from "../../../Application/interfaces/repositories_interfaces/walletRepositories_Interfaces/IWalletRepository";
+import { IWalletRepository } from "../../../Application/Interfaces/Repositories/Wallet/IWalletRepository";
 import { BaseRepository } from "../baseRepositories";
 import { Role } from "../../Types/types";
 

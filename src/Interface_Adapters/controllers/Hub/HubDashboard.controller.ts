@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
-import { IGetHubDashboardSummaryUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IGetHubDashboardSummaryUseCase";
-import { IGetHubDashboardTrendUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IGetHubDashboardTrendUseCase";
-import { IGetHubDashboardTypesUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IGetHubDashboardTypesUseCase";
-import { IGetHubDashboardShipmentsPreviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IGetHubDashboardShipmentsPreviewUseCase";
+import { IGetHubDashboardSummaryUseCase } from "../../../Application/Interfaces/UseCases/Hub/IGetHubDashboardSummaryUseCase";
+import { IGetHubDashboardTrendUseCase } from "../../../Application/Interfaces/UseCases/Hub/IGetHubDashboardTrendUseCase";
+import { IGetHubDashboardTypesUseCase } from "../../../Application/Interfaces/UseCases/Hub/IGetHubDashboardTypesUseCase";
+import { IGetHubDashboardShipmentsPreviewUseCase } from "../../../Application/Interfaces/UseCases/Hub/IGetHubDashboardShipmentsPreviewUseCase";
 import { Role } from "../../../Domain/Enums/Roles";
-import { AppError } from "../../../Domain/utils/customError";
+import { AppError } from "../../../Domain/Utils/customError";
 import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";

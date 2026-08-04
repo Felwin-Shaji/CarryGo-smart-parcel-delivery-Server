@@ -1,4 +1,4 @@
-import { IDistanceService, GeoPoint } from "../../Application/interfaces/services_Interfaces/IDistanceService";
+import { IDistanceService, GeoPoint } from "../../Application/Interfaces/Services/IDistanceService";
 
 export class DistanceService implements IDistanceService {
 

@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 import { IAdminProfileController } from "../../Interface/Controllers_Interfaces/Admin_Interfaces/IAdminProfileController";
 import { inject, injectable } from "tsyringe";
-import { IGetAdminProfileUseCase } from "../../../Application/interfaces/useCase_Interfaces/Admin/IGetAdminProfileUseCase";
-import { AppError } from "../../../Domain/utils/customError";
+import { IGetAdminProfileUseCase } from "../../../Application/Interfaces/UseCases/Admin/IGetAdminProfileUseCase";
+import { AppError } from "../../../Domain/Utils/customError";
 import { ADMIN_MESSAGES } from "../../../Infrastructure/constants/messages/adminMessages";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";
-import { AdminResetPasswordRequestDTO, EditAdminProfileRequestDto } from "../../../Application/Dto/Admin/adminProfile.dto";
-import { IEditAdminProfileUseCase } from "../../../Application/interfaces/useCase_Interfaces/Admin/IEditAdminProfileUseCase";
-import { IResetAdminPasswordUsecase } from "../../../Application/interfaces/useCase_Interfaces/Admin/IResetAdminPasswordUscase";
+import { AdminResetPasswordRequestDTO, EditAdminProfileRequestDto } from "../../../Application/DTOs/Admin/adminProfile.dto";
+import { IEditAdminProfileUseCase } from "../../../Application/Interfaces/UseCases/Admin/IEditAdminProfileUseCase";
+import { IResetAdminPasswordUsecase } from "../../../Application/Interfaces/UseCases/Admin/IResetAdminPasswordUscase";
 
 @injectable()
 export class AdminProfileController implements IAdminProfileController {

@@ -1,9 +1,9 @@
 import { FilterQuery } from "mongoose";
-import { IHubWorkerRepository } from "../../../Application/interfaces/repositories_interfaces/workerRepository_interfaces/worker.repository";
+import { IHubWorkerRepository } from "../../../Application/Interfaces/Repositories/Worker/worker.repository";
 import { HubWorker } from "../../../Domain/Entities/Worker/Worker";
 import { HubWorkerModel } from "../../database/models/Worker/workerModel";
 import { BaseRepository } from "../baseRepositories";
-import { GetHubWorkersResponseDTO, GetWorkersDTO, WorkerResponseDTO } from "../../../Application/Dto/Workers/worker.dto";
+import { GetHubWorkersResponseDTO, GetWorkersDTO, WorkerResponseDTO } from "../../../Application/DTOs/Worker/worker.dto";
 
 export class HubWorkerRepository extends BaseRepository<HubWorker> implements IHubWorkerRepository {
     constructor() {

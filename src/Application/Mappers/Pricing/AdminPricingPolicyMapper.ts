@@ -1,6 +1,6 @@
 import { AgencyPricingPolicy } from "../../../Domain/Entities/Admin/AgencyPricingPolicy";
 import { TravelerPricingPolicy } from "../../../Domain/Entities/Admin/TravelerPricingPolicy";
-import { AdminPricingRequestDTO, AdminTravelerPricingRequestDTO } from "../../Dto/Pricing/adminPricing.dto";
+import { AdminPricingRequestDTO, AdminTravelerPricingRequestDTO } from "../../DTOs/Pricing/adminPricing.dto";
 
 export class AdminPricingPolicyMapper {
 

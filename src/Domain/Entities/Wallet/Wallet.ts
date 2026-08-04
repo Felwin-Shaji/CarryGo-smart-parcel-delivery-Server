@@ -1,6 +1,6 @@
 import { WALLET_MESSAGES } from "../../../Infrastructure/constants/messages/walletMessages";
 import { Role } from "../../../Infrastructure/Types/types";
-import { AppError } from "../../utils/customError";
+import { AppError } from "../../Utils/customError";
 
 export class Wallet {
     constructor(

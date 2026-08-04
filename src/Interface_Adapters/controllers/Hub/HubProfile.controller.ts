@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
-import { EditHubProfileRequestDto, HubResetPasswordRequestDTO } from "../../../Application/Dto/Hub/hubProfile.dto";
-import { IGetHubProfileUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IGetHubProfileUseCase";
-import { IEditHubProfileUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IEditHubProfileUseCase";
-import { IResetHubPasswordUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IResetHubPasswordUseCase";
-import { AppError } from "../../../Domain/utils/customError";
+import { EditHubProfileRequestDto, HubResetPasswordRequestDTO } from "../../../Application/DTOs/Hub/hubProfile.dto";
+import { IGetHubProfileUseCase } from "../../../Application/Interfaces/UseCases/Hub/IGetHubProfileUseCase";
+import { IEditHubProfileUseCase } from "../../../Application/Interfaces/UseCases/Hub/IEditHubProfileUseCase";
+import { IResetHubPasswordUseCase } from "../../../Application/Interfaces/UseCases/Hub/IResetHubPasswordUseCase";
+import { AppError } from "../../../Domain/Utils/customError";
 import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";

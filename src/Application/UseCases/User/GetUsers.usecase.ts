@@ -1,0 +1,31 @@
+import { inject, injectable } from "tsyringe";
+import { IUserRepository } from "../../Interfaces/Repositories/User/user.repository";
+import { IGetUsersUseCase } from "../../Interfaces/UseCases/User/GetUsers.usecase";
+import { GetUserDto, GetUserResponseDto } from "../../DTOs/User/user.dto";
+import { UserMapper } from "../../Mappers/User/userMapper";
+
+
+@injectable()
+export class GetUsersUseCase implements IGetUsersUseCase {
+
+    constructor(
+        @inject("IUserRepository")
+        private _userRepo: IUserRepository
+    ) { }
+    async execute(dto: GetUserDto): Promise<GetUserResponseDto> {
+
+        const { page, limit, search, sortBy, sortOrder } = dto;
+
+        const getUsersResult = await this._userRepo.getPaginatedUser(
+            page,
+            limit,
+            search,
+            sortBy,
+            sortOrder
+        );
+
+        const responseData = UserMapper.toResponseDTO(getUsersResult);
+
+        return responseData;
+    }
+}

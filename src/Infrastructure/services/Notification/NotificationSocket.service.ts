@@ -1,6 +1,6 @@
 import { container, injectable } from "tsyringe";
 import { Server, Socket } from "socket.io";
-import { INotificationSocketService } from "../../../Application/interfaces/services_Interfaces/Notification/INotificationSocketService";
+import { INotificationSocketService } from "../../../Application/Interfaces/Services/Notification/INotificationSocketService";
 import { Notification } from "../../../Domain/Entities/Notification/Notification";
 import { TokenService } from "../token.service";
 import { AppJwtPayload } from "../../Types/types";

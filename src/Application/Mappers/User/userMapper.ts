@@ -1,8 +1,8 @@
 import { User } from "../../../Domain/Entities/User";
 import { IWrokerKYCVerification } from "../../../Domain/Entities/Worker/WorkerKyc";
 import { Role } from "../../../Domain/Enums/Roles";
-import { GetUserOverviewResponseDTO, GetUserResponseDto, GetUsersDBResult } from "../../Dto/User/user.dto";
-import { GoogleAuthResponseDTO } from "../../interfaces/useCase_Interfaces/AuthUsecase_Interfaces/IGoogleAuthUseCase";
+import { GetUserOverviewResponseDTO, GetUserResponseDto, GetUsersDBResult } from "../../DTOs/User/user.dto";
+import { GoogleAuthResponseDTO } from "../../Interfaces/UseCases/Auth/IGoogleAuthUseCase";
 
 
 export class UserMapper {

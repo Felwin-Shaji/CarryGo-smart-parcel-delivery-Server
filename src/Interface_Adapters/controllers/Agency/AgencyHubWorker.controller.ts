@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { IGetWorkerOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkerOverviewUseCase";
+import { IGetWorkerOverviewUseCase } from "../../../Application/Interfaces/UseCases/Worker/IGetWorkerOverviewUseCase";
 import { inject, injectable } from "tsyringe";
-import { IUpdateWorkerKycStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IUpdateWorkerKycStatusUseCase";
-import { UpdateWorkerKycStatusDTO } from "../../../Application/Dto/Workers/worker.dto";
+import { IUpdateWorkerKycStatusUseCase } from "../../../Application/Interfaces/UseCases/Worker/IUpdateWorkerKycStatusUseCase";
+import { UpdateWorkerKycStatusDTO } from "../../../Application/DTOs/Worker/worker.dto";
 import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";
-import { AppError } from "../../../Domain/utils/customError";
+import { AppError } from "../../../Domain/Utils/customError";
 
 
 @injectable()

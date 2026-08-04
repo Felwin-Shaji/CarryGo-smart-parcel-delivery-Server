@@ -1,4 +1,4 @@
-import { GenerateBookingIdDTO, IBookingIdGeneratorService } from "../../Application/interfaces/services_Interfaces/IBookingIdGeneratorService";
+import { GenerateBookingIdDTO, IBookingIdGeneratorService } from "../../Application/Interfaces/Services/IBookingIdGeneratorService";
 import { DeliveryPartnerType } from "../Types/types";
 
 

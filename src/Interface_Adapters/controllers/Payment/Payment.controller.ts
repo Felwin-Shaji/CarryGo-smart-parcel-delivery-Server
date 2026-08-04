@@ -2,10 +2,10 @@ import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
 import crypto from "crypto";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { IWalletTopupSuccessUseCase } from "../../../Application/interfaces/useCase_Interfaces/Wallet/IWalletTopupSuccessUseCase";
-import { IBookingPaymentSuccessUseCase } from "../../../Application/interfaces/useCase_Interfaces/Payment/IBookingPaymentSuccessUseCase";
+import { IWalletTopupSuccessUseCase } from "../../../Application/Interfaces/UseCases/Wallet/IWalletTopupSuccessUseCase";
+import { IBookingPaymentSuccessUseCase } from "../../../Application/Interfaces/UseCases/Payment/IBookingPaymentSuccessUseCase";
 import logger from "../../../Infrastructure/logger/logger";
-import { IBookingPaymentFailedUseCase } from "../../../Application/interfaces/useCase_Interfaces/Payment/IBookingPaymentFailedUseCase";
+import { IBookingPaymentFailedUseCase } from "../../../Application/Interfaces/UseCases/Payment/IBookingPaymentFailedUseCase";
 
 @injectable()
 export class PaymentController {

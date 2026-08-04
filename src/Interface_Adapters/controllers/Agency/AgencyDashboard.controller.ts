@@ -1,15 +1,15 @@
-import { IAgencyExportSalesReportUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/IAgencyExportSalesReportUsecase";
-import { IAgencyGetDeliveriesChartUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/IAgencyGetDeliveriesChartUseCase";
-import { IAgencyGetSalesChartUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/IAgencyGetSalesChartUseCase";
-import { IAgencyGetSalesReportUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/IAgencyGetSalesReportUseCase";
+import { IAgencyExportSalesReportUseCase } from "../../../Application/Interfaces/UseCases/Agency/IAgencyExportSalesReportUsecase";
+import { IAgencyGetDeliveriesChartUseCase } from "../../../Application/Interfaces/UseCases/Agency/IAgencyGetDeliveriesChartUseCase";
+import { IAgencyGetSalesChartUseCase } from "../../../Application/Interfaces/UseCases/Agency/IAgencyGetSalesChartUseCase";
+import { IAgencyGetSalesReportUseCase } from "../../../Application/Interfaces/UseCases/Agency/IAgencyGetSalesReportUseCase";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
-import { IAgencyGetDashboardUsecase } from "../../../Application/interfaces/useCase_Interfaces/Agency/IAgencyGetDashboardUseCase";
-import { SalesReportRequestDTO } from "../../../Application/Dto/Agency/agencyDashboard.dto";
+import { IAgencyGetDashboardUsecase } from "../../../Application/Interfaces/UseCases/Agency/IAgencyGetDashboardUseCase";
+import { SalesReportRequestDTO } from "../../../Application/DTOs/Agency/agencyDashboard.dto";
 import { ApiResponse } from "../../presenters/ApiResponse";
-import { AppError } from "../../../Domain/utils/customError";
+import { AppError } from "../../../Domain/Utils/customError";
 
 @injectable()
 export class AgencyDashboardController {

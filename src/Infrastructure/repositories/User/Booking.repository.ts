@@ -1,15 +1,15 @@
 import { ClientSession, FilterQuery, Types } from "mongoose";
-import { BookingFilterDTO } from "../../../Application/Dto/User/Booking.dto";
-import { IBookingRepository } from "../../../Application/interfaces/repositories_interfaces/userRepositories_Interfaces/IBookingRepository";
+import { BookingFilterDTO } from "../../../Application/DTOs/User/Booking.dto";
+import { IBookingRepository } from "../../../Application/Interfaces/Repositories/User/IBookingRepository";
 import { Booking } from "../../../Domain/Entities/Booking/Booking";
 import { DeliveryPartner } from "../../../Domain/Enums/DeliveryPartnerType";
-import { AppError } from "../../../Domain/utils/customError";
+import { AppError } from "../../../Domain/Utils/customError";
 import { BOOKING_MESSAGE } from "../../constants/messages/bookingMessages";
 import { STATUS } from "../../constants/statusCodes";
 import { BookingDocument, BookingModel } from "../../database/models/Booking/BookingSchema";
 import { BookingStatusType, PaymentStatusType } from "../../Types/types";
 import { BaseRepository } from "../baseRepositories";
-import { DeliveriesChartRequestDTO, DeliveriesChartResponseDTO } from "../../../Application/Dto/Agency/agencyDashboard.dto";
+import { DeliveriesChartRequestDTO, DeliveriesChartResponseDTO } from "../../../Application/DTOs/Agency/agencyDashboard.dto";
 
 export class BookingRepository extends BaseRepository<BookingDocument> implements IBookingRepository {
     constructor() {

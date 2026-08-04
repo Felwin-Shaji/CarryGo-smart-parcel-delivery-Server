@@ -1,17 +1,17 @@
 import { Request, Response } from "express";
 import { IAgencyController } from "../../Interface/Controllers_Interfaces/Agency_Interfases/agency.controller";
 import { inject, injectable } from "tsyringe";
-import { IUploadAgencyKycFilesUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/UploadAgencyKycFilesUseCase";
-import { ISaveAgencyKycUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/SaveAgencyKycUseCase";
-import { IUpdateAgencyKycStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/UpdateAgencyKycStatusUseCase";
-import { AppError } from "../../../Domain/utils/customError";
+import { IUploadAgencyKycFilesUseCase } from "../../../Application/Interfaces/UseCases/Agency/UploadAgencyKycFilesUseCase";
+import { ISaveAgencyKycUseCase } from "../../../Application/Interfaces/UseCases/Agency/SaveAgencyKycUseCase";
+import { IUpdateAgencyKycStatusUseCase } from "../../../Application/Interfaces/UseCases/Agency/UpdateAgencyKycStatusUseCase";
+import { AppError } from "../../../Domain/Utils/customError";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { AgencyKYC_DTO, AgencyResubmitKycDTO } from "../../../Application/Dto/Agency/agency.dto";
+import { AgencyKYC_DTO, AgencyResubmitKycDTO } from "../../../Application/DTOs/Agency/agency.dto";
 import { AgencyKYCFileFields } from "../../../Infrastructure/services/storage/multer";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
-import { IGetAgencyWithKYCUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/GetAgencyWithKYCUseCase";
-import { IRsubmitAgencyKycUseCase } from "../../../Application/interfaces/useCase_Interfaces/Agency/ResubmitAgencyKycUseCase";
+import { IGetAgencyWithKYCUseCase } from "../../../Application/Interfaces/UseCases/Agency/GetAgencyWithKYCUseCase";
+import { IRsubmitAgencyKycUseCase } from "../../../Application/Interfaces/UseCases/Agency/ResubmitAgencyKycUseCase";
 
 @injectable()
 export class AgencyController implements IAgencyController {

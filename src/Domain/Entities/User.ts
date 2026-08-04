@@ -1,5 +1,5 @@
 import type { KYCStatus, Role } from "../../Infrastructure/Types/types";
-import { AppError } from "../utils/customError";
+import { AppError } from "../Utils/customError";
 import { Address } from "./User/Address";
 
 export class User {

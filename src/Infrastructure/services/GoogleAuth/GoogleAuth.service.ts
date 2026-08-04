@@ -1,6 +1,6 @@
 import { OAuth2Client } from "google-auth-library";
-import { IGoogleAuthService } from "../../../Application/interfaces/services_Interfaces/GoogleAuth/IGoogleAuthService";
-import { AppError } from "../../../Domain/utils/customError";
+import { IGoogleAuthService } from "../../../Application/Interfaces/Services/GoogleAuth/IGoogleAuthService";
+import { AppError } from "../../../Domain/Utils/customError";
 import { STATUS } from "../../constants/statusCodes";
 import { AUTH_MESSAGES } from "../../constants/messages/authMessages";
 import { injectable } from "tsyringe";

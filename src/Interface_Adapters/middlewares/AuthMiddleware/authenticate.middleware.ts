@@ -2,10 +2,10 @@ import type { Request, Response, NextFunction } from "express";
 import { container } from "tsyringe";
 import { TokenService } from "../../../Infrastructure/services/token.service";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { AppError } from "../../../Domain/utils/customError";
+import { AppError } from "../../../Domain/Utils/customError";
 import type { AppJwtPayload, Role } from "../../../Infrastructure/Types/types";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
-import { IValidateSessionUseCase } from "../../../Application/interfaces/useCase_Interfaces/AuthUsecase_Interfaces/IValidateSessionUseCase";
+import { IValidateSessionUseCase } from "../../../Application/Interfaces/UseCases/Auth/IValidateSessionUseCase";
 
 
 declare module "express" {

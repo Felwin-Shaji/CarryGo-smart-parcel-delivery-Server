@@ -3,12 +3,12 @@ import { inject, injectable } from "tsyringe";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { ADMIN_MESSAGES } from "../../../Infrastructure/constants/messages/adminMessages";
-import { IGetAdminDashboardOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/Admin/IGetAdminDashboardOverviewUseCase";
-import { GetAdminDashboardDTO } from "../../../Application/Dto/Admin/adminDashboard.dto";
-import { IGetAdminRevenueChartUseCase } from "../../../Application/interfaces/useCase_Interfaces/Admin/IGetAdminRevenueChartUseCase";
-import { IGetAdminBookingsChartUseCase } from "../../../Application/interfaces/useCase_Interfaces/Admin/IGetAdminBookingsChartUseCase";
-import { IGetAdminBookingsReportUseCase } from "../../../Application/interfaces/useCase_Interfaces/Admin/IGetAdminBookingsReportUseCase";
-import { IExportAdminBookingsReportUseCase } from "../../../Application/interfaces/useCase_Interfaces/Admin/IExportAdminBookingsReportUseCase";
+import { IGetAdminDashboardOverviewUseCase } from "../../../Application/Interfaces/UseCases/Admin/IGetAdminDashboardOverviewUseCase";
+import { GetAdminDashboardDTO } from "../../../Application/DTOs/Admin/adminDashboard.dto";
+import { IGetAdminRevenueChartUseCase } from "../../../Application/Interfaces/UseCases/Admin/IGetAdminRevenueChartUseCase";
+import { IGetAdminBookingsChartUseCase } from "../../../Application/Interfaces/UseCases/Admin/IGetAdminBookingsChartUseCase";
+import { IGetAdminBookingsReportUseCase } from "../../../Application/Interfaces/UseCases/Admin/IGetAdminBookingsReportUseCase";
+import { IExportAdminBookingsReportUseCase } from "../../../Application/Interfaces/UseCases/Admin/IExportAdminBookingsReportUseCase";
 
 @injectable()
 export class AdminDashboardController {

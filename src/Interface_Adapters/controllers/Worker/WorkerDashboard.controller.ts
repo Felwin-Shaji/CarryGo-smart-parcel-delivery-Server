@@ -1,14 +1,14 @@
 import { inject, injectable } from "tsyringe";
 import { Request, Response } from "express";
-import { IGetWorkerParcelsUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkerParcelsUseCase";
+import { IGetWorkerParcelsUseCase } from "../../../Application/Interfaces/UseCases/Worker/IGetWorkerParcelsUseCase";
 import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
-import { IGetWorkerDashboardUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkerDashboardUseCase";
-import { IGetWorkerGraphUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkerGraphUseCase";
+import { IGetWorkerDashboardUseCase } from "../../../Application/Interfaces/UseCases/Worker/IGetWorkerDashboardUseCase";
+import { IGetWorkerGraphUseCase } from "../../../Application/Interfaces/UseCases/Worker/IGetWorkerGraphUseCase";
 import { ApiResponse } from "../../presenters/ApiResponse";
-import { AppError } from "../../../Domain/utils/customError";
-import { GetWorkerGraphRequestDTO, GetWorkerParcelsDTO } from "../../../Application/Dto/Workers/worker.dto";
+import { AppError } from "../../../Domain/Utils/customError";
+import { GetWorkerGraphRequestDTO, GetWorkerParcelsDTO } from "../../../Application/DTOs/Worker/worker.dto";
 
 
 

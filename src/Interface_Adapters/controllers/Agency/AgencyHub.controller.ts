@@ -1,25 +1,25 @@
 import { Request, Response } from "express";
 import { IAgencyHubController } from "../../Interface/Controllers_Interfaces/Agency_Interfases/IAgencyHub.controller";
 import { inject, injectable } from "tsyringe";
-import { IUploadAddFilesUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IUploadAddFilesUseCase";
-import { IAddHubUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IAddHubUseCase";
+import { IUploadAddFilesUseCase } from "../../../Application/Interfaces/UseCases/Hub/IUploadAddFilesUseCase";
+import { IAddHubUseCase } from "../../../Application/Interfaces/UseCases/Hub/IAddHubUseCase";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { AddNewHubAddressDto, AddNewHubBaseDto, AddNewHubVerifyOtpDTO, ResubmitHubDTO } from "../../../Application/Dto/Agency/agency.dto";
-import { IAddHubTempUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IAddHubTempUseCase";
-import { IAddNewHubResendOtp } from "../../../Application/interfaces/useCase_Interfaces/Hub/IAddNewHubResendOtp";
-import { IAddNewHubVerifyOtpUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IAddNewHubVerifyOtpUseCase";
+import { AddNewHubAddressDto, AddNewHubBaseDto, AddNewHubVerifyOtpDTO, ResubmitHubDTO } from "../../../Application/DTOs/Agency/agency.dto";
+import { IAddHubTempUseCase } from "../../../Application/Interfaces/UseCases/Hub/IAddHubTempUseCase";
+import { IAddNewHubResendOtp } from "../../../Application/Interfaces/UseCases/Hub/IAddNewHubResendOtp";
+import { IAddNewHubVerifyOtpUseCase } from "../../../Application/Interfaces/UseCases/Hub/IAddNewHubVerifyOtpUseCase";
 import { AgencyAddHubFields } from "../../../Infrastructure/services/storage/multer";
-import { ICheckTempHubStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/ICheckTempHubStatusUseCase";
+import { ICheckTempHubStatusUseCase } from "../../../Application/Interfaces/UseCases/Hub/ICheckTempHubStatusUseCase";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
-import { GetHubsDTO } from "../../../Application/Dto/Hub/hub.dto";
-import { IGetHubsUsecase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IGetHubsUsecase";
+import { GetHubsDTO } from "../../../Application/DTOs/Hub/hub.dto";
+import { IGetHubsUsecase } from "../../../Application/Interfaces/UseCases/Hub/IGetHubsUsecase";
 import { HUB_MESSAGES } from "../../../Infrastructure/constants/messages/hubMessage";
-import { AppError } from "../../../Domain/utils/customError";
+import { AppError } from "../../../Domain/Utils/customError";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
-import { IGetHubOverviewUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IGetHubOverviewUseCase";
-import { parseBlockedQuery } from "../../../Domain/utils/utils";
-import { IResubmitHubUseCase } from "../../../Application/interfaces/useCase_Interfaces/Hub/IResubmitHubUseCase";
+import { IGetHubOverviewUseCase } from "../../../Application/Interfaces/UseCases/Hub/IGetHubOverviewUseCase";
+import { parseBlockedQuery } from "../../../Domain/Utils/utils";
+import { IResubmitHubUseCase } from "../../../Application/Interfaces/UseCases/Hub/IResubmitHubUseCase";
 
 
 @injectable()

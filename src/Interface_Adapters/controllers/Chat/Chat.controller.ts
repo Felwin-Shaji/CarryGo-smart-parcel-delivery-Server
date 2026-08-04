@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
-import { IGetOrCreateChatUseCase } from "../../../Application/interfaces/useCase_Interfaces/Chat/IGetOrCreateChatUseCase";
-import { ISendMessageUseCase, SendMessageDTO } from "../../../Application/interfaces/useCase_Interfaces/Chat/ISendMessageUseCase";
-import { IGetMessagesUsecase } from "../../../Application/interfaces/useCase_Interfaces/Chat/IGetMessagesUsecase";
+import { IGetOrCreateChatUseCase } from "../../../Application/Interfaces/UseCases/Chat/IGetOrCreateChatUseCase";
+import { ISendMessageUseCase, SendMessageDTO } from "../../../Application/Interfaces/UseCases/Chat/ISendMessageUseCase";
+import { IGetMessagesUsecase } from "../../../Application/Interfaces/UseCases/Chat/IGetMessagesUsecase";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { CHAT_MESSAGE } from "../../../Infrastructure/constants/messages/chatMessage";
-import { AppError } from "../../../Domain/utils/customError";
+import { AppError } from "../../../Domain/Utils/customError";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
 
 

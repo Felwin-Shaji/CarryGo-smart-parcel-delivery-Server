@@ -1,10 +1,10 @@
 import { FilterQuery, Types } from "mongoose";
-import type { AgencyWithKYC_DB_Result, IAgencyRepository, PaginatedData } from "../../../Application/interfaces/repositories_interfaces/agencyRepositories_Interfaces/agency.repository";
+import type { AgencyWithKYC_DB_Result, IAgencyRepository, PaginatedData } from "../../../Application/Interfaces/Repositories/Agency/agency.repository";
 import { Agency } from "../../../Domain/Entities/Agency/Agency";
 import { AgencyModel } from "../../database/models/AgencyModels/agencyModel";
 import { BaseRepository } from "./..//baseRepositories";
-import { GetAgenciesDTO } from "../../../Application/Dto/Agency/agency.dto";
-import { AppError } from "../../../Domain/utils/customError";
+import { GetAgenciesDTO } from "../../../Application/DTOs/Agency/agency.dto";
+import { AppError } from "../../../Domain/Utils/customError";
 import { AGENCY_MESSAGES } from "../../constants/messages/agencyMessages";
 import { SortOrder } from "mongoose";
 import { STATUS } from "../../constants/statusCodes";

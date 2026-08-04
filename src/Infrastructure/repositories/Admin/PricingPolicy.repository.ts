@@ -1,4 +1,4 @@
-import { IPricingPolicyRepository } from "../../../Application/interfaces/repositories_interfaces/adminRepositories_Interfaces/IPricingPolicyRepository";
+import { IPricingPolicyRepository } from "../../../Application/Interfaces/Repositories/Admin/IPricingPolicyRepository";
 import { AgencyPricingPolicy } from "../../../Domain/Entities/Admin/AgencyPricingPolicy";
 import { BasePricingPolicy } from "../../../Domain/Entities/Admin/BasePricingPolicy";
 import { TravelerPricingPolicy } from "../../../Domain/Entities/Admin/TravelerPricingPolicy";
@@ -6,7 +6,7 @@ import { BasePricingPolicySchemaType, PricingPolicyModel } from "../../database/
 import { TravelerPricingPolicyModel, TravelerPricingPolicySchemaType } from "../../database/models/Admin/Pricing/TravelerPricingPolicySchema";
 import { AgencyPricingPolicyModel, AgencyPricingPolicySchemaType } from "../../database/models/Admin/Pricing/AgencyPricingPolicySchema";
 import { BaseRepository } from "../baseRepositories";
-import { AppError } from "../../../Domain/utils/customError";
+import { AppError } from "../../../Domain/Utils/customError";
 import { DeliveryPartner } from "../../../Domain/Enums/DeliveryPartnerType";
 
 export class PricingPolicyRepository

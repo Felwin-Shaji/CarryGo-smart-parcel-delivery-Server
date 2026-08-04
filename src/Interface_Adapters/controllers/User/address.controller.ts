@@ -1,16 +1,16 @@
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
 import { IAddressController } from "../../Interface/Controllers_Interfaces/User_interfaces/IAddressController";
-import { ICreateAddressFromLocationUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Address/ICreateAddressFromLocationUseCase";
+import { ICreateAddressFromLocationUseCase } from "../../../Application/Interfaces/UseCases/User/Address/ICreateAddressFromLocationUseCase";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";
-import { addUserAddressRequestDTO } from "../../../Application/Dto/User/address.dto";
+import { addUserAddressRequestDTO } from "../../../Application/DTOs/User/address.dto";
 import { ADDRESS_MESSAGES } from "../../../Infrastructure/constants/messages/addressMessages";
-import { IAddUserAddressUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Address/IAddUserAddressUseCase";
-import { IGetUserAddressesUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Address/IGetUserAddressesUseCase";
-import { IDeleteUserAddressUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Address/IDeleteUserAddressUseCase";
-import { AppError } from "../../../Domain/utils/customError";
-import { ISetDefaultUserAddressUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/Address/ISetDefaultUserAddressUseCase";
+import { IAddUserAddressUseCase } from "../../../Application/Interfaces/UseCases/User/Address/IAddUserAddressUseCase";
+import { IGetUserAddressesUseCase } from "../../../Application/Interfaces/UseCases/User/Address/IGetUserAddressesUseCase";
+import { IDeleteUserAddressUseCase } from "../../../Application/Interfaces/UseCases/User/Address/IDeleteUserAddressUseCase";
+import { AppError } from "../../../Domain/Utils/customError";
+import { ISetDefaultUserAddressUseCase } from "../../../Application/Interfaces/UseCases/User/Address/ISetDefaultUserAddressUseCase";
 import { AUTH_MESSAGES } from "../../../Infrastructure/constants/messages/authMessages";
 
 @injectable()

@@ -1,0 +1,38 @@
+import { inject, injectable } from 'tsyringe';
+import { IHubRepository } from '../../../Interfaces/Repositories/Hub/hub.repository';
+import { CheckServiceableAgencyDTO, ServiceableHubWithAgencyDTO } from '../../../DTOs/User/Booking.dto';
+import { IFindServicableAgencyUsecase } from '../../../Interfaces/UseCases/User/Booking/IFindServicableAgencyUsecase';
+import { IRouteComputationService } from '../../../Interfaces/Services/IRouteComputationService';
+
+@injectable()
+export class FindServicableAgencyUsecase implements IFindServicableAgencyUsecase {
+    constructor(
+        @inject("IHubRepository") private hubRepository: IHubRepository,
+        @inject("IRouteComputationService") private _routeComputationService: IRouteComputationService
+    ) { }
+    async execute(
+        dto: CheckServiceableAgencyDTO
+    ): Promise<ServiceableHubWithAgencyDTO[]> {
+        const { pickupLocation, deliveryLocation } = dto;
+        const agencies = await this.hubRepository.findServiceableAgenciesWithHubs(pickupLocation, deliveryLocation);
+
+        const checks = await Promise.all(
+            agencies.map(async (item) => {
+                const chain = await this._routeComputationService.computeSegmentChain(
+                    item.fromHub.hubId,
+                    item.toHub.hubId,
+                    item.agency.agencyId
+                )
+
+                return { item, hasRoute: chain.length > 0 };
+            })
+        )
+
+        const filtered = checks
+            .filter((c) => c.hasRoute)
+            .map((c) => c.item);
+
+        return filtered
+
+    }
+}

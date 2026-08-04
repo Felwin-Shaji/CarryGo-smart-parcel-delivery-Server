@@ -1,5 +1,5 @@
 import { Types } from "mongoose";
-import { AppError } from "../../utils/customError";
+import { AppError } from "../../Utils/customError";
 import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
 
 

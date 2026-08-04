@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
-import { EditWorkerProfileRequestDto, WorkerResetPasswordRequestDTO } from "../../../Application/Dto/Workers/workerProfile.dto";
-import { AppError } from "../../../Domain/utils/customError";
+import { EditWorkerProfileRequestDto, WorkerResetPasswordRequestDTO } from "../../../Application/DTOs/Worker/workerProfile.dto";
+import { AppError } from "../../../Domain/Utils/customError";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { WORKER_MESSAGES } from "../../../Infrastructure/constants/messages/workerMessage";
-import { IGetWorkerProfileUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IGetWorkerProfileUseCase";
-import { IEditWorkerProfileUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IEditWorkerProfileUseCase";
-import { IResetWorkerPasswordUseCase } from "../../../Application/interfaces/useCase_Interfaces/Worker/IResetWorkerPasswordUseCase";
+import { IGetWorkerProfileUseCase } from "../../../Application/Interfaces/UseCases/Worker/IGetWorkerProfileUseCase";
+import { IEditWorkerProfileUseCase } from "../../../Application/Interfaces/UseCases/Worker/IEditWorkerProfileUseCase";
+import { IResetWorkerPasswordUseCase } from "../../../Application/Interfaces/UseCases/Worker/IResetWorkerPasswordUseCase";
 
 
 @injectable()

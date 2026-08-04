@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
-import { AppError } from "../../../Domain/utils/customError";
-import { IGetRouteGroupDetailUseCase } from "../../../Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/IGetRouteDetailsUsecase";
-import { ICreateRouteSegmentUseCase } from "../../../Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/ICreateRouteSegmentUseCase";
+import { AppError } from "../../../Domain/Utils/customError";
+import { IGetRouteGroupDetailUseCase } from "../../../Application/Interfaces/UseCases/Logistics/RouteGroup/IGetRouteDetailsUsecase";
+import { ICreateRouteSegmentUseCase } from "../../../Application/Interfaces/UseCases/Logistics/RouteGroup/ICreateRouteSegmentUseCase";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ROUTE_GROUP_MESSAGE, ROUTE_SEGMENT_MESSAGE } from "../../../Infrastructure/constants/messages/RouteGroupMessage";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
 import { ApiResponse } from "../../presenters/ApiResponse";
-import { IUpdateRouteGroupStatusUseCase } from "../../../Application/interfaces/useCase_Interfaces/Logistics/RouteGroup/IUpdateRouteGroupStatusUseCase";
+import { IUpdateRouteGroupStatusUseCase } from "../../../Application/Interfaces/UseCases/Logistics/RouteGroup/IUpdateRouteGroupStatusUseCase";
 
 @injectable()
 export class AgencyRouteSegmentController {

@@ -1,14 +1,14 @@
 import { inject, injectable } from "tsyringe";
 import { IAgencyPricingController } from "../../Interface/Controllers_Interfaces/Agency_Interfases/IAgencyPricingController";
-import { IGetAgencyPricingUsecase } from "../../../Application/interfaces/useCase_Interfaces/Princing/IGetAgencyPricingUsecase";
+import { IGetAgencyPricingUsecase } from "../../../Application/Interfaces/UseCases/Pricing/IGetAgencyPricingUsecase";
 import { Request, Response } from "express";
-import { AppError } from "../../../Domain/utils/customError";
+import { AppError } from "../../../Domain/Utils/customError";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/constants/messages/agencyMessages";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { PRICING_POLICY_MESSAGE } from "../../../Infrastructure/constants/messages/pricingPolicyMessage";
-import { IUpsertAgencyPricingUseCase } from "../../../Application/interfaces/useCase_Interfaces/Princing/IUpsertAgencyPricingUseCase";
-import { UpdateAgencyPricingDTO } from "../../../Application/Dto/Pricing/AgencyPricing.dto";
+import { IUpsertAgencyPricingUseCase } from "../../../Application/Interfaces/UseCases/Pricing/IUpsertAgencyPricingUseCase";
+import { UpdateAgencyPricingDTO } from "../../../Application/DTOs/Pricing/AgencyPricing.dto";
 
 @injectable()
 export class AgencyPricingController implements IAgencyPricingController {

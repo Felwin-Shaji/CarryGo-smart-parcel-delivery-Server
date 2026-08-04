@@ -1,6 +1,6 @@
-import { IParcelRouteRepository } from "../../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IParcelRouteRepository";
+import { IParcelRouteRepository } from "../../../Application/Interfaces/Repositories/Logistics/IParcelRouteRepository";
 import { ParcelRoute } from "../../../Domain/Entities/Logistics/ParcelRoute";
-import { AppError } from "../../../Domain/utils/customError";
+import { AppError } from "../../../Domain/Utils/customError";
 import { ClientSession, Types } from "mongoose";
 import { ParcelRouteDocument, ParcelRouteModel } from "../../database/models/Logistics/ParcelRouteModel";
 

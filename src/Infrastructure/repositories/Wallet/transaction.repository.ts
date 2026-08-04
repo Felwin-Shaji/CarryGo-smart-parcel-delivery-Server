@@ -1,10 +1,10 @@
 import { FilterQuery, Types, type ClientSession } from "mongoose";
-import { ITransactionRepository } from "../../../Application/interfaces/repositories_interfaces/walletRepositories_Interfaces/ITransactionRepository";
+import { ITransactionRepository } from "../../../Application/Interfaces/Repositories/Wallet/ITransactionRepository";
 import { Transaction } from "../../../Domain/Entities/Wallet/WalletTransaction";
 import { TransactionDocument, TransactionModel } from "../../database/models/Wallet/transaction.schema";
 import { BaseRepository } from "../baseRepositories";
 import { WalletModel } from "../../database/models/Wallet/wallet.schema";
-import { DateRangeFilter, GetSettlementReportQuery, SalesChartRequestDTO, SalesChartResponseDTO, SalesReportResponseDTO, SalesReportRowDTO, SettlementMatch } from "../../../Application/Dto/Agency/agencyDashboard.dto";
+import { DateRangeFilter, GetSettlementReportQuery, SalesChartRequestDTO, SalesChartResponseDTO, SalesReportResponseDTO, SalesReportRowDTO, SettlementMatch } from "../../../Application/DTOs/Agency/agencyDashboard.dto";
 
 export class TransactionRepository extends BaseRepository<TransactionDocument> implements ITransactionRepository {
 

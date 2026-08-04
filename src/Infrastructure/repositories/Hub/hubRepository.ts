@@ -1,14 +1,14 @@
 import { ClientSession, FilterQuery, Types } from "mongoose";
-import { GetHubsDTO, updateHubKycStatusDTO } from "../../../Application/Dto/Hub/hub.dto";
-import { IHubRepository, PaginatedHubData } from "../../../Application/interfaces/repositories_interfaces/hubRepositories_Interfaces/hub.repository";
+import { GetHubsDTO, updateHubKycStatusDTO } from "../../../Application/DTOs/Hub/hub.dto";
+import { IHubRepository, PaginatedHubData } from "../../../Application/Interfaces/Repositories/Hub/hub.repository";
 import { Hub } from "../../../Domain/Entities/Hub/Hub";
 import { HubDocument, HubModel } from "../../database/models/Hub/HubModel";
-import { ServiceableHubWithAgencyDTO } from "../../../Application/Dto/User/Booking.dto";
-import { AppError } from "../../../Domain/utils/customError";
+import { ServiceableHubWithAgencyDTO } from "../../../Application/DTOs/User/Booking.dto";
+import { AppError } from "../../../Domain/Utils/customError";
 import { HUB_MESSAGES } from "../../constants/messages/hubMessage";
 import { STATUS } from "../../constants/statusCodes";
 import { SortOrder } from "mongoose";
-import { GeoLocation } from "../../../Application/interfaces/useCase_Interfaces/user/Booking/IFindServicableAgencyUsecase";
+import { GeoLocation } from "../../../Application/Interfaces/UseCases/User/Booking/IFindServicableAgencyUsecase";
 import { HubWorkerModel } from "../../database/models/Worker/workerModel";
 
 export class HubRepository implements IHubRepository {

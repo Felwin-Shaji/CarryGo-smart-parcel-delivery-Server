@@ -2,13 +2,13 @@ import { Request, Response } from "express";
 import { IUserController } from "../../Interface/Controllers_Interfaces/User_interfaces/IUserController";
 import { ApiResponse } from "../../presenters/ApiResponse";
 import { inject, injectable } from "tsyringe";
-import { IGetUserProfileUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/GetUserProfile.useCase";
+import { IGetUserProfileUseCase } from "../../../Application/Interfaces/UseCases/User/GetUserProfile.useCase";
 import { USER_MESSAGES } from "../../../Infrastructure/constants/messages/userMessage";
-import { BaseEditUserProfileRequestDto, UserResetPasswordRequestDTO } from "../../../Application/Dto/User/user.dto";
-import { IEditUserProfileUseCase } from "../../../Application/interfaces/useCase_Interfaces/user/EditUserProfile.usecase";
+import { BaseEditUserProfileRequestDto, UserResetPasswordRequestDTO } from "../../../Application/DTOs/User/user.dto";
+import { IEditUserProfileUseCase } from "../../../Application/Interfaces/UseCases/User/EditUserProfile.usecase";
 import { STATUS } from "../../../Infrastructure/constants/statusCodes";
-import { IUserReserUserPassword } from "../../../Application/interfaces/useCase_Interfaces/user/ReserUserPassword.usecase";
-import { AppError } from "../../../Domain/utils/customError";
+import { IUserReserUserPassword } from "../../../Application/Interfaces/UseCases/User/ReserUserPassword.usecase";
+import { AppError } from "../../../Domain/Utils/customError";
 
 @injectable()
 export class UserController implements IUserController {

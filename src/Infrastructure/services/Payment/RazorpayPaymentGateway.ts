@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import { razorpayClient } from "./razorpay.client";
-import { CreateOrderInput, CreateOrderOutput, CreatePayoutInput, CreatePayoutOutput, IPaymentGatewayService } from "../../../Application/interfaces/services_Interfaces/payment/IPaymentGateway";
-import { AppError } from "../../../Domain/utils/customError";
+import { CreateOrderInput, CreateOrderOutput, CreatePayoutInput, CreatePayoutOutput, IPaymentGatewayService } from "../../../Application/Interfaces/Services/Payment/IPaymentGateway";
+import { AppError } from "../../../Domain/Utils/customError";
 import { STATUS } from "../../constants/statusCodes";
 
 function getErrorMessage(error: unknown): string {

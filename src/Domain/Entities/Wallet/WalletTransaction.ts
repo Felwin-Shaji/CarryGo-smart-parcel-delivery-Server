@@ -1,5 +1,5 @@
 import { WALLET_MESSAGES } from "../../../Infrastructure/constants/messages/walletMessages";
-import { AppError } from "../../utils/customError";
+import { AppError } from "../../Utils/customError";
 
 export type TransactionType =
     | "CREDIT"

@@ -1,4 +1,4 @@
-import { AppError } from "../../utils/customError";
+import { AppError } from "../../Utils/customError";
 import { BOOKING_MESSAGE } from "../../../Infrastructure/constants/messages/bookingMessages";
 import { AddressLabelType, BookingStatusType, DeliveryPartnerType, HubJourneyStatusType, PaymentGatewayType, PaymentMethodType, PaymentStatusType } from "../../../Infrastructure/Types/types";
 

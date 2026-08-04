@@ -1,6 +1,6 @@
 import { Server, Socket } from "socket.io";
 import { container, injectable } from "tsyringe";
-import { IMessageSocketService } from "../../../Application/interfaces/services_Interfaces/Chat/IMessageSocketService";
+import { IMessageSocketService } from "../../../Application/Interfaces/Services/Chat/IMessageSocketService";
 import { Message } from "../../../Domain/Entities/Chat/Message";
 
 @injectable()

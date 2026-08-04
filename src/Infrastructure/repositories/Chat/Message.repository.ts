@@ -1,5 +1,5 @@
 
-import { IMessageRepository } from "../../../Application/interfaces/repositories_interfaces/ChatRepositories_Interfaces/IMessageRepository";
+import { IMessageRepository } from "../../../Application/Interfaces/Repositories/Chat/IMessageRepository";
 import { Message } from "../../../Domain/Entities/Chat/Message";
 import { Types } from "mongoose";
 import { MessageDocument, MessageModel } from "../../database/models/Chat/messageModel";

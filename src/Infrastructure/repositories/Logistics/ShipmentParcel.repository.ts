@@ -1,10 +1,10 @@
 import { ClientSession, Types, PipelineStage } from "mongoose";
-import { IShipmentParcelRepository } from "../../../Application/interfaces/repositories_interfaces/LogisticRepositories_Interfaces/IShipmentParcelRepository";
+import { IShipmentParcelRepository } from "../../../Application/Interfaces/Repositories/Logistics/IShipmentParcelRepository";
 import { ShipmentParcel, ShipmentParcelStatus } from "../../../Domain/Entities/Logistics/ShipmentParcel";
 import { ShipmentParcelDocument, ShipmentParcelModel } from "../../database/models/Logistics/ShipmentParcelModel";
-import { GetWorkerGraphRequestDTO, GetWorkerGraphResponseDTO, GetWorkerParcelsDTO, GetWorkerParcelsResponseDTO, WorkerGraphPointDTO, WorkerParcelItemDTO } from "../../../Application/Dto/Workers/worker.dto";
+import { GetWorkerGraphRequestDTO, GetWorkerGraphResponseDTO, GetWorkerParcelsDTO, GetWorkerParcelsResponseDTO, WorkerGraphPointDTO, WorkerParcelItemDTO } from "../../../Application/DTOs/Worker/worker.dto";
 import { ShipmentType } from "../../../Domain/Entities/Logistics/HubShipment";
-import { AppError } from "../../../Domain/utils/customError";
+import { AppError } from "../../../Domain/Utils/customError";
 import { STATUS } from "../../constants/statusCodes";
 
 type WorkerParcelAggregationResult = {

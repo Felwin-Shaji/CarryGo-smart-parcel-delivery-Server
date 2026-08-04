@@ -1,5 +1,5 @@
 import { Types } from "mongoose";
-import { IChatRepository } from "../../../Application/interfaces/repositories_interfaces/ChatRepositories_Interfaces/IChatRepository";
+import { IChatRepository } from "../../../Application/Interfaces/Repositories/Chat/IChatRepository";
 import { Chat } from "../../../Domain/Entities/Chat/Chat";
 import { ChatDocument, ChatModel } from "../../database/models/Chat/chatModel";
 

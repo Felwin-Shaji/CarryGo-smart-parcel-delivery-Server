@@ -1,4 +1,4 @@
-import { HubProfileResponseDTO } from "../../Dto/Hub/hubProfile.dto";
+import { HubProfileResponseDTO } from "../../DTOs/Hub/hubProfile.dto";
 import { Hub } from "../../../Domain/Entities/Hub/Hub";
 
 

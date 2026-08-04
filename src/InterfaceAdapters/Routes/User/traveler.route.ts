@@ -3,7 +3,7 @@ import { travelerController } from "../../../Infrastructure/DI/resolver";
 import { authenticate } from "../../Middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../Middlewares/ErrorHandlers/asyncHandler";
 import { workerKYCUpload } from "../../../Infrastructure/Services/Storage/multer";
-import { Role } from "../../../Domain/Enums/Roles";
+import { Role } from "../../../Domain/Enums/Role";
 import { validateRequest } from "../../Middlewares/ValidationMiddleware/validateRequest";
 import { createTravelRequestSchema, reSubmitTravelerKycSchema, submitTravelerKycSchema } from "../../Validators/User/traveler.validator";
 

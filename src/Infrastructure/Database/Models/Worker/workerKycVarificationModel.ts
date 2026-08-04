@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { IWrokerKYCVerification } from "../../../../Domain/Entities/Worker/WorkerKyc";
+import { IWrokerKYCVerification } from "../../../../Domain/Entities/Worker/WorkerKYC";
 
 const WorkerKYCVerificationSchema = new Schema<IWrokerKYCVerification>({
     subjectId: { type: String, required: true },

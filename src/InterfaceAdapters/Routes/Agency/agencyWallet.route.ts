@@ -2,7 +2,7 @@ import { BaseRoute } from "../base.route";
 import { agencyWalletController } from "../../../Infrastructure/DI/resolver";
 import { authenticate } from "../../Middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../Middlewares/ErrorHandlers/asyncHandler";
-import { Role } from "../../../Domain/Enums/Roles";
+import { Role } from "../../../Domain/Enums/Role";
 
 export class AgencyWalletRoute extends BaseRoute {
 

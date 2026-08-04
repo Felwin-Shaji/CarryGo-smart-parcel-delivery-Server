@@ -12,7 +12,7 @@ import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IResetPasswordTokenRepository } from "../../Interfaces/Repositories/Auth/resetPasswordToken.repository";
 import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";
-import { IResetPasswordTokenModel } from "../../../Domain/Entities/token";
+import { IResetPasswordTokenModel } from "../../../Domain/Entities/IResetPasswordTokenModel";
 
 
 @injectable()

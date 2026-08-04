@@ -22,7 +22,7 @@ import { OTP_MESSAGES } from "../../../Infrastructure/Constants/Messages/otpMess
 import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
 import { User } from "../../../Domain/Entities/User";
 import { RegisterAgencyResponseDTO } from "../../../Application/DTOs/Agency/agency.dto";
-import { Role } from "../../../Domain/Enums/Roles";
+import { Role } from "../../../Domain/Enums/Role";
 import { IGoogleAuthUseCase } from "../../../Application/Interfaces/UseCases/Auth/IGoogleAuthUseCase";
 
 

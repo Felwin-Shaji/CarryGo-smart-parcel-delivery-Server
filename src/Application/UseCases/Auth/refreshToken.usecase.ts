@@ -11,7 +11,7 @@ import { IHubRepository } from "../../Interfaces/Repositories/Hub/hub.repository
 import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";
 import { User } from "../../../Domain/Entities/User";
-import { Admin } from "../../../Domain/Entities/admin";
+import { Admin } from "../../../Domain/Entities/Admin";
 import { Agency } from "../../../Domain/Entities/Agency/Agency";
 import { Hub } from "../../../Domain/Entities/Hub/Hub";
 import { HubWorker } from "../../../Domain/Entities/Worker/Worker";

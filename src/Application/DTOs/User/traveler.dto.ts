@@ -1,5 +1,5 @@
 import { TransportMode, TravelRequest } from "../../../Domain/Entities/User/TravelRequest";
-import { IDType } from "../../../Domain/Entities/Worker/WorkerKyc";
+import { IDType } from "../../../Domain/Entities/Worker/WorkerKYC";
 import { AddressResponseDTO, BookingAddressDTO } from "./Booking.dto";
 import { BaseUserResponseDTO } from "./user.dto";
 

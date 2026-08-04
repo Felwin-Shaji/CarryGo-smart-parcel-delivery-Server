@@ -1,5 +1,5 @@
 import { IAdminRepository } from "../../../Application/Interfaces/Repositories/Admin/IAdminRepository";
-import { Admin } from "../../../Domain/Entities/admin";
+import { Admin } from "../../../Domain/Entities/Admin";
 import { AdminModel } from "../../Database/Models/Admin/adminModel";
 import { BaseRepository } from "../baseRepositories";
 

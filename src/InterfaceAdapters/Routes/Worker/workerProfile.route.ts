@@ -1,7 +1,7 @@
 import { BaseRoute } from "../base.route";
 import { authenticate } from "../../Middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../Middlewares/ErrorHandlers/asyncHandler";
-import { Role } from "../../../Domain/Enums/Roles";
+import { Role } from "../../../Domain/Enums/Role";
 import { workerProfileController } from "../../../Infrastructure/DI/resolver";
 
 export class WorkerProfileRoute extends BaseRoute {

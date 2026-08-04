@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import { HubWorkersTemp } from "../../../../Domain/Entities/Worker/WrokersTemp.js";
+import { HubWorkersTemp } from "../../../../Domain/Entities/Worker/HubWorkersTemp.js";
 
 const hubWorkerTempModel = new Schema<HubWorkersTemp>({
     name: { type: String, required: true },

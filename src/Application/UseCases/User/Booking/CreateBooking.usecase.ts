@@ -15,7 +15,7 @@ import { AGENCY_MESSAGES } from "../../../../Infrastructure/Constants/Messages/a
 import { DeliveryPartner } from "../../../../Domain/Enums/DeliveryPartnerType";
 import { IBookingIdGeneratorService } from "../../../Interfaces/Services/IBookingIdGeneratorService";
 import { ICounterRepository } from "../../../Interfaces/Repositories/ICounterRepository";
-import { buildCounterKey } from "../../../../Domain/Utils/counterKey.util";
+import { buildCounterKey } from "../../../../Domain/Utils/counterKey";
 
 @injectable()
 export class CreateBookingUsecase implements ICreateBookingUsecase {

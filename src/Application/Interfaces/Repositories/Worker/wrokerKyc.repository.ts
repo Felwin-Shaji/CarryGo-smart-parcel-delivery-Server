@@ -1,5 +1,5 @@
 
-import { IWrokerKYCVerification } from "../../../../Domain/Entities/Worker/WorkerKyc";
+import { IWrokerKYCVerification } from "../../../../Domain/Entities/Worker/WorkerKYC";
 import { IBaseRepository } from "../base.repository";
 
 

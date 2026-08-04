@@ -2,7 +2,7 @@ import { agencyHubWorkerController, workerDashboardController } from "../../../I
 import { BaseRoute } from "../base.route"
 import { asyncHandler } from "../../Middlewares/ErrorHandlers/asyncHandler"
 import { authenticate } from "../../Middlewares/AuthMiddleware/authenticate.middleware"
-import { Role } from "../../../Domain/Enums/Roles"
+import { Role } from "../../../Domain/Enums/Role"
 
 
 export class AgencyHubWorkerRoute extends BaseRoute {

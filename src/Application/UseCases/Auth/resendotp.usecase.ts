@@ -3,7 +3,7 @@ import type { IOtpRepository } from "../../Interfaces/Repositories/Auth/otp.repo
 import type { IUserRepository } from "../../Interfaces/Repositories/User/user.repository";
 import type { IMailService } from "../../Interfaces/Services/email-service.interface";
 import { AppError } from "../../../Domain/Utils/customError";
-import { OtpVo } from "../../../Domain/ValueObjects/otp.valueObject";
+import { OtpVo } from "../../../Domain/ValueObjects/OtpValueObject";
 import type { OtpResponseDTO, ResendOtpDTO } from "../../DTOs/Auth/Auth.dto";
 import { IResendOtpUseCase } from "../../Interfaces/UseCases/Auth/resendOtp.usecase";
 import { OTP_MESSAGES } from "../../../Infrastructure/Constants/Messages/otpMessage";

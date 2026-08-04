@@ -1,4 +1,4 @@
-import { Role } from "../../../Domain/Enums/Roles";
+import { Role } from "../../../Domain/Enums/Role";
 import { GetSettlementReportQuery, SalesReportRequestDTO, SalesReportResponseDTO } from "../../DTOs/Agency/agencyDashboard.dto";
 import { ITransactionRepository } from "../../Interfaces/Repositories/Wallet/ITransactionRepository";
 import { IWalletRepository } from "../../Interfaces/Repositories/Wallet/IWalletRepository";

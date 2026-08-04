@@ -10,7 +10,7 @@ import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agen
 import { GetAgenciesDTO, updateAgencyKycStatusDTO, } from "../../../Application/DTOs/Agency/agency.dto";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 import { IGetAgencyOverviewUseCase } from "../../../Application/Interfaces/UseCases/Agency/GetAgencyOverview.usecase";
-import { parseBlockedQuery } from "../../../Domain/Utils/utils";
+import { parseBlockedQuery } from "../../../Domain/Utils/parseBlockedQuery";
 
 
 @injectable()

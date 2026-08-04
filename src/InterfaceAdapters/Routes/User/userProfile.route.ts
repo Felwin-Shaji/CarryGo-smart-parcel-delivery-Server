@@ -2,7 +2,7 @@ import { BaseRoute } from "../base.route";
 import { userController } from "../../../Infrastructure/DI/resolver";
 import { authenticate } from "../../Middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../Middlewares/ErrorHandlers/asyncHandler";
-import { Role } from "../../../Domain/Enums/Roles";
+import { Role } from "../../../Domain/Enums/Role";
 import { validateRequest } from "../../Middlewares/ValidationMiddleware/validateRequest";
 import { editUserProfileSchema, resetUserPasswordSchema } from "../../Validators/User/user.validator";
 

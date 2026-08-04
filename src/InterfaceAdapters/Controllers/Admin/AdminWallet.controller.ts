@@ -5,7 +5,7 @@ import { AppError } from "../../../Domain/Utils/customError";
 import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
 import { inject, injectable } from "tsyringe";
 import { IGetWalletOverviewUseCase } from "../../../Application/Interfaces/UseCases/Wallet/IGetWalletOverviewUseCase";
-import { Role } from "../../../Domain/Enums/Roles";
+import { Role } from "../../../Domain/Enums/Role";
 import { WALLET_MESSAGES } from "../../../Infrastructure/Constants/Messages/walletMessages";
 import { ICreateWalletTopupOrderUseCase } from "../../../Application/Interfaces/UseCases/Wallet/ICreateWalletTopupOrderUseCase";
 import { IAdminWalletController } from "../../Interfaces/Controllers/Admin/IAdminWalletController";

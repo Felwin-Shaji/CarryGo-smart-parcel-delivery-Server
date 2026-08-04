@@ -1,4 +1,4 @@
-import { IDType } from "../../../../Domain/Entities/Worker/WorkerKyc";
+import { IDType } from "../../../../Domain/Entities/Worker/WorkerKYC";
 import { WorkerResponseDTO } from "../../../DTOs/Worker/worker.dto";
 import { UploadedWorkerKycFiles } from "./uploadWorkerKycFilesUsecase";
 

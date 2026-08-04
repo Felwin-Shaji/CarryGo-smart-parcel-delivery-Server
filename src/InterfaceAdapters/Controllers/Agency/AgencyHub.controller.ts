@@ -18,7 +18,7 @@ import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMess
 import { AppError } from "../../../Domain/Utils/customError";
 import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
 import { IGetHubOverviewUseCase } from "../../../Application/Interfaces/UseCases/Hub/IGetHubOverviewUseCase";
-import { parseBlockedQuery } from "../../../Domain/Utils/utils";
+import { parseBlockedQuery } from "../../../Domain/Utils/parseBlockedQuery";
 import { IResubmitHubUseCase } from "../../../Application/Interfaces/UseCases/Hub/IResubmitHubUseCase";
 
 

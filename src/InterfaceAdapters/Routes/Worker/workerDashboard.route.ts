@@ -1,6 +1,6 @@
 import { authenticate } from "../../Middlewares/AuthMiddleware/authenticate.middleware";
 import { BaseRoute } from "../base.route";
-import { Role } from "../../../Domain/Enums/Roles";
+import { Role } from "../../../Domain/Enums/Role";
 import { asyncHandler } from "../../Middlewares/ErrorHandlers/asyncHandler";
 import { workerDashboardController } from "../../../Infrastructure/DI/resolver";
 

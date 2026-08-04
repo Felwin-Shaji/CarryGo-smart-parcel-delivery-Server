@@ -1,4 +1,4 @@
-import { Role } from "../../../Domain/Enums/Roles"
+import { Role } from "../../../Domain/Enums/Role"
 import { BaseRoute } from "../base.route"
 import { authenticate } from "../../Middlewares/AuthMiddleware/authenticate.middleware"
 import { asyncHandler } from "../../Middlewares/ErrorHandlers/asyncHandler"

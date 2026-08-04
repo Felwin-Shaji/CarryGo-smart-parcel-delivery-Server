@@ -20,7 +20,7 @@ import { SHIPMENT_PARCEL_MESSAGE } from "../../../../Infrastructure/Constants/Me
 import { BookingStatusType } from "../../../../Infrastructure/Types/types";
 import { BOOKING_MESSAGE } from "../../../../Infrastructure/Constants/Messages/bookingMessages";
 import { Booking } from "../../../../Domain/Entities/Booking/Booking";
-import { Role } from "../../../../Domain/Enums/Roles";
+import { Role } from "../../../../Domain/Enums/Role";
 import { WALLET_MESSAGES } from "../../../../Infrastructure/Constants/Messages/walletMessages";
 import { TransactionMapper } from "../../../Mappers/Wallet/transactionMapper";
 

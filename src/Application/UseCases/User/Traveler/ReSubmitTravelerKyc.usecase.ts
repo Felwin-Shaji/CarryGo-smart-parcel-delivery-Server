@@ -8,8 +8,8 @@ import { WorkerKYCFileFields } from "../../../../Infrastructure/Services/Storage
 import { AppError } from "../../../../Domain/Utils/customError";
 import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessage";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
-import { Role } from "../../../../Domain/Enums/Roles";
-import { KycStatus } from "../../../../Domain/Enums/KycStatus";
+import { Role } from "../../../../Domain/Enums/Role";
+import { KycStatus } from "../../../../Domain/Enums/KYCStatus";
 import { IAdminRepository } from "../../../Interfaces/Repositories/Admin/IAdminRepository";
 import { INotificationService } from "../../../Interfaces/Services/Notification/INotificationService";
 import { INotificationSocketService } from "../../../Interfaces/Services/Notification/INotificationSocketService";

@@ -10,7 +10,7 @@ import { WorkerMapper } from "../../Mappers/Worker/WorkerMapper";
 import { WorkerResponseDTO } from "../../DTOs/Worker/worker.dto";
 import { IAddWorkerUsecase } from "../../Interfaces/UseCases/Worker/AddWorkerUsecase";
 import { IHubWorkerKycRepository } from "../../Interfaces/Repositories/Worker/wrokerKyc.repository";
-import { IDType } from "../../../Domain/Entities/Worker/WorkerKyc";
+import { IDType } from "../../../Domain/Entities/Worker/WorkerKYC";
 import { UploadedWorkerKycFiles } from "../../Interfaces/UseCases/Worker/uploadWorkerKycFilesUsecase";
 import { INotificationSocketService } from "../../Interfaces/Services/Notification/INotificationSocketService";
 import { INotificationService } from "../../Interfaces/Services/Notification/INotificationService";

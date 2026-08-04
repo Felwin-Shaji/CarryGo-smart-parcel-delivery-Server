@@ -1,6 +1,6 @@
 import { User } from "../../../Domain/Entities/User";
-import { IWrokerKYCVerification } from "../../../Domain/Entities/Worker/WorkerKyc";
-import { Role } from "../../../Domain/Enums/Roles";
+import { IWrokerKYCVerification } from "../../../Domain/Entities/Worker/WorkerKYC";
+import { Role } from "../../../Domain/Enums/Role";
 import { GetUserOverviewResponseDTO, GetUserResponseDto, GetUsersDBResult } from "../../DTOs/User/user.dto";
 import { GoogleAuthResponseDTO } from "../../Interfaces/UseCases/Auth/IGoogleAuthUseCase";
 

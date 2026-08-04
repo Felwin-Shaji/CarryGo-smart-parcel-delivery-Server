@@ -1,5 +1,5 @@
 import { model, Schema, type Document } from "mongoose";
-import type { IResetPasswordTokenModel } from "../../../Domain/Entities/token.js";
+import type { IResetPasswordTokenModel } from "../../../Domain/Entities/IResetPasswordTokenModel.js";
 
 export type ITokenModel = IResetPasswordTokenModel & Document;
 

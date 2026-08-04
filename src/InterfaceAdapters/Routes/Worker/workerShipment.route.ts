@@ -6,7 +6,7 @@
 // import { validateRequest } from "@/Interface_Adapters/middlewares/ValidationMiddleware/validateRequest";
 // import { bulkUpdateParcelsSchema, updateShipmentStatusSchema } from "@/Interface_Adapters/validators/WorkerValidator/workerShipment.validator";
 
-import { Role } from "../../../Domain/Enums/Roles";
+import { Role } from "../../../Domain/Enums/Role";
 import { workerShipmentController } from "../../../Infrastructure/DI/resolver";
 import { authenticate } from "../../Middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../Middlewares/ErrorHandlers/asyncHandler";

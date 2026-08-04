@@ -1,5 +1,5 @@
 import { User } from "../../Domain/Entities/User"
-import type { IOtpModel } from "../../Domain/Entities/Iotp";
+import type { IOtpModel } from "../../Domain/Entities/IOtpModel";
 import type { GoogleUserDTO, OtpResponseDTO, SendLogoutResponseDTO, SendOtpDTO, VerifyOtpResponseDTO } from "../DTOs/Auth/Auth.dto";
 import type { KYCStatus, Role } from "../../Infrastructure/Types/types";
 

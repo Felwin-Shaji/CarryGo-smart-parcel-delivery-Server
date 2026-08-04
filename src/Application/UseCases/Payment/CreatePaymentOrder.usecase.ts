@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { IPaymentGatewayService } from "../../Interfaces/Services/Payment/IPaymentGateway";
 import { ICreatePaymentOrderUsecase } from "../../Interfaces/UseCases/Payment/ICreatePaymentOrderUsecase";
 import { IGetBookingUsecase } from "../../Interfaces/UseCases/User/Booking/IGetBookingUsecase";
-import { Role } from "../../../Domain/Enums/Roles";
+import { Role } from "../../../Domain/Enums/Role";
 import { IBookingRepository } from "../../Interfaces/Repositories/User/IBookingRepository";
 
 @injectable()

@@ -3,7 +3,7 @@ import { IGoogleAuthService } from "../../Interfaces/Services/GoogleAuth/IGoogle
 import { IUserRepository } from "../../Interfaces/Repositories/User/user.repository";
 import { IGenerateTokenUseCase } from "../../Interfaces/UseCases/Auth/GenerateToken.usecase";
 import { IGoogleAuthUseCase } from "../../Interfaces/UseCases/Auth/IGoogleAuthUseCase";
-import { Role } from "../../../Domain/Enums/Roles";
+import { Role } from "../../../Domain/Enums/Role";
 import { AppError } from "../../../Domain/Utils/customError";
 import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";

@@ -3,7 +3,7 @@ import { hubWorkerController, workerDashboardController } from "../../../Infrast
 import { workerKYCUpload } from "../../../Infrastructure/Services/Storage/multer";
 import { authenticate } from "../../Middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../Middlewares/ErrorHandlers/asyncHandler";
-import { Role } from "../../../Domain/Enums/Roles";
+import { Role } from "../../../Domain/Enums/Role";
 import { validateRequest } from "../../Middlewares/ValidationMiddleware/validateRequest";
 import { addWorkerTempSchema, reSubmitWorkerKycSchema, verifyWorkerOtpSchema, workerKycUploadSchema } from "../../Validators/Hub/hubWorker.validator";
 

@@ -4,7 +4,7 @@ import { IGetHubDashboardSummaryUseCase } from "../../../Application/Interfaces/
 import { IGetHubDashboardTrendUseCase } from "../../../Application/Interfaces/UseCases/Hub/IGetHubDashboardTrendUseCase";
 import { IGetHubDashboardTypesUseCase } from "../../../Application/Interfaces/UseCases/Hub/IGetHubDashboardTypesUseCase";
 import { IGetHubDashboardShipmentsPreviewUseCase } from "../../../Application/Interfaces/UseCases/Hub/IGetHubDashboardShipmentsPreviewUseCase";
-import { Role } from "../../../Domain/Enums/Roles";
+import { Role } from "../../../Domain/Enums/Role";
 import { AppError } from "../../../Domain/Utils/customError";
 import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";

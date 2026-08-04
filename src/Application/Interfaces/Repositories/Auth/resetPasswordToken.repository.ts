@@ -1,4 +1,4 @@
-import { IResetPasswordTokenModel } from "../../../../Domain/Entities/token";
+import { IResetPasswordTokenModel } from "../../../../Domain/Entities/IResetPasswordTokenModel";
 import { IBaseRepository } from "../base.repository";
 
 export type IResetPasswordTokenRepository =

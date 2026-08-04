@@ -3,7 +3,7 @@ import { agencyHubController, hubDashboardController, hubWorkerController } from
 import { agencyAddHub } from "../../../Infrastructure/Services/Storage/multer";
 import { authenticate } from "../../Middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../Middlewares/ErrorHandlers/asyncHandler";
-import { Role } from "../../../Domain/Enums/Roles";
+import { Role } from "../../../Domain/Enums/Role";
 import { validateRequest } from "../../Middlewares/ValidationMiddleware/validateRequest";
 import { addNewHubBasicInfoSchema, addNewHubSchema, addNewHubVerifyOtpSchema, resendHubOtpSchema } from "../../Validators/Agency/AgencyHub.validator";
 

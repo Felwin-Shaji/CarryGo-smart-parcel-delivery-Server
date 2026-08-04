@@ -21,8 +21,8 @@ import { IWorkerResendOtpUseCase } from "../../../Application/Interfaces/UseCase
 import { IGetWorkerOverviewUseCase } from "../../../Application/Interfaces/UseCases/Worker/IGetWorkerOverviewUseCase";
 import { IGetWorkerKycUseCase } from "../../../Application/Interfaces/UseCases/Worker/IGetWorkerKycUseCase";
 import { IReSubmitWorkerKycUseCase } from "../../../Application/Interfaces/UseCases/Worker/IReSubmitWorkerKycUseCase";
-import { Role } from "../../../Domain/Enums/Roles";
-import { parseBlockedQuery } from "../../../Domain/Utils/utils";
+import { Role } from "../../../Domain/Enums/Role";
+import { parseBlockedQuery } from "../../../Domain/Utils/parseBlockedQuery";
 
 @injectable()
 export class HubWorkerController implements IHubWorkerController {

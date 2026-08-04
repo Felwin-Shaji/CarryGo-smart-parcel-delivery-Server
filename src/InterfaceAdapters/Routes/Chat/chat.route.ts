@@ -1,6 +1,6 @@
 import { BaseRoute } from "../base.route";
 import { asyncHandler } from "../../Middlewares/ErrorHandlers/asyncHandler";
-import { Role } from "../../../Domain/Enums/Roles";
+import { Role } from "../../../Domain/Enums/Role";
 import { authenticate } from "../../Middlewares/AuthMiddleware/authenticate.middleware";
 import { container } from "tsyringe";
 import { ChatController } from "../../Controllers/Chat/Chat.controller";

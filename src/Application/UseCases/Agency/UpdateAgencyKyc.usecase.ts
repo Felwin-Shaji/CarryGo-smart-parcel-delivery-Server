@@ -8,7 +8,7 @@ import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agen
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { INotificationService } from "../../Interfaces/Services/Notification/INotificationService";
 import { INotificationSocketService } from "../../Interfaces/Services/Notification/INotificationSocketService";
-import { KycStatus } from "../../../Domain/Enums/KycStatus";
+import { KycStatus } from "../../../Domain/Enums/KYCStatus";
 
 @injectable()
 export class UpdateAgencyKycStatusUseCase implements IUpdateAgencyKycStatusUseCase {

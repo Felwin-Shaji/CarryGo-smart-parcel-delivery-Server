@@ -3,7 +3,7 @@ import { agencyController } from "../../../Infrastructure/DI/resolver";
 import { agencyuploadKYC } from "../../../Infrastructure/Services/Storage/multer";
 import { authenticate } from "../../Middlewares/AuthMiddleware/authenticate.middleware";
 import { asyncHandler } from "../../Middlewares/ErrorHandlers/asyncHandler";
-import { Role } from "../../../Domain/Enums/Roles";
+import { Role } from "../../../Domain/Enums/Role";
 import { validateRequest } from "../../Middlewares/ValidationMiddleware/validateRequest";
 import { agencyKycSchema, resubmitKycSchema } from "../../Validators/Agency/agency.validator";
 

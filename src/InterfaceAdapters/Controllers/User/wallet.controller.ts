@@ -3,7 +3,7 @@ import { IWalletController } from "../../Interfaces/Controllers/User/IWalletCont
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 import { AppError } from "../../../Domain/Utils/customError";
-import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessages";
 import { inject, injectable } from "tsyringe";
 import { IGetWalletOverviewUseCase } from "../../../Application/Interfaces/UseCases/Wallet/IGetWalletOverviewUseCase";
 import { Role } from "../../../Domain/Enums/Role";

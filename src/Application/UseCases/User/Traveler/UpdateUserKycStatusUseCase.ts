@@ -1,10 +1,10 @@
 import { inject, injectable } from "tsyringe";
 import { IUpdateUserKycStatusUseCase } from "../../../Interfaces/UseCases/User/IUpdateUserKycStatusUseCase";
 import { IUserRepository } from "../../../Interfaces/Repositories/User/IUserRepository";
-import { KYCStatus } from "../../../../Infrastructure/Types/types";
+import { KYCStatus } from "../../../../Infrastructure/Types/CommonTypes";
 import { updateUserKycStatusDTO } from "../../../DTOs/User/UserDTO";
 import { AppError } from "../../../../Domain/Utils/customError";
-import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessages";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 import { IAdminRepository } from "../../../Interfaces/Repositories/Admin/IAdminRepository";
 import { INotificationService } from "../../../Interfaces/Services/Notification/INotificationService";

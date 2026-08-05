@@ -5,10 +5,10 @@ import { IBookingRepository } from "../../../Interfaces/Repositories/User/IBooki
 import { IUserRepository } from "../../../Interfaces/Repositories/User/IUserRepository";
 import { IGetWorkerShipmentDetailsUsecase } from "../../../Interfaces/UseCases/Logistics/ShipmentParcel/IGetWorkerShipmentDetailsUseCase";
 import { AppError } from "../../../../Domain/Utils/customError";
-import { SHIPMENT_PARCEL_MESSAGE } from "../../../../Infrastructure/Constants/Messages/RouteGroupMessage";
+import { SHIPMENT_PARCEL_MESSAGE } from "../../../../Infrastructure/Constants/Messages/routeGroupMessages";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 import { inject, injectable } from "tsyringe";
-import { WORKER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/workerMessage";
+import { WORKER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/workerMessages";
 
 
 @injectable()

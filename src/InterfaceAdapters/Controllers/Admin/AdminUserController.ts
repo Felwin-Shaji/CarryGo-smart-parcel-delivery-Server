@@ -6,7 +6,7 @@ import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IAdminUserController } from "../../Interfaces/Controllers/Admin/adminUser.controller";
 import { GetUserDto, updateUserKycStatusDTO } from "../../../Application/DTOs/User/UserDTO";
 import { ApiResponse } from "../../Presenters/ApiResponse";
-import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessages";
 import { AppError } from "../../../Domain/Utils/customError";
 import { IUpdateUserKycStatusUseCase } from "../../../Application/Interfaces/UseCases/User/IUpdateUserKycStatusUseCase";
 import { IGetUserOverviewUseCase } from "../../../Application/Interfaces/UseCases/User/IGetUserOverviewUseCase";

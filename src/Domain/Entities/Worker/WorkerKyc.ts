@@ -1,4 +1,4 @@
-import { Role, KYCStatus } from "../../../Infrastructure/Types/types";
+import { Role, KYCStatus } from "../../../Infrastructure/Types/CommonTypes";
 
 export type IDType = "AADHAAR" | "DL" | "PASSPORT";
 

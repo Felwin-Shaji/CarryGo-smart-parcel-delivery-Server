@@ -1,4 +1,4 @@
-import { Role } from "../../../../Infrastructure/Types/types";
+import { Role } from "../../../../Infrastructure/Types/CommonTypes";
 import { withdrawWalletMoneyDTO } from "../../../DTOs/Wallet/WalletDTO";
 
 export interface IWithdrawWalletMoneyUseCase {

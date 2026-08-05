@@ -4,7 +4,7 @@ import { GetHubOverviewResponseDTO } from "../../DTOs/Hub/HubOverviewDTO";
 import { IGetHubUseCase } from "../../Interfaces/UseCases/Hub/IGetHubUseCase";
 import { IGetWorkersUseCase } from "../../Interfaces/UseCases/Worker/IGetWorkersUseCase";
 import { AppError } from "../../../Domain/Utils/customError";
-import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { GetWorkersDTO } from "../../DTOs/Worker/WorkerDTO";
 

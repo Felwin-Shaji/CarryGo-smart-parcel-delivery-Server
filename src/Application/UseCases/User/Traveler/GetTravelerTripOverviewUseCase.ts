@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { IGetTravelerTripOverviewUseCase } from "../../../Interfaces/UseCases/User/Traveler/IGetTravelerTripOverviewUseCase";
 import { IBookingRepository } from "../../../Interfaces/Repositories/User/IBookingRepository";
 import { ITravelRequestRepository } from "../../../Interfaces/Repositories/User/ITravelRequestRepository";
-import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessages";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 import { AppError } from "../../../../Domain/Utils/customError";
 import { TravelerMapper } from "../../../Mappers/User/TravelerMapper";

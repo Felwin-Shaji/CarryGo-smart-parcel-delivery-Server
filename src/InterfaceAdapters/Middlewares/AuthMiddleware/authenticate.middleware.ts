@@ -1,9 +1,9 @@
 import type { Request, Response, NextFunction } from "express";
 import { container } from "tsyringe";
-import { TokenService } from "../../../Infrastructure/Services/token.service";
+import { TokenService } from "../../../Infrastructure/Services/TokenService";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { AppError } from "../../../Domain/Utils/customError";
-import type { AppJwtPayload, Role } from "../../../Infrastructure/Types/types";
+import type { AppJwtPayload, Role } from "../../../Infrastructure/Types/CommonTypes";
 import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
 import { IValidateSessionUseCase } from "../../../Application/Interfaces/UseCases/Auth/IValidateSessionUseCase";
 

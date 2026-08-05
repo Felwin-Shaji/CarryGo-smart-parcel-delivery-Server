@@ -5,7 +5,7 @@ import { TravelerPricingPolicy } from "../../../Domain/Entities/Admin/TravelerPr
 import { BasePricingPolicySchemaType, PricingPolicyModel } from "../../Database/Models/Admin/Pricing/BasePricingPolicySchema";
 import { TravelerPricingPolicyModel, TravelerPricingPolicySchemaType } from "../../Database/Models/Admin/Pricing/TravelerPricingPolicySchema";
 import { AgencyPricingPolicyModel, AgencyPricingPolicySchemaType } from "../../Database/Models/Admin/Pricing/AgencyPricingPolicySchema";
-import { BaseRepository } from "../baseRepositories";
+import { BaseRepository } from "../BaseRepository";
 import { AppError } from "../../../Domain/Utils/customError";
 import { DeliveryPartner } from "../../../Domain/Enums/DeliveryPartnerType";
 

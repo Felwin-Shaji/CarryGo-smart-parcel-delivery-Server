@@ -3,7 +3,7 @@ import { IUserController } from "../../Interfaces/Controllers/User/IUserControll
 import { ApiResponse } from "../../Presenters/ApiResponse";
 import { inject, injectable } from "tsyringe";
 import { IGetUserProfileUseCase } from "../../../Application/Interfaces/UseCases/User/IGetUserProfileUseCase";
-import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessages";
 import { BaseEditUserProfileRequestDto, UserResetPasswordRequestDTO } from "../../../Application/DTOs/User/UserDTO";
 import { IEditUserProfileUseCase } from "../../../Application/Interfaces/UseCases/User/IEditUserProfileUseCase";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";

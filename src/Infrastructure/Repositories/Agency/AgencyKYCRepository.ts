@@ -1,6 +1,6 @@
 import { injectable } from "tsyringe";
 import { IAgencyKYCRepository } from "../../../Application/Interfaces/Repositories/Agency/IAgencyKYCRepository";
-import { BaseRepository } from "../baseRepositories";
+import { BaseRepository } from "../BaseRepository";
 import { AgencyKYC } from "../../../Domain/Entities/Agency/AgencyKYC";
 import { AgencyKYCModel } from "../../Database/Models/Agency/AgencyKYCModel";
 

@@ -1,5 +1,5 @@
 import { TransactionReason } from "../../../../Domain/Entities/Wallet/WalletTransaction";
-import { Role } from "../../../../Infrastructure/Types/types";
+import { Role } from "../../../../Infrastructure/Types/CommonTypes";
 
 export type CreateOrderInput = {
     amount: number;

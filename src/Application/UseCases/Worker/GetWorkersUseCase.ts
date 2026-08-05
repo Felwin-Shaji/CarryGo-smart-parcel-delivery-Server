@@ -3,7 +3,7 @@ import { GetWorkersDTO, GetHubWorkersResponseDTO } from "../../DTOs/Worker/Worke
 import { IGetWorkersUseCase } from "../../Interfaces/UseCases/Worker/IGetWorkersUseCase";
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/IHubWorkerRepository";
 import { AppError } from "../../../Domain/Utils/customError";
-import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 
 @injectable()

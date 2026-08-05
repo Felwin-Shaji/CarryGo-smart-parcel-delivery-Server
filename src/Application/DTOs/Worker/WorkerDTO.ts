@@ -1,5 +1,5 @@
 import { IDType } from "../../../Domain/Entities/Worker/WorkerKYC";
-import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
+import { KYCStatus, Role } from "../../../Infrastructure/Types/CommonTypes";
 import { userKycResponseDTO } from "../User/UserDTO";
 import { ShipmentParcelStatus } from "../../../Domain/Entities/Logistics/ShipmentParcel";
 import { WorkerRole, WorkingStatus } from "../../../Domain/Entities/Worker/Worker";

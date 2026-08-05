@@ -1,8 +1,8 @@
 import { FilterQuery, Types } from "mongoose";
 import type { AgencyWithKYC_DB_Result, IAgencyRepository, PaginatedData } from "../../../Application/Interfaces/Repositories/Agency/IAgencyRepository";
 import { Agency } from "../../../Domain/Entities/Agency/Agency";
-import { AgencyModel } from "../../Database/Models/Agency/agencyModel";
-import { BaseRepository } from "../baseRepositories";
+import { AgencyModel } from "../../Database/Models/Agency/AgencyModel";
+import { BaseRepository } from "../BaseRepository";
 import { GetAgenciesDTO } from "../../../Application/DTOs/Agency/AgencyDTO";
 import { AppError } from "../../../Domain/Utils/customError";
 import { AGENCY_MESSAGES } from "../../Constants/Messages/agencyMessages";

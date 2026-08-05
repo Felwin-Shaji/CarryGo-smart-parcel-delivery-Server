@@ -3,7 +3,7 @@ import { IEditUserProfileUseCase } from "../../Interfaces/UseCases/User/IEditUse
 import { IUserRepository } from "../../Interfaces/Repositories/User/IUserRepository";
 import { EditUserProfileRequestDto } from "../../DTOs/User/UserDTO";
 import { AppError } from "../../../Domain/Utils/customError";
-import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessages";
 
 @injectable()
 export class EditUserProfileUseCase implements IEditUserProfileUseCase {

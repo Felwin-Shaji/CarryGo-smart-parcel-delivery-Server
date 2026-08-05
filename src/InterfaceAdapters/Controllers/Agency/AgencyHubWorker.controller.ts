@@ -3,7 +3,7 @@ import { IGetWorkerOverviewUseCase } from "../../../Application/Interfaces/UseCa
 import { inject, injectable } from "tsyringe";
 import { IUpdateWorkerKycStatusUseCase } from "../../../Application/Interfaces/UseCases/Worker/IUpdateWorkerKycStatusUseCase";
 import { UpdateWorkerKycStatusDTO } from "../../../Application/DTOs/Worker/WorkerDTO";
-import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 import { AppError } from "../../../Domain/Utils/customError";

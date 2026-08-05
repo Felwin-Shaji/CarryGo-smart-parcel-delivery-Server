@@ -5,7 +5,7 @@ import { IAgencyRouteSegmentRepository } from "../../../Interfaces/Repositories/
 import { CreateRouteSegmentDTO } from "../../../DTOs/Agency/AgencyRouteSegmentDTO";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 import { ICreateRouteSegmentUseCase } from "../../../Interfaces/UseCases/Logistics/RouteGroup/ICreateRouteSegmentUseCase";
-import { ROUTE_GROUP_MESSAGE, ROUTE_SEGMENT_MESSAGE } from "../../../../Infrastructure/Constants/Messages/RouteGroupMessage";
+import { ROUTE_GROUP_MESSAGE, ROUTE_SEGMENT_MESSAGE } from "../../../../Infrastructure/Constants/Messages/routeGroupMessages";
 import { RouteSegmentMapper } from "../../../Mappers/Agency/RouteSegmentMapper";
 
 @injectable()

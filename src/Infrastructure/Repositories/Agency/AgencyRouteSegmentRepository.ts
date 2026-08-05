@@ -3,7 +3,7 @@ import { RouteSegment } from "../../../Domain/Entities/Logistics/RouteSegment";
 import { AppError } from "../../../Domain/Utils/customError";
 import { ClientSession, FilterQuery, Types, UpdateQuery } from "mongoose";
 import { RouteSegmentDocument, RouteSegmentModel } from "../../Database/Models/Logistics/RouteSegmentModel";
-import { ROUTE_SEGMENT_MESSAGE } from "../../Constants/Messages/RouteGroupMessage";
+import { ROUTE_SEGMENT_MESSAGE } from "../../Constants/Messages/routeGroupMessages";
 
 export class AgencyRouteSegmentRepository implements IAgencyRouteSegmentRepository {
 

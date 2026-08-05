@@ -9,7 +9,7 @@ import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMe
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { NotificationFilter } from "../../../Application/Interfaces/Repositories/Notification/INotificationRepository";
 import { ApiResponse } from "../../Presenters/ApiResponse";
-import { NOTIFICATION_MESSAGES } from "../../../Infrastructure/Constants/Messages/NotificationMessage";
+import { NOTIFICATION_MESSAGES } from "../../../Infrastructure/Constants/Messages/notificationMessages";
 
 @injectable()
 export class NotificationController {

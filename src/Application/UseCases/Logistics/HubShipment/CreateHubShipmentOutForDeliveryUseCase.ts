@@ -11,7 +11,7 @@ import { inject, injectable } from "tsyringe";
 import { BOOKING_MESSAGE } from "../../../../Infrastructure/Constants/Messages/bookingMessages";
 import { AppError } from "../../../../Domain/Utils/customError";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
-import { HUB_MESSAGES } from "../../../../Infrastructure/Constants/Messages/hubMessage";
+import { HUB_MESSAGES } from "../../../../Infrastructure/Constants/Messages/hubMessages";
 import { INotificationService } from "../../../Interfaces/Services/Notification/INotificationService";
 import { INotificationSocketService } from "../../../Interfaces/Services/Notification/INotificationSocketService";
 

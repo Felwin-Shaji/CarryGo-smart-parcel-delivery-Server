@@ -4,7 +4,7 @@ import { IGetTravelerKycUseCase } from "../../../Interfaces/UseCases/User/Travel
 import { IHubWorkerKycRepository } from "../../../Interfaces/Repositories/Worker/IHubWorkerKycRepository";
 import { IUserRepository } from "../../../Interfaces/Repositories/User/IUserRepository";
 import { AppError } from "../../../../Domain/Utils/customError";
-import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessages";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 import { TravelerMapper } from "../../../Mappers/User/TravelerMapper";
 

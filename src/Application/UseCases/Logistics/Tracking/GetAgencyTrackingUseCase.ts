@@ -16,7 +16,7 @@ import { inject, injectable } from "tsyringe";
 import { AgencyParcelTrackingDTO } from "../../../DTOs/Logistics/ParcelTrackingDTO";
 import { IBookingRepository } from "../../../Interfaces/Repositories/User/IBookingRepository";
 import { AgencyParcelTrackingMapper } from "../../../Mappers/Logistics/AgencyParcelTrackingMapper";
-import { Role } from "../../../../Infrastructure/Types/types";
+import { Role } from "../../../../Infrastructure/Types/CommonTypes";
 import { BOOKING_MESSAGE } from "../../../../Infrastructure/Constants/Messages/bookingMessages";
 import { AppError } from "../../../../Domain/Utils/customError";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";

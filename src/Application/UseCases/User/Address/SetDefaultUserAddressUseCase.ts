@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { IUserRepository } from "../../../Interfaces/Repositories/User/IUserRepository";
 import { AppError } from "../../../../Domain/Utils/customError";
 import { ISetDefaultUserAddressUseCase } from "../../../Interfaces/UseCases/User/Address/ISetDefaultUserAddressUseCase";
-import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessages";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 import { ADDRESS_MESSAGES } from "../../../../Infrastructure/Constants/Messages/addressMessages";
 

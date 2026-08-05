@@ -12,7 +12,7 @@ import { inject, injectable } from "tsyringe";
 import { IAgencyRouteSegmentRepository } from "../../../Application/Interfaces/Repositories/Logistics/IAgencyRouteSegmentRepository";
 import { ParcelRouteLeg } from "../../../Domain/Entities/Logistics/ParcelRouteLeg";
 import { STATUS } from "../../Constants/statusCodes";
-import { ROUTE_SEGMENT_MESSAGE } from "../../Constants/Messages/RouteGroupMessage";
+import { ROUTE_SEGMENT_MESSAGE } from "../../Constants/Messages/routeGroupMessages";
 
 @injectable()
 export class HubShipmentAssignmentService implements IHubShipmentAssignmentService {

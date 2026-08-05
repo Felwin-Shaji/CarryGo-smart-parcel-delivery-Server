@@ -1,5 +1,5 @@
 import { AppError } from "../../../../Domain/Utils/customError";
-import { SHIPMENT_PARCEL_MESSAGE } from "../../../../Infrastructure/Constants/Messages/RouteGroupMessage";
+import { SHIPMENT_PARCEL_MESSAGE } from "../../../../Infrastructure/Constants/Messages/routeGroupMessages";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 import { ShipmentParcelsPaginatedDTO } from "../../../DTOs/Logistics/ShipmentDTO";
 import { IHubRepository } from "../../../Interfaces/Repositories/Hub/IHubRepository";

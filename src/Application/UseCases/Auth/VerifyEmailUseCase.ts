@@ -4,7 +4,7 @@ import { IUserRepository } from "../../Interfaces/Repositories/User/IUserReposit
 import { IAdminRepository } from "../../Interfaces/Repositories/Admin/IAdminRepository";
 import { IAgencyRepository } from "../../Interfaces/Repositories/Agency/IAgencyRepository";
 import { IHubRepository } from "../../Interfaces/Repositories/Hub/IHubRepository";
-import { Role } from "../../../Infrastructure/Types/types";
+import { Role } from "../../../Infrastructure/Types/CommonTypes";
 import { IMailService } from "../../Interfaces/Services/IEmailService";
 import { ITokenService } from "../../Interfaces/Services/ITokenService";
 import { AppError } from "../../../Domain/Utils/customError";

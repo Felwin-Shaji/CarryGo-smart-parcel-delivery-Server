@@ -1,4 +1,4 @@
-import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
+import { KYCStatus, Role } from "../../../Infrastructure/Types/CommonTypes";
 import { UserDTO } from "../Auth/AuthDTO";
 import { GetHubsResponseDTO } from "../Hub/HubDTO";
 

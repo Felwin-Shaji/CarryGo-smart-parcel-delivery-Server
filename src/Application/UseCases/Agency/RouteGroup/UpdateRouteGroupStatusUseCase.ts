@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../Domain/Utils/customError";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
-import { ROUTE_GROUP_MESSAGE } from "../../../../Infrastructure/Constants/Messages/RouteGroupMessage";
+import { ROUTE_GROUP_MESSAGE } from "../../../../Infrastructure/Constants/Messages/routeGroupMessages";
 import { IAgencyRouteGroupRepository } from "../../../Interfaces/Repositories/Logistics/IAgencyRouteGroupRepository";
 import { IUpdateRouteGroupStatusUseCase } from "../../../Interfaces/UseCases/Logistics/RouteGroup/IUpdateRouteGroupStatusUseCase";
 

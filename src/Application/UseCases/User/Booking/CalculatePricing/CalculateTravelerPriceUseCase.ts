@@ -2,11 +2,11 @@ import { inject, injectable } from "tsyringe";
 import { BasePricingPolicy } from "../../../../../Domain/Entities/Admin/BasePricingPolicy";
 import { TravelerPricingPolicy } from "../../../../../Domain/Entities/Admin/TravelerPricingPolicy";
 import { AppError } from "../../../../../Domain/Utils/customError";
-import { PRICING_POLICY_MESSAGE } from "../../../../../Infrastructure/Constants/Messages/pricingPolicyMessage";
+import { PRICING_POLICY_MESSAGE } from "../../../../../Infrastructure/Constants/Messages/pricingPolicyMessages";
 import { CalculatePriceRequestDTO, CalculatePriceResponseDTO } from "../../../../DTOs/User/BookingDTO";
 import { ICalculatePriceUsecase } from "../../../../Interfaces/UseCases/User/Booking/CalculatePricing/ICalculatePrice";
 import { ITravelRequestRepository } from "../../../../Interfaces/Repositories/User/ITravelRequestRepository";
-import { USER_MESSAGES } from "../../../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../../../Infrastructure/Constants/Messages/userMessages";
 import { STATUS } from "../../../../../Infrastructure/Constants/statusCodes";
 
 @injectable()

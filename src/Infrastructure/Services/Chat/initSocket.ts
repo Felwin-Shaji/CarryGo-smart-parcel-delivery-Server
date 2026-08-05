@@ -1,8 +1,8 @@
 import { Server } from "socket.io";
 import { Server as HttpServer } from "http";
-import { SocketService } from "./Socket.service";
+import { SocketService } from "./SocketService";
 import { container } from "tsyringe";
-import { NotificationSocketService } from "../Notification/NotificationSocket.service";
+import { NotificationSocketService } from "../Notification/NotificationSocketService";
 
 export const initSocket = (server: HttpServer) => {
 

@@ -9,7 +9,7 @@ import { IGetAdminBookingsReportUseCase } from "../../Interfaces/UseCases/Admin/
 import { IExportAdminBookingsReportUseCase } from "../../Interfaces/UseCases/Admin/IExportAdminBookingsReportUseCase";
 import { ADMIN_MESSAGES } from "../../../Infrastructure/Constants/Messages/adminMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import { AdminReportGenerators, ExportType, } from "../../../Infrastructure/Types/reportGenerator.types";
+import { AdminReportGenerators, ExportType, } from "../../../Infrastructure/Types/ReportGenerator";
 
 
 

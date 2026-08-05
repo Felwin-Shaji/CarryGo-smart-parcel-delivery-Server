@@ -8,7 +8,7 @@ import { HubMapper } from "../../Mappers/Hub/HubMapper";
 import { IAddHubUseCase } from "../../Interfaces/UseCases/Hub/IAddHubUseCase";
 import { AddNewHubAddressDto } from "../../DTOs/Agency/AgencyDTO";
 import { ENV } from "../../../Infrastructure/Constants/env";
-import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { INotificationSocketService } from "../../Interfaces/Services/Notification/INotificationSocketService";
 import { INotificationService } from "../../Interfaces/Services/Notification/INotificationService";

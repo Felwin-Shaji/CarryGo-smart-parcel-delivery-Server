@@ -2,13 +2,13 @@ import "reflect-metadata";
 import { createServer } from "http";
 import dotenv from "dotenv";
 
-import { connectDB } from "./Infrastructure/Database/monogdb";
+import { connectDB } from "./Infrastructure/Database/MongoDB";
 import { app } from "./Infrastructure/Express/express";
 import logger from "./Infrastructure/Logger/logger";
 
-import { bootstrapPricingPolicies } from "./Infrastructure/Bootstrap/pricingPolicy.bootstrap";
-import { PricingPolicyRepository } from "./Infrastructure/Repositories/Admin/PricingPolicy.repository";
-import { initSocket } from "./Infrastructure/Services/Chat/socket.config";
+import { bootstrapPricingPolicies } from "./Infrastructure/Bootstrap/bootstrapPricingPolicies";
+import { PricingPolicyRepository } from "./Infrastructure/Repositories/Admin/PricingPolicyRepository";
+import { initSocket } from "./Infrastructure/Services/Chat/initSocket";
 
 dotenv.config();
 

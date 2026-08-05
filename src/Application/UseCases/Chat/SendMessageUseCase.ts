@@ -12,7 +12,7 @@ import { IHubRepository } from "../../Interfaces/Repositories/Hub/IHubRepository
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/IHubWorkerRepository";
 import { INotificationSocketService } from "../../Interfaces/Services/Notification/INotificationSocketService";
 import { AppError } from "../../../Domain/Utils/customError";
-import { CHAT_MESSAGE } from "../../../Infrastructure/Constants/Messages/chatMessage";
+import { CHAT_MESSAGE } from "../../../Infrastructure/Constants/Messages/chatMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { Notification } from "../../../Domain/Entities/Notification/Notification";
 

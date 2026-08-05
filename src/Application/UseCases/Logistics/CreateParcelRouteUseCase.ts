@@ -10,7 +10,7 @@ import { ParcelRoute } from "../../../Domain/Entities/Logistics/ParcelRoute";
 import { ParcelRouteLeg } from "../../../Domain/Entities/Logistics/ParcelRouteLeg";
 import { AppError } from "../../../Domain/Utils/customError";
 import { BOOKING_MESSAGE } from "../../../Infrastructure/Constants/Messages/bookingMessages";
-import { PARCEL_ROUTE_MESSAGE } from "../../../Infrastructure/Constants/Messages/RouteGroupMessage";
+import { PARCEL_ROUTE_MESSAGE } from "../../../Infrastructure/Constants/Messages/routeGroupMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import mongoose from "mongoose";
 import { inject, injectable } from "tsyringe";

@@ -1,4 +1,4 @@
-import type { AppJwtPayload } from "../../../Infrastructure/Types/types.js";
+import type { AppJwtPayload } from "../../../Infrastructure/Types/CommonTypes.js";
 
 export interface ITokenService {
   generateAccessToken(payload: AppJwtPayload): string;

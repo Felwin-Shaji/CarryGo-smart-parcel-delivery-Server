@@ -1,9 +1,9 @@
 import { injectable } from "tsyringe";
 import { IPincodeLookupService } from "../../../Application/Interfaces/Services/IPincodeLookupService";
-import { PincodeDetails } from "../../Types/types";
+import { PincodeDetails } from "../../Types/CommonTypes";
 import axios from "axios";
 import { AppError } from "../../../Domain/Utils/customError";
-import { SERVICE_MESSAGES } from "../../Constants/Messages/servicesMessaeg";
+import { SERVICE_MESSAGES } from "../../Constants/Messages/servicesMessages";
 import { STATUS } from "../../Constants/statusCodes";
 
 @injectable()

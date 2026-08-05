@@ -3,7 +3,7 @@ import { IHubTempRepository } from "../../Interfaces/Repositories/Hub/IHubTempRe
 import { IOtpService } from "../../Interfaces/Services/IOTPService";
 import { AppError } from "../../../Domain/Utils/customError";
 import { IAddNewHubVerifyOtpUseCase } from "../../Interfaces/UseCases/Hub/IAddNewHubVerifyOtpUseCase";
-import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { AddNewHubVerifyOtpDTO } from "../../DTOs/Agency/AgencyDTO";
 

@@ -3,7 +3,7 @@ import { ICreateBookingUsecase } from "../../../Interfaces/UseCases/User/Booking
 import { IUserRepository } from "../../../Interfaces/Repositories/User/IUserRepository";
 import { IBookingRepository } from "../../../Interfaces/Repositories/User/IBookingRepository";
 import { CreateBookingRequestDTO } from "../../../DTOs/User/BookingDTO";
-import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessages";
 import { AppError } from "../../../../Domain/Utils/customError";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 import { PartnerEntity } from "../../../../Domain/Entities/Booking/Booking";

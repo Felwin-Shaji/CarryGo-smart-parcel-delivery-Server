@@ -14,7 +14,7 @@ import { ApiResponse } from "../../Presenters/ApiResponse";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
 import { GetHubsDTO } from "../../../Application/DTOs/Hub/HubDTO";
 import { IGetHubsUsecase } from "../../../Application/Interfaces/UseCases/Hub/IGetHubsUseCase";
-import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessages";
 import { AppError } from "../../../Domain/Utils/customError";
 import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
 import { IGetHubOverviewUseCase } from "../../../Application/Interfaces/UseCases/Hub/IGetHubOverviewUseCase";

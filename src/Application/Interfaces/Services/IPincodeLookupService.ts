@@ -1,4 +1,4 @@
-import { PincodeDetails } from "../../../Infrastructure/Types/types";
+import { PincodeDetails } from "../../../Infrastructure/Types/CommonTypes";
 
 export interface IPincodeLookupService {
   getPincodeDetails(pincode: string): Promise<PincodeDetails>;

@@ -1,5 +1,5 @@
 import { Schema, Types } from "mongoose";
-import { DeliveryPartnerType } from "../../../Types/types";
+import { DeliveryPartnerType } from "../../../Types/CommonTypes";
 import { DeliveryPartner } from "../../../../Domain/Enums/DeliveryPartnerType";
 
 export interface PartnerSnapshotDocument {

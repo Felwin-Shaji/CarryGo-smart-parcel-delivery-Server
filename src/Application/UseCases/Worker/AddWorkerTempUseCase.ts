@@ -5,7 +5,7 @@ import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/IHubW
 import { IOtpService } from "../../Interfaces/Services/IOTPService";
 import { IMailService } from "../../Interfaces/Services/IEmailService";
 import { AppError } from "../../../Domain/Utils/customError";
-import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ENV } from "../../../Infrastructure/Constants/env";
 import { AddWorkerTempRequestDTO, AddWorkerTempResponseDTO } from "../../DTOs/Hub/HubDTO";

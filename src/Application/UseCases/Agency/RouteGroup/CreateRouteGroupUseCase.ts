@@ -4,7 +4,7 @@ import { IAgencyRouteGroupRepository } from "../../../Interfaces/Repositories/Lo
 import { CreateRouteGroupRequestDTO } from "../../../DTOs/Agency/AgencyRouteGroupDTO";
 import { AgencyRouteGroupMapper } from "../../../Mappers/Agency/AgencyRouteGroupMapper";
 import { AppError } from "../../../../Domain/Utils/customError";
-import { ROUTE_GROUP_MESSAGE } from "../../../../Infrastructure/Constants/Messages/RouteGroupMessage";
+import { ROUTE_GROUP_MESSAGE } from "../../../../Infrastructure/Constants/Messages/routeGroupMessages";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 
 @injectable()

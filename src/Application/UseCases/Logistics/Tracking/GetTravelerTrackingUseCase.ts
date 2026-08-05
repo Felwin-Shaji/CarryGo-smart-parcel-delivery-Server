@@ -3,9 +3,9 @@ import { ITravelRequestRepository } from "../../../Interfaces/Repositories/User/
 import { IUserRepository } from "../../../Interfaces/Repositories/User/IUserRepository";
 import { IGetTravelerTrackingUsecase } from "../../../Interfaces/UseCases/Logistics/Tracking/IGetTravelerTrackingUseCase";
 import { TravelerParcelTrackingMapper } from "../../../Mappers/Logistics/TravelerParcelTrackingMapper";
-import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessages";
 import { inject, injectable } from "tsyringe";
-import { Role } from "../../../../Infrastructure/Types/types";
+import { Role } from "../../../../Infrastructure/Types/CommonTypes";
 import { BOOKING_MESSAGE } from "../../../../Infrastructure/Constants/Messages/bookingMessages";
 import { AppError } from "../../../../Domain/Utils/customError";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";

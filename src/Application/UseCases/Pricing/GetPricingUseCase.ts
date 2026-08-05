@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { IGetPricingUseCase } from "../../Interfaces/UseCases/Pricing/IGetPricingUseCase";
 import { IPricingPolicyRepository } from "../../Interfaces/Repositories/Admin/IPricingPolicyRepository";
 import { AppError } from "../../../Domain/Utils/customError";
-import { PRICING_POLICY_MESSAGE } from "../../../Infrastructure/Constants/Messages/pricingPolicyMessage";
+import { PRICING_POLICY_MESSAGE } from "../../../Infrastructure/Constants/Messages/pricingPolicyMessages";
 import { BasePricingPolicy } from "../../../Domain/Entities/Admin/BasePricingPolicy";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 

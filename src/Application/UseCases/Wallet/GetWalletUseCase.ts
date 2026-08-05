@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { Role } from "../../../Infrastructure/Types/types";
+import { Role } from "../../../Infrastructure/Types/CommonTypes";
 import { GetWalletResponseDTO } from "../../DTOs/Wallet/WalletDTO";
 import { IGetWalletUseCase } from "../../Interfaces/UseCases/Wallet/IGetWalletUseCase";
 import { IWalletRepository } from "../../Interfaces/Repositories/Wallet/IWalletRepository";

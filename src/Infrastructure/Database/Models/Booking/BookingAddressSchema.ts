@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import { AddressLabelType } from "../../../Types/types";
+import { AddressLabelType } from "../../../Types/CommonTypes";
 
 export interface BookingAddressDocument {
     label: AddressLabelType;

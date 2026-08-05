@@ -4,10 +4,10 @@ import { ITravelRequestRepository } from "../../../Application/Interfaces/Reposi
 import { GeoLocation } from "../../../Application/Interfaces/UseCases/User/Booking/IFindServicableAgencyUseCase";
 import { TravelRequest } from "../../../Domain/Entities/User/TravelRequest";
 import { AppError } from "../../../Domain/Utils/customError";
-import { USER_MESSAGES } from "../../Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../Constants/Messages/userMessages";
 import { STATUS } from "../../Constants/statusCodes";
-import { TravelRequestDocument, TravelRequestModel } from "../../Database/Models/User/travelRequestSchema";
-import { BaseRepository } from "../baseRepositories";
+import { TravelRequestDocument, TravelRequestModel } from "../../Database/Models/User/TravelRequestSchema";
+import { BaseRepository } from "../BaseRepository";
 import { PaginatedTravelRequestResponceDTO, TravelerRequestFilterDTO } from "../../../Application/DTOs/User/TravelerDTO";
 
 

@@ -6,7 +6,7 @@ import { IGetHubDashboardTypesUseCase } from "../../../Application/Interfaces/Us
 import { IGetHubDashboardShipmentsPreviewUseCase } from "../../../Application/Interfaces/UseCases/Hub/IGetHubDashboardShipmentsPreviewUseCase";
 import { Role } from "../../../Domain/Enums/Role";
 import { AppError } from "../../../Domain/Utils/customError";
-import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 

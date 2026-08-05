@@ -1,4 +1,4 @@
-import type { KYCStatus, Role } from "../../Infrastructure/Types/types";
+import type { KYCStatus, Role } from "../../Infrastructure/Types/CommonTypes";
 
 export class Admin {
   constructor(

@@ -4,7 +4,7 @@ import { injectable, inject } from "tsyringe";
 import { AppError } from "../../../Domain/Utils/customError";
 import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
 import { GetWorkerShipmentDTO } from "../../../Application/DTOs/Logistics/ShipmentDTO";
-import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessages";
 import { IGetWorkerShipmentDetailsUsecase } from "../../../Application/Interfaces/UseCases/Logistics/ShipmentParcel/IGetWorkerShipmentDetailsUseCase";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IGetBookingUsecase } from "../../../Application/Interfaces/UseCases/User/Booking/IGetBookingUseCase";

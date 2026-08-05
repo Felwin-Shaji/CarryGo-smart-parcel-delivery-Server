@@ -5,7 +5,7 @@ import { AppError } from "../../../Domain/Utils/customError";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ApiResponse } from "../../Presenters/ApiResponse";
-import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessages";
 import { IGetWorkerProfileUseCase } from "../../../Application/Interfaces/UseCases/Worker/IGetWorkerProfileUseCase";
 import { IEditWorkerProfileUseCase } from "../../../Application/Interfaces/UseCases/Worker/IEditWorkerProfileUseCase";
 import { IResetWorkerPasswordUseCase } from "../../../Application/Interfaces/UseCases/Worker/IResetWorkerPasswordUseCase";

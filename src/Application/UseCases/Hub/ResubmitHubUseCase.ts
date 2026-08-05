@@ -7,7 +7,7 @@ import { INotificationService } from "../../Interfaces/Services/Notification/INo
 import { INotificationSocketService } from "../../Interfaces/Services/Notification/INotificationSocketService";
 import { AgencyAddHubFields } from "../../../Infrastructure/Services/Storage/multer";
 import { AppError } from "../../../Domain/Utils/customError";
-import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { HubMapper } from "../../Mappers/Hub/HubMapper";
 import { ResubmitHubDTO } from "../../DTOs/Agency/AgencyDTO";

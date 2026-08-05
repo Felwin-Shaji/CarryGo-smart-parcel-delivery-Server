@@ -18,7 +18,7 @@ import { ILoginUsecase } from "../../../Application/Interfaces/UseCases/Auth/ILo
 import { IVarifyEmailUseCase } from "../../../Application/Interfaces/UseCases/Auth/IVerifyEmailUseCase";
 import { IResetPasswordUseCase } from "../../../Application/Interfaces/UseCases/Auth/IResetPasswordUseCase";
 import { ApiResponse } from "../../Presenters/ApiResponse";
-import { OTP_MESSAGES } from "../../../Infrastructure/Constants/Messages/otpMessage";
+import { OTP_MESSAGES } from "../../../Infrastructure/Constants/Messages/otpMessages";
 import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
 import { User } from "../../../Domain/Entities/User";
 import { RegisterAgencyResponseDTO } from "../../../Application/DTOs/Agency/AgencyDTO";

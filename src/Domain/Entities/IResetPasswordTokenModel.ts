@@ -1,4 +1,4 @@
-import type { Role } from "../../Infrastructure/Types/types";
+import type { Role } from "../../Infrastructure/Types/CommonTypes";
 
 export interface IResetPasswordTokenModel {
     id?: string | null

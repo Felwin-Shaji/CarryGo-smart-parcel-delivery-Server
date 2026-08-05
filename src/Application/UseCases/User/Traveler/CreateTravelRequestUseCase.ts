@@ -4,7 +4,7 @@ import { ICreateTravelRequestUseCase } from "../../../Interfaces/UseCases/User/T
 import { ITravelRequestRepository } from "../../../Interfaces/Repositories/User/ITravelRequestRepository";
 import { CreateTravelRequestDTO, TravelerRequestAddressDTO } from "../../../DTOs/User/TravelerDTO";
 import { TravelerMapper } from "../../../Mappers/User/TravelerMapper";
-import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessages";
 import { IUserRepository } from "../../../Interfaces/Repositories/User/IUserRepository";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 

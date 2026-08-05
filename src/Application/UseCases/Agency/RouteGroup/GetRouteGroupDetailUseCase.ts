@@ -6,7 +6,7 @@ import { IGetRouteGroupDetailUseCase } from "../../../Interfaces/UseCases/Logist
 import { RouteSegmentMapper } from "../../../Mappers/Agency/RouteSegmentMapper";
 import { injectable, inject } from "tsyringe";
 import { AppError } from "../../../../Domain/Utils/customError";
-import { ROUTE_GROUP_MESSAGE } from "../../../../Infrastructure/Constants/Messages/RouteGroupMessage";
+import { ROUTE_GROUP_MESSAGE } from "../../../../Infrastructure/Constants/Messages/routeGroupMessages";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 
 @injectable()

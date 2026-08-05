@@ -7,7 +7,7 @@ import { ICreateRouteGroupUseCase } from "../../../Application/Interfaces/UseCas
 import { AppError } from "../../../Domain/Utils/customError";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
 import { ApiResponse } from "../../Presenters/ApiResponse";
-import { ROUTE_GROUP_MESSAGE } from "../../../Infrastructure/Constants/Messages/RouteGroupMessage";
+import { ROUTE_GROUP_MESSAGE } from "../../../Infrastructure/Constants/Messages/routeGroupMessages";
 import { IGetPaginatedRouteGroupUseCase } from "../../../Application/Interfaces/UseCases/Logistics/RouteGroup/IGetPaginatedRouteGroupUseCase";
 
 @injectable()

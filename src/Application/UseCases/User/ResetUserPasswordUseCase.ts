@@ -3,7 +3,7 @@ import { IUserReserUserPassword } from "../../Interfaces/UseCases/User/IResetUse
 import { UserResetPasswordRequestDTO } from "../../DTOs/User/UserDTO";
 import { IUserRepository } from "../../Interfaces/Repositories/User/IUserRepository";
 import { AppError } from "../../../Domain/Utils/customError";
-import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IPasswordService } from "../../Interfaces/Services/IPasswordService";
 

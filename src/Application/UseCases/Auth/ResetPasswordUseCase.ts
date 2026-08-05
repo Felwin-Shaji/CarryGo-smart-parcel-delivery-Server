@@ -5,12 +5,12 @@ import { IAdminRepository } from "../../Interfaces/Repositories/Admin/IAdminRepo
 import { IAgencyRepository } from "../../Interfaces/Repositories/Agency/IAgencyRepository";
 import { IHubRepository } from "../../Interfaces/Repositories/Hub/IHubRepository";
 import { ITokenService } from "../../Interfaces/Services/ITokenService";
-import { Role } from "../../../Infrastructure/Types/types";
+import { Role } from "../../../Infrastructure/Types/CommonTypes";
 import { IPasswordService } from "../../Interfaces/Services/IPasswordService";
 import { IResetPasswordTokenRepository } from "../../Interfaces/Repositories/Auth/IResetPasswordTokenRepository";
 import { AppError } from "../../../Domain/Utils/customError";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import { PASSWORD_RESET_MESSAGES } from "../../../Infrastructure/Constants/Messages/passwordResetMessage";
+import { PASSWORD_RESET_MESSAGES } from "../../../Infrastructure/Constants/Messages/passwordResetMessages";
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/IHubWorkerRepository";
 
 @injectable()

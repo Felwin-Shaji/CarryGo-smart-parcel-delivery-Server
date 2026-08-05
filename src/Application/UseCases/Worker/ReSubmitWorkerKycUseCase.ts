@@ -4,7 +4,7 @@ import { AppError } from "../../../Domain/Utils/customError";
 import { IUploadWorkerKycFilesUsecase } from "../../Interfaces/UseCases/Worker/IUploadWorkerKycFilesUseCase";
 import { IReSubmitWorkerKycUseCase } from "../../Interfaces/UseCases/Worker/IReSubmitWorkerKycUseCase";
 import { ReSubmitWorkerKycPayloadDTO } from "../../DTOs/Worker/WorkerDTO";
-import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/IHubWorkerRepository";
 import { INotificationSocketService } from "../../Interfaces/Services/Notification/INotificationSocketService";

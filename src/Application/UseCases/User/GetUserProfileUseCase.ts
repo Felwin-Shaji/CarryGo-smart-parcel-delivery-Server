@@ -3,7 +3,7 @@ import { IGetUserProfileUseCase } from "../../Interfaces/UseCases/User/IGetUserP
 import { IUserRepository } from "../../Interfaces/Repositories/User/IUserRepository";
 import { UserProfileMapper } from "../../Mappers/User/UserProfileMapper";
 import { AppError } from "../../../Domain/Utils/customError";
-import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { UserProfileResponseDTO } from "../../DTOs/User/UserDTO";
 

@@ -5,7 +5,7 @@ import { IOtpService } from "../../Interfaces/Services/IOTPService";
 import { IMailService } from "../../Interfaces/Services/IEmailService";
 import { AppError } from "../../../Domain/Utils/customError";
 import { ENV } from "../../../Infrastructure/Constants/env";
-import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessages";
 
 @injectable()
 export class AddNewHubResendOtp implements IAddNewHubResendOtp {

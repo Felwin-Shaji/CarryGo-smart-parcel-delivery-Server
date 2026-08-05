@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import type { IUserRepository } from "../../Interfaces/Repositories/User/IUserRepository";
-import type { AuthUserDTO } from "../../../Infrastructure/Types/types";
+import type { AuthUserDTO } from "../../../Infrastructure/Types/CommonTypes";
 import { AppError } from "../../../Domain/Utils/customError";
 import type { LoginDTO } from "../../DTOs/Auth/AuthDTO";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";

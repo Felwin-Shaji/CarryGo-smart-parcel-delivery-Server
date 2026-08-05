@@ -4,7 +4,7 @@ import { IParcelMovementRepository } from "../../../Application/Interfaces/Repos
 import { ParcelMovement } from "../../../Domain/Entities/Booking/ParcelMovement";
 import { ParcelMovementDocument, ParcelMovementModel } from "../../Database/Models/Logistics/ParcelMovementModel";
 import { AppError } from "../../../Domain/Utils/customError";
-import { PARCEL_MOVEMENT_MESSAGE } from "../../Constants/Messages/RouteGroupMessage";
+import { PARCEL_MOVEMENT_MESSAGE } from "../../Constants/Messages/routeGroupMessages";
 import { STATUS } from "../../Constants/statusCodes";
 
 export class ParcelMovementRepository implements IParcelMovementRepository {

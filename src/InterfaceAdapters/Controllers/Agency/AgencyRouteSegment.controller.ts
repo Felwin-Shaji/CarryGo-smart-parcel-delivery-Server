@@ -4,7 +4,7 @@ import { AppError } from "../../../Domain/Utils/customError";
 import { IGetRouteGroupDetailUseCase } from "../../../Application/Interfaces/UseCases/Logistics/RouteGroup/IGetRouteDetailsUseCase";
 import { ICreateRouteSegmentUseCase } from "../../../Application/Interfaces/UseCases/Logistics/RouteGroup/ICreateRouteSegmentUseCase";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import { ROUTE_GROUP_MESSAGE, ROUTE_SEGMENT_MESSAGE } from "../../../Infrastructure/Constants/Messages/RouteGroupMessage";
+import { ROUTE_GROUP_MESSAGE, ROUTE_SEGMENT_MESSAGE } from "../../../Infrastructure/Constants/Messages/routeGroupMessages";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 import { IUpdateRouteGroupStatusUseCase } from "../../../Application/Interfaces/UseCases/Logistics/RouteGroup/IUpdateRouteGroupStatusUseCase";

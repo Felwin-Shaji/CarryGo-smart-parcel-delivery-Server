@@ -3,7 +3,7 @@ import { HubJourneyDocument, HubJourneySchema } from "./HubJourneySchema";
 import { PartnerSnapshotDocument, PartnerSnapshotSchema } from "./PartnerSnapshotSchema";
 import { BookingAddressDocument, BookingAddressSchema } from "./BookingAddressSchema";
 import { PaymentGateway } from "../../../../Domain/Enums/PaymentGateway";
-import { BookingStatusType, DeliveryPartnerType, PaymentGatewayType, PaymentMethodType } from "../../../Types/types";
+import { BookingStatusType, DeliveryPartnerType, PaymentGatewayType, PaymentMethodType } from "../../../Types/CommonTypes";
 import { DeliveryPartner } from "../../../../Domain/Enums/DeliveryPartnerType";
 import { PaymentStatus } from "../../../../Domain/Enums/PaymentStatus";
 import { PaymentMethod } from "../../../../Domain/Enums/PaymentMethod";

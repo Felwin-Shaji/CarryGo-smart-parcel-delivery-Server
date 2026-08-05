@@ -5,7 +5,7 @@ import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/IHubW
 import { IGetWorkerDashboardUseCase } from "../../Interfaces/UseCases/Worker/IGetWorkerDashboardUseCase";
 import { WorkerDashboardMapper } from "../../Mappers/Worker/WorkerDashboardMapper";
 import { AppError } from "../../../Domain/Utils/customError";
-import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { inject, injectable } from "tsyringe";
 

@@ -8,7 +8,7 @@ import { ParcelMovementMapper } from "../../../Mappers/Logistics/ParcelMovementM
 import { ShipmentParcelMapper } from "../../../Mappers/Logistics/ShipmentParcelMapper";
 import { AppError } from "../../../../Domain/Utils/customError";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
-import { HUB_MESSAGES } from "../../../../Infrastructure/Constants/Messages/hubMessage";
+import { HUB_MESSAGES } from "../../../../Infrastructure/Constants/Messages/hubMessages";
 import mongoose from "mongoose";
 import { inject, injectable } from "tsyringe";
 import { INotificationService } from "../../../Interfaces/Services/Notification/INotificationService";

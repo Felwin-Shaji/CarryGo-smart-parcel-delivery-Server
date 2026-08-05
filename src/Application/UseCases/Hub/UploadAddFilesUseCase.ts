@@ -3,7 +3,7 @@ import { IStorageService } from "../../Interfaces/Services/IStorageService";
 import { IUploadAddFilesUseCase } from "../../Interfaces/UseCases/Hub/IUploadAddFilesUseCase";
 import { AppError } from "../../../Domain/Utils/customError";
 import { AgencyAddHubFields } from "../../../Infrastructure/Services/Storage/multer";
-import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 
 

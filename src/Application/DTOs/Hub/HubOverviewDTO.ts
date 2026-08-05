@@ -1,4 +1,4 @@
-import { KYCStatus } from "../../../Infrastructure/Types/types";
+import { KYCStatus } from "../../../Infrastructure/Types/CommonTypes";
 import { GetHubWorkersResponseDTO  } from "../Worker/WorkerDTO";
 
 export interface HubOverviewResponseDTO {

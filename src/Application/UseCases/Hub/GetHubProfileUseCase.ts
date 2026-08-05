@@ -5,7 +5,7 @@ import { IHubRepository } from "../../Interfaces/Repositories/Hub/IHubRepository
 import { IGetHubProfileUseCase } from "../../Interfaces/UseCases/Hub/IGetHubProfileUseCase";
 import { HubProfileMapper } from "../../Mappers/Hub/HubProfileMapper";
 import { HubProfileResponseDTO } from "../../DTOs/Hub/HubProfileDTO";
-import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessages";
 
 @injectable()
 export class GetHubProfileUseCase implements IGetHubProfileUseCase {

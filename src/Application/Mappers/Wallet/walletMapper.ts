@@ -1,6 +1,6 @@
 import { Wallet } from "../../../Domain/Entities/Wallet/Wallet";
 import { Transaction } from "../../../Domain/Entities/Wallet/WalletTransaction";
-import { Role } from "../../../Infrastructure/Types/types";
+import { Role } from "../../../Infrastructure/Types/CommonTypes";
 import { GetWalletOverviewResponseDTO, GetWalletResponseDTO } from "../../DTOs/Wallet/WalletDTO";
 
 export class WalletMapper {

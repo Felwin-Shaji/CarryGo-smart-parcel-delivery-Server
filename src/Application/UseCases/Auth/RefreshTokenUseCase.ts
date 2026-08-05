@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../Domain/Utils/customError";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import type { TokenObj } from "../../../Infrastructure/Types/types";
+import type { TokenObj } from "../../../Infrastructure/Types/CommonTypes";
 import type { ITokenService } from "../../Interfaces/Services/ITokenService";
 import type { IUserRepository } from "../../Interfaces/Repositories/User/IUserRepository";
 import type { IAdminRepository } from "../../Interfaces/Repositories/Admin/IAdminRepository";

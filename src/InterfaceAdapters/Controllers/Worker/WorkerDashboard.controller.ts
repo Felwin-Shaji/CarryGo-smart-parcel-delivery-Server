@@ -1,9 +1,9 @@
 import { inject, injectable } from "tsyringe";
 import { Request, Response } from "express";
 import { IGetWorkerParcelsUseCase } from "../../../Application/Interfaces/UseCases/Worker/IGetWorkerParcelsUseCase";
-import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessages";
 import { IGetWorkerDashboardUseCase } from "../../../Application/Interfaces/UseCases/Worker/IGetWorkerDashboardUseCase";
 import { IGetWorkerGraphUseCase } from "../../../Application/Interfaces/UseCases/Worker/IGetWorkerGraphUseCase";
 import { ApiResponse } from "../../Presenters/ApiResponse";

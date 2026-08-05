@@ -1,5 +1,5 @@
 import Razorpay from "razorpay";
-import { RazorpayCreatePayoutRequest, RazorpayCreatePayoutResponse } from "../../Types/razorpayX.types";
+import { RazorpayCreatePayoutRequest, RazorpayCreatePayoutResponse } from "../../Types/RazorpayX";
 
 
 interface RazorpayXExtension {

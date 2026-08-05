@@ -1,5 +1,5 @@
 import { User } from "../../../Domain/Entities/User";
-import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
+import { KYCStatus, Role } from "../../../Infrastructure/Types/CommonTypes";
 import { AgencyResponseDTO } from "../Agency/AgencyDTO";
 
 

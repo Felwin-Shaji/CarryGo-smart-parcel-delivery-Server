@@ -3,9 +3,9 @@ import { AppError } from "../../../Domain/Utils/customError";
 import { IGetWorkerParcelsUseCase } from "../../Interfaces/UseCases/Worker/IGetWorkerParcelsUseCase";
 import { IShipmentParcelRepository } from "../../Interfaces/Repositories/Logistics/IShipmentParcelRepository";
 import { GetWorkerParcelsDTO, GetWorkerParcelsResponseDTO } from "../../DTOs/Worker/WorkerDTO";
-import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import { SHIPMENT_PARCEL_MESSAGE } from "../../../Infrastructure/Constants/Messages/RouteGroupMessage";
+import { SHIPMENT_PARCEL_MESSAGE } from "../../../Infrastructure/Constants/Messages/routeGroupMessages";
 
 @injectable()
 export class GetWorkerParcelsUseCase implements IGetWorkerParcelsUseCase {

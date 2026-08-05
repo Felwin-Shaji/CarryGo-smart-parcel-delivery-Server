@@ -3,7 +3,7 @@ import { AgencyPricingPolicy } from "../../../../../Domain/Entities/Admin/Agency
 import { BasePricingPolicy } from "../../../../../Domain/Entities/Admin/BasePricingPolicy";
 import { AppError } from "../../../../../Domain/Utils/customError";
 import { AGENCY_MESSAGES } from "../../../../../Infrastructure/Constants/Messages/agencyMessages";
-import { PRICING_POLICY_MESSAGE } from "../../../../../Infrastructure/Constants/Messages/pricingPolicyMessage";
+import { PRICING_POLICY_MESSAGE } from "../../../../../Infrastructure/Constants/Messages/pricingPolicyMessages";
 import { STATUS } from "../../../../../Infrastructure/Constants/statusCodes";
 import { CalculatePriceRequestDTO, CalculatePriceResponseDTO } from "../../../../DTOs/User/BookingDTO";
 import { ICalculatePriceUsecase } from "../../../../Interfaces/UseCases/User/Booking/CalculatePricing/ICalculatePrice";

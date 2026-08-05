@@ -5,7 +5,7 @@ import { IGetHubProfileUseCase } from "../../../Application/Interfaces/UseCases/
 import { IEditHubProfileUseCase } from "../../../Application/Interfaces/UseCases/Hub/IEditHubProfileUseCase";
 import { IResetHubPasswordUseCase } from "../../../Application/Interfaces/UseCases/Hub/IResetHubPasswordUseCase";
 import { AppError } from "../../../Domain/Utils/customError";
-import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 

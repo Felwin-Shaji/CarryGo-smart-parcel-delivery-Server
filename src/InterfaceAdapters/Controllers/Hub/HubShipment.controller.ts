@@ -8,7 +8,7 @@ import { GetShipmentsDTO, UpdateHubShipmentDTO } from "../../../Application/DTOs
 import { ShipmentStatus, ShipmentType } from "../../../Domain/Entities/Logistics/HubShipment";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ApiResponse } from "../../Presenters/ApiResponse";
-import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessages";
 import { AppError } from "../../../Domain/Utils/customError";
 import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
 // import { AppError } from "@/Domain/utils/customError";

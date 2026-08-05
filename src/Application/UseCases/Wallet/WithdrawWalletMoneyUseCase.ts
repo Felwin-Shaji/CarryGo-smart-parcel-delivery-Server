@@ -3,7 +3,7 @@ import { IWithdrawWalletMoneyUseCase } from "../../Interfaces/UseCases/Wallet/IW
 import { IWalletRepository } from "../../Interfaces/Repositories/Wallet/IWalletRepository";
 import { ITransactionRepository } from "../../Interfaces/Repositories/Wallet/ITransactionRepository";
 import { IPaymentGatewayService } from "../../Interfaces/Services/Payment/IPaymentGateway";
-import { Role } from "../../../Infrastructure/Types/types";
+import { Role } from "../../../Infrastructure/Types/CommonTypes";
 import { AppError } from "../../../Domain/Utils/customError";
 import { WALLET_MESSAGES } from "../../../Infrastructure/Constants/Messages/walletMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";

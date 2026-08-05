@@ -1,6 +1,6 @@
 import { Booking, PartnerEntity } from "../../../Domain/Entities/Booking/Booking";
 import { AddressResponseDTO, BookingListResponseDTO, CalculatePriceResponseDTO, UserBookingsDTO, } from "../../DTOs/User/BookingDTO";
-import { BookingStatusType, PaymentGatewayType, PaymentStatusType, DeliveryPartnerType } from "../../../Infrastructure/Types/types";
+import { BookingStatusType, PaymentGatewayType, PaymentStatusType, DeliveryPartnerType } from "../../../Infrastructure/Types/CommonTypes";
 import { AppError } from "../../../Domain/Utils/customError";
 import { BOOKING_MESSAGE } from "../../../Infrastructure/Constants/Messages/bookingMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";

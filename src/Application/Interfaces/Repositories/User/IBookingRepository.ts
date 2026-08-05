@@ -1,6 +1,6 @@
 import { ClientSession } from "mongoose";
 import { Booking } from "../../../../Domain/Entities/Booking/Booking";
-import { BookingStatusType, PaymentStatusType } from "../../../../Infrastructure/Types/types";
+import { BookingStatusType, PaymentStatusType } from "../../../../Infrastructure/Types/CommonTypes";
 import { BookingFilterDTO } from "../../../DTOs/User/BookingDTO";
 import { DeliveriesChartRequestDTO, DeliveriesChartResponseDTO } from "../../../DTOs/Agency/AgencyDashboardDTO";
 

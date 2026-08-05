@@ -4,7 +4,7 @@ import { IAdminPricingPolicyController } from "../../Interfaces/Controllers/Admi
 import { IGetPricingUseCase } from "../../../Application/Interfaces/UseCases/Pricing/IGetPricingUseCase";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ApiResponse } from "../../Presenters/ApiResponse";
-import { PRICING_POLICY_MESSAGE } from "../../../Infrastructure/Constants/Messages/pricingPolicyMessage";
+import { PRICING_POLICY_MESSAGE } from "../../../Infrastructure/Constants/Messages/pricingPolicyMessages";
 import { AdminPricingRequestDTO, AdminTravelerPricingRequestDTO } from "../../../Application/DTOs/Pricing/AdminPricingDTO";
 import { ICreateAdminPricingPolicyUseCase } from "../../../Application/Interfaces/UseCases/Pricing/ICreateAdminPricingPolicyUseCase";
 import { DeliveryPartner } from "../../../Domain/Enums/DeliveryPartnerType";

@@ -1,5 +1,5 @@
 import { WorkerRole } from "../../../Domain/Entities/Worker/Worker";
-import { KYCStatus, Role } from "../../../Infrastructure/Types/types";
+import { KYCStatus, Role } from "../../../Infrastructure/Types/CommonTypes";
 
 export interface GetHubsDTO {
     page: number;

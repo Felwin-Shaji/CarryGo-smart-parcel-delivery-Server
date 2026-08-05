@@ -3,7 +3,7 @@ import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/IHubW
 import { IHubWorkerKycRepository } from "../../Interfaces/Repositories/Worker/IHubWorkerKycRepository";
 import { AppError } from "../../../Domain/Utils/customError";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessages";
 import { IGetWorkerOverviewUseCase } from "../../Interfaces/UseCases/Worker/IGetWorkerOverviewUseCase";
 import { GetWorkerOverviewResponseDTO } from "../../DTOs/Worker/WorkerDTO";
 import { WorkerMapper } from "../../Mappers/Worker/WorkerMapper";

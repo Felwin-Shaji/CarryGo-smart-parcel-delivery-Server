@@ -7,8 +7,8 @@ import { AppError } from "../../../Domain/Utils/customError";
 import { BOOKING_MESSAGE } from "../../Constants/Messages/bookingMessages";
 import { STATUS } from "../../Constants/statusCodes";
 import { BookingDocument, BookingModel } from "../../Database/Models/Booking/BookingSchema";
-import { BookingStatusType, PaymentStatusType } from "../../Types/types";
-import { BaseRepository } from "../baseRepositories";
+import { BookingStatusType, PaymentStatusType } from "../../Types/CommonTypes";
+import { BaseRepository } from "../BaseRepository";
 import { DeliveriesChartRequestDTO, DeliveriesChartResponseDTO } from "../../../Application/DTOs/Agency/AgencyDashboardDTO";
 
 export class BookingRepository extends BaseRepository<BookingDocument> implements IBookingRepository {

@@ -1,5 +1,5 @@
 import { AppError } from "../../../Domain/Utils/customError";
-import { ExportType, ReportGenerators } from "../../../Infrastructure/Types/reportGenerator.types";
+import { ExportType, ReportGenerators } from "../../../Infrastructure/Types/ReportGenerator";
 import { ExportSalesReportDTO, ExportSalesReportResponseDTO, SalesReportRequestDTO } from "../../DTOs/Agency/AgencyDashboardDTO";
 import { IAgencyExportSalesReportUseCase } from "../../Interfaces/UseCases/Agency/IAgencyExportSalesReportUseCase";
 import { IAgencyGetSalesReportUseCase } from "../../Interfaces/UseCases/Agency/IAgencyGetSalesReportUseCase";

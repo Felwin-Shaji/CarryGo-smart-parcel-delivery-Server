@@ -6,7 +6,7 @@ import { WorkerKYCFileFields } from "../../../Infrastructure/Services/Storage/mu
 import { inject, injectable } from "tsyringe";
 import { ISubmitTravelerKycUseCase } from "../../../Application/Interfaces/UseCases/User/Traveler/ISubmitTravelerKycUseCase";
 import { CreateTravelRequestDTO, SubmitTravelerKycRequestDTO, TravelerRequestFilterDTO } from "../../../Application/DTOs/User/TravelerDTO";
-import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessages";
 import { AppError } from "../../../Domain/Utils/customError";
 import { IGetTravelerKycUseCase } from "../../../Application/Interfaces/UseCases/User/Traveler/IGetTravelerKycUseCase";
 import { IReSubmitTravelerKycUseCase } from "../../../Application/Interfaces/UseCases/User/Traveler/IReSubmitTravelerKycUseCase";
@@ -15,7 +15,7 @@ import { IGetTravelRequestsUseCase } from "../../../Application/Interfaces/UseCa
 import { IGetTravelerTripOverviewUseCase } from "../../../Application/Interfaces/UseCases/User/Traveler/IGetTravelerTripOverviewUseCase";
 import { IGetBookingUsecase } from "../../../Application/Interfaces/UseCases/User/Booking/IGetBookingUseCase";
 import { IUpdateBookingStatusUsecase } from "../../../Application/Interfaces/UseCases/User/Booking/IUpdateBookingStatusUseCase";
-import { TravelerActionStatus } from "../../../Infrastructure/Types/types";
+import { TravelerActionStatus } from "../../../Infrastructure/Types/CommonTypes";
 import { BOOKING_MESSAGE } from "../../../Infrastructure/Constants/Messages/bookingMessages";
 
 

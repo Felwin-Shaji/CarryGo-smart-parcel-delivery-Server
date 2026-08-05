@@ -1,5 +1,5 @@
 import { Schema, model, Types } from "mongoose";
-import { Role } from "../../../Types/types";
+import { Role } from "../../../Types/CommonTypes";
 
 
 export interface WalletDocument {

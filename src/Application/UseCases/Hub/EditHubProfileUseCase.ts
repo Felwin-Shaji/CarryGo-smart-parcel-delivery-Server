@@ -4,7 +4,7 @@ import { IEditHubProfileUseCase } from "../../Interfaces/UseCases/Hub/IEditHubPr
 import { IHubRepository } from "../../Interfaces/Repositories/Hub/IHubRepository";
 import { EditHubProfileRequestDto, HubProfileResponseDTO } from "../../DTOs/Hub/HubProfileDTO";
 import { HubProfileMapper } from "../../Mappers/Hub/HubProfileMapper";
-import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessages";
 
 @injectable()
 export class EditHubProfileUseCase implements IEditHubProfileUseCase {

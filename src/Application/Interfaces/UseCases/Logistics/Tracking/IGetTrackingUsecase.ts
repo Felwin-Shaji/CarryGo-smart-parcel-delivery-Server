@@ -1,4 +1,4 @@
-import { Role } from "../../../../../Infrastructure/Types/types";
+import { Role } from "../../../../../Infrastructure/Types/CommonTypes";
 import { AgencyParcelTrackingDTO, TravelerParcelTrackingDTO } from "../../../../DTOs/Logistics/ParcelTrackingDTO";
 
 

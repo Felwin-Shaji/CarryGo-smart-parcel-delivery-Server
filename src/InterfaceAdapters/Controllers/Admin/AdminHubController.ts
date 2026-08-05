@@ -4,11 +4,11 @@ import { IAdminHubController } from "../../Interfaces/Controllers/Admin/IAdminHu
 import { IGetHubOverviewUseCase } from "../../../Application/Interfaces/UseCases/Hub/IGetHubOverviewUseCase";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ApiResponse } from "../../Presenters/ApiResponse";
-import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessages";
 import { updateHubKycStatusDTO } from "../../../Application/DTOs/Hub/HubDTO";
 import { IUpdateHubKycStatusUseCase } from "../../../Application/Interfaces/UseCases/Hub/IUpdateHubKycStatusUseCase";
 import { AppError } from "../../../Domain/Utils/customError";
-import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessages";
 import { IGetWorkerOverviewUseCase } from "../../../Application/Interfaces/UseCases/Worker/IGetWorkerOverviewUseCase";
 
 @injectable()

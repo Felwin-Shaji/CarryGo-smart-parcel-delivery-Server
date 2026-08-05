@@ -4,7 +4,7 @@ import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/IHubW
 import { IEditWorkerProfileUseCase } from "../../Interfaces/UseCases/Worker/IEditWorkerProfileUseCase";
 import { EditWorkerProfileRequestDto, WorkerProfileResponseDTO } from "../../DTOs/Worker/WorkerProfileDTO";
 import { WorkerProfileMapper } from "../../Mappers/Worker/WorkerProfileMapper";
-import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessages";
 
 @injectable()
 export class EditWorkerProfileUseCase implements IEditWorkerProfileUseCase {

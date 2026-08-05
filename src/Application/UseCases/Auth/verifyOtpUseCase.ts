@@ -3,7 +3,7 @@ import type { IOtpRepository } from "../../Interfaces/Repositories/Auth/IOTPRepo
 import { AppError } from "../../../Domain/Utils/customError";
 import type { IOtpModel } from "../../../Domain/Entities/IOtpModel";
 import { IVerifyOtpUseCase } from "../../Interfaces/UseCases/Auth/IVerifyOtpUseCase";
-import { OTP_MESSAGES } from "../../../Infrastructure/Constants/Messages/otpMessage";
+import { OTP_MESSAGES } from "../../../Infrastructure/Constants/Messages/otpMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { IOtpService } from "../../Interfaces/Services/IOTPService";
 

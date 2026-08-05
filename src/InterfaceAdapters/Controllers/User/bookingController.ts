@@ -5,7 +5,7 @@ import { ApiResponse } from "../../Presenters/ApiResponse";
 import { IUserBookingController } from "../../Interfaces/Controllers/User/Booking/IUserBookingController";
 import { BOOKING_MESSAGE } from "../../../Infrastructure/Constants/Messages/bookingMessages";
 import { AppError } from "../../../Domain/Utils/customError";
-import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessages";
 import { ICalculateBookingPriceUsecase } from "../../../Application/Interfaces/UseCases/User/Booking/ICalculateBookingPriceUseCase";
 import { BookingFilterDTO, CalculatePriceRequestDTO, CheckServiceableAgencyDTO, CheckServiceableTravelerDTO, CreateBookingRequestDTO } from "../../../Application/DTOs/User/BookingDTO";
 import { ICreateBookingUsecase } from "../../../Application/Interfaces/UseCases/User/Booking/ICreateBookingUseCase";

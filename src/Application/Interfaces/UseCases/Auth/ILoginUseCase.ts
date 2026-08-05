@@ -1,4 +1,4 @@
-import { AuthUserDTO } from "../../../../Infrastructure/Types/types";
+import { AuthUserDTO } from "../../../../Infrastructure/Types/CommonTypes";
 import { LoginDTO } from "../../../DTOs/Auth/AuthDTO";
 
 export interface ILoginUsecase {

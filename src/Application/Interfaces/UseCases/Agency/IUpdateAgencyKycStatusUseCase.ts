@@ -1,4 +1,4 @@
-import { KYCStatus } from "../../../../Infrastructure/Types/types.js";
+import { KYCStatus } from "../../../../Infrastructure/Types/CommonTypes.js";
 import { updateAgencyKycStatusDTO } from "../../../DTOs/Agency/AgencyDTO.js";
 
 export interface IUpdateAgencyKycStatusUseCase  {

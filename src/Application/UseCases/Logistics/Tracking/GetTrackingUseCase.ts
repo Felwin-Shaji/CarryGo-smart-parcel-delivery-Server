@@ -1,7 +1,7 @@
 import { IGetAgencyTrackingUsecase } from "../../../Interfaces/UseCases/Logistics/Tracking/IGetAgencyTrackingUseCase";
 import { IGetTrackingUsecase } from "../../../Interfaces/UseCases/Logistics/Tracking/IGetTrackingUseCase";
 import { IGetTravelerTrackingUsecase } from "../../../Interfaces/UseCases/Logistics/Tracking/IGetTravelerTrackingUseCase";
-import { Role } from "../../../../Infrastructure/Types/types";
+import { Role } from "../../../../Infrastructure/Types/CommonTypes";
 import { BOOKING_MESSAGE } from "../../../../Infrastructure/Constants/Messages/bookingMessages";
 import { AppError } from "../../../../Domain/Utils/customError";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";

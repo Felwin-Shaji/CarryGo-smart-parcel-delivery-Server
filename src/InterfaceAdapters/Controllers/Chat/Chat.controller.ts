@@ -5,7 +5,7 @@ import { ISendMessageUseCase, SendMessageDTO } from "../../../Application/Interf
 import { IGetMessagesUsecase } from "../../../Application/Interfaces/UseCases/Chat/IGetMessagesUseCase";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ApiResponse } from "../../Presenters/ApiResponse";
-import { CHAT_MESSAGE } from "../../../Infrastructure/Constants/Messages/chatMessage";
+import { CHAT_MESSAGE } from "../../../Infrastructure/Constants/Messages/chatMessages";
 import { AppError } from "../../../Domain/Utils/customError";
 import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
 

@@ -1,5 +1,5 @@
 import { AddressEntity, HubJourney, PackageDetails, PartnerEntity } from "../../../Domain/Entities/Booking/Booking";
-import { BookingStatusType, DeliveryPartnerType, PaymentGatewayType, PaymentMethodType, PaymentStatusType } from "../../../Infrastructure/Types/types";
+import { BookingStatusType, DeliveryPartnerType, PaymentGatewayType, PaymentMethodType, PaymentStatusType } from "../../../Infrastructure/Types/CommonTypes";
 import { GeoLocation } from "../../Interfaces/UseCases/User/Booking/IFindServicableAgencyUseCase";
 
 /**

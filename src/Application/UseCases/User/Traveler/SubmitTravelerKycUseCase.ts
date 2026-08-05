@@ -4,7 +4,7 @@ import { ISubmitTravelerKycUseCase } from "../../../Interfaces/UseCases/User/Tra
 import { IUploadWorkerKycFilesUsecase } from "../../../Interfaces/UseCases/Worker/IUploadWorkerKycFilesUseCase";
 import { WorkerKYCFileFields } from "../../../../Infrastructure/Services/Storage/multer";
 import { AppError } from "../../../../Domain/Utils/customError";
-import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessages";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 import { IHubWorkerKycRepository } from "../../../Interfaces/Repositories/Worker/IHubWorkerKycRepository";
 import { IUserRepository } from "../../../Interfaces/Repositories/User/IUserRepository";

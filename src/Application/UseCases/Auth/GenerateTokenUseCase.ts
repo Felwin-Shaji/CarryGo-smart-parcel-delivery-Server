@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import type { ITokenService } from "../../Interfaces/Services/ITokenService.js";
-import type { Role, TokenObj } from "../../../Infrastructure/Types/types.js";
+import type { Role, TokenObj } from "../../../Infrastructure/Types/CommonTypes.js";
 import { IGenerateTokenUseCase } from "../../Interfaces/UseCases/Auth/IGenerateTokenUseCase.js";
 
 

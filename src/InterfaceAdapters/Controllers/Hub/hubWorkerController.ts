@@ -8,9 +8,9 @@ import { WorkerKYCFileFields } from "../../../Infrastructure/Services/Storage/mu
 import { IUploadWorkerKycFilesUsecase } from "../../../Application/Interfaces/UseCases/Worker/IUploadWorkerKycFilesUseCase";
 import { IAddWorkerUsecase } from "../../../Application/Interfaces/UseCases/Worker/IAddWorkerUseCase";
 import { ApiResponse } from "../../Presenters/ApiResponse";
-import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessages";
 import { AddWorkerTempRequestDTO } from "../../../Application/DTOs/Hub/HubDTO";
-import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessages";
 import { AppError } from "../../../Domain/Utils/customError";
 import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
 import { GetWorkersDTO, ReSubmitWorkerKycPayloadDTO } from "../../../Application/DTOs/Worker/WorkerDTO";

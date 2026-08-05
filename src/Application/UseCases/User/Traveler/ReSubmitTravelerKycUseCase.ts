@@ -6,7 +6,7 @@ import { IUserRepository } from "../../../Interfaces/Repositories/User/IUserRepo
 import { SubmitTravelerKycRequestDTO } from "../../../DTOs/User/TravelerDTO";
 import { WorkerKYCFileFields } from "../../../../Infrastructure/Services/Storage/multer";
 import { AppError } from "../../../../Domain/Utils/customError";
-import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../../Infrastructure/Constants/Messages/userMessages";
 import { STATUS } from "../../../../Infrastructure/Constants/statusCodes";
 import { Role } from "../../../../Domain/Enums/Role";
 import { KycStatus } from "../../../../Domain/Enums/KYCStatus";

@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { KYCStatus } from "../../../Infrastructure/Types/types";
+import { KYCStatus } from "../../../Infrastructure/Types/CommonTypes";
 import { IAgencyRepository } from "../../Interfaces/Repositories/Agency/IAgencyRepository";
 import { IUpdateAgencyKycStatusUseCase } from "../../Interfaces/UseCases/Agency/IUpdateAgencyKycStatusUseCase";
 import { updateAgencyKycStatusDTO } from "../../DTOs/Agency/AgencyDTO";

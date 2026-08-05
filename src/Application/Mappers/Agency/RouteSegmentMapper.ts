@@ -1,8 +1,8 @@
 import { RouteGroup } from "../../../Domain/Entities/Logistics/RouteGroup";
 import { RouteSegment } from "../../../Domain/Entities/Logistics/RouteSegment";
 import { AppError } from "../../../Domain/Utils/customError";
-import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
-import { ROUTE_SEGMENT_MESSAGE } from "../../../Infrastructure/Constants/Messages/RouteGroupMessage";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessages";
+import { ROUTE_SEGMENT_MESSAGE } from "../../../Infrastructure/Constants/Messages/routeGroupMessages";
 import { CreateRouteSegmentDTO, RouteGroupDetailDTO, RouteSegmentDTO } from "../../DTOs/Agency/AgencyRouteSegmentDTO";
 
 

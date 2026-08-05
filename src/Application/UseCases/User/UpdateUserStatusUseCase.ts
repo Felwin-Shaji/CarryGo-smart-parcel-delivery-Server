@@ -3,7 +3,7 @@ import { IUpdateUserStatusUseCase } from "../../Interfaces/UseCases/User/IUpdate
 import { IUserRepository } from "../../Interfaces/Repositories/User/IUserRepository";
 import { AppError } from "../../../Domain/Utils/customError";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessages";
 
 @injectable()
 export class UpdateUserStatusUseCase implements IUpdateUserStatusUseCase {

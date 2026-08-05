@@ -1,9 +1,9 @@
 import type { ClientSession } from "mongoose";
 import { Wallet } from "../../../Domain/Entities/Wallet/Wallet";
-import { WalletDocument, WalletModel } from "../../Database/Models/Wallet/wallet.schema";
+import { WalletDocument, WalletModel } from "../../Database/Models/Wallet/WalletSchema";
 import { IWalletRepository } from "../../../Application/Interfaces/Repositories/Wallet/IWalletRepository";
-import { BaseRepository } from "../baseRepositories";
-import { Role } from "../../Types/types";
+import { BaseRepository } from "../BaseRepository";
+import { Role } from "../../Types/CommonTypes";
 
 export class WalletRepository extends BaseRepository<WalletDocument> implements IWalletRepository {
 

@@ -3,7 +3,7 @@ import { IHubRepository } from "../../Interfaces/Repositories/Hub/IHubRepository
 import { IGetHubUseCase } from "../../Interfaces/UseCases/Hub/IGetHubUseCase";
 import { HubOverviewResponseDTO } from "../../DTOs/Hub/HubOverviewDTO";
 import { AppError } from "../../../Domain/Utils/customError";
-import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { HubMapper } from "../../Mappers/Hub/HubMapper";
 

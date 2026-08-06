@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { IHubTempRepository } from "../../Interfaces/Repositories/Hub/hubTemp.repository";
+import { IHubTempRepository } from "../../Interfaces/Repositories/Hub/IHubTempRepository";
 import { ICheckTempHubStatusUseCase } from "../../Interfaces/UseCases/Hub/ICheckTempHubStatusUseCase";
 
 @injectable()

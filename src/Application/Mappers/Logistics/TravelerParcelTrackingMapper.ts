@@ -1,4 +1,4 @@
-import { TravelerParcelTrackingDTO } from "../../DTOs/Logistics/ParcelTracking.dto";
+import { TravelerParcelTrackingDTO } from "../../DTOs/Logistics/ParcelTrackingDTO";
 import { Booking } from "../../../Domain/Entities/Booking/Booking";
 import { User } from "../../../Domain/Entities/User";
 import { TravelRequest } from "../../../Domain/Entities/User/TravelRequest";

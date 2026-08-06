@@ -1,4 +1,4 @@
-import { GetWorkerShipmentDTO } from "../../../../DTOs/Logistics/shipment.dto";
+import { GetWorkerShipmentDTO } from "../../../../DTOs/Logistics/ShipmentDTO";
 import { HubShipmentPaginatedData } from "../../../Repositories/Logistics/IHubShipmentRepository";
 
 export interface IGetWorkersShipmentUsecase {

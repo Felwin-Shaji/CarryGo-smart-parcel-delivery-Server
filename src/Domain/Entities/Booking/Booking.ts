@@ -1,6 +1,6 @@
 import { AppError } from "../../Utils/customError";
 import { BOOKING_MESSAGE } from "../../../Infrastructure/Constants/Messages/bookingMessages";
-import { AddressLabelType, BookingStatusType, DeliveryPartnerType, HubJourneyStatusType, PaymentGatewayType, PaymentMethodType, PaymentStatusType } from "../../../Infrastructure/Types/types";
+import { AddressLabelType, BookingStatusType, DeliveryPartnerType, HubJourneyStatusType, PaymentGatewayType, PaymentMethodType, PaymentStatusType } from "../../../Infrastructure/Types/CommonTypes";
 
 export interface AddressEntity {
     label: AddressLabelType,

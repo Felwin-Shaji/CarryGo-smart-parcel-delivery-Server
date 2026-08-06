@@ -1,0 +1,13 @@
+import { authenticate } from "../../Middlewares/AuthMiddleware/authenticate";
+import { BaseRoute } from "../BaseRoute";
+import { Role } from "../../../Domain/Enums/Role";
+import { asyncHandler } from "../../Middlewares/ErrorHandlers/asyncHandler";
+import { workerDashboardController } from "../../../Infrastructure/DI/resolver";
+
+export class WrokerDashboardRoute extends BaseRoute {
+    protected initializeRoutes(): void {
+        this.router.get("/parcels", authenticate([Role.WORKER]), asyncHandler(workerDashboardController.workerParcels));
+        this.router.get("/dashboard", authenticate([Role.WORKER]), asyncHandler(workerDashboardController.getWorkerDashboard));
+        this.router.get("/analytics/graph", authenticate([Role.WORKER]), asyncHandler(workerDashboardController.getWorkerGraph));
+    }
+}

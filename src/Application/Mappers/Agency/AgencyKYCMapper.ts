@@ -1,6 +1,6 @@
 import { AppError } from "../../../Domain/Utils/customError";
 import { AgencyKYC } from "../../../Domain/Entities/Agency/AgencyKYC";
-import { AgencyKYC_DTO, AgencyResubmitKycDTO, UploadedKycFiles } from "../../DTOs/Agency/agency.dto";
+import { AgencyKYC_DTO, AgencyResubmitKycDTO, UploadedKycFiles } from "../../DTOs/Agency/AgencyDTO";
 import { Types } from "mongoose";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";

@@ -1,6 +1,6 @@
 import { model, Schema } from "mongoose";
 import { Document, Types } from "mongoose";
-import { KYCStatus, Role } from "../../../Types/types";
+import { KYCStatus, Role } from "../../../Types/CommonTypes";
 
 export interface HubDocument extends Document {
   _id:Types.ObjectId;

@@ -1,10 +1,10 @@
-import { BaseRepository } from "./baseRepositories";
+import { BaseRepository } from "./BaseRepository";
 import type { User } from "../../Domain/Entities/User";
-import type { IUserRepository } from "../../Application/Interfaces/Repositories/User/user.repository";
-import { UserModel } from "../Database/Models/User/userModel";
+import type { IUserRepository } from "../../Application/Interfaces/Repositories/User/IUserRepository";
+import { UserModel } from "../Database/Models/User/UserModel";
 import { Address } from "../../Domain/Entities/User/Address";
 import { AppError } from "../../Domain/Utils/customError";
-import { USER_MESSAGES } from "../Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../Constants/Messages/userMessages";
 import { STATUS } from "../Constants/statusCodes";
 import { AddressDBResult } from "../Database/Models/User/AddressSchema";
 

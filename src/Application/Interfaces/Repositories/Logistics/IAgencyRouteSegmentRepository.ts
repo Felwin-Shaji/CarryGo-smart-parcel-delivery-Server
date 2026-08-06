@@ -1,5 +1,5 @@
 import { RouteSegment } from "../../../../Domain/Entities/Logistics/RouteSegment";
-import { IBaseRepository } from "../base.repository";
+import { IBaseRepository } from "../IBaseRepository";
 import { ClientSession } from "mongoose";
 
 export interface IAgencyRouteSegmentRepository extends IBaseRepository<RouteSegment> {

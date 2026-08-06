@@ -1,17 +1,17 @@
 import { inject, injectable } from "tsyringe";
-import { IResetPasswordUseCase } from "../../Interfaces/UseCases/Auth/resetPassword.usecase";
-import { IUserRepository } from "../../Interfaces/Repositories/User/user.repository";
+import { IResetPasswordUseCase } from "../../Interfaces/UseCases/Auth/IResetPasswordUseCase";
+import { IUserRepository } from "../../Interfaces/Repositories/User/IUserRepository";
 import { IAdminRepository } from "../../Interfaces/Repositories/Admin/IAdminRepository";
-import { IAgencyRepository } from "../../Interfaces/Repositories/Agency/agency.repository";
-import { IHubRepository } from "../../Interfaces/Repositories/Hub/hub.repository";
-import { ITokenService } from "../../Interfaces/Services/token-service.interface";
-import { Role } from "../../../Infrastructure/Types/types";
-import { IPasswordService } from "../../Interfaces/Services/password-service.interface";
-import { IResetPasswordTokenRepository } from "../../Interfaces/Repositories/Auth/resetPasswordToken.repository";
+import { IAgencyRepository } from "../../Interfaces/Repositories/Agency/IAgencyRepository";
+import { IHubRepository } from "../../Interfaces/Repositories/Hub/IHubRepository";
+import { ITokenService } from "../../Interfaces/Services/ITokenService";
+import { Role } from "../../../Infrastructure/Types/CommonTypes";
+import { IPasswordService } from "../../Interfaces/Services/IPasswordService";
+import { IResetPasswordTokenRepository } from "../../Interfaces/Repositories/Auth/IResetPasswordTokenRepository";
 import { AppError } from "../../../Domain/Utils/customError";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import { PASSWORD_RESET_MESSAGES } from "../../../Infrastructure/Constants/Messages/passwordResetMessage";
-import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";
+import { PASSWORD_RESET_MESSAGES } from "../../../Infrastructure/Constants/Messages/passwordResetMessages";
+import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/IHubWorkerRepository";
 
 @injectable()
 export class ResetPasswordUseCase implements IResetPasswordUseCase {

@@ -1,18 +1,18 @@
 import "reflect-metadata";
 import express from 'express';
-import { AuthRoute } from '../../InterfaceAdapters/Routes/auth.route';
+import { AuthRoute } from '../../InterfaceAdapters/Routes/AuthRoute';
 import cookieParser from "cookie-parser";
 import { loggerMiddleware } from '../../InterfaceAdapters/Middlewares/LoggerMiddleware/loggerMiddleware';
 import cors from "cors";
 import dotenv from "dotenv";
 import { errorHandler } from '../../InterfaceAdapters/Middlewares/ErrorHandlers/errorHandler';
-import { AgencyRoute } from '../../InterfaceAdapters/Routes/agency.route';
-import { AdminRoute } from '../../InterfaceAdapters/Routes/Admin/admin.route';
-import { HubRoute } from "../../InterfaceAdapters/Routes/hub.route";
-import { UserRoute } from "../../InterfaceAdapters/Routes/user.route";
-import { PaymentRoute } from "../../InterfaceAdapters/Routes/payment.routes";
-import { WrokerRoute } from "../../InterfaceAdapters/Routes/worker.route";
-import { ChatRoute } from "../../InterfaceAdapters/Routes/Chat/chat.route";
+import { AgencyRoute } from '../../InterfaceAdapters/Routes/AgencyRoute';
+import { AdminRoute } from '../../InterfaceAdapters/Routes/Admin/AdminRoute';
+import { HubRoute } from "../../InterfaceAdapters/Routes/HubRoute";
+import { UserRoute } from "../../InterfaceAdapters/Routes/UserRoute";
+import { PaymentRoute } from "../../InterfaceAdapters/Routes/PaymentRoute";
+import { WrokerRoute } from "../../InterfaceAdapters/Routes/WorkerRoute";
+import { ChatRoute } from "../../InterfaceAdapters/Routes/Chat/ChatRoute";
 dotenv.config();
 
 

@@ -1,4 +1,4 @@
-  import { ReverseGeocodeRawDTO } from "../../DTOs/User/address.dto";
+  import { ReverseGeocodeRawDTO } from "../../DTOs/User/AddressDTO";
 
 
 export interface IGeocodingService {

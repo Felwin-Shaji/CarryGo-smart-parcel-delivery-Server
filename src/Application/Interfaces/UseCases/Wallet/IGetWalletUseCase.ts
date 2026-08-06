@@ -1,5 +1,5 @@
-import { Role } from "../../../../Infrastructure/Types/types";
-import { GetWalletResponseDTO } from "../../../DTOs/Wallet/Wallet.dto";
+import { Role } from "../../../../Infrastructure/Types/CommonTypes";
+import { GetWalletResponseDTO } from "../../../DTOs/Wallet/WalletDTO";
 
 
 

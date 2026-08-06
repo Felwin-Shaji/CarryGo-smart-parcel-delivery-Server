@@ -1,0 +1,125 @@
+import type { IMailService } from "../../Application/Interfaces/Services/IEmailService";
+import nodemailer, { type Transporter } from "nodemailer";
+import { ENV } from "../Constants/env";
+
+const isDev = ENV.IS_DEV;
+
+
+export class MailService implements IMailService {
+  private _transporter?: Transporter;
+
+  private async initTransporter() {
+
+    this._transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+  }
+
+  /* -----------------------------------------------
+     SEND OTP
+  ------------------------------------------------ */
+  async sendOTP(email: string, otp: string): Promise<void> {
+    await this.initTransporter();
+
+    const html = `
+      <div style="font-family:Arial,sans-serif;line-height:1.4">
+        <h3>Your verification code</h3>
+        <p>Use <strong>${otp}</strong> to verify your email. This code expires in 2 minutes.</p>
+        <p>If you didn't request this, ignore this email.</p>
+      </div>
+    `;
+
+    if (isDev) return
+
+    await this._transporter?.sendMail({
+      from: `"CarryGo" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: "Your CarryGo OTP Code",
+      html,
+    });
+  }
+
+  /* -----------------------------------------------
+     SEND GENERATED HUB PASSWORD
+  ------------------------------------------------ */
+  async sendCustomPassword(email: string): Promise<void> {
+    await this.initTransporter();
+
+    const html = `
+    <div style="font-family:Arial,sans-serif;line-height:1.5;">
+      <h3>Your Hub Account is Ready </h3>
+
+      <p>Your login access for the <strong>CarryGo Hub Dashboard</strong> has been created.</p>
+
+      <p><strong>Email:</strong> ${email}</p>
+
+      <br/>
+
+      <p><strong>Your Password Format:</strong></p>
+
+      <p>
+        The password is automatically generated based on:<br/>
+        - The <strong>last 4 characters</strong> of your email <em>before the @ symbol</em><br/>
+        - The <strong>last 4 digits</strong> of <em>the mobile number used during hub creation</em><br/><br/>
+
+        <strong>Example (DO NOT USE THIS):</strong><br/>
+        If your email is <code>hubkochi99@gmail.com</code><br/>
+        → last 4 characters before @ = <strong>i99</strong><br/>
+        And if your mobile number is <code>9876543210</code><br/>
+        → last 4 digits of mobile = <strong>3210</strong><br/><br/>
+
+        Then your password format would be:<br/>
+        <strong>i99@3210</strong><br/><br/>
+
+        <u>Your actual password will follow the same pattern using YOUR email and YOUR mobile number used during registration.</u>
+      </p>
+
+      <br/>
+
+      <p>Please log in and <strong>change your password immediately</strong> for security.</p>
+      <p>If you did not expect this email, please contact your agency admin.</p>
+
+      <br/>
+      <p>— CarryGo Team</p>
+    </div>
+  `;
+    if (isDev) return
+    await this._transporter?.sendMail({
+      from: `"CarryGo" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: "Your CarryGo Hub Account Login Details",
+      html,
+    });
+  }
+
+
+  async sendResetPasswordUrl(email: string, url: string): Promise<void> {
+    await this.initTransporter();   // <-- THIS WAS MISSING!!
+
+    const html = `
+      <div style="font-family:Arial,sans-serif;line-height:1.5;">
+        <h3>Password Reset Request</h3>
+        <p>You requested to reset your password.</p>
+        <p>
+          Click the link below to reset your password:<br/>
+          <a href="${url}" style="color:#1E3A8A; font-weight:bold;">Reset Password</a>
+        </p>
+        <p>This link expires in 15 minutes.</p>
+      </div>
+    `;
+
+    await this._transporter?.sendMail({
+      from: `"CarryGo" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: "Reset Your Password",
+      html,
+    });
+  }
+
+
+
+}

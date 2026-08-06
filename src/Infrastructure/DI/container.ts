@@ -1,6 +1,6 @@
-import { RepositoryRegistry } from "./repository.register";
-import { ServiceRegistory } from "./service.register";
-import { UsecaseRegistery } from "./usecase.register";
+import { RepositoryRegistry } from "./RepositoryRegistry";
+import { ServiceRegistory } from "./ServiceRegistry";
+import { UsecaseRegistery } from "./UseCaseRegistry";
 
 export class DependancyInjection {
     static registerAll(): void {

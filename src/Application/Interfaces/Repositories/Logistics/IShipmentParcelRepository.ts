@@ -1,6 +1,6 @@
 import { ClientSession } from "mongoose";
 import { ShipmentParcel, ShipmentParcelStatus } from "../../../../Domain/Entities/Logistics/ShipmentParcel";
-import { GetWorkerGraphRequestDTO, GetWorkerGraphResponseDTO, GetWorkerParcelsDTO, GetWorkerParcelsResponseDTO } from "../../../DTOs/Worker/worker.dto";
+import { GetWorkerGraphRequestDTO, GetWorkerGraphResponseDTO, GetWorkerParcelsDTO, GetWorkerParcelsResponseDTO } from "../../../DTOs/Worker/WorkerDTO";
 
 export interface IShipmentParcelRepository {
 

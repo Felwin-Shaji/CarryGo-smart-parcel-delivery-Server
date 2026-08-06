@@ -1,7 +1,7 @@
-import { IHubWorkersTempRepository } from "../../../Application/Interfaces/Repositories/Worker/worersTemp.repository";
-import { HubWorkersTemp } from "../../../Domain/Entities/Worker/WrokersTemp";
+import { IHubWorkersTempRepository } from "../../../Application/Interfaces/Repositories/Worker/IHubWorkersTempRepository";
+import { HubWorkersTemp } from "../../../Domain/Entities/Worker/HubWorkersTemp";
 import { HubWorkerTempModel } from "../../Database/Models/Worker/WorkerTempModel";
-import { BaseRepository } from "../baseRepositories";
+import { BaseRepository } from "../BaseRepository";
 
 export class HubWorkersTempRepository extends BaseRepository<HubWorkersTemp> implements IHubWorkersTempRepository{
     constructor(){

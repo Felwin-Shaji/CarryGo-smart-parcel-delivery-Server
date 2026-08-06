@@ -1,5 +1,5 @@
 import { WALLET_MESSAGES } from "../../../Infrastructure/Constants/Messages/walletMessages";
-import { Role } from "../../../Infrastructure/Types/types";
+import { Role } from "../../../Infrastructure/Types/CommonTypes";
 import { AppError } from "../../Utils/customError";
 
 export class Wallet {

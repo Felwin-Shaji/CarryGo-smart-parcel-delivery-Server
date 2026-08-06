@@ -1,4 +1,4 @@
-import { AddNewHubVerifyOtpDTO } from "../../../DTOs/Agency/agency.dto";
+import { AddNewHubVerifyOtpDTO } from "../../../DTOs/Agency/AgencyDTO";
 
 export interface IAddNewHubVerifyOtpUseCase {
     verify(dto:AddNewHubVerifyOtpDTO): Promise<boolean>;

@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { razorpayClient } from "./razorpay.client";
+import { razorpayClient } from "./razorpayClient";
 import { CreateOrderInput, CreateOrderOutput, CreatePayoutInput, CreatePayoutOutput, IPaymentGatewayService } from "../../../Application/Interfaces/Services/Payment/IPaymentGateway";
 import { AppError } from "../../../Domain/Utils/customError";
 import { STATUS } from "../../Constants/statusCodes";

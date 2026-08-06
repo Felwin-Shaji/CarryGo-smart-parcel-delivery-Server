@@ -1,8 +1,8 @@
 import { ClientSession } from "mongoose";
 import { Booking } from "../../../../Domain/Entities/Booking/Booking";
-import { BookingStatusType, PaymentStatusType } from "../../../../Infrastructure/Types/types";
-import { BookingFilterDTO } from "../../../DTOs/User/Booking.dto";
-import { DeliveriesChartRequestDTO, DeliveriesChartResponseDTO } from "../../../DTOs/Agency/agencyDashboard.dto";
+import { BookingStatusType, PaymentStatusType } from "../../../../Infrastructure/Types/CommonTypes";
+import { BookingFilterDTO } from "../../../DTOs/User/BookingDTO";
+import { DeliveriesChartRequestDTO, DeliveriesChartResponseDTO } from "../../../DTOs/Agency/AgencyDashboardDTO";
 
 export interface IBookingRepository {
     create(booking: Booking): Promise<Booking>

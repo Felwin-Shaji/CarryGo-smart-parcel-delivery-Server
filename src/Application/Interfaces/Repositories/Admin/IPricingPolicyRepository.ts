@@ -1,6 +1,6 @@
 import { BasePricingPolicy } from "../../../../Domain/Entities/Admin/BasePricingPolicy";
 import { BasePricingPolicySchemaType } from "../../../../Infrastructure/Database/Models/Admin/Pricing/BasePricingPolicySchema";
-import { IBaseRepository } from "../base.repository";
+import { IBaseRepository } from "../IBaseRepository";
 
 export interface IPricingPolicyRepository extends IBaseRepository<BasePricingPolicySchemaType> {
 

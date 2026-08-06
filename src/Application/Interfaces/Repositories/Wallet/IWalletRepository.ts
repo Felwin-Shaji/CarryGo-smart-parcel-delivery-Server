@@ -1,5 +1,5 @@
 import { Wallet } from "../../../../Domain/Entities/Wallet/Wallet";
-import { Role } from "../../../../Infrastructure/Types/types";
+import { Role } from "../../../../Infrastructure/Types/CommonTypes";
 import type { ClientSession } from "mongoose";
 
 export interface IWalletRepository {

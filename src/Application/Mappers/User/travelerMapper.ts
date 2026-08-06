@@ -1,14 +1,14 @@
 import { Booking } from "../../../Domain/Entities/Booking/Booking";
 import { User } from "../../../Domain/Entities/User";
 import { TravelRequest } from "../../../Domain/Entities/User/TravelRequest";
-import { IWrokerKYCVerification } from "../../../Domain/Entities/Worker/WorkerKyc";
+import { IWrokerKYCVerification } from "../../../Domain/Entities/Worker/WorkerKYC";
 import { PaymentStatus } from "../../../Domain/Enums/PaymentStatus";
 import { AppError } from "../../../Domain/Utils/customError";
-import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessage";
+import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import { BookingStatusType } from "../../../Infrastructure/Types/types";
-import { CreateTravelRequestDTO, TravelerRequestAddressDTO, TripDetailsResponseDTO, TripOrderResponseDTO } from "../../DTOs/User/traveler.dto";
-import { BaseUserResponseDTO, GetTravelerKycResponseDTO } from "../../DTOs/User/user.dto";
+import { BookingStatusType } from "../../../Infrastructure/Types/CommonTypes";
+import { CreateTravelRequestDTO, TravelerRequestAddressDTO, TripDetailsResponseDTO, TripOrderResponseDTO } from "../../DTOs/User/TravelerDTO";
+import { BaseUserResponseDTO, GetTravelerKycResponseDTO } from "../../DTOs/User/UserDTO";
 
 export class TravelerMapper {
 

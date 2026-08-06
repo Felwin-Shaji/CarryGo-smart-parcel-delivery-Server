@@ -1,4 +1,4 @@
-import type { KYCStatus, Role } from "../../Infrastructure/Types/types";
+import type { KYCStatus, Role } from "../../Infrastructure/Types/CommonTypes";
 import { AppError } from "../Utils/customError";
 import { Address } from "./User/Address";
 

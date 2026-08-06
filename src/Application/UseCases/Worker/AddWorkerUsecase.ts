@@ -1,21 +1,21 @@
 import { inject, injectable } from "tsyringe";
-import { IHubWorkersTempRepository } from "../../Interfaces/Repositories/Worker/worersTemp.repository";
-import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";
-import { IMailService } from "../../Interfaces/Services/email-service.interface";
-import { IPasswordService } from "../../Interfaces/Services/password-service.interface";
+import { IHubWorkersTempRepository } from "../../Interfaces/Repositories/Worker/IHubWorkersTempRepository";
+import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/IHubWorkerRepository";
+import { IMailService } from "../../Interfaces/Services/IEmailService";
+import { IPasswordService } from "../../Interfaces/Services/IPasswordService";
 import { AppError } from "../../../Domain/Utils/customError";
-import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { WorkerMapper } from "../../Mappers/Worker/WorkerMapper";
-import { WorkerResponseDTO } from "../../DTOs/Worker/worker.dto";
-import { IAddWorkerUsecase } from "../../Interfaces/UseCases/Worker/AddWorkerUsecase";
-import { IHubWorkerKycRepository } from "../../Interfaces/Repositories/Worker/wrokerKyc.repository";
-import { IDType } from "../../../Domain/Entities/Worker/WorkerKyc";
-import { UploadedWorkerKycFiles } from "../../Interfaces/UseCases/Worker/uploadWorkerKycFilesUsecase";
+import { WorkerResponseDTO } from "../../DTOs/Worker/WorkerDTO";
+import { IAddWorkerUsecase } from "../../Interfaces/UseCases/Worker/IAddWorkerUseCase";
+import { IHubWorkerKycRepository } from "../../Interfaces/Repositories/Worker/IHubWorkerKycRepository";
+import { IDType } from "../../../Domain/Entities/Worker/WorkerKYC";
+import { UploadedWorkerKycFiles } from "../../Interfaces/UseCases/Worker/IUploadWorkerKycFilesUseCase";
 import { INotificationSocketService } from "../../Interfaces/Services/Notification/INotificationSocketService";
 import { INotificationService } from "../../Interfaces/Services/Notification/INotificationService";
-import { IAgencyRepository } from "../../Interfaces/Repositories/Agency/agency.repository";
-import { IHubRepository } from "../../Interfaces/Repositories/Hub/hub.repository";
+import { IAgencyRepository } from "../../Interfaces/Repositories/Agency/IAgencyRepository";
+import { IHubRepository } from "../../Interfaces/Repositories/Hub/IHubRepository";
 
 @injectable()
 export class AddWorkerUsecase implements IAddWorkerUsecase {

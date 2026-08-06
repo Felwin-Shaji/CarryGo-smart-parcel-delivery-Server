@@ -1,6 +1,6 @@
 import { Address } from "../../../Domain/Entities/User/Address";
-import { addUserAddressRequestDTO } from "../../DTOs/User/address.dto";
-import { AddressResponseDTO } from "../../DTOs/User/Booking.dto";
+import { addUserAddressRequestDTO } from "../../DTOs/User/AddressDTO";
+import { AddressResponseDTO } from "../../DTOs/User/BookingDTO";
 
 export class AddressMapper {
     static toAddressEntity(dto: addUserAddressRequestDTO): Address {

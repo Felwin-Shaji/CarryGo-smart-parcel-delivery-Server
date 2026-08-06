@@ -1,4 +1,4 @@
-import { addUserAddressRequestDTO } from "../../../../DTOs/User/address.dto";
+import { addUserAddressRequestDTO } from "../../../../DTOs/User/AddressDTO";
 
 export interface IAddUserAddressUseCase {
   execute(userId: string, dto:addUserAddressRequestDTO): Promise<void>;

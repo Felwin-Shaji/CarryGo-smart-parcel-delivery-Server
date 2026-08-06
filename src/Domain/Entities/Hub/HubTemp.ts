@@ -1,4 +1,4 @@
-import { Role } from "../../../Infrastructure/Types/types";
+import { Role } from "../../../Infrastructure/Types/CommonTypes";
 
 export interface HubTemp {
     id: string | null;

@@ -1,4 +1,4 @@
-import { GetHubDashboardTrendRequestDTO, GetHubDashboardTrendResponseDTO } from "../../../DTOs/Hub/hubDashboar.dto";
+import { GetHubDashboardTrendRequestDTO, GetHubDashboardTrendResponseDTO } from "../../../DTOs/Hub/HubDashboardDTO";
 
 export interface IGetHubDashboardTrendUseCase {
     execute(

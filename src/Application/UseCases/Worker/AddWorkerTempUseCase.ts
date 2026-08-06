@@ -1,14 +1,14 @@
 import { inject, injectable } from "tsyringe";
-import { IAddWorkerTempUseCase } from "../../Interfaces/UseCases/Worker/addWorkerTempUseCase.interface";
-import { IHubWorkersTempRepository } from "../../Interfaces/Repositories/Worker/worersTemp.repository";
-import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/worker.repository";
-import { IOtpService } from "../../Interfaces/Services/otp-service.interface";
-import { IMailService } from "../../Interfaces/Services/email-service.interface";
+import { IAddWorkerTempUseCase } from "../../Interfaces/UseCases/Worker/IAddWorkerTempUseCase";
+import { IHubWorkersTempRepository } from "../../Interfaces/Repositories/Worker/IHubWorkersTempRepository";
+import { IHubWorkerRepository } from "../../Interfaces/Repositories/Worker/IHubWorkerRepository";
+import { IOtpService } from "../../Interfaces/Services/IOTPService";
+import { IMailService } from "../../Interfaces/Services/IEmailService";
 import { AppError } from "../../../Domain/Utils/customError";
-import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessage";
+import { WORKER_MESSAGES } from "../../../Infrastructure/Constants/Messages/workerMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ENV } from "../../../Infrastructure/Constants/env";
-import { AddWorkerTempRequestDTO, AddWorkerTempResponseDTO } from "../../DTOs/Hub/hub.dto";
+import { AddWorkerTempRequestDTO, AddWorkerTempResponseDTO } from "../../DTOs/Hub/HubDTO";
 import { WorkerMapper } from "../../Mappers/Worker/WorkerMapper";
 
 @injectable()

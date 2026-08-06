@@ -1,16 +1,16 @@
 import { inject, injectable } from "tsyringe";
 import { IResubmitHubUseCase } from "../../Interfaces/UseCases/Hub/IResubmitHubUseCase";
-import { IHubRepository } from "../../Interfaces/Repositories/Hub/hub.repository";
+import { IHubRepository } from "../../Interfaces/Repositories/Hub/IHubRepository";
 import { IAdminRepository } from "../../Interfaces/Repositories/Admin/IAdminRepository";
 import { IUploadAddFilesUseCase } from "../../Interfaces/UseCases/Hub/IUploadAddFilesUseCase";
 import { INotificationService } from "../../Interfaces/Services/Notification/INotificationService";
 import { INotificationSocketService } from "../../Interfaces/Services/Notification/INotificationSocketService";
 import { AgencyAddHubFields } from "../../../Infrastructure/Services/Storage/multer";
 import { AppError } from "../../../Domain/Utils/customError";
-import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessage";
+import { HUB_MESSAGES } from "../../../Infrastructure/Constants/Messages/hubMessages";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { HubMapper } from "../../Mappers/Hub/HubMapper";
-import { ResubmitHubDTO } from "../../DTOs/Agency/agency.dto";
+import { ResubmitHubDTO } from "../../DTOs/Agency/AgencyDTO";
 
 @injectable()
 export class ResubmitHubUseCase implements IResubmitHubUseCase {

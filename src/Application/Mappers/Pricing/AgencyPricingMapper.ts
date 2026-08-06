@@ -1,6 +1,6 @@
 import { AgencyPricingPolicy } from "../../../Domain/Entities/Admin/AgencyPricingPolicy";
 import { AgencyPricing } from "../../../Domain/Entities/Agency/AgencyPricing";
-import { UpdateAgencyPricingDTO } from "../../DTOs/Pricing/AgencyPricing.dto";
+import { UpdateAgencyPricingDTO } from "../../DTOs/Pricing/AgencyPricingDTO";
 
 export class AgencyPricingMapper {
 

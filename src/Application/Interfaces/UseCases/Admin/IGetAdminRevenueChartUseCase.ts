@@ -1,4 +1,4 @@
-import { AdminRevenueChartResponseDTO, GetAdminDashboardDTO } from "../../../DTOs/Admin/adminDashboard.dto";
+import { AdminRevenueChartResponseDTO, GetAdminDashboardDTO } from "../../../DTOs/Admin/AdminDashboardDTO";
 
 export interface IGetAdminRevenueChartUseCase {
     execute(dto: GetAdminDashboardDTO): Promise<AdminRevenueChartResponseDTO>;

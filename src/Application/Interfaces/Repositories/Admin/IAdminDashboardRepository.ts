@@ -1,4 +1,4 @@
-import { AdminBookingChartResponseDTO, AdminBookingsReportDTO, AdminBookingsReportResponseDTO, AdminDashboardResponseDTO, AdminRevenueChartResponseDTO, GetAdminDashboardDTO } from "../../../DTOs/Admin/adminDashboard.dto";
+import { AdminBookingChartResponseDTO, AdminBookingsReportDTO, AdminBookingsReportResponseDTO, AdminDashboardResponseDTO, AdminRevenueChartResponseDTO, GetAdminDashboardDTO } from "../../../DTOs/Admin/AdminDashboardDTO";
 
 export interface IAdminDashboardRepository {
     getDashboardOverview(dto: GetAdminDashboardDTO): Promise<AdminDashboardResponseDTO>;

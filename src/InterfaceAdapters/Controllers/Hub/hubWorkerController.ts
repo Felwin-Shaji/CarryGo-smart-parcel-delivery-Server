@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { IHubWorkerController } from "../../Interfaces/Controllers/Hub/HubWorkerController";
+import { IHubWorkerController } from "../../Interfaces/Controllers/Hub/IHubWorkerController";
 import { inject, injectable } from "tsyringe";
 import { IAddWorkerTempUseCase } from "../../../Application/Interfaces/UseCases/Worker/IAddWorkerTempUseCase";
 import { IWorkerVerifyOtpUseCase } from "../../../Application/Interfaces/UseCases/Worker/IWorkerVerifyOtpUseCase";

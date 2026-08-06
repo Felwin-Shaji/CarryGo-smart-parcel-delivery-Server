@@ -4,7 +4,7 @@ import { IGetAgenciesUseCase } from "../../../Application/Interfaces/UseCases/Ag
 import { AppError } from "../../../Domain/Utils/customError";
 import { IUpdateAgencyKycStatusUseCase } from "../../../Application/Interfaces/UseCases/Agency/IUpdateAgencyKycStatusUseCase";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import { IAdminAgencyController } from "../../Interfaces/Controllers/Admin/adminAgency.controller";
+import { IAdminAgencyController } from "../../Interfaces/Controllers/Admin/IAdminAgencyController";
 import { IUpdateAgencyStatusUseCase } from "../../../Application/Interfaces/UseCases/Agency/IUpdateAgencyStatusUseCase";
 import { AGENCY_MESSAGES } from "../../../Infrastructure/Constants/Messages/agencyMessages";
 import { GetAgenciesDTO, updateAgencyKycStatusDTO, } from "../../../Application/DTOs/Agency/AgencyDTO";

@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { inject, injectable } from "tsyringe";
-import type { IAuthController } from "../../Interfaces/Controllers/Auth/auth.controller";
+import type { IAuthController } from "../../Interfaces/Controllers/Auth/IAuthController";
 import { AuthMapper } from "../../../Application/Mappers/AuthMapper";
 import { setAuthCookies } from "../../../Domain/Utils/setAuthCookies";
 import { AppError } from "../../../Domain/Utils/customError";

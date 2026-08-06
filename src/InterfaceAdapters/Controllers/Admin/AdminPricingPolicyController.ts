@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
-import { IAdminPricingPolicyController } from "../../Interfaces/Controllers/Admin/adminPricingPolicy.controller";
+import { IAdminPricingPolicyController } from "../../Interfaces/Controllers/Admin/IAdminPricingPolicyController";
 import { IGetPricingUseCase } from "../../../Application/Interfaces/UseCases/Pricing/IGetPricingUseCase";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
 import { ApiResponse } from "../../Presenters/ApiResponse";

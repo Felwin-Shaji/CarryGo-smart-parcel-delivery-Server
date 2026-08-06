@@ -3,7 +3,7 @@ import { inject, injectable } from "tsyringe";
 import { IGetUsersUseCase } from "../../../Application/Interfaces/UseCases/User/IGetUsersUseCase";
 import { IUpdateUserStatusUseCase } from "../../../Application/Interfaces/UseCases/User/IUpdateUserStatusUseCase";
 import { STATUS } from "../../../Infrastructure/Constants/statusCodes";
-import { IAdminUserController } from "../../Interfaces/Controllers/Admin/adminUser.controller";
+import { IAdminUserController } from "../../Interfaces/Controllers/Admin/IAdminUserController";
 import { GetUserDto, updateUserKycStatusDTO } from "../../../Application/DTOs/User/UserDTO";
 import { ApiResponse } from "../../Presenters/ApiResponse";
 import { USER_MESSAGES } from "../../../Infrastructure/Constants/Messages/userMessages";

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { IAgencyController } from "../../Interfaces/Controllers/Agency/agency.controller";
+import { IAgencyController } from "../../Interfaces/Controllers/Agency/IAgencyController";
 import { inject, injectable } from "tsyringe";
 import { IUploadAgencyKycFilesUseCase } from "../../../Application/Interfaces/UseCases/Agency/IUploadAgencyKycFilesUseCase";
 import { ISaveAgencyKycUseCase } from "../../../Application/Interfaces/UseCases/Agency/ISaveAgencyKycUseCase";

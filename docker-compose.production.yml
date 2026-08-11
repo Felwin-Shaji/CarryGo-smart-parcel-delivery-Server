@@ -1,11 +1,12 @@
 services:
   backend:
-    build: .
+    image: 183192605547.dkr.ecr.ap-south-1.amazonaws.com/carrygo-backend:${IMAGE_TAG}
     container_name: carrygo-backend
     env_file:
       - .env
     expose:
       - "3000"
+    restart: unless-stopped
 
   nginx:
     image: nginx:alpine
@@ -18,3 +19,4 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - backend
+    restart: unless-stopped

@@ -14,7 +14,7 @@ env:
   ECR_REPOSITORY: carrygo-backend
 
 jobs:
-  build-and-push:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -41,3 +41,43 @@ jobs:
         run: |
           docker push \
             ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            set -e
+
+            cd ~/CarryGo-smart-parcel-delivery-Server
+
+            export IMAGE_TAG=${{ github.sha }}
+
+            echo "Logging into Amazon ECR..."
+
+            aws ecr get-login-password \
+              --region ap-south-1 | \
+              docker login \
+              --username AWS \
+              --password-stdin \
+              183192605547.dkr.ecr.ap-south-1.amazonaws.com
+
+            echo "Pulling backend image..."
+
+            docker compose \
+              -f docker-compose.production.yml \
+              pull backend
+
+            echo "Starting backend..."
+
+            docker compose \
+              -f docker-compose.production.yml \
+              up -d backend
+
+            echo "Removing unused Docker images..."
+
+            docker image prune -f
+
+            echo "Deployment completed successfully."

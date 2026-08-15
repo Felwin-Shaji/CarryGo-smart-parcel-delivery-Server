@@ -12,7 +12,9 @@ export class AddressRoute extends BaseRoute {
 
     this.router.get("/geocode/reverse", authenticate([Role.USER]), asyncHandler(addressController.reverseGeocode));
 
-    this.router.post("/address", authenticate([Role.USER]),validateRequest(addUserAddressSchema),  asyncHandler(addressController.addUserAddress));
+    this.router.get("/geocode/search", authenticate([Role.USER]), asyncHandler(addressController.searchAddress));
+
+    this.router.post("/address", authenticate([Role.USER]), validateRequest(addUserAddressSchema), asyncHandler(addressController.addUserAddress));
 
     this.router.get("/addresses", authenticate([Role.USER]), asyncHandler(addressController.getAddresses));
 

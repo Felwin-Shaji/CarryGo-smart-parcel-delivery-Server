@@ -9,4 +9,6 @@ export const ADDRESS_MESSAGES = {
         ADDRESS_DELETED: "Address deleted successfully",
 
         DEFAULT_ADDRESS_SET: "Default address set successfully",
+
+        ADDRESS_SEARCHED: "Address searched successfully",
 };

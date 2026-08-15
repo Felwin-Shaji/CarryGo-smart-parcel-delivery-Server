@@ -276,6 +276,8 @@ import { IResetWorkerPasswordUseCase } from "../../Application/Interfaces/UseCas
 import { ResetWorkerPasswordUseCase } from "../../Application/UseCases/Worker/ResetWorkerPasswordUseCase";
 import { IResubmitHubUseCase } from "../../Application/Interfaces/UseCases/Hub/IResubmitHubUseCase";
 import { ResubmitHubUseCase } from "../../Application/UseCases/Hub/ResubmitHubUseCase";
+import { ISearchAddressUseCase } from "../../Application/Interfaces/UseCases/User/Address/ISearchAddressUseCase";
+import { SearchAddressUseCase } from "../../Application/UseCases/User/Address/SearchAddressUseCase";
 
 
 
@@ -843,6 +845,10 @@ export class UsecaseRegistery {
 
         container.register<IResubmitHubUseCase>("IResubmitHubUseCase", {
             useClass: ResubmitHubUseCase
-        })
+        });
+
+        container.register<ISearchAddressUseCase>("ISearchAddressUseCase", {
+            useClass: SearchAddressUseCase
+        });
     }
 }

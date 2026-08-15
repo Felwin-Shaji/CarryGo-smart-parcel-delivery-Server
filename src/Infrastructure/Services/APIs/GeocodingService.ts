@@ -1,6 +1,7 @@
 import axios from "axios";
-import { ReverseGeocodeRawDTO } from "../../../Application/DTOs/User/AddressDTO";
+import { ForwardGeocodeRawDTO, ReverseGeocodeRawDTO } from "../../../Application/DTOs/User/AddressDTO";
 import { IGeocodingService } from "../../../Application/Interfaces/Services/IGeocodingService";
+import { GeocodeSearchResponse } from "../../Types/GeocodeSearchResponse";
 
 export class GeocodingService implements IGeocodingService {
 
@@ -28,4 +29,44 @@ export class GeocodingService implements IGeocodingService {
             lng: lon,
         };
     };
+
+    async searchAddress(query: string): Promise<ForwardGeocodeRawDTO[]> {
+
+        const res = await axios.get<GeocodeSearchResponse[]>(
+            "https://geocode.maps.co/search",
+            {
+                params: {
+                    q: query,
+                    api_key: process.env.GEOCODING_SECRET_API_KEY,
+                    format: "jsonv2",
+                    addressdetails: 1,
+                    limit: 5,
+                    countrycodes: "in",
+                },
+            }
+        );
+
+        return res.data.map((item) => ({
+            addressLine1:
+                `${item.address?.house_number ?? ""} ${item.address?.road ?? ""}`.trim(),
+
+            city:
+                item.address?.city ||
+                item.address?.town ||
+                item.address?.village ||
+                "",
+
+            state: item.address?.state || "",
+
+            country: item.address?.country || "India",
+
+            pincode: item.address?.postcode || "",
+
+            formattedAddress: item.display_name || "",
+
+            lat: Number(item.lat),
+
+            lng: Number(item.lon),
+        }));
+    }
 };

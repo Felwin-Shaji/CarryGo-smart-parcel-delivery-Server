@@ -12,11 +12,13 @@ import { IDeleteUserAddressUseCase } from "../../../Application/Interfaces/UseCa
 import { AppError } from "../../../Domain/Utils/customError";
 import { ISetDefaultUserAddressUseCase } from "../../../Application/Interfaces/UseCases/User/Address/ISetDefaultUserAddressUseCase";
 import { AUTH_MESSAGES } from "../../../Infrastructure/Constants/Messages/authMessages";
+import { ISearchAddressUseCase } from "../../../Application/Interfaces/UseCases/User/Address/ISearchAddressUseCase";
 
 @injectable()
 export class AddressController implements IAddressController {
     constructor(
         @inject("ICreateAddressFromLocationUseCase") private _createAddressFromLocationUseCase: ICreateAddressFromLocationUseCase,
+        @inject("ISearchAddressUseCase") private _searchAddressUseCase: ISearchAddressUseCase,
         @inject("IAddUserAddressUseCase") private _addUserAddressUseCase: IAddUserAddressUseCase,
         @inject("IGetUserAddressesUseCase") private getUserAddressesUseCase: IGetUserAddressesUseCase,
         @inject("IDeleteUserAddressUseCase") private deleteUserAddressUseCase: IDeleteUserAddressUseCase,
@@ -33,6 +35,20 @@ export class AddressController implements IAddressController {
             ADDRESS_MESSAGES.ADDRESS_FETCHED,
             addressData
         ));
+    };
+
+    searchAddress = async (req: Request, res: Response): Promise<Response | void> => {
+
+        const query = req.query.q as string;
+
+        const results = await this._searchAddressUseCase.execute(query);
+
+        return res.status(STATUS.OK).json(
+            ApiResponse.success(
+                ADDRESS_MESSAGES.ADDRESS_SEARCHED,
+                results
+            )
+        );
     };
 
     addUserAddress = async (req: Request, res: Response): Promise<Response | void> => {

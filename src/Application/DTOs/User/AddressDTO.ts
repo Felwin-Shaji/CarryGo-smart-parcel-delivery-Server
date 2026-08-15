@@ -9,6 +9,16 @@ export interface ReverseGeocodeRawDTO {
   lng: number;
 };
 
+export interface ForwardGeocodeRawDTO {
+  addressLine1: string;
+  city: string;
+  state: string;
+  country: string;
+  pincode: string;
+  formattedAddress: string;
+  lat: number;
+  lng: number;
+}
 
 export interface addUserAddressRequestDTO {
   id: string;
